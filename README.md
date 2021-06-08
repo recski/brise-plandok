@@ -53,6 +53,14 @@ The demo can then be accessed from your web browser at [http://localhost:8501/](
 
 ## Full pipeline
 
+### Data
+
+All steps described below can be run on the sample documents included in this repository under `sample_data`.
+
+The preprocessed version of all plan documents (as of December 2020) can be
+downloaded as [a single JSON file](https://url.tuwien.at/ndnre). If you would like
+to customize preprocessing, you can also download the [raw text documents](https://url.tuwien.at/eydmo)
+
 ### Preprocessing
 
 Extract section structure from raw text and run NLP pipeline (sentence segmentation, tokenization, dependency parsing):
@@ -69,6 +77,14 @@ cat sample_data/json/sample.jsonl | python brise_plandok/extractor.py > output/s
 
 To run the rule extraction system of the ASAIL paper, add the `-r` command-line switch to the above command.
 
+
+### Evaluation
+
+Evaluate attribute extraction on annotated sample of 10 documents:
+
+```
+cat sample_data/json/sample_10.jsonl | python brise_plandok/eval_attr_ext.py
+```
 
 ### Annotation
 

@@ -70,6 +70,14 @@ cat sample_data/json/sample.jsonl | python brise_plandok/extractor.py > output/s
 To run the rule extraction system of the ASAIL paper, add the `-r` command-line switch to the above command.
 
 
+### Evaluation
+
+Evaluate attribute extraction on annotated sample of 10 documents:
+
+```
+cat sample_data/json/sample_10.jsonl | python brise_plandok/eval_attr_ext.py
+```
+
 ### Annotation
 
 To generate `xlsx` files for annotation, ... TODO Adam

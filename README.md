@@ -17,12 +17,6 @@ Install the brise_plandok repository:
 pip install .
 ```
 
-Create subdirectories for output and cache:
-
-```
-mkdir -p output cache
-```
-
 ## Rule extraction
 
 

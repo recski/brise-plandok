@@ -234,11 +234,10 @@ def eval_results(results, args):
 
 def eval_rule_ext(args):
 
-    extractor = get_extractor(args)
-
     sections = load_sample(sys.stdin)
 
-    sections, results = extractor.run_on_sections(sections)
+    with get_extractor(args) as extractor:
+        sections, results = extractor.run_on_sections(sections)
 
     if args.output_file:
         print_output(results, args.output_file)

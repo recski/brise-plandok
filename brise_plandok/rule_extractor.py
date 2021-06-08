@@ -101,8 +101,8 @@ def construct_value(raw_val, vals_to_quants):
 
 
 class RuleExtractor(Extractor):
-    def __init__(self, **kwargs):
-        super(RuleExtractor, self).__init__(**kwargs)
+    def __init__(self, *args, **kwargs):
+        super(RuleExtractor, self).__init__(*args, **kwargs)
         self.ud_fl = UD_FL(cache_dir=self.cache_dir)
         self.fl_attr = FL_Attr(cache_dir=self.cache_dir)
 

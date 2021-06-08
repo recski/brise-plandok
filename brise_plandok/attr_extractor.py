@@ -57,8 +57,8 @@ PATTERNS = [
 
 
 class AttributeExtractor(Extractor):
-    def __init__(self, **kwargs):
-        super(AttributeExtractor, self).__init__(**kwargs)
+    def __init__(self, *args, **kwargs):
+        super(AttributeExtractor, self).__init__(*args, **kwargs)
         self.ud_fl = UD_FL(cache_dir=self.cache_dir)
         self.fl_attr = GraphMatcher(PATTERNS)
 

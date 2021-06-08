@@ -1,0 +1,432 @@
+interpretation fl: de.up.ling.irtg.algebra.graph.GraphAlgebra
+interpretation attr: de.up.ling.irtg.algebra.TreeAlgebra
+
+/* E! -> a_gebaeudehoehe [100]
+  [fl] "(u<root> / Gebaeudehoehe)"
+  [attr] "BBBauklasseMaximum" */
+
+E! -> a_gebaeudehoehe_ueberschreiten(E, E) [100]
+[fl] f_src(f_tgt(merge(r_src(?1), merge(r_tgt(?2), "(u<src> / ueberschreiten :1 (v<tgt> / Gebaeudehoehe))"))))
+[attr] *(*(?1, ?2), "GebaeudeHoeheMax")
+
+E! -> a_gebaeudehoehe_maximal(E, E) [100]
+[fl] f_src(f_tgt(merge(r_src(?1), merge(r_tgt(?2), "(u<src> / Gebaeudehoehe :0 (v<tgt> / maximal))"))))
+[attr] *(*(?1, ?2), *("OBL", "GebaeudeHoeheMax"))
+
+E! -> a_gebaeudehoehe_minimal(E, E) [100]
+[fl] f_src(f_tgt(merge(r_src(?1), merge(r_tgt(?2), "(u<src> / Gebaeudehoehe :0 (v<tgt> / minimal))"))))
+[attr] *(*(?1, ?2), *("OBL", "GebaeudeHoeheMin"))
+
+E! -> a_gehsteige_breite(E, E) [100]
+[fl] f_src(f_tgt(merge(r_src(?1), merge(r_tgt(?2), "(u<src> / Gehsteige :0 (v<tgt> / Breite))"))))
+[attr] *(*(?1, ?2), "GehsteigbreiteMin")
+
+E! -> a_gehsteige_herstellen_breite(E, E, E) [100]
+[fl] f_pred(f_obj(f_obl(merge(r_pred(?1), merge(r_obl(?2), merge(r_obj(?3), "(u<pred> / herstellen :0 (v<obl> / Breite) :2 (w<obj> / Gehsteige))"))))))
+[attr] *(*(?1, *(?2, ?3)), "GehsteigbreiteMin")
+
+E! -> a_gehsteige_mit_breite(E, E, E, E) [100]
+[fl] f_bin(f_obj(f_obl(merge(?1, merge(r_obl(?2), merge(r_obj(?3), merge(r_bin(?4), "(b<bin> / mit :2 (v<obl> / Breite) :1 (u<root> / herstellen :2 (w<obj> / Gehsteige)))")))))))
+[attr] *(*(?1, *(?2, *(?3, ?4))), "GehsteigbreiteMin")
+
+E! -> a_punkt_dach_min(E, E, E, E) [100]
+[fl] f_punkt(f_obj(f_obl(merge(?1, merge(r_obl(?2), merge(r_obj(?3), merge(r_punkt(?4), "(b<root> / liegen :0 (v<obl> / hoch :0 (x / NEG)) :1 (u<punkt> / Punkt :0 (w<obj> / Dach)))")))))))
+[attr] *(*(?1, *(?2, *(?3, ?4))), *("FOR", "AbschlussDachMin"))
+
+E! -> a_punkt_dach_max(E, E, E, E) [100]
+[fl] f_punkt(f_obj(f_obl(merge(?1, merge(r_obl(?2), merge(r_obj(?3), merge(r_punkt(?4), "(b<root> / liegen :0 (v<obl> / niedrig :0 (x / NEG)) :1 (u<punkt> / Punkt :0 (w<obj> / Dach)))")))))))
+[attr] *(*(?1, *(?2, *(?3, ?4))), *("FOR", "AbschlussDachMax"))
+
+E! -> a_punkt_dach_genau(E, E, E, E) [100]
+[fl] f_punkt(f_obj(f_obl(merge(?1, merge(r_obl(?2), merge(r_obj(?3), merge(r_punkt(?4), "(b<root> / liegen :0 (x / NEG) :1 (u<punkt> / Punkt :0 (w<obj> / Dach)) :2 (v<obl>))")))))))
+[attr] *(*(?1, *(?2, *(?3, ?4))), *("FOR", "AbschlussDachGenau"))
+
+/* E! -> a_punkt_dach_genau(E, E, E) [100]
+[fl] f_punkt(f_obj(f_obl(merge(?1, merge(r_obj(?2), merge(r_punkt(?3), "(b<root> / liegen :0 (x / NEG) :1 (u<punkt> / Punkt :0 (w<obj> / Dach)))"))))))
+[attr] *(*(?1, *(?2, ?3)), *("FOR", "AbschlussDachGenau")) */
+
+/* E! -> a_punkt_dach(E, E) [100]
+[fl] f_src(f_tgt(merge(r_src(?1), merge(r_tgt(?2), "(u<src> / Punkt  :0 (v<tgt> / Dach))"))))
+[attr] *(*(?1, ?2), "AbschlussDachMin") */
+
+E! -> a_groesse [100]
+[fl] "(u<root> / Groesse)"
+[attr] "DachflaecheMin"
+
+/* This works but just won't interact with a_ausbilden_flachdach_begruent, idk why
+E! -> a_dach_ab_groesse(E, E, E, E) [100]
+[fl] f_bin(f_obj(f_obl(merge(?1, merge(r_obl(?2), merge(r_obj(?3), merge(r_bin(?4), "(b<bin> / ab :2 (v<obl> / Groesse) :1 (u<root> / ausbilden :2 (w<obj> / Dach)))")))))))
+[attr] *(*(?1, *(?2, *(?3, ?4))), "DachflaecheMin") */
+
+E! -> a_verkehrsflaeche_oeffentlich(E, E) [100]
+[fl] f_src(f_tgt(merge(r_src(?1), merge(r_tgt(?2), "(u<src> / Verkehrsflaeche :0 (v<tgt> / oeffentlich))"))))
+[attr] *(*(?1, ?2), "AnOeffentlichenVerkehrsflaechen")
+
+E! -> a_zweck [100]
+[fl] "(u<root> / Zweck)"
+[attr] "ZweckbestimmungWidmungskategorie1"
+
+E! -> a_nutzung [100]
+[fl] "(u<root> / Nutzung)"
+[attr] "ZweckbestimmungWidmungskategorie1"
+
+E! -> a_zusammenhang [100]
+[fl] "(u<root> / Zusammenhang)"
+[attr] "ZweckbestimmungWidmungskategorie1"
+
+E! -> a_darueber [100]
+[fl] "(u<root> / darueber)"
+[attr] "WidmungErsteEbene WidmungZweiteEbene WidmungZweiteEbeneBezugObjekt"
+
+E! -> a_gaertnerisch [100]
+[fl] "(u<root> / gaertnerisch)"
+[attr] "AnordnungGaertnerischeAusgestaltung"
+
+E! -> a_begruenen [100]
+[fl] "(u<root> / begruenen)"
+[attr] "BegruenungDach"
+
+E! -> a_begruent [100]
+[fl] "(u<root> / begruent)"
+[attr] "BegruenungDach"
+
+E! -> a_belichtung [100]
+[fl] "(u<root> / Belichtung)"
+[attr] "TechnischeUndBelichtungsAufbautenZulaessig"
+
+E! -> a_bezeichnet [100]
+[fl] "(u<root> / bezeichnet)"
+[attr] "PlanzeichenBBID"
+
+E! -> a_esp [100]
+[fl] "(u<root> / Esp)"
+[attr] *("WidmungID", "v_Esp")
+
+/* E! -> a_dachneigung [100]
+[fl] "(u<root> / Dachneigung)"
+[attr] "DachneigungMax" */
+
+E! -> a_dachneigung_mit(E, E) [100]
+[fl] f_tgt(merge(?1, merge(r_tgt(?2), "(u<root> / Dachneigung  :0 (v<tgt> / mit))")))
+[attr] *(*(?1, ?2), "DachneigungGenau")
+
+E! -> a_dachneigung_ab(E, E) [100]
+[fl] f_tgt(merge(?1, merge(r_tgt(?2), "(u<root> / Dachneigung  :0 (v<tgt> / ab))")))
+[attr] *(*(?1, ?2), "DachneigungMin")
+
+E! -> a_dachneigung_bis(E, E) [100]
+[fl] f_tgt(merge(?1, merge(r_tgt(?2), "(v<tgt> / bis :2 (u<root> / Dachneigung))")))
+[attr] *(*(?1, ?2), "DachneigungMax")
+
+E! -> a_dachneigung_bis_old(E, E) [100]
+[fl] f_tgt(merge(?1, merge(r_tgt(?2), "(u<root> / Dachneigung  :0 (v<tgt> / bis))")))
+[attr] *(*(?1, ?2), "DachneigungMax")
+
+E! -> a_flachdach [100]
+[fl] "(u<root> / Flachdaecher)"
+[attr] *("Dachart", "v_Flachdach")
+
+/* E! -> a_flachdach_begruent(E, E) [100]
+[fl] f_src(f_tgt(merge(r_src(?1), merge(r_tgt(?2), "(u<src> / Flachdaecher :0 (v<tgt> / begruent))"))))
+[attr] *(*(?1, ?2), *(*("Dachart", "v_Flachdach"), "BegruenungDach")) */
+
+E! -> a_ausbilden_flachdach_begruent(E) [100000000]
+[fl] merge(?1, "(u / als :1 (v<root> / ausbilden :0 (x / OBL)) :2 (w / Flachdaecher :0 (y / Xdach) :0 (z / begruent)))")
+[attr] *(?1, *(*("OBL", *("Dachart", "v_Flachdach")), *("OBL", "BegruenungDach")))
+
+E! -> a_glasdach [100]
+[fl] "(u<root> / Glasdaecher)"
+[attr] *("Dachart", "v_Glasdach")
+
+E! -> a_gewidmet [100]
+[fl] "(u<root> / gewidmet)"
+[attr] "WidmungID"
+
+E! -> a_gasse [100]
+[fl] "(u<root> / Gasse)"
+[attr] "VerkehrsflaecheID"
+
+E! -> a_xgasse [100]
+[fl] "(u<root> / Xgasse)"
+[attr] "VerkehrsflaecheID"
+
+E! -> a_strasse [100]
+[fl] "(u<root> / Strasse)"
+[attr] "VerkehrsflaecheID"
+
+E! -> a_xstrasse [100]
+[fl] "(u<root> / Xstrasse)"
+[attr] "VerkehrsflaecheID"
+
+E! -> a_strassenbreite [100]
+[fl] "(u<root> / Strassenbreite)"
+[attr] "StrassenbreiteMin" 
+
+/* E! -> a_strassenbreite_x_ab(E, E) [1000000]
+[fl] f_arg(merge(?1, merge(r_arg(?2), "(b / ab :1 (u<root> / Strassenbreite) :2 (v<arg>))")))
+[attr] *(?1, *(?2, "StrassenbreiteMin"))
+
+E! -> a_strassenbreite_x_bis(E, E) [1000000]
+[fl] f_arg(merge(?1, merge(r_arg(?2), "(b / bis :1 (u<root> / Strassenbreite) :2 (v<arg>))")))
+[attr] *(?1, *(?2, "StrassenbreiteMin")) */
+
+E! -> a_strassenbreite_x_ab_old(E, E) [1000000]
+[fl] f_arg(merge(?1, merge(r_arg(?2), "(u<root> / Strassenbreite :0 (v<arg> :0 (w / ab)))")))
+[attr] *(?1, *(?2, "StrassenbreiteMin"))
+
+E! -> a_strassenbreite_x_bis_old(E, E) [1000000]
+[fl] f_arg(merge(?1, merge(r_arg(?2), "(u<root> / Strassenbreite :0 (v<arg> :0 (w / bis)))")))
+[attr] *(?1, *(?2, "StrassenbreiteMax"))
+
+E! -> a_tatsaechlich [100]
+[fl] "(u<root> / tatsaechlich)"
+[attr] *("GebaeudeHoeheArt", "v_tatsaechlich_errichtet")
+
+E! -> a_unterbrechung [100]
+[fl] "(u<root> / Unterbrechung)"
+[attr] "UnterbrechungGeschlosseneBauweise"
+
+E! -> a_fluchtlinie_entlang(E, E) [100]
+[fl] f_src(f_tgt(merge(r_src(?1), merge(r_tgt(?2), "(u<src> / entlang  :2 (v<tgt> / Fluchtlinie))"))))
+[attr] *(*(?1, ?2), "AnFluchtlinie")
+
+E! -> a_garage [100]
+[fl] "(u<root> / Garage)"
+[attr] "GebaeudeBautyp"
+
+E! -> a_tiefgarage [100]
+[fl] "(u<root> / Tiefgarage)"
+[attr] "GebaeudeBautyp"
+
+E! -> a_nebengebaeude [100]
+[fl] "(u<root> / Nebengebaeude)"
+[attr] *("GebaeudeBautyp", "v_Nebengebaeude")
+
+/* E! -> a_grundflaeche_bebaut(E, E) [100]
+[fl] f_src(f_tgt(merge(r_src(?1), merge(r_tgt(?2), "(u<src> / Grundflaeche  :0 (v<tgt> / bebaut))"))))
+[attr] *(*(?1, ?2), "BBBebaubareFlaecheJeBauplatz") */
+
+/* E! -> a_bebaut [100]
+[fl] "(u<root> / bebaut)"
+[attr] "BBBebaubareFlaecheJeBauplatz" */
+
+/* E! -> a_bebaubar [100]
+[fl] "(u<root> / bebaubar)"
+[attr] "BBBebaubareFlaecheJeBauplatz" */
+
+E! -> a_einfriedung [100]
+[fl] "(u<root> / Einfriedung)"
+[attr] "EinfriedungAusgestaltung"
+
+E! -> a_pflanzen [100]
+[fl] "(u<root> / Pflanze)"
+[attr] "VorkehrungBepflanzungOeffentlicheVerkehrsflaeche"
+
+E! -> a_pflanzung [100]
+[fl] "(u<root> / Pflanzung)"
+[attr] "VorkehrungBepflanzungOeffentlicheVerkehrsflaeche"
+
+
+E! -> a_1comma0 [100]
+[fl] "(u<root> / X1COMMA0)"
+[attr] "v_1COMMA0"
+
+E! -> a_2comma0 [100]
+[fl] "(u<root> / X2COMMA0)"
+[attr] "v_2COMMA0"
+
+E! -> a_3comma0 [100]
+[fl] "(u<root> / X3COMMA0)"
+[attr] "v_3COMMA0"
+
+E! -> a_4comma0 [100]
+[fl] "(u<root> / X4COMMA0)"
+[attr] "v_4COMMA0"
+
+E! -> a_5comma0 [100]
+[fl] "(u<root> / X5COMMA0)"
+[attr] "v_5COMMA0"
+
+E! -> a_6comma0 [100]
+[fl] "(u<root> / X6COMMA0)"
+[attr] "v_6COMMA0"
+
+E! -> a_7comma0 [100]
+[fl] "(u<root> / X7COMMA0)"
+[attr] "v_7COMMA0"
+
+E! -> a_8comma0 [100]
+[fl] "(u<root> / X8COMMA0)"
+[attr] "v_8COMMA0"
+
+E! -> a_9comma0 [100]
+[fl] "(u<root> / X9COMMA0)"
+[attr] "v_9COMMA0"
+
+E! -> a_10comma0 [100]
+[fl] "(u<root> / X10COMMA0)"
+[attr] "v_10COMMA0"
+
+E! -> a_11comma0 [100]
+[fl] "(u<root> / X11COMMA0)"
+[attr] "v_11COMMA0"
+
+E! -> a_12comma0 [100]
+[fl] "(u<root> / X12COMMA0)"
+[attr] "v_12COMMA0"
+
+E! -> a_13comma0 [100]
+[fl] "(u<root> / X13COMMA0)"
+[attr] "v_13COMMA0"
+
+E! -> a_14comma0 [100]
+[fl] "(u<root> / X14COMMA0)"
+[attr] "v_14COMMA0"
+
+E! -> a_15comma0 [100]
+[fl] "(u<root> / X15COMMA0)"
+[attr] "v_15COMMA0"
+
+E! -> a_1 [100]
+[fl] "(u<root> / X1)"
+[attr] "v_1"
+
+E! -> a_2 [100]
+[fl] "(u<root> / X2)"
+[attr] "v_2"
+
+E! -> a_3 [100]
+[fl] "(u<root> / X3)"
+[attr] "v_3"
+
+E! -> a_4 [100]
+[fl] "(u<root> / X4)"
+[attr] "v_4"
+
+E! -> a_5 [100]
+[fl] "(u<root> / X5)"
+[attr] "v_5"
+
+E! -> a_6 [100]
+[fl] "(u<root> / X6)"
+[attr] "v_6"
+
+E! -> a_7 [100]
+[fl] "(u<root> / X7)"
+[attr] "v_7"
+
+E! -> a_8 [100]
+[fl] "(u<root> / X8)"
+[attr] "v_8"
+
+E! -> a_9 [100]
+[fl] "(u<root> / X9)"
+[attr] "v_9"
+
+E! -> a_10 [100]
+[fl] "(u<root> / X10)"
+[attr] "v_10"
+
+E! -> a_11 [100]
+[fl] "(u<root> / X11)"
+[attr] "v_11"
+
+E! -> a_12 [100]
+[fl] "(u<root> / X12)"
+[attr] "v_12"
+
+E! -> a_13 [100]
+[fl] "(u<root> / X13)"
+[attr] "v_13"
+
+E! -> a_14 [100]
+[fl] "(u<root> / X14)"
+[attr] "v_14"
+
+E! -> a_15 [100]
+[fl] "(u<root> / X15)"
+[attr] "v_15"
+
+E! -> a_fuenf [100]
+[fl] "(u<root> / fuenf)"
+[attr] "v_5"
+
+E! -> a_grad [100]
+[fl] "(u<root> / Grad)"
+[attr] "q_Grad"
+
+E! -> a_bb [100]
+[fl] "(u<root> / BB)"
+[attr] "q_BB"
+
+E! -> a_m [100]
+[fl] "(u<root> / m)"
+[attr] "q_m"
+
+E! -> a_m2 [100]
+[fl] "(u<root> / m2)"
+[attr] "q_m2"
+
+/* E! -> a_maximal [100]
+[fl] "(u<root> / maximal)"
+[attr] "OBL" */
+
+E! -> a_obl [100]
+[fl] "(u<root> / OBL)"
+[attr] "OBL"
+
+E! -> a_per [100]
+[fl] "(u<root> / PER)"
+[attr] "PER"
+
+E! -> a_for [100]
+[fl] "(u<root> / FOR)"
+[attr] "FOR"
+
+E! -> a_exc [100]
+[fl] "(u<root> / EXC)"
+[attr] "EXC"
+
+E! -> a_neg_per(E, E, E, E) [1000]
+[fl] f_a(f_b(f_c(merge(r_a(?1), merge(r_b(?2), merge(r_c(?3), merge(?4, "(u<root> :0 (v<a> :0 (w<b> / NEG)) :0 (x<c> / PER))")))))))
+[attr] *(*(?1, *(?2, *(?3, ?4))), "FOR")
+
+
+/* empty elements */
+
+/* these three allow us to construct any DAG and the root will be the root */
+
+E -> stack_empty_0(E, E) [1]
+[fl] f_empty(merge(merge(?1, "(u<root> :0 (v<empty>))"), r_empty(?2)))
+[attr] *(?1, ?2)
+
+E -> stack_empty_1(E, E) [1]
+[fl] f_empty(merge(merge(?1, "(u<root> :1 (v<empty>))"), r_empty(?2)))
+[attr] *(?1, ?2)
+
+E -> stack_empty_2(E, E) [1]
+[fl] f_empty(merge(merge(?1, "(u<root> :2 (v<empty>))"), r_empty(?2)))
+[attr] *(?1, ?2)
+
+
+/* with this additional three, anything can become the root */
+
+E -> stack_empty_0_r(E, E) [1]
+[fl] f_empty(merge(merge(?1, "(u<empty> :0 (v<root>))"), r_empty(?2)))
+[attr] *(?1, ?2)
+
+E -> stack_empty_1_r(E, E) [1]
+[fl] f_empty(merge(merge(?1, "(u<empty> :1 (v<root>))"), r_empty(?2)))
+[attr] *(?1, ?2)
+
+E -> stack_empty_2_r(E, E) [1]
+[fl] f_empty(merge(merge(?1, "(u<empty> :2 (v<root>))"), r_empty(?2)))
+[attr] *(?1, ?2)
+
+/* empty terminals */
+
+/* this is for nodes that get merged later */
+
+E -> e_DUMMY [1]
+[fl] "(u<root>)"
+[attr] ""

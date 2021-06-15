@@ -1,19 +1,19 @@
-import json
-import re
-import requests
-import datetime
-import random
-import os
 import base64
-import networkx as nx
-
+import datetime
+import json
+import os
+import random
+import re
 from collections import defaultdict
+
+import networkx as nx
+import penman as pn
+import requests
+import streamlit as st
 import streamlit.components.v1 as components
 
-import streamlit as st
 # SessionState module from https://gist.github.com/tvst/036da038ab3e999a64497f42de966a92
 import SessionState
-import penman as pn
 
 HOST = "http://localhost"
 PORT = 5005
@@ -68,9 +68,11 @@ def to_dot(graph, marked_nodes=set()):
     lines.append('}')
     return u'\n'.join(lines)
 
+
 def ensure_dir(path):
     if not os.path.exists(path):
         os.makedirs(path)
+
 
 def gen_tmp_path():
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -79,9 +81,11 @@ def gen_tmp_path():
     ensure_dir(path)
     return path
 
+
 def prove_logic(deontic, to_prove, output_format):
     host = f'{HOST}:5007'
-    data_json = json.dumps({"deontic": deontic, "prove": to_prove, "format": output_format})
+    data_json = json.dumps(
+        {"deontic": deontic, "prove": to_prove, "format": output_format})
     headers = {
         'Content-type': 'application/json',
     }
@@ -89,6 +93,7 @@ def prove_logic(deontic, to_prove, output_format):
     result = r.json()["result"]
 
     return result
+
 
 def extract(text):
     host = f'{HOST}:{PORT}'
@@ -100,6 +105,7 @@ def extract(text):
     result = r.json()["result"]
 
     return result
+
 
 def read_alto_output(raw_dl):
     id_to_word = {}
@@ -130,6 +136,7 @@ def read_alto_output(raw_dl):
 
     return G, root
 
+
 def d_clean(string):
     s = string
     for c in '\\=@-,\'".!:;<>/{}[]()#^?':
@@ -144,6 +151,7 @@ def d_clean(string):
     if re.match('^[0-9]', s) or s in keywords:
         s = "X" + s
     return s
+
 
 def add_to_assumptions_set(logical_form_assumption):
     # with open("assumptions_set", "r+") as f:
@@ -161,16 +169,40 @@ def add_to_assumptions_set(logical_form_assumption):
 
 def main():
     st.set_page_config(layout="wide")
-    pwd = st.sidebar.text_input("Password:", value="", type="password")
-    if pwd == 'briseextract':
-        st.markdown("<h1 style='text-align: center; color: black;'>BRISE rule based attribute extraction</h1>", unsafe_allow_html=True)
-        col1, col2 = st.beta_columns(2)
+    hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {
+	
+                visibility: hidden;
+                
+                }
+            footer:after {
+                content:'hello'; 
+                visibility: visible;
+                display: block;
+                position: relative;
+                #background-color: red;
+                padding: 5px;
+                top: 2px;
+            }
+            </style>
 
-        col1.header("Deontic Assumptions")
+            
+            """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-        col2.header("Formula to be proved")
+    html_string = "<h1 style='text-align: center; color: black;'>BRISE rule based attribute extraction</h1>"\
+        "<h3 style='text-align: center;'>This demo was made for our paper <b>Explainable rule extraction via semantic graphs</b> accepted at the <a href='https://sites.google.com/view/asail/asail-home'>ASAIL 2021 workshop</a> as a full paper</h3>"\
+        "<h3 style='text-align: center;'>Visit our <a href='https://github.com/recski/brise-plandok'>GitHub</a> page for more information and to access the code</h3><p></p>"
+    st.markdown(html_string, unsafe_allow_html=True)
+    col1, col2 = st.beta_columns(2)
 
-        sens = ("Für die Querschnitte der Verkehrsflächen gemäß § 5 (2) lit. c der BO für Wien wird bestimmt, dass bei einer Straßenbreite ab 10 m entlang der Fluchtlinien Gehsteige mit einer Breite von mindestens 2,0 m herzustellen sind.",
+    col1.header("Deontic Assumptions")
+
+    col2.header("Formula to be proved")
+
+    sens = ("Für die Querschnitte der Verkehrsflächen gemäß § 5 (2) lit. c der BO für Wien wird bestimmt, dass bei einer Straßenbreite ab 10 m entlang der Fluchtlinien Gehsteige mit einer Breite von mindestens 2,0 m herzustellen sind.",
             "Flachdächer bis zu einer Dachneigung von fünf Grad sind entsprechend dem Stand der technischen Wissenschaften zu begrünen.",
             "Auf der mit BB2 bezeichneten Fläche sind die Dachflächen der Gebäude als begrünte Flachdächer auszubilden.",
             "Die Dächer dieser Nebengebäude sind ab einer Größe von 5 m2 entsprechend dem Stand der Technik als begrünte Flachdächer auszubilden, sofern es sich nicht um Glasdächer handelt.",
@@ -178,105 +210,112 @@ def main():
             "Für die mit BB4 bezeichneten Grundflächen wird bestimmt: Die Errichtung von Gebäuden mit einer maximalen Gebäudehöhe von 8 m ist zulässig.",
             "Bei einer Straßenbreite ab 10 m sind Gehsteige mit einer Breite von mindestens 2,0 m herzustellen.")
 
-        with col1:
-            option = "Enter Text Here"
-            option = st.selectbox('Choose from examples to generate Assumptions',sens)
+    with col1:
+        option = "Enter Text Here"
+        option = st.selectbox(
+            'Choose from examples to generate Assumptions', sens)
 
-            text = st.text_area("Or input your own text for assumption", option)
+        text = st.text_area("Or input your own text for assumption", option)
 
-            result_col1 = extract(text)
+        result_col1 = extract(text)
 
-            if not result_col1["errors"]:
-                save_path = gen_tmp_path()
-                st.text("Extracted attributes:")
-                for r in result_col1["rules"]:
-                    st.markdown(r, unsafe_allow_html=True)
-                ud_graph_col1 = result_col1["ud"]
+        if not result_col1["errors"]:
+            save_path = gen_tmp_path()
+            st.text("Extracted attributes:")
+            for r in result_col1["rules"]:
+                st.markdown(r, unsafe_allow_html=True)
+            ud_graph_col1 = result_col1["ud"]
 
-                fn = os.path.join(save_path, "ud_graph_assumption.dot")
-                with open(fn, "w+") as f:
-                    f.write(ud_graph_col1)
+            fn = os.path.join(save_path, "ud_graph_assumption.dot")
+            with open(fn, "w+") as f:
+                f.write(ud_graph_col1)
 
-                st.text("Logical form:")
-                logical_form_assumption = ", ".join(result_col1["logical_form"])
-                st.markdown(f'<span style="color:red"><b>{logical_form_assumption}</b></span>', unsafe_allow_html=True)
-                #st.text(f'Fourlang graph: {", ".jproverult["graph"])}')
+            st.text("Logical form:")
+            logical_form_assumption = ", ".join(result_col1["logical_form"])
+            st.markdown(
+                f'<span style="color:red"><b>{logical_form_assumption}</b></span>', unsafe_allow_html=True)
+            # st.text(f'Fourlang graph: {", ".jproverult["graph"])}')
 
-                
-                agree = st.button("Add assumption to the assumption set")
-                if agree:
-                    add_to_assumptions_set(logical_form_assumption)
+            agree = st.button("Add assumption to the assumption set")
+            if agree:
+                add_to_assumptions_set(logical_form_assumption)
 
-                if st.button('Remove the last assumption from the set'):
-                    assumptions_set.assumptions.pop()
-                
-                if st.button('Clear assumptions'):
-                    assumptions_set.assumptions.clear()
+            if st.button('Remove the last assumption from the set'):
+                assumptions_set.assumptions.pop()
 
-                assumptions_set_expander = st.beta_expander("Show the assumption set:", expanded=False)
+            if st.button('Clear assumptions'):
+                assumptions_set.assumptions.clear()
 
-                with assumptions_set_expander:
-                    assumpts = ", ".join(assumptions_set.assumptions)
-                    st.markdown(f'<span style="color:red"><b>{assumpts}</b></span>', unsafe_allow_html=True)
-                
-                my_expander = st.beta_expander("Show the generated graphs:", expanded=False)
+            assumptions_set_expander = st.beta_expander(
+                "Show the assumption set:", expanded=False)
 
-                with my_expander:
-                    st.graphviz_chart(ud_graph_col1, use_container_width=True)
+            with assumptions_set_expander:
+                assumpts = ", ".join(assumptions_set.assumptions)
+                st.markdown(
+                    f'<span style="color:red"><b>{assumpts}</b></span>', unsafe_allow_html=True)
 
-                    for i, fl in enumerate(result_col1["graph"]):
-                        fourlang_graph_col1 = to_dot(read_alto_output(fl)[0])
-                        fn = os.path.join(save_path, f'fourlang_graph_{i}_assumption.dot')
-                        with open(fn, "w+") as f:
-                            f.write(fourlang_graph_col1)
-                        st.graphviz_chart(fourlang_graph_col1, use_container_width=True)
+            my_expander = st.beta_expander(
+                "Show the generated graphs:", expanded=False)
 
-        with col2:
-            sens2 = ("Bei einer Straßenbreite ab 12 m sind Gehsteige mit einer Breite von mindestens 1,0 m herzustellen.",
-                    "Bei einer Straßenbreite ab 12 m sind entlang der Fluchtlinien Gehsteige mit einer Breite von mindestens 1,0 m herzustellen.",
-                    "Auf der mit Esp/BB2 bezeichneten Fläche sind Flachdächer der Nebengebäude bis zu einer Dachneigung von 4 Grad zu begrünen.",
-                    "Auf der mit Esp/BB2 bezeichneten Fläche sind Glasdächer der Nebengebäude bis zu einer Dachneigung von fünf Grad entsprechend dem Stand der technischen Wissenschaften zu begrünen.",
-                    "Der höchste Punkt der Dächer auf der mit Esp/BB10 bezeichneten Fläche darf nicht genau 5,0 m über der tatsächlich errichteten Gebäudehöhe liegen. Die Errichtung von Gebäuden mit einer maximalen Gebäudehöhe von 11 m ist zulässig.",
-                    "Flachdächer von Nebengebäuden mit einer Dachneigung von 3 Grad sind auf der mit Esp/BB2 bezeichneten Fläche zu begrünen.",
-                    "Bei einer Straßenbreite bis 7 m sind Gehsteige mit einer Breite von mindestens 1,0 m herzustellen")
+            with my_expander:
+                st.graphviz_chart(ud_graph_col1, use_container_width=True)
 
-            option = st.selectbox('Choose from examples that you want to prove',sens2)
+                for i, fl in enumerate(result_col1["graph"]):
+                    fourlang_graph_col1 = to_dot(read_alto_output(fl)[0])
+                    fn = os.path.join(
+                        save_path, f'fourlang_graph_{i}_assumption.dot')
+                    with open(fn, "w+") as f:
+                        f.write(fourlang_graph_col1)
+                    st.graphviz_chart(fourlang_graph_col1,
+                                      use_container_width=True)
 
-            text = st.text_area("Or input your own text to prove", option)
+    with col2:
+        sens2 = ("Bei einer Straßenbreite ab 12 m sind Gehsteige mit einer Breite von mindestens 1,0 m herzustellen.",
+                 "Bei einer Straßenbreite ab 12 m sind entlang der Fluchtlinien Gehsteige mit einer Breite von mindestens 1,0 m herzustellen.",
+                 "Auf der mit Esp/BB2 bezeichneten Fläche sind Flachdächer der Nebengebäude bis zu einer Dachneigung von 4 Grad zu begrünen.",
+                 "Auf der mit Esp/BB2 bezeichneten Fläche sind Glasdächer der Nebengebäude bis zu einer Dachneigung von fünf Grad entsprechend dem Stand der technischen Wissenschaften zu begrünen.",
+                 "Der höchste Punkt der Dächer auf der mit Esp/BB10 bezeichneten Fläche darf nicht genau 5,0 m über der tatsächlich errichteten Gebäudehöhe liegen. Die Errichtung von Gebäuden mit einer maximalen Gebäudehöhe von 11 m ist zulässig.",
+                 "Flachdächer von Nebengebäuden mit einer Dachneigung von 3 Grad sind auf der mit Esp/BB2 bezeichneten Fläche zu begrünen.",
+                 "Bei einer Straßenbreite bis 7 m sind Gehsteige mit einer Breite von mindestens 1,0 m herzustellen")
 
-            result = extract(text)
+        option = st.selectbox(
+            'Choose from examples that you want to prove', sens2)
 
-            if not result["errors"]:
-                save_path = gen_tmp_path()
-                st.text("Extracted attributes:")
-                for r in result["rules"]:
-                    st.markdown(r, unsafe_allow_html=True)
-                ud_graph = result["ud"]
+        text = st.text_area("Or input your own text to prove", option)
 
-                st.text("Logical form:")
-                logical_form_proved = " and ".join(result["prover_form"])
-                st.markdown(f'<span style="color:red"><b>{logical_form_proved}</b></span>', unsafe_allow_html=True)
+        result = extract(text)
 
-                output_format = st.selectbox('Select the output format of the prover', ('derivation', 'explanation'))
+        if not result["errors"]:
+            save_path = gen_tmp_path()
+            st.text("Extracted attributes:")
+            for r in result["rules"]:
+                st.markdown(r, unsafe_allow_html=True)
+            ud_graph = result["ud"]
 
-                if st.button('Prove'):
-                    prover_result = prove_logic(", ".join(assumptions_set.assumptions), logical_form_proved, output_format)
-                    if not prover_result["errors"]:
-                        if prover_result["output"]:
-                            output = prover_result["output"]
-                            if output_format == "derivation":
-                                st.markdown(f'<embed src="data:application/pdf;base64,{output}" width="700" height="1000" type="application/pdf">' , unsafe_allow_html=True)
-                            else:
-                                components.html(output, height=600, scrolling=True)
+            st.text("Logical form:")
+            logical_form_proved = " and ".join(result["prover_form"])
+            st.markdown(
+                f'<span style="color:red"><b>{logical_form_proved}</b></span>', unsafe_allow_html=True)
+
+            output_format = st.selectbox(
+                'Select the output format of the prover', ('derivation', 'explanation'))
+
+            if st.button('Prove'):
+                prover_result = prove_logic(
+                    ", ".join(assumptions_set.assumptions), logical_form_proved, output_format)
+                if not prover_result["errors"]:
+                    if prover_result["output"]:
+                        output = prover_result["output"]
+                        if output_format == "derivation":
+                            st.markdown(
+                                f'<embed src="data:application/pdf;base64,{output}" width="700" height="1000" type="application/pdf">', unsafe_allow_html=True)
                         else:
-                            st.text(prover_result["return_string"])
+                            components.html(output, height=600, scrolling=True)
                     else:
-                        st.text(prover_result["errors"])
-                #st.text(f'Fourlang graph: {", ".join(result["graph"])}')
-
-
-    elif pwd:
-        st.markdown('wrong password')
+                        st.text(prover_result["return_string"])
+                else:
+                    st.text(prover_result["errors"])
+            #st.text(f'Fourlang graph: {", ".join(result["graph"])}')
 
 
 if __name__ == "__main__":

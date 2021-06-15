@@ -7,15 +7,13 @@ Work supported by [BRISE-Vienna](https://smartcity.wien.gv.at/en/brise/) (UIA04-
 
 ## Requirements
 
-Install the `tuw_nlp` repository:
-
-...
-
 Install the brise_plandok repository:
 
 ```
 pip install .
 ```
+
+Installing this repository will also install the `tuw_nlp` repository, a graph-transformation framework. To get to know more, visit https://github.com/recski/tuw-nlp:
 
 ## Rule extraction
 
@@ -48,10 +46,20 @@ Then run the frontend with this command:
 streamlit run brise_plandok/frontend/extract.py
 ```
 
+To run the prover of our system, also start the prover service from this repository: https://github.com/adaamko/BRISEprover. This will start a small Flask service on port 5007 that will be used by the demo service.
+
 The demo can then be accessed from your web browser at [http://localhost:8501/](http://localhost:8501/)
 
 
 ## Full pipeline
+
+### Data
+
+All steps described below can be run on the sample documents included in this repository under `sample_data`.
+
+The preprocessed version of all plan documents (as of December 2020) can be
+downloaded as [a single JSON file](https://url.tuwien.at/ndnre). If you would like
+to customize preprocessing, you can also download the [raw text documents](https://url.tuwien.at/eydmo)
 
 ### Preprocessing
 
@@ -70,10 +78,23 @@ cat sample_data/json/sample.jsonl | python brise_plandok/extractor.py > output/s
 To run the rule extraction system of the ASAIL paper, add the `-r` command-line switch to the above command.
 
 
+### Evaluation
+
+Evaluate attribute extraction on annotated sample of 10 documents:
+
+```
+cat sample_data/json/sample_10.jsonl | python brise_plandok/eval_attr_ext.py
+```
+
 ### Annotation
 
-To generate `xlsx` files for annotation, ... TODO Adam
+To generate `xlsx` files for annotation, run the following command:
 
+```
+sed "5q;d" sample_data/json/asail.jsonl | python brise_plandok/extractor.py -r | python brise_plandok/convert.py -i JSON -o XLSX -of output/asail.xlsx
+```
+
+The generated excel sheet will be placed under output/asail.xlsx. The samples are annotated by our rule-based system and then can be used by the human annotators as well.
 
 ## References
 

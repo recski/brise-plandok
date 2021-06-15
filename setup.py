@@ -16,9 +16,10 @@ setup(
         "pydot",
         'simplejson',
         "spacy>=2.3.0",
-        "stanza",
-        'streamlit'
-        # "tuw_nlp @ git+https://github.com/recski/tuw-nlp@main#egg=tuw_nlp"
+        "stanza==1.1.1",
+        'streamlit',
+        "tuw_nlp @ git+https://github.com/adaamko/tuw-nlp@dev#egg=tuw_nlp"
     ],
     packages=find_packages(),
+    include_package_data=True,
     zip_safe=False)

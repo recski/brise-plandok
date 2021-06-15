@@ -1,19 +1,22 @@
-import sys
+import argparse
 import json
+import sys
 import traceback
+
 import graphviz
-
-from flask import Flask
-from flask import request
-
-from brise_plandok.rule_extractor import RuleExtractor
 from brise_plandok.convert import Converter
+from brise_plandok.extractor import get_extractor
+from brise_plandok.rule_extractor import RuleExtractor
+from flask import Flask, request
+from tuw_nlp.text.pipeline import CachedStanzaPipeline, CustomStanzaPipeline
 
 HOST = 'localhost'
 PORT = 5005
 app = Flask(__name__)
 
-extractor = RuleExtractor(cache_dir="cache")
+# nlp_pipeline = CustomStanzaPipeline(
+#         processors='tokenize,mwt,pos,lemma,depparse')
+# extractor = RuleExtractor(nlp_pipeline, cache_dir="cache")
 
 INHERITED = {
     "WidmungID", "PlanzeichenBBID"
@@ -74,28 +77,30 @@ def extract():
 
     try:
         text = data["text"]
-        doc = extractor.parse(text)
-        ret_value["result"]["ud"] = visualize(doc).source
-        to_inherit = {}
-        for sen in doc.sentences:
-            fl = extractor.get_fl(sen)
-            fl, new_words = extractor.postprocess_fl(fl)
-            ret_value["result"]["graph"].append(fl)
-            vocabulary = set(w.lemma for w in sen.words).union(new_words)
-            attr_tree = extractor.fl_attr.parse(fl, 'fl', 'attr', 'alg', vocabulary=vocabulary)
+        args = argparse.Namespace(cache_dir='cache', rule_ext=True)
+        with get_extractor(args) as extractor:
+            doc = extractor.parse(text)
+            ret_value["result"]["ud"] = visualize(doc).source
+            to_inherit = {}
+            for sen in doc.sentences:
+                fl = extractor.get_fl(sen)
+                fl, new_words = extractor.postprocess_fl(fl)
+                ret_value["result"]["graph"].append(fl)
+                vocabulary = set(w.lemma for w in sen.words).union(new_words)
+                attr_tree = extractor.fl_attr.parse(fl, 'fl', 'attr', 'alg', vocabulary=vocabulary)
 
-            rules = extractor.attrs_to_rules(attr_tree, to_inherit)
-            to_inherit.update({
-                attr['name']: attr
-                for rule in rules for attr in rule['attributes']
-                if attr['name'] in INHERITED})
+                rules = extractor.attrs_to_rules(attr_tree, to_inherit)
+                to_inherit.update({
+                    attr['name']: attr
+                    for rule in rules for attr in rule['attributes']
+                    if attr['name'] in INHERITED})
 
-            for rule in rules:
-                logical_form, prover_form = Converter.convert_to_logical_form(rule)
-                ret_value["result"]["logical_form"].append(logical_form)
-                ret_value["result"]["prover_form"].append(prover_form)
+                for rule in rules:
+                    logical_form, prover_form = Converter.convert_to_logical_form(rule)
+                    ret_value["result"]["logical_form"].append(logical_form)
+                    ret_value["result"]["prover_form"].append(prover_form)
 
-            ret_value["result"]["rules"].append(convert_json_to_html(rules[0]))
+                ret_value["result"]["rules"].append(convert_json_to_html(rules[0]))
 
     except Exception as e:
         traceback.print_exc()

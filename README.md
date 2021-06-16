@@ -4,6 +4,7 @@ Information extraction from text documents of the zoning plan of the City of Vie
 
 Work supported by [BRISE-Vienna](https://smartcity.wien.gv.at/en/brise/) (UIA04-081), a European Union Urban Innovative Actions project.
 
+__The ASAIL2021 branch contains the code in the state presented in our [2021 ASAIL paper](#references)__
 
 ## Requirements
 

@@ -4,7 +4,7 @@ SIMPLE_PATTERNS = {
     # case sensitive on purpose :( (to avoid e.g. Strassenbreite)
     "Xstrasse": [re.compile('strasse')],
     "Xgasse": [re.compile('gasse')],
-    "Xdach": [re.compile('dae?ch')]
+    "Xdach": [re.compile('dae?ch')],
 }
 
 GROUP_PATTERNS = {

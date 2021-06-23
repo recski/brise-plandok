@@ -4,6 +4,7 @@ import logging
 import sys
 from collections import Counter, defaultdict
 
+from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.extractor import get_extractor
 
 from tuw_nlp.common.eval import print_cat_stats
@@ -17,8 +18,8 @@ ATTR_IGNORE = {
     'AusnahmePruefungErforderlich',
     "ZuVorherigemSatzGehoerig",
     "Plangebiet",
-    # "PlanzeichenBBID",
-    # "WidmungID",
+    "PlanzeichenBBID",
+    "WidmungID",
     "obligation",
     "prohibition",
     "permission"}
@@ -33,20 +34,42 @@ ATTR_CATS = {}
 #    'BBAusnuetzbarkeitFlaecheWohnnutzflaeche'}}
 
 
+OLD_TO_NEW = {
+    "Bauklasse_ID": "Bauklasse",
+    "Verkehrsflaeche_ID": "VerkehrsflaecheID",
+    "StruktureinheitBebaubar": "Struktureinheit"
+}
+
+
 def preprocess_attrs(attrs):
     pp_attrs = []
     for attr in attrs:
         name = attr['name']
-        if not name.startswith('"'):
-            new_name = name.replace('(?)', '').strip('? ').replace('ä', 'ae')
+        if name.startswith('"'):
+            continue
 
-            if attr['value']:
-                attr['value'] = attr['value'].replace('ä', 'ae')
-            pp_attrs.append({
-                "name": new_name,
-                "value": attr['value'],
-                'type': attr['type']
-            })
+        new_name = name.replace(
+            '(?)', '').strip('? ').replace('ä', 'ae')
+
+        if new_name in OLD_TO_NEW:
+            new = OLD_TO_NEW[new_name]
+            logging.warning(
+                f'converting old attr ({new_name}) to new ({new})')
+            new_name = new
+
+        if new_name in ATTR_IGNORE:
+            continue
+
+        assert new_name in ATTR_TO_CAT, new_name
+
+        if attr['value']:
+            attr['value'] = attr['value'].replace('ä', 'ae')
+
+        pp_attrs.append({
+            "name": new_name,
+            "value": attr['value'],
+            'type': attr['type']
+        })
 
     return pp_attrs
 
@@ -60,9 +83,9 @@ def load_sample(stream):
             for sen in section['sens']:
                 if not sen['attributes']:
                     continue
-                if not sen['modality']:
-                    continue
-                sen['attrs'] = preprocess_attrs(sen['attributes'])
+                # if not sen['modality']:
+                #     continue
+                sen['attributes'] = preprocess_attrs(sen['attributes'])
                 sections[-1]['sens'].append(sen)
 
     return sections
@@ -93,9 +116,9 @@ def count_attr_stats(sample, label_cats=None, print_errs=False):
     cats = defaultdict(Counter)
     for sen_id, orig_attrs, orig_preds in sample:
         attrs = {
-            label_cats.get(a, a) for a in orig_attrs if a not in ATTR_IGNORE}
+            label_cats.get(a, a) for a in orig_attrs}
         preds = {
-            label_cats.get(a, a) for a in orig_preds if a not in ATTR_IGNORE}
+            label_cats.get(a, a) for a in orig_preds}
         for attr in attrs & preds:
             cats[attr]['TP'] += 1
         for attr in attrs - preds:
@@ -228,8 +251,9 @@ def eval_types_values(results):
 
 def eval_results(results, args):
     eval_attrs(results, print_errs=args.print_errs)
-    eval_modality(results)
-    eval_types_values(results)
+    if args.rule_ext:
+        eval_modality(results)
+        eval_types_values(results)
 
 
 def eval_rule_ext(args):

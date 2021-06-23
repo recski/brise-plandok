@@ -5,62 +5,105 @@ from stanza.models.common.doc import Document
 from tuw_nlp.grammar.ud_fl import UD_FL
 from tuw_nlp.graph.utils import pn_to_graph, GraphMatcher
 
+from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.extractor import Extractor
 from brise_plandok.regex_decompounder import regex_decompounder
 
 
-PATTERNS = [
-    ("(u_0 / Zweck)", "ZweckbestimmungWidmungskategorie1"),
-    ("(u_0 / Nutzung)", "ZweckbestimmungWidmungskategorie1"),
-    ("(u_0 / Zusammenhang)", "ZweckbestimmungWidmungskategorie1"),
-    ("(u_0 / gaertnerisch)", "AnordnungGaertnerischeAusgestaltung"),
-    ("(u_0 / Strassenbreite)", "StrassenbreiteMin"),
-    ("(u_0 / Strasse)", "VerkehrsflaecheID"),
-    ("(u_0 / Xstrasse)", "VerkehrsflaecheID"),
-    ("(u_0 / Gasse)", "VerkehrsflaecheID"),
-    ("(u_0 / Xgasse)", "VerkehrsflaecheID"),
-    ("(u_0 / darueber)", "WidmungErsteEbene"),
-    ("(u_0 / darueber)", "WidmungZweiteEbene"),
-    ("(u_0 / darueber)", "WidmungZweiteEbeneBezugObjekt"),
-    ("(u_0 / Flachdaecher)", "Dachart"),
-    ("(u_0 / BB)", "PlanzeichenBBID"),
-    # ("(u_0 / bezeichnet)", "PlanzeichenBBID"),
-    ("(u_0 / begruenen)", "BegruenungDach"),
-    ("(u_0 / begruent)", "BegruenungDach"),
-    ("(u_0 / Pflanze)", "VorkehrungBepflanzungOeffentlicheVerkehrsflaeche"),
-    ("(u_0 / Pflanzung)", "VorkehrungBepflanzungOeffentlicheVerkehrsflaeche"),
-    ("(u_0 / Belichtung)", "TechnischeUndBelichtungsAufbautenZulaessig"),
-    ("(u_0 / Unterbrechung)", "UnterbrechungGeschlosseneBauweise"),
-    ("(u_0 / Esp)", "WidmungID"),
-    ("(u_0 / Nebengebaeude)", "GebaeudeBautyp"),
-    ("(u_0 / tatsaechlich)", "GebaeudeHoeheArt"),
-    ("(u_0 / Gehsteige :0 (u_1 / Breite))", "GehsteigbreiteMin"),
-    ("(u_0 / Gebaeudehoehe :0 (u_1 / maximal))", "GebaeudeHoeheMax"),
-    ("(u_0 / ueberschreiten :1 (u_1 / Gebaeudehoehe))", "GebaeudeHoeheMax"),
-    ("(u_0 / bis :2 (u_1 / Gebaeudehoehe))", "GebaeudeHoeheMax"),
-    ("(u_0 / entlang  :2 (u_1 / Fluchtlinie))", "AnFluchtlinie"),
-    ("(u_0 / Dachneigung :0 (u_1 / bis))", "DachneigungMax"),
-    ("(u_0 / Strassenbreite :0 (u_1 :0 (u_2 / ab)))", "StrassenbreiteMin"),
-    (
-        "(u_0 / mit :2 (u_1 / Breite) :1 (u_2 / herstellen :2 (u_3 / Gehsteige)))",  # noqa
-        "GehsteigbreiteMin"),
-    (
-        "(u_0 / ab :2 (u_1 / Groesse) :1 (u_2 / ausbilden :2 (u_3 / Dach)))",
-        "DachflaecheMin"),
-    (
+PATTERNS_BY_ATTR = {
+    "AbschlussDachMaxBezugGebaeude": {
         "(u_0 / liegen :0 (u_1 / hoch :0 (u_2 / NEG)) :1 (u_3 / Punkt :0 (u_4 / Dach)))",  # noqa
-        "AbschlussDachMax"),
-    (
-        "(u_0 / Punkt :0 (u_1 / Dach) :0 (u_2 / hoch))",  # noqa
-        "AbschlussDachMax")
-]
+        "(u_0 / Punkt :0 (u_1 / Dach) :0 (u_2 / hoch))",
+    },
+    "AnFluchtlinie": {
+        "(u_0 / entlang  :2 (u_1 / Fluchtlinie))"
+    },
+    "AnordnungGaertnerischeAusgestaltung": {
+        "(u_0 / gaertnerisch)"
+    },
+    "AufbautenZulaessig": {
+        "(u_0 / Belichtung)"
+    },
+    "BegruenungDach": {
+        "(u_0 / begruenen)",
+        "(u_0 / begruent)"
+    },
+    "Dachart": {
+        "(u_0 / Flachdaecher)"
+    },
+    "DachflaecheMin": {
+        "(u_0 / ab :2 (u_1 / Groesse) :1 (u_2 / ausbilden :2 (u_3 / Dach)))"
+    },
+    "DachneigungMax": {
+        "(u_0 / Dachneigung :0 (u_1 / bis))"
+    },
+    "Flaechen": {
+        "(u_0 / Bauplatzflaeche)"
+    },
+    "GebaeudeBautyp": {
+        "(u_0 / Nebengebaeude)"
+    },
+    "GebaeudeHoeheArt": {
+        "(u_0 / tatsaechlich)"
+    },
+    "GebaeudeHoeheMax": {
+        "(u_0 / Gebaeudehoehe :0 (u_1 / maximal))",
+        "(u_0 / ueberschreiten :1 (u_1 / Gebaeudehoehe))",
+        "(u_0 / bis :2 (u_1 / Gebaeudehoehe))"
+    },
+    "GehsteigbreiteMin": {
+        "(u_0 / Gehsteige :0 (u_1 / Breite))",
+        "(u_0 / mit :2 (u_1 / Breite) :1 (u_2 / herstellen :2 (u_3 / Gehsteige)))"  # noqa
+    },
+    "Planzeichen": {
+        "(u_0 / BB)",
+        "(u_0 / Esp)"
+    },
+    "StrassenbreiteMin": {
+        "(u_0 / Strassenbreite)",
+        "(u_0 / Strassenbreite :0 (u_1 :0 (u_2 / ab)))"
+    },
+    "UnterbrechungGeschlosseneBauweise": {
+        "(u_0 / Unterbrechung)",
+    },
+    "VerkehrsflaecheID": {
+        "(u_0 / Strasse)",
+        "(u_0 / Xstrasse)",
+        "(u_0 / Gasse)",
+        "(u_0 / Xgasse)"
+    },
+    "VorkehrungBepflanzungOeffentlicheVerkehrsflaeche": {
+        "(u_0 / Pflanze)",
+        "(u_0 / Pflanzung)"
+    },
+    "WidmungInMehrerenEbenen": {
+        "(u_0 / darueber)"
+    },
+    "WidmungUndZweckbestimmung": {
+        "(u_0 / Zweck)",
+        "(u_0 / Nutzung)",
+        "(u_0 / Zusammenhang)",
+        "(u_0 / Esp)"
+    }
+}
+
+
+def get_patterns():
+    all_patterns = []
+    for attr, patterns in PATTERNS_BY_ATTR.items():
+        assert attr in ATTR_TO_CAT, attr
+        for patt in patterns:
+            all_patterns.append((patt, attr))
+    return all_patterns
 
 
 class AttributeExtractor(Extractor):
     def __init__(self, *args, **kwargs):
         super(AttributeExtractor, self).__init__(*args, **kwargs)
         self.ud_fl = UD_FL(cache_dir=self.cache_dir)
-        self.fl_attr = GraphMatcher(PATTERNS)
+
+        patterns = get_patterns()
+        self.fl_attr = GraphMatcher(patterns)
 
     def get_fl(self, sen):
         fl = self.ud_fl.parse(sen, 'ud', 'fl', 'amr-sgraph-src')

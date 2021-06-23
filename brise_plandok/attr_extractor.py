@@ -38,7 +38,10 @@ PATTERNS_BY_ATTR = {
         "(u_0 / Dachneigung :0 (u_1 / bis))"
     },
     "Flaechen": {
-        "(u_0 / Bauplatzflaeche)"
+        "(u_0 / Bauplatzflaeche)",
+        "(u_0 / Brutto)",
+        "(u_0 / Flaeche :0 (u_2 / bebaut))",
+        "(u_0 / Flaeche :0 (u_2 / unbebaut))"
     },
     "GebaeudeBautyp": {
         "(u_0 / Nebengebaeude)"

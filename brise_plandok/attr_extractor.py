@@ -59,6 +59,7 @@ PATTERNS = [
 class AttributeExtractor(Extractor):
     def __init__(self, *args, **kwargs):
         super(AttributeExtractor, self).__init__(*args, **kwargs)
+        # we initialize two IRTG, the one responsible for the UD-FL conversion and one for the attribute matching
         self.ud_fl = UD_FL(cache_dir=self.cache_dir)
         self.fl_attr = GraphMatcher(PATTERNS)
 
@@ -68,11 +69,13 @@ class AttributeExtractor(Extractor):
 
     def get_attr_from_graph(self, graph):
         attrs = []
+        # run the attribute matcher and return the extracted attributes
         for attr in self.fl_attr.match(graph):
             attrs.append({"name": attr, "value": None, "type": None})
         return attrs
 
     def get_attr_sen(self, sen):
+        # run the ud-fl conversion with IRTGs
         fl = self.get_fl(sen)
         logging.debug(f"FL: {fl}")
         graph, _ = self.postprocess_fl(fl)
@@ -93,6 +96,14 @@ class AttributeExtractor(Extractor):
         return new_graph, root
 
     def run_on_parsed_sections(self, sections):
+        """First running the UD-FL conversion, then running the attribute matcher IRTG
+
+        Args:
+            sections (json): the json object without the attributes
+
+        Returns:
+            json: returns the filled attributes added to the json object
+        """
         results = {}
         for section in sections:
             for sen in section['sens']:

@@ -20,6 +20,9 @@ class Extractor():
         raise NotImplementedError
 
     def run_on_sections(self, sections):
+        """The function parses each section in the json file, first running dependency parsing on each document.
+        After parsing the sentences with stanza, we run the IRTG parsers
+        """
         for section in sections:
             for sen in section['sens']:
                 if 'tokens' not in sen:
@@ -36,7 +39,16 @@ class Extractor():
 
         return sections, results
 
-    def process_json(self, stream):
+    def process_json(self, stream): 
+        """Runs the extraction pipeline on the input stream
+
+        Args:
+            stream (json): The json file We want to run our pipeline on, each line contains 
+            a document and the documents consist of sections. Each section contains multiple sentences 
+
+        Yields:
+            json: The json file annotated by our rule extraction system
+        """
         for line in stream:
             doc = json.loads(line.strip())
             doc_id = doc["id"]
@@ -49,6 +61,16 @@ class Extractor():
 
 @contextmanager
 def get_extractor(args):
+    """Returns an Extractor class initialized as a ContextManager.
+    This helps dealing with errors as it saves the cache even if an error occurs.
+    We initialize Rule or AttributeExtractor based on its arguments.
+
+    Args:
+        args: determines whether we use the old or the new version of the Extractor.
+
+    Yields:
+        AttributeExtractor or RuleExtractor with the initialized CachedStanzaPipeline
+    """
     nlp_pipeline = CustomStanzaPipeline(
         processors='tokenize,mwt,pos,lemma,depparse')
     nlp_cache = os.path.join(args.cache_dir, 'nlp_cache.json')

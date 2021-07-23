@@ -3,10 +3,152 @@
 # import openpyxl module
 import openpyxl
 import argparse
+import logging
 from openpyxl.comments import Comment
 from openpyxl.worksheet.datavalidation import DataValidation
-from openpyxl.styles import Alignment
+from openpyxl.styles import Alignment, Font, PatternFill
 from collections import defaultdict
+
+ATTRIBUTES = {
+    # Volumen
+    "VolumenUndUmbaubarerRaum",
+
+    # Flaeche
+    "Flaechen",
+
+    # Hoehe
+    "Bauklasse",
+    "BauklasseVIHoeheMax",
+    "BauklasseVIHoeheMin",
+    "FBOKMinimumWohnungen",
+    "GebaeudeHoeheArt",
+    "GebaeudeHoeheMax",
+    "GebaeudeHoeheMin",
+    "HoehenlageGrundflaeche",
+    "MaxHoeheWohngebaeude",
+    "MindestraumhoeheEG",
+
+    # Stellplaetze_Garagen_Parkgebäude
+    "AnlageZumEinstellenVorhanden",
+    "GaragengebaeudeAusfuehrung",
+    "GebaeudeEinschraenkungP",
+    "OberflaecheBestimmungP",
+    "StellplatzMax",
+    "StellplatzNiveauZulaessig",
+    "StellplatzregulativUmfangMaximumAbsolut",
+    "StellplatzregulativUmfangMaximumRelativ",
+    "StellplatzregulativUmfangMinimumRelativ",
+    "StellplatzregulativVorhanden",
+    "StellplatzverpflichtungArt",
+    "VerbotStellplaetzeUndParkgebaeude",
+
+    # Geschosse
+    "MaxAnzahlDachgeschosse",
+    "MaxAnzahlGeschosseOberirdisch",
+    "MaxAnzahlGeschosseOberirdischOhneDachgeschoss",
+    "Stockwerk",
+    "UnterirdischeBaulichkeiten",
+    "ZulaessigeGeschossanzahlEinkaufszentrum",
+
+    # Vorbauten
+    "VorbautenBeschraenkung",
+    "VorbautenVerbot",
+    "VorstehendeBauelementeAusladungMax",
+
+    # Einfriedungen
+    "EinfriedungAusgestaltung",
+    "EinfriedungHoeheGesamt",
+    "EinfriedungHoeheSockel",
+    "EinfriedungLage",
+    "EinfriedungZulaessig",
+
+    # Nutzung_Widmung
+    "AusnahmeVonWohnungenUnzulaessig",
+    "AusnuetzbarkeitWidmungskategorieGefoerderterWohnbau",
+    "VerbotAufenthaltsraum",
+    "VerbotBueroGeschaeftsgebaeude",
+    "VerbotWohnung",
+    "WidmungInMehrerenEbenen",
+    "WidmungUndZweckbestimmung",
+
+    # Grossbauvorhaben_Hochhaeuser_Einkaufszentren_Geschaeftsgebaeude
+    "BestimmmungenFuerHochhausUndGrossbauvorhaben",
+    "Geschaeftsstrassen",
+    "HochhausUnzulaessigGemaessBB",
+    "HochhausZulaessigGemaessBB",
+
+    # Laubengaenge_Durchfahrten_Arkaden
+    "ArkadeHoehe",
+    "ArkadeLaenge",
+    "DurchfahrtBreite",
+    "DurchfahrtHoehe",
+    "DurchgangBreite",
+    "DurchgangHoehe",
+    "LaubengangHoehe",
+    "LaubengangLaenge",
+
+    # Ausgestaltung_und_Sonstiges
+    "AnordnungGaertnerischeAusgestaltung",
+    "AnordnungGaertnerischeAusgestaltungProzentual",
+    "AnteilBaumbepflanzung",
+    "AnzahlGebaeudeMax",
+    "AufbautenZulaessig",
+    "AusnahmeGaertnerischAuszugestaltende",
+    "Bauweise_ID",
+    "BegruenungFront",
+    "Einbautrasse",
+    "ErrichtungGebaeude",
+    "GebaeudeBautyp",
+    "Kleinhaeuser",
+    "Massengliederung",
+    "TechnischeAufbautenHoeheMax",
+    "UnterbrechungGeschlosseneBauweise",
+    "VerbotFensterZuOeffentlichenVerkehrsflaechen",
+    "VerbotStaffelung",
+    "VerbotUnterirdischeBauwerkeUeberBaufluchtlinie",
+    "VonBebauungFreizuhalten",
+    "VorkehrungBepflanzung",
+
+    # Dach
+    "AbschlussDachMaxBezugGebaeude",
+    "AbschlussDachMaxBezugGelaende",
+    "AnteilDachbegruenung",
+    "BegruenungDach",
+    "Dachart",
+    "DachflaecheMin",
+    "DachneigungMax",
+    "DachneigungMin",
+
+    # Strassen_und_Gehsteige
+    "GehsteigbreiteMin",
+    "OeffentlicheVerkehrsflaecheBreiteMin",
+    "StrassenbreiteMax",
+    "StrassenbreiteMin",
+    "StrassenbreiteVonBis",
+    "VorkehrungBepflanzungOeffentlicheVerkehrsflaeche",
+
+    # Lage_Gelaende_Planzeichen
+    "AnBaulinie",
+    "AnFluchtlinie",
+    "AnOeffentlichenVerkehrsflaechen",
+    "AnStrassenfluchtlinie",
+    "GelaendeneigungMin",
+    "InSchutzzone",
+    "PlangebietAllgemein",
+    "Planzeichen",
+    "Struktureinheit",
+    "Verkehrsflaeche_ID",
+
+    # Meta
+    "AusnahmePruefungErforderlich",
+    "N/A",
+    "Segmentierungsfehler",
+    "StrittigeBedeutung",
+    "WeitereBestimmungPruefungErforderlich",
+    "ZuVorherigemSatzGehoerig",
+
+    "NoAttribute",
+}
 
 
 class Annotate:
@@ -16,6 +158,7 @@ class Annotate:
         labels = []
         sentence_ids = []
 
+        logging.info('started the creation of the excel sheet')
         normalize_lab = {"PlanzeichenBBID": "Planzeichen", "VerkehrsflaecheID": "Verkehrsflaeche_ID",
                          "BauweiseID": "Bauweise_ID", "WidmungID": "WidmungUndZweckbestimmung", "BauklasseID": "Bauklasse", "TechnischeUndBelichtungsAufbautenZulaessig": "AufbautenZulaessig"}
         for line in dataset:
@@ -52,164 +195,127 @@ class Annotate:
         data_val = DataValidation(type="list", formula1='=Attribute')
         sheet_obj.add_data_validation(data_val)
 
-        # comment = Comment("New attributes can be added here that is not found in the dropdown lists",
-        #     "Adam")
-        # sheet_obj["H1"].comment = comment
-
         for i, sen in enumerate(sentences):
             label = labels[i]
+
             sentence_id = "A" + str(i + 3)
             sentence = "B" + str(i + 3)
 
-            attribute_B = "C" + str(i + 3)
-            attribute_class_C = "D" + str(i + 3)
+            attribute_C = "C" + str(i + 3)
+            attribute_class_D = "D" + str(i + 3)
 
-            attribute_D = "E" + str(i + 3)
-            attribute_class_E = "F" + str(i + 3)
+            attribute_E = "E" + str(i + 3)
+            attribute_class_F = "F" + str(i + 3)
 
-            attribute_F = "G" + str(i + 3)
-            attribute_class_G = "H" + str(i + 3)
+            attribute_G = "G" + str(i + 3)
+            attribute_class_H = "H" + str(i + 3)
 
-            attribute_H = "I" + str(i + 3)
-            attribute_class_I = "J" + str(i + 3)
+            attribute_I = "I" + str(i + 3)
+            attribute_class_J = "J" + str(i + 3)
 
-            attribute_J = "K" + str(i + 3)
-            attribute_class_K = "L" + str(i + 3)
+            attribute_K = "K" + str(i + 3)
+            attribute_class_L = "L" + str(i + 3)
 
             sheet_obj[sentence] = sentences[i]
             sheet_obj[sentence_id] = sentence_ids[i]
             sheet_obj[sentence].alignment = Alignment(wrapText=True)
             sheet_obj[sentence_id].alignment = Alignment(wrapText=True)
 
-            data_val.add(sheet_obj[attribute_B])
-            data_val.add(sheet_obj[attribute_D])
-            data_val.add(sheet_obj[attribute_F])
-            data_val.add(sheet_obj[attribute_H])
-            data_val.add(sheet_obj[attribute_J])
+            if sentence_ids[i].split("_")[-1] == "0" and sentence_ids[i].split("_")[-2] == "0":
+                for j in range(ord('C'), ord('P') + 1):
+                    sheet_obj[chr(j)+"3"] = "DON'T ANNOTATE THIS SENTENCE"
+                    sheet_obj[chr(j)+"3"].fill = PatternFill(
+                        fgColor="878787", fill_type="solid")
+                    sheet_obj[chr(j)+"3"].alignment = Alignment(wrapText=True, horizontal="center", vertical="center")
+                    sheet_obj[chr(j)+"3"].font = Font(bold=True)
+            else:
+                data_val.add(sheet_obj[attribute_C])
+                data_val.add(sheet_obj[attribute_E])
+                data_val.add(sheet_obj[attribute_G])
+                data_val.add(sheet_obj[attribute_I])
+                data_val.add(sheet_obj[attribute_K])
 
-            data_val_subclass_B = DataValidation(
-                type="list", formula1='==INDIRECT($C${0})'.format(str(i + 3)))
-            sheet_obj.add_data_validation(data_val_subclass_B)
-            data_val_subclass_B.add(sheet_obj[attribute_class_C])
+                data_val_subclass_C = DataValidation(
+                    type="list", formula1='==INDIRECT($C${0})'.format(str(i + 3)))
+                sheet_obj.add_data_validation(data_val_subclass_C)
+                data_val_subclass_C.add(sheet_obj[attribute_class_D])
 
-            data_val_subclass_D = DataValidation(
-                type="list", formula1='==INDIRECT($E${0})'.format(str(i + 3)))
-            sheet_obj.add_data_validation(data_val_subclass_D)
-            data_val_subclass_D.add(sheet_obj[attribute_class_E])
+                data_val_subclass_E = DataValidation(
+                    type="list", formula1='==INDIRECT($E${0})'.format(str(i + 3)))
+                sheet_obj.add_data_validation(data_val_subclass_E)
+                data_val_subclass_E.add(sheet_obj[attribute_class_F])
 
-            data_val_subclass_F = DataValidation(
-                type="list", formula1='==INDIRECT($G${0})'.format(str(i + 3)))
-            sheet_obj.add_data_validation(data_val_subclass_F)
-            data_val_subclass_F.add(sheet_obj[attribute_class_G])
+                data_val_subclass_G = DataValidation(
+                    type="list", formula1='==INDIRECT($G${0})'.format(str(i + 3)))
+                sheet_obj.add_data_validation(data_val_subclass_G)
+                data_val_subclass_G.add(sheet_obj[attribute_class_H])
 
-            data_val_subclass_H = DataValidation(
-                type="list", formula1='==INDIRECT($I${0})'.format(str(i + 3)))
-            sheet_obj.add_data_validation(data_val_subclass_H)
-            data_val_subclass_H.add(sheet_obj[attribute_class_I])
+                data_val_subclass_I = DataValidation(
+                    type="list", formula1='==INDIRECT($I${0})'.format(str(i + 3)))
+                sheet_obj.add_data_validation(data_val_subclass_I)
+                data_val_subclass_I.add(sheet_obj[attribute_class_J])
 
-            data_val_subclass_J = DataValidation(
-                type="list", formula1='==INDIRECT($K${0})'.format(str(i + 3)))
-            sheet_obj.add_data_validation(data_val_subclass_J)
-            data_val_subclass_J.add(sheet_obj[attribute_class_K])
+                data_val_subclass_K = DataValidation(
+                    type="list", formula1='==INDIRECT($K${0})'.format(str(i + 3)))
+                sheet_obj.add_data_validation(data_val_subclass_K)
+                data_val_subclass_K.add(sheet_obj[attribute_class_L])
 
-            label_splited = label.strip().split(',')
+                label_splited = label.strip().split(',')
 
-            label_splited = list(set(label_splited))
-            if len(label_splited) == 1 and label_splited[0]:
-                sheet_obj[attribute_B] = attribute_to_attribute_class[label_splited[0]]
-                sheet_obj[attribute_class_C] = label_splited[0]
-                sheet_obj[attribute_B].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_C].alignment = Alignment(
-                    wrapText=True)
-            elif len(label_splited) == 2:
-                sheet_obj[attribute_B] = attribute_to_attribute_class[label_splited[0]]
-                sheet_obj[attribute_class_C] = label_splited[0]
-                sheet_obj[attribute_B].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_C].alignment = Alignment(
-                    wrapText=True)
+                label_splited = list(set(label_splited))
 
-                sheet_obj[attribute_D] = attribute_to_attribute_class[label_splited[1]]
-                sheet_obj[attribute_class_E] = label_splited[1]
-                sheet_obj[attribute_D].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_E].alignment = Alignment(
-                    wrapText=True)
-            elif len(label_splited) == 3:
-                sheet_obj[attribute_B] = attribute_to_attribute_class[label_splited[0]]
-                sheet_obj[attribute_class_C] = label_splited[0]
-                sheet_obj[attribute_B].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_C].alignment = Alignment(
-                    wrapText=True)
+                cleaned_labels = label_splited.copy()
+                for l in label_splited:
+                    if l and l not in ATTRIBUTES:
+                        logging.warning(
+                            f"{l} attribute not in the attribute list, will be skipped!")
+                        cleaned_labels.remove(l)
 
-                sheet_obj[attribute_D] = attribute_to_attribute_class[label_splited[1]]
-                sheet_obj[attribute_class_E] = label_splited[1]
-                sheet_obj[attribute_D].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_E].alignment = Alignment(
-                    wrapText=True)
+                label_splited = cleaned_labels
 
-                sheet_obj[attribute_F] = attribute_to_attribute_class[label_splited[2]]
-                sheet_obj[attribute_class_G] = label_splited[2]
-                sheet_obj[attribute_F].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_G].alignment = Alignment(
-                    wrapText=True)
-            elif len(label_splited) == 4:
-                sheet_obj[attribute_B] = attribute_to_attribute_class[label_splited[0]]
-                sheet_obj[attribute_class_C] = label_splited[0]
-                sheet_obj[attribute_B].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_C].alignment = Alignment(
-                    wrapText=True)
+                if len(label_splited) > 0 and label_splited[0]:
+                    sheet_obj[attribute_C] = attribute_to_attribute_class[label_splited[0]]
+                    sheet_obj[attribute_class_D] = label_splited[0]
+                    sheet_obj[attribute_C].alignment = Alignment(wrapText=True)
+                    sheet_obj[attribute_class_D].alignment = Alignment(
+                        wrapText=True)
 
-                sheet_obj[attribute_D] = attribute_to_attribute_class[label_splited[1]]
-                sheet_obj[attribute_class_E] = label_splited[1]
-                sheet_obj[attribute_D].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_E].alignment = Alignment(
-                    wrapText=True)
+                if len(label_splited) > 1:
+                    sheet_obj[attribute_E] = attribute_to_attribute_class[label_splited[1]]
+                    sheet_obj[attribute_class_F] = label_splited[1]
+                    sheet_obj[attribute_E].alignment = Alignment(wrapText=True)
+                    sheet_obj[attribute_class_F].alignment = Alignment(
+                        wrapText=True)
 
-                sheet_obj[attribute_F] = attribute_to_attribute_class[label_splited[2]]
-                sheet_obj[attribute_class_G] = label_splited[2]
-                sheet_obj[attribute_F].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_G].alignment = Alignment(
-                    wrapText=True)
+                if len(label_splited) > 2:
+                    sheet_obj[attribute_G] = attribute_to_attribute_class[label_splited[2]]
+                    sheet_obj[attribute_class_H] = label_splited[2]
+                    sheet_obj[attribute_G].alignment = Alignment(wrapText=True)
+                    sheet_obj[attribute_class_H].alignment = Alignment(
+                        wrapText=True)
 
-                sheet_obj[attribute_H] = attribute_to_attribute_class[label_splited[3]]
-                sheet_obj[attribute_class_I] = label_splited[3]
-                sheet_obj[attribute_H].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_I].alignment = Alignment(
-                    wrapText=True)
-            elif len(label_splited) == 5:
-                sheet_obj[attribute_B] = attribute_to_attribute_class[label_splited[0]]
-                sheet_obj[attribute_class_C] = label_splited[0]
-                sheet_obj[attribute_B].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_C].alignment = Alignment(
-                    wrapText=True)
+                if len(label_splited) > 3:
+                    sheet_obj[attribute_I] = attribute_to_attribute_class[label_splited[3]]
+                    sheet_obj[attribute_class_J] = label_splited[3]
+                    sheet_obj[attribute_I].alignment = Alignment(wrapText=True)
+                    sheet_obj[attribute_class_J].alignment = Alignment(
+                        wrapText=True)
 
-                sheet_obj[attribute_D] = attribute_to_attribute_class[label_splited[1]]
-                sheet_obj[attribute_class_E] = label_splited[1]
-                sheet_obj[attribute_D].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_E].alignment = Alignment(
-                    wrapText=True)
-
-                sheet_obj[attribute_F] = attribute_to_attribute_class[label_splited[2]]
-                sheet_obj[attribute_class_G] = label_splited[2]
-                sheet_obj[attribute_F].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_G].alignment = Alignment(
-                    wrapText=True)
-
-                sheet_obj[attribute_H] = attribute_to_attribute_class[label_splited[3]]
-                sheet_obj[attribute_class_I] = label_splited[3]
-                sheet_obj[attribute_H].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_I].alignment = Alignment(
-                    wrapText=True)
-
-                sheet_obj[attribute_J] = attribute_to_attribute_class[label_splited[4]]
-                sheet_obj[attribute_class_K] = label_splited[4]
-                sheet_obj[attribute_J].alignment = Alignment(wrapText=True)
-                sheet_obj[attribute_class_K].alignment = Alignment(
-                    wrapText=True)
+                if len(label_splited) > 4:
+                    sheet_obj[attribute_K] = attribute_to_attribute_class[label_splited[4]]
+                    sheet_obj[attribute_class_L] = label_splited[4]
+                    sheet_obj[attribute_K].alignment = Alignment(wrapText=True)
+                    sheet_obj[attribute_class_L].alignment = Alignment(
+                        wrapText=True)
 
         wb_obj.save(save)
 
 
 def main():
+    logging.basicConfig(
+        level=logging.WARNING,
+        format="%(asctime)s : " +
+        "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     annotate = Annotate()
     parser = argparse.ArgumentParser(
         description='Create excel files for annotation.')

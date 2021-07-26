@@ -8,148 +8,7 @@ from openpyxl.comments import Comment
 from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.styles import Alignment, Font, PatternFill
 from collections import defaultdict
-
-ATTRIBUTES = {
-    # Volumen
-    "VolumenUndUmbaubarerRaum",
-
-    # Flaeche
-    "Flaechen",
-
-    # Hoehe
-    "Bauklasse",
-    "BauklasseVIHoeheMax",
-    "BauklasseVIHoeheMin",
-    "FBOKMinimumWohnungen",
-    "GebaeudeHoeheArt",
-    "GebaeudeHoeheMax",
-    "GebaeudeHoeheMin",
-    "HoehenlageGrundflaeche",
-    "MaxHoeheWohngebaeude",
-    "MindestraumhoeheEG",
-
-    # Stellplaetze_Garagen_Parkgebäude
-    "AnlageZumEinstellenVorhanden",
-    "GaragengebaeudeAusfuehrung",
-    "GebaeudeEinschraenkungP",
-    "OberflaecheBestimmungP",
-    "StellplatzMax",
-    "StellplatzNiveauZulaessig",
-    "StellplatzregulativUmfangMaximumAbsolut",
-    "StellplatzregulativUmfangMaximumRelativ",
-    "StellplatzregulativUmfangMinimumRelativ",
-    "StellplatzregulativVorhanden",
-    "StellplatzverpflichtungArt",
-    "VerbotStellplaetzeUndParkgebaeude",
-
-    # Geschosse
-    "MaxAnzahlDachgeschosse",
-    "MaxAnzahlGeschosseOberirdisch",
-    "MaxAnzahlGeschosseOberirdischOhneDachgeschoss",
-    "Stockwerk",
-    "UnterirdischeBaulichkeiten",
-    "ZulaessigeGeschossanzahlEinkaufszentrum",
-
-    # Vorbauten
-    "VorbautenBeschraenkung",
-    "VorbautenVerbot",
-    "VorstehendeBauelementeAusladungMax",
-
-    # Einfriedungen
-    "EinfriedungAusgestaltung",
-    "EinfriedungHoeheGesamt",
-    "EinfriedungHoeheSockel",
-    "EinfriedungLage",
-    "EinfriedungZulaessig",
-
-    # Nutzung_Widmung
-    "AusnahmeVonWohnungenUnzulaessig",
-    "AusnuetzbarkeitWidmungskategorieGefoerderterWohnbau",
-    "VerbotAufenthaltsraum",
-    "VerbotBueroGeschaeftsgebaeude",
-    "VerbotWohnung",
-    "WidmungInMehrerenEbenen",
-    "WidmungUndZweckbestimmung",
-
-    # Grossbauvorhaben_Hochhaeuser_Einkaufszentren_Geschaeftsgebaeude
-    "BestimmmungenFuerHochhausUndGrossbauvorhaben",
-    "Geschaeftsstrassen",
-    "HochhausUnzulaessigGemaessBB",
-    "HochhausZulaessigGemaessBB",
-
-    # Laubengaenge_Durchfahrten_Arkaden
-    "ArkadeHoehe",
-    "ArkadeLaenge",
-    "DurchfahrtBreite",
-    "DurchfahrtHoehe",
-    "DurchgangBreite",
-    "DurchgangHoehe",
-    "LaubengangHoehe",
-    "LaubengangLaenge",
-
-    # Ausgestaltung_und_Sonstiges
-    "AnordnungGaertnerischeAusgestaltung",
-    "AnordnungGaertnerischeAusgestaltungProzentual",
-    "AnteilBaumbepflanzung",
-    "AnzahlGebaeudeMax",
-    "AufbautenZulaessig",
-    "AusnahmeGaertnerischAuszugestaltende",
-    "Bauweise_ID",
-    "BegruenungFront",
-    "Einbautrasse",
-    "ErrichtungGebaeude",
-    "GebaeudeBautyp",
-    "Kleinhaeuser",
-    "Massengliederung",
-    "TechnischeAufbautenHoeheMax",
-    "UnterbrechungGeschlosseneBauweise",
-    "VerbotFensterZuOeffentlichenVerkehrsflaechen",
-    "VerbotStaffelung",
-    "VerbotUnterirdischeBauwerkeUeberBaufluchtlinie",
-    "VonBebauungFreizuhalten",
-    "VorkehrungBepflanzung",
-
-    # Dach
-    "AbschlussDachMaxBezugGebaeude",
-    "AbschlussDachMaxBezugGelaende",
-    "AnteilDachbegruenung",
-    "BegruenungDach",
-    "Dachart",
-    "DachflaecheMin",
-    "DachneigungMax",
-    "DachneigungMin",
-
-    # Strassen_und_Gehsteige
-    "GehsteigbreiteMin",
-    "OeffentlicheVerkehrsflaecheBreiteMin",
-    "StrassenbreiteMax",
-    "StrassenbreiteMin",
-    "StrassenbreiteVonBis",
-    "VorkehrungBepflanzungOeffentlicheVerkehrsflaeche",
-
-    # Lage_Gelaende_Planzeichen
-    "AnBaulinie",
-    "AnFluchtlinie",
-    "AnOeffentlichenVerkehrsflaechen",
-    "AnStrassenfluchtlinie",
-    "GelaendeneigungMin",
-    "InSchutzzone",
-    "PlangebietAllgemein",
-    "Planzeichen",
-    "Struktureinheit",
-    "Verkehrsflaeche_ID",
-
-    # Meta
-    "AusnahmePruefungErforderlich",
-    "N/A",
-    "Segmentierungsfehler",
-    "StrittigeBedeutung",
-    "WeitereBestimmungPruefungErforderlich",
-    "ZuVorherigemSatzGehoerig",
-
-    "NoAttribute",
-}
-
+from brise_plandok.annotation.attributes import ATTR_TO_CAT, ATTRS_BY_CAT
 
 class Annotate:
 
@@ -266,7 +125,7 @@ class Annotate:
 
                 cleaned_labels = label_splited.copy()
                 for l in label_splited:
-                    if l and l not in ATTRIBUTES:
+                    if l and l not in ATTR_TO_CAT:
                         logging.warning(
                             f"{l} attribute not in the attribute list, will be skipped!")
                         cleaned_labels.remove(l)

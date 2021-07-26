@@ -14,7 +14,8 @@ import sys
 import os
 import re
 import brise_plandok.annotation
-from brise_plandok.annotation.annotate import Annotate, ATTRIBUTES
+from brise_plandok.annotation.annotate import Annotate
+from brise_plandok.annotation.attributes import ATTR_TO_CAT, ATTRS_BY_CAT
 
 
 class Converter():
@@ -221,7 +222,7 @@ class Converter():
             else:
                 if curr_sen:
                     for attribute in curr_sen["attributes"]:
-                        if attribute["name"] not in ATTRIBUTES:
+                        if attribute["name"] not in ATTR_TO_CAT:
                             logging.warning(f'Sen ID: {curr_sen["sen_id"]}, Attribute: {attribute["name"]} not in the Attribute list')
                     yield curr_sen
                 sen_id, text = fields[:2]
@@ -242,7 +243,7 @@ class Converter():
                     "value": value})
         if curr_sen:
             for attribute in curr_sen["attributes"]:
-                if attribute["name"] not in ATTRIBUTES:
+                if attribute["name"] not in ATTR_TO_CAT:
                     logging.warning(f'Sen ID: {curr_sen["sen_id"]}, Attribute: {attribute["name"]} not in the Attribute list')
             yield curr_sen
 

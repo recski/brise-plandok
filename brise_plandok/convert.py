@@ -14,7 +14,7 @@ import sys
 import os
 import re
 import brise_plandok.annotation
-from brise_plandok.annotation.annotate import Annotate
+from brise_plandok.annotation.annotate import Annotate, ATTRIBUTES
 
 
 class Converter():
@@ -219,6 +219,9 @@ class Converter():
                 pass
             else:
                 if curr_sen:
+                    for attribute in curr_sen["attributes"]:
+                        if attribute["name"] not in ATTRIBUTES:
+                            logging.warning(f'Sen ID: {curr_sen["sen_id"]}, Attribute: {attribute["name"]} not in the Attribute list')
                     yield curr_sen
                 sen_id, text = fields[:2]
                 curr_sen = {
@@ -237,6 +240,9 @@ class Converter():
                     "name": attr,
                     "value": value})
         if curr_sen:
+            for attribute in curr_sen["attributes"]:
+                if attribute["name"] not in ATTRIBUTES:
+                    logging.warning(f'Sen ID: {curr_sen["sen_id"]}, Attribute: {attribute["name"]} not in the Attribute list')
             yield curr_sen
 
     def read_csv_attr(self, stream):
@@ -256,6 +262,7 @@ class Converter():
                 if field and j in (1, 3, 5, 7)]
 
             attributes = Converter.attrs_from_names(attrs)
+            logging.warning(attributes)
             yield Converter.build_json(
                 sen, attributes=attributes, sen_id=sen_id)
 

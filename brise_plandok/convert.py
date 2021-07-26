@@ -24,12 +24,13 @@ class Converter():
     @staticmethod
     def build_json(
             sen, attributes=None, sen_id=None, section_id=None,
-            section_num=None, doc_id=None):
+            section_num=None, doc_id=None, modality=None):
         if isinstance(sen, dict):
             sentence = sen
         elif isinstance(sen, str):
             sentence = {
-                "sen_id": sen_id, "text": sen, "attributes": attributes}
+                "sen_id": sen_id, "text": sen, "attributes": attributes,
+                "modality": [] if modality is None else modality}
         else:
             assert False
 
@@ -264,7 +265,7 @@ class Converter():
             attributes = Converter.attrs_from_names(attrs)
             logging.warning(attributes)
             yield Converter.build_json(
-                sen, attributes=attributes, sen_id=sen_id)
+                sen, attributes=attributes, sen_id=sen_id, modality=None)
 
     def read_json(self, stream):
         for line in stream:

@@ -24,6 +24,13 @@ class Converter():
     output_formats = {"JSON", "TXT", "XLSX"}  # , "CSV_ATTR", "CSV_FULL"}
 
     @staticmethod
+    def check_attribute(curr_sen):
+        for attribute in curr_sen["attributes"]:
+            if attribute["name"] not in ATTR_TO_CAT:
+                logging.warning(
+                    f'Sen ID: {curr_sen["sen_id"]}, Attribute: {attribute["name"]} not in the Attribute list')
+
+    @staticmethod
     def build_json(
             sen, attributes=None, sen_id=None, section_id=None,
             section_num=None, doc_id=None, modality=None):
@@ -228,10 +235,7 @@ class Converter():
                 pass
             else:
                 if curr_sen:
-                    for attribute in curr_sen["attributes"]:
-                        if attribute["name"] not in ATTR_TO_CAT:
-                            logging.warning(
-                                f'Sen ID: {curr_sen["sen_id"]}, Attribute: {attribute["name"]} not in the Attribute list')
+                    Converter.check_attribute(curr_sen)
                     yield curr_sen
                 sen_id, text = fields[:2]
                 curr_sen = {
@@ -250,10 +254,7 @@ class Converter():
                     "name": attr,
                     "value": value})
         if curr_sen:
-            for attribute in curr_sen["attributes"]:
-                if attribute["name"] not in ATTR_TO_CAT:
-                    logging.warning(
-                        f'Sen ID: {curr_sen["sen_id"]}, Attribute: {attribute["name"]} not in the Attribute list')
+            Converter.check_attribute(curr_sen)
             yield curr_sen
 
     def read_csv_attr(self, stream):
@@ -280,7 +281,7 @@ class Converter():
     def read_xlsx(self, stream):
         sens = [Converter.build_json(line["text"], attributes=line["attributes"], sen_id=line["id"], modality=None)[
             "sections"][0]["sens"][0] for line in gen_sens_from_file(stream)]
-            
+
         for sen in sens:
             atts = []
             for attribute in sen["attributes"]:

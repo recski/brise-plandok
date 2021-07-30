@@ -98,6 +98,12 @@ To generate `json` files from the annotated samples, you can run:
 cat sample_data/csv/sample_10_annotated.csv | python brise_plandok/convert.py -i CSV_FULL > sample_10_annotated.json
 ```
 
+If labels change in the `BRISE.xlsx` template file, new excel file from a fully or partially annotated excel can be generated with the command:
+
+```
+python brise_plandok/convert.py -i XLSX -if sample_data/xlsx/asail.xlsx -o XLSX -of output/asail.xlsx
+```
+
 ## References
 
 The rule extraction system is described in the following paper:

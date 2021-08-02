@@ -1,12 +1,8 @@
 import csv
 import os
 
-
-BRISE_NLP_DIR = os.getenv(
-    'BRISE_NLP_DIR', '/home/recski/projects/brise/brise-nlp')
-
 ATTR_FN = os.path.join(
-    BRISE_NLP_DIR, 'sample_data/plandok/merkmale_categories.csv')
+    os.path.dirname(os.path.abspath(__file__)), 'merkmale_categories.csv')
 
 with open(ATTR_FN) as f:
     for i, row in enumerate(csv.reader(f, delimiter=";", quotechar='"')):

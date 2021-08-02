@@ -1,0 +1,22 @@
+Volumen;Flaeche;Hoehe;Stellplaetze, Garagen, Parkgebäude;Geschosse;Vorbauten;Einfriedungen;Nutzung/Widmung;Grossbauvorhaben, Hochhaeuser, Einkaufszentren, Geschaeftsgebaeude;Laubengaenge, Durchfahrten, Arkaden;Ausgestaltung und Sonstiges;Dach;Strassen und Gehsteige;Lage, Gelaende, Planzeichen;Meta
+VolumenUndUmbaubarerRaum;Flaechen;BauklasseVIHoeheMin;StellplatzregulativVorhanden;MaxAnzahlGeschosseOberirdisch;VorbautenVerbot;EinfriedungZulaessig;VerbotBueroGeschaeftsgebaeude;BestimmmungenFuerHochhausUndGrossbauvorhaben;LaubengangHoehe;Massengliederung;BegruenungDach;StrassenbreiteMin;PlangebietAllgemein;WeitereBestimmungPruefungErforderlich
+;;BauklasseVIHoeheMax;StellplatzregulativUmfangMinimumRelativ;MaxAnzahlDachgeschosse;VorbautenBeschraenkung;EinfriedungLage;VerbotWohnung;HochhausUnzulaessigGemaessBB;LaubengangLaenge;UnterbrechungGeschlosseneBauweise;DachneigungMax;VorkehrungBepflanzungOeffentlicheVerkehrsflaeche;Verkehrsflaeche_ID;N/A
+;;HoehenlageGrundflaeche;StellplatzregulativUmfangMaximumRelativ;MaxAnzahlGeschosseOberirdischOhneDachgeschoss;VorstehendeBauelementeAusladungMax;EinfriedungAusgestaltung;VerbotAufenthaltsraum;HochhausZulaessigGemaessBB;DurchfahrtHoehe;BegruenungFront;DachneigungMin;GehsteigbreiteMin;InSchutzzone;AusnahmePruefungErforderlich
+;;MaxHoeheWohngebaeude;StellplatzregulativUmfangMaximumAbsolut;Stockwerk;;EinfriedungHoeheSockel;WidmungUndZweckbestimmung;Geschaeftsstrassen;DurchgangHoehe;AnordnungGaertnerischeAusgestaltung;AbschlussDachMaxBezugGebaeude;StrassenbreiteMax;Planzeichen;ZuVorherigemSatzGehoerig
+;;MindestraumhoeheEG;StellplatzverpflichtungArt;UnterirdischeBaulichkeiten;;EinfriedungHoeheGesamt;WidmungInMehrerenEbenen;;DurchgangBreite;VerbotUnterirdischeBauwerkeUeberBaufluchtlinie;Dachart;StrassenbreiteVonBis;GelaendeneigungMin;StrittigeBedeutung
+;;FBOKMinimumWohnungen;GaragengebaeudeAusfuehrung;ZulaessigeGeschossanzahlEinkaufszentrum;;;AusnuetzbarkeitWidmungskategorieGefoerderterWohnbau;;ArkadeHoehe;Kleinhaeuser;AbschlussDachMaxBezugGelaende;OeffentlicheVerkehrsflaecheBreiteMin;Struktureinheit;Segmentierungsfehler
+;;GebaeudeHoeheArt;StellplatzMax;;;;AusnahmeVonWohnungenUnzulaessig;;ArkadeLaenge;VerbotFensterZuOeffentlichenVerkehrsflaechen;AnteilDachbegruenung;;AnBaulinie;
+;;GebaeudeHoeheMax;GebaeudeEinschraenkungP;;;;;;DurchfahrtBreite;Einbautrasse;DachflaecheMin;;AnFluchtlinie;
+;;Bauklasse;VerbotStellplaetzeUndParkgebaeude;;;;;;;ErrichtungGebaeude;;;AnOeffentlichenVerkehrsflaechen;
+;;GebaeudeHoeheMin;OberflaecheBestimmungP;;;;;;;GebaeudeBautyp;;;AnStrassenfluchtlinie;
+;;;StellplatzNiveauZulaessig;;;;;;;Bauweise_ID;;;;
+;;;AnlageZumEinstellenVorhanden;;;;;;;AnteilBaumbepflanzung;;;;
+;;;;;;;;;;AufbautenZulaessig;;;;
+;;;;;;;;;;TechnischeAufbautenHoeheMax;;;;
+;;;;;;;;;;VonBebauungFreizuhalten;;;;
+;;;;;;;;;;AusnahmeGaertnerischAuszugestaltende;;;;
+;;;;;;;;;;VerbotStaffelung;;;;
+;;;;;;;;;;VorkehrungBepflanzung;;;;
+;;;;;;;;;;AnzahlGebaeudeMax;;;;
+;;;;;;;;;;AnordnungGaertnerischeAusgestaltungProzentual;;;;
+;;;;;;;;;;EinleitungNiederschlagswaesser;;;;

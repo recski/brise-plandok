@@ -4,7 +4,6 @@ Information extraction from text documents of the zoning plan of the City of Vie
 
 Work supported by [BRISE-Vienna](https://smartcity.wien.gv.at/en/brise/) (UIA04-081), a European Union Urban Innovative Actions project.
 
-
 ## Requirements
 
 Install the brise_plandok repository:
@@ -16,7 +15,6 @@ pip install .
 Installing this repository will also install the `tuw_nlp` repository, a graph-transformation framework. To get to know more, visit https://github.com/recski/tuw-nlp:
 
 ## Rule extraction
-
 
 To run the rule extraction system described in the [2021 ASAIL paper](#references) on a small annotated sample, run:
 
@@ -50,7 +48,6 @@ To run the prover of our system, also start the prover service from this reposit
 
 The demo can then be accessed from your web browser at [http://localhost:8501/](http://localhost:8501/)
 
-
 ## Full pipeline
 
 ### Data
@@ -77,7 +74,6 @@ cat sample_data/json/sample.jsonl | python brise_plandok/extractor.py > output/s
 
 To run the rule extraction system of the ASAIL paper, add the `-r` command-line switch to the above command.
 
-
 ### Evaluation
 
 Evaluate attribute extraction on annotated sample of 10 documents:
@@ -96,12 +92,23 @@ sed "5q;d" sample_data/json/asail.jsonl | python brise_plandok/extractor.py -r |
 
 The generated excel sheet will be placed under output/asail.xlsx. The samples are annotated by our rule-based system and then can be used by the human annotators as well.
 
+To generate `json` files from the annotated samples, you can run:
+
+```
+cat sample_data/csv/sample_10_annotated.csv | python brise_plandok/convert.py -i CSV_FULL > sample_10_annotated.json
+```
+
+If labels change in the `BRISE.xlsx` template file, new excel file from a fully or partially annotated excel can be generated with the command:
+
+```
+python brise_plandok/convert.py -i XLSX -if sample_data/xlsx/asail.xlsx -o XLSX -of output/asail.xlsx
+```
+
 ## References
 
 The rule extraction system is described in the following paper:
 
 Gabor Recski, Björn Lellmann, Adam Kovacs, Allan Hanbury: Explainable rule extraction via semantic graphs (...)
-
 
 The demo also uses the deontic logic prover described in [this paper](http://www.collegepublications.co.uk/DEON/submission%20Ciabattoni%20Lellmann.pdf)
 

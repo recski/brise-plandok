@@ -15,11 +15,20 @@ import os
 import re
 import brise_plandok.annotation
 from brise_plandok.annotation.annotate import Annotate
+from brise_plandok.annotation.attributes import ATTR_TO_CAT, ATTRS_BY_CAT
+from brise_plandok.annotation.agreement import gen_sens_from_file
 
 
 class Converter():
-    input_formats = {"JSON", "CSV_ATTR", "CSV_FULL"}
+    input_formats = {"JSON", "CSV_ATTR", "CSV_FULL", "XLSX"}
     output_formats = {"JSON", "TXT", "XLSX"}  # , "CSV_ATTR", "CSV_FULL"}
+
+    @staticmethod
+    def check_attribute(curr_sen):
+        for attribute in curr_sen["attributes"]:
+            if attribute["name"] not in ATTR_TO_CAT:
+                logging.warning(
+                    f'Sen ID: {curr_sen["sen_id"]}, Attribute: {attribute["name"]} not in the Attribute list')
 
     @staticmethod
     def build_json(
@@ -101,7 +110,8 @@ class Converter():
             elif content["value"] == False:
                 contents_string.append(f'neg {content["name"]}')
             else:
-                contents_string.append(f'{content["name"]}({content["value"]})')
+                contents_string.append(
+                    f'{content["name"]}({content["value"]})')
         contents_string = " and ".join(contents_string)
 
         conditions_string = []
@@ -111,7 +121,8 @@ class Converter():
             elif condition["value"] == False:
                 conditions_string.append(f'neg {condition["name"]}')
             else:
-                conditions_string.append(f'{condition["name"]}({condition["value"]})')
+                conditions_string.append(
+                    f'{condition["name"]}({condition["value"]})')
         conditions_string = " and ".join(conditions_string)
 
         content_exceptions_string = []
@@ -119,9 +130,11 @@ class Converter():
             if content_exception["value"] == True or content_exception["value"] == None:
                 content_exceptions_string.append(content_exception["name"])
             elif content_exception["value"] == False:
-                content_exceptions_string.append(f'neg {content_exception["name"]}')
+                content_exceptions_string.append(
+                    f'neg {content_exception["name"]}')
             else:
-                content_exceptions_string.append(f'{content_exception["name"]}({content_exception["value"]})')
+                content_exceptions_string.append(
+                    f'{content_exception["name"]}({content_exception["value"]})')
         content_exceptions_string = " or ".join(content_exceptions_string)
 
         condition_exceptions_string = []
@@ -129,9 +142,11 @@ class Converter():
             if condition_exception["value"] == True or condition_exception["value"] == None:
                 condition_exceptions_string.append(condition_exception["name"])
             elif condition_exception["value"] == False:
-                condition_exceptions_string.append(f'neg {condition_exception["name"]}')
+                condition_exceptions_string.append(
+                    f'neg {condition_exception["name"]}')
             else:
-                condition_exceptions_string.append(f'{condition_exception["name"]}({condition_exception["value"]})')
+                condition_exceptions_string.append(
+                    f'{condition_exception["name"]}({condition_exception["value"]})')
         condition_exceptions_string = " or ".join(condition_exceptions_string)
 
         logical_form = ""
@@ -220,6 +235,7 @@ class Converter():
                 pass
             else:
                 if curr_sen:
+                    Converter.check_attribute(curr_sen)
                     yield curr_sen
                 sen_id, text = fields[:2]
                 curr_sen = {
@@ -238,6 +254,7 @@ class Converter():
                     "name": attr,
                     "value": value})
         if curr_sen:
+            Converter.check_attribute(curr_sen)
             yield curr_sen
 
     def read_csv_attr(self, stream):
@@ -257,8 +274,35 @@ class Converter():
                 if field and j in (1, 3, 5, 7)]
 
             attributes = Converter.attrs_from_names(attrs)
+            logging.warning(attributes)
             yield Converter.build_json(
                 sen, attributes=attributes, sen_id=sen_id, modality=None)
+
+    def read_xlsx(self, stream):
+        sens = [Converter.build_json(line["text"], attributes=line["attributes"], sen_id=line["id"], modality=None)[
+            "sections"][0]["sens"][0] for line in gen_sens_from_file(stream)]
+
+        for sen in sens:
+            atts = []
+            for attribute in sen["attributes"]:
+                atts.append({
+                    "type": None,
+                    "name": attribute,
+                    "value": None})
+            sen["attributes"] = atts
+
+        doc = {
+            "id": None,
+            "text": None,
+            "sections": [{
+                "id": None,
+                "text": None,
+                'num': None,
+                "sens": sens
+            }]
+        }
+
+        yield doc
 
     def read_json(self, stream):
         for line in stream:
@@ -271,6 +315,8 @@ class Converter():
             yield from self.read_csv_attr(stream)
         elif self.input_format == 'CSV_FULL':
             yield from self.read_csv_full(stream)
+        elif self.input_format == "XLSX":
+            yield from self.read_xlsx(stream)
         else:
             assert False
 
@@ -286,7 +332,8 @@ class Converter():
                 attrs_text = ",".join(
                     attr['name'] for attr in sen['attributes'])
                 dataset.append((sen["sen_id"], sen["text"], attrs_text))
-        annotate.parse(dataset, os.path.join(os.path.dirname(brise_plandok.annotation.__file__), "BRISE.xlsx"), file)
+        annotate.parse(dataset, os.path.join(os.path.dirname(
+            brise_plandok.annotation.__file__), "BRISE.xlsx"), file)
 
     def write_txt(self, doc, stream):
         for section in doc["sections"]:
@@ -315,6 +362,7 @@ def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-i", "--input-format", type=str)
     parser.add_argument("-o", "--output-format", type=str)
+    parser.add_argument("-if", "--input-file", type=str, default=None)
     parser.add_argument("-of", "--output-file", type=str, default=None)
     parser.set_defaults(input_format="JSON", output_format="JSON")
     return parser.parse_args()
@@ -328,10 +376,15 @@ def main():
     args = get_args()
     converter = Converter(args)
 
-    if args.output_file:
-        converter.convert(sys.stdin, args.output_file)
-    else:
-        converter.convert(sys.stdin, sys.stdout)
+    if args.input_format == "XLSX":
+        assert args.input_file
+    if args.output_format == "XLSX":
+        assert args.output_file
+
+    input_stream = args.input_file if args.input_file != None else sys.stdin
+    output_stream = args.output_file if args.output_file != None else sys.stdout
+
+    converter.convert(input_stream, output_stream)
 
 
 if __name__ == "__main__":

@@ -14,7 +14,9 @@ Install the brise_plandok repository:
 pip install .
 ```
 
-Installing this repository will also install the `tuw_nlp` repository, a graph-transformation framework. To get to know more, visit https://github.com/recski/tuw-nlp:
+Installing this repository will also install the `tuw_nlp` repository, a graph-transformation framework. To get to know more, visit https://github.com/recski/tuw-nlp.
+
+Ensure that you have at least `Java 8` for the [alto](https://github.com/coli-saar/alto) library.
 
 ## Rule extraction
 

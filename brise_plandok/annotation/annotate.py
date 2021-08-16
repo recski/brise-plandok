@@ -54,39 +54,41 @@ class Annotate:
         data_val = DataValidation(type="list", formula1='=Attribute')
         sheet_obj.add_data_validation(data_val)
 
-        for i, sen in enumerate(sentences):
+        for i, _ in enumerate(sentences):
             label = labels[i]
+            excel_row_id = i + 3
 
-            sentence_id = "A" + str(i + 3)
-            sentence = "B" + str(i + 3)
+            sentence_id = "A" + str(excel_row_id)
+            sentence = "B" + str(excel_row_id)
 
-            attribute_C = "C" + str(i + 3)
-            attribute_class_D = "D" + str(i + 3)
+            attribute_C = "C" + str(excel_row_id)
+            attribute_class_D = "D" + str(excel_row_id)
 
-            attribute_E = "E" + str(i + 3)
-            attribute_class_F = "F" + str(i + 3)
+            attribute_E = "E" + str(excel_row_id)
+            attribute_class_F = "F" + str(excel_row_id)
 
-            attribute_G = "G" + str(i + 3)
-            attribute_class_H = "H" + str(i + 3)
+            attribute_G = "G" + str(excel_row_id)
+            attribute_class_H = "H" + str(excel_row_id)
 
-            attribute_I = "I" + str(i + 3)
-            attribute_class_J = "J" + str(i + 3)
+            attribute_I = "I" + str(excel_row_id)
+            attribute_class_J = "J" + str(excel_row_id)
 
-            attribute_K = "K" + str(i + 3)
-            attribute_class_L = "L" + str(i + 3)
+            attribute_K = "K" + str(excel_row_id)
+            attribute_class_L = "L" + str(excel_row_id)
 
             sheet_obj[sentence] = sentences[i]
             sheet_obj[sentence_id] = sentence_ids[i]
             sheet_obj[sentence].alignment = Alignment(wrapText=True)
             sheet_obj[sentence_id].alignment = Alignment(wrapText=True)
 
-            if sentence_ids[i].split("_")[-1] == "0" and sentence_ids[i].split("_")[-2] == "0":
+            if sentence_ids[i].split("_")[-2] == "0":
                 for j in range(ord('C'), ord('P') + 1):
-                    sheet_obj[chr(j)+"3"] = "DON'T ANNOTATE THIS SENTENCE"
-                    sheet_obj[chr(j)+"3"].fill = PatternFill(
+                    cell_id = chr(j)+str(excel_row_id)
+                    sheet_obj[cell_id] = "DON'T ANNOTATE THIS SENTENCE"
+                    sheet_obj[cell_id].fill = PatternFill(
                         fgColor="878787", fill_type="solid")
-                    sheet_obj[chr(j)+"3"].alignment = Alignment(wrapText=True, horizontal="center", vertical="center")
-                    sheet_obj[chr(j)+"3"].font = Font(bold=True)
+                    sheet_obj[cell_id].alignment = Alignment(wrapText=True, horizontal="center", vertical="center")
+                    sheet_obj[cell_id].font = Font(bold=True)
             else:
                 data_val.add(sheet_obj[attribute_C])
                 data_val.add(sheet_obj[attribute_E])
@@ -95,27 +97,27 @@ class Annotate:
                 data_val.add(sheet_obj[attribute_K])
 
                 data_val_subclass_C = DataValidation(
-                    type="list", formula1='==INDIRECT($C${0})'.format(str(i + 3)))
+                    type="list", formula1='==INDIRECT($C${0})'.format(str(excel_row_id)))
                 sheet_obj.add_data_validation(data_val_subclass_C)
                 data_val_subclass_C.add(sheet_obj[attribute_class_D])
 
                 data_val_subclass_E = DataValidation(
-                    type="list", formula1='==INDIRECT($E${0})'.format(str(i + 3)))
+                    type="list", formula1='==INDIRECT($E${0})'.format(str(excel_row_id)))
                 sheet_obj.add_data_validation(data_val_subclass_E)
                 data_val_subclass_E.add(sheet_obj[attribute_class_F])
 
                 data_val_subclass_G = DataValidation(
-                    type="list", formula1='==INDIRECT($G${0})'.format(str(i + 3)))
+                    type="list", formula1='==INDIRECT($G${0})'.format(str(excel_row_id)))
                 sheet_obj.add_data_validation(data_val_subclass_G)
                 data_val_subclass_G.add(sheet_obj[attribute_class_H])
 
                 data_val_subclass_I = DataValidation(
-                    type="list", formula1='==INDIRECT($I${0})'.format(str(i + 3)))
+                    type="list", formula1='==INDIRECT($I${0})'.format(str(excel_row_id)))
                 sheet_obj.add_data_validation(data_val_subclass_I)
                 data_val_subclass_I.add(sheet_obj[attribute_class_J])
 
                 data_val_subclass_K = DataValidation(
-                    type="list", formula1='==INDIRECT($K${0})'.format(str(i + 3)))
+                    type="list", formula1='==INDIRECT($K${0})'.format(str(excel_row_id)))
                 sheet_obj.add_data_validation(data_val_subclass_K)
                 data_val_subclass_K.add(sheet_obj[attribute_class_L])
 

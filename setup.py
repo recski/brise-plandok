@@ -15,6 +15,7 @@ setup(
         "openpyxl",
         "pydot",
         'simplejson',
+        'sklearn',
         "spacy>=2.3.0",
         "stanza==1.1.1",
         'streamlit',

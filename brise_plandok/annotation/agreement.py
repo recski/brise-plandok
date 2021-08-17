@@ -51,7 +51,7 @@ def xlsx_to_data(fn):
 
 def eval_against_gold(data, attr_vocab, annotator_vocab):
     gold_ann = annotator_vocab.get_id('gold')
-    print('gold ann:', gold_ann)
+    print('gold ann id:', gold_ann)
     attr_stats = defaultdict(
         lambda: {
             ann: Counter() for ann in annotator_vocab.id_to_word
@@ -314,6 +314,9 @@ def main():
         format="%(asctime)s : " +
         "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     filenames = sys.argv[1:]
+    if len(filenames) < 3:
+        logging.error("At least two annotation files and one gold data are required.")
+        return
     out_fn = 'annotation_output.tsv'
     data, attr_vocab, annotator_vocab = load_data(filenames)
     print_data(data, attr_vocab, annotator_vocab, out_fn)

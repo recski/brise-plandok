@@ -104,6 +104,19 @@ If labels change in the `BRISE.xlsx` template file, new excel file from a fully 
 python brise_plandok/convert.py -i XLSX -if sample_data/xlsx/asail.xlsx -o XLSX -of output/asail.xlsx
 ```
 
+## Annotation agreement
+
+Calculates the inter-annotator agreement.
+
+```bash
+python brise_plandok/annotation/agreement.py sample_data/xlsx/asail_annot1.xlsx sample_data/xlsx/asail_annot2.xlsx sample_data/xlsx/asail_gold.xlsx
+```
+Constraints
+
+- File names must follow a `<doc_id>_<annotator_name>.xlsx` pattern.
+- You must provide exactly one gold annotation in the form of `<doc_id>_gold.xlsx`.
+- You must provide at least two non-gold annotations.
+
 ## References
 
 The rule extraction system is described in the following paper:

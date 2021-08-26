@@ -133,3 +133,6 @@ dmypy.json
 
 # Excel/Libreoffice
 *.xlsx#
+
+# Review
+brise_plandok/review/output/

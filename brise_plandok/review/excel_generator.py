@@ -11,18 +11,17 @@ review_sheet_name = "Review"
 attribute_named_range = "Attribute"
 attribute_review_named_range = "Attribute_Review"
 sentence_review_named_range = "Sentence_Review"
+input_template = os.path.join(os.path.dirname(__file__), "input", "review_template.xlsx")
 
 class ExcelGenerator:
 
-    def __init__(self) -> None:
-        self.output = os.path.join(os.path.dirname(__file__), "review.xlsx")
+    def __init__(self, output_file):
         self.attribute_offset = 5
         self.first_attribute_column = 4
+        self.output_file = output_file
 
     def generate_review_excel(self, merged_annotations):
-        excel_template = os.path.join(
-            os.path.dirname(__file__), "BRISE_review.xlsx")
-        workbook = openpyxl.load_workbook(excel_template)
+        workbook = openpyxl.load_workbook(input_template)
         self._fill_workbook(workbook, merged_annotations)
         self._save_workbook(workbook)
 
@@ -104,4 +103,4 @@ class ExcelGenerator:
         return (col - self.first_attribute_column) % self.attribute_offset == 0
 
     def _save_workbook(self, workbook):
-        workbook.save(self.output)
+        workbook.save(self.output_file)

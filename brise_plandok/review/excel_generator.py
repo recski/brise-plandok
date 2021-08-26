@@ -16,7 +16,7 @@ class ExcelGenerator:
 
     def __init__(self) -> None:
         self.output = os.path.join(os.path.dirname(__file__), "review.xlsx")
-        self.attribute_offset = 4
+        self.attribute_offset = 5
         self.first_attribute_column = 4
 
     def generate_review_excel(self, merged_annotations):
@@ -57,7 +57,8 @@ class ExcelGenerator:
         review_sheet.cell(row=row, column=col).value = ATTR_TO_CAT[attribute_name]
         review_sheet.cell(row=row, column=col+1).value = attribute_name
         review_sheet.cell(row=row, column=col+2).value = attribute_props["count"]
-        review_sheet.cell(row=row, column=col+3).value = "OK"
+        review_sheet.cell(row=row, column=col+3).value = "\n".join(attribute_props["annotators"])
+        review_sheet.cell(row=row, column=col+4).value = "OK"
 
     def __normalize_attr_names(self, attribute_name):
         if attribute_name == "Verkehrsflaeche_ID":

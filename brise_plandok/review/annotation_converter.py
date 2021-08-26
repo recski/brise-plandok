@@ -13,31 +13,33 @@ class AnnotationConverter(Converter):
         self.__generate_review_excel(merged_annotations)
 
     def __read_annotations(self, annotated_xlsx_files):
-        annotations = []
+        annotations = {}
         for annotated_xlsx in annotated_xlsx_files:
+            annotator = annotated_xlsx.split('_')[-2]
             for doc in self.read(annotated_xlsx):
-                annotations.append(doc)
+                annotations[annotator]= doc
         return annotations
 
     def __merge_annotations(self, annotations):
         merged_annotations = {}
-        for annotation in annotations:
+        for annotator, annotation in annotations.items():
             if merged_annotations is None:
                 merged_annotations = annotation
             for section in annotation["sections"]:
                 for sen in section["sens"]:
-                    self.__parse_sen(sen, merged_annotations)
+                    self.__parse_sen(sen, merged_annotations, annotator)
         return merged_annotations
 
-    def __parse_sen(self, sen, merged_annotations):
+    def __parse_sen(self, sen, merged_annotations, annotator):
         if sen["sen_id"] not in merged_annotations:
             merged_annotations[sen["sen_id"]] = { "text" : sen["text"], "attributes": {} }
         for attribute in sen["attributes"]:
             merged_attributes = merged_annotations[sen["sen_id"]]["attributes"]
             if attribute["name"] not in merged_attributes:
-                merged_attributes[attribute["name"]] = { "count" : 1 }
+                merged_attributes[attribute["name"]] = { "count" : 1, "annotators" : [annotator] }
             else:
                 merged_attributes[attribute["name"]]["count"] += 1
+                merged_attributes[attribute["name"]]["annotators"].append(annotator)
 
     def __generate_review_excel(self, merged_annotations):
         generator = ExcelGenerator()

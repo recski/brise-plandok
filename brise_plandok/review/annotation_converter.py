@@ -53,7 +53,7 @@ def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-of", "--output-file", type=str)
     parser.add_argument("-a", "--annotations", nargs="+", default=None)
-    parser.set_defaults(input_format="XLSX", output_format="JSON",
+    parser.set_defaults(input_format="XLSX", output_format="XLSX",
                         output_file="brise_plandok/review/output/review.xlsx")
     return parser.parse_args()
 

@@ -127,6 +127,10 @@ Constraints
 - You must provide exactly one gold annotation in the form of `<doc_id>_gold.xlsx`.
 - You must provide at least two non-gold annotations.
 
+## Development
+
+For development details read more [here](./DEVELOPMENT.md).
+
 ## References
 
 The rule extraction system is described in the following paper:

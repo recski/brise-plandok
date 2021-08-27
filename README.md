@@ -106,13 +106,21 @@ python brise_plandok/convert.py -i XLSX -if sample_data/xlsx/asail.xlsx -o XLSX 
 
 ## Annotation Review
 
-Creates an excel sheet for reviewing the annotations.
+### Creates excel for review
 
 ```bash
 python brise_plandok/review/annotation_converter.py -a brise_plandok/review/examples/6492_01_20210825.xlsx brise_plandok/review/examples/6492_02_20210825.xlsx
 ```
 
 The output can be found in `brise_plandok/review/output/review.xlsx` by default.
+
+### Create gold after review
+
+```bash
+python brise_plandok/review/review_converter.py -r brise_plandok/review/examples/6492_reviewed.xlsx
+```
+
+The output can be found in `brise_plandok/review/output/gold.json` by default.
 
 ## Annotation agreement
 

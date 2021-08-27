@@ -20,6 +20,7 @@ class ReviewConverter(Converter):
     def __save_gold_json(self, doc):
         with open(self.output_file, "w") as f:
             json.dump(doc, f)
+        logging.info(f"DONE. Gold json was created to: {self.output_file}")
 
     def __read_reviewed_xlsx(self, reviewed_xlsx_file):
         doc = {

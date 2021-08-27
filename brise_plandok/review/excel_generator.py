@@ -111,3 +111,4 @@ class ExcelGenerator:
 
     def _save_workbook(self, workbook):
         workbook.save(self.output_file)
+        logging.info(f"DONE. Review xlsx was created to: {self.output_file}")

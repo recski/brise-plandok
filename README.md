@@ -4,6 +4,8 @@ Information extraction from text documents of the zoning plan of the City of Vie
 
 Work supported by [BRISE-Vienna](https://smartcity.wien.gv.at/en/brise/) (UIA04-081), a European Union Urban Innovative Actions project.
 
+__The ASAIL2021 branch contains the code in the state presented in our [2021 ASAIL paper](#references)__
+
 ## Requirements
 
 Install the brise_plandok repository:
@@ -12,7 +14,9 @@ Install the brise_plandok repository:
 pip install .
 ```
 
-Installing this repository will also install the `tuw_nlp` repository, a graph-transformation framework. To get to know more, visit https://github.com/recski/tuw-nlp:
+Installing this repository will also install the `tuw_nlp` repository, a graph-transformation framework. To get to know more, visit https://github.com/recski/tuw-nlp.
+
+Ensure that you have at least `Java 8` for the [alto](https://github.com/coli-saar/alto) library.
 
 ## Rule extraction
 

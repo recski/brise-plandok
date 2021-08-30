@@ -10,6 +10,7 @@ from openpyxl.styles import Alignment, Font, PatternFill
 from collections import defaultdict
 from brise_plandok.annotation.attributes import ATTR_TO_CAT, ATTRS_BY_CAT
 
+
 class Annotate:
 
     def parse(self, dataset, template, save):
@@ -79,7 +80,9 @@ class Annotate:
             sheet_obj[sentence] = sentences[i]
             sheet_obj[sentence_id] = sentence_ids[i]
             sheet_obj[sentence].alignment = Alignment(wrapText=True)
+            sheet_obj[sentence].font = Font(size=12)
             sheet_obj[sentence_id].alignment = Alignment(wrapText=True)
+            sheet_obj[sentence_id].font = Font(size=12)
 
             if sentence_ids[i].split("_")[-2] == "0":
                 for j in range(ord('C'), ord('P') + 1):
@@ -87,7 +90,8 @@ class Annotate:
                     sheet_obj[cell_id] = "DON'T ANNOTATE THIS SENTENCE"
                     sheet_obj[cell_id].fill = PatternFill(
                         fgColor="878787", fill_type="solid")
-                    sheet_obj[cell_id].alignment = Alignment(wrapText=True, horizontal="center", vertical="center")
+                    sheet_obj[cell_id].alignment = Alignment(
+                        wrapText=True, horizontal="center", vertical="center")
                     sheet_obj[cell_id].font = Font(bold=True)
             else:
                 data_val.add(sheet_obj[attribute_C])
@@ -135,41 +139,30 @@ class Annotate:
                 label_splited = cleaned_labels
 
                 if len(label_splited) > 0 and label_splited[0]:
-                    sheet_obj[attribute_C] = attribute_to_attribute_class[label_splited[0]]
-                    sheet_obj[attribute_class_D] = label_splited[0]
-                    sheet_obj[attribute_C].alignment = Alignment(wrapText=True)
-                    sheet_obj[attribute_class_D].alignment = Alignment(
-                        wrapText=True)
+                    self.__set_attributes(
+                        sheet_obj, attribute_C, attribute_class_D, label_splited[0], attribute_to_attribute_class)
 
                 if len(label_splited) > 1:
-                    sheet_obj[attribute_E] = attribute_to_attribute_class[label_splited[1]]
-                    sheet_obj[attribute_class_F] = label_splited[1]
-                    sheet_obj[attribute_E].alignment = Alignment(wrapText=True)
-                    sheet_obj[attribute_class_F].alignment = Alignment(
-                        wrapText=True)
+                    self.__set_attributes(
+                        sheet_obj, attribute_E, attribute_class_F, label_splited[1], attribute_to_attribute_class)
 
                 if len(label_splited) > 2:
-                    sheet_obj[attribute_G] = attribute_to_attribute_class[label_splited[2]]
-                    sheet_obj[attribute_class_H] = label_splited[2]
-                    sheet_obj[attribute_G].alignment = Alignment(wrapText=True)
-                    sheet_obj[attribute_class_H].alignment = Alignment(
-                        wrapText=True)
+                    self.__set_attributes(
+                        sheet_obj, attribute_G, attribute_class_H, label_splited[2], attribute_to_attribute_class)
 
                 if len(label_splited) > 3:
-                    sheet_obj[attribute_I] = attribute_to_attribute_class[label_splited[3]]
-                    sheet_obj[attribute_class_J] = label_splited[3]
-                    sheet_obj[attribute_I].alignment = Alignment(wrapText=True)
-                    sheet_obj[attribute_class_J].alignment = Alignment(
-                        wrapText=True)
+                    self.__set_attributes(
+                        sheet_obj, attribute_I, attribute_class_J, label_splited[3], attribute_to_attribute_class)
 
                 if len(label_splited) > 4:
-                    sheet_obj[attribute_K] = attribute_to_attribute_class[label_splited[4]]
-                    sheet_obj[attribute_class_L] = label_splited[4]
-                    sheet_obj[attribute_K].alignment = Alignment(wrapText=True)
-                    sheet_obj[attribute_class_L].alignment = Alignment(
-                        wrapText=True)
+                    self.__set_attributes(
+                        sheet_obj, attribute_K, attribute_class_L, label_splited[4], attribute_to_attribute_class)
 
         wb_obj.save(save)
+
+    def __set_attributes(self, sheet_obj, category_coordinate, label_coordinate, label, attribute_to_attribute_class):
+        sheet_obj[category_coordinate] = attribute_to_attribute_class[label]
+        sheet_obj[label_coordinate] = label
 
 
 def main():

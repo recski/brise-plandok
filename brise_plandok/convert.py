@@ -15,7 +15,7 @@ import os
 import re
 import brise_plandok.annotation
 from brise_plandok.annotation.annotate import Annotate
-from brise_plandok.annotation.attributes import ATTR_TO_CAT, ATTRS_BY_CAT
+from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.annotation.agreement import gen_sens_from_file
 
 

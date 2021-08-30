@@ -130,3 +130,9 @@ dmypy.json
 
 # VS code
 .vscode/
+
+# Excel/Libreoffice
+*.xlsx#
+
+# Review
+brise_plandok/review/output/

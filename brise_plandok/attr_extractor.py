@@ -75,7 +75,7 @@ PATTERNS_BY_ATTR = {
         "(u_0 / Gasse)",
         "(u_0 / Xgasse)"
     },
-    "VorkehrungBepflanzungOeffentlicheVerkehrsflaeche": {
+    "VorkehrungBepflanzung": {
         "(u_0 / Pflanze)",
         "(u_0 / Pflanzung)"
     },
@@ -103,9 +103,11 @@ def get_patterns():
 class AttributeExtractor(Extractor):
     def __init__(self, *args, **kwargs):
         super(AttributeExtractor, self).__init__(*args, **kwargs)
-        # we initialize two IRTG, the one responsible for the UD-FL conversion and one for the attribute matching
+
+        # initialize IRTG-based UD-FL conversion
         self.ud_fl = UD_FL(cache_dir=self.cache_dir)
 
+        # networkx-based graph matching for attribute extraction
         patterns = get_patterns()
         self.fl_attr = GraphMatcher(patterns)
 

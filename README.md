@@ -108,6 +108,24 @@ If labels change in the `BRISE.xlsx` template file, new excel file from a fully 
 python brise_plandok/convert.py -i XLSX -if sample_data/xlsx/asail.xlsx -o XLSX -of output/asail.xlsx
 ```
 
+## Annotation Review
+
+### Creates excel for review
+
+```bash
+python brise_plandok/review/annotation_converter.py -a brise_plandok/review/examples/6492_01_20210825.xlsx brise_plandok/review/examples/6492_02_20210825.xlsx
+```
+
+The output can be found in `brise_plandok/review/output/review.xlsx` by default.
+
+### Create gold after review
+
+```bash
+python brise_plandok/review/review_converter.py -r brise_plandok/review/examples/6492_reviewed.xlsx
+```
+
+The output can be found in `brise_plandok/review/output/gold.json` by default.
+
 ## Annotation agreement
 
 Calculates the inter-annotator agreement.
@@ -120,6 +138,10 @@ Constraints
 - File names must follow a `<doc_id>_<annotator_name>.xlsx` pattern.
 - You must provide exactly one gold annotation in the form of `<doc_id>_gold.xlsx`.
 - You must provide at least two non-gold annotations.
+
+## Development
+
+For development details read more [here](./DEVELOPMENT.md).
 
 ## References
 

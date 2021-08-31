@@ -21,7 +21,7 @@ from brise_plandok.annotation.agreement import gen_sens_from_file
 
 class Converter():
     input_formats = {"JSON", "CSV_ATTR", "CSV_FULL", "XLSX"}
-    output_formats = {"JSON", "TXT", "XLSX"}  # , "CSV_ATTR", "CSV_FULL"}
+    output_formats = {"JSON", "JSON_FLAT", "TXT", "XLSX"}  # , "CSV_ATTR", "CSV_FULL"}
 
     @staticmethod
     def check_attribute(curr_sen):
@@ -325,6 +325,18 @@ class Converter():
         stream.write(json.dumps(doc))
         stream.write('\n')
 
+    def guess_doc_id(self, doc):
+        return doc['sections'][0]['sens'][0]['sen_id'].split('_')[0]
+
+    def write_json_flat(self, doc, stream):
+        out_doc = {
+            "id": doc['id'] if doc['id'] else self.guess_doc_id(doc),
+            "sens": [
+                sen for section in doc["sections"] for sen in section["sens"]]}
+
+        stream.write(json.dumps(out_doc))
+        stream.write('\n')
+
     def write_xlsx(self, doc, file):
 
         attribute_key = "gen_attributes" if self.gen_attributes else "attributes"
@@ -349,6 +361,8 @@ class Converter():
     def write(self, doc, stream):
         if self.output_format == 'JSON':
             self.write_json(doc, stream)
+        if self.output_format == 'JSON_FLAT':
+            self.write_json_flat(doc, stream)
         elif self.output_format == 'TXT':
             self.write_txt(doc, stream)
         elif self.output_format == "XLSX":

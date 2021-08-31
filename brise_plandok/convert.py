@@ -15,7 +15,7 @@ import os
 import re
 import brise_plandok.annotation
 from brise_plandok.annotation.annotate import Annotate
-from brise_plandok.annotation.attributes import ATTR_TO_CAT, ATTRS_BY_CAT
+from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.annotation.agreement import gen_sens_from_file
 
 
@@ -208,6 +208,7 @@ class Converter():
         self.input_format = args.input_format
         self.output_format = args.output_format
         self.output_file = args.output_file
+        self.gen_attributes = args.gen_attributes
 
     def postprocess_full(self, sen):
         if len(sen['modality']) > 1:
@@ -325,12 +326,14 @@ class Converter():
         stream.write('\n')
 
     def write_xlsx(self, doc, file):
+
+        attribute_key = "gen_attributes" if self.gen_attributes else "attributes"
         annotate = Annotate()
         dataset = []
         for section in doc["sections"]:
             for sen in section["sens"]:
                 attrs_text = ",".join(
-                    attr['name'] for attr in sen['attributes'])
+                    attr['name'] for attr in sen[attribute_key])
                 dataset.append((sen["sen_id"], sen["text"], attrs_text))
         annotate.parse(dataset, os.path.join(os.path.dirname(
             brise_plandok.annotation.__file__), "BRISE.xlsx"), file)
@@ -364,7 +367,8 @@ def get_args():
     parser.add_argument("-o", "--output-format", type=str)
     parser.add_argument("-if", "--input-file", type=str, default=None)
     parser.add_argument("-of", "--output-file", type=str, default=None)
-    parser.set_defaults(input_format="JSON", output_format="JSON")
+    parser.add_argument("-g", "--gen-attributes", action='store_true')
+    parser.set_defaults(input_format="JSON", output_format="JSON", gen_attributes=False)
     return parser.parse_args()
 
 

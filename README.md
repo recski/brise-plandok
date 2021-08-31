@@ -96,6 +96,12 @@ sed "5q;d" sample_data/json/asail.jsonl | python brise_plandok/extractor.py -r |
 
 The generated excel sheet will be placed under output/asail.xlsx. The samples are annotated by our rule-based system and then can be used by the human annotators as well.
 
+To generate `xlsx` with pre-filled attributes from the rule base system run:
+
+```bash
+cat output/sample_attr.jsonl | python brise_plandok/convert.py -i JSON -o XLSX -of output/sample.xlsx -g
+```
+
 To generate `json` files from the annotated samples, you can run:
 
 ```

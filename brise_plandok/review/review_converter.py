@@ -35,11 +35,13 @@ class ReviewConverter(Converter):
         review_sheet = workbook[REVIEW_SHEET_NAME]
 
         for row_id in range(FIRST_DATA_ROW, review_sheet.max_row):
+            attributes = [attribute for attribute in self.__generate_attributes(review_sheet, row_id)]
             yield {
                 "id": review_sheet.cell(row=row_id, column=SEN_ID_COL).value,
                 "text": review_sheet.cell(row=row_id, column=SEN_TEXT_COL).value,
                 "modality": None,
-                "attributes": [attribute for attribute in self.__generate_attributes(review_sheet, row_id)],
+                "gold_attributes": [{"name": attribute["name"], "type": None, "value": None} for attribute in attributes if attribute["gold"]],
+                "annotated_attributes": [{"name": attribute["name"], "annotators": attribute["annotators"]} for attribute in attributes],
             }
 
     def __generate_attributes(self, review_sheet, row_id):

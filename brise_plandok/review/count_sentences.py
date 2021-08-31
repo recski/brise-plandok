@@ -1,5 +1,4 @@
 import json
-import logging
 import sys
 
 def count_sentences(doc):
@@ -11,9 +10,6 @@ def count_sentences(doc):
     print(f"{doc['id']};{cnt}")
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     for line in sys.stdin:
         doc = json.loads(line.strip())
         count_sentences(doc)

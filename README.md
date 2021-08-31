@@ -132,6 +132,12 @@ python brise_plandok/review/review_converter.py -r brise_plandok/review/examples
 
 The output can be found in `brise_plandok/review/output/gold.json` by default.
 
+### Use gold to add attributes to documents (-f enables fuzzy sentence matching, which currently ignores digits):
+
+```bash
+cat sample_data/json/sample_10.jsonl | python brise_plandok/attrs_from_gold.py -g brise_plandok/review/output -f > sample_data/json/sample_10_prefilled.jsonl
+```
+
 ## Annotation agreement
 
 Calculates the inter-annotator agreement.

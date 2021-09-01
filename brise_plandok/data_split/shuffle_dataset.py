@@ -1,10 +1,9 @@
 import argparse
+from brise_plandok.data_split.constants import GOLD, ORDER_HEADER
 import logging
 import os
 import sys
 import random
-
-GOLD = ["7374", "7857", "7990", "8065", "8250"]
 
 def shuffle_dir(dir):
     files = os.listdir(dir)
@@ -12,7 +11,7 @@ def shuffle_dir(dir):
     random.shuffle(files)
     docs_to_annotate = [file.split('.')[0] for file in files if file.split('.')[0] not in GOLD]
     for i, doc_id in enumerate(docs_to_annotate):
-        sys.stdout.write(f"{i};{doc_id};false\n")
+        sys.stdout.write(f"{i};{doc_id};{False};{False};{-1}\n")
 
 
 def get_args():
@@ -27,7 +26,7 @@ def main():
         format="%(asctime)s : " +
                "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     args = get_args()
-    sys.stdout.write(f"count;doc_id;assigned\n")
+    sys.stdout.write(f'{";".join(ORDER_HEADER)}\n')
     shuffle_dir(args.directory)
     
 

@@ -1,5 +1,5 @@
 import argparse
-from brise_plandok.data_split.constants import GOLD, ORDER_HEADER
+from brise_plandok.data_split.constants import GOLD, DOC_HEADER
 import logging
 import os
 import sys
@@ -26,7 +26,7 @@ def main():
         format="%(asctime)s : " +
                "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     args = get_args()
-    sys.stdout.write(f'{";".join(ORDER_HEADER)}\n')
+    sys.stdout.write(f'{";".join(DOC_HEADER)}\n')
     shuffle_dir(args.directory)
     
 

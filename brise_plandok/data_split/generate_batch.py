@@ -1,22 +1,23 @@
 import argparse
-from brise_plandok.data_split.count_sentences import count_sentences_in_doc
-import json
-from brise_plandok.data_split.constants import ORDER_HEADER
+from brise_plandok.data_split.assignment_loader import load_assignments
+from brise_plandok.data_split.sentence_stat import calculate_sentence_counts
+from brise_plandok.data_split.doc_tracking_utils import get_next_batch, load_doc_tracking_data
+from brise_plandok.data_split.constants import ANNOTATORS, CYCLE_COL, CYCLE_FILE
 import logging
 import pandas
 import os
+import itertools
 
-def generate_batch(dataset, batch_size, json_folder):
-    docs = read_dataset_order(dataset)
+
+def generate_batch(doc_tracking_file, batch_size, json_folder, cycle_nr, annotators_folder):
+    docs = load_doc_tracking_data(doc_tracking_file)
     next_docs = get_next_batch(docs, batch_size)
     logging.info(f"next documents to assign: {next_docs}")
     calculate_sentence_counts(docs, next_docs, json_folder)
-    logging.info(f"number of sentences are updates:\n {docs[docs[ORDER_HEADER[1]].isin(next_docs)]}")
-    # update sentence count
-    # get cycle
-    # check if all annotators are in the cycle
+    get_cycle(cycle_nr)
+    load_assignments(docs, annotators_folder)
     # assign docs to annotators
-    # print assignments
+    # log
     # print sentence stat before & after
     # break if --dry-run
     # generate excels to xls folder
@@ -27,60 +28,30 @@ def generate_batch(dataset, batch_size, json_folder):
     # To do
     # - error handling
     # - documentation
-
-def read_dataset_order(file):
-    return pandas.read_csv(filepath_or_buffer=file, sep=";")
-
-def get_next_batch(df, batch_size):
-    first = _get_first_not_assigned(df)
-    _set_assigned_true(df, first, batch_size)
-    return _get_next_batch_doc_ids(df, first, batch_size)
-
-def _get_first_not_assigned(df):
-    order_col = ORDER_HEADER[0]
-    assigned_col = ORDER_HEADER[2]
-    return df[df[assigned_col] == False].iloc[0][order_col]
-
-def _set_assigned_true(df, first, batch_size):
-    order_col = ORDER_HEADER[0]
-    assigned_col = ORDER_HEADER[2]
-    df[assigned_col][(df[order_col] >= first) & (df[order_col] < first + batch_size)] = True
-
-def _get_next_batch_doc_ids(df, first, batch_size):
-    order_col = ORDER_HEADER[0]
-    doc_id_col = ORDER_HEADER[1]
-    return list(df[doc_id_col][(df[order_col] >= first) & (df[order_col] < first + batch_size)])
-
-def calculate_sentence_counts(df, doc_ids, json_folder):
-    for doc_id in doc_ids:
-        if not _nr_sens_calculated(df, doc_id):
-            _calculate_nr_sens_for_doc(df, doc_id, json_folder)
-
-def _nr_sens_calculated(df, doc_id):
-    doc_id_col = ORDER_HEADER[1]
-    nr_sens_calculated_col = ORDER_HEADER[3]
-    return df[df[doc_id_col] == doc_id].iloc[0][nr_sens_calculated_col]
-
-def _calculate_nr_sens_for_doc(df, doc_id, json_folder):
-    path = os.path.join(json_folder, doc_id + ".jsonl")
-    with open(path) as f:
-        lines = f.readlines()
-        assert len(lines) == 1
-        doc = json.loads(lines[0].strip())
-        _set_nr_sens(df, doc, doc_id)
-        _set_nr_sens_calculated_true(df, doc_id)
-
-def _set_nr_sens(df, doc, doc_id):
-    doc_id_col = ORDER_HEADER[1]
-    nr_sens_col = ORDER_HEADER[4]
-    df[nr_sens_col][df[doc_id_col] == doc_id] = count_sentences_in_doc(doc)
-
-def _set_nr_sens_calculated_true(df, doc_id):
-    doc_id_col = ORDER_HEADER[1]
-    nr_sens_calculated_col = ORDER_HEADER[3]
-    df[nr_sens_calculated_col][df[doc_id_col] == doc_id] = True
+    # - logging
 
 
+def get_cycle(cycle_nr):
+    df = pandas.read_csv(filepath_or_buffer=os.path.join(os.path.dirname(
+        __file__), CYCLE_FILE), sep=";", dtype=_generate_dtype())
+    cycle_df = df[df[CYCLE_COL] == cycle_nr].drop(CYCLE_COL, axis=1)
+    _check_if_all_annotators_in_cycle(cycle_df, cycle_nr)
+    return cycle_df
+
+
+def _check_if_all_annotators_in_cycle(df, cycle_nr):
+    annotators_from_cycle = set(itertools.chain(*df.values))
+    for annotator in ANNOTATORS:
+        if annotator not in annotators_from_cycle:
+            raise ValueError(
+                f"Annotator {annotator} is not in cycle {cycle_nr}.")
+
+
+def _generate_dtype():
+    dtype = {}
+    for i in range(len(ANNOTATORS)):
+        dtype['annotator_' + str(i+1)] = str
+    return dtype
 
 
 def get_args():
@@ -88,10 +59,10 @@ def get_args():
     parser.add_argument("-d", "--dataset-file", type=str)
     parser.add_argument("-s", "--batch-size", type=int)
     parser.add_argument("-jf", "--json-folder", type=str)
-    # parser.add_argument("-c", "--cycle", type=int)
-    # parser.add_argument("-af", "--annotator-folder", type=str)
-    # add dry-run
+    parser.add_argument("-c", "--cycle", type=int)
+    parser.add_argument("-af", "--annotators-folder", type=str)
     # parser.add_argument("-xf", "--xlsx-folder", type=str)
+    parser.add_argument("-o", "--override", default=False, action="store_true")
     return parser.parse_args()
 
 
@@ -101,8 +72,9 @@ def main():
         format="%(asctime)s : " +
                "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     args = get_args()
-    generate_batch(args.dataset_file, args.batch_size, args.json_folder)
-    
+    generate_batch(args.dataset_file, args.batch_size,
+                   args.json_folder, args.cycle, args.annotators_folder)
+
 
 if __name__ == "__main__":
     main()

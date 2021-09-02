@@ -1,25 +1,29 @@
 import argparse
+from brise_plandok.data_split.doc_assigner import get_assignment
 from brise_plandok.data_split.assignment_loader import load_assignments
-from brise_plandok.data_split.sentence_stat import calculate_sentence_counts
+from brise_plandok.data_split.sentence_stat import calculate_sentence_counts, sum_sens_for_docs
 from brise_plandok.data_split.doc_tracking_utils import get_next_batch, load_doc_tracking_data
-from brise_plandok.data_split.constants import ANNOTATORS, CYCLE_COL, CYCLE_FILE
+from brise_plandok.data_split.constants import ANNOTATORS, ASSIGNMENT_ADDITIONAL_HEADER, ASSIGNMENT_DF_HEADER, CYCLE_COL, CYCLE_FILE
 import logging
 import pandas
 import os
 import itertools
 
 
-def generate_batch(doc_tracking_file, batch_size, json_folder, cycle_nr, annotators_folder):
+def generate_batch(doc_tracking_file, batch_size, json_folder, cycle_nr, annotators_folder, dry_run):
     docs = load_doc_tracking_data(doc_tracking_file)
     next_docs = get_next_batch(docs, batch_size)
     logging.info(f"next documents to assign: {next_docs}")
     calculate_sentence_counts(docs, next_docs, json_folder)
-    get_cycle(cycle_nr)
-    load_assignments(docs, annotators_folder)
-    # assign docs to annotators
-    # log
-    # print sentence stat before & after
-    # break if --dry-run
+    cycle_df = get_cycle(cycle_nr)
+    assignment_df = load_assignments(docs, annotators_folder)
+    partition = get_assignment(next_docs)
+    logging.info(f"partition: {partition}")
+    fill_assigments_with_batch(docs, cycle_df, assignment_df, partition)
+    logging.info(f"assignments with new batch:\n{assignment_df}")
+    if dry_run:
+        logging.info(f"dry-run is active, no xlsx files will be generated")
+        return
     # generate excels to xls folder
     # copy excels to annotator folders
     # update assigments
@@ -54,6 +58,17 @@ def _generate_dtype():
     return dtype
 
 
+def fill_assigments_with_batch(docs, cycle, assigments, partition):
+    assigments[ASSIGNMENT_ADDITIONAL_HEADER[0]] = None
+    assigments[ASSIGNMENT_ADDITIONAL_HEADER[1]] = -1
+    for i, group in cycle.iterrows():
+        mask = assigments[ASSIGNMENT_DF_HEADER[0]].isin(group.values)
+        assigments.loc[mask, ASSIGNMENT_ADDITIONAL_HEADER[0]
+                       ] = ",".join(partition[i])
+        assigments.loc[mask, ASSIGNMENT_ADDITIONAL_HEADER[1]
+                       ] = sum_sens_for_docs(docs, partition[i])
+
+
 def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-d", "--dataset-file", type=str)
@@ -62,7 +77,7 @@ def get_args():
     parser.add_argument("-c", "--cycle", type=int)
     parser.add_argument("-af", "--annotators-folder", type=str)
     # parser.add_argument("-xf", "--xlsx-folder", type=str)
-    parser.add_argument("-o", "--override", default=False, action="store_true")
+    parser.add_argument("--dry-run", default=True, action="store_true")
     return parser.parse_args()
 
 
@@ -72,8 +87,8 @@ def main():
         format="%(asctime)s : " +
                "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     args = get_args()
-    generate_batch(args.dataset_file, args.batch_size,
-                   args.json_folder, args.cycle, args.annotators_folder)
+    generate_batch(args.dataset_file, args.batch_size, args.json_folder,
+                   args.cycle, args.annotators_folder, args.dry_run)
 
 
 if __name__ == "__main__":

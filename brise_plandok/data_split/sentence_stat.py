@@ -43,19 +43,15 @@ def _calculate_nr_sens_for_doc(df, doc_id, json_folder):
         assert len(lines) == 1
         doc = json.loads(lines[0].strip())
         _set_nr_sens(df, doc, doc_id)
-        _set_nr_sens_calculated_true(df, doc_id)
 
 
 def _set_nr_sens(df, doc, doc_id):
     doc_id_col = DOC_HEADER[1]
-    nr_sens_col = DOC_HEADER[4]
-    df[nr_sens_col][df[doc_id_col] == doc_id] = count_sentences_in_doc(doc)
-
-
-def _set_nr_sens_calculated_true(df, doc_id):
-    doc_id_col = DOC_HEADER[1]
     nr_sens_calculated_col = DOC_HEADER[3]
-    df[nr_sens_calculated_col][df[doc_id_col] == doc_id] = True
+    nr_sens_col = DOC_HEADER[4]
+    mask = df[doc_id_col] == doc_id
+    df.loc[mask, nr_sens_col] = count_sentences_in_doc(doc)
+    df.loc[mask, nr_sens_calculated_col] = True
 
 
 def sum_sens_for_docs(df, doc_ids):

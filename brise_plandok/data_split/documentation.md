@@ -125,3 +125,8 @@ python brise_plandok/data_split/generate_batch.py \
 ```
 
 The document tracking file (`brise_plandok/data_split/shuffled_dataset.csv`) and all the assignment files (e.g. `brise_plandok/data_split/example/annotators/01/assignment.txt`) have been updated.
+
+
+## Notes
+
+The partitioning of the documents cam be described as a [multiway number partitioning](https://en.wikipedia.org/wiki/Multiway_number_partitioning) problem. For solving this problem the [Karmakar-Karp algorithm](https://en.wikipedia.org/wiki/Largest_differencing_method) was used. For the implementation we took the [numberpartitioning](https://github.com/fuglede/numberpartitioning) library.

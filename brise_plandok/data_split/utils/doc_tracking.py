@@ -1,9 +1,16 @@
-from brise_plandok.data_split.constants import DOC_HEADER
+from brise_plandok.data_split.utils.constants import DOC_HEADER
 import pandas
 
 
 def load_doc_tracking_data(file):
-    return pandas.read_csv(filepath_or_buffer=file, sep=";")
+    dtype = {
+        DOC_HEADER[0]: int,
+        DOC_HEADER[1]: str,
+        DOC_HEADER[2]: bool,
+        DOC_HEADER[3]: bool,
+        DOC_HEADER[4]: int,
+    }
+    return pandas.read_csv(filepath_or_buffer=file, sep=";", dtype=dtype)
 
 def save_doc_tracking_data(file, df):
     df.to_csv(path_or_buf=file, sep=";", index=False)

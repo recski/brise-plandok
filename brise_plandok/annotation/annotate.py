@@ -18,9 +18,9 @@ class Annotate:
         labels = []
         sentence_ids = []
 
-        logging.info('started the creation of the excel sheet')
-        normalize_lab = {"PlanzeichenBBID": "Planzeichen", "VerkehrsflaecheID": "Verkehrsflaeche_ID",
-                         "BauweiseID": "Bauweise_ID", "WidmungID": "WidmungUndZweckbestimmung", "BauklasseID": "Bauklasse", "TechnischeUndBelichtungsAufbautenZulaessig": "AufbautenZulaessig"}
+        logging.debug('started the creation of the excel sheet')
+        normalize_lab = {"PlanzeichenBBID": "Planzeichen", "BauweiseID": "Bauweise_ID", "WidmungID": "WidmungUndZweckbestimmung",
+                         "BauklasseID": "Bauklasse", "TechnischeUndBelichtungsAufbautenZulaessig": "AufbautenZulaessig"}
         for line in dataset:
             sentence_ids.append(line[0])
             sentences.append(line[1])
@@ -159,6 +159,7 @@ class Annotate:
                         sheet_obj, attribute_K, attribute_class_L, label_splited[4], attribute_to_attribute_class)
 
         wb_obj.save(save)
+        logging.info(f'xlsx file saved to {save}')
 
     def __set_attributes(self, sheet_obj, category_coordinate, label_coordinate, label, attribute_to_attribute_class):
         sheet_obj[category_coordinate] = attribute_to_attribute_class[label]

@@ -1,9 +1,9 @@
 import argparse
+from brise_plandok.data_split.utils.constants import ANNOTATORS, ASSIGNMENT_DF_HEADER, ASSIGNMENT_FILE, ASSIGNMENT_FILE_HEADER
+from brise_plandok.data_split.utils.sentences import sum_sens_for_docs
+from brise_plandok.data_split.utils.doc_tracking import load_doc_tracking_data
 import itertools
-from brise_plandok.data_split.sentence_stat import sum_sens_for_docs
 import os
-from brise_plandok.data_split.doc_tracking_utils import load_doc_tracking_data
-from brise_plandok.data_split.constants import ANNOTATORS, ASSIGNMENT_FILE, ASSIGNMENT_DF_HEADER, ASSIGNMENT_FILE_HEADER, DOC_HEADER
 import logging
 import pandas
 
@@ -12,7 +12,7 @@ def load_assignments(docs, annotators_folder):
     df = pandas.DataFrame(columns=ASSIGNMENT_DF_HEADER)
     for annotator in ANNOTATORS:
         df = df.append(_add_assigment_for_annotator(
-            annotator, annotators_folder, docs))
+            annotator, annotators_folder, docs), ignore_index=True)
     logging.info(f"loaded assignments:\n{df}")
     return df
 

@@ -1,5 +1,5 @@
 import argparse
-from brise_plandok.data_split.constants import GOLD, DOC_HEADER
+from brise_plandok.data_split.utils.constants import DOC_HEADER, GOLD
 import logging
 import os
 import sys

@@ -1,5 +1,12 @@
+from brise_plandok.data_split.utils.constants import DOC_HEADER
 import json
 import sys
+
+
+def sum_sens_for_docs(df, doc_ids):
+    doc_id_col = DOC_HEADER[1]
+    nr_sens_col = DOC_HEADER[4]
+    return df[nr_sens_col][df[doc_id_col].isin(doc_ids)].sum()
 
 def count_sentences_in_doc(doc):
     cnt = 0

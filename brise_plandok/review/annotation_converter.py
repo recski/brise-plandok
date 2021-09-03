@@ -1,7 +1,6 @@
 import argparse
 from brise_plandok.review.excel_generator import ExcelGenerator
 import logging
-import sys
 from brise_plandok.convert import Converter
 
 

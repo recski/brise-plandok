@@ -1,8 +1,8 @@
 import argparse
+from brise_plandok.data_split.utils.assignments import load_assigned_docs_as_list
 from brise_plandok.data_split.utils.constants import ANNOTATORS, ASSIGNMENT_DF_HEADER, ASSIGNMENT_FILE, ASSIGNMENT_FILE_HEADER
 from brise_plandok.data_split.utils.sentences import sum_sens_for_docs
 from brise_plandok.data_split.utils.doc_tracking import load_doc_tracking_data
-import itertools
 import os
 import logging
 import pandas
@@ -19,8 +19,7 @@ def load_assignments(docs, annotators_folder):
 
 def _add_assigment_for_annotator(annotator, folder, docs):
     path = os.path.join(folder, annotator, ASSIGNMENT_FILE)
-    assigned_docs = list(itertools.chain(*pandas.read_csv(filepath_or_buffer=path, dtype={
-        ASSIGNMENT_FILE_HEADER[0]: str}).values))
+    assigned_docs = load_assigned_docs_as_list(path)
     sens_nr = sum_sens_for_docs(docs, assigned_docs)
     return pandas.DataFrame([[annotator, sens_nr]], columns=ASSIGNMENT_DF_HEADER)
 

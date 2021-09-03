@@ -18,7 +18,7 @@ def generate_batch(doc_tracking_file, batch_size, json_folder, cycle_nr, annotat
 
     cycle_df = get_cycle(cycle_nr)
     assignment_df = load_assignments(docs_df, annotators_folder)
-    partition = get_assignment(next_docs)
+    partition = get_assignment(next_docs, docs_df, cycle_df.shape[0])
     logging.info(f"partition: {partition}")
 
     fill_assigments_with_batch(docs_df, cycle_df, assignment_df, partition)

@@ -28,7 +28,7 @@ The generated files can be found in `brise_plandok/data_split/example/json`.
 
 ## Generate attributes with rule-based system
 
-We want to prefill attributes suggested by our rule-based system to ease the work of the annotators.
+We want to pre-fill attributes suggested by our rule-based system to ease the work of the annotators.
 
 ```
 ./scripts/gen_attributes.sh 7181 7272 7408 7443 7531 7545 7702 7774 7799 8159
@@ -38,7 +38,7 @@ The generated files can be found in `brise_plandok/data_split/example/json_attr`
 
 ## Get a grasp of sentence counts in the next batch
 
-In order to get a good feeling about the next batch size, we should check how may sentences are contained in each doc. 
+In order to get a good feeling about the next batch size, we should check how many sentences are contained in each doc. 
 
 ```
 python brise_plandok/data_split/sentence_stat.py \
@@ -47,9 +47,9 @@ python brise_plandok/data_split/sentence_stat.py \
     -jf brise_plandok/data_split/example/json_attr
 ```
 
-## Check existing assigments
+## Check existing assignments
 
-We might want to check what assigments for each annotator already exist.
+We might want to check which assignments for each annotator already exist.
 
 ```
 python brise_plandok/data_split/assignment_loader.py \
@@ -61,7 +61,7 @@ python brise_plandok/data_split/assignment_loader.py \
 
 ### Dry-run
 
-You can run this script in dry-run mode (default). It will print out how the next batch would look line without updating the doc-tracking file, the assignment files.
+You can run this script in dry-run mode (default). It will print out how the next batch would look line without updating the doc-tracking file and the assignment files.
 
 ```
 python brise_plandok/data_split/generate_batch.py \
@@ -93,7 +93,7 @@ Additionally, you can find for each annotator in their download folder (e.g. `br
 
 #### Overwrite existing xlsx files
 
-The generated files can be found in `brise_plandok/data_split/example/xlsx`. If the files already exist, no new sheets will be generated. If you want to override the existing ones, use the `-o` flag.
+The generated files can be found in `brise_plandok/data_split/example/xlsx`. If the files already exist, no new sheets will be generated. If you want to overwrite the existing ones, use the `-o` flag.
 
 ```
 python brise_plandok/data_split/generate_batch.py \
@@ -129,4 +129,4 @@ The document tracking file (`brise_plandok/data_split/shuffled_dataset.csv`) and
 
 ## Notes
 
-The partitioning of the documents cam be described as a [multiway number partitioning](https://en.wikipedia.org/wiki/Multiway_number_partitioning) problem. For solving this problem the [Karmakar-Karp algorithm](https://en.wikipedia.org/wiki/Largest_differencing_method) was used. For the implementation we took the [numberpartitioning](https://github.com/fuglede/numberpartitioning) library.
+The partitioning of the documents can be described as a [multiway number partitioning](https://en.wikipedia.org/wiki/Multiway_number_partitioning) problem. For solving this problem the [Karmakar-Karp algorithm](https://en.wikipedia.org/wiki/Largest_differencing_method) was used. For the implementation we took the [numberpartitioning](https://github.com/fuglede/numberpartitioning) library.

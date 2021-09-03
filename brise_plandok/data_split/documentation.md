@@ -87,6 +87,10 @@ python brise_plandok/data_split/generate_batch.py \
     -g
 ```
 
+You can find the generated xlsx files in `brise_plandok/data_split/example/xlsx` folder.  
+
+Additionally, you can find for each annotator in their download folder (e.g. `brise_plandok/data_split/example/annotators/01/download`) the relevant xlsx files that they have to annotate.
+
 #### Overwrite existing xlsx files
 
 The generated files can be found in `brise_plandok/data_split/example/xlsx`. If the files already exist, no new sheets will be generated. If you want to override the existing ones, use the `-o` flag.
@@ -120,3 +124,4 @@ python brise_plandok/data_split/generate_batch.py \
     -u
 ```
 
+The document tracking file (`brise_plandok/data_split/shuffled_dataset.csv`) and all the assignment files (e.g. `brise_plandok/data_split/example/annotators/01/assignment.txt`) have been updated.

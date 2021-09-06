@@ -114,6 +114,10 @@ If labels change in the `BRISE.xlsx` template file, new excel file from a fully 
 python brise_plandok/convert.py -i XLSX -if sample_data/xlsx/asail.xlsx -o XLSX -of output/asail.xlsx
 ```
 
+## Dataset creation annotation
+
+For details on how the dataset was split for the annotation see the [data split documentation](brise_plandok/data_split/documentation.md).
+
 ## Annotation Review
 
 ### Creates excel for review

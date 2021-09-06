@@ -1,5 +1,6 @@
 
 
+from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.data_split.utils.assignments import update_assignments
 import logging
 from brise_plandok.data_split.utils.constants import ANNOTATOR_DOWNLOAD_FOLDER, ASSIGNMENT_ADDITIONAL_HEADER, ASSIGNMENT_DF_HEADER
@@ -16,13 +17,14 @@ class ConverterArgs:
         self.gen_attributes = True
 
 
-def genereate_xlsx_files(doc_ids, json_folder, xlsx_folder, overwrite):
+def genereate_xlsx_files(doc_ids, json_folder, xlsx_folder, overwrite, gold_folder):
     for doc_id in doc_ids:
         xlsx_file = os.path.join(xlsx_folder, doc_id+".xlsx")
         if not overwrite and os.path.exists(xlsx_file):
             continue
         json_file = os.path.join(json_folder, doc_id+".jsonl")
-        converter = Converter(ConverterArgs(xlsx_file))
+        sen_to_gold_attrs = SenToAttrMap(gold_dir=gold_folder, fuzzy=True) if gold_folder else None
+        converter = Converter(ConverterArgs(xlsx_file), sen_to_gold_attrs)
         with open(json_file) as f:
             lines = f.readlines()
             assert len(lines) == 1

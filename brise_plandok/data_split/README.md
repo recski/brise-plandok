@@ -126,6 +126,31 @@ python brise_plandok/data_split/generate_batch.py \
 
 The document tracking file (`brise_plandok/data_split/shuffled_dataset.csv`) and all the assignment files (e.g. `brise_plandok/data_split/example/annotators/01/assignment.txt`) have been updated.
 
+### Pre-filled gold data
+
+If you want to have pre-filled gold data in your excel sheet, you must specify a folder containing gold json files in `JSON_FLAT` format.
+
+```
+python brise_plandok/data_split/generate_batch.py \
+    -d brise_plandok/data_split/example/shuffled_dataset.csv \
+    -s 6 \
+    -jf brise_plandok/data_split/example/json_attr \
+    -c 0 \
+    -af brise_plandok/data_split/example/annotators \
+    -xf brise_plandok/data_split/example/xlsx \
+    -g \
+    -o \
+    -gf brise_plandok/data_split/example/gold \
+    -u
+```
+
+## Reset assignments
+
+To reset the assigned documents to an empty state, call:
+
+```
+./scripts/reset_annotations.sh
+```
 
 ## Notes
 

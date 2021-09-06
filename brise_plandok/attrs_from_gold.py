@@ -55,9 +55,9 @@ class SenToAttrMap():
         return self.sen_to_attr.get(sen_key)
 
 
-def attrs_from_gold_sen(sen, sen_to_attr, args):
+def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
     if 'gold_exists' in sen:
-        if args.overwrite:
+        if overwrite:
             if sen['gold_exists']:
                 del sen['gold_attributes']
                 sen['gold_exists'] = False
@@ -82,7 +82,7 @@ def attrs_from_gold(args):
         doc = json.loads(line)
         for section in doc['sections']:
             for sen in section['sens']:
-                attrs_from_gold_sen(sen, sen_to_attr, args)
+                attrs_from_gold_sen(sen, sen_to_attr, args.overwrite)
         sys.stdout.write(json.dumps(doc))
         sys.stdout.write('\n')
 

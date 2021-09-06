@@ -7,6 +7,7 @@ CSV_FULL: sample from Bjoern, in csv, with all features
 JSON is used as the internal format for conversion
 """
 import argparse
+from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.constants import GOLD_PREFIX, JsonFields
 import csv
 import json
@@ -204,13 +205,14 @@ class Converter():
 
         return logical_form, prover_form
 
-    def __init__(self, args):
+    def __init__(self, args, sen_to_gold_attrs=None):
         assert args.input_format in Converter.input_formats
         assert args.output_format in Converter.output_formats
         self.input_format = args.input_format
         self.output_format = args.output_format
         self.output_file = args.output_file
         self.gen_attributes = args.gen_attributes
+        self.sen_to_gold_attrs = sen_to_gold_attrs
 
     def postprocess_full(self, sen):
         if len(sen['modality']) > 1:
@@ -348,6 +350,8 @@ class Converter():
         if "sections" in doc:
             for section in doc["sections"]:
                 for sen in section["sens"]:
+                    if self.sen_to_gold_attrs:
+                        attrs_from_gold_sen(sen, self.sen_to_gold_attrs, overwrite=True)
                     self._parse_sen(sen, dataset)
         else:
             for sen in doc["sens"]:
@@ -405,6 +409,8 @@ def get_args():
     parser.add_argument("-if", "--input-file", type=str, default=None)
     parser.add_argument("-of", "--output-file", type=str, default=None)
     parser.add_argument("-g", "--gen-attributes", action='store_true')
+    parser.add_argument("--gold-dir", type=str)
+    parser.add_argument("-f", "--fuzzy", default=False, action='store_true')
     parser.set_defaults(input_format="JSON", output_format="JSON", gen_attributes=False)
     return parser.parse_args()
 
@@ -415,7 +421,10 @@ def main():
         format="%(asctime)s : " +
                "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     args = get_args()
-    converter = Converter(args)
+    sen_to_gold_attrs = None
+    if args.gold_dir:
+        sen_to_gold_attrs = SenToAttrMap(gold_dir=args.gold_dir, fuzzy=args.fuzzy)
+    converter = Converter(args, sen_to_gold_attrs)
 
     if args.input_format == "XLSX":
         assert args.input_file

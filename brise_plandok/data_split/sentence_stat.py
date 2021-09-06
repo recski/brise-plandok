@@ -23,7 +23,7 @@ def calculate_sentence_counts(df, doc_ids, json_folder):
     logging.info(
         f"number of sentences for each document in batch:\n {df[df[DOC_HEADER[1]].isin(doc_ids)]}")
     logging.info(
-        f"next batch of size {len(doc_ids)} would add {sum} new sentences - ~{int(sum/len(ANNOTATORS))} sens / annotator")
+        f"next batch of size {len(doc_ids)} would add {sum} new sentences - without overlap ~{int(sum/len(ANNOTATORS))} sens / annotator")
     return sum
 
 

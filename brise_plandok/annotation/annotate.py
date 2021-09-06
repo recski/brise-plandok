@@ -1,6 +1,7 @@
 # Python program to read an excel file
 
 # import openpyxl module
+from brise_plandok.constants import ATTRIBUTE_NORMALIZE_MAP
 import openpyxl
 import argparse
 import logging
@@ -19,13 +20,11 @@ class Annotate:
         sentence_ids = []
 
         logging.debug('started the creation of the excel sheet')
-        normalize_lab = {"PlanzeichenBBID": "Planzeichen", "BauweiseID": "Bauweise_ID", "WidmungID": "WidmungUndZweckbestimmung",
-                         "BauklasseID": "Bauklasse", "TechnischeUndBelichtungsAufbautenZulaessig": "AufbautenZulaessig"}
         for line in dataset:
             sentence_ids.append(line[0])
             sentences.append(line[1])
             label = ",".join(
-                [normalize_lab[l] if l in normalize_lab else l for l in line[2].split(",")])
+                [ATTRIBUTE_NORMALIZE_MAP[l] if l in ATTRIBUTE_NORMALIZE_MAP else l for l in line[2].split(",")])
             labels.append(label)
 
         # Give the location of the file

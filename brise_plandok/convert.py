@@ -13,6 +13,7 @@ import logging
 import sys
 import os
 import re
+from utils import normalize_attribute_name
 import brise_plandok.annotation
 from brise_plandok.annotation.annotate import Annotate
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
@@ -288,7 +289,7 @@ class Converter():
             for attribute in sen["attributes"]:
                 atts.append({
                     "type": None,
-                    "name": attribute,
+                    "name": normalize_attribute_name(attribute),
                     "value": None})
             sen["attributes"] = atts
 
@@ -361,7 +362,7 @@ class Converter():
     def write(self, doc, stream):
         if self.output_format == 'JSON':
             self.write_json(doc, stream)
-        if self.output_format == 'JSON_FLAT':
+        elif self.output_format == 'JSON_FLAT':
             self.write_json_flat(doc, stream)
         elif self.output_format == 'TXT':
             self.write_txt(doc, stream)

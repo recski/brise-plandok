@@ -1,4 +1,4 @@
-from brise_plandok.constants import ATTRIBUTE_NORMALIZE_MAP, GOLD_PREFIX
+from brise_plandok.constants import ATTRIBUTE_NORM_MAP, GOLD_PREFIX
 import openpyxl
 import argparse
 import logging
@@ -20,7 +20,7 @@ class Annotate:
             sentence_ids.append(line[0])
             sentences.append(line[1])
             labels_for_row = ",".join(
-                [ATTRIBUTE_NORMALIZE_MAP[l] if l in ATTRIBUTE_NORMALIZE_MAP else l for l in line[2].split(",")])
+                [ATTRIBUTE_NORM_MAP[l] if l in ATTRIBUTE_NORM_MAP else l for l in line[2].split(",")])
             labels.append(labels_for_row)
 
         path = template

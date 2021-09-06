@@ -1,4 +1,4 @@
-ATTRIBUTE_NORMALIZE_MAP = {
+ATTRIBUTE_NORM_MAP = {
     "Verkehrsflaeche_ID": "VerkehrsflaecheID", 
 }
 

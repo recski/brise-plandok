@@ -1,14 +1,13 @@
-from brise_plandok.constants import ATTRIBUTE_NORMALIZE_MAP
+from brise_plandok.constants import ATTRIBUTE_NORMALIZE_MAP, GOLD_PREFIX
 import openpyxl
 import argparse
 import logging
-from openpyxl.comments import Comment
 from openpyxl.worksheet.datavalidation import DataValidation
 from openpyxl.styles import Alignment, Font, PatternFill
 from collections import defaultdict
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
 
-
+GOLD_COLOR = "FFD700"
 class Annotate:
 
     def parse(self, dataset, template, save):
@@ -43,7 +42,8 @@ class Annotate:
         data_val = DataValidation(type="list", formula1='=Attribute')
         sheet_obj.add_data_validation(data_val)
 
-        self._add_sentences(sentences, labels, sheet_obj, sentence_ids, data_val, attribute_to_attribute_class)
+        self._add_sentences(sentences, labels, sheet_obj,
+                            sentence_ids, data_val, attribute_to_attribute_class)
 
         wb_obj.save(save)
         logging.info(f'xlsx file saved to {save}')
@@ -51,17 +51,22 @@ class Annotate:
     def _add_sentences(self, sentences, labels_csv, sheet_obj, sentence_ids, data_val, attribute_to_attribute_class):
         for i, _ in enumerate(sentences):
             label = labels_csv[i]
-            row_id = i + 3
+            split_labels = label.strip().split(',')
+            gold = False
+            if len(split_labels) > 0 and split_labels[0] == GOLD_PREFIX:
+                gold = True
+                split_labels = split_labels[1:]
 
+            row_id = i + 3
             self._set_sentence_data(
-                row_id, sentences[i], sheet_obj, sentence_ids[i])
+                row_id, sentences[i], sheet_obj, sentence_ids[i], gold)
 
             if sentence_ids[i].split("_")[-2] == "0":
                 self._add_header(row_id, sheet_obj)
             else:
                 self._add_data_validation(data_val, sheet_obj, row_id)
-                labels = self._clean_labels(
-                    list(set(label.strip().split(','))))
+
+                labels = self._clean_labels(list(set(split_labels)))
 
                 if len(labels) > 0 and labels[0]:
                     self.__set_attributes(
@@ -127,7 +132,7 @@ class Annotate:
         sheet_obj.add_data_validation(data_val_subclass_K)
         data_val_subclass_K.add(sheet_obj[self._get_coordinate("L", row_id)])
 
-    def _set_sentence_data(self, row_id, sentence, sheet_obj, sentence_id):
+    def _set_sentence_data(self, row_id, sentence, sheet_obj, sentence_id, gold):
         sentence_id_coord = "A" + str(row_id)
         sentence_coord = "B" + str(row_id)
         sheet_obj[sentence_coord] = sentence
@@ -136,6 +141,12 @@ class Annotate:
         sheet_obj[sentence_coord].font = Font(size=12)
         sheet_obj[sentence_id_coord].alignment = Alignment(wrapText=True)
         sheet_obj[sentence_id_coord].font = Font(size=12)
+        if gold:
+            sheet_obj[sentence_coord].fill = PatternFill(
+                fgColor=GOLD_COLOR, fill_type="solid")
+            sheet_obj[sentence_id_coord].fill = PatternFill(
+                fgColor=GOLD_COLOR, fill_type="solid")
+
 
     def _add_header(self, row_id, sheet_obj):
         for j in range(ord('C'), ord('P') + 1):

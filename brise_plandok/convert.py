@@ -7,6 +7,7 @@ CSV_FULL: sample from Bjoern, in csv, with all features
 JSON is used as the internal format for conversion
 """
 import argparse
+from brise_plandok.constants import GOLD_PREFIX, JsonFields
 import csv
 import json
 import logging
@@ -342,17 +343,35 @@ class Converter():
         stream.write('\n')
 
     def write_xlsx(self, doc, file):
-
-        attribute_key = "gen_attributes" if self.gen_attributes else "attributes"
         annotate = Annotate()
         dataset = []
-        for section in doc["sections"]:
-            for sen in section["sens"]:
-                attrs_text = ",".join(
-                    attr['name'] for attr in sen[attribute_key])
-                dataset.append((sen["sen_id"], sen["text"], attrs_text))
+        if "sections" in doc:
+            for section in doc["sections"]:
+                for sen in section["sens"]:
+                    self._parse_sen(sen, dataset)
+        else:
+            for sen in doc["sens"]:
+                self._parse_sen(sen, dataset)
         annotate.parse(dataset, os.path.join(os.path.dirname(
             brise_plandok.annotation.__file__), "BRISE.xlsx"), file)
+
+    def _parse_sen(self, sen, dataset):
+        attribute_key = self._get_attribute_key(sen)
+        attrs_text = ",".join(
+            attr['name'] for attr in sen[attribute_key])
+        if self._gold_exists(sen):
+            attrs_text = GOLD_PREFIX + "," + attrs_text
+        dataset.append((sen["sen_id"], sen["text"], attrs_text))
+
+    def _get_attribute_key(self, sen):
+        if self._gold_exists(sen):
+            return JsonFields.GOLD_ATTRIBUTES
+        if self.gen_attributes and JsonFields.GENERATED_ATTRIBUTES in sen:
+            return JsonFields.GENERATED_ATTRIBUTES
+        return JsonFields.ATTRIBUTES
+
+    def _gold_exists(self, sen):
+        return JsonFields.GOLD_EXISTS in sen and sen[JsonFields.GOLD_EXISTS]
 
     def write_txt(self, doc, stream):
         for section in doc["sections"]:

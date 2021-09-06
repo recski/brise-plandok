@@ -224,7 +224,7 @@ class Converter():
             self.postprocess_full(sen) for sen in self._read_csv_full(stream))
 
     def _read_csv_full(self, stream):
-        curr_sen = None
+        curr_sen = {}
         for i, row in enumerate(
                 csv.reader(stream, delimiter=";", quotechar='"')):
             if i == 0:
@@ -241,10 +241,13 @@ class Converter():
                     yield curr_sen
                 sen_id, text = fields[:2]
                 curr_sen = {
-                    "sen_id": sen_id, "text": text,
-                    'modality': set(), "attributes": []}
+                    "sen_id": sen_id, 
+                    "text": text,
+                    'modality': set(), 
+                    "attributes": []
+                }
 
-            attr, cat, note, value = fields[2:]
+            attr, cat, _, value = fields[2:]
             if not attr:
                 assert not cat and not value
                 continue

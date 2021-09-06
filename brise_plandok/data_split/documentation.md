@@ -1,8 +1,8 @@
-# Dataset createion documentation
+# Dataset creation documentation
 
 ## Create folder structure
 
-A specific folder structure is expected for the following scripts to work. Genere a sample structure by calling:
+A specific folder structure is expected for the following scripts to work. Generate a sample structure by calling:
 
 ```
 ./scripts/gen_structure_for_data_split.sh

@@ -15,7 +15,7 @@ def load_doc_tracking_data(file):
 def save_doc_tracking_data(file, df):
     df.to_csv(path_or_buf=file, sep=";", index=False)
 
-def get_next_batch(df, batch_size, set_assigned=False):
+def get_next_batch(df, batch_size, set_assigned):
     first = _get_first_not_assigned(df)
     if set_assigned:
         _set_assigned_true(df, first, batch_size)

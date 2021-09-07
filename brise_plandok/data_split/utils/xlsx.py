@@ -1,13 +1,15 @@
 
 
+import openpyxl
 from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.data_split.utils.assignments import update_assignments
 import logging
-from brise_plandok.data_split.utils.constants import ANNOTATOR_DOWNLOAD_FOLDER, ASSIGNMENT_ADDITIONAL_HEADER, ASSIGNMENT_DF_HEADER
+from brise_plandok.data_split.utils.constants import ANNOTATOR_DOWNLOAD_FOLDER, ASSIGNMENT_ADDITIONAL_HEADER, ASSIGNMENT_DF_HEADER, ASSIGNMENT_XLSX
 import json
 import shutil
 from brise_plandok.convert import Converter
 import os
+
 
 class ConverterArgs:
     def __init__(self, output_file):
@@ -23,7 +25,8 @@ def genereate_xlsx_files(doc_ids, json_folder, xlsx_folder, overwrite, gold_fold
         if not overwrite and os.path.exists(xlsx_file):
             continue
         json_file = os.path.join(json_folder, doc_id+".jsonl")
-        sen_to_gold_attrs = SenToAttrMap(gold_dir=gold_folder, fuzzy=True) if gold_folder else None
+        sen_to_gold_attrs = SenToAttrMap(
+            gold_dir=gold_folder, fuzzy=True) if gold_folder else None
         converter = Converter(ConverterArgs(xlsx_file), sen_to_gold_attrs)
         with open(json_file) as f:
             lines = f.readlines()
@@ -35,15 +38,19 @@ def genereate_xlsx_files(doc_ids, json_folder, xlsx_folder, overwrite, gold_fold
 def distribute_xlsx_files(xlsx_folder, df, annotators_folder, update):
     for _, assignment in df.iterrows():
         annotator = assignment[ASSIGNMENT_DF_HEADER[0]]
-        doc_ids_for_annotator = assignment[ASSIGNMENT_ADDITIONAL_HEADER[0]].split(',')
+        doc_ids_for_annotator = assignment[ASSIGNMENT_ADDITIONAL_HEADER[0]].split(
+            ',')
         for doc_id in doc_ids_for_annotator:
-            _copy_xlsx_files_to_annotators(doc_id, xlsx_folder, annotators_folder, annotator)
+            _copy_xlsx_files_to_annotators(
+                doc_id, xlsx_folder, annotators_folder, annotator)
         if update:
-            update_assignments(doc_ids_for_annotator, annotator, annotators_folder)
+            update_assignments(doc_ids_for_annotator,
+                               annotator, annotators_folder)
 
 
 def _copy_xlsx_files_to_annotators(doc_id, xlsx_folder, annotators_folder, annotator):
     xlsx_file = os.path.join(xlsx_folder, doc_id+".xlsx")
-    dest = os.path.join(annotators_folder, annotator, ANNOTATOR_DOWNLOAD_FOLDER, os.path.basename(xlsx_file))
+    dest = os.path.join(annotators_folder, annotator,
+                        ANNOTATOR_DOWNLOAD_FOLDER, os.path.basename(xlsx_file))
     shutil.copy2(xlsx_file, dest)
     logging.info(f"copied {xlsx_file} to {dest}")

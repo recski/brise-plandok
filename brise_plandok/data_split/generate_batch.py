@@ -11,7 +11,7 @@ import logging
 
 def generate_batch(doc_tracking_file, batch_size, json_folder, cycle_nr, annotators_folder, generate_xlsx, xlsx_folder, gold_folder, overwrite, update):
     docs_df = load_doc_tracking_data(doc_tracking_file)
-    next_docs = get_next_batch(docs_df, batch_size)
+    next_docs = get_next_batch(docs_df, batch_size, True)
     logging.info(f"next documents to assign: {next_docs}")
 
     calculate_sentence_counts(docs_df, next_docs, json_folder)
@@ -28,16 +28,14 @@ def generate_batch(doc_tracking_file, batch_size, json_folder, cycle_nr, annotat
         logging.info(f"No xlsx files will be generated. Job done")
         return
 
-    genereate_xlsx_files(next_docs, json_folder, xlsx_folder, overwrite, gold_folder)
+    genereate_xlsx_files(next_docs, json_folder,
+                         xlsx_folder, overwrite, gold_folder)
     distribute_xlsx_files(xlsx_folder, assignment_df,
                           annotators_folder, update)
 
     if update:
         save_doc_tracking_data(doc_tracking_file, docs_df)
         logging.info(f"tracking data {doc_tracking_file} was updated")
-
-    # To do
-    # - error handling
 
 
 def get_args():

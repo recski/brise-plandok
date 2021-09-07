@@ -7,12 +7,15 @@ CSV_FULL: sample from Bjoern, in csv, with all features
 JSON is used as the internal format for conversion
 """
 import argparse
+from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
+from brise_plandok.constants import GOLD_PREFIX, JsonFields
 import csv
 import json
 import logging
 import sys
 import os
 import re
+from utils import normalize_attribute_name
 import brise_plandok.annotation
 from brise_plandok.annotation.annotate import Annotate
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
@@ -202,13 +205,14 @@ class Converter():
 
         return logical_form, prover_form
 
-    def __init__(self, args):
+    def __init__(self, args, sen_to_gold_attrs=None):
         assert args.input_format in Converter.input_formats
         assert args.output_format in Converter.output_formats
         self.input_format = args.input_format
         self.output_format = args.output_format
         self.output_file = args.output_file
         self.gen_attributes = args.gen_attributes
+        self.sen_to_gold_attrs = sen_to_gold_attrs
 
     def postprocess_full(self, sen):
         if len(sen['modality']) > 1:
@@ -223,7 +227,7 @@ class Converter():
             self.postprocess_full(sen) for sen in self._read_csv_full(stream))
 
     def _read_csv_full(self, stream):
-        curr_sen = None
+        curr_sen = {}
         for i, row in enumerate(
                 csv.reader(stream, delimiter=";", quotechar='"')):
             if i == 0:
@@ -240,10 +244,13 @@ class Converter():
                     yield curr_sen
                 sen_id, text = fields[:2]
                 curr_sen = {
-                    "sen_id": sen_id, "text": text,
-                    'modality': set(), "attributes": []}
+                    "sen_id": sen_id, 
+                    "text": text,
+                    'modality': set(), 
+                    "attributes": []
+                }
 
-            attr, cat, note, value = fields[2:]
+            attr, cat, _, value = fields[2:]
             if not attr:
                 assert not cat and not value
                 continue
@@ -288,7 +295,7 @@ class Converter():
             for attribute in sen["attributes"]:
                 atts.append({
                     "type": None,
-                    "name": attribute,
+                    "name": normalize_attribute_name(attribute),
                     "value": None})
             sen["attributes"] = atts
 
@@ -338,17 +345,37 @@ class Converter():
         stream.write('\n')
 
     def write_xlsx(self, doc, file):
-
-        attribute_key = "gen_attributes" if self.gen_attributes else "attributes"
         annotate = Annotate()
         dataset = []
-        for section in doc["sections"]:
-            for sen in section["sens"]:
-                attrs_text = ",".join(
-                    attr['name'] for attr in sen[attribute_key])
-                dataset.append((sen["sen_id"], sen["text"], attrs_text))
+        if "sections" in doc:
+            for section in doc["sections"]:
+                for sen in section["sens"]:
+                    if self.sen_to_gold_attrs:
+                        attrs_from_gold_sen(sen, self.sen_to_gold_attrs, overwrite=True)
+                    self._parse_sen(sen, dataset)
+        else:
+            for sen in doc["sens"]:
+                self._parse_sen(sen, dataset)
         annotate.parse(dataset, os.path.join(os.path.dirname(
             brise_plandok.annotation.__file__), "BRISE.xlsx"), file)
+
+    def _parse_sen(self, sen, dataset):
+        attribute_key = self._get_attribute_key(sen)
+        attrs_text = ",".join(
+            attr['name'] for attr in sen[attribute_key])
+        if self._gold_exists(sen):
+            attrs_text = GOLD_PREFIX + "," + attrs_text
+        dataset.append((sen["sen_id"], sen["text"], attrs_text))
+
+    def _get_attribute_key(self, sen):
+        if self._gold_exists(sen):
+            return JsonFields.GOLD_ATTRIBUTES
+        if self.gen_attributes and JsonFields.GENERATED_ATTRIBUTES in sen:
+            return JsonFields.GENERATED_ATTRIBUTES
+        return JsonFields.ATTRIBUTES
+
+    def _gold_exists(self, sen):
+        return JsonFields.GOLD_EXISTS in sen and sen[JsonFields.GOLD_EXISTS]
 
     def write_txt(self, doc, stream):
         for section in doc["sections"]:
@@ -361,7 +388,7 @@ class Converter():
     def write(self, doc, stream):
         if self.output_format == 'JSON':
             self.write_json(doc, stream)
-        if self.output_format == 'JSON_FLAT':
+        elif self.output_format == 'JSON_FLAT':
             self.write_json_flat(doc, stream)
         elif self.output_format == 'TXT':
             self.write_txt(doc, stream)
@@ -382,6 +409,8 @@ def get_args():
     parser.add_argument("-if", "--input-file", type=str, default=None)
     parser.add_argument("-of", "--output-file", type=str, default=None)
     parser.add_argument("-g", "--gen-attributes", action='store_true')
+    parser.add_argument("--gold-dir", type=str)
+    parser.add_argument("-f", "--fuzzy", default=False, action='store_true')
     parser.set_defaults(input_format="JSON", output_format="JSON", gen_attributes=False)
     return parser.parse_args()
 
@@ -392,7 +421,10 @@ def main():
         format="%(asctime)s : " +
                "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     args = get_args()
-    converter = Converter(args)
+    sen_to_gold_attrs = None
+    if args.gold_dir:
+        sen_to_gold_attrs = SenToAttrMap(gold_dir=args.gold_dir, fuzzy=args.fuzzy)
+    converter = Converter(args, sen_to_gold_attrs)
 
     if args.input_format == "XLSX":
         assert args.input_file

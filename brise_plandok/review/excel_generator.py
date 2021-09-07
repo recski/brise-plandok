@@ -1,3 +1,4 @@
+from utils import normalize_attribute_name
 from brise_plandok.review.constants import ANNOTATORS_OFFSET, ANNOTATOR_SEPARATOR, ATTRIBUTE_NAMED_RANGE, ATTRIBUTE_OFFSET, ATTRIBUTE_REVIEW_NAMED_RANGE, ATTRIBUTE_REVIEW_OFFSET, ATTRIBUTE_STEP, CATEGORY_OFFSET, COUNT_OFFSET, FIRST_DATA_ROW, LABEL_OFFSET, REVIEW_SHEET_NAME, SENTENCE_REVIEW_NAMED_RANGE, SEN_ID_COL, SEN_REVIEW_COL, SEN_TEXT_COL
 import logging
 import os
@@ -41,7 +42,7 @@ class ExcelGenerator:
     def __fill_attributes(self, annotation, review_sheet, row):
         col = ATTRIBUTE_OFFSET
         for attribute_name, attribute_props in annotation["attributes"].items():
-            attribute_name = self.__normalize_attr_names(attribute_name)
+            attribute_name = normalize_attribute_name(attribute_name)
             if attribute_name not in ATTR_TO_CAT:
                 logging.warn(
                     f"\"{attribute_name}\" does not belong to any category - will be ignored")
@@ -61,11 +62,6 @@ class ExcelGenerator:
                           ANNOTATORS_OFFSET).value = ANNOTATOR_SEPARATOR.join(attribute_props["annotators"])
         review_sheet.cell(row=row, column=col +
                           ATTRIBUTE_REVIEW_OFFSET).value = "OK"
-
-    def __normalize_attr_names(self, attribute_name):
-        if attribute_name == "Verkehrsflaeche_ID":
-            return "VerkehrsflaecheID"
-        return attribute_name
 
     def __add_validation(self, review_sheet):
         data_val = DataValidation(

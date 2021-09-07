@@ -10,7 +10,7 @@ import os
 
 def calculate_sentences_for_next_batch(doc_tracking_file, batch_size, json_folder):
     docs = load_doc_tracking_data(doc_tracking_file)
-    next_docs = get_next_batch(docs, batch_size, set_assigned=False)
+    next_docs = get_next_batch(docs, batch_size, False)
     logging.info(f"next documents to assign: {next_docs}")
     calculate_sentence_counts(docs, next_docs, json_folder)
 
@@ -23,7 +23,7 @@ def calculate_sentence_counts(df, doc_ids, json_folder):
     logging.info(
         f"number of sentences for each document in batch:\n {df[df[DOC_HEADER[1]].isin(doc_ids)]}")
     logging.info(
-        f"next batch of size {len(doc_ids)} would add {sum} new sentences - ~{int(sum/len(ANNOTATORS))} sens / annotator")
+        f"next batch of size {len(doc_ids)} would add {sum} new sentences - without overlap ~{int(sum/len(ANNOTATORS))} sens / annotator")
     return sum
 
 
@@ -35,9 +35,12 @@ def _nr_sens_calculated(df, doc_id):
 
 def _calculate_nr_sens_for_doc(df, doc_id, json_folder):
     path = os.path.join(json_folder, doc_id + ".jsonl")
+    if not os.path.exists(path):
+        raise ValueError(f"Path does not exist: {path}")
     with open(path) as f:
         lines = f.readlines()
-        assert len(lines) == 1
+        if len(lines) != 1:
+            raise ValueError(f"File must contain exactly one line: {path}")
         doc = json.loads(lines[0].strip())
         _set_nr_sens(df, doc, doc_id)
 

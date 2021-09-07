@@ -139,3 +139,6 @@ brise_plandok/review/output/
 
 # Data split
 brise_plandok/data_split/example/
+
+# Personal scripts
+scripts/*/

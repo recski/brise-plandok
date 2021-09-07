@@ -21,7 +21,7 @@ def generate_batch(doc_tracking_file, batch_size, json_folder, cycle_nr, annotat
     partition = get_assignment(next_docs, docs_df, cycle_df.shape[0])
     logging.info(f"partition: {partition}")
 
-    fill_assignments_with_batch(docs_df, cycle_df, assignment_df, partition)
+    fill_assignments_with_batch(docs_df, cycle_df, assignment_df, partition, next_docs)
     logging.info(f"assignments with new batch:\n{assignment_df}")
 
     if not generate_xlsx:

@@ -1,4 +1,5 @@
 
+import enum
 import itertools
 import logging
 import os
@@ -61,20 +62,52 @@ def _check_if_all_docs_used(num_to_doc):
                 f"Some docs were not used in the partition {docs}")
 
 
-def fill_assignments_with_batch(docs, cycle, assignments, partition):
+def fill_assignments_with_batch(docs, cycle, assignments, partition, next_doc_ids):
     assignments[ASSIGNMENT_ADDITIONAL_HEADER[0]] = None
     assignments[ASSIGNMENT_ADDITIONAL_HEADER[1]] = -1
     assignments[ASSIGNMENT_ADDITIONAL_HEADER[2]] = -1
-    for i, group in enumerate(cycle.values.tolist()):
-        mask = assignments[ASSIGNMENT_DF_HEADER[0]].isin(group)
-        assignments.loc[mask, ASSIGNMENT_ADDITIONAL_HEADER[0]
-                        ] = ",".join(partition[i])
-        assignments.loc[mask, ASSIGNMENT_ADDITIONAL_HEADER[1]
-                        ] = sum_sens_for_docs(docs, partition[i])
-        _calculate_sum_sentence_after_batch(group, assignments)
+    _enrich_docs_with_annotators(docs, cycle, partition)
+    _log_for_review_tracking(docs, next_doc_ids, cycle)
+    for i, group_members in enumerate(cycle.values.tolist()):
+        _fill_for_group(assignments, group_members, partition[i], docs)
 
 
-def _calculate_sum_sentence_after_batch(group, assignments):
+def _log_for_review_tracking(docs, next_doc_ids, cycle):
+    next_docs = docs.loc[docs[DOC_HEADER[1]].isin(
+        next_doc_ids)].iloc[:, [1, 4] + [i for i in range(-len(cycle.columns), 0)]]
+    view = next_docs.to_csv(sep=';', index=False)
+    logging.info(f"print new assignment for review tracking:\n\n{view}")
+
+
+def _enrich_docs_with_annotators(docs, cycle, partition):
+    for column in cycle.columns.to_list():
+        docs[column] = None
+    for i, doc_ids in enumerate(partition):
+        for doc_id in doc_ids:
+            mask = docs[DOC_HEADER[1]] == doc_id
+            for cycle_header in cycle.columns:
+                docs.loc[mask, cycle_header] = cycle.iloc[i][cycle_header]
+
+
+def _fill_for_group(assignments, group_members, partition, docs):
+    group_members_mask = assignments[ASSIGNMENT_DF_HEADER[0]].isin(
+        group_members)
+    _fill_assigned_docs(partition, assignments, group_members_mask)
+    _fill_assigned_sens(docs, partition, assignments, group_members_mask)
+    _fill_sens_sum(group_members, assignments)
+
+
+def _fill_assigned_sens(docs, partition, assignments, group_members_mask):
+    assignments.loc[group_members_mask, ASSIGNMENT_ADDITIONAL_HEADER[1]
+                    ] = sum_sens_for_docs(docs, partition)
+
+
+def _fill_assigned_docs(partition, assignments, group_members_mask):
+    assignments.loc[group_members_mask, ASSIGNMENT_ADDITIONAL_HEADER[0]
+                    ] = ",".join(partition)
+
+
+def _fill_sens_sum(group, assignments):
     for annotator in group:
         annotator_mask = assignments[ASSIGNMENT_DF_HEADER[0]] == annotator
         sentences_before = assignments.loc[annotator_mask,
@@ -94,6 +127,6 @@ def update_assignments(doc_ids, annotator, annotator_folder):
         df = df.append(pandas.DataFrame(
             [[doc_id]], columns=ASSIGNMENT_FILE_HEADER), ignore_index=True)
     df.to_csv(path_or_buf=assignment_txt, sep=";", index=False)
-    df.to_excel(assignment_xlsx, index=False) # pylint: disable=no-member
+    df.to_excel(assignment_xlsx, index=False)  # pylint: disable=no-member
     logging.info(
         f"assignment text files were updated: {assignment_txt}\t{assignment_xlsx}")

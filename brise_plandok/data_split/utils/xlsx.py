@@ -1,6 +1,5 @@
 
 
-import openpyxl
 from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.data_split.utils.assignments import update_assignments
 import logging

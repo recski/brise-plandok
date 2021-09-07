@@ -94,6 +94,6 @@ def update_assignments(doc_ids, annotator, annotator_folder):
         df = df.append(pandas.DataFrame(
             [[doc_id]], columns=ASSIGNMENT_FILE_HEADER), ignore_index=True)
     df.to_csv(path_or_buf=assignment_txt, sep=";", index=False)
-    df.to_excel(assignment_xlsx, index=False)
+    df.to_excel(assignment_xlsx, index=False) # pylint: disable=no-member
     logging.info(
         f"assignment text files were updated: {assignment_txt}\t{assignment_xlsx}")

@@ -5,12 +5,14 @@
 A specific folder structure is expected for the following scripts to work. Generate a sample structure by calling:
 
 ```
-./scripts/gen_structure_for_data_split.sh
+./scripts/TEST_gen_structure_for_data_split.sh
 ```
 
 ## Shuffle data
 
-First, create a single file to track assignments and other stats for all documents. The dataset will also be shuffled at this step.
+This step is already done by the previous script!
+
+First, we create a single file to track assignments and other stats for all documents. The dataset will also be shuffled at this step.
 
 ```
 python brise_plandok/data_split/shuffle_dataset.py -d sample_data/txt > brise_plandok/data_split/example/shuffled_dataset.csv
@@ -21,7 +23,7 @@ python brise_plandok/data_split/shuffle_dataset.py -d sample_data/txt > brise_pl
 Parsing all txt files at once might take some time, so let just parse those we want to assign next.
 
 ```
-./scripts/text_to_jsonl.sh 7181 7272 7408 7443 7531 7545 7702 7774 7799 8159
+./scripts/TEST_text_to_jsonl.sh 7181 7272 7408 7443 7531 7545 7702 7774 7799 8159
 ```
 
 The generated files can be found in `brise_plandok/data_split/example/json`.
@@ -31,7 +33,7 @@ The generated files can be found in `brise_plandok/data_split/example/json`.
 We want to pre-fill attributes suggested by our rule-based system to ease the work of the annotators.
 
 ```
-./scripts/gen_attributes.sh 7181 7272 7408 7443 7531 7545 7702 7774 7799 8159
+./scripts/TEST_gen_attributes.sh 7181 7272 7408 7443 7531 7545 7702 7774 7799 8159
 ```
 
 The generated files can be found in `brise_plandok/data_split/example/json_attr`.
@@ -146,10 +148,10 @@ python brise_plandok/data_split/generate_batch.py \
 
 ## Reset assignments
 
-To reset the assigned documents to an empty state, call:
+To reset the assigned documents to an empty state, simply call:
 
 ```
-./scripts/reset_annotations.sh
+./scripts/TEST_gen_structure_for_data_split.sh
 ```
 
 ## Notes

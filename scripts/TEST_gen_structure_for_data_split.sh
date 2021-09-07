@@ -1,4 +1,3 @@
-
 txt_folder="sample_data/txt"
 shuffled_dataset_file="brise_plandok/data_split/example/shuffled_dataset.csv"
 annotators_folder="brise_plandok/data_split/example/annotators"

@@ -1,3 +1,4 @@
+from brise_plandok.constants import ANNOTATOR_NAME_INDEX
 import json
 import logging
 import os
@@ -208,7 +209,11 @@ def load_data(filenames):
         try:
             doc_id, annotator, date = name.split('_')
         except ValueError:
-            doc_id, annotator = name.split('_')
+            try:
+                doc_id, annotator = name.split('_')
+            except ValueError:
+                annotator = os.path.normpath(fn).split(os.path.sep)[ANNOTATOR_NAME_INDEX]
+
         annotator = annotator_vocab.get_id(annotator.lower(), allow_new=True)
 
         for sen in gen_sens_from_file(fn):

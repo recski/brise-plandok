@@ -5,6 +5,8 @@ ATTRIBUTE_NORM_MAP = {
 
 GOLD_PREFIX = "GOLD"
 
+ANNOTATOR_NAME_INDEX = -3
+
 class JsonFields:
     ATTRIBUTES = "attributes"
     GENERATED_ATTRIBUTES = "gen_attributes"

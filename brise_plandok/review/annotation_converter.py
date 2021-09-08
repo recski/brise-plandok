@@ -1,10 +1,9 @@
 import argparse
+from brise_plandok.constants import ANNOTATOR_NAME_INDEX
 import os
 from brise_plandok.review.excel_generator import ExcelGenerator
 import logging
 from brise_plandok.convert import Converter
-
-ANNOTATOR_NAME_INDEX = -3
 
 class AnnotationConverter(Converter):
 

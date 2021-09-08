@@ -9,6 +9,8 @@ def load_doc_tracking_data(file):
         DOC_HEADER[2]: bool,
         DOC_HEADER[3]: bool,
         DOC_HEADER[4]: int,
+        DOC_HEADER[5]: str,
+        DOC_HEADER[6]: str,
     }
     return pandas.read_csv(filepath_or_buffer=file, sep=";", dtype=dtype)
 

@@ -251,7 +251,7 @@ def gen_sens_from_file(fn):
     logging.warning(f'processing {fn}')
     for i, row in enumerate(xlsx_to_data(fn)):
         if i == 0:
-            assert row[0] == 'Sentence_ID', f'unexpected header in {fn}: {row}'
+            assert row[0] == 'Sentence_ID' or row[0] == 'ID', f'unexpected header in {fn}: {row}'
             continue
 
         if row[0] is None:

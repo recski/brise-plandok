@@ -1,5 +1,6 @@
 ATTRIBUTE_NORM_MAP = {
     "Verkehrsflaeche_ID": "VerkehrsflaecheID", 
+    "VorkehrungBepflanzungOeffentlicheVerkehrsflaeche": "VorkehrungBepflanzung",
 }
 
 GOLD_PREFIX = "GOLD"

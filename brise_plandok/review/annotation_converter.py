@@ -1,8 +1,10 @@
 import argparse
+import os
 from brise_plandok.review.excel_generator import ExcelGenerator
 import logging
 from brise_plandok.convert import Converter
 
+ANNOTATOR_NAME_INDEX = -3
 
 class AnnotationConverter(Converter):
 
@@ -14,7 +16,7 @@ class AnnotationConverter(Converter):
     def __read_annotations(self, annotated_xlsx_files):
         annotations = {}
         for annotated_xlsx in annotated_xlsx_files:
-            annotator = annotated_xlsx.split('_')[-2]
+            annotator = os.path.normpath(annotated_xlsx).split(os.path.sep)[ANNOTATOR_NAME_INDEX]
             for doc in self.read(annotated_xlsx):
                 annotations[annotator] = doc
         return annotations
@@ -53,7 +55,8 @@ def get_args():
     parser.add_argument("-of", "--output-file", type=str)
     parser.add_argument("-a", "--annotations", nargs="+", default=None)
     parser.set_defaults(input_format="XLSX", output_format="XLSX",
-                        output_file="brise_plandok/review/output/review.xlsx")
+                        output_file="brise_plandok/review/output/review.xlsx",
+                        gen_attributes=False)
     return parser.parse_args()
 
 

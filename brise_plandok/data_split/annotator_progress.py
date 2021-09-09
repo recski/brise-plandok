@@ -41,23 +41,24 @@ def get_ready_docs(doc_tracking_file, uploaded_dict, first, last):
     if first:
         first_idx = df.index[df[ANNOTATOR_HEADERS[0]] == first][0]
     if last:
-        last_idx = df.index[df[ANNOTATOR_HEADERS[0]] == last][0]
+        last_idx = df.index[df[ANNOTATOR_HEADERS[0]] == last][0] + 1
     df = df.iloc[first_idx:last_idx, [0, 2, 3, 4]]
     df = df.loc[df[ANNOTATOR_HEADERS[3]].isnull(), :]
     df[ANNOTATOR_HEADERS[-2]] = False
     df[ANNOTATOR_HEADERS[-1]] = False
-    for i, row in df.iterrows():
+    for _, row in df.iterrows():
         doc_id = row[ANNOTATOR_HEADERS[0]]
         ann_1 = row[ANNOTATOR_HEADERS[1]]
         ann_2 = row[ANNOTATOR_HEADERS[2]]
         ann_1_done = doc_id in uploaded_dict[ann_1]
         ann_2_done = doc_id in uploaded_dict[ann_2]
+        mask = df[ANNOTATOR_HEADERS[0]] == doc_id
         if ann_1_done:
-            df.iloc[i, [-2]] = True
+            df.loc[mask, ANNOTATOR_HEADERS[-2]] = True
         if ann_2_done:
-            df.iloc[i, [-1]] = True
+            df.loc[mask, ANNOTATOR_HEADERS[-1]] = True
         if ann_1_done & ann_2_done:
-            df.iloc[i, [-3]] = "Yes"
+            df.loc[mask, ANNOTATOR_HEADERS[-3]] = "Yes"
     logging.info(f"Documents ready for review:\n{df}")
 
 

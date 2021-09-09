@@ -12,3 +12,4 @@ ASSIGNMENT_DF_HEADER = ["annotator", "assigned_sentences"]
 ASSIGNMENT_ADDITIONAL_HEADER = ["docs_in_batch", "sentences_in_batch", "sum_sentences"]
 
 ANNOTATOR_DOWNLOAD_FOLDER = "download"
+ANNOTATOR_UPLOAD_FOLDER = "upload"

@@ -1,4 +1,4 @@
-from brise_plandok.constants import ATTRIBUTE_NORM_MAP, GOLD_PREFIX
+from brise_plandok.constants import ATTRIBUTE_NORM_MAP, GOLD_COLOR, GOLD_PREFIX
 import openpyxl
 import argparse
 import logging
@@ -7,7 +7,6 @@ from openpyxl.styles import Alignment, Font, PatternFill
 from collections import defaultdict
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
 
-GOLD_COLOR = "FFD700"
 class Annotate:
 
     def parse(self, dataset, template, save):

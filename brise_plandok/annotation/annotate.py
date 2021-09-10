@@ -45,7 +45,6 @@ class Annotate:
                             sentence_ids, data_val, attribute_to_attribute_class)
 
         wb_obj.save(save)
-        logging.info(f'xlsx file saved to {save}')
 
     def _add_sentences(self, sentences, labels_csv, sheet_obj, sentence_ids, data_val, attribute_to_attribute_class):
         for i, _ in enumerate(sentences):

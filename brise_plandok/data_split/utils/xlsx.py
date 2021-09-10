@@ -32,6 +32,7 @@ def genereate_xlsx_files(doc_ids, json_folder, xlsx_folder, overwrite, gold_fold
             assert len(lines) == 1
             doc = json.loads(lines[0].strip())
             converter.write_xlsx(doc, xlsx_file)
+    logging.info("xlsx files have been generated from json files")
 
 
 def distribute_xlsx_files(xlsx_folder, df, annotators_folder, update):
@@ -42,6 +43,7 @@ def distribute_xlsx_files(xlsx_folder, df, annotators_folder, update):
         for doc_id in doc_ids_for_annotator:
             _copy_xlsx_files_to_annotators(
                 doc_id, xlsx_folder, annotators_folder, annotator)
+        logging.info("xlsx files have been distributed to annotators")
         if update:
             update_assignments(doc_ids_for_annotator,
                                annotator, annotators_folder)
@@ -52,4 +54,3 @@ def _copy_xlsx_files_to_annotators(doc_id, xlsx_folder, annotators_folder, annot
     dest = os.path.join(annotators_folder, annotator,
                         ANNOTATOR_DOWNLOAD_FOLDER, os.path.basename(xlsx_file))
     shutil.copy2(xlsx_file, dest)
-    logging.info(f"copied {xlsx_file} to {dest}")

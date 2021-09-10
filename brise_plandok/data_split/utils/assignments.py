@@ -80,8 +80,6 @@ def _log_for_review_tracking(docs, next_doc_ids, cycle):
 
 
 def _enrich_docs_with_annotators(docs, cycle, partition):
-    for column in cycle.columns.to_list():
-        docs[column] = None
     for i, doc_ids in enumerate(partition):
         for doc_id in doc_ids:
             mask = docs[DOC_HEADER[1]] == doc_id

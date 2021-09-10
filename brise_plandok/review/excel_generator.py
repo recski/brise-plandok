@@ -1,3 +1,5 @@
+from brise_plandok.constants import GOLD_COLOR
+from openpyxl.styles.fills import PatternFill
 from utils import normalize_attribute_name
 from brise_plandok.review.constants import ANNOTATORS_OFFSET, ANNOTATOR_SEPARATOR, ATTRIBUTE_NAMED_RANGE, ATTRIBUTE_OFFSET, ATTRIBUTE_REVIEW_NAMED_RANGE, ATTRIBUTE_REVIEW_OFFSET, ATTRIBUTE_STEP, CATEGORY_OFFSET, COUNT_OFFSET, FIRST_DATA_ROW, LABEL_OFFSET, REVIEW_SHEET_NAME, SENTENCE_REVIEW_NAMED_RANGE, SEN_ID_COL, SEN_REVIEW_COL, SEN_TEXT_COL
 import logging
@@ -17,27 +19,36 @@ class ExcelGenerator:
             __file__), "input", "review_template.xlsx")
         self.output_file = output_file
 
-    def generate_review_excel(self, merged_annotations):
+    def generate_review_excel(self, merged_annotations, sen_to_gold_attrs):
         workbook = openpyxl.load_workbook(self.input_template)
-        self._fill_workbook(workbook, merged_annotations)
+        self._fill_workbook(workbook, merged_annotations, sen_to_gold_attrs)
         self._save_workbook(workbook)
 
-    def _fill_workbook(self, workbook, merged_annotations):
+    def _fill_workbook(self, workbook, merged_annotations, sen_to_gold_attrs):
         review_sheet = workbook[REVIEW_SHEET_NAME]
         row = FIRST_DATA_ROW
         for sen_id, annotation in merged_annotations.items():
-            self.__fill_sentences(sen_id, review_sheet, row, annotation)
+            self.__fill_sentences(sen_id, review_sheet,
+                                  row, annotation, sen_to_gold_attrs)
             self.__fill_attributes(annotation, review_sheet, row)
             row += 1
         self.__add_validation(review_sheet)
 
-    def __fill_sentences(self, sen_id, review_sheet, row, annotation):
+    def __fill_sentences(self, sen_id, review_sheet, row, annotation, sen_to_gold_attrs):
         review_sheet.cell(row=row, column=SEN_ID_COL).value = sen_id
         review_sheet.cell(
             row=row, column=SEN_TEXT_COL).value = annotation["text"]
+        self._color_if_gold(sen_to_gold_attrs, annotation, review_sheet, row)
         review_sheet.cell(
             row=row, column=SEN_TEXT_COL).alignment = Alignment(wrapText=True)
         review_sheet.cell(row=row, column=SEN_TEXT_COL).font = Font(size=12)
+
+    def _color_if_gold(self, sen_to_gold_attrs, annotation, review_sheet, row):
+        if sen_to_gold_attrs.get_attrs(annotation['text']):
+            review_sheet.cell(row=row, column=SEN_ID_COL).fill = PatternFill(
+                fgColor=GOLD_COLOR, fill_type="solid")
+            review_sheet.cell(row=row, column=SEN_TEXT_COL).fill = PatternFill(
+                fgColor=GOLD_COLOR, fill_type="solid")
 
     def __fill_attributes(self, annotation, review_sheet, row):
         col = ATTRIBUTE_OFFSET

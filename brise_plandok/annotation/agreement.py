@@ -1,3 +1,5 @@
+import argparse
+from brise_plandok.constants import ANNOTATOR_NAME_INDEX
 import json
 import logging
 import os
@@ -208,7 +210,11 @@ def load_data(filenames):
         try:
             doc_id, annotator, date = name.split('_')
         except ValueError:
-            doc_id, annotator = name.split('_')
+            try:
+                doc_id, annotator = name.split('_')
+            except ValueError:
+                annotator = os.path.normpath(fn).split(os.path.sep)[ANNOTATOR_NAME_INDEX]
+
         annotator = annotator_vocab.get_id(annotator.lower(), allow_new=True)
 
         for sen in gen_sens_from_file(fn):
@@ -251,7 +257,7 @@ def gen_sens_from_file(fn):
     logging.warning(f'processing {fn}')
     for i, row in enumerate(xlsx_to_data(fn)):
         if i == 0:
-            assert row[0] == 'Sentence_ID', f'unexpected header in {fn}: {row}'
+            assert row[0] == 'Sentence_ID' or row[0] == 'ID', f'unexpected header in {fn}: {row}'
             continue
 
         if row[0] is None:
@@ -307,17 +313,24 @@ def print_json(sen, attr_vocab):
             ann: [attr_vocab.get_word(attr) for attr in attrs]
             for ann, attrs in sen['annot'].items()}}))
 
+def get_args():
+    parser = argparse.ArgumentParser(description="")
+    parser.add_argument("-of", "--output-file", type=str)
+    parser.add_argument("-a", "--annotations", nargs="+", default=None)
+    parser.set_defaults(output_file='annotation_output.tsv')
+    return parser.parse_args()
 
 def main():
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s : " +
         "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
-    filenames = sys.argv[1:]
+    args = get_args()
+    filenames = args.annotations
     if len(filenames) < 3:
         logging.error("At least two annotation files and one gold data are required.")
         return
-    out_fn = 'annotation_output.tsv'
+    out_fn = args.output_file
     data, attr_vocab, annotator_vocab = load_data(filenames)
     print_data(data, attr_vocab, annotator_vocab, out_fn)
     if IGNORE_EMPTY:

@@ -11,8 +11,7 @@ from openpyxl.styles import Alignment, Font
 from openpyxl.worksheet.datavalidation import DataValidation
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
 
-GOLD_NAME = "gold"
-
+IS_GOLD = "gold_attr"
 
 class ExcelGenerator:
 
@@ -89,7 +88,7 @@ class ExcelGenerator:
                           ANNOTATORS_OFFSET).value = ANNOTATOR_SEPARATOR.join(attribute_props["annotators"])
         review_sheet.cell(row=row, column=col +
                           ATTRIBUTE_REVIEW_OFFSET).value = "OK"
-        if GOLD_NAME in attribute_props["annotators"]:
+        if IS_GOLD in attribute_props and attribute_props[IS_GOLD]:
             self._color_gold(review_sheet, row, col + CATEGORY_OFFSET)
             self._color_gold(review_sheet, row, col + LABEL_OFFSET)
             self._color_gold(review_sheet, row, col + COUNT_OFFSET)
@@ -103,12 +102,15 @@ class ExcelGenerator:
     def _enrich_attributes_with_gold(self, gold_attributes, annotation):
         for attribute_name, attribute_props in annotation["attributes"].items():
             if attribute_name in gold_attributes:
-                attribute_props["annotators"].append(GOLD_NAME)
-                attribute_props["count"] += 1
+                attribute_props[IS_GOLD] = True
+            else:
+                attribute_props[IS_GOLD] = False
         for attribute in gold_attributes:
             if attribute not in annotation["attributes"]:
                 annotation["attributes"][attribute] = {
-                    "count": 1, "annotators": [GOLD_NAME]}
+                    "count": 0, 
+                    IS_GOLD: True
+                }
 
     def _add_validation(self, review_sheet):
         data_val = DataValidation(

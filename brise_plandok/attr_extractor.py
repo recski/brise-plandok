@@ -16,7 +16,10 @@ PATTERNS_BY_ATTR = {
         "(u_0 / Punkt :0 (u_1 / Dach) :0 (u_2 / hoch))",
     },
     "AnFluchtlinie": {
-        "(u_0 / entlang  :2 (u_1 / Fluchtlinie))"
+        "(u_0 / entlang  :2 (u_1 / Fluchtlinie))",
+        "(u_0 / an  :2 (u_1 / Fluchtlinie))",
+        "(u_0 / entlang  :2 (u_1 / Baulinie))",
+        "(u_0 / an  :2 (u_1 / Baulinie))",
     },
     "AnordnungGaertnerischeAusgestaltung": {
         "(u_0 / gaertnerisch)"
@@ -29,7 +32,7 @@ PATTERNS_BY_ATTR = {
         "(u_0 / begruent)"
     },
     "Dachart": {
-        "(u_0 / Flachdaecher)"
+        "(u_0 / Flachdaecher)",
     },
     "DachflaecheMin": {
         "(u_0 / ab :2 (u_1 / Groesse) :1 (u_2 / ausbilden :2 (u_3 / Dach)))"
@@ -61,6 +64,9 @@ PATTERNS_BY_ATTR = {
     "Planzeichen": {
         "(u_0 / BB)",
         "(u_0 / Esp)"
+    },
+    "Stockwerk": {
+        "(u_0 / Erdgeschoss)",
     },
     "StrassenbreiteMin": {
         "(u_0 / Strassenbreite)",

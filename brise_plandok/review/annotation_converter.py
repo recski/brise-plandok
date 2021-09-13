@@ -46,8 +46,8 @@ class AnnotationConverter(Converter):
                                   ]["annotators"].append(annotator)
 
     def __generate_review_excel(self, merged_annotations, output_file, sen_to_gold_attrs):
-        generator = ExcelGenerator(output_file)
-        generator.generate_review_excel(merged_annotations, sen_to_gold_attrs)
+        generator = ExcelGenerator(output_file, sen_to_gold_attrs)
+        generator.generate_review_excel(merged_annotations)
 
 
 def get_args():

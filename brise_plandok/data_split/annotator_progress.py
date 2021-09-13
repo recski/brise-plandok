@@ -30,7 +30,7 @@ def get_annotator_progress(ann_folder):
     return uploaded_dict
 
 
-def get_ready_docs(doc_tracking_file, uploaded_dict, first, last):
+def get_ready_docs(doc_tracking_file, uploaded_dict, first, last, only_yes, only_new):
     df = pandas.read_excel(doc_tracking_file, sheet_name=TRACKING_SHEET,
                            dtype={
                                ANNOTATOR_HEADERS[0]: str,
@@ -42,6 +42,8 @@ def get_ready_docs(doc_tracking_file, uploaded_dict, first, last):
         first_idx = df.index[df[ANNOTATOR_HEADERS[0]] == first][0]
     if last:
         last_idx = df.index[df[ANNOTATOR_HEADERS[0]] == last][0] + 1
+    if only_new:
+        df = df[df[ANNOTATOR_HEADERS[3]].isnull()]
     df = df.iloc[first_idx:last_idx, [0, 2, 3, 4]]
     df[ANNOTATOR_HEADERS[-2]] = False
     df[ANNOTATOR_HEADERS[-1]] = False
@@ -58,6 +60,8 @@ def get_ready_docs(doc_tracking_file, uploaded_dict, first, last):
             df.loc[mask, ANNOTATOR_HEADERS[-1]] = True
         if ann_1_done & ann_2_done:
             df.loc[mask, ANNOTATOR_HEADERS[-3]] = "Yes"
+    if only_yes:
+        df = df[df[ANNOTATOR_HEADERS[3]] == "Yes"]
     logging.info(f"Documents ready for review:\n{df}")
 
 
@@ -71,6 +75,8 @@ def get_args():
     parser.add_argument("-dt", "--doc-tracking", type=str, default=None)
     parser.add_argument("-f", "--first", type=str, default=None)
     parser.add_argument("-l", "--last", type=str, default=None)
+    parser.add_argument("-y", "--only-yes", default=False, action="store_true")
+    parser.add_argument("-n", "--only-new", default=False, action="store_true")
     return parser.parse_args()
 
 
@@ -82,7 +88,7 @@ def main():
     args = get_args()
     uploaded = get_annotator_progress(args.annotator_folder)
     if args.doc_tracking:
-        get_ready_docs(args.doc_tracking, uploaded, args.first, args.last)
+        get_ready_docs(args.doc_tracking, uploaded, args.first, args.last, args.only_yes, args.only_new)
 
 
 if __name__ == "__main__":

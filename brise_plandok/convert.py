@@ -293,6 +293,10 @@ class Converter():
         for sen in sens:
             atts = []
             for attribute in sen["attributes"]:
+                if attribute not in ATTR_TO_CAT:
+                    logging.warning(
+                        f"{attribute} attribute not in the attribute list, will be skipped!")
+                    continue
                 atts.append({
                     "type": None,
                     "name": normalize_attribute_name(attribute),

@@ -63,7 +63,9 @@ PATTERNS_BY_ATTR = {
     },
     "Planzeichen": {
         "(u_0 / BB)",
-        "(u_0 / Esp)"
+        "(u_0 / Esp)",
+        "(u_0 / öDg)",
+        "(u_0 / öDf)",
     },
     "Stockwerk": {
         "(u_0 / Erdgeschoss)",

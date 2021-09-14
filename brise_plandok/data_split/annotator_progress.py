@@ -44,7 +44,7 @@ def get_ready_docs(doc_tracking_file, uploaded_dict, first, last, only_yes, only
         last_idx = df.index[df[ANNOTATOR_HEADERS[0]] == last][0] + 1
     if only_new:
         df = df[df[ANNOTATOR_HEADERS[3]].isnull()]
-    df = df.iloc[first_idx:last_idx, [0, 2, 3, 4]]
+    df = df.iloc[first_idx:last_idx, [1, 3, 4, 5]]
     df[ANNOTATOR_HEADERS[-2]] = False
     df[ANNOTATOR_HEADERS[-1]] = False
     for _, row in df.iterrows():

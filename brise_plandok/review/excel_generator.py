@@ -1,4 +1,4 @@
-from brise_plandok.constants import GOLD_COLOR
+from brise_plandok.constants import GOLD_COLOR, GRAY_COLOR
 from openpyxl.styles.fills import PatternFill
 from utils import normalize_attribute_name
 from brise_plandok.review.constants import ANNOTATORS_OFFSET, ANNOTATOR_SEPARATOR, ATTRIBUTE_NAMED_RANGE, ATTRIBUTE_OFFSET, ATTRIBUTE_REVIEW_NAMED_RANGE, ATTRIBUTE_REVIEW_OFFSET, ATTRIBUTE_STEP, CATEGORY_OFFSET, COUNT_OFFSET, FIRST_DATA_ROW, LABEL_OFFSET, REVIEW_SHEET_NAME, SENTENCE_REVIEW_NAMED_RANGE, SEN_ID_COL, SEN_REVIEW_COL, SEN_TEXT_COL
@@ -11,8 +11,7 @@ from openpyxl.styles import Alignment, Font
 from openpyxl.worksheet.datavalidation import DataValidation
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
 
-GOLD_NAME = "gold"
-
+IS_GOLD = "gold_attr"
 
 class ExcelGenerator:
 
@@ -48,16 +47,22 @@ class ExcelGenerator:
         review_sheet.cell(row=row, column=SEN_TEXT_COL).font = Font(size=12)
 
     def _is_gold(self, annotation):
-        return self.sen_to_gold_attrs.get_attrs(annotation['text'])
+        return self.sen_to_gold_attrs.get_attrs(annotation['text']) if self.sen_to_gold_attrs else False
+
+    def _color_gray(self, review_sheet, row, col):
+        self._color(review_sheet, row, col, GRAY_COLOR)
 
     def _color_gold(self, review_sheet, row, col):
+        self._color(review_sheet, row, col, GOLD_COLOR)
+
+    def _color(self, review_sheet, row, col, color):
         review_sheet.cell(row=row, column=col).fill = PatternFill(
-            fgColor=GOLD_COLOR, fill_type="solid")
+            fgColor=color, fill_type="solid")
 
     def _fill_attributes(self, annotation, review_sheet, row):
         col = ATTRIBUTE_OFFSET
         gold_full_attributes = self.sen_to_gold_attrs.get_attrs(
-            annotation['text'])
+            annotation['text']) if self.sen_to_gold_attrs else []
         if gold_full_attributes:
             gold_attributes = set([attr['name']
                                   for attr in gold_full_attributes])
@@ -83,18 +88,29 @@ class ExcelGenerator:
                           ANNOTATORS_OFFSET).value = ANNOTATOR_SEPARATOR.join(attribute_props["annotators"])
         review_sheet.cell(row=row, column=col +
                           ATTRIBUTE_REVIEW_OFFSET).value = "OK"
-        if GOLD_NAME in attribute_props["annotators"]:
+        if IS_GOLD in attribute_props and attribute_props[IS_GOLD]:
+            self._color_gold(review_sheet, row, col + CATEGORY_OFFSET)
             self._color_gold(review_sheet, row, col + LABEL_OFFSET)
+            self._color_gold(review_sheet, row, col + COUNT_OFFSET)
+            self._color_gold(review_sheet, row, col + ANNOTATORS_OFFSET)
+        elif attribute_props["generated"]:
+            self._color_gray(review_sheet, row, col + CATEGORY_OFFSET)
+            self._color_gray(review_sheet, row, col + LABEL_OFFSET)
+            self._color_gray(review_sheet, row, col + COUNT_OFFSET)
+            self._color_gray(review_sheet, row, col + ANNOTATORS_OFFSET)
 
     def _enrich_attributes_with_gold(self, gold_attributes, annotation):
         for attribute_name, attribute_props in annotation["attributes"].items():
             if attribute_name in gold_attributes:
-                attribute_props["annotators"].append(GOLD_NAME)
-                attribute_props["count"] += 1
+                attribute_props[IS_GOLD] = True
+            else:
+                attribute_props[IS_GOLD] = False
         for attribute in gold_attributes:
             if attribute not in annotation["attributes"]:
                 annotation["attributes"][attribute] = {
-                    "count": 1, "annotators": [GOLD_NAME]}
+                    "count": 0, 
+                    IS_GOLD: True
+                }
 
     def _add_validation(self, review_sheet):
         data_val = DataValidation(

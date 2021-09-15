@@ -10,8 +10,10 @@ ATTRIBUTES_TO_IGNORE = {
     "Segmentierungsfehler",
     "NoAttribute",
     "N/A",
-    "StrittigeBedeutung"
+    "StrittigeBedeutung",
 }
+
+ERROR_LABEL = "Error"
 
 FIRST_DATA_ROW = 2
 

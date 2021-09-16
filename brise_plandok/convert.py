@@ -288,7 +288,7 @@ class Converter():
 
     def read_xlsx(self, stream):
         sens = [Converter.build_json(line["text"], attributes=line["attributes"], sen_id=line["id"], modality=None)[
-            "sections"][0]["sens"][0] for line in gen_sens_from_file(stream)]
+            "sections"][0]["sens"][0] for line in gen_sens_from_file(stream, "xlsx")]
 
         for sen in sens:
             atts = []

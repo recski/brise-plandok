@@ -3,7 +3,7 @@ from brise_plandok.constants import ANNOTATOR_NAME_INDEX
 import json
 import logging
 import os
-import sys
+import pandas
 from collections import Counter, defaultdict
 
 import numpy as np
@@ -25,7 +25,10 @@ ATTR_IGNORE = {
     "NoAttribute",
     "N/A",
     "StrittigeBedeutung"
-    }
+}
+
+IAA_COLUMNS = ["Freq", "Attr",
+               "Avg K (gold)", "Ks (gold)", "Avg K (inter)", "Ks (inter)", "counts by sen"]
 
 
 def all_equal(iterator):
@@ -52,6 +55,10 @@ def xlsx_to_data(fn):
 
 
 def eval_against_gold(data, attr_vocab, annotator_vocab):
+    if "gold" not in annotator_vocab.word_to_id:
+        logging.info(
+            "No gold data is provided - skipping evaluation against gold")
+        return
     gold_ann = annotator_vocab.get_id('gold')
     print('gold ann id:', gold_ann)
     attr_stats = defaultdict(
@@ -193,11 +200,22 @@ def measure_agreement(data, attr_vocab, annotator_vocab):
 
     stats.sort(key=lambda s: -s[0])
 
-    print("Freq\tAttr\tAvg K (gold)\tKs (gold)\tAvg K (inter)\tKs (inter)\tcounts by sen")  # noqa
+    print_iaa(stats)
+
+
+def print_iaa(stats):
+    df = pandas.DataFrame(columns=IAA_COLUMNS)
     for attr_freq, attr_name, avg_gold, gold_kappas, avg, attr_kappas, attr_counts_str in stats:  # noqa
         gold_kappas_str = " ".join(f"{k:.2f}" for k in gold_kappas) if gold_kappas else 'N/A'  # noqa
         attr_kappas_str = " ".join(f"{k:.2f}" for k in attr_kappas)
-        print(f"{attr_freq}\t{attr_name}\t{avg_gold:.2f}\t{gold_kappas_str}\t{avg:.2f}\t{attr_kappas_str}\t{attr_counts_str}")  # noqa
+        df = df.append(pandas.DataFrame([[attr_freq, attr_name, avg_gold, gold_kappas_str,
+                       avg, attr_kappas_str, attr_counts_str]], columns=IAA_COLUMNS), ignore_index=True)
+    logging.info(f"IAA:\n{df}")
+    disagree = df[df["Avg K (inter)"] < 1.0].iloc[:, [0,1,4,-1]]
+    _print_disagree(df, disagree)
+
+def _print_disagree(df, disagree):
+    logging.info(f"Disagree: {disagree.shape[0]}/{df.shape[0]} - {int(disagree.shape[0]/df.shape[0]*100)}%\n{disagree}")
 
 
 def load_data(filenames):
@@ -206,18 +224,20 @@ def load_data(filenames):
     data = {}
     for fn in filenames:
         name, filetype = os.path.basename(fn).split('.')
-        assert filetype == 'xlsx'
         try:
             doc_id, annotator, date = name.split('_')
         except ValueError:
             try:
                 doc_id, annotator = name.split('_')
             except ValueError:
-                annotator = os.path.normpath(fn).split(os.path.sep)[ANNOTATOR_NAME_INDEX]
+                annotator = os.path.normpath(fn).split(
+                    os.path.sep)[ANNOTATOR_NAME_INDEX]
 
         annotator = annotator_vocab.get_id(annotator.lower(), allow_new=True)
 
-        for sen in gen_sens_from_file(fn):
+        for sen in gen_sens_from_file(fn, filetype):
+            if _is_header(sen):
+                continue
             if sen['id'] in data:
                 assert data[sen['id']]['text'] == sen['text'], f'changed text in {fn} sentence {sen["id"]}'  # noqa
             else:
@@ -242,6 +262,10 @@ def load_data(filenames):
     return data, attr_vocab, annotator_vocab
 
 
+def _is_header(sen):
+    section = int(sen["id"].split("_")[-2])
+    return section == 0
+
 def remove_empty(data):
     new_data = {
         sen_id: sen_data for sen_id, sen_data in data.items()
@@ -253,11 +277,33 @@ def remove_empty(data):
     return new_data
 
 
-def gen_sens_from_file(fn):
+def gen_sens_from_file(fn, extension):
     logging.warning(f'processing {fn}')
+    if extension == "xlsx":
+        return gen_sens_from_xlsx(fn)
+    elif extension == "json":
+        return gen_sens_from_json(fn)
+    else:
+        raise ValueError("Extension must either be 'xlsx' or 'json'")
+
+
+def gen_sens_from_json(fn):
+    with open(fn) as f:
+        doc = json.load(f)
+    for sen in doc["sens"]:
+        if "gold_attributes" in sen:
+            yield {
+                "id": sen["id"],
+                "text": sen["text"],
+                "attributes": sorted([attr["name"] for attr in sen["gold_attributes"]])
+            }
+
+
+def gen_sens_from_xlsx(fn):
     for i, row in enumerate(xlsx_to_data(fn)):
         if i == 0:
-            assert row[0] == 'Sentence_ID' or row[0] == 'ID', f'unexpected header in {fn}: {row}'
+            assert row[0] == 'Sentence_ID' or row[
+                0] == 'ID', f'unexpected header in {fn}: {row}'
             continue
 
         if row[0] is None:
@@ -277,32 +323,38 @@ def gen_sens_from_file(fn):
 
 
 def print_data(data, attr_vocab, annotator_vocab, out_fn):
-    with open(out_fn, 'w') as f:
-        f.write("sen_id\tsen\t" + "\t".join(
-                annotator_vocab.word_to_id.keys()) +
-                "\tattribute counts\tfull_agreement\n")
-        for sen in data.values():
-            # print_json(sen, attr_vocab)
-            # sen['attr_stats'] = [
-            sen['full_agreement'] = all_equal(sen['annot'].values())
-            f.write(get_tsv_line(sen, attr_vocab))
+    cols = ["sen_id", "sen"] + list(annotator_vocab.word_to_id.keys()) + \
+        ["attribute counts", "full_agreement"]
+    df = pandas.DataFrame(columns=cols)
+    for sen in data.values():
+        sen['full_agreement'] = all_equal(sen['annot'].values())
+        try: 
+            df = df.append(pandas.DataFrame([
+                [sen['id'], sen['text']] +
+                [",".join(
+                    attr_vocab.get_word(attr) for attr in attrs) if attrs else 'no_attr' 
+                    for ann, attrs in sen['annot'].items()] +
+                _get_attr_summary(attr_vocab, sen) +
+                [sen['full_agreement']]
+            ], columns=cols), ignore_index=True)
+        except:
+            pass
+    df.to_csv(path_or_buf=out_fn, sep="\t", index=False)
+    disagree = df[df["full_agreement"] == False].iloc[:, [0]]
+    _print_disagree(df, disagree)
 
 
-def get_tsv_line(sen, attr_vocab):
-    return "{0}\t{1}\t{2}\t{3}\t{4}\n".format(
-        sen['id'],
-        sen['text'],
-        "\t".join(
-            ",".join(
-                attr_vocab.get_word(attr)
-                for attr in attrs) if attrs else 'no_attr'
-            for ann, attrs in sen['annot'].items()),
-        " ".join(
-            "{}:{}".format(attr_vocab.get_word(attr), sen['attr_stats'][attr])
-            for attr in set(
-                a for attrs in sen['annot'].values() for a in sorted(attrs))),
-        sen['full_agreement']
-        )
+def _get_attr_summary(attr_vocab, sen):
+    return [" ".join(
+        "{}:{}".format(
+            attr_vocab.get_word(attr), sen['attr_stats'][attr]) 
+            for attr in set(a for attrs in sen['annot'].values() for a in sorted(attrs)))]
+
+
+def _get_attr_by_annotator(attr_vocab, sen):
+    return [",".join(
+        attr_vocab.get_word(attr) for attr in attrs) if attrs else 'no_attr' 
+        for ann, attrs in sen['annot'].items()]
 
 
 def print_json(sen, attr_vocab):
@@ -313,12 +365,14 @@ def print_json(sen, attr_vocab):
             ann: [attr_vocab.get_word(attr) for attr in attrs]
             for ann, attrs in sen['annot'].items()}}))
 
+
 def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-of", "--output-file", type=str)
     parser.add_argument("-a", "--annotations", nargs="+", default=None)
     parser.set_defaults(output_file='annotation_output.tsv')
     return parser.parse_args()
+
 
 def main():
     logging.basicConfig(
@@ -327,8 +381,9 @@ def main():
         "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     args = get_args()
     filenames = args.annotations
-    if len(filenames) < 3:
-        logging.error("At least two annotation files and one gold data are required.")
+    if len(filenames) < 2:
+        logging.error(
+            "At least two annotation files are required.")
         return
     out_fn = args.output_file
     data, attr_vocab, annotator_vocab = load_data(filenames)

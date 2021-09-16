@@ -30,7 +30,7 @@ class SenToAttrMap():
                         if gold_attrs is None:
                             # support outputs from convert.py
                             gold_attrs = sen['attributes']
-                        yield sen['text'], gold_attrs
+                        yield sen['text'], gold_attrs, fn
 
     def sen_to_key(self, sen):
         if not self.fuzzy:
@@ -40,13 +40,13 @@ class SenToAttrMap():
 
     def build_map(self, gold_dir):
         self.sen_to_attr = {}
-        for sen, attr in self.gen_sens_attrs(gold_dir):
+        for sen, attr, fn in self.gen_sens_attrs(gold_dir):
             sen_key = self.sen_to_key(sen)
             if sen_key in self.sen_to_attr:
                 if self.sen_to_attr[sen_key] == attr:
                     continue
                 raise ValueError(
-                    f'matching sens in gold with different attrs: {sen_key}')
+                    f'matching sens in gold with different attrs: {sen_key}\t{fn}')
 
             self.sen_to_attr[sen_key] = attr
 

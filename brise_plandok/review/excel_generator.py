@@ -1,4 +1,4 @@
-from brise_plandok.constants import GOLD_COLOR, GRAY_COLOR
+from brise_plandok.constants import GOLD_COLOR, GRAY_COLOR, ROW_HEIGHT
 from openpyxl.styles.fills import PatternFill
 from utils import normalize_attribute_name
 from brise_plandok.review.constants import ANNOTATORS_OFFSET, ANNOTATOR_SEPARATOR, ATTRIBUTE_NAMED_RANGE, ATTRIBUTE_OFFSET, ATTRIBUTE_REVIEW_NAMED_RANGE, ATTRIBUTE_REVIEW_OFFSET, ATTRIBUTE_STEP, CATEGORY_OFFSET, COUNT_OFFSET, FIRST_DATA_ROW, LABEL_OFFSET, REVIEW_SHEET_NAME, SENTENCE_REVIEW_NAMED_RANGE, SEN_ID_COL, SEN_REVIEW_COL, SEN_TEXT_COL
@@ -34,6 +34,7 @@ class ExcelGenerator:
             self._fill_attributes(annotation, review_sheet, row)
             row += 1
         self._add_validation(review_sheet)
+        self._set_row_height(review_sheet)
 
     def _fill_sentences(self, sen_id, review_sheet, row, annotation):
         review_sheet.cell(row=row, column=SEN_ID_COL).value = sen_id
@@ -153,6 +154,11 @@ class ExcelGenerator:
 
     def _is_category_cell(self, col):
         return (col - ATTRIBUTE_OFFSET) % ATTRIBUTE_STEP == 0
+
+    def _set_row_height(self, review_sheet):
+        for row in range(FIRST_DATA_ROW, review_sheet.max_row):
+            review_sheet.row_dimensions[row].height = ROW_HEIGHT
+            
 
     def _save_workbook(self, workbook):
         workbook.save(self.output_file)

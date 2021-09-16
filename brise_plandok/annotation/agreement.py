@@ -236,6 +236,8 @@ def load_data(filenames):
         annotator = annotator_vocab.get_id(annotator.lower(), allow_new=True)
 
         for sen in gen_sens_from_file(fn, filetype):
+            if _is_header(sen):
+                continue
             if sen['id'] in data:
                 assert data[sen['id']]['text'] == sen['text'], f'changed text in {fn} sentence {sen["id"]}'  # noqa
             else:
@@ -259,6 +261,10 @@ def load_data(filenames):
 
     return data, attr_vocab, annotator_vocab
 
+
+def _is_header(sen):
+    section = int(sen["id"].split("_")[-2])
+    return section == 0
 
 def remove_empty(data):
     new_data = {

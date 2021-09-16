@@ -30,7 +30,10 @@ class SenToAttrMap():
                         if gold_attrs is None:
                             # support outputs from convert.py
                             gold_attrs = sen['attributes']
-                        yield sen['text'], gold_attrs, fn
+                        sen_id = sen.get("id")
+                        if sen_id is None:
+                            sen_id = sen["sen_id"]
+                        yield sen_id, sen['text'], gold_attrs, fn
 
     def sen_to_key(self, sen):
         if not self.fuzzy:
@@ -40,19 +43,34 @@ class SenToAttrMap():
 
     def build_map(self, gold_dir):
         self.sen_to_attr = {}
-        for sen, attr, fn in self.gen_sens_attrs(gold_dir):
+        for sen_id, sen, attr, fn in self.gen_sens_attrs(gold_dir):
             sen_key = self.sen_to_key(sen)
             if sen_key in self.sen_to_attr:
-                if self.sen_to_attr[sen_key] == attr:
+                if self.sen_to_attr[sen_key]["attr"] == attr:
+                    self.sen_to_attr[sen_key]["sens"].append(sen_id)
                     continue
-                raise ValueError(
-                    f'matching sens in gold with different attrs: {sen_key}\t{fn}')
+                else:
+                    old_attrs = json.dumps(self.sen_to_attr[sen_key]["attr"], indent=2)
+                    old_sens = self.sen_to_attr[sen_key]["sens"]
+                    new_attrs = json.dumps(attr, indent=2)
+                    new_sen = sen_id
+                    logging.error(f"matching sens in gold with different attrs:\n{fn}\n" + 
+                        f"\nold attrs {old_sens}:\n{old_attrs}\n\nnew attrs {new_sen}:\n{new_attrs}\n")
+                    raise ValueError(f'gold conflict')
 
-            self.sen_to_attr[sen_key] = attr
+            self.sen_to_attr[sen_key] = {
+                "attr": sorted(attr, key=lambda a: a["name"]), 
+                "sens": [
+                    sen_id
+                ]
+            }
 
     def get_attrs(self, sen):
         sen_key = self.sen_to_key(sen)
-        return self.sen_to_attr.get(sen_key)
+        full_attr = self.sen_to_attr.get(sen_key)
+        if full_attr is None:
+            return None
+        return full_attr["attr"]
 
 
 def attrs_from_gold_sen(sen, sen_to_attr, overwrite):

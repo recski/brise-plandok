@@ -13,6 +13,7 @@ from brise_plandok.annotation.attributes import ATTR_TO_CAT
 
 IS_GOLD = "gold_attr"
 
+
 class ExcelGenerator:
 
     def __init__(self, output_file, sen_to_gold_attrs=None):
@@ -67,7 +68,7 @@ class ExcelGenerator:
         if gold_full_attributes:
             gold_attributes = set([attr['name']
                                   for attr in gold_full_attributes])
-            self._enrich_attributes_with_gold(gold_attributes, annotation)
+            self._substitute_with_gold(gold_attributes, annotation)
         for attribute_name, attribute_props in annotation["attributes"].items():
             attribute_name = normalize_attribute_name(attribute_name)
             if attribute_name not in ATTR_TO_CAT:
@@ -100,7 +101,7 @@ class ExcelGenerator:
             self._color_gray(review_sheet, row, col + COUNT_OFFSET)
             self._color_gray(review_sheet, row, col + ANNOTATORS_OFFSET)
 
-    def _enrich_attributes_with_gold(self, gold_attributes, annotation):
+    def _substitute_with_gold(self, gold_attributes, annotation):
         for attribute_name, attribute_props in annotation["attributes"].items():
             if attribute_name in gold_attributes:
                 attribute_props[IS_GOLD] = True
@@ -109,8 +110,9 @@ class ExcelGenerator:
         for attribute in gold_attributes:
             if attribute not in annotation["attributes"]:
                 annotation["attributes"][attribute] = {
-                    "count": 0, 
-                    IS_GOLD: True
+                    "count": 0,
+                    IS_GOLD: True,
+                    "annotators": ["gold"],
                 }
 
     def _add_validation(self, review_sheet):
@@ -158,7 +160,6 @@ class ExcelGenerator:
     def _set_row_height(self, review_sheet):
         for row in range(FIRST_DATA_ROW, review_sheet.max_row):
             review_sheet.row_dimensions[row].height = ROW_HEIGHT
-            
 
     def _save_workbook(self, workbook):
         workbook.save(self.output_file)

@@ -1,20 +1,51 @@
 
 import json
 import logging
-from brise_plandok.attrs_from_gold import attrs_from_gold_sen
+import os
+from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.constants import DocumentFields, OldDocumentFields, OldSectionFields, OldSenFields, SenFields
 
+def generate_data(doc_ids, gen_attr_folder, data_folder):
+    sen_to_gold_attrs = SenToAttrMap(
+            gold_dir=data_folder, fuzzy=True) if data_folder else None
+    for doc_id in doc_ids:
+        full_data_file = os.path.join(data_folder, doc_id+".json")
+        json_file = os.path.join(gen_attr_folder, doc_id+".jsonl")
+        yield _get_doc(json_file, full_data_file, doc_id, sen_to_gold_attrs)
 
-def create_data(doc_id, get_attr, sen_to_gold_attrs, full_data_file):
+def _get_doc(json_file, full_data_file, doc_id, sen_to_gold_attrs):
+    full_data = _get_full_data(full_data_file)
+    if full_data is not None:
+        logging.info(
+            f"Full data json already exists. The content of this file will be used w/o any modification: {full_data_file}")
+        return full_data
+    gen_attrs = _get_gen_attrs(json_file)
+    return _create_data_for_doc(doc_id, gen_attrs, sen_to_gold_attrs, full_data_file)
+
+
+def _get_full_data(data_file):
+    if os.path.exists(data_file):
+        with open(data_file) as f:
+            return json.load(f)
+    return None
+
+
+def _get_gen_attrs(json_file):
+    with open(json_file) as f:
+        lines = f.readlines()
+        assert len(lines) == 1
+        return json.loads(lines[0].strip())
+
+def _create_data_for_doc(doc_id, get_attr, sen_to_gold_attrs, full_data_file):
     doc = {
         DocumentFields.ID: doc_id,
         DocumentFields.SENS: {},
     }
     for section in get_attr[OldDocumentFields.SECTIONS]:
         for sen in section[OldSectionFields.SENS]:
-            already_gold, gold_exists, gold_attrs = get_gold_related_attrs(sen_to_gold_attrs, sen)
+            already_gold, gold_exists, gold_attrs = _get_gold_related_attrs(sen_to_gold_attrs, sen)
             sen_id = sen[OldSenFields.ID]
-            doc[DocumentFields.SENS][sen_id] = get_sen(
+            doc[DocumentFields.SENS][sen_id] = _get_sen(
                 sen_id,
                 sen[OldSenFields.TEXT],
                 gen_attributes_on_annotation=sen[OldSenFields.GEN_ATTRIBUTES],
@@ -22,11 +53,11 @@ def create_data(doc_id, get_attr, sen_to_gold_attrs, full_data_file):
                 gold_exists=gold_exists,
                 gold_attributes=gold_attrs
             )
-    save_data(full_data_file, doc)
+    _save_data(full_data_file, doc)
     return doc
             
 
-def get_gold_related_attrs(sen_to_gold_attrs, sen):
+def _get_gold_related_attrs(sen_to_gold_attrs, sen):
     already_gold = False
     gold_exists = False
     gold_attrs = []
@@ -39,7 +70,7 @@ def get_gold_related_attrs(sen_to_gold_attrs, sen):
     return already_gold, gold_exists, gold_attrs
 
 
-def get_sen(
+def _get_sen(
     sen_id,
     text,
     modality=None,
@@ -64,7 +95,7 @@ def get_sen(
         SenFields.SEGMENTATION_ERROR: segmentation_error,
     }
 
-def save_data(full_data_file, doc):
+def _save_data(full_data_file, doc):
     logging.info(f"Saving full data to: {full_data_file}")
     with open(full_data_file, "w") as f:
         json.dump(doc, f)

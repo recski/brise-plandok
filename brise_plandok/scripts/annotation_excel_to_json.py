@@ -1,5 +1,5 @@
 import sys
-from brise_plandok.constants import DataFields
+from brise_plandok.constants import SenFields
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 import json
 import os
@@ -57,23 +57,23 @@ class FullDataConverter:
             already_gold_on_annotation = self._is_already_gold(sheet, row)
             gold_exists, gold_attr = self._get_gold_attr(text)
             yield id, {
-                DataFields.ID: id,
-                DataFields.TEXT: text,
-                DataFields.MODALITY: None,
-                DataFields.ALREADY_GOLD_ON_ANNOTATION: already_gold_on_annotation,
-                DataFields.GOLD_EXISTS: gold_exists,
-                DataFields.GOLD_ATTRIBUTES: gold_attr,
-                DataFields.GEN_ATTRIBUTES_ON_ANNOTATION: gen_attributes,
-                DataFields.ANNOTATED_ATTRIBUTES: [],
-                DataFields.GEN_ATTRIBUTES: [],
-                DataFields.SEGMENTATION_ERROR: False,
+                SenFields.ID: id,
+                SenFields.TEXT: text,
+                SenFields.MODALITY: None,
+                SenFields.ALREADY_GOLD_ON_ANNOTATION: already_gold_on_annotation,
+                SenFields.GOLD_EXISTS: gold_exists,
+                SenFields.GOLD_ATTRIBUTES: gold_attr,
+                SenFields.GEN_ATTRIBUTES_ON_ANNOTATION: gen_attributes,
+                SenFields.ANNOTATED_ATTRIBUTES: [],
+                SenFields.GEN_ATTRIBUTES: [],
+                SenFields.SEGMENTATION_ERROR: False,
             }
 
     def _get_gen_attributes(self, doc, id):
         for section in doc["sections"]:
             for sen in section["sens"]:
                 if sen["sen_id"] == id:
-                    return sen[DataFields.GEN_ATTRIBUTES]
+                    return sen[SenFields.GEN_ATTRIBUTES]
 
     def _is_already_gold(self, sheet, row):
         cell = sheet.cell(row=row, column=ID_COL)
@@ -85,10 +85,10 @@ class FullDataConverter:
             json.dump(doc, f)
 
     def _get_gold_attr(self, text):
-        sen = {DataFields.TEXT: text}
+        sen = {SenFields.TEXT: text}
         attrs_from_gold_sen(sen, self.sen_to_gold_attrs, False)
-        gold_attr = sen[DataFields.GOLD_ATTRIBUTES] if DataFields.GOLD_ATTRIBUTES in sen else []
-        return sen[DataFields.GOLD_EXISTS], gold_attr
+        gold_attr = sen[SenFields.GOLD_ATTRIBUTES] if SenFields.GOLD_ATTRIBUTES in sen else []
+        return sen[SenFields.GOLD_EXISTS], gold_attr
 
 
 def main():

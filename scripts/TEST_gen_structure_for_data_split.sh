@@ -9,6 +9,7 @@ mkdir brise_plandok/data_split/example
 mkdir brise_plandok/data_split/example/json
 mkdir brise_plandok/data_split/example/json_attr
 mkdir brise_plandok/data_split/example/xlsx
+mkdir brise_plandok/data_split/example/full_data
 mkdir $annotators_folder
 
 for ann in 01 02 03 04 05 06

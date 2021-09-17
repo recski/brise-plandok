@@ -1,4 +1,5 @@
 import argparse
+from brise_plandok.constants import SenFields
 import json
 import logging
 import os
@@ -25,15 +26,15 @@ class SenToAttrMap():
             with open(os.path.join(gold_dir, fn)) as f:
                 for line in f:
                     sens = json.loads(line)
-                    for sen in sens['sens']:
-                        gold_attrs = sen.get('gold_attributes')
+                    for sen_id, sen in sens['sens'].items():
+                        gold_attrs = sen.get(SenFields.GOLD_ATTRIBUTES)
                         if gold_attrs is None:
                             # support outputs from convert.py
-                            gold_attrs = sen['attributes']
-                        sen_id = sen.get("id")
+                            gold_attrs = sen[SenFields.ATTRIBUTES]
+                        sen_id = sen.get(SenFields.ID)
                         if sen_id is None:
                             sen_id = sen["sen_id"]
-                        yield sen_id, sen['text'], gold_attrs, fn
+                        yield sen_id, sen[SenFields.TEXT], gold_attrs, fn
 
     def sen_to_key(self, sen):
         if not self.fuzzy:
@@ -74,22 +75,22 @@ class SenToAttrMap():
 
 
 def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
-    if 'gold_exists' in sen:
+    if SenFields.GOLD_EXISTS in sen:
         if overwrite:
-            if sen['gold_exists']:
-                del sen['gold_attributes']
-                sen['gold_exists'] = False
+            if sen[SenFields.GOLD_EXISTS]:
+                del sen[SenFields.GEN_ATTRIBUTES]
+                sen[SenFields.GOLD_EXISTS] = False
         else:
             raise ValueError(
                 'field "gold_exists" already present in input and'
                 '--overwrite not set')
     else:
-        sen['gold_exists'] = False
+        sen[SenFields.GOLD_EXISTS] = False
 
     attrs = sen_to_attr.get_attrs(sen['text'])
     if attrs is not None:
-        sen['gold_exists'] = True
-        sen['gold_attributes'] = attrs
+        sen[SenFields.GOLD_EXISTS] = True
+        sen[SenFields.GOLD_ATTRIBUTES] = attrs
 
 
 def attrs_from_gold(args):

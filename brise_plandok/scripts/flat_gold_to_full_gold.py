@@ -1,5 +1,5 @@
 import sys
-from brise_plandok.constants import DataFields
+from brise_plandok.constants import SenFields
 import json
 import os
 from tqdm import tqdm
@@ -39,16 +39,16 @@ class FullDataConverter:
 
     def _get_sens(self, sen, sen_id):
         return {
-            DataFields.ID: sen_id,
-            DataFields.TEXT: sen["text"],
-            DataFields.MODALITY: None,
-            DataFields.ALREADY_GOLD_ON_ANNOTATION: False,
-            DataFields.GOLD_EXISTS: True,
-            DataFields.GOLD_ATTRIBUTES: sen["attributes"],
-            DataFields.GEN_ATTRIBUTES_ON_ANNOTATION: [],
-            DataFields.ANNOTATED_ATTRIBUTES: [],
-            DataFields.GEN_ATTRIBUTES: [],
-            DataFields.SEGMENTATION_ERROR: False,
+            SenFields.ID: sen_id,
+            SenFields.TEXT: sen["text"],
+            SenFields.MODALITY: None,
+            SenFields.ALREADY_GOLD_ON_ANNOTATION: False,
+            SenFields.GOLD_EXISTS: True,
+            SenFields.GOLD_ATTRIBUTES: sen["attributes"],
+            SenFields.GEN_ATTRIBUTES_ON_ANNOTATION: [],
+            SenFields.ANNOTATED_ATTRIBUTES: [],
+            SenFields.GEN_ATTRIBUTES: [],
+            SenFields.SEGMENTATION_ERROR: False,
         }
 
     def _save(self, doc_id, doc):

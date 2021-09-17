@@ -16,7 +16,11 @@ ROW_HEIGHT = 75
 
 ANNOTATOR_NAME_INDEX = -3
 
-class DataFields:
+class DocumentFields:
+    ID = "id"
+    SENS = "sens"
+
+class SenFields:
     ID = "id"
     TEXT = "text"
     MODALITY = "modality"
@@ -28,4 +32,15 @@ class DataFields:
     ANNOTATED_ATTRIBUTES = "annotated_attributes"
     ATTRIBUTES = "attributes"
     SEGMENTATION_ERROR = "segmentation_error"
-    
+
+class OldDocumentFields:
+    ID = "id"
+    SECTIONS = "sections"    
+
+class OldSectionFields:
+    SENS = "sens"    
+
+class OldSenFields:
+    ID = "sen_id"
+    TEXT = "text"
+    GEN_ATTRIBUTES = "gen_attributes"

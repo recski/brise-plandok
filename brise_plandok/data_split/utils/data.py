@@ -69,7 +69,7 @@ def attr_list_to_dict(attr_list):
 def _get_gold_related_attrs(sen_to_gold_attrs, sen):
     already_gold = False
     gold_exists = False
-    gold_attrs = []
+    gold_attrs = {}
     if sen_to_gold_attrs:
         attrs_from_gold_sen(sen, sen_to_gold_attrs, False)
         gold_exists = sen[SenFields.GOLD_EXISTS]

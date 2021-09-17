@@ -8,7 +8,7 @@ JSON is used as the internal format for conversion
 """
 import argparse
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
-from brise_plandok.constants import GOLD_PREFIX, DocumentFields, OldSenFields, SenFields
+from brise_plandok.constants import DO_NOT_ANNOTATE, GOLD_PREFIX, DocumentFields, OldSenFields, SenFields
 import csv
 import json
 import logging
@@ -292,7 +292,7 @@ class Converter():
         for sen in sens:
             atts = []
             for attribute in sen["attributes"]:
-                if attribute not in ATTR_TO_CAT:
+                if attribute not in ATTR_TO_CAT and attribute != DO_NOT_ANNOTATE:
                     logging.warning(
                         f"{attribute} attribute not in the attribute list, will be skipped!")
                     continue

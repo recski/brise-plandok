@@ -1,4 +1,7 @@
-from brise_plandok.constants import GOLD_COLOR, GRAY_COLOR, ROW_HEIGHT
+from brise_plandok.constants import GOLD_COLOR, GRAY_COLOR, ROW_HEIGHT, Review
+from brise_plandok.constants import SenFields as SF
+from brise_plandok.constants import DocumentFields as DF
+from brise_plandok.constants import AnnotatedAttributeFields as AAF
 from openpyxl.styles.fills import PatternFill
 from utils import normalize_attribute_name
 from brise_plandok.review.constants import ANNOTATORS_OFFSET, ANNOTATOR_SEPARATOR, ATTRIBUTE_NAMED_RANGE, ATTRIBUTE_OFFSET, ATTRIBUTE_REVIEW_NAMED_RANGE, ATTRIBUTE_REVIEW_OFFSET, ATTRIBUTE_STEP, CATEGORY_OFFSET, COUNT_OFFSET, FIRST_DATA_ROW, LABEL_OFFSET, REVIEW_SHEET_NAME, SENTENCE_REVIEW_NAMED_RANGE, SEN_ID_COL, SEN_REVIEW_COL, SEN_TEXT_COL
@@ -22,34 +25,34 @@ class ExcelGenerator:
         self.output_file = output_file
         self.sen_to_gold_attrs = sen_to_gold_attrs
 
-    def generate_review_excel(self, merged_annotations):
+    def generate_review_excel(self, data):
         workbook = openpyxl.load_workbook(self.input_template)
-        self._fill_workbook(workbook, merged_annotations)
+        self._fill_workbook(workbook, data)
         self._save_workbook(workbook)
 
-    def _fill_workbook(self, workbook, merged_annotations):
+    def _fill_workbook(self, workbook, data):
         review_sheet = workbook[REVIEW_SHEET_NAME]
         row = FIRST_DATA_ROW
-        for sen_id, annotation in merged_annotations.items():
-            self._fill_sentences(sen_id, review_sheet, row, annotation)
-            self._fill_attributes(annotation, review_sheet, row)
+        for sen_id, sen in data[DF.SENS].items():
+            self._fill_sentences(sen_id, review_sheet, row, sen)
+            self._fill_attributes(sen, review_sheet, row)
             row += 1
         self._add_validation(review_sheet)
         self._set_row_height(review_sheet)
 
-    def _fill_sentences(self, sen_id, review_sheet, row, annotation):
+    def _fill_sentences(self, sen_id, review_sheet, row, sen):
         review_sheet.cell(row=row, column=SEN_ID_COL).value = sen_id
         review_sheet.cell(
-            row=row, column=SEN_TEXT_COL).value = annotation["text"]
-        if self._is_gold(annotation):
+            row=row, column=SEN_TEXT_COL).value = sen[SF.TEXT]
+        if self._is_gold(sen):
             self._color_gold(review_sheet, row, SEN_ID_COL)
             self._color_gold(review_sheet, row, SEN_TEXT_COL)
         review_sheet.cell(
             row=row, column=SEN_TEXT_COL).alignment = Alignment(wrapText=True)
         review_sheet.cell(row=row, column=SEN_TEXT_COL).font = Font(size=12)
 
-    def _is_gold(self, annotation):
-        return self.sen_to_gold_attrs.get_attrs(annotation['text']) if self.sen_to_gold_attrs else False
+    def _is_gold(self, sen):
+        return sen[SF.GOLD_EXISTS]
 
     def _color_gray(self, review_sheet, row, col):
         self._color(review_sheet, row, col, GRAY_COLOR)
@@ -61,45 +64,77 @@ class ExcelGenerator:
         review_sheet.cell(row=row, column=col).fill = PatternFill(
             fgColor=color, fill_type="solid")
 
-    def _fill_attributes(self, annotation, review_sheet, row):
+    def _fill_attributes(self, sen, review_sheet, row):
         col = ATTRIBUTE_OFFSET
-        gold_full_attributes = self.sen_to_gold_attrs.get_attrs(
-            annotation['text']) if self.sen_to_gold_attrs else []
-        if gold_full_attributes:
-            gold_attributes = set([attr['name']
-                                  for attr in gold_full_attributes])
-            self._substitute_with_gold(gold_attributes, annotation)
-        for attribute_name, attribute_props in annotation["attributes"].items():
+        for attribute_name in self._get_annotated_and_gold_attrs(sen):
             attribute_name = normalize_attribute_name(attribute_name)
             if attribute_name not in ATTR_TO_CAT:
                 logging.warn(
                     f"\"{attribute_name}\" does not belong to any category - will be ignored")
             else:
                 self._fill_attribute(
-                    attribute_name, attribute_props, review_sheet, col, row)
+                    attribute_name, sen, review_sheet, col, row)
                 col += ATTRIBUTE_STEP
 
-    def _fill_attribute(self, attribute_name, attribute_props, review_sheet, col, row):
+    def _get_annotated_and_gold_attrs(self, sen):
+        return set(list(sen[SF.ANNOTATED_ATTRIBUTES].keys()) + list(sen[SF.GOLD_ATTRIBUTES].keys()))
+
+    def _fill_attribute(self, attribute_name, sen, review_sheet, col, row):
         review_sheet.cell(
             row=row, column=col+CATEGORY_OFFSET).value = ATTR_TO_CAT[attribute_name]
         review_sheet.cell(row=row, column=col +
                           LABEL_OFFSET).value = attribute_name
+        self._set_annotator_count(attribute_name, sen, review_sheet, row, col)
+        self._set_annotator_text(attribute_name, sen, review_sheet, row, col)
+        self._set_review_value(attribute_name, sen, review_sheet, row, col)
+
+    def _set_annotator_count(self, attribute_name, sen, review_sheet, row, col):
+        count = 0
+        if attribute_name not in sen[SF.ANNOTATED_ATTRIBUTES]:
+            logging.info(
+                f"no annotator found - setting count for {attribute_name} to 0")
+        else:
+            count = len(sen[SF.ANNOTATED_ATTRIBUTES]
+                        [attribute_name][AAF.ANNOTATORS])
         review_sheet.cell(row=row, column=col +
-                          COUNT_OFFSET).value = attribute_props["count"]
+                          COUNT_OFFSET).value = count
+
+    def _set_annotator_text(self, attribute_name, sen, review_sheet, row, col):
+        annotators = ""
+        if attribute_name not in sen[SF.ANNOTATED_ATTRIBUTES]:
+            logging.info(
+                f"no annotator found - setting annotator for {attribute_name} to gold")
+            annotators = "gold"
+        else:
+            annotators = ANNOTATOR_SEPARATOR.join(
+                sen[SF.ANNOTATED_ATTRIBUTES][attribute_name][AAF.ANNOTATORS])
         review_sheet.cell(row=row, column=col +
-                          ANNOTATORS_OFFSET).value = ANNOTATOR_SEPARATOR.join(attribute_props["annotators"])
-        review_sheet.cell(row=row, column=col +
-                          ATTRIBUTE_REVIEW_OFFSET).value = "OK"
-        if IS_GOLD in attribute_props and attribute_props[IS_GOLD]:
-            self._color_gold(review_sheet, row, col + CATEGORY_OFFSET)
-            self._color_gold(review_sheet, row, col + LABEL_OFFSET)
-            self._color_gold(review_sheet, row, col + COUNT_OFFSET)
-            self._color_gold(review_sheet, row, col + ANNOTATORS_OFFSET)
-        elif attribute_props["generated"]:
+                          ANNOTATORS_OFFSET).value = annotators
+
+    def _set_review_value(self, attribute_name, sen, review_sheet, row, col):
+        review_value = Review.OK
+        if self._is_gold(sen):
+            review_value = self._set_gold_review_value(
+                attribute_name, sen, review_sheet, row, col)
+        elif attribute_name in sen[SF.GEN_ATTRIBUTES_ON_ANNOTATION]:
             self._color_gray(review_sheet, row, col + CATEGORY_OFFSET)
             self._color_gray(review_sheet, row, col + LABEL_OFFSET)
             self._color_gray(review_sheet, row, col + COUNT_OFFSET)
             self._color_gray(review_sheet, row, col + ANNOTATORS_OFFSET)
+        review_sheet.cell(row=row, column=col +
+                          ATTRIBUTE_REVIEW_OFFSET).value = review_value
+
+    def _set_gold_review_value(self, attribute_name, sen, review_sheet, row, col):
+        if attribute_name not in sen[SF.GOLD_ATTRIBUTES]:
+            return Review.ERROR
+        else:
+            self._color_gold(review_sheet, row, col + CATEGORY_OFFSET)
+            self._color_gold(review_sheet, row, col + LABEL_OFFSET)
+            self._color_gold(review_sheet, row, col + COUNT_OFFSET)
+            self._color_gold(review_sheet, row, col + ANNOTATORS_OFFSET)
+            if attribute_name not in sen[SF.ANNOTATED_ATTRIBUTES]:
+                return Review.MISSING
+        return Review.OK
 
     def _substitute_with_gold(self, gold_attributes, annotation):
         for attribute_name, attribute_props in annotation["attributes"].items():

@@ -15,10 +15,17 @@ GRAY_COLOR = "DCDCDC"
 ROW_HEIGHT = 75
 
 ANNOTATOR_NAME_INDEX = -3
+DO_NOT_ANNOTATE = "DON'T ANNOTATE THIS SENTENCE"
+
+class Review:
+    OK = "OK"
+    MISSING = "MISSING"
+    ERROR = "ERROR"
 
 class DocumentFields:
     ID = "id"
     SENS = "sens"
+    ANNOTATORS = "annotators"
 
 class SenFields:
     ID = "id"

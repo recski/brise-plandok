@@ -33,6 +33,14 @@ class SenFields:
     ATTRIBUTES = "attributes"
     SEGMENTATION_ERROR = "segmentation_error"
 
+class AttributeFields:
+    NAME = "name"
+    TYPE = "type"
+    VALUE = "value"
+
+class AnnotatedAttributeFields:
+    ANNOTATORS = "annotators"
+
 class OldDocumentFields:
     ID = "id"
     SECTIONS = "sections"    
@@ -44,3 +52,4 @@ class OldSenFields:
     ID = "sen_id"
     TEXT = "text"
     GEN_ATTRIBUTES = "gen_attributes"
+    ATTRIBUTES = "attributes"

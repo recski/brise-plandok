@@ -8,7 +8,7 @@ JSON is used as the internal format for conversion
 """
 import argparse
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
-from brise_plandok.constants import GOLD_PREFIX, DocumentFields, SenFields
+from brise_plandok.constants import GOLD_PREFIX, DocumentFields, OldSenFields, SenFields
 import csv
 import json
 import logging
@@ -373,7 +373,7 @@ class Converter():
             return SenFields.GOLD_ATTRIBUTES
         if self.gen_attributes and SenFields.GEN_ATTRIBUTES_ON_ANNOTATION in sen:
             return SenFields.GEN_ATTRIBUTES_ON_ANNOTATION
-        return SenFields.ATTRIBUTES
+        return OldSenFields.ATTRIBUTES
 
     def _gold_exists(self, sen):
         return SenFields.GOLD_EXISTS in sen and sen[SenFields.GOLD_EXISTS]

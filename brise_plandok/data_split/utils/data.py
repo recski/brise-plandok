@@ -78,7 +78,7 @@ def _get_sen(
     gold_exists=False,
     gold_attributes=[],
     gen_attributes_on_annotation=[],
-    annotated_attributes=[],
+    annotated_attributes={},
     gen_attributes=[],
     segmentation_error=False
 ):

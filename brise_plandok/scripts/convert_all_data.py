@@ -1,9 +1,9 @@
+from brise_plandok.data_split.utils.data import attr_list_to_dict
 from brise_plandok.utils import dump_json, load_json
 import sys
 from brise_plandok.constants import DocumentFields, SenFields
 import json
 import os
-from tqdm import tqdm
 
 
 DATA_FOLDER = "/home/eszter/research/brise-nlp/annotation/2021_09/full_data"
@@ -28,7 +28,9 @@ class FullDataConverter:
 
 
 def mapping_fn(sen):
-    sen[SenFields.ANNOTATED_ATTRIBUTES] = {}
+    old = sen[SenFields.GEN_ATTRIBUTES_ON_ANNOTATION]
+    new = attr_list_to_dict(old)
+    sen[SenFields.GEN_ATTRIBUTES_ON_ANNOTATION] = new
     return sen
 
 def main():

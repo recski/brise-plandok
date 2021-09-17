@@ -3,7 +3,7 @@ import json
 import logging
 import os
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
-from brise_plandok.constants import DocumentFields, OldDocumentFields, OldSectionFields, OldSenFields, SenFields
+from brise_plandok.constants import AttributeFields, DocumentFields, OldDocumentFields, OldSectionFields, OldSenFields, SenFields
 
 def generate_data(doc_ids, gen_attr_folder, data_folder):
     sen_to_gold_attrs = SenToAttrMap(
@@ -45,10 +45,11 @@ def _create_data_for_doc(doc_id, get_attr, sen_to_gold_attrs, full_data_file):
         for sen in section[OldSectionFields.SENS]:
             already_gold, gold_exists, gold_attrs = _get_gold_related_attrs(sen_to_gold_attrs, sen)
             sen_id = sen[OldSenFields.ID]
+            gen_attrs = attr_list_to_dict(sen[OldSenFields.GEN_ATTRIBUTES])
             doc[DocumentFields.SENS][sen_id] = _get_sen(
                 sen_id,
                 sen[OldSenFields.TEXT],
-                gen_attributes_on_annotation=sen[OldSenFields.GEN_ATTRIBUTES],
+                gen_attributes_on_annotation=gen_attrs,
                 already_gold_on_annotation=already_gold,
                 gold_exists=gold_exists,
                 gold_attributes=gold_attrs
@@ -56,6 +57,14 @@ def _create_data_for_doc(doc_id, get_attr, sen_to_gold_attrs, full_data_file):
     _save_data(full_data_file, doc)
     return doc
             
+def attr_list_to_dict(attr_list):
+    attr_dict = dict()
+    for attr in attr_list:
+        attr_name = attr[AttributeFields.NAME]
+        if attr_name in attr_dict:
+            logging.warning(f"Attribute '{attr_name}' was generated twice")
+        attr_dict[attr_name] = attr
+    return attr_dict
 
 def _get_gold_related_attrs(sen_to_gold_attrs, sen):
     already_gold = False
@@ -77,7 +86,7 @@ def _get_sen(
     already_gold_on_annotation=False,
     gold_exists=False,
     gold_attributes=[],
-    gen_attributes_on_annotation=[],
+    gen_attributes_on_annotation={},
     annotated_attributes={},
     gen_attributes=[],
     segmentation_error=False

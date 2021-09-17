@@ -1,5 +1,5 @@
+from utils import dump_json, load_json
 from brise_plandok.data_split.utils.data import attr_list_to_dict
-from brise_plandok.utils import dump_json, load_json
 import sys
 from brise_plandok.constants import DocumentFields, SenFields
 import json
@@ -28,9 +28,9 @@ class FullDataConverter:
 
 
 def mapping_fn(sen):
-    old = sen[SenFields.GEN_ATTRIBUTES_ON_ANNOTATION]
+    old = sen[SenFields.GOLD_ATTRIBUTES]
     new = attr_list_to_dict(old)
-    sen[SenFields.GEN_ATTRIBUTES_ON_ANNOTATION] = new
+    sen[SenFields.GOLD_ATTRIBUTES] = new
     return sen
 
 def main():

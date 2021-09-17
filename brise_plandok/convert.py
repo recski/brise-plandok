@@ -362,8 +362,9 @@ class Converter():
 
     def _parse_sen(self, sen, dataset):
         attribute_key = self._get_attribute_key(sen)
-        attrs_text = ",".join(
-            attr['name'] for attr in sen[attribute_key])
+        attrs_text = ""
+        if attribute_key in sen:
+            attrs_text = ",".join(sen[attribute_key].keys())
         if self._gold_exists(sen):
             attrs_text = GOLD_PREFIX + "," + attrs_text
         dataset.append((sen[SenFields.ID], sen[SenFields.TEXT], attrs_text))

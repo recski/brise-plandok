@@ -48,6 +48,7 @@ class FullDataConverter:
             DataFields.GEN_ATTRIBUTES_ON_ANNOTATION: [],
             DataFields.ANNOTATED_ATTRIBUTES: [],
             DataFields.GEN_ATTRIBUTES: [],
+            DataFields.SEGMENTATION_ERROR: False,
         }
 
     def _save(self, doc_id, doc):

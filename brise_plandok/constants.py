@@ -27,4 +27,5 @@ class DataFields:
     GOLD_ATTRIBUTES = "gold_attributes"
     ANNOTATED_ATTRIBUTES = "annotated_attributes"
     ATTRIBUTES = "attributes"
+    SEGMENTATION_ERROR = "segmentation_error"
     

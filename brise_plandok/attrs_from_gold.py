@@ -60,7 +60,7 @@ class SenToAttrMap():
                     raise ValueError(f'gold conflict')
 
             self.sen_to_attr[sen_key] = {
-                "attr": sorted(attr, key=lambda a: a["name"]), 
+                "attr": attr, 
                 "sens": [
                     sen_id
                 ]

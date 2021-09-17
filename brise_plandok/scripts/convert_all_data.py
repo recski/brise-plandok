@@ -6,7 +6,8 @@ import json
 import os
 
 
-DATA_FOLDER = "/home/eszter/research/brise-nlp/annotation/2021_09/full_data"
+# DATA_FOLDER = "/home/eszter/research/brise-nlp/annotation/2021_09/full_data"
+DATA_FOLDER = "/home/eszter/research/brise-plandok/brise_plandok/data_split/example/full_data/"
 
 class FullDataConverter:
 
@@ -28,9 +29,9 @@ class FullDataConverter:
 
 
 def mapping_fn(sen):
-    old = sen[SenFields.GOLD_ATTRIBUTES]
+    old = sen[SenFields.GEN_ATTRIBUTES_ON_ANNOTATION]
     new = attr_list_to_dict(old)
-    sen[SenFields.GOLD_ATTRIBUTES] = new
+    sen[SenFields.GEN_ATTRIBUTES_ON_ANNOTATION] = new
     return sen
 
 def main():

@@ -1,4 +1,4 @@
-from brise_plandok.constants import GOLD_COLOR, GRAY_COLOR, ROW_HEIGHT, Review
+from brise_plandok.constants import GOLD_COLOR, GRAY_COLOR, ROW_HEIGHT, Review, SenFields
 from brise_plandok.constants import SenFields as SF
 from brise_plandok.constants import DocumentFields as DF
 from brise_plandok.constants import AnnotatedAttributeFields as AAF
@@ -92,7 +92,7 @@ class ExcelGenerator:
         count = 0
         if attribute_name not in sen[SF.ANNOTATED_ATTRIBUTES]:
             logging.info(
-                f"no annotator found - setting count for {attribute_name} to 0")
+                f"{sen[SenFields.ID]}: no annotator found - setting count for {attribute_name} to 0")
         else:
             count = len(sen[SF.ANNOTATED_ATTRIBUTES]
                         [attribute_name][AAF.ANNOTATORS])
@@ -103,7 +103,7 @@ class ExcelGenerator:
         annotators = ""
         if attribute_name not in sen[SF.ANNOTATED_ATTRIBUTES]:
             logging.info(
-                f"no annotator found - setting annotator for {attribute_name} to gold")
+                f"{sen[SenFields.ID]}: no annotator found - setting annotator for {attribute_name} to gold")
             annotators = "gold"
         else:
             annotators = ANNOTATOR_SEPARATOR.join(
@@ -160,7 +160,7 @@ class ExcelGenerator:
         sen_review_val = DataValidation(
             type="list", formula1=f"={SENTENCE_REVIEW_NAMED_RANGE}")
         review_sheet.add_data_validation(sen_review_val)
-        for row in range(FIRST_DATA_ROW, review_sheet.max_row):
+        for row in range(FIRST_DATA_ROW, review_sheet.max_row + 1):
             self._add_validation_for_row(
                 review_sheet, row, data_val, review_val, sen_review_val)
 

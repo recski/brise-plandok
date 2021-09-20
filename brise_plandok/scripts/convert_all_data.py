@@ -1,15 +1,21 @@
 from utils import dump_json, load_json
-from brise_plandok.data_split.utils.data import attr_list_to_dict
+from brise_plandok.data_split.utils.data import _get_sen, attr_list_to_dict
 import sys
 from brise_plandok.constants import DocumentFields, SenFields
 import json
 import os
 
 
-# DATA_FOLDER = "/home/eszter/research/brise-nlp/annotation/2021_09/full_data"
-DATA_FOLDER = "/home/eszter/research/brise-plandok/brise_plandok/data_split/example/full_data/"
+DATA_FOLDER = "/home/eszter/research/brise-nlp/annotation/2021_09/full_data"
+# DATA_FOLDER = "/home/eszter/research/brise-plandok/brise_plandok/data_split/example/full_data/"
 
-DOC_ID_FILTER = []
+DOC_ID_FILTER = [
+    "7374",
+    "7857",
+    "7990",
+    "8065",
+    "8250",
+]
 
 
 class FullDataConverter:
@@ -46,13 +52,7 @@ def sen_mapping_fn(sen):
 
 def main():
     converter = FullDataConverter()
-    converter.convert_sens(doc_mapping_fn, lambda x: x, [
-        "7374",
-        "7857",
-        "7990",
-        "8065",
-        "8250",
-    ])
+    converter.convert_sens(doc_mapping_fn, lambda x: x)
 
 
 if __name__ == "__main__":

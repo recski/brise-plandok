@@ -6,18 +6,23 @@ import os
 from brise_plandok.review.excel_generator import ExcelGenerator
 import logging
 from brise_plandok.convert import Converter
-from brise_plandok.attrs_from_gold import SenToAttrMap
+from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 
 
 class AnnotationConverter(Converter):
 
+    def __init__(self, args):
+        super().__init__(args)
+        self.sen_to_attr = SenToAttrMap(args.gold_folder, fuzzy=True)
+
     def convert(self, annotated_xlsx_files, output_file, data_file):
         annotations = self._read_annotations(annotated_xlsx_files)
         assert data_file is not None
-        data = load_json(data_file)
-        self._fill_annotated_attributes(annotations, data)
-        dump_json(data, data_file)
-        self._generate_review_excel(data, output_file)
+        doc = load_json(data_file)
+        self._fill_annotated_attributes(annotations, doc)
+        self._fill_with_gold(doc)
+        dump_json(doc, data_file)
+        self._generate_review_excel(doc, output_file)
 
     def _read_annotations(self, annotated_xlsx_files):
         annotations = {}
@@ -68,6 +73,10 @@ class AnnotationConverter(Converter):
         if annotator not in annotators:
             annotators.append(annotator)
 
+    def _fill_with_gold(self, doc):
+        for sen in doc[DocumentFields.SENS].values():
+            attrs_from_gold_sen(sen, self.sen_to_attr, False)
+
     def _generate_review_excel(self, data, output_file):
         generator = ExcelGenerator(output_file)
         generator.generate_review_excel(data)
@@ -79,6 +88,7 @@ def get_args():
     parser.add_argument("-of", "--output-file", type=str)
     parser.add_argument("-a", "--annotations", nargs="+", default=None)
     parser.add_argument("-d", "--data-file", type=str, default=None)
+    parser.add_argument("-g", "--gold-folder", type=str, default=None)
     parser.set_defaults(input_format="XLSX", output_format="XLSX",
                         output_file="brise_plandok/review/output/review.xlsx",
                         gen_attributes=False)

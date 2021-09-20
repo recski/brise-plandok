@@ -63,6 +63,7 @@ class ExcelGenerator:
     def _color(self, review_sheet, row, col, color):
         review_sheet.cell(row=row, column=col).fill = PatternFill(
             fgColor=color, fill_type="solid")
+        review_sheet.cell(row=row, column=col).font = Font(size=12)
 
     def _fill_attributes(self, sen, review_sheet, row):
         col = ATTRIBUTE_OFFSET
@@ -193,7 +194,7 @@ class ExcelGenerator:
         return (col - ATTRIBUTE_OFFSET) % ATTRIBUTE_STEP == 0
 
     def _set_row_height(self, review_sheet):
-        for row in range(FIRST_DATA_ROW, review_sheet.max_row):
+        for row in range(FIRST_DATA_ROW, review_sheet.max_row + 1):
             review_sheet.row_dimensions[row].height = ROW_HEIGHT
 
     def _save_workbook(self, workbook):

@@ -87,7 +87,7 @@ def _get_sen(
     modality=None,
     already_gold_on_annotation=False,
     gold_exists=False,
-    gold_attributes=[],
+    gold_attributes={},
     gen_attributes_on_annotation={},
     annotated_attributes={},
     gen_attributes=[],

@@ -26,7 +26,7 @@ class FullDataConverter:
             assert os.path.isfile(data_path)
             assert data_file.split(".")[-1] == "json"
             doc = load_json(data_path)
-            if doc_id_filter and doc[DocumentFields.ID] in doc_id_filter:
+            if doc_id_filter is None or doc[DocumentFields.ID] in doc_id_filter:
                 doc = doc_map(doc)
                 for sen_id, sen in doc[DocumentFields.SENS].items():
                     doc[DocumentFields.SENS][sen_id] = sen_map(sen)
@@ -52,7 +52,7 @@ def sen_mapping_fn(sen):
 
 def main():
     converter = FullDataConverter()
-    converter.convert_sens(doc_mapping_fn, lambda x: x)
+    converter.convert_sens(lambda x: x, lambda x: x)
 
 
 if __name__ == "__main__":

@@ -40,6 +40,8 @@ def _create_data_for_doc(doc_id, get_attr, sen_to_gold_attrs, full_data_file):
     doc = {
         DocumentFields.ID: doc_id,
         DocumentFields.SENS: {},
+        DocumentFields.ANNOTATORS: {},
+        DocumentFields.IS_GOLD: False,
     }
     for section in get_attr[OldDocumentFields.SECTIONS]:
         for sen in section[OldSectionFields.SENS]:

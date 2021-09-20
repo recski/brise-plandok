@@ -26,6 +26,7 @@ class DocumentFields:
     ID = "id"
     SENS = "sens"
     ANNOTATORS = "annotators"
+    IS_GOLD = "is_gold"
 
 class SenFields:
     ID = "id"

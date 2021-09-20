@@ -1,5 +1,5 @@
 import argparse
-from brise_plandok.constants import SenFields
+from brise_plandok.constants import DocumentFields, SenFields
 import json
 import logging
 import os
@@ -25,16 +25,17 @@ class SenToAttrMap():
                 continue
             with open(os.path.join(gold_dir, fn)) as f:
                 for line in f:
-                    sens = json.loads(line)
-                    for sen_id, sen in sens['sens'].items():
-                        gold_attrs = sen.get(SenFields.GOLD_ATTRIBUTES)
-                        if gold_attrs is None:
-                            # support outputs from convert.py
-                            gold_attrs = sen[SenFields.ATTRIBUTES]
-                        sen_id = sen.get(SenFields.ID)
-                        if sen_id is None:
-                            sen_id = sen["sen_id"]
-                        yield sen_id, sen[SenFields.TEXT], gold_attrs, fn
+                    doc = json.loads(line)
+                    if doc[DocumentFields.IS_GOLD]:
+                        for sen_id, sen in doc[DocumentFields.SENS].items():
+                            gold_attrs = sen.get(SenFields.GOLD_ATTRIBUTES)
+                            if gold_attrs is None:
+                                # support outputs from convert.py
+                                gold_attrs = sen[SenFields.ATTRIBUTES]
+                            sen_id = sen.get(SenFields.ID)
+                            if sen_id is None:
+                                sen_id = sen[SenFields.ID]
+                            yield sen_id, sen[SenFields.TEXT], gold_attrs, fn
 
     def sen_to_key(self, sen):
         if not self.fuzzy:
@@ -72,6 +73,13 @@ class SenToAttrMap():
         if full_attr is None:
             return None
         return full_attr["attr"]
+
+    def get_sens(self, sen):
+        sen_key = self.sen_to_key(sen)
+        full_attr = self.sen_to_attr.get(sen_key)
+        if full_attr is None:
+            return None
+        return full_attr["sens"]
 
 
 def attrs_from_gold_sen(sen, sen_to_attr, overwrite):

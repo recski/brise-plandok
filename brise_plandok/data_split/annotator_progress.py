@@ -63,6 +63,10 @@ def get_ready_docs(doc_tracking_file, uploaded_dict, first, last, only_yes, only
     if only_yes:
         df = df[df[ANNOTATOR_HEADERS[3]] == "Yes"]
     logging.info(f"Documents ready for review:\n{df}")
+    twice_annotated  = df[df[ANNOTATOR_HEADERS[3]] == "Yes"].shape[0]
+    once_annotated = df[(df[ANNOTATOR_HEADERS[-2]] == True) | (df[ANNOTATOR_HEADERS[-1]] == True)].shape[0]
+    logging.info(f"{twice_annotated} documents have been annotated twice")
+    logging.info(f"{once_annotated} documents have been annotated once")
 
 
 def _get_uploaded_docs(dir):

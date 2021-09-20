@@ -52,12 +52,7 @@ class SenToAttrMap():
                     self.sen_to_attr[sen_key]["sens"].append(sen_id)
                     continue
                 else:
-                    old_attrs = json.dumps(self.sen_to_attr[sen_key]["attr"], indent=2)
-                    old_sens = self.sen_to_attr[sen_key]["sens"]
-                    new_attrs = json.dumps(attr, indent=2)
-                    new_sen = sen_id
-                    logging.error(f"matching sens in gold with different attrs:\n{fn}\n" + 
-                        f"\nold attrs {old_sens}:\n{old_attrs}\n\nnew attrs {new_sen}:\n{new_attrs}\n")
+                    self.log_conflict(sen, sen_key)
                     raise ValueError(f'gold conflict')
 
             self.sen_to_attr[sen_key] = {
@@ -81,21 +76,34 @@ class SenToAttrMap():
             return None
         return full_attr["sens"]
 
+    def log_conflict(self, sen, sen_key=None):
+        if sen_key is None:
+            sen_key = self.sen_to_key(sen[SenFields.TEXT])
+        old_attrs = json.dumps(self.sen_to_attr[sen_key]["attr"], indent=2)
+        old_sens = self.sen_to_attr[sen_key]["sens"]
+        new_attrs = json.dumps(sen[SenFields.GOLD_ATTRIBUTES], indent=2)
+        new_sen = sen[SenFields.ID]
+        logging.error(f"matching sens in gold with different attrs:\n" + 
+            f"\nold attrs {old_sens}:\n{old_attrs}\n\nnew attrs {new_sen}:\n{new_attrs}\n")
+
 
 def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
-    if SenFields.GOLD_EXISTS in sen:
+    attrs = sen_to_attr.get_attrs(sen['text'])
+
+    if SenFields.GOLD_EXISTS in sen and sen[SenFields.GOLD_EXISTS]:
         if overwrite:
             if sen[SenFields.GOLD_EXISTS]:
                 del sen[SenFields.GEN_ATTRIBUTES]
                 sen[SenFields.GOLD_EXISTS] = False
         else:
-            raise ValueError(
-                'field "gold_exists" already present in input and'
-                '--overwrite not set')
+            if sen[SenFields.GOLD_ATTRIBUTES] != attrs:
+                sen_to_attr.log_conflict(sen)
+                raise ValueError(
+                    'field "gold_exists" already present in input and'
+                    '--overwrite not set')
     else:
         sen[SenFields.GOLD_EXISTS] = False
 
-    attrs = sen_to_attr.get_attrs(sen['text'])
     if attrs is not None:
         sen[SenFields.GOLD_EXISTS] = True
         sen[SenFields.GOLD_ATTRIBUTES] = attrs

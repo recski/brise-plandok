@@ -1,10 +1,9 @@
 
 
-from brise_plandok.attrs_from_gold import SenToAttrMap
+from brise_plandok.constants import DocumentFields
 from brise_plandok.data_split.utils.assignments import update_assignments
 import logging
 from brise_plandok.data_split.utils.constants import ANNOTATOR_DOWNLOAD_FOLDER, ASSIGNMENT_ADDITIONAL_HEADER, ASSIGNMENT_DF_HEADER, ASSIGNMENT_XLSX
-import json
 import shutil
 from brise_plandok.convert import Converter
 import os
@@ -18,20 +17,13 @@ class ConverterArgs:
         self.gen_attributes = True
 
 
-def genereate_xlsx_files(doc_ids, json_folder, xlsx_folder, overwrite, gold_folder):
-    for doc_id in doc_ids:
+def genereate_xlsx_files(docs, xlsx_folder, overwrite):
+    for doc in docs:
+        doc_id = doc[DocumentFields.ID]
         xlsx_file = os.path.join(xlsx_folder, doc_id+".xlsx")
         if not overwrite and os.path.exists(xlsx_file):
             continue
-        json_file = os.path.join(json_folder, doc_id+".jsonl")
-        sen_to_gold_attrs = SenToAttrMap(
-            gold_dir=gold_folder, fuzzy=True) if gold_folder else None
-        converter = Converter(ConverterArgs(xlsx_file), sen_to_gold_attrs)
-        with open(json_file) as f:
-            lines = f.readlines()
-            assert len(lines) == 1
-            doc = json.loads(lines[0].strip())
-            converter.write_xlsx(doc, xlsx_file)
+        Converter(ConverterArgs(xlsx_file)).write_xlsx(doc, xlsx_file)
     logging.info("xlsx files have been generated from json files")
 
 
@@ -43,10 +35,10 @@ def distribute_xlsx_files(xlsx_folder, df, annotators_folder, update):
         for doc_id in doc_ids_for_annotator:
             _copy_xlsx_files_to_annotators(
                 doc_id, xlsx_folder, annotators_folder, annotator)
-        logging.info("xlsx files have been distributed to annotators")
         if update:
             update_assignments(doc_ids_for_annotator,
                                annotator, annotators_folder)
+    logging.info("xlsx files have been distributed to annotators")
 
 
 def _copy_xlsx_files_to_annotators(doc_id, xlsx_folder, annotators_folder, annotator):

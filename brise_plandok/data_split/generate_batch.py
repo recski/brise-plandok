@@ -1,4 +1,5 @@
 import argparse
+from brise_plandok.data_split.utils.data import generate_data
 from brise_plandok.data_split.utils.xlsx import distribute_xlsx_files, genereate_xlsx_files
 from brise_plandok.data_split.utils.assignments import fill_assignments_with_batch
 from brise_plandok.data_split.utils.cycles import get_cycle
@@ -9,27 +10,28 @@ from brise_plandok.data_split.utils.assignments import get_assignment
 import logging
 
 
-def generate_batch(doc_tracking_file, batch_size, json_folder, cycle_nr, annotators_folder, generate_xlsx, xlsx_folder, gold_folder, overwrite, update):
+def generate_batch(doc_tracking_file, batch_size, json_folder, cycle_nr, annotators_folder, generate_xlsx, xlsx_folder, data_folder, overwrite, update):
     docs_df = load_doc_tracking_data(doc_tracking_file)
-    next_docs = get_next_batch(docs_df, batch_size, True)
-    logging.info(f"next documents to assign: {next_docs}")
+    next_doc_ids = get_next_batch(docs_df, batch_size, True)
+    logging.info(f"next documents to assign: {next_doc_ids}")
 
-    calculate_sentence_counts(docs_df, next_docs, json_folder)
+    calculate_sentence_counts(docs_df, next_doc_ids, json_folder)
 
     cycle_df = get_cycle(cycle_nr)
     assignment_df = load_assignments(docs_df, annotators_folder)
-    partition = get_assignment(next_docs, docs_df, cycle_df.shape[0])
+    partition = get_assignment(next_doc_ids, docs_df, cycle_df.shape[0])
     logging.info(f"partition: {partition}")
 
-    fill_assignments_with_batch(docs_df, cycle_df, assignment_df, partition, next_docs)
+    fill_assignments_with_batch(
+        docs_df, cycle_df, assignment_df, partition, next_doc_ids)
     logging.info(f"assignments with new batch:\n{assignment_df}")
 
     if not generate_xlsx:
         logging.info(f"No xlsx files will be generated. Job done")
         return
 
-    genereate_xlsx_files(next_docs, json_folder,
-                         xlsx_folder, overwrite, gold_folder)
+    docs = generate_data(next_doc_ids, json_folder, data_folder)
+    genereate_xlsx_files(docs, xlsx_folder, overwrite)
     distribute_xlsx_files(xlsx_folder, assignment_df,
                           annotators_folder, update)
 
@@ -46,7 +48,7 @@ def get_args():
     parser.add_argument("-c", "--cycle", type=int)
     parser.add_argument("-af", "--annotators-folder", type=str)
     parser.add_argument("-xf", "--xlsx-folder", type=str, default=None)
-    parser.add_argument("-gf", "--gold-folder", type=str, default=None)
+    parser.add_argument("-df", "--data-folder", type=str, default=None)
     parser.add_argument("-g", "--generate-xlsx",
                         default=False, action="store_true")
     parser.add_argument("-o", "--overwrite",
@@ -62,7 +64,7 @@ def main():
                "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     args = get_args()
     generate_batch(args.dataset_file, args.batch_size, args.json_folder, args.cycle, args.annotators_folder,
-                   args.generate_xlsx, args.xlsx_folder, args.gold_folder, args.overwrite, args.update)
+                   args.generate_xlsx, args.xlsx_folder, args.data_folder, args.overwrite, args.update)
 
 
 if __name__ == "__main__":

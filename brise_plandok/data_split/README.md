@@ -142,7 +142,7 @@ python brise_plandok/data_split/generate_batch.py \
     -xf brise_plandok/data_split/example/xlsx \
     -g \
     -o \
-    -gf brise_plandok/data_split/example/gold \
+    -df brise_plandok/data_split/example/full_data \
     -u
 ```
 

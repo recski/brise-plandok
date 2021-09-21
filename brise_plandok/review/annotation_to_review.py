@@ -19,6 +19,7 @@ class AnnotationConverter(Converter):
         annotations = self._read_annotations(annotated_xlsx_files)
         assert data_file is not None
         doc = load_json(data_file)
+        self._fill_reviewers(doc, output_file)
         self._fill_annotated_attributes(annotations, doc)
         self._fill_with_gold(doc)
         dump_json(doc, data_file)
@@ -32,6 +33,17 @@ class AnnotationConverter(Converter):
             for doc in self.read(annotated_xlsx):
                 annotations[annotator] = doc
         return annotations
+
+    def _fill_reviewers(self, data, output_fn):
+        reviewer = os.path.basename(output_fn).split('.')[0].split('_')[1]
+        if DocumentFields.REVIEWERS not in data:
+            data[DocumentFields.REVIEWERS] = [reviewer]
+            return
+        if reviewer in set(data[DocumentFields.REVIEWERS]):
+            logging.warning(f"reviewer {reviewer} is already among reviewers")
+            return
+        data[DocumentFields.REVIEWERS].append(reviewer)
+
 
     def _fill_annotated_attributes(self, annotations, data):
         self._clear_previous_annotation_info(data)

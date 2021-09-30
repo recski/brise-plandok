@@ -14,6 +14,7 @@ class AnnotationConverter(Converter):
     def __init__(self, args):
         super().__init__(args)
         self.sen_to_attr = SenToAttrMap(args.gold_folder, fuzzy=True)
+        self.review = args.review
 
     def convert(self, annotated_xlsx_files, output_file, data_file):
         annotations = self._read_annotations(annotated_xlsx_files)
@@ -35,6 +36,9 @@ class AnnotationConverter(Converter):
         return annotations
 
     def _fill_reviewers(self, data, output_fn):
+        if not self.review:
+            logging.info(f"Review = false for {data[DocumentFields.ID]}, no reviewers will be added to data.")
+            return
         reviewer = os.path.basename(output_fn).split('.')[0].split('_')[1]
         if DocumentFields.REVIEWERS not in data:
             data[DocumentFields.REVIEWERS] = [reviewer]
@@ -90,6 +94,9 @@ class AnnotationConverter(Converter):
             attrs_from_gold_sen(sen, self.sen_to_attr, False)
 
     def _generate_review_excel(self, data, output_file):
+        if not self.review:
+            logging.info(f"Review = false for {data[DocumentFields.ID]}, no review excel will be generated.")
+            return
         generator = ExcelGenerator(output_file)
         generator.generate_review_excel(data)
 
@@ -101,6 +108,7 @@ def get_args():
     parser.add_argument("-a", "--annotations", nargs="+", default=None)
     parser.add_argument("-d", "--data-file", type=str, default=None)
     parser.add_argument("-g", "--gold-folder", type=str, default=None)
+    parser.add_argument("-r", "--review", default=False, action="store_true")
     parser.set_defaults(input_format="XLSX", output_format="XLSX",
                         output_file="brise_plandok/review/output/review.xlsx",
                         gen_attributes=False)

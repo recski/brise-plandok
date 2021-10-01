@@ -41,6 +41,7 @@ class SenFields:
     ANNOTATED_ATTRIBUTES = "annotated_attributes"
     ATTRIBUTES = "attributes"
     SEGMENTATION_ERROR = "segmentation_error"
+    GEN_VALUES = "gen_values"
 
 class AttributeFields:
     NAME = "name"
@@ -62,3 +63,6 @@ class OldSenFields:
     TEXT = "text"
     GEN_ATTRIBUTES = "gen_attributes"
     ATTRIBUTES = "attributes"
+
+class AttributesNames:
+    PLANZEICHEN = "Planzeichen"

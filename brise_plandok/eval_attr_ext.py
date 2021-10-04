@@ -1,9 +1,11 @@
 import argparse
+from brise_plandok.constants import ATTRIBUTE_NORM_MAP
 import json
 import logging
 import sys
 from collections import Counter, defaultdict
 
+from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.extractor import get_extractor
 
 from tuw_nlp.common.eval import print_cat_stats
@@ -17,8 +19,8 @@ ATTR_IGNORE = {
     'AusnahmePruefungErforderlich',
     "ZuVorherigemSatzGehoerig",
     "Plangebiet",
-    # "PlanzeichenBBID",
-    # "WidmungID",
+    "PlanzeichenBBID",
+    "WidmungID",
     "obligation",
     "prohibition",
     "permission"}
@@ -32,41 +34,59 @@ ATTR_CATS = {}
 #    'BBAusnuetzbarkeitFlaecheGrundflaechenbezug',
 #    'BBAusnuetzbarkeitFlaecheWohnnutzflaeche'}}
 
-
 def preprocess_attrs(attrs):
     pp_attrs = []
     for attr in attrs:
         name = attr['name']
-        if not name.startswith('"'):
-            new_name = name.replace('(?)', '').strip('? ').replace('ä', 'ae')
+        if name.startswith('"'):
+            continue
 
-            if attr['value']:
-                attr['value'] = attr['value'].replace('ä', 'ae')
-            pp_attrs.append({
-                "name": new_name,
-                "value": attr['value'],
-                'type': attr['type']
-            })
+        new_name = name.replace(
+            '(?)', '').strip('? ').replace('ä', 'ae')
+
+        if new_name in ATTRIBUTE_NORM_MAP:
+            new = ATTRIBUTE_NORM_MAP[new_name]
+            logging.warning(
+                f'converting old attr ({new_name}) to new ({new})')
+            new_name = new
+
+        if new_name in ATTR_IGNORE:
+            continue
+
+        assert new_name in ATTR_TO_CAT, new_name
+
+        if attr['value']:
+            attr['value'] = attr['value'].replace('ä', 'ae')
+
+        pp_attrs.append({
+            "name": new_name,
+            "value": attr['value'],
+            'type': attr['type']
+        })
 
     return pp_attrs
 
 
-def load_sample(stream):
+def load_sample(stream, flat):
     sections = []
     for line in stream:
         doc = json.loads(line)
-        for section in doc['sections']:
-            sections.append({"sens": []})
-            for sen in section['sens']:
-                if not sen['attributes']:
-                    continue
-                if not sen['modality']:
-                    continue
-                sen['attrs'] = preprocess_attrs(sen['attributes'])
-                sections[-1]['sens'].append(sen)
-
+        if flat:
+            for sen in doc['sens']:
+                if len(sections) == 0:
+                    sections.append({"sens": []})
+                _load_sen(sen, sections)
+        else:
+            for section in doc['sections']:
+                sections.append({"sens": []})
+                for sen in section['sens']:
+                    _load_sen(sen, sections)
     return sections
 
+def _load_sen(sen, sections):
+    if sen['attributes']:
+        sen['attributes'] = preprocess_attrs(sen['attributes'])
+        sections[-1]['sens'].append(sen)
 
 def get_err_ids(label, results):
     return [
@@ -93,9 +113,9 @@ def count_attr_stats(sample, label_cats=None, print_errs=False):
     cats = defaultdict(Counter)
     for sen_id, orig_attrs, orig_preds in sample:
         attrs = {
-            label_cats.get(a, a) for a in orig_attrs if a not in ATTR_IGNORE}
+            label_cats.get(a, a) for a in orig_attrs}
         preds = {
-            label_cats.get(a, a) for a in orig_preds if a not in ATTR_IGNORE}
+            label_cats.get(a, a) for a in orig_preds}
         for attr in attrs & preds:
             cats[attr]['TP'] += 1
         for attr in attrs - preds:
@@ -228,13 +248,14 @@ def eval_types_values(results):
 
 def eval_results(results, args):
     eval_attrs(results, print_errs=args.print_errs)
-    eval_modality(results)
-    eval_types_values(results)
+    if args.rule_ext:
+        eval_modality(results)
+        eval_types_values(results)
 
 
 def eval_rule_ext(args):
 
-    sections = load_sample(sys.stdin)
+    sections = load_sample(sys.stdin, args.flat)
 
     with get_extractor(args) as extractor:
         sections, results = extractor.run_on_sections(sections)
@@ -252,6 +273,7 @@ def get_args():
         "-p", "--print-errs", default=False, action='store_true')
     parser.add_argument("-cd", "--cache-dir", default='cache', type=str)
     parser.add_argument("-r", "--rule-ext", default=False, action='store_true')
+    parser.add_argument("-f", "--flat", default=False, action='store_true')
     return parser.parse_args()
 
 

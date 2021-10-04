@@ -12,13 +12,15 @@ setup(
         'flask',
         'graphviz',
         "networkx",
+        "numberpartitioning",
         "openpyxl",
         "pydot",
         'simplejson',
+        'sklearn',
         "spacy>=2.3.0",
         "stanza==1.1.1",
         'streamlit',
-        "tuw_nlp @ git+https://github.com/recski/tuw-nlp@main#egg=tuw_nlp"
+        "tuw_nlp @ git+https://github.com/recski/tuw-nlp@dev#egg=tuw_nlp"
     ],
     packages=find_packages(),
     include_package_data=True,

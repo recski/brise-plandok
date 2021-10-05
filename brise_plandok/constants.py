@@ -66,3 +66,6 @@ class OldSenFields:
 
 class AttributesNames:
     PLANZEICHEN = "Planzeichen"
+    DACHART = "Dachart"
+    GEHSTEIG_BREITE_MIN = "GehsteigbreiteMin"
+    VORKEHRUNG_BEPFLANZUNG = "VorkehrungBepflanzung"

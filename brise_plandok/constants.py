@@ -70,3 +70,5 @@ class AttributesNames:
     GEHSTEIG_BREITE_MIN = "GehsteigbreiteMin"
     VORKEHRUNG_BEPFLANZUNG = "VorkehrungBepflanzung"
     VON_BEBAUUNG_FREIZUHALTEN = "VonBebauungFreizuhalten"
+    GEBAEUDE_BAUTYP = "GebaeudeBautyp"
+    GEBAEUDE_HOEHE_ART = "GebaeudeHoeheArt"

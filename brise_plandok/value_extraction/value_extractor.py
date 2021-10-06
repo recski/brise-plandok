@@ -4,6 +4,8 @@ import sys
 
 from brise_plandok.constants import AttributesNames, DocumentFields, SenFields
 from brise_plandok.value_extraction.dachart import DachartExtractor
+from brise_plandok.value_extraction.gebaeude_bautyp import GebaeudeBautypExtractor
+from brise_plandok.value_extraction.gebaeude_hoehe_art import GebaeudeHoeheArtExtractor
 from brise_plandok.value_extraction.gehsteig_breite_min import GehsteigBreiteMinExtractor
 from brise_plandok.value_extraction.planzeichen import PlanzeichenExtractor
 from brise_plandok.value_extraction.utils import contains_attr
@@ -19,6 +21,8 @@ class ValueExtractor:
         self.gehsteig = GehsteigBreiteMinExtractor()
         self.vorkehrung = VorkehrungBepflanzungExtractor()
         self.vonbebauung = VonBebauungFreizuhaltenExtractor()
+        self.gebaeude_bautyp = GebaeudeBautypExtractor()
+        self.gebaeude_hoehe_art = GebaeudeHoeheArtExtractor()
 
     def extract(self, doc):
         for sen in doc[DocumentFields.SENS].values():
@@ -39,6 +43,10 @@ class ValueExtractor:
                 values = [value for value in self.vorkehrung.extract(sen[SenFields.TEXT])]
             elif attribute == AttributesNames.VON_BEBAUUNG_FREIZUHALTEN:
                 values = [value for value in self.vonbebauung.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.GEBAEUDE_BAUTYP:
+                values = [value for value in self.gebaeude_bautyp.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.GEBAEUDE_HOEHE_ART:
+                values = [value for value in self.gebaeude_hoehe_art.extract(sen[SenFields.TEXT])]
             self._add_to_gen_values(sen, attribute, values)
 
 

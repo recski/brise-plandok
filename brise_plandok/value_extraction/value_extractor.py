@@ -7,7 +7,8 @@ from brise_plandok.value_extraction.dachart import DachartExtractor
 from brise_plandok.value_extraction.gehsteig_breite_min import GehsteigBreiteMinExtractor
 from brise_plandok.value_extraction.planzeichen import PlanzeichenExtractor
 from brise_plandok.value_extraction.utils import contains_attr
-from brise_plandok.value_extraction.vorkehrung_bepfalnzung import VorkehrungBepflanzungExtractor
+from brise_plandok.value_extraction.von_bebauung import VonBebauungFreizuhaltenExtractor
+from brise_plandok.value_extraction.vorkehrung_bepflanzung import VorkehrungBepflanzungExtractor
 
 class ValueExtractor:
 
@@ -17,6 +18,7 @@ class ValueExtractor:
         self.dachart = DachartExtractor()
         self.gehsteig = GehsteigBreiteMinExtractor()
         self.vorkehrung = VorkehrungBepflanzungExtractor()
+        self.vonbebauung = VonBebauungFreizuhaltenExtractor()
 
     def extract(self, doc):
         for sen in doc[DocumentFields.SENS].values():
@@ -35,6 +37,8 @@ class ValueExtractor:
                 values = [value for value in self.gehsteig.extract(sen[SenFields.TEXT])]
             elif attribute == AttributesNames.VORKEHRUNG_BEPFLANZUNG:
                 values = [value for value in self.vorkehrung.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.VON_BEBAUUNG_FREIZUHALTEN:
+                values = [value for value in self.vonbebauung.extract(sen[SenFields.TEXT])]
             self._add_to_gen_values(sen, attribute, values)
 
 

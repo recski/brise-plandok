@@ -69,3 +69,4 @@ class AttributesNames:
     DACHART = "Dachart"
     GEHSTEIG_BREITE_MIN = "GehsteigbreiteMin"
     VORKEHRUNG_BEPFLANZUNG = "VorkehrungBepflanzung"
+    VON_BEBAUUNG_FREIZUHALTEN = "VonBebauungFreizuhalten"

@@ -3,14 +3,30 @@ import json
 import sys
 
 from brise_plandok.constants import AttributesNames, DocumentFields, SenFields
+from brise_plandok.value_extraction.dachart import DachartExtractor
+from brise_plandok.value_extraction.gebaeude_bautyp import GebaeudeBautypExtractor
+from brise_plandok.value_extraction.gebaeude_hoehe_art import GebaeudeHoeheArtExtractor
+from brise_plandok.value_extraction.gebaeude_hoehe_max import GebaeudeHoeheMaxExtractor
+from brise_plandok.value_extraction.gehsteig_breite_min import GehsteigBreiteMinExtractor
 from brise_plandok.value_extraction.planzeichen import PlanzeichenExtractor
+from brise_plandok.value_extraction.strassenbreite_min import StrassenbreiteMinExtractor
 from brise_plandok.value_extraction.utils import contains_attr
+from brise_plandok.value_extraction.von_bebauung import VonBebauungFreizuhaltenExtractor
+from brise_plandok.value_extraction.vorkehrung_bepflanzung import VorkehrungBepflanzungExtractor
 
 class ValueExtractor:
 
     def __init__(self, args):
         self.attributes = args.attributes
         self.planzeichen = PlanzeichenExtractor()
+        self.dachart = DachartExtractor()
+        self.gehsteig = GehsteigBreiteMinExtractor()
+        self.vorkehrung = VorkehrungBepflanzungExtractor()
+        self.vonbebauung = VonBebauungFreizuhaltenExtractor()
+        self.gebaeude_bautyp = GebaeudeBautypExtractor()
+        self.gebaeude_hoehe_art = GebaeudeHoeheArtExtractor()
+        self.gebaeude_hoehe_max = GebaeudeHoeheMaxExtractor()
+        self.strassenbreite_min = StrassenbreiteMinExtractor()
 
     def extract(self, doc):
         for sen in doc[DocumentFields.SENS].values():
@@ -19,10 +35,28 @@ class ValueExtractor:
         sys.stdout.write(json.dumps(doc) + "\n")
 
     def _extract_for_attr(self, sen, attribute):
+        values = []
         if contains_attr(sen, attribute):
             if attribute == AttributesNames.PLANZEICHEN:
                 values = [value for value in self.planzeichen.extract(sen[SenFields.TEXT])]
-                self._add_to_gen_values(sen, attribute, values)
+            elif attribute == AttributesNames.DACHART:
+                values = [value for value in self.dachart.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.GEHSTEIG_BREITE_MIN:
+                values = [value for value in self.gehsteig.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.VORKEHRUNG_BEPFLANZUNG:
+                values = [value for value in self.vorkehrung.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.VON_BEBAUUNG_FREIZUHALTEN:
+                values = [value for value in self.vonbebauung.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.GEBAEUDE_BAUTYP:
+                values = [value for value in self.gebaeude_bautyp.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.GEBAEUDE_HOEHE_ART:
+                values = [value for value in self.gebaeude_hoehe_art.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.GEBAEUDE_HOEHE_MAX:
+                values = [value for value in self.gebaeude_hoehe_max.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.STRASSENBREITE_MIN:
+                values = [value for value in self.strassenbreite_min.extract(sen[SenFields.TEXT])]
+            self._add_to_gen_values(sen, attribute, values)
+
 
     def _add_to_gen_values(self, sen, attribute, values):
         if SenFields.GEN_VALUES not in sen.keys():

@@ -6,8 +6,10 @@ from brise_plandok.constants import AttributesNames, DocumentFields, SenFields
 from brise_plandok.value_extraction.dachart import DachartExtractor
 from brise_plandok.value_extraction.gebaeude_bautyp import GebaeudeBautypExtractor
 from brise_plandok.value_extraction.gebaeude_hoehe_art import GebaeudeHoeheArtExtractor
+from brise_plandok.value_extraction.gebaeude_hoehe_max import GebaeudeHoeheMaxExtractor
 from brise_plandok.value_extraction.gehsteig_breite_min import GehsteigBreiteMinExtractor
 from brise_plandok.value_extraction.planzeichen import PlanzeichenExtractor
+from brise_plandok.value_extraction.strassenbreite_min import StrassenbreiteMinExtractor
 from brise_plandok.value_extraction.utils import contains_attr
 from brise_plandok.value_extraction.von_bebauung import VonBebauungFreizuhaltenExtractor
 from brise_plandok.value_extraction.vorkehrung_bepflanzung import VorkehrungBepflanzungExtractor
@@ -23,6 +25,8 @@ class ValueExtractor:
         self.vonbebauung = VonBebauungFreizuhaltenExtractor()
         self.gebaeude_bautyp = GebaeudeBautypExtractor()
         self.gebaeude_hoehe_art = GebaeudeHoeheArtExtractor()
+        self.gebaeude_hoehe_max = GebaeudeHoeheMaxExtractor()
+        self.strassenbreite_min = StrassenbreiteMinExtractor()
 
     def extract(self, doc):
         for sen in doc[DocumentFields.SENS].values():
@@ -47,6 +51,10 @@ class ValueExtractor:
                 values = [value for value in self.gebaeude_bautyp.extract(sen[SenFields.TEXT])]
             elif attribute == AttributesNames.GEBAEUDE_HOEHE_ART:
                 values = [value for value in self.gebaeude_hoehe_art.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.GEBAEUDE_HOEHE_MAX:
+                values = [value for value in self.gebaeude_hoehe_max.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.STRASSENBREITE_MIN:
+                values = [value for value in self.strassenbreite_min.extract(sen[SenFields.TEXT])]
             self._add_to_gen_values(sen, attribute, values)
 
 

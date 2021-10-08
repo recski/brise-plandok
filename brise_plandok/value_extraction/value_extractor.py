@@ -3,7 +3,13 @@ import json
 import sys
 
 from brise_plandok.constants import AttributesNames, DocumentFields, SenFields
+from brise_plandok.value_extraction.abschuss_gebaeude import AbschlussDachMaxBezugGebaeudeExtractor
+from brise_plandok.value_extraction.ausnahme_gaertnerisch import AusnahmeGaertnerischAuszugestaltendeExtractor
 from brise_plandok.value_extraction.dachart import DachartExtractor
+from brise_plandok.value_extraction.dachneigung_max import DachneigungMaxExtractor
+from brise_plandok.value_extraction.durchgang_breite import DurchgangBreiteExtractor
+from brise_plandok.value_extraction.durchgang_hoehe import DurchgangHoeheExtractor
+from brise_plandok.value_extraction.errichtung_gebaeude import ErrichtungGebaeudeExtractor
 from brise_plandok.value_extraction.gebaeude_bautyp import GebaeudeBautypExtractor
 from brise_plandok.value_extraction.gebaeude_hoehe_art import GebaeudeHoeheArtExtractor
 from brise_plandok.value_extraction.gebaeude_hoehe_max import GebaeudeHoeheMaxExtractor
@@ -27,6 +33,12 @@ class ValueExtractor:
         self.gebaeude_hoehe_art = GebaeudeHoeheArtExtractor()
         self.gebaeude_hoehe_max = GebaeudeHoeheMaxExtractor()
         self.strassenbreite_min = StrassenbreiteMinExtractor()
+        self.abschuss_geb = AbschlussDachMaxBezugGebaeudeExtractor()
+        self.durchgang_breite = DurchgangBreiteExtractor()
+        self.durchgang_hoehe = DurchgangHoeheExtractor()
+        self.errichtung_gebaeude = ErrichtungGebaeudeExtractor()
+        self.ausnahme_gaertnerisch = AusnahmeGaertnerischAuszugestaltendeExtractor()
+        self.dachneigung_max = DachneigungMaxExtractor()
 
     def extract(self, doc):
         for sen in doc[DocumentFields.SENS].values():
@@ -55,6 +67,18 @@ class ValueExtractor:
                 values = [value for value in self.gebaeude_hoehe_max.extract(sen[SenFields.TEXT])]
             elif attribute == AttributesNames.STRASSENBREITE_MIN:
                 values = [value for value in self.strassenbreite_min.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.ABSCHUSS_GEBAEUDE:
+                values = [value for value in self.abschuss_geb.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.DURCHGANG_BREITE:
+                values = [value for value in self.durchgang_breite.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.DURCHGANG_HOEHE:
+                values = [value for value in self.durchgang_hoehe.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.ERRICHTUNG_GEBAEUDE:
+                values = [value for value in self.errichtung_gebaeude.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.AUSNAHME_GAERTNERISCH:
+                values = [value for value in self.ausnahme_gaertnerisch.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.DACHNEIGUNG_MAX:
+                values = [value for value in self.dachneigung_max.extract(sen[SenFields.TEXT])]
             self._add_to_gen_values(sen, attribute, values)
 
 

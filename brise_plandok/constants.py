@@ -80,3 +80,4 @@ class AttributesNames:
     ERRICHTUNG_GEBAEUDE = "ErrichtungGebaeude"
     AUSNAHME_GAERTNERISCH = "AusnahmeGaertnerischAuszugestaltende"
     DACHNEIGUNG_MAX = "DachneigungMax"
+    WuZ = "WidmungUndZweckbestimmung"

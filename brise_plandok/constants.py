@@ -42,6 +42,7 @@ class SenFields:
     ATTRIBUTES = "attributes"
     SEGMENTATION_ERROR = "segmentation_error"
     GEN_VALUES = "gen_values"
+    GOLD_VALUES = "gold_values"
 
 class AttributeFields:
     NAME = "name"
@@ -80,3 +81,4 @@ class AttributesNames:
     ERRICHTUNG_GEBAEUDE = "ErrichtungGebaeude"
     AUSNAHME_GAERTNERISCH = "AusnahmeGaertnerischAuszugestaltende"
     DACHNEIGUNG_MAX = "DachneigungMax"
+    WuZ = "WidmungUndZweckbestimmung"

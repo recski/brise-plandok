@@ -3,6 +3,7 @@ import json
 import sys
 
 from brise_plandok.constants import AttributesNames, DocumentFields, SenFields
+from brise_plandok.value_extraction.Widmung_und_zweckbestimmung import WidmungUndZweckbestimmungExtractor
 from brise_plandok.value_extraction.abschuss_gebaeude import AbschlussDachMaxBezugGebaeudeExtractor
 from brise_plandok.value_extraction.ausnahme_gaertnerisch import AusnahmeGaertnerischAuszugestaltendeExtractor
 from brise_plandok.value_extraction.dachart import DachartExtractor
@@ -39,9 +40,15 @@ class ValueExtractor:
         self.errichtung_gebaeude = ErrichtungGebaeudeExtractor()
         self.ausnahme_gaertnerisch = AusnahmeGaertnerischAuszugestaltendeExtractor()
         self.dachneigung_max = DachneigungMaxExtractor()
+        self.wuz = WidmungUndZweckbestimmungExtractor()
 
     def extract(self, doc):
-        for sen in doc[DocumentFields.SENS].values():
+        items = []
+        if DocumentFields.SENS in doc:
+            items = doc[DocumentFields.SENS].values()
+        else:
+            items = doc
+        for sen in items:
             for attribute in self.attributes:
                 self._extract_for_attr(sen, attribute)
         sys.stdout.write(json.dumps(doc) + "\n")
@@ -79,6 +86,8 @@ class ValueExtractor:
                 values = [value for value in self.ausnahme_gaertnerisch.extract(sen[SenFields.TEXT])]
             elif attribute == AttributesNames.DACHNEIGUNG_MAX:
                 values = [value for value in self.dachneigung_max.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.WuZ:
+                values = [value for value in self.wuz.extract(sen[SenFields.TEXT])]
             self._add_to_gen_values(sen, attribute, values)
 
 

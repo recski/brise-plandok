@@ -43,7 +43,12 @@ class ValueExtractor:
         self.wuz = WidmungUndZweckbestimmungExtractor()
 
     def extract(self, doc):
-        for sen in doc[DocumentFields.SENS].values():
+        items = []
+        if DocumentFields.SENS in doc:
+            items = doc[DocumentFields.SENS].values()
+        else:
+            items = doc
+        for sen in items:
             for attribute in self.attributes:
                 self._extract_for_attr(sen, attribute)
         sys.stdout.write(json.dumps(doc) + "\n")

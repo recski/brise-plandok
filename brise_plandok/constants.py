@@ -83,3 +83,4 @@ class AttributesNames:
     DACHNEIGUNG_MAX = "DachneigungMax"
     WuZ = "WidmungUndZweckbestimmung"
     WIDMUNG_IN_MEHREREN_EBENEN = "WidmungInMehrerenEbenen"
+    FLAECHEN = "Flaechen"

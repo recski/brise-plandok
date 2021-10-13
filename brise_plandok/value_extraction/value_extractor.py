@@ -10,6 +10,7 @@ from brise_plandok.value_extraction.dachneigung_max import DachneigungMaxExtract
 from brise_plandok.value_extraction.durchgang_breite import DurchgangBreiteExtractor
 from brise_plandok.value_extraction.durchgang_hoehe import DurchgangHoeheExtractor
 from brise_plandok.value_extraction.errichtung_gebaeude import ErrichtungGebaeudeExtractor
+from brise_plandok.value_extraction.flaechen import FlaechenExtractor
 from brise_plandok.value_extraction.gebaeude_bautyp import GebaeudeBautypExtractor
 from brise_plandok.value_extraction.gebaeude_hoehe_art import GebaeudeHoeheArtExtractor
 from brise_plandok.value_extraction.gebaeude_hoehe_max import GebaeudeHoeheMaxExtractor
@@ -43,6 +44,7 @@ class ValueExtractor:
         self.dachneigung_max = DachneigungMaxExtractor()
         self.wuz = WidmungUndZweckbestimmungExtractor()
         self.wuz_mehrere = WidmungInMehrerenEbenenExtractor()
+        self.flaechen = FlaechenExtractor()
 
     def extract(self, doc):
         items = []
@@ -92,6 +94,8 @@ class ValueExtractor:
                 values = [value for value in self.wuz.extract(sen[SenFields.TEXT])]
             elif attribute == AttributesNames.WIDMUNG_IN_MEHREREN_EBENEN:
                 values = [value for value in self.wuz_mehrere.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.FLAECHEN:
+                values = [value for value in self.flaechen.extract(sen[SenFields.TEXT])]
             self._add_to_gen_values(sen, attribute, values)
 
 

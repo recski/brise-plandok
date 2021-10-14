@@ -1,5 +1,3 @@
-import json
-
 from brise_plandok.constants import SenFields
 
 def contains_attr(sen, attr_name):

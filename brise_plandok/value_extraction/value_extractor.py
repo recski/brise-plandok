@@ -2,7 +2,7 @@ import argparse
 import json
 import sys
 
-from brise_plandok.constants import AttributesNames, DocumentFields, SenFields
+from brise_plandok.constants import AttributeFields, AttributesNames, DocumentFields, SenFields
 from brise_plandok.value_extraction.abschuss_gebaeude import AbschlussDachMaxBezugGebaeudeExtractor
 from brise_plandok.value_extraction.ausnahme_gaertnerisch import AusnahmeGaertnerischAuszugestaltendeExtractor
 from brise_plandok.value_extraction.dachart import DachartExtractor
@@ -51,7 +51,7 @@ class ValueExtractor:
         if DocumentFields.SENS in doc:
             items = doc[DocumentFields.SENS].values()
         else:
-            items = doc
+            items = [doc]
         for sen in items:
             for attribute in self.attributes:
                 self._extract_for_attr(sen, attribute)
@@ -100,9 +100,13 @@ class ValueExtractor:
 
 
     def _add_to_gen_values(self, sen, attribute, values):
-        if SenFields.GEN_VALUES not in sen.keys():
-            sen[SenFields.GEN_VALUES] = {}
-        sen[SenFields.GEN_VALUES][attribute] = values
+        if attribute not in sen[SenFields.GEN_ATTRIBUTES]:
+            sen[SenFields.GEN_ATTRIBUTES][attribute] = {
+                AttributeFields.VALUE: [],
+                AttributeFields.TYPE: None,
+                AttributeFields.NAME: attribute,
+            }
+        sen[SenFields.GEN_ATTRIBUTES][attribute][AttributeFields.VALUE] = values
 
 def get_args():
     parser = argparse.ArgumentParser(description="")

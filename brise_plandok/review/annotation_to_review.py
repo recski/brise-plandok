@@ -1,5 +1,4 @@
 import argparse
-import json
 from utils import dump_json, load_json
 from brise_plandok.constants import ANNOTATOR_NAME_INDEX, AnnotatedAttributeFields, AttributeFields, DocumentFields, OldDocumentFields, OldSectionFields, OldSenFields, SenFields
 import os

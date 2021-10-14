@@ -90,7 +90,7 @@ def _get_sen(
     gold_attributes={},
     gen_attributes_on_annotation={},
     annotated_attributes={},
-    gen_attributes=[],
+    gen_attributes={},
     segmentation_error=False
 ):
     return {

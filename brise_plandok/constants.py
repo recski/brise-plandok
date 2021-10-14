@@ -81,3 +81,8 @@ class AttributesNames:
     WuZ = "WidmungUndZweckbestimmung"
     WIDMUNG_IN_MEHREREN_EBENEN = "WidmungInMehrerenEbenen"
     FLAECHEN = "Flaechen"
+    ANORDNUNG_GAERTNERISCH = "AnordnungGaertnerischeAusgestaltung"
+
+class AttributeTypes:
+    CONDITION = "condition"
+    CONTENT = "content"

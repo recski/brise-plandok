@@ -6,6 +6,7 @@ from brise_plandok.constants import AttributeFields, AttributesNames, DocumentFi
 from brise_plandok.type_extraction.anordnung_gaertnerisch import AnordnungGaertnerischeAusgestaltungExtractor
 from brise_plandok.type_extraction.dachart import DachartExtractor
 from brise_plandok.type_extraction.dachneigung_max import DachneigungMaxExtractor
+from brise_plandok.type_extraction.flaechen import FlaechenExtractor
 from brise_plandok.type_extraction.gebaeude_hoehe_max import GebaeudeHoeheMaxExtractor
 from brise_plandok.value_extraction.utils import contains_attr
 
@@ -18,6 +19,7 @@ class TypeExtractor:
         self.anordnung_gaertnerisch = AnordnungGaertnerischeAusgestaltungExtractor()
         self.gebaeude_hoehe_max = GebaeudeHoeheMaxExtractor()
         self.dachneigung_max = DachneigungMaxExtractor()
+        self.flaechen = FlaechenExtractor()
 
     def extract(self, doc):
         items = []
@@ -41,6 +43,8 @@ class TypeExtractor:
                 att_type = self.gebaeude_hoehe_max.extract(sen[SenFields.TEXT])
             elif attribute == AttributesNames.DACHNEIGUNG_MAX:
                 att_type = self.dachneigung_max.extract(sen[SenFields.TEXT])
+            elif attribute == AttributesNames.FLAECHEN:
+                att_type = self.flaechen.extract(sen[SenFields.TEXT])
             self._add_to_gen_values(sen, attribute, att_type)
 
 

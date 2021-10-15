@@ -13,6 +13,7 @@ VALUES = {
     r".*(höchstens " + AREA_SIZE + r").*": 1,
     r".*(maximal(en Grundfläche von( insgesamt)?)? " + AREA_SIZE + r").*": 1,
     r".*(bis zu einem (Flächen)?(A|a)usmaß von " + AREA_SIZE + r").*": 1,
+    r".*(die bebaute Fläche nicht mehr als " + AREA_SIZE + r").*": 1,
     # Minimum
     r".*(f|F)lächen? (von mehr als " + AREA_SIZE + r").*": 2,
     r".*((m|M)indestens " + AREA_SIZE + r").*": 1,

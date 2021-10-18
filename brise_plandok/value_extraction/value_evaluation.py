@@ -2,7 +2,8 @@ import argparse
 import json
 import sys
 
-from brise_plandok.constants import SenFields
+from brise_plandok.constants import AttributeFields, SenFields
+
 
 class ValueEvaluator:
 
@@ -18,25 +19,25 @@ class ValueEvaluator:
         self.print_fp = args.false_positive
         self.print_fn = args.false_negative
 
-    def evaluate(self, doc):
-        for sen in doc:
-            for attribute in self.attributes:
-                self._eval_for_attr(sen, attribute)
-        self._calc_sore()
+    def evaluate(self, sen):
+        for attribute in self.attributes:
+            self._eval_for_attr(sen, attribute)
 
     def _eval_for_attr(self, sen, attribute):
-        for value in sen[SenFields.GEN_VALUES][attribute]:
-            if value in sen[SenFields.GOLD_VALUES][attribute]:
+        for value in sen[SenFields.GEN_ATTRIBUTES][attribute][AttributeFields.VALUE]:
+            if value in sen[SenFields.GOLD_ATTRIBUTES][attribute][AttributeFields.VALUE]:
                 self.tp += 1
-                self.tp_list.append((sen[SenFields.ID], sen[SenFields.TEXT], sen[SenFields.GOLD_VALUES][attribute], value))
+                self.tp_list.append((sen[SenFields.ID], sen[SenFields.TEXT],
+                                    sen[SenFields.GOLD_ATTRIBUTES][attribute][AttributeFields.VALUE], value))
             else:
                 self.fp += 1
-                self.fp_list.append((sen[SenFields.ID], sen[SenFields.TEXT], sen[SenFields.GOLD_VALUES][attribute], value))
-        for value in sen[SenFields.GOLD_VALUES][attribute]:
-            if value not in sen[SenFields.GEN_VALUES][attribute]:
+                self.fp_list.append((sen[SenFields.ID], sen[SenFields.TEXT],
+                                    sen[SenFields.GOLD_ATTRIBUTES][attribute][AttributeFields.VALUE], value))
+        for value in sen[SenFields.GOLD_ATTRIBUTES][attribute][AttributeFields.VALUE]:
+            if value not in sen[SenFields.GEN_ATTRIBUTES][attribute][AttributeFields.VALUE]:
                 self.fn += 1
-                self.fn_list.append((sen[SenFields.ID], sen[SenFields.TEXT], sen[SenFields.GOLD_VALUES][attribute], value))
-
+                self.fn_list.append((sen[SenFields.ID], sen[SenFields.TEXT],
+                                    sen[SenFields.GOLD_ATTRIBUTES][attribute][AttributeFields.VALUE], value))
 
     def _calc_sore(self):
         precision = self.tp / (self.tp + self.fp)
@@ -64,20 +65,26 @@ class ValueEvaluator:
             for item in self.fn_list:
                 print(f"{item}\n")
 
+
 def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-a", "--attributes", nargs="+", default=None)
-    parser.add_argument("-tp", "--true-positive", action="store_true", default=False)
-    parser.add_argument("-fp", "--false-positive", action="store_true", default=False)
-    parser.add_argument("-fn", "--false-negative", action="store_true", default=False)
+    parser.add_argument("-tp", "--true-positive",
+                        action="store_true", default=False)
+    parser.add_argument("-fp", "--false-positive",
+                        action="store_true", default=False)
+    parser.add_argument("-fn", "--false-negative",
+                        action="store_true", default=False)
     return parser.parse_args()
+
 
 def main():
     args = get_args()
-    value_extractor = ValueEvaluator(args)
+    value_evaluator = ValueEvaluator(args)
     for line in sys.stdin:
-        doc = json.loads(line)
-        value_extractor.evaluate(doc)
+        sen = json.loads(line)
+        value_evaluator.evaluate(sen)
+    value_evaluator._calc_sore()
 
 
 if __name__ == "__main__":

@@ -4,7 +4,7 @@ VALUES = [
     # w/o jeweils
     r".*Gehsteige? mit mindestens (\d*,\d*|\d*) ?.*",
     # with jeweils
-    r".*Gehsteige? mit jeweils mindestens (\d*,\d*|\d*) ?.*",
+    r".*Gehsteige? mit (jeweils|einer Breite von) mindestens (\d*,\d*|\d*) ?.*",
 ]
 
 class GehsteigBreiteMinExtractor:

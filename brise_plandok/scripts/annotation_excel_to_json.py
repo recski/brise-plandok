@@ -64,8 +64,8 @@ class FullDataConverter:
                 SenFields.GOLD_EXISTS: gold_exists,
                 SenFields.GOLD_ATTRIBUTES: gold_attr,
                 SenFields.GEN_ATTRIBUTES_ON_ANNOTATION: gen_attributes,
-                SenFields.ANNOTATED_ATTRIBUTES: [],
-                SenFields.GEN_ATTRIBUTES: [],
+                SenFields.ANNOTATED_ATTRIBUTES: {},
+                SenFields.GEN_ATTRIBUTES: {},
                 SenFields.SEGMENTATION_ERROR: False,
             }
 

@@ -1,21 +1,34 @@
 
-import enum
 import itertools
 import logging
 import os
 
 import pandas
-from brise_plandok.data_split.utils.constants import ANNOTATOR_DOWNLOAD_FOLDER, ASSIGNMENT_ADDITIONAL_HEADER, ASSIGNMENT_DF_HEADER, ASSIGNMENT_TXT, ASSIGNMENT_FILE_HEADER, ASSIGNMENT_XLSX, DOC_HEADER
+from brise_plandok.data_split.utils.constants import ANNOTATOR_DOWNLOAD_FOLDER, ASSIGNMENT_ADDITIONAL_HEADER, ASSIGNMENT_DF_HEADER_BASE, ASSIGNMENT_TXT, ASSIGNMENT_FILE_HEADER, ASSIGNMENT_XLSX, DOC_HEADER, PHASE_STR
 from brise_plandok.data_split.utils.sentences import sum_sens_for_docs
 from numberpartitioning import karmarkar_karp
 
 
-def load_assigned_docs_as_list(path):
-    return list(itertools.chain(*load_assigned_docs_as_df(path).values))
+def get_assignment_header(phase):
+    return [ASSIGNMENT_DF_HEADER_BASE[0], ASSIGNMENT_DF_HEADER_BASE[1] + "_" + PHASE_STR + "_" + str(phase)]
 
 
-def load_assigned_docs_as_df(path):
-    return pandas.read_csv(filepath_or_buffer=path, dtype={ASSIGNMENT_FILE_HEADER[0]: str})
+def get_download_folder(ann_folder, annotator, phase):
+    return os.path.join(ann_folder, annotator, PHASE_STR + str(phase), ANNOTATOR_DOWNLOAD_FOLDER)
+
+
+def get_assignment_path(ann_folder, annotator, phase):
+    return os.path.join(ann_folder, annotator, PHASE_STR + str(phase), ASSIGNMENT_TXT)
+
+
+def load_assigned_docs_as_list(ann_folder, annotator, phase):
+    return list(itertools.chain(*load_assigned_docs_as_df(ann_folder, annotator, phase).values))
+
+
+def load_assigned_docs_as_df(ann_folder, annotator, phase):
+    return pandas.read_csv(
+        filepath_or_buffer=get_assignment_path(ann_folder, annotator, phase),
+        dtype={ASSIGNMENT_FILE_HEADER[0]: str})
 
 
 def get_assignment(doc_ids, df, nr_groups):
@@ -62,19 +75,19 @@ def _check_if_all_docs_used(num_to_doc):
                 f"Some docs were not used in the partition {docs}")
 
 
-def fill_assignments_with_batch(docs, cycle, assignments, partition, next_doc_ids):
+def fill_assignments_with_batch(docs, cycle, assignments, partition, next_doc_ids, phase):
     assignments[ASSIGNMENT_ADDITIONAL_HEADER[0]] = None
     assignments[ASSIGNMENT_ADDITIONAL_HEADER[1]] = -1
     assignments[ASSIGNMENT_ADDITIONAL_HEADER[2]] = -1
     _enrich_docs_with_annotators(docs, cycle, partition)
     _log_for_review_tracking(docs, next_doc_ids, cycle)
     for i, group_members in enumerate(cycle.values.tolist()):
-        _fill_for_group(assignments, group_members, partition[i], docs)
+        _fill_for_group(assignments, group_members, partition[i], docs, phase)
 
 
 def _log_for_review_tracking(docs, next_doc_ids, cycle):
     next_docs = docs.loc[docs[DOC_HEADER[1]].isin(
-        next_doc_ids)].iloc[:, [1, 4] + [i for i in range(-len(cycle.columns), 0)]]
+        next_doc_ids)].iloc[:, [1, 4] + [5 + i for i in range(len(cycle.columns))]]
     view = next_docs.to_csv(sep=';', index=False)
     logging.info(f"print new assignment for review tracking:\n\n{view}")
 
@@ -87,12 +100,13 @@ def _enrich_docs_with_annotators(docs, cycle, partition):
                 docs.loc[mask, cycle_header] = cycle.iloc[i][cycle_header]
 
 
-def _fill_for_group(assignments, group_members, partition, docs):
-    group_members_mask = assignments[ASSIGNMENT_DF_HEADER[0]].isin(
+def _fill_for_group(assignments, group_members, partition, docs, phase):
+    group_members_mask = assignments[ASSIGNMENT_DF_HEADER_BASE[0]].isin(
         group_members)
+    assignment_header = get_assignment_header(phase)
     _fill_assigned_docs(partition, assignments, group_members_mask)
     _fill_assigned_sens(docs, partition, assignments, group_members_mask)
-    _fill_sens_sum(group_members, assignments)
+    _fill_sens_sum(group_members, assignments, assignment_header)
 
 
 def _fill_assigned_sens(docs, partition, assignments, group_members_mask):
@@ -105,22 +119,22 @@ def _fill_assigned_docs(partition, assignments, group_members_mask):
                     ] = ",".join(partition)
 
 
-def _fill_sens_sum(group, assignments):
+def _fill_sens_sum(group, assignments, assignment_header):
     for annotator in group:
-        annotator_mask = assignments[ASSIGNMENT_DF_HEADER[0]] == annotator
+        annotator_mask = assignments[assignment_header[0]] == annotator
         sentences_before = assignments.loc[annotator_mask,
-                                           ASSIGNMENT_DF_HEADER[1]]
+                                           assignment_header[1]]
         sentences_batch = assignments.loc[annotator_mask,
                                           ASSIGNMENT_ADDITIONAL_HEADER[1]]
         assignments.loc[annotator_mask, ASSIGNMENT_ADDITIONAL_HEADER[2]
                         ] = sentences_before + sentences_batch
 
 
-def update_assignments(doc_ids, annotator, annotator_folder):
-    assignment_txt = os.path.join(annotator_folder, annotator, ASSIGNMENT_TXT)
-    assignment_xlsx = os.path.join(
-        annotator_folder, annotator, ANNOTATOR_DOWNLOAD_FOLDER, ASSIGNMENT_XLSX)
-    df = load_assigned_docs_as_df(assignment_txt)
+def update_assignments(doc_ids, annotator, annotator_folder, phase):
+    assignment_xlsx = os.path.join(get_download_folder(
+        annotator_folder, annotator, phase), ASSIGNMENT_XLSX)
+    df = load_assigned_docs_as_df(annotator_folder, annotator, phase)
+    assignment_txt = get_assignment_path(annotator_folder, annotator, phase)
     for doc_id in doc_ids:
         df = df.append(pandas.DataFrame(
             [[doc_id]], columns=ASSIGNMENT_FILE_HEADER), ignore_index=True)

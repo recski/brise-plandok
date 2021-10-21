@@ -59,7 +59,17 @@ python brise_plandok/data_split/assignment_loader.py \
     -af brise_plandok/data_split/example/annotators
 ```
 
+For phase 2:
+```
+python brise_plandok/data_split/assignment_loader.py \
+    -d brise_plandok/data_split/example/shuffled_dataset.csv \
+    -af brise_plandok/data_split/example/annotators \
+    -p 2
+```
+
 ## Generate a new batch
+
+If `--phase` option is not specified, it defaults to phase number 1.
 
 ### Dry-run
 
@@ -86,12 +96,15 @@ python brise_plandok/data_split/generate_batch.py \
     -c 0 \
     -af brise_plandok/data_split/example/annotators \
     -xf brise_plandok/data_split/example/xlsx \
+    -df brise_plandok/data_split/example/full_data \
     -g
 ```
 
 You can find the generated xlsx files in `brise_plandok/data_split/example/xlsx` folder.  
 
-Additionally, you can find for each annotator in their download folder (e.g. `brise_plandok/data_split/example/annotators/01/download`) the relevant xlsx files that they have to annotate.
+Additionally, you can find for each annotator in their download folder (e.g. `brise_plandok/data_split/example/annotators/01/phase1/download`) the relevant xlsx files that they have to annotate.
+
+Pre-filled gold data in the excel sheets comes from gold json files provided by the `--data-folder` option.
 
 #### Overwrite existing xlsx files
 
@@ -105,6 +118,7 @@ python brise_plandok/data_split/generate_batch.py \
     -c 0 \
     -af brise_plandok/data_split/example/annotators \
     -xf brise_plandok/data_split/example/xlsx \
+    -df brise_plandok/data_split/example/full_data \
     -g \
     -o
 ```
@@ -121,17 +135,14 @@ python brise_plandok/data_split/generate_batch.py \
     -c 0 \
     -af brise_plandok/data_split/example/annotators \
     -xf brise_plandok/data_split/example/xlsx \
+    -df brise_plandok/data_split/example/full_data \
     -g \
     -o \
-    -u
+    -u \
+    -p 1
 ```
 
-The document tracking file (`brise_plandok/data_split/shuffled_dataset.csv`) and all the assignment files (e.g. `brise_plandok/data_split/example/annotators/01/assignment.txt`) have been updated.
-
-### Pre-filled gold data
-
-If you want to have pre-filled gold data in your excel sheet, you must specify a folder containing gold json files in `JSON_FLAT` format.
-
+For phase 2:
 ```
 python brise_plandok/data_split/generate_batch.py \
     -d brise_plandok/data_split/example/shuffled_dataset.csv \
@@ -140,11 +151,14 @@ python brise_plandok/data_split/generate_batch.py \
     -c 0 \
     -af brise_plandok/data_split/example/annotators \
     -xf brise_plandok/data_split/example/xlsx \
+    -df brise_plandok/data_split/example/full_data \
     -g \
     -o \
-    -df brise_plandok/data_split/example/full_data \
-    -u
+    -u \
+    -p 2
 ```
+
+The document tracking file (`brise_plandok/data_split/shuffled_dataset.csv`) and all the assignment files (e.g. `brise_plandok/data_split/example/annotators/01/assignment.txt`) have been updated.
 
 ## Reset assignments
 

@@ -5,13 +5,15 @@ import os
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.constants import AttributeFields, DocumentFields, OldDocumentFields, OldSectionFields, OldSenFields, SenFields
 
+
 def generate_data(doc_ids, gen_attr_folder, data_folder):
     sen_to_gold_attrs = SenToAttrMap(
-            gold_dir=data_folder, fuzzy=True) if data_folder else None
+        gold_dir=data_folder, fuzzy=True) if data_folder else None
     for doc_id in doc_ids:
-        full_data_file = os.path.join(data_folder, doc_id+".json")
-        json_file = os.path.join(gen_attr_folder, doc_id+".jsonl")
+        full_data_file = os.path.join(data_folder, doc_id +".json")
+        json_file = os.path.join(gen_attr_folder, doc_id + ".jsonl")
         yield _get_doc(json_file, full_data_file, doc_id, sen_to_gold_attrs)
+
 
 def _get_doc(json_file, full_data_file, doc_id, sen_to_gold_attrs):
     full_data = _get_full_data(full_data_file)
@@ -36,6 +38,7 @@ def _get_gen_attrs(json_file):
         assert len(lines) == 1
         return json.loads(lines[0].strip())
 
+
 def _create_data_for_doc(doc_id, get_attr, sen_to_gold_attrs, full_data_file):
     doc = {
         DocumentFields.ID: doc_id,
@@ -45,7 +48,8 @@ def _create_data_for_doc(doc_id, get_attr, sen_to_gold_attrs, full_data_file):
     }
     for section in get_attr[OldDocumentFields.SECTIONS]:
         for sen in section[OldSectionFields.SENS]:
-            already_gold, gold_exists, gold_attrs = _get_gold_related_attrs(sen_to_gold_attrs, sen)
+            already_gold, gold_exists, gold_attrs = _get_gold_related_attrs(
+                sen_to_gold_attrs, sen)
             sen_id = sen[OldSenFields.ID]
             gen_attrs = attr_list_to_dict(sen[OldSenFields.GEN_ATTRIBUTES])
             doc[DocumentFields.SENS][sen_id] = _get_sen(
@@ -58,7 +62,8 @@ def _create_data_for_doc(doc_id, get_attr, sen_to_gold_attrs, full_data_file):
             )
     _save_data(full_data_file, doc)
     return doc
-            
+
+
 def attr_list_to_dict(attr_list):
     attr_dict = dict()
     for attr in attr_list:
@@ -67,6 +72,7 @@ def attr_list_to_dict(attr_list):
             logging.warning(f"Attribute '{attr_name}' was generated twice")
         attr_dict[attr_name] = attr
     return attr_dict
+
 
 def _get_gold_related_attrs(sen_to_gold_attrs, sen):
     already_gold = False
@@ -105,6 +111,7 @@ def _get_sen(
         SenFields.GEN_ATTRIBUTES: gen_attributes,
         SenFields.SEGMENTATION_ERROR: segmentation_error,
     }
+
 
 def _save_data(full_data_file, doc):
     logging.info(f"Saving full data to: {full_data_file}")

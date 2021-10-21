@@ -11,7 +11,7 @@ def shuffle_dir(dir):
     random.shuffle(files)
     docs_to_annotate = [file.split('.')[0] for file in files if file.split('.')[0] not in GOLD]
     for i, doc_id in enumerate(docs_to_annotate):
-        sys.stdout.write(f"{i};{doc_id};{False};{False};{-1}\n")
+        sys.stdout.write(f"{i};{doc_id};{False};{False};{-1};;;{False}\n")
 
 
 def get_args():

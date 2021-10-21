@@ -4,7 +4,7 @@ Information extraction from text documents of the zoning plan of the City of Vie
 
 Work supported by [BRISE-Vienna](https://smartcity.wien.gv.at/en/brise/) (UIA04-081), a European Union Urban Innovative Actions project.
 
-__The ASAIL2021 branch contains the code in the state presented in our [2021 ASAIL paper](#references)__
+__The [asail2021](https://github.com/recski/brise-plandok/tree/asail2021) tag contains the code in the state presented in our [2021 ASAIL paper](#references)__
 
 ## Requirements
 
@@ -114,12 +114,16 @@ If labels change in the `BRISE.xlsx` template file, new excel file from a fully 
 python brise_plandok/convert.py -i XLSX -if sample_data/xlsx/asail.xlsx -o XLSX -of output/asail.xlsx
 ```
 
+## Dataset creation annotation
+
+For details on how the dataset was split for the annotation see the [data split documentation](brise_plandok/data_split/documentation.md).
+
 ## Annotation Review
 
 ### Creates excel for review
 
 ```bash
-python brise_plandok/review/annotation_converter.py -a brise_plandok/review/examples/6492_01_20210825.xlsx brise_plandok/review/examples/6492_02_20210825.xlsx
+python brise_plandok/review/annotation_converter.py -a brise_plandok/review/examples/01/6492_01_20210825.xlsx brise_plandok/review/examples/02/6492_02_20210825.xlsx
 ```
 
 The output can be found in `brise_plandok/review/output/review.xlsx` by default.

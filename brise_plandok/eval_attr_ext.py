@@ -1,4 +1,5 @@
 import argparse
+from brise_plandok.constants import ATTRIBUTE_NORM_MAP
 import json
 import logging
 import sys
@@ -33,14 +34,6 @@ ATTR_CATS = {}
 #    'BBAusnuetzbarkeitFlaecheGrundflaechenbezug',
 #    'BBAusnuetzbarkeitFlaecheWohnnutzflaeche'}}
 
-
-OLD_TO_NEW = {
-    "Bauklasse_ID": "Bauklasse",
-    "Verkehrsflaeche_ID": "VerkehrsflaecheID",
-    "StruktureinheitBebaubar": "Struktureinheit"
-}
-
-
 def preprocess_attrs(attrs):
     pp_attrs = []
     for attr in attrs:
@@ -51,8 +44,8 @@ def preprocess_attrs(attrs):
         new_name = name.replace(
             '(?)', '').strip('? ').replace('ä', 'ae')
 
-        if new_name in OLD_TO_NEW:
-            new = OLD_TO_NEW[new_name]
+        if new_name in ATTRIBUTE_NORM_MAP:
+            new = ATTRIBUTE_NORM_MAP[new_name]
             logging.warning(
                 f'converting old attr ({new_name}) to new ({new})')
             new_name = new
@@ -74,22 +67,26 @@ def preprocess_attrs(attrs):
     return pp_attrs
 
 
-def load_sample(stream):
+def load_sample(stream, flat):
     sections = []
     for line in stream:
         doc = json.loads(line)
-        for section in doc['sections']:
-            sections.append({"sens": []})
-            for sen in section['sens']:
-                if not sen['attributes']:
-                    continue
-                # if not sen['modality']:
-                #     continue
-                sen['attributes'] = preprocess_attrs(sen['attributes'])
-                sections[-1]['sens'].append(sen)
-
+        if flat:
+            for sen in doc['sens']:
+                if len(sections) == 0:
+                    sections.append({"sens": []})
+                _load_sen(sen, sections)
+        else:
+            for section in doc['sections']:
+                sections.append({"sens": []})
+                for sen in section['sens']:
+                    _load_sen(sen, sections)
     return sections
 
+def _load_sen(sen, sections):
+    if sen['attributes']:
+        sen['attributes'] = preprocess_attrs(sen['attributes'])
+        sections[-1]['sens'].append(sen)
 
 def get_err_ids(label, results):
     return [
@@ -258,7 +255,7 @@ def eval_results(results, args):
 
 def eval_rule_ext(args):
 
-    sections = load_sample(sys.stdin)
+    sections = load_sample(sys.stdin, args.flat)
 
     with get_extractor(args) as extractor:
         sections, results = extractor.run_on_sections(sections)
@@ -276,6 +273,7 @@ def get_args():
         "-p", "--print-errs", default=False, action='store_true')
     parser.add_argument("-cd", "--cache-dir", default='cache', type=str)
     parser.add_argument("-r", "--rule-ext", default=False, action='store_true')
+    parser.add_argument("-f", "--flat", default=False, action='store_true')
     return parser.parse_args()
 
 

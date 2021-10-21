@@ -1,4 +1,5 @@
 import argparse
+from brise_plandok.constants import DocumentFields, SenFields
 import json
 import logging
 import os
@@ -24,13 +25,17 @@ class SenToAttrMap():
                 continue
             with open(os.path.join(gold_dir, fn)) as f:
                 for line in f:
-                    sens = json.loads(line)
-                    for sen in sens['sens']:
-                        gold_attrs = sen.get('gold_attributes')
-                        if gold_attrs is None:
-                            # support outputs from convert.py
-                            gold_attrs = sen['attributes']
-                        yield sen['text'], gold_attrs
+                    doc = json.loads(line)
+                    if doc[DocumentFields.IS_GOLD]:
+                        for sen_id, sen in doc[DocumentFields.SENS].items():
+                            gold_attrs = sen.get(SenFields.GOLD_ATTRIBUTES)
+                            if gold_attrs is None:
+                                # support outputs from convert.py
+                                gold_attrs = sen[SenFields.ATTRIBUTES]
+                            sen_id = sen.get(SenFields.ID)
+                            if sen_id is None:
+                                sen_id = sen[SenFields.ID]
+                            yield sen_id, sen[SenFields.TEXT], gold_attrs, fn
 
     def sen_to_key(self, sen):
         if not self.fuzzy:
@@ -40,38 +45,68 @@ class SenToAttrMap():
 
     def build_map(self, gold_dir):
         self.sen_to_attr = {}
-        for sen, attr in self.gen_sens_attrs(gold_dir):
+        for sen_id, sen, attr, fn in self.gen_sens_attrs(gold_dir):
             sen_key = self.sen_to_key(sen)
             if sen_key in self.sen_to_attr:
-                if self.sen_to_attr[sen_key] == attr:
+                if self.sen_to_attr[sen_key]["attr"] == attr:
+                    self.sen_to_attr[sen_key]["sens"].append(sen_id)
                     continue
-                raise ValueError(
-                    f'matching sens in gold with different attrs: {sen_key}')
+                else:
+                    self.log_conflict(sen, sen_key)
+                    raise ValueError(f'gold conflict')
 
-            self.sen_to_attr[sen_key] = attr
+            self.sen_to_attr[sen_key] = {
+                "attr": attr, 
+                "sens": [
+                    sen_id
+                ]
+            }
 
     def get_attrs(self, sen):
         sen_key = self.sen_to_key(sen)
-        return self.sen_to_attr.get(sen_key)
+        full_attr = self.sen_to_attr.get(sen_key)
+        if full_attr is None:
+            return None
+        return full_attr["attr"]
+
+    def get_sens(self, sen):
+        sen_key = self.sen_to_key(sen)
+        full_attr = self.sen_to_attr.get(sen_key)
+        if full_attr is None:
+            return None
+        return full_attr["sens"]
+
+    def log_conflict(self, sen, sen_key=None):
+        if sen_key is None:
+            sen_key = self.sen_to_key(sen[SenFields.TEXT])
+        old_attrs = json.dumps(self.sen_to_attr[sen_key]["attr"], indent=2)
+        old_sens = self.sen_to_attr[sen_key]["sens"]
+        new_attrs = json.dumps(sen[SenFields.GOLD_ATTRIBUTES], indent=2)
+        new_sen = sen[SenFields.ID]
+        logging.error(f"matching sens in gold with different attrs:\n" + 
+            f"\nold attrs {old_sens}:\n{old_attrs}\n\nnew attrs {new_sen}:\n{new_attrs}\n")
 
 
-def attrs_from_gold_sen(sen, sen_to_attr, args):
-    if 'gold_exists' in sen:
-        if args.overwrite:
-            if sen['gold_exists']:
-                del sen['gold_attributes']
-                sen['gold_exists'] = False
-        else:
-            raise ValueError(
-                'field "gold_exists" already present in input and'
-                '--overwrite not set')
-    else:
-        sen['gold_exists'] = False
-
+def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
     attrs = sen_to_attr.get_attrs(sen['text'])
+
+    if SenFields.GOLD_EXISTS in sen and sen[SenFields.GOLD_EXISTS]:
+        if overwrite:
+            if sen[SenFields.GOLD_EXISTS]:
+                del sen[SenFields.GEN_ATTRIBUTES]
+                sen[SenFields.GOLD_EXISTS] = False
+        else:
+            if sen[SenFields.GOLD_ATTRIBUTES] != attrs:
+                sen_to_attr.log_conflict(sen)
+                raise ValueError(
+                    'field "gold_exists" already present in input and'
+                    '--overwrite not set')
+    else:
+        sen[SenFields.GOLD_EXISTS] = False
+
     if attrs is not None:
-        sen['gold_exists'] = True
-        sen['gold_attributes'] = attrs
+        sen[SenFields.GOLD_EXISTS] = True
+        sen[SenFields.GOLD_ATTRIBUTES] = attrs
 
 
 def attrs_from_gold(args):
@@ -82,7 +117,7 @@ def attrs_from_gold(args):
         doc = json.loads(line)
         for section in doc['sections']:
             for sen in section['sens']:
-                attrs_from_gold_sen(sen, sen_to_attr, args)
+                attrs_from_gold_sen(sen, sen_to_attr, args.overwrite)
         sys.stdout.write(json.dumps(doc))
         sys.stdout.write('\n')
 

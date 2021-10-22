@@ -2,7 +2,7 @@ GOLD = ["7374", "7857", "7990", "8065", "8250"]
 ANNOTATORS = ["01", "02", "03", "04", "05", "06"]
 DOC_HEADER = ["order", "doc_id", "assigned", "nr_sens_calculated", "nr_sens", "annotator_1", "annotator_2", "assigned_2"]
 
-CYCLE_FILE = "batch_cycles.csv"
+CYCLE_FILE = "../input/batch_cycles.csv"
 CYCLE_COL = "cycle"
 
 ASSIGNMENT_TXT = "assignment.txt"

@@ -18,6 +18,7 @@ def generate_batch(doc_tracking_file, batch_size, json_folder, cycle_nr, annotat
     calculate_sentence_counts(docs_df, next_doc_ids, json_folder)
 
     cycle_df = get_cycle(cycle_nr)
+    logging.info(f"cycle ({cycle_nr}):\n {cycle_df}")
     assignment_df = load_assignments(docs_df, annotators_folder, phase)
     partition = get_assignment(next_doc_ids, docs_df, cycle_df.shape[0])
     logging.info(f"partition: {partition}")

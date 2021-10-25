@@ -114,6 +114,12 @@ If labels change in the `BRISE.xlsx` template file, new excel file from a fully 
 python brise_plandok/convert.py -i XLSX -if sample_data/xlsx/asail.xlsx -o XLSX -of output/asail.xlsx
 ```
 
+### Generate excel for phase 2
+
+```bash
+python brise_plandok/data_split/utils/full_annotation_excel_generator.py -d sample_data/annotation/full_data/8141.json -o sample_data/annotation/8141_annotation_phase2.xlsx
+```
+
 ## Dataset creation annotation
 
 For details on how the dataset was split for the annotation see the [data split documentation](brise_plandok/data_split/documentation.md).
@@ -123,7 +129,7 @@ For details on how the dataset was split for the annotation see the [data split 
 ### Creates excel for review
 
 ```bash
-python brise_plandok/review/annotation_to_review.py -a brise_plandok/review/examples/01/phase1/upload/8141.xlsx brise_plandok/review/examples/02/phase1/upload/8141.xlsx -d brise_plandok/review/examples/full_data/8141.json -of brise_plandok/review/examples/8141_reviewer1.xlsx -g <GOLD_DIR> -r
+python brise_plandok/review/annotation_to_review.py -a sample_data/annotation/01/phase1/upload/8141.xlsx sample_data/annotation/02/phase1/upload/8141.xlsx -d sample_data/annotation/full_data/8141.json -of sample_data/annotation/8141_reviewer1.xlsx -g <GOLD_DIR> -r
 ```
 
 The output can be found in `brise_plandok/review/output/review.xlsx` by default.

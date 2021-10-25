@@ -1,9 +1,9 @@
-from utils import dump_json, load_json
 from brise_plandok.data_split.utils.data import attr_list_to_dict
-import sys
 from brise_plandok.constants import DocumentFields, SenFields
 import json
 import os
+
+from brise_plandok.utils import dump_json, load_json
 
 
 DATA_FOLDER = "/home/eszter/research/brise-nlp/annotation/2021_09/full_data"

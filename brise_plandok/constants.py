@@ -35,7 +35,7 @@ class SenFields:
     MODALITY = "modality"
     ALREADY_GOLD_ON_ANNOTATION = "already_gold_on_annotation"
     GEN_ATTRIBUTES_ON_ANNOTATION = "gen_attributes_on_annotation"
-    GEN_ATTRIBUTES_ON_ANNOTATION_PHASE_2 = "gen_attributes_on_annotation_phase_2"
+    GEN_ATTRIBUTES_ON_FULL_ANNOTATION = "gen_attributes_on_full_annotation"
     GEN_ATTRIBUTES = "gen_attributes"
     GOLD_EXISTS = "gold_exists"
     GOLD_ATTRIBUTES = "gold_attributes"

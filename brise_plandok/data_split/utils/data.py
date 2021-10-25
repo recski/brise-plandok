@@ -95,6 +95,7 @@ def _get_sen(
     gold_exists=False,
     gold_attributes={},
     gen_attributes_on_annotation={},
+    gen_attributes_on_full_annotation={},
     annotated_attributes={},
     gen_attributes={},
     segmentation_error=False
@@ -107,6 +108,7 @@ def _get_sen(
         SenFields.GOLD_EXISTS: gold_exists,
         SenFields.GOLD_ATTRIBUTES: gold_attributes,
         SenFields.GEN_ATTRIBUTES_ON_ANNOTATION: gen_attributes_on_annotation,
+        SenFields.GEN_ATTRIBUTES_ON_FULL_ANNOTATION: gen_attributes_on_full_annotation,
         SenFields.ANNOTATED_ATTRIBUTES: annotated_attributes,
         SenFields.GEN_ATTRIBUTES: gen_attributes,
         SenFields.SEGMENTATION_ERROR: segmentation_error,

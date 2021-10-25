@@ -40,7 +40,7 @@ class ExcelGenerator:
             row=row, column=self.CONSTANTS.SEN_ID_COL).value = sen_id
         main_sheet.cell(
             row=row, column=self.CONSTANTS.SEN_TEXT_COL).value = sen[SF.TEXT]
-        if self._is_gold(sen):
+        if self._full_gold_exists(sen):
             self._color_gold(main_sheet, row, self.CONSTANTS.SEN_ID_COL)
             self._color_gold(main_sheet, row, self.CONSTANTS.SEN_TEXT_COL)
         main_sheet.cell(
@@ -54,8 +54,11 @@ class ExcelGenerator:
     def _add_validation(self, main_sheet):
         raise NotImplementedError()
 
-    def _is_gold(self, sen):
-        return sen[SF.GOLD_EXISTS]
+    def _labels_gold_exists(self, sen):
+        return sen[SF.LABELS_GOLD_EXISTS]
+
+    def _full_gold_exists(self, sen):
+        return sen[SF.FULL_GOLD_EXISTS]
 
     def _color_gray(self, main_sheet, row, col):
         self._color(main_sheet, row, col, GRAY_COLOR)

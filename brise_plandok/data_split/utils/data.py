@@ -44,11 +44,12 @@ def _create_data_for_doc(doc_id, get_attr, sen_to_gold_attrs, full_data_file):
         DocumentFields.ID: doc_id,
         DocumentFields.SENS: {},
         DocumentFields.ANNOTATORS: {},
-        DocumentFields.IS_GOLD: False,
+        DocumentFields.LABELS_GOLD: False,
+        DocumentFields.FULL_GOLD: False,
     }
     for section in get_attr[OldDocumentFields.SECTIONS]:
         for sen in section[OldSectionFields.SENS]:
-            already_gold, gold_exists, gold_attrs = _get_gold_related_attrs(
+            already_gold, labels_gold_exists, gold_attrs = _get_gold_related_attrs(
                 sen_to_gold_attrs, sen)
             sen_id = sen[OldSenFields.ID]
             gen_attrs = attr_list_to_dict(sen[OldSenFields.GEN_ATTRIBUTES])
@@ -57,7 +58,7 @@ def _create_data_for_doc(doc_id, get_attr, sen_to_gold_attrs, full_data_file):
                 sen[OldSenFields.TEXT],
                 gen_attributes_on_annotation=gen_attrs,
                 already_gold_on_annotation=already_gold,
-                gold_exists=gold_exists,
+                labels_gold_exists=labels_gold_exists,
                 gold_attributes=gold_attrs
             )
     _save_data(full_data_file, doc)
@@ -76,15 +77,15 @@ def attr_list_to_dict(attr_list):
 
 def _get_gold_related_attrs(sen_to_gold_attrs, sen):
     already_gold = False
-    gold_exists = False
+    labels_gold_exists = False
     gold_attrs = {}
     if sen_to_gold_attrs:
         attrs_from_gold_sen(sen, sen_to_gold_attrs, False)
-        gold_exists = sen[SenFields.GOLD_EXISTS]
-        if gold_exists:
+        labels_gold_exists = sen[SenFields.LABELS_GOLD_EXISTS]
+        if labels_gold_exists:
             gold_attrs = sen[SenFields.GOLD_ATTRIBUTES]
             already_gold = True
-    return already_gold, gold_exists, gold_attrs
+    return already_gold, labels_gold_exists, gold_attrs
 
 
 def _get_sen(
@@ -92,7 +93,8 @@ def _get_sen(
     text,
     modality=None,
     already_gold_on_annotation=False,
-    gold_exists=False,
+    labels_gold_exists=False,
+    full_gold_exists=False,
     gold_attributes={},
     gen_attributes_on_annotation={},
     gen_attributes_on_full_annotation={},
@@ -105,7 +107,8 @@ def _get_sen(
         SenFields.TEXT: text,
         SenFields.MODALITY: modality,
         SenFields.ALREADY_GOLD_ON_ANNOTATION: already_gold_on_annotation,
-        SenFields.GOLD_EXISTS: gold_exists,
+        SenFields.LABELS_GOLD_EXISTS: labels_gold_exists,
+        SenFields.FULL_GOLD_EXISTS: full_gold_exists,
         SenFields.GOLD_ATTRIBUTES: gold_attributes,
         SenFields.GEN_ATTRIBUTES_ON_ANNOTATION: gen_attributes_on_annotation,
         SenFields.GEN_ATTRIBUTES_ON_FULL_ANNOTATION: gen_attributes_on_full_annotation,

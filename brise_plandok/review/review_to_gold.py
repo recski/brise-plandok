@@ -42,10 +42,10 @@ class ReviewConverter(Converter):
             self._raise_error_on_internal_conflict(sen_id, gold_candidate)
             self._raise_error_on_external_conflict(sen_id, gold_candidate)
 
-            self.data[DocumentFields.SENS][sen_id][SenFields.GOLD_EXISTS] = True
+            self.data[DocumentFields.SENS][sen_id][SenFields.LABELS_GOLD_EXISTS] = True
             self.data[DocumentFields.SENS][sen_id][SenFields.GOLD_ATTRIBUTES] = gold_candidate
 
-        self.data[DocumentFields.IS_GOLD] = True
+        self.data[DocumentFields.LABELS_GOLD] = True
 
     def _get_gold_candidate(self, attributes):
         gold_candidate = {}
@@ -55,7 +55,7 @@ class ReviewConverter(Converter):
         return gold_candidate
 
     def _raise_error_on_internal_conflict(self, sen_id, gold_candidate):
-        if self.data[DocumentFields.SENS][sen_id][SenFields.GOLD_EXISTS]:
+        if self.data[DocumentFields.SENS][sen_id][SenFields.LABELS_GOLD_EXISTS]:
             current_gold = self.data[DocumentFields.SENS][sen_id][SenFields.GOLD_ATTRIBUTES]
             if set(gold_candidate.keys()) != set(current_gold.keys()):
                 logging.error(
@@ -95,10 +95,10 @@ class ReviewConverter(Converter):
             if label not in ATTRIBUTES_TO_IGNORE:
                 yield {
                     "name": label,
-                    "gold": self._is_gold(review),
+                    "gold": self._labels_gold(review),
                 }
 
-    def _is_gold(self, review):
+    def _labels_gold(self, review):
         return review == "OK" or review == "MISSING"
 
     def _is_error(self, attributes):

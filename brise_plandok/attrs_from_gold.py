@@ -26,7 +26,7 @@ class SenToAttrMap():
             with open(os.path.join(gold_dir, fn)) as f:
                 for line in f:
                     doc = json.loads(line)
-                    if doc[DocumentFields.IS_GOLD]:
+                    if doc[DocumentFields.LABELS_GOLD]:
                         for sen_id, sen in doc[DocumentFields.SENS].items():
                             gold_attrs = sen.get(SenFields.GOLD_ATTRIBUTES)
                             if gold_attrs is None:
@@ -90,22 +90,22 @@ class SenToAttrMap():
 def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
     attrs = sen_to_attr.get_attrs(sen['text'])
 
-    if SenFields.GOLD_EXISTS in sen and sen[SenFields.GOLD_EXISTS]:
+    if SenFields.LABELS_GOLD_EXISTS in sen and sen[SenFields.LABELS_GOLD_EXISTS]:
         if overwrite:
-            if sen[SenFields.GOLD_EXISTS]:
+            if sen[SenFields.LABELS_GOLD_EXISTS]:
                 del sen[SenFields.GEN_ATTRIBUTES]
-                sen[SenFields.GOLD_EXISTS] = False
+                sen[SenFields.LABELS_GOLD_EXISTS] = False
         else:
             if sen[SenFields.GOLD_ATTRIBUTES] != attrs:
                 sen_to_attr.log_conflict(sen)
                 raise ValueError(
-                    'field "gold_exists" already present in input and'
+                    'field "labels_gold_exists" already present in input and'
                     '--overwrite not set')
     else:
-        sen[SenFields.GOLD_EXISTS] = False
+        sen[SenFields.LABELS_GOLD_EXISTS] = False
 
     if attrs is not None:
-        sen[SenFields.GOLD_EXISTS] = True
+        sen[SenFields.LABELS_GOLD_EXISTS] = True
         sen[SenFields.GOLD_ATTRIBUTES] = attrs
 
 

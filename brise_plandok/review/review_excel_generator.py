@@ -70,7 +70,7 @@ class ReviewExcelGenerator(ExcelGenerator):
 
     def __set_review_value(self, attribute_name, sen, sheet, row, col):
         review_value = Review.OK
-        if self._is_gold(sen):
+        if self._labels_gold_exists(sen):
             review_value = self.__set_gold_review_value(
                 attribute_name, sen, sheet, row, col)
         elif attribute_name in sen[SF.GEN_ATTRIBUTES_ON_ANNOTATION]:

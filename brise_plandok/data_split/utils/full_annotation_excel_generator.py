@@ -13,7 +13,8 @@ from openpyxl.worksheet.datavalidation import DataValidation
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
 
 
-IS_GOLD = "gold_attr"
+LABELS_GOLD = "lables_gold"
+FULL_GOLD = "full_gold"
 
 
 class FullAnnotationExcelGenerator(ExcelGenerator):
@@ -35,21 +36,29 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
                     f"\"{attribute_name}\" does not belong to any category - will be ignored")
             else:
                 self._fill_attribute(
-                    attribute, sen, sheet, col, row)
+                    attribute, sheet, col, row)
                 col += self.CONSTANTS.ATTRIBUTE_STEP
 
     def __gen_one_attribute_per_value(self, sen):
         for attribute in sen[SenFields.GEN_ATTRIBUTES_ON_FULL_ANNOTATION].values():
             if attribute[AttributeFields.VALUE] == []:
-                yield attribute
+                yield {
+                    AttributeFields.NAME: attribute[AttributeFields.NAME],
+                    AttributeFields.VALUE: None,
+                    AttributeFields.TYPE: attribute[AttributeFields.TYPE],
+                    LABELS_GOLD: sen[SenFields.LABELS_GOLD_EXISTS],
+                    FULL_GOLD: sen[SenFields.FULL_GOLD_EXISTS],
+                }
             for value in attribute[AttributeFields.VALUE]:
                 yield {
                     AttributeFields.NAME: attribute[AttributeFields.NAME],
                     AttributeFields.VALUE: value,
                     AttributeFields.TYPE: attribute[AttributeFields.TYPE],
+                    LABELS_GOLD: sen[SenFields.LABELS_GOLD_EXISTS],
+                    FULL_GOLD: sen[SenFields.FULL_GOLD_EXISTS],
                 }
 
-    def _fill_attribute(self, attribute, sen, sheet, col, row):
+    def _fill_attribute(self, attribute, sheet, col, row):
         sheet.cell(
             row=row, column=col+self.CONSTANTS.CATEGORY_OFFSET).value = ATTR_TO_CAT[attribute[AttributeFields.NAME]]
         sheet.cell(row=row, column=col +
@@ -58,8 +67,15 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
                    self.CONSTANTS.VALUE_OFFSET).value = attribute[AttributeFields.VALUE]
         sheet.cell(row=row, column=col +
                    self.CONSTANTS.TYPE_OFFSET).value = attribute[AttributeFields.TYPE]
-        self._fill_value(attribute, sen, sheet, row, col)
-        self._fill_type(attribute, sen, sheet, row, col)
+        self._add_coloring(sheet, col, row, attribute[LABELS_GOLD], attribute[FULL_GOLD])
+
+    def _add_coloring(self, sheet, col, row, lables_gold, full_gold):
+        if lables_gold:
+            self._color_gold(sheet, row, col)
+            self._color_gold(sheet, row, col + self.CONSTANTS.LABEL_OFFSET)
+        if full_gold:
+            self._color_gold(sheet, row, col + self.CONSTANTS.VALUE_OFFSET)
+            self._color_gold(sheet, row, col + self.CONSTANTS.TYPE_OFFSET)
 
     def _add_validation(self, sheet):
         category_val = DataValidation(
@@ -82,7 +98,8 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
             if self._is_category_cell(col):
                 self._add_validations_for_attribute(
                     sheet, row, col, category_val)
-                type_val.add(sheet.cell(row=row, column=col+self.CONSTANTS.TYPE_OFFSET))
+                type_val.add(sheet.cell(row=row, column=col +
+                             self.CONSTANTS.TYPE_OFFSET))
 
     def __is_modality_cell(self, col):
         return col == self.CONSTANTS.MODALITY_COL

@@ -123,7 +123,7 @@ For details on how the dataset was split for the annotation see the [data split 
 ### Creates excel for review
 
 ```bash
-python brise_plandok/review/annotation_converter.py -a brise_plandok/review/examples/01/6492_01_20210825.xlsx brise_plandok/review/examples/02/6492_02_20210825.xlsx
+python brise_plandok/review/annotation_to_review.py -a brise_plandok/review/examples/01/phase1/upload/8141.xlsx brise_plandok/review/examples/02/phase1/upload/8141.xlsx -d brise_plandok/review/examples/full_data/8141.json -of brise_plandok/review/examples/8141_reviewer1.xlsx -g <GOLD_DIR> -r
 ```
 
 The output can be found in `brise_plandok/review/output/review.xlsx` by default.

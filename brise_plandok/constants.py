@@ -14,7 +14,7 @@ GRAY_COLOR = "DCDCDC"
 
 ROW_HEIGHT = 75
 
-ANNOTATOR_NAME_INDEX = -3
+ANNOTATOR_NAME_INDEX = -4
 DO_NOT_ANNOTATE = "DON'T ANNOTATE THIS SENTENCE"
 
 class Review:
@@ -35,6 +35,7 @@ class SenFields:
     MODALITY = "modality"
     ALREADY_GOLD_ON_ANNOTATION = "already_gold_on_annotation"
     GEN_ATTRIBUTES_ON_ANNOTATION = "gen_attributes_on_annotation"
+    GEN_ATTRIBUTES_ON_ANNOTATION_PHASE_2 = "gen_attributes_on_annotation_phase_2"
     GEN_ATTRIBUTES = "gen_attributes"
     GOLD_EXISTS = "gold_exists"
     GOLD_ATTRIBUTES = "gold_attributes"

@@ -7,7 +7,6 @@ CSV_FULL: sample from Bjoern, in csv, with all features
 JSON is used as the internal format for conversion
 """
 import argparse
-from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.constants import DO_NOT_ANNOTATE, GOLD_PREFIX, DocumentFields, OldSenFields, SenFields
 import csv
 import json
@@ -15,11 +14,11 @@ import logging
 import sys
 import os
 import re
-from utils import normalize_attribute_name
 import brise_plandok.annotation
 from brise_plandok.annotation.annotate import Annotate
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.annotation.agreement import gen_sens_from_file
+from brise_plandok.utils import normalize_attribute_name
 
 
 class Converter():

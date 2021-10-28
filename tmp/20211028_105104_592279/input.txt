@@ -1,0 +1,5 @@
+# IRTG unannotated corpus file, v1.0
+# interpretation fl: de.up.ling.irtg.algebra.graph.GraphAlgebra
+
+(u_1<root> / bestimmen  :2 (u_3 / herstellen  :0 (u_5 / OBL)  :2 (u_23 / Gehsteige)  :0 (u_44 / dass)  :1-of (u_7 / mit  :2 (u_8 / Breite  :1-of (u_12 / von  :2 (u_13 / m  :0 (u_17 / X2COMMA0  :0 (u_20 / mindestens))))))  :1-of (u_26 / entlang  :2 (u_27 / Fluchtlinie))  :1-of (u_31 / bei  :2 (u_32 / Strassenbreite  :1-of (u_36 / ab  :2 (u_37 / m  :0 (u_41 / X10))))))  :1-of (u_47 / fuer  :2 (u_48 / Querschnitte  :0 (u_52 / Verkehrsflaeche  :1-of (u_55 / gemaess  :2 (u_56 / PARAGRAPH  :0 (u_60 / c  :0 (u_63 / BO  :1-of (u_66 / fuer  :2 (u_67 / Wien))))  :0 (u_71 / X5)))))))
+(dummy_0 / dummy_0)

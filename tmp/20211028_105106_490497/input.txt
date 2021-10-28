@@ -1,0 +1,5 @@
+# IRTG unannotated corpus file, v1.0
+# interpretation fl: de.up.ling.irtg.algebra.graph.GraphAlgebra
+
+(u_2<root> / ausbilden  :0 (u_1 / OBL)  :2 (u_12 / Dachflaeche  :0 (u_15 / Gebaeude))  :1-of (u_4 / als  :2 (u_5 / Flachdaecher  :0 (u_9 / begruent)  :0 (u_900 / Xdach)))  :1-of (u_18 / auf  :2 (u_19 / Flaeche  :0 (u_23 / bezeichnet  :1-of (u_26 / mit  :2 (u_27 / BB2  :0 (u_901 / BB)  :0 (u_902 / X2)))))))
+(dummy_0 / dummy_0)

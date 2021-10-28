@@ -1,0 +1,4 @@
+a_gebaeudehoehe_maximal(stack_empty_1_r(stack_empty_2_r(e_DUMMY,stack_empty_1(e_mit,stack_empty_2_r(e_Gebaeude,stack_empty_1(e_von,stack_empty_1_r(e_Errichtung,stack_empty_2_r(a_per,stack_empty_1_r(e_bestimmen,stack_empty_2(e_fuer,stack_empty_0(e_Grundflaechen,stack_empty_1_r(a_bezeichnet,stack_empty_2(e_mit,stack_empty_0(stack_empty_0(e_BB4,a_bb),a_4)))))))))))),stack_empty_2(e_von,stack_empty_0(a_m,a_8))),e_DUMMY)
+*(*(*(*('',*('',*('',*('',*('',*(PER,*('',*('',*('',*(PlanzeichenBBID,*('',*(*('',q_BB),v_4)))))))))))),*('',*(q_m,v_8))),''),*(OBL,GebaeudeHoeheMax))
+null
+<null>

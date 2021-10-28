@@ -1,0 +1,4 @@
+stack_empty_2(stack_empty_1(e_von,stack_empty_1_r(stack_empty_2_r(a_groesse,stack_empty_1(e_ab,stack_empty_2(a_ausbilden_flachdach_begruent(stack_empty_0(e_DUMMY,stack_empty_1(stack_empty_2(stack_empty_0(stack_empty_0(stack_empty_1_r(e_handeln,stack_empty_2(e_um,stack_empty_0(a_glasdach,e_Xdach))),e_NEG),a_exc),e_er),e_es))),stack_empty_0(e_Dach,a_nebengebaeude)))),stack_empty_2(e_entsprechend,stack_empty_0(e_Stand,e_Technik)))),stack_empty_0(a_m2,a_5))
+*(*('',*(*(DachflaecheMin,*('',*(*(*('',*(*(*(*(*('',*('',*(*(Dachart,v_Glasdach),''))),''),EXC),''),'')),*(*(OBL,*(Dachart,v_Flachdach)),*(OBL,BegruenungDach))),*('',*(GebaeudeBautyp,v_Nebengebaeude))))),*('',*('','')))),*(q_m2,v_5))
+null
+<null>

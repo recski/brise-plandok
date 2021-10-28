@@ -95,10 +95,8 @@ For details on how the dataset was split for the annotation see the [data split 
 
 #### Excel for annotation
 
-<!-- todo -->
-
 ```bash
-python brise_plandok/annotation_process/utils/full_annotation_excel_generator.py -d sample_data/annotation/full_data/8141.json -o sample_data/annotation/8141_annotation_phase2.xlsx
+python brise_plandok/annotation_process/utils/label_annotation_excel_generator.py -d sample_data/annotation/full_data/8141.json -o sample_data/annotation/8141_annotation_labels.xlsx
 ```
 
 #### Excel for review

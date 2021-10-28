@@ -54,11 +54,11 @@ def _copy_xlsx_files_to_annotators(doc_id, xlsx_folder, annotators_folder, annot
     shutil.copy2(xlsx_file, dest)
 
 def create_full_xlsx(doc, xlsx_file):
-    _fill_gen_attributes_for_phase_2(doc)
+    _fill_gen_attributes_for_full(doc)
     FullAnnotationExcelGenerator(xlsx_file, FullAnnotationExcelConstants()).generate_excel(doc)
 
 
-def _fill_gen_attributes_for_phase_2(doc):
+def _fill_gen_attributes_for_full(doc):
     is_annotated = len(doc[DocumentFields.ANNOTATORS]) > 0
     value_extractor = ValueExtractor()
     type_extractor = TypeExtractor()

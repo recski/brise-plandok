@@ -5,7 +5,7 @@ from openpyxl.utils.cell import column_index_from_string, coordinate_from_string
 from brise_plandok.constants import AttributeFields, SenFields
 import logging
 import os
-from brise_plandok.data_split.utils.constants import FullAnnotationExcelConstants
+from brise_plandok.annotation_process.utils.constants import FullAnnotationExcelConstants
 from brise_plandok.utils import load_json, normalize_attribute_name
 from brise_plandok.xlsx.excel_generator import ExcelGenerator
 

@@ -1,13 +1,13 @@
 
 
 from brise_plandok.constants import DocumentFields, SenFields
-from brise_plandok.data_split.utils.assignments import get_download_folder, update_assignments
+from brise_plandok.annotation_process.utils.assignments import get_download_folder, update_assignments
 import logging
-from brise_plandok.data_split.utils.constants import ASSIGNMENT_ADDITIONAL_HEADER, ASSIGNMENT_DF_HEADER_BASE, FullAnnotationExcelConstants
+from brise_plandok.annotation_process.utils.constants import ASSIGNMENT_ADDITIONAL_HEADER, ASSIGNMENT_DF_HEADER_BASE, FullAnnotationExcelConstants
 import shutil
 from brise_plandok.convert import Converter
 import os
-from brise_plandok.data_split.utils.full_annotation_excel_generator import FullAnnotationExcelGenerator
+from brise_plandok.annotation_process.utils.full_annotation_excel_generator import FullAnnotationExcelGenerator
 from brise_plandok.type_extraction.type_extractor import TypeExtractor
 from brise_plandok.value_extraction.value_extractor import ValueExtractor
 

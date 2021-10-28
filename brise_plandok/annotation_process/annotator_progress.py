@@ -2,8 +2,8 @@ import argparse
 import os
 
 import pandas
-from brise_plandok.data_split.utils.assignments import load_assigned_docs_as_df
-from brise_plandok.data_split.utils.constants import ANNOTATOR_UPLOAD_FOLDER, ANNOTATORS, ASSIGNMENT_FILE_HEADER
+from brise_plandok.annotation_process.utils.assignments import load_assigned_docs_as_df
+from brise_plandok.annotation_process.utils.constants import ANNOTATOR_UPLOAD_FOLDER, ANNOTATORS, ASSIGNMENT_FILE_HEADER
 import logging
 
 UPDATED_HEADER = 'uploaded'

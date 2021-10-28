@@ -1,4 +1,4 @@
-from brise_plandok.data_split.utils.data import attr_list_to_dict
+from brise_plandok.annotation_process.utils.data import attr_list_to_dict
 from brise_plandok.constants import DocumentFields, SenFields
 import json
 import os
@@ -7,7 +7,7 @@ from brise_plandok.utils import dump_json, load_json
 
 
 # DATA_FOLDER = "/home/eszter/research/brise-nlp/annotation/2021_09/full_data"
-# DATA_FOLDER = "/home/eszter/research/brise-plandok/brise_plandok/data_split/example/full_data/"
+# DATA_FOLDER = "/home/eszter/research/brise-plandok/brise_plandok/annotation_process/example/full_data/"
 DATA_FOLDER = "/home/eszter/research/brise-plandok/sample_data/annotation/full_data/"
 
 DOC_ID_FILTER = [

@@ -1,12 +1,12 @@
 import argparse
-from brise_plandok.data_split.utils.data import generate_data
-from brise_plandok.data_split.utils.xlsx import distribute_xlsx_files, genereate_xlsx_files
-from brise_plandok.data_split.utils.assignments import fill_assignments_with_batch
-from brise_plandok.data_split.utils.cycles import get_cycle
-from brise_plandok.data_split.assignment_loader import load_assignments
-from brise_plandok.data_split.sentence_stat import calculate_sentence_counts
-from brise_plandok.data_split.utils.doc_tracking import get_next_batch, load_doc_tracking_data, save_doc_tracking_data
-from brise_plandok.data_split.utils.assignments import get_assignment
+from brise_plandok.annotation_process.utils.data import generate_data
+from brise_plandok.annotation_process.utils.xlsx import distribute_xlsx_files, genereate_xlsx_files
+from brise_plandok.annotation_process.utils.assignments import fill_assignments_with_batch
+from brise_plandok.annotation_process.utils.cycles import get_cycle
+from brise_plandok.annotation_process.assignment_loader import load_assignments
+from brise_plandok.annotation_process.sentence_stat import calculate_sentence_counts
+from brise_plandok.annotation_process.utils.doc_tracking import get_next_batch, load_doc_tracking_data, save_doc_tracking_data
+from brise_plandok.annotation_process.utils.assignments import get_assignment
 import logging
 
 

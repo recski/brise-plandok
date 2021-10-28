@@ -138,7 +138,7 @@ dmypy.json
 brise_plandok/review/output/
 
 # Data split
-brise_plandok/data_split/example/
+brise_plandok/annotation_process/example/
 
 # Personal scripts
 scripts/*/

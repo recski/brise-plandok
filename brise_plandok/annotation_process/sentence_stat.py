@@ -1,7 +1,7 @@
 import argparse
-from brise_plandok.data_split.utils.sentences import count_sentences_in_doc, sum_sens_for_docs
-from brise_plandok.data_split.utils.doc_tracking import get_next_batch, load_doc_tracking_data
-from brise_plandok.data_split.utils.constants import ANNOTATORS, DOC_HEADER
+from brise_plandok.annotation_process.utils.sentences import count_sentences_in_doc, sum_sens_for_docs
+from brise_plandok.annotation_process.utils.doc_tracking import get_next_batch, load_doc_tracking_data
+from brise_plandok.annotation_process.utils.constants import ANNOTATORS, DOC_HEADER
 
 import json
 import logging

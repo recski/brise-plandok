@@ -4,8 +4,8 @@ import logging
 import os
 
 import pandas
-from brise_plandok.data_split.utils.constants import ANNOTATOR_DOWNLOAD_FOLDER, ASSIGNMENT_ADDITIONAL_HEADER, ASSIGNMENT_DF_HEADER_BASE, ASSIGNMENT_TXT, ASSIGNMENT_FILE_HEADER, ASSIGNMENT_XLSX, DOC_HEADER, PHASE_STR
-from brise_plandok.data_split.utils.sentences import sum_sens_for_docs
+from brise_plandok.annotation_process.utils.constants import ANNOTATOR_DOWNLOAD_FOLDER, ASSIGNMENT_ADDITIONAL_HEADER, ASSIGNMENT_DF_HEADER_BASE, ASSIGNMENT_TXT, ASSIGNMENT_FILE_HEADER, ASSIGNMENT_XLSX, DOC_HEADER, PHASE_STR
+from brise_plandok.annotation_process.utils.sentences import sum_sens_for_docs
 from numberpartitioning import karmarkar_karp
 
 

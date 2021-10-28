@@ -1,8 +1,8 @@
 import argparse
-from brise_plandok.data_split.utils.assignments import get_assignment_header, load_assigned_docs_as_list
-from brise_plandok.data_split.utils.constants import ANNOTATORS, ASSIGNMENT_DF_HEADER_BASE, PHASE_STR
-from brise_plandok.data_split.utils.sentences import sum_sens_for_docs
-from brise_plandok.data_split.utils.doc_tracking import load_doc_tracking_data
+from brise_plandok.annotation_process.utils.assignments import get_assignment_header, load_assigned_docs_as_list
+from brise_plandok.annotation_process.utils.constants import ANNOTATORS, ASSIGNMENT_DF_HEADER_BASE, PHASE_STR
+from brise_plandok.annotation_process.utils.sentences import sum_sens_for_docs
+from brise_plandok.annotation_process.utils.doc_tracking import load_doc_tracking_data
 import os
 import logging
 import pandas

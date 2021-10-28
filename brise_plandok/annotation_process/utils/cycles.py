@@ -1,5 +1,5 @@
 
-from brise_plandok.data_split.utils.constants import ANNOTATORS, CYCLE_COL, CYCLE_FILE
+from brise_plandok.annotation_process.utils.constants import ANNOTATORS, CYCLE_COL, CYCLE_FILE
 import itertools
 import os
 import pandas

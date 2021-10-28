@@ -1,4 +1,4 @@
-from brise_plandok.data_split.utils.constants import DOC_HEADER
+from brise_plandok.annotation_process.utils.constants import DOC_HEADER
 import pandas
 
 

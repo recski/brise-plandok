@@ -1,5 +1,5 @@
 txt_folder="sample_data/txt"
-json_folder="brise_plandok/data_split/example/json"
+json_folder="brise_plandok/annotation_process/example/json"
 
 for doc in "$@"
 do

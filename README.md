@@ -18,11 +18,28 @@ Installing this repository will also install the `tuw_nlp` repository, a graph-t
 
 Ensure that you have at least `Java 8` for the [alto](https://github.com/coli-saar/alto) library.
 
+
+## Annotated Data Description
+
+See [DATA.md](./DATA.md).
+
+## Attribute extraction
+
+```bash
+cat sample_data/json/sample.jsonl | python brise_plandok/extractor.py > output/sample_attr.jsonl
+```
+
+### Evalutaion
+
+```bash
+cat sample_data/json/sample_10.jsonl | python brise_plandok/eval_attr_ext.py
+```
+
 ## Rule extraction
 
 To run the rule extraction system described in the [2021 ASAIL paper](#references) on a small annotated sample, run:
 
-```
+```bash
 cat sample_data/json/asail.jsonl | python brise_plandok/extractor.py -r > output/asail_rules.jsonl
 ```
 
@@ -30,11 +47,11 @@ cat sample_data/json/asail.jsonl | python brise_plandok/extractor.py -r > output
 
 To perform evaluation on the same sample, run:
 
-```
+```bash
 cat sample_data/json/asail.jsonl | python brise_plandok/eval_attr_ext.py -r
 ```
 
-### Demo
+## Demo
 
 To run the browser-based demo described in the paper (also available [online](https://ir-group.ec.tuwien.ac.at/brise-extract)), first start rule extraction as a service like this:
 
@@ -52,9 +69,9 @@ To run the prover of our system, also start the prover service from this reposit
 
 The demo can then be accessed from your web browser at [http://localhost:8501/](http://localhost:8501/)
 
-## Full pipeline
+## Preprocessing
 
-### Data
+### Input data
 
 All steps described below can be run on the sample documents included in this repository under `sample_data`.
 
@@ -62,7 +79,7 @@ The preprocessed version of all plan documents (as of December 2020) can be
 downloaded as [a single JSON file](https://url.tuwien.at/ndnre). If you would like
 to customize preprocessing, you can also download the [raw text documents](https://url.tuwien.at/eydmo)
 
-### Preprocessing
+### NLP Pipeline
 
 Extract section structure from raw text and run NLP pipeline (sentence segmentation, tokenization, dependency parsing):
 
@@ -70,79 +87,61 @@ Extract section structure from raw text and run NLP pipeline (sentence segmentat
 python brise_plandok/plandok.py sample_data/txt/*.txt > sample_data/json/sample.jsonl
 ```
 
-Run attribute extraction:
+## Annotation process
 
-```
-cat sample_data/json/sample.jsonl | python brise_plandok/extractor.py > output/sample_attr.jsonl
-```
+For details on how the dataset was split for the annotation see the [data split documentation](brise_plandok/data_split/documentation.md).
 
-To run the rule extraction system of the ASAIL paper, add the `-r` command-line switch to the above command.
+### Step 1 - Multi-label annotation
 
-### Evaluation
+#### Excel for annotation
 
-Evaluate attribute extraction on annotated sample of 10 documents:
-
-```
-cat sample_data/json/sample_10.jsonl | python brise_plandok/eval_attr_ext.py
-```
-
-### Annotation
-
-To generate `xlsx` files for annotation, run the following command:
-
-```
-sed "5q;d" sample_data/json/asail.jsonl | python brise_plandok/extractor.py -r | python brise_plandok/convert.py -i JSON -o XLSX -of output/asail.xlsx
-```
-
-The generated excel sheet will be placed under output/asail.xlsx. The samples are annotated by our rule-based system and then can be used by the human annotators as well.
-
-To generate `xlsx` with pre-filled attributes from the rule base system run:
-
-```bash
-cat output/sample_attr.jsonl | python brise_plandok/convert.py -i JSON -o XLSX -of output/sample.xlsx -g
-```
-
-To generate `json` files from the annotated samples, you can run:
-
-```
-cat sample_data/csv/sample_10_annotated.csv | python brise_plandok/convert.py -i CSV_FULL > sample_10_annotated.json
-```
-
-If labels change in the `BRISE.xlsx` template file, new excel file from a fully or partially annotated excel can be generated with the command:
-
-```
-python brise_plandok/convert.py -i XLSX -if sample_data/xlsx/asail.xlsx -o XLSX -of output/asail.xlsx
-```
-
-### Generate excel for phase 2
+<!-- todo -->
 
 ```bash
 python brise_plandok/data_split/utils/full_annotation_excel_generator.py -d sample_data/annotation/full_data/8141.json -o sample_data/annotation/8141_annotation_phase2.xlsx
 ```
 
-## Dataset creation annotation
-
-For details on how the dataset was split for the annotation see the [data split documentation](brise_plandok/data_split/documentation.md).
-
-## Annotation Review
-
-### Creates excel for review
+#### Excel for review
 
 ```bash
-python brise_plandok/review/annotation_to_review.py -a sample_data/annotation/01/phase1/upload/8141.xlsx sample_data/annotation/02/phase1/upload/8141.xlsx -d sample_data/annotation/full_data/8141.json -of sample_data/annotation/8141_reviewer1.xlsx -g <GOLD_DIR> -r
+python brise_plandok/review/annotation_to_review.py -a sample_data/annotation/01/phase1/upload/8141.xlsx sample_data/annotation/02/phase1/upload/8141.xlsx -d sample_data/annotation/full_data/8141.json -g data/train/ -of sample_data/annotation/8141_review.xlsx -r
 ```
+The output is save to `sample_data/annotation/8141_review.xlsx`.
 
-The output can be found in `brise_plandok/review/output/review.xlsx` by default.
-
-### Create gold after review
+#### Generate gold after review
 
 ```bash
-python brise_plandok/review/review_converter.py -r brise_plandok/review/examples/6492_reviewed.xlsx
+python brise_plandok/review/review_to_gold.py -r sample_data/annotation/8141_review.xlsx -d sample_data/annotation/full_data/8141.json -g sample_data/annotation/full_data
 ```
 
-The output can be found in `brise_plandok/review/output/gold.json` by default.
+Gold `gold_attributes` should be filled out and `labels_gold` and all `labels_gold_exists` should be set to true in `sample_data/annotation/full_data/8141.json`.
 
-### Use gold to add attributes to documents (-f enables fuzzy sentence matching, which currently ignores digits):
+### Step 2 - Full annotation
+
+#### Excel for annotation
+
+```bash
+python brise_plandok/data_split/utils/full_annotation_excel_generator.py -d sample_data/annotation/full_data/8141.json -o sample_data/annotation/8141_annotation_full.xlsx
+```
+The output is save to `sample_data/annotation/8141_annotation_full.xlsx`.
+
+#### Excel for review
+
+```bash
+# TBD
+```
+
+#### Generate gold after review
+
+```bash
+# TBD
+```
+
+## Pre-fill attributes from gold
+
+<!-- # Todo -->
+
+Use gold to add attributes to documents (-f enables fuzzy sentence matching, which currently ignores digits):
 
 ```bash
 cat sample_data/json/sample_10.jsonl | python brise_plandok/attrs_from_gold.py -g brise_plandok/review/output -f > sample_data/json/sample_10_prefilled.jsonl

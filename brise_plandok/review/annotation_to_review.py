@@ -4,8 +4,8 @@ import os
 import logging
 from brise_plandok.convert import Converter
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
-from brise_plandok.review.constants import ReviewXlsxConstants
-from brise_plandok.review.review_excel_generator import ReviewExcelGenerator
+from brise_plandok.review.utils.constants import ReviewXlsxConstants
+from brise_plandok.review.utils.review_excel_generator import ReviewExcelGenerator
 from brise_plandok.utils import dump_json, load_json
 
 

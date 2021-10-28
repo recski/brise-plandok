@@ -53,7 +53,10 @@ def preprocess_attrs(attrs):
         if new_name in ATTR_IGNORE:
             continue
 
-        assert new_name in ATTR_TO_CAT, new_name
+        if new_name not in ATTR_TO_CAT:
+            logging.warning(
+                f"{new_name} attribute is not recognized - will be ignored")
+            continue
 
         if attr['value']:
             attr['value'] = attr['value'].replace('ä', 'ae')

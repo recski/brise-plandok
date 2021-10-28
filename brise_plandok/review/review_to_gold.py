@@ -1,8 +1,8 @@
 import argparse
 from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, DocumentFields, SenFields
-from utils import dump_json, load_json
-from brise_plandok.review.constants import ATTRIBUTES_TO_IGNORE, ATTRIBUTE_OFFSET, ATTRIBUTE_REVIEW_OFFSET, ATTRIBUTE_STEP, ERROR_LABEL, FIRST_DATA_ROW, LABEL_OFFSET, REVIEW_SHEET_NAME, SEN_ID_COL
+from brise_plandok.review.utils.constants import ATTRIBUTES_TO_IGNORE, ReviewXlsxConstants
+from brise_plandok.utils import dump_json, load_json
 
 import openpyxl
 import logging
@@ -26,10 +26,10 @@ class ReviewConverter(Converter):
 
     def _fill_gold_attrs(self, fn):
         workbook = openpyxl.load_workbook(fn)
-        review_sheet = workbook[REVIEW_SHEET_NAME]
+        review_sheet = workbook[ReviewXlsxConstants.MAIN_SHEET_NAME]
 
-        for row_id in range(FIRST_DATA_ROW, review_sheet.max_row + 1):
-            sen_id = review_sheet.cell(row=row_id, column=SEN_ID_COL).value
+        for row_id in range(ReviewXlsxConstants.FIRST_DATA_ROW, review_sheet.max_row + 1):
+            sen_id = review_sheet.cell(row=row_id, column=ReviewXlsxConstants.SEN_ID_COL).value
             attributes = [attribute for attribute in self._generate_attributes(
                 review_sheet, row_id)]
             if self._is_error(attributes):
@@ -82,13 +82,13 @@ class ReviewConverter(Converter):
                 }
 
     def _generate_attributes(self, review_sheet, row_id):
-        for col in range(ATTRIBUTE_OFFSET, review_sheet.max_column, ATTRIBUTE_STEP):
+        for col in range(ReviewXlsxConstants.ATTRIBUTE_OFFSET, review_sheet.max_column, ReviewXlsxConstants.ATTRIBUTE_STEP):
             label = review_sheet.cell(
-                row=row_id, column=col+LABEL_OFFSET).value
+                row=row_id, column=col+ReviewXlsxConstants.LABEL_OFFSET).value
             if label is None:
                 continue
             review = review_sheet.cell(
-                row=row_id, column=col+ATTRIBUTE_REVIEW_OFFSET).value
+                row=row_id, column=col+ReviewXlsxConstants.ATTRIBUTE_REVIEW_OFFSET).value
             if review is None:
                 raise ValueError(
                     "Review field is not filled out for row " + str(row_id))
@@ -102,7 +102,7 @@ class ReviewConverter(Converter):
         return review == "OK" or review == "MISSING"
 
     def _is_error(self, attributes):
-        return ERROR_LABEL in set([attr["name"] for attr in attributes])
+        return ReviewXlsxConstants.ERROR_LABEL in set([attr["name"] for attr in attributes])
 
 
 def get_args():

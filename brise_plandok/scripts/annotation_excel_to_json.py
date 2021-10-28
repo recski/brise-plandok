@@ -55,13 +55,13 @@ class FullDataConverter:
             text = sheet.cell(row=row, column=TEXT_COL).value
             gen_attributes = self._get_gen_attributes(json_attr, id)
             already_gold_on_annotation = self._is_already_gold(sheet, row)
-            gold_exists, gold_attr = self._get_gold_attr(text)
+            labels_gold_exists, gold_attr = self._get_gold_attr(text)
             yield id, {
                 SenFields.ID: id,
                 SenFields.TEXT: text,
                 SenFields.MODALITY: None,
                 SenFields.ALREADY_GOLD_ON_ANNOTATION: already_gold_on_annotation,
-                SenFields.GOLD_EXISTS: gold_exists,
+                SenFields.LABELS_GOLD_EXISTS: labels_gold_exists,
                 SenFields.GOLD_ATTRIBUTES: gold_attr,
                 SenFields.GEN_ATTRIBUTES_ON_ANNOTATION: gen_attributes,
                 SenFields.ANNOTATED_ATTRIBUTES: {},
@@ -88,7 +88,7 @@ class FullDataConverter:
         sen = {SenFields.TEXT: text}
         attrs_from_gold_sen(sen, self.sen_to_gold_attrs, False)
         gold_attr = sen[SenFields.GOLD_ATTRIBUTES] if SenFields.GOLD_ATTRIBUTES in sen else []
-        return sen[SenFields.GOLD_EXISTS], gold_attr
+        return sen[SenFields.LABELS_GOLD_EXISTS], gold_attr
 
 
 def main():

@@ -1,11 +1,13 @@
 import argparse
-from utils import dump_json, load_json
 from brise_plandok.constants import ANNOTATOR_NAME_INDEX, AnnotatedAttributeFields, AttributeFields, DocumentFields, OldDocumentFields, OldSectionFields, OldSenFields, SenFields
 import os
-from brise_plandok.review.excel_generator import ExcelGenerator
 import logging
 from brise_plandok.convert import Converter
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
+from brise_plandok.review.utils.constants import ReviewXlsxConstants
+from brise_plandok.review.utils.review_excel_generator import ReviewExcelGenerator
+from brise_plandok.utils import dump_json, load_json
+
 
 
 class AnnotationConverter(Converter):
@@ -96,8 +98,8 @@ class AnnotationConverter(Converter):
         if not self.review:
             logging.info(f"Review = false for {data[DocumentFields.ID]}, no review excel will be generated.")
             return
-        generator = ExcelGenerator(output_file)
-        generator.generate_review_excel(data)
+        generator = ReviewExcelGenerator(output_file, ReviewXlsxConstants())
+        generator.generate_excel(data)
 
 
 
@@ -109,7 +111,6 @@ def get_args():
     parser.add_argument("-g", "--gold-folder", type=str, default=None)
     parser.add_argument("-r", "--review", default=False, action="store_true")
     parser.set_defaults(input_format="XLSX", output_format="XLSX",
-                        output_file="brise_plandok/review/output/review.xlsx",
                         gen_attributes=False)
     return parser.parse_args()
 

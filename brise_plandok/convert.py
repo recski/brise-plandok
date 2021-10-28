@@ -7,7 +7,6 @@ CSV_FULL: sample from Bjoern, in csv, with all features
 JSON is used as the internal format for conversion
 """
 import argparse
-from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.constants import DO_NOT_ANNOTATE, GOLD_PREFIX, DocumentFields, OldSenFields, SenFields
 import csv
 import json
@@ -15,11 +14,11 @@ import logging
 import sys
 import os
 import re
-from utils import normalize_attribute_name
 import brise_plandok.annotation
 from brise_plandok.annotation.annotate import Annotate
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.annotation.agreement import gen_sens_from_file
+from brise_plandok.utils import normalize_attribute_name
 
 
 class Converter():
@@ -365,19 +364,19 @@ class Converter():
         attrs_text = ""
         if attribute_key in sen:
             attrs_text = ",".join(sen[attribute_key].keys())
-        if self._gold_exists(sen):
+        if self._labels_gold_exists(sen):
             attrs_text = GOLD_PREFIX + "," + attrs_text
         dataset.append((sen[SenFields.ID], sen[SenFields.TEXT], attrs_text))
 
     def _get_attribute_key(self, sen):
-        if self._gold_exists(sen):
+        if self._labels_gold_exists(sen):
             return SenFields.GOLD_ATTRIBUTES
         if self.gen_attributes and SenFields.GEN_ATTRIBUTES_ON_ANNOTATION in sen:
             return SenFields.GEN_ATTRIBUTES_ON_ANNOTATION
         return OldSenFields.ATTRIBUTES
 
-    def _gold_exists(self, sen):
-        return SenFields.GOLD_EXISTS in sen and sen[SenFields.GOLD_EXISTS]
+    def _labels_gold_exists(self, sen):
+        return SenFields.LABELS_GOLD_EXISTS in sen and sen[SenFields.LABELS_GOLD_EXISTS]
 
     def write_txt(self, doc, stream):
         for section in doc["sections"]:

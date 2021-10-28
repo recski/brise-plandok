@@ -25,8 +25,8 @@ from brise_plandok.value_extraction.wuz_mehrere import WidmungInMehrerenEbenenEx
 
 class ValueExtractor:
 
-    def __init__(self, args):
-        self.attributes = args.attributes
+    def __init__(self, attributes=[]):
+        self.attributes = attributes
         self.planzeichen = PlanzeichenExtractor()
         self.dachart = DachartExtractor()
         self.gehsteig = GehsteigBreiteMinExtractor()
@@ -54,12 +54,12 @@ class ValueExtractor:
             items = [doc]
         for sen in items:
             for attribute in self.attributes:
-                self._extract_for_attr(sen, attribute)
+                self.extract_for_attr(sen, attribute)
         sys.stdout.write(json.dumps(doc) + "\n")
 
-    def _extract_for_attr(self, sen, attribute):
+    def extract_for_attr(self, sen, attribute, field_to_add = SenFields.GEN_ATTRIBUTES, only_if_gold=True):
         values = []
-        if contains_attr(sen, attribute):
+        if not only_if_gold or contains_attr(sen, attribute):
             if attribute == AttributesNames.PLANZEICHEN:
                 values = [value for value in self.planzeichen.extract(sen[SenFields.TEXT])]
             elif attribute == AttributesNames.DACHART:
@@ -96,17 +96,17 @@ class ValueExtractor:
                 values = [value for value in self.wuz_mehrere.extract(sen[SenFields.TEXT])]
             elif attribute == AttributesNames.FLAECHEN:
                 values = [value for value in self.flaechen.extract(sen[SenFields.TEXT])]
-            self._add_to_gen_values(sen, attribute, values)
+            self._add_to_gen_values(sen, attribute, values, field_to_add)
 
 
-    def _add_to_gen_values(self, sen, attribute, values):
-        if attribute not in sen[SenFields.GEN_ATTRIBUTES]:
-            sen[SenFields.GEN_ATTRIBUTES][attribute] = {
+    def _add_to_gen_values(self, sen, attribute, values, field_to_add):
+        if attribute not in sen[field_to_add]:
+            sen[field_to_add][attribute] = {
                 AttributeFields.VALUE: [],
                 AttributeFields.TYPE: None,
                 AttributeFields.NAME: attribute,
             }
-        sen[SenFields.GEN_ATTRIBUTES][attribute][AttributeFields.VALUE] = values
+        sen[field_to_add][attribute][AttributeFields.VALUE] = values
 
 def get_args():
     parser = argparse.ArgumentParser(description="")
@@ -115,7 +115,7 @@ def get_args():
 
 def main():
     args = get_args()
-    value_extractor = ValueExtractor(args)
+    value_extractor = ValueExtractor(args.attributes)
     for line in sys.stdin:
         doc = json.loads(line)
         value_extractor.extract(doc)

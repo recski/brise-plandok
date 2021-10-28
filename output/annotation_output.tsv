@@ -1,0 +1,3 @@
+sen_id	sen	annot1	annot2	gold	attribute counts	full_agreement
+7774_18_0	Auf der mit Esp/BB10 bezeichneten Fläche ist die Errichtung von Gebäuden mit einer maximalen Gebäudehöhe von 11,0 m zulässig.	GebaeudeHoeheMax,Planzeichen,WidmungUndZweckbestimmung	GebaeudeHoeheMax,Planzeichen,WidmungUndZweckbestimmung	GebaeudeHoeheMax,Planzeichen,WidmungUndZweckbestimmung	GebaeudeHoeheMax:2 Planzeichen:2 WidmungUndZweckbestimmung:2	True
+7774_18_1	Der höchste Punkt der Dächer darf nicht höher als 3,0 m über der tatsächlich errichteten Gebäudehöhe liegen.	Planzeichen,WidmungUndZweckbestimmung,GebaeudeHoeheArt	Planzeichen,WidmungUndZweckbestimmung,GebaeudeHoeheArt	Planzeichen,WidmungUndZweckbestimmung,GebaeudeHoeheArt	Planzeichen:2 WidmungUndZweckbestimmung:2 GebaeudeHoeheArt:2	True

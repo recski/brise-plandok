@@ -142,3 +142,6 @@ brise_plandok/data_split/example/
 
 # Personal scripts
 scripts/*/
+
+# tmp folder
+tmp/

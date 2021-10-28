@@ -1,5 +1,0 @@
-# IRTG unannotated corpus file, v1.0
-# interpretation fl: de.up.ling.irtg.algebra.graph.GraphAlgebra
-
-(u_1<root> / begruenen  :0 (u_3 / OBL)  :2 (u_17 / Flachdaecher  :0 (u_900 / Xdach)  :1-of (u_20 / bis  :2 (u_21 / Dachneigung  :0 (u_33 / zu)  :1-of (u_25 / von  :2 (u_26 / Grad  :0 (u_30 / fuenf))))))  :1-of (u_6 / entsprechend  :2 (u_7 / Stand  :0 (u_11 / Wissenschaft  :0 (u_14 / technisch)))))
-(dummy_0 / dummy_0)

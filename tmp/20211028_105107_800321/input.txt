@@ -1,5 +1,0 @@
-# IRTG unannotated corpus file, v1.0
-# interpretation fl: de.up.ling.irtg.algebra.graph.GraphAlgebra
-
-(u_2<root> / ausbilden  :0 (u_1 / OBL)  :0 (u_4 / handeln  :0 (u_12 / NEG)  :2 (u_15 / er)  :1 (u_18 / es)  :0 (u_21 / EXC)  :1-of (u_7 / um  :2 (u_8 / Glasdaecher  :0 (u_900 / Xdach))))  :2 (u_53 / Dach  :0 (u_56 / Nebengebaeude))  :1-of (u_24 / als  :2 (u_25 / Flachdaecher  :0 (u_29 / begruent)  :0 (u_901 / Xdach)))  :1-of (u_32 / ab  :2 (u_33 / Groesse  :1-of (u_37 / entsprechend  :2 (u_38 / Stand  :0 (u_42 / Technik)))  :1-of (u_45 / von  :2 (u_46 / m2  :0 (u_50 / X5))))))
-(dummy_0 / dummy_0)

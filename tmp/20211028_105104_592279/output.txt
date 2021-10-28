@@ -1,4 +1,0 @@
-a_fluchtlinie_entlang(stack_empty_1(e_DUMMY,stack_empty_0(stack_empty_1_r(a_gehsteige_mit_breite(stack_empty_0(stack_empty_2_r(e_DUMMY,stack_empty_1_r(e_bestimmen,stack_empty_2(e_fuer,stack_empty_0(e_Querschnitte,stack_empty_1_r(e_Verkehrsflaeche,stack_empty_2(e_gemaess,stack_empty_0(stack_empty_0(e_PARAGRAPH,stack_empty_0(e_c,stack_empty_1_r(e_BO,stack_empty_2(e_fuer,e_Wien)))),a_5))))))),a_obl),stack_empty_1_r(e_DUMMY,stack_empty_2(e_von,stack_empty_0(a_m,stack_empty_0(a_2comma0,e_mindestens)))),e_DUMMY,e_DUMMY),stack_empty_2(e_bei,stack_empty_1_r(a_strassenbreite,stack_empty_2(e_ab,stack_empty_0(a_m,a_10))))),e_dass)),e_DUMMY)
-*(*(*('',*(*(*(*(*(*('',*('',*('',*('',*('',*('',*(*('',*('',*('',*('','')))),v_5))))))),OBL),*(*('',*('',*(q_m,*(v_2COMMA0,'')))),*('',''))),GehsteigbreiteMin),*('',*(StrassenbreiteMin,*('',*(q_m,v_10))))),'')),''),AnFluchtlinie)
-null
-<null>

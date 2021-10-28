@@ -1,4 +1,0 @@
-stack_empty_1_r(stack_empty_0_r(a_bezeichnet,stack_empty_2_r(e_Flaeche,stack_empty_1(e_auf,a_ausbilden_flachdach_begruent(stack_empty_2(e_DUMMY,stack_empty_0(e_Dachflaeche,e_Gebaeude)))))),stack_empty_2(e_mit,stack_empty_0(stack_empty_0(e_BB2,a_2),a_bb)))
-*(*(PlanzeichenBBID,*('',*('',*(*('',*('','')),*(*(OBL,*(Dachart,v_Flachdach)),*(OBL,BegruenungDach)))))),*('',*(*('',v_2),q_BB)))
-null
-<null>

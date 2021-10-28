@@ -1,4 +1,0 @@
-stack_empty_0_r(e_zu,stack_empty_1_r(a_dachneigung_bis(e_DUMMY,stack_empty_1(e_DUMMY,stack_empty_0(stack_empty_2_r(a_flachdach,stack_empty_0(stack_empty_1_r(a_begruenen,stack_empty_2(e_entsprechend,stack_empty_0(e_Stand,stack_empty_0(e_Wissenschaft,e_technisch)))),a_obl)),e_Xdach))),stack_empty_2(e_von,stack_empty_0(a_grad,a_fuenf))))
-*('',*(*(*('',*('',*(*(*(Dachart,v_Flachdach),*(*(BegruenungDach,*('',*('',*('','')))),OBL)),''))),DachneigungMax),*('',*(q_Grad,v_5))))
-null
-<null>

@@ -1,5 +1,0 @@
-# IRTG unannotated corpus file, v1.0
-# interpretation fl: de.up.ling.irtg.algebra.graph.GraphAlgebra
-
-(u_1<root> / bestimmen  :2 (u_3 / PER  :1 (u_6 / Errichtung  :1-of (u_9 / von  :2 (u_10 / Gebaeude  :1-of (u_14 / mit  :2 (u_15 / Gebaeudehoehe  :0 (u_27 / maximal)  :1-of (u_19 / von  :2 (u_20 / m  :0 (u_24 / X8)))))))))  :1-of (u_30 / fuer  :2 (u_31 / Grundflaechen  :0 (u_35 / bezeichnet  :1-of (u_38 / mit  :2 (u_39 / BB4  :0 (u_900 / BB)  :0 (u_901 / X4)))))))
-(dummy_0 / dummy_0)

@@ -139,12 +139,10 @@ The output is save to `sample_data/annotation/8141_annotation_full.xlsx`.
 
 ## Pre-fill attributes from gold
 
-<!-- # Todo -->
-
 Use gold to add attributes to documents (-f enables fuzzy sentence matching, which currently ignores digits):
 
 ```bash
-cat sample_data/json/sample_10.jsonl | python brise_plandok/attrs_from_gold.py -g brise_plandok/review/output -f > sample_data/json/sample_10_prefilled.jsonl
+cat sample_data/json/sample_10.jsonl | python brise_plandok/attrs_from_gold.py -g data/train -f > sample_data/json/sample_10_prefilled.jsonl
 ```
 
 ## Annotation agreement
@@ -152,13 +150,15 @@ cat sample_data/json/sample_10.jsonl | python brise_plandok/attrs_from_gold.py -
 Calculates the inter-annotator agreement.
 
 ```bash
-python brise_plandok/annotation/agreement.py sample_data/xlsx/asail_annot1.xlsx sample_data/xlsx/asail_annot2.xlsx sample_data/xlsx/asail_gold.xlsx
+python brise_plandok/annotation/agreement.py -a sample_data/xlsx/asail_annot1.xlsx sample_data/xlsx/asail_annot2.xlsx sample_data/xlsx/asail_gold.xlsx -of output/annotation_output.tsv
 ```
 Constraints
 
 - File names must follow a `<doc_id>_<annotator_name>.xlsx` pattern.
 - You must provide exactly one gold annotation in the form of `<doc_id>_gold.xlsx`.
 - You must provide at least two non-gold annotations.
+
+You can find a comparative summary in `output/annotation_output.tsv`.
 
 ## Development
 

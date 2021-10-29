@@ -139,17 +139,17 @@ Other attributes:
 
 ### Dataset
 
-The dataset contains 405 number of annotated documents, of which 51 ones are gold (adjudicated by an expert reviewer). The data was split into train-valid-test sets following the 80-10-10 rule.
+The dataset contains 371 number of annotated documents, of which 46 ones are gold (adjudicated by an expert reviewer). The data was split into train-valid-test sets following the 80-10-10 rule.
 
 #### Train
 
 ```bash
 # Training data
 cat data/train/*.json | jq '.id' | wc -l
-325
+295
 # With gold labels
 cat data/train/*.json | jq 'select(.labels_gold == true)' | jq '.id' | wc -l
-41
+36
 ```
 
 #### Validation
@@ -157,7 +157,7 @@ cat data/train/*.json | jq 'select(.labels_gold == true)' | jq '.id' | wc -l
 ```bash
 # Validation data
 cat data/valid/*.json | jq '.id' | wc -l
-40
+37
 # With gold labels
 cat data/valid/*.json | jq 'select(.labels_gold == true)' | jq '.id' | wc -l
 5
@@ -168,7 +168,7 @@ cat data/valid/*.json | jq 'select(.labels_gold == true)' | jq '.id' | wc -l
 ```bash
 # Test data
 cat data/test/*.json | jq '.id' | wc -l
-40
+39
 # With gold labels
 cat data/test/*.json | jq 'select(.labels_gold == true)' | jq '.id' | wc -l
 5

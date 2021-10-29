@@ -26,6 +26,6 @@ class FlaechenExtractor:
 
     def extract(self, text):
         for regex, attr_type in VALUES.items():
-            m = re.match(regex, text)
+            m = re.search(regex, text)
             if m is not None:
                 return attr_type

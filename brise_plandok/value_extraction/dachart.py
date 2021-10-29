@@ -17,6 +17,6 @@ class DachartExtractor:
 
     def extract(self, text):
         for regex in VALUES:
-            m = re.match(regex, text)
+            m = re.search(regex, text)
             if m is not None:
                 yield m.group(1)

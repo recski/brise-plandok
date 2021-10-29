@@ -10,6 +10,6 @@ class GebaeudeHoeheMaxExtractor:
 
     def extract(self, text):
         for regex, type in VALUES.items():
-            m = re.match(regex, text)
+            m = re.search(regex, text)
             if m is not None:
                 return type

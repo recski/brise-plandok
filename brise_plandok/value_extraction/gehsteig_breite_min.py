@@ -1,16 +1,18 @@
 import re
 
-VALUES = [
+from brise_plandok.value_extraction.constants import NUMBER_WITH_METER
+
+VALUES = {
     # w/o jeweils
-    r".*Gehsteige? mit mindestens (\d*,\d*|\d*) ?.*",
+    r".*Gehsteige? mit mindestens " + NUMBER_WITH_METER: 1,
     # with jeweils
-    r".*Gehsteige? mit (jeweils|einer Breite von) mindestens (\d*,\d*|\d*) ?.*",
-]
+    r".*Gehsteige? mit (jeweils|einer Breite von) mindestens " + NUMBER_WITH_METER: 2,
+}
 
 class GehsteigBreiteMinExtractor:
 
     def extract(self, text):
-        for regex in VALUES:
-            m = re.match(regex, text)
+        for regex, group in VALUES.items():
+            m = re.search(regex, text)
             if m is not None:
-                yield m.group(1)
+                yield m.group(group)

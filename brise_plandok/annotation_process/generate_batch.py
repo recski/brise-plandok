@@ -31,7 +31,7 @@ def generate_batch(doc_tracking_file, batch_size, json_folder, cycle_nr, annotat
         logging.info(f"No xlsx files will be generated. Job done")
         return
 
-    docs = generate_data(next_doc_ids, json_folder, data_folder)
+    docs = generate_data(next_doc_ids, json_folder, data_folder, phase)
     genereate_xlsx_files(docs, xlsx_folder, overwrite, phase)
     distribute_xlsx_files(xlsx_folder, assignment_df,
                           annotators_folder, update, phase)

@@ -33,8 +33,6 @@ class SenToAttrMap():
                                 # support outputs from convert.py
                                 gold_attrs = sen[SenFields.ATTRIBUTES]
                             sen_id = sen.get(SenFields.ID)
-                            if sen_id is None:
-                                sen_id = sen[SenFields.ID]
                             yield sen_id, sen[SenFields.TEXT], gold_attrs, fn
 
     def sen_to_key(self, sen):
@@ -92,9 +90,8 @@ def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
 
     if SenFields.LABELS_GOLD_EXISTS in sen and sen[SenFields.LABELS_GOLD_EXISTS]:
         if overwrite:
-            if sen[SenFields.LABELS_GOLD_EXISTS]:
-                del sen[SenFields.GEN_ATTRIBUTES]
-                sen[SenFields.LABELS_GOLD_EXISTS] = False
+            del sen[SenFields.GOLD_ATTRIBUTES]
+            sen[SenFields.LABELS_GOLD_EXISTS] = False
         else:
             if sen[SenFields.GOLD_ATTRIBUTES] != attrs:
                 sen_to_attr.log_conflict(sen)
@@ -106,6 +103,27 @@ def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
 
     if attrs is not None:
         sen[SenFields.LABELS_GOLD_EXISTS] = True
+        sen[SenFields.GOLD_ATTRIBUTES] = attrs
+
+
+def full_attrs_from_gold_sen(sen, sen_to_attr, overwrite):
+    attrs = sen_to_attr.get_attrs(sen['text'])
+
+    if SenFields.FULL_GOLD_EXISTS in sen and sen[SenFields.FULL_GOLD_EXISTS]:
+        if overwrite:
+            del sen[SenFields.GOLD_ATTRIBUTES]
+            sen[SenFields.LABELS_GOLD_EXISTS] = False
+            sen[SenFields.FULL_GOLD_EXISTS] = False
+        else:
+            if sen[SenFields.GOLD_ATTRIBUTES] != attrs:
+                sen_to_attr.log_conflict(sen)
+                raise ValueError(
+                    'field "full_gold_exists" already present in input and'
+                    '--overwrite not set')
+
+    if attrs is not None:
+        sen[SenFields.LABELS_GOLD_EXISTS] = True
+        sen[SenFields.FULL_GOLD_EXISTS] = True
         sen[SenFields.GOLD_ATTRIBUTES] = attrs
 
 

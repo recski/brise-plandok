@@ -5,6 +5,8 @@ download_folder="download"
 assignment_txt="assignment.txt"
 assignment_xlsx="assignment.xlsx"
 
+rm -r brise_plandok/annotation_process/example/xlsx/
+
 mkdir brise_plandok/annotation_process/example
 mkdir brise_plandok/annotation_process/example/json
 mkdir brise_plandok/annotation_process/example/json_attr
@@ -12,7 +14,6 @@ mkdir brise_plandok/annotation_process/example/xlsx
 mkdir brise_plandok/annotation_process/example/full_data
 mkdir $annotators_folder
 
-rm brise_plandok/annotation_process/example/xlsx/*
 
 for ann in 01 02 03 04 05 06
 do

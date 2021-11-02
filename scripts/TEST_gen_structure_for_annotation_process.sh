@@ -12,6 +12,8 @@ mkdir brise_plandok/annotation_process/example/xlsx
 mkdir brise_plandok/annotation_process/example/full_data
 mkdir $annotators_folder
 
+rm brise_plandok/annotation_process/example/xlsx/*
+
 for ann in 01 02 03 04 05 06
 do
   for phase in phase1 phase2

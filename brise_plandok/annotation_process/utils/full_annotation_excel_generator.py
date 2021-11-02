@@ -2,10 +2,10 @@
 import argparse
 
 from openpyxl.utils.cell import column_index_from_string, coordinate_from_string
+from brise_plandok.annotation_process.utils.constants import FullAnnotationExcelConstants
 from brise_plandok.constants import AttributeFields, SenFields
 import logging
 import os
-from brise_plandok.annotation_process.utils.constants import FullAnnotationExcelConstants
 from brise_plandok.utils import load_json, normalize_attribute_name
 from brise_plandok.xlsx.excel_generator import ExcelGenerator
 
@@ -21,7 +21,7 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
 
     def __init__(self, output_file, CONSTANTS, sen_to_gold_attrs=None):
         self.input_template = os.path.join(os.path.dirname(
-            __file__), "../input", "annotation_phase2_template.xlsx")
+            __file__), "../input", "annotation_full_template.xlsx")
         self.output_file = output_file
         self.sen_to_gold_attrs = sen_to_gold_attrs
         self.CONSTANTS = CONSTANTS

@@ -85,6 +85,7 @@ class AttributesNames:
     WIDMUNG_IN_MEHREREN_EBENEN = "WidmungInMehrerenEbenen"
     FLAECHEN = "Flaechen"
     ANORDNUNG_GAERTNERISCH = "AnordnungGaertnerischeAusgestaltung"
+    AN_FLUCHTLINIE = "AnFluchtlinie"
 
 class AttributeTypes:
     CONDITION = "condition"

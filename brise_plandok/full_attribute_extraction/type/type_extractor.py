@@ -3,6 +3,7 @@ import json
 import sys
 
 from brise_plandok.constants import AttributeFields, AttributesNames, DocumentFields, SenFields
+from brise_plandok.full_attribute_extraction.type.an_fluchtlinie import AnFluchtlinieExtractor
 from brise_plandok.full_attribute_extraction.type.anordnung_gaertnerisch import AnordnungGaertnerischeAusgestaltungExtractor
 from brise_plandok.full_attribute_extraction.type.dachart import DachartExtractor
 from brise_plandok.full_attribute_extraction.type.dachneigung_max import DachneigungMaxExtractor
@@ -22,6 +23,7 @@ class TypeExtractor:
         self.dachneigung_max = DachneigungMaxExtractor()
         self.flaechen = FlaechenExtractor()
         self.planzeichen = PlanzeichenExtractor()
+        self.anfluchtlinie = AnFluchtlinieExtractor()
 
     def extract(self, doc):
         items = []
@@ -49,6 +51,8 @@ class TypeExtractor:
                 att_type = self.flaechen.extract(sen[SenFields.TEXT])
             elif attribute == AttributesNames.PLANZEICHEN:
                 att_type = self.planzeichen.extract(sen[SenFields.TEXT])
+            elif attribute == AttributesNames.AN_FLUCHTLINIE:
+                att_type = self.anfluchtlinie.extract(sen[SenFields.TEXT])
             self._add_to_gen_values(sen, attribute, att_type, field_to_add)
 
 

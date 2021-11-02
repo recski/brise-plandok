@@ -8,9 +8,9 @@ import logging
 import os
 
 
-def calculate_sentences_for_next_batch(doc_tracking_file, batch_size, json_folder):
+def calculate_sentences_for_next_batch(doc_tracking_file, batch_size, json_folder, phase):
     docs = load_doc_tracking_data(doc_tracking_file)
-    next_docs = get_next_batch(docs, batch_size, False)
+    next_docs = get_next_batch(docs, batch_size, False, phase)
     logging.info(f"next documents to assign: {next_docs}")
     calculate_sentence_counts(docs, next_docs, json_folder)
 
@@ -59,6 +59,7 @@ def get_args():
     parser.add_argument("-d", "--dataset-file", type=str)
     parser.add_argument("-s", "--batch-size", type=int)
     parser.add_argument("-jf", "--json-folder", type=str)
+    parser.add_argument("-p", "--phase", type=int, default=1)
     return parser.parse_args()
 
 
@@ -69,7 +70,7 @@ def main():
                "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     args = get_args()
     calculate_sentences_for_next_batch(
-        args.dataset_file, args.batch_size, args.json_folder)
+        args.dataset_file, args.batch_size, args.json_folder, args.phase)
 
 
 if __name__ == "__main__":

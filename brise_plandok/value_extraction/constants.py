@@ -1,1 +1,0 @@
-NUMBER_WITH_METER = r"(\d\d*( ?, ?\d\d*)? ?m)"

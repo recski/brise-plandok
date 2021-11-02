@@ -3,13 +3,13 @@ import json
 import sys
 
 from brise_plandok.constants import AttributeFields, AttributesNames, DocumentFields, SenFields
-from brise_plandok.type_extraction.anordnung_gaertnerisch import AnordnungGaertnerischeAusgestaltungExtractor
-from brise_plandok.type_extraction.dachart import DachartExtractor
-from brise_plandok.type_extraction.dachneigung_max import DachneigungMaxExtractor
-from brise_plandok.type_extraction.flaechen import FlaechenExtractor
-from brise_plandok.type_extraction.gebaeude_hoehe_max import GebaeudeHoeheMaxExtractor
-from brise_plandok.type_extraction.planzeichen import PlanzeichenExtractor
-from brise_plandok.value_extraction.utils import contains_attr
+from brise_plandok.full_attribute_extraction.type.anordnung_gaertnerisch import AnordnungGaertnerischeAusgestaltungExtractor
+from brise_plandok.full_attribute_extraction.type.dachart import DachartExtractor
+from brise_plandok.full_attribute_extraction.type.dachneigung_max import DachneigungMaxExtractor
+from brise_plandok.full_attribute_extraction.type.flaechen import FlaechenExtractor
+from brise_plandok.full_attribute_extraction.type.gebaeude_hoehe_max import GebaeudeHoeheMaxExtractor
+from brise_plandok.full_attribute_extraction.type.planzeichen import PlanzeichenExtractor
+from brise_plandok.full_attribute_extraction.utils.utils import contains_attr
 
 
 class TypeExtractor:

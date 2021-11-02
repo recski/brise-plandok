@@ -119,7 +119,7 @@ Gold `gold_attributes` should be filled out and `labels_gold` and all `labels_go
 #### Excel for annotation
 
 ```bash
-python brise_plandok/annotation_process/utils/full_annotation_excel_generator.py -d sample_data/annotation/full_data/8141.json -o sample_data/annotation/8141_annotation_full.xlsx
+python brise_plandok/annotation_process/utils/full_annotation_excel_generator.py -d sample_data/annotation/full_data/8141.json -df data/train -o sample_data/annotation/8141_annotation_full.xlsx
 ```
 The output is save to `sample_data/annotation/8141_annotation_full.xlsx`.
 

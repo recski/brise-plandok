@@ -3,6 +3,8 @@ import argparse
 
 from openpyxl.utils.cell import column_index_from_string, coordinate_from_string
 from brise_plandok.annotation_process.utils.constants import FullAnnotationExcelConstants
+from brise_plandok.annotation_process.utils.full_annotation_pre_filler import FullAnnotationPreFiller
+from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, SenFields
 import logging
 import os
@@ -32,7 +34,7 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
             attribute_name = normalize_attribute_name(
                 attribute[AttributeFields.NAME])
             if attribute_name not in ATTR_TO_CAT:
-                logging.warn(
+                logging.warning(
                     f"\"{attribute_name}\" does not belong to any category - will be ignored")
             else:
                 self._fill_attribute(
@@ -109,6 +111,7 @@ def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-o", "--output-file", type=str)
     parser.add_argument("-d", "--data-file", type=str, default=None)
+    parser.add_argument("-df", "--data-folder", type=str, default=None)
     return parser.parse_args()
 
 
@@ -121,6 +124,11 @@ def main():
     doc = load_json(args.data_file)
     generator = FullAnnotationExcelGenerator(
         args.output_file, FullAnnotationExcelConstants())
+    prefiller = FullAnnotationPreFiller()
+    sen_to_gold_attrs = SenToAttrMap(
+            gold_dir=args.data_folder, fuzzy=True, full=False) if args.data_folder else None
+    prefiller.pre_fill_gold_labels(doc, sen_to_gold_attrs)
+    prefiller.fill_gen_attributes_for_full(doc)
     generator.generate_excel(doc)
 
 

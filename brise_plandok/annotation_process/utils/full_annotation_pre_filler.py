@@ -18,24 +18,24 @@ class FullAnnotationPreFiller:
         for doc_id in doc_ids:
             full_data_file = os.path.join(data_folder, doc_id + ".json")
             doc = load_json(full_data_file)
-            self._pre_fill_gold_labels(doc, sen_to_gold_attrs)
-            self._pre_fill_full_gold(doc, sen_to_full_gold_attrs)
-            self._fill_gen_attributes_for_full(doc)
+            self.pre_fill_gold_labels(doc, sen_to_gold_attrs)
+            self.pre_fill_full_gold(doc, sen_to_full_gold_attrs)
+            self.fill_gen_attributes_for_full(doc)
             dump_json(doc, full_data_file)
             yield doc
 
-    def _pre_fill_gold_labels(self, doc, sen_to_gold_attrs):
+    def pre_fill_gold_labels(self, doc, sen_to_gold_attrs):
         if not doc[DocumentFields.LABELS_GOLD]:
             for sen in doc[DocumentFields.SENS].values():
                 attrs_from_gold_sen(sen, sen_to_gold_attrs, False)
 
-    def _pre_fill_full_gold(self, doc, sen_to_full_gold_attrs):
+    def pre_fill_full_gold(self, doc, sen_to_full_gold_attrs):
         if not doc[DocumentFields.FULL_GOLD]:
             for sen in doc[DocumentFields.SENS].values():
                 full_attrs_from_gold_sen(sen, sen_to_full_gold_attrs, False)
 
-    def _fill_gen_attributes_for_full(self, doc):
-        is_annotated = len(doc[DocumentFields.ANNOTATORS]) > 0
+    def fill_gen_attributes_for_full(self, doc):
+        is_annotated = len(doc[DocumentFields.ANNOTATORS]) > 0 if DocumentFields.ANNOTATORS in doc else False
         value_extractor = ValueExtractor()
         type_extractor = TypeExtractor()
         for sen in doc[DocumentFields.SENS].values():

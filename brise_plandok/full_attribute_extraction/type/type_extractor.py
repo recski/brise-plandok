@@ -5,6 +5,7 @@ import sys
 from brise_plandok.constants import AttributeFields, AttributesNames, DocumentFields, SenFields
 from brise_plandok.full_attribute_extraction.type.an_fluchtlinie import AnFluchtlinieExtractor
 from brise_plandok.full_attribute_extraction.type.anordnung_gaertnerisch import AnordnungGaertnerischeAusgestaltungExtractor
+from brise_plandok.full_attribute_extraction.type.begruenung_dach import BegruenungDachExtractor
 from brise_plandok.full_attribute_extraction.type.dachart import DachartExtractor
 from brise_plandok.full_attribute_extraction.type.dachneigung_max import DachneigungMaxExtractor
 from brise_plandok.full_attribute_extraction.type.flaechen import FlaechenExtractor
@@ -26,6 +27,7 @@ class TypeExtractor:
         self.planzeichen = PlanzeichenExtractor()
         self.anfluchtlinie = AnFluchtlinieExtractor()
         self.verkehrsflaeche = VerkehrsflaecheIDExtractor()
+        self.begruenung_dach = BegruenungDachExtractor()
 
     def extract(self, doc):
         items = []
@@ -57,6 +59,8 @@ class TypeExtractor:
                 att_type = self.anfluchtlinie.extract(sen[SenFields.TEXT])
             elif attribute == AttributesNames.VERKEHRSFLAECHE_ID:
                 att_type = self.verkehrsflaeche.extract(sen[SenFields.TEXT])
+            elif attribute == AttributesNames.BEGRUENUNG_DACH:
+                att_type = self.begruenung_dach.extract(sen[SenFields.TEXT])
             self._add_to_gen_values(sen, attribute, att_type, field_to_add)
 
 

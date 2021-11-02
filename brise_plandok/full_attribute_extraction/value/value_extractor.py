@@ -7,6 +7,7 @@ from brise_plandok.full_attribute_extraction.utils.utils import contains_attr
 from brise_plandok.full_attribute_extraction.value.abschuss_gebaeude import AbschlussDachMaxBezugGebaeudeExtractor
 from brise_plandok.full_attribute_extraction.value.an_fluchtlinie import AnFluchtlinieExtractor
 from brise_plandok.full_attribute_extraction.value.ausnahme_gaertnerisch import AusnahmeGaertnerischAuszugestaltendeExtractor
+from brise_plandok.full_attribute_extraction.value.begruenung_dach import BegruenungDachExtractor
 from brise_plandok.full_attribute_extraction.value.dachart import DachartExtractor
 from brise_plandok.full_attribute_extraction.value.dachneigung_max import DachneigungMaxExtractor
 from brise_plandok.full_attribute_extraction.value.durchgang_breite import DurchgangBreiteExtractor
@@ -47,6 +48,7 @@ class ValueExtractor:
         self.wuz_mehrere = WidmungInMehrerenEbenenExtractor()
         self.flaechen = FlaechenExtractor()
         self.anfluchtlinie = AnFluchtlinieExtractor()
+        self.begruenung_dach = BegruenungDachExtractor()
 
     def extract(self, doc):
         items = []
@@ -100,6 +102,8 @@ class ValueExtractor:
                 values = [value for value in self.flaechen.extract(sen[SenFields.TEXT])]
             elif attribute == AttributesNames.AN_FLUCHTLINIE:
                 values = [value for value in self.anfluchtlinie.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.BEGRUENUNG_DACH:
+                values = [value for value in self.begruenung_dach.extract(sen[SenFields.TEXT])]
             self._add_to_gen_values(sen, attribute, values, field_to_add)
 
 

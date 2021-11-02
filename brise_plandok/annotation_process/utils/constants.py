@@ -41,3 +41,29 @@ class FullAnnotationExcelConstants:
     TYPE_OFFSET = 3
 
     LAST_COLUMN = "BO1"
+
+############
+# Full review
+############
+
+class FullReviewExcelConstants:
+    MAIN_SHEET_NAME = "Data"
+    ATTRIBUTE_NAMED_RANGE = "Attribute"
+    TYPE_NAMED_RANGE = "Type"
+    MODALITY_NAMED_RANGE = "Modality"
+
+    FIRST_DATA_ROW = 2
+
+    SEN_ID_COL = 1
+    SEN_TEXT_COL = 2
+    MODALITY_COL = 3
+
+    ATTRIBUTE_OFFSET = 4
+    ATTRIBUTE_STEP = 4
+
+    CATEGORY_OFFSET = 0
+    LABEL_OFFSET = 1
+    VALUE_OFFSET = 2
+    TYPE_OFFSET = 3
+
+    LAST_COLUMN = "BO1"

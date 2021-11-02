@@ -10,6 +10,7 @@ from brise_plandok.full_attribute_extraction.type.dachart import DachartExtracto
 from brise_plandok.full_attribute_extraction.type.dachneigung_max import DachneigungMaxExtractor
 from brise_plandok.full_attribute_extraction.type.flaechen import FlaechenExtractor
 from brise_plandok.full_attribute_extraction.type.gebaeude_hoehe_max import GebaeudeHoeheMaxExtractor
+from brise_plandok.full_attribute_extraction.type.plangebiet_allgemein import PlangebietAllgemeinExtractor
 from brise_plandok.full_attribute_extraction.type.planzeichen import PlanzeichenExtractor
 from brise_plandok.full_attribute_extraction.type.verkehrflaeche_id import VerkehrsflaecheIDExtractor
 from brise_plandok.full_attribute_extraction.utils.utils import contains_attr
@@ -28,6 +29,7 @@ class TypeExtractor:
         self.anfluchtlinie = AnFluchtlinieExtractor()
         self.verkehrsflaeche = VerkehrsflaecheIDExtractor()
         self.begruenung_dach = BegruenungDachExtractor()
+        self.plangebiet_allgemein = PlangebietAllgemeinExtractor()
 
     def extract(self, doc):
         items = []
@@ -61,6 +63,8 @@ class TypeExtractor:
                 att_type = self.verkehrsflaeche.extract(sen[SenFields.TEXT])
             elif attribute == AttributesNames.BEGRUENUNG_DACH:
                 att_type = self.begruenung_dach.extract(sen[SenFields.TEXT])
+            elif attribute == AttributesNames.PLANGEBIET_ALLGEMEIN:
+                att_type = self.plangebiet_allgemein.extract(sen[SenFields.TEXT])
             self._add_to_gen_values(sen, attribute, att_type, field_to_add)
 
 

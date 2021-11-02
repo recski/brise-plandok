@@ -86,6 +86,9 @@ class AttributesNames:
     FLAECHEN = "Flaechen"
     ANORDNUNG_GAERTNERISCH = "AnordnungGaertnerischeAusgestaltung"
     AN_FLUCHTLINIE = "AnFluchtlinie"
+    VERKEHRSFLAECHE_ID = "VerkehrsflaecheID"
+    BEGRUENUNG_DACH = "BegruenungDach"
+    PLANGEBIET_ALLGEMEIN = "PlangebietAllgemein"
 
 class AttributeTypes:
     CONDITION = "condition"

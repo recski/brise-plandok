@@ -18,6 +18,7 @@ from brise_plandok.full_attribute_extraction.value.gebaeude_bautyp import Gebaeu
 from brise_plandok.full_attribute_extraction.value.gebaeude_hoehe_art import GebaeudeHoeheArtExtractor
 from brise_plandok.full_attribute_extraction.value.gebaeude_hoehe_max import GebaeudeHoeheMaxExtractor
 from brise_plandok.full_attribute_extraction.value.gehsteig_breite_min import GehsteigBreiteMinExtractor
+from brise_plandok.full_attribute_extraction.value.plangebiet_allgemein import PlangebietAllgemeinExtractor
 from brise_plandok.full_attribute_extraction.value.planzeichen import PlanzeichenExtractor
 from brise_plandok.full_attribute_extraction.value.strassenbreite_min import StrassenbreiteMinExtractor
 from brise_plandok.full_attribute_extraction.value.von_bebauung import VonBebauungFreizuhaltenExtractor
@@ -49,6 +50,7 @@ class ValueExtractor:
         self.flaechen = FlaechenExtractor()
         self.anfluchtlinie = AnFluchtlinieExtractor()
         self.begruenung_dach = BegruenungDachExtractor()
+        self.plangebiet_allgemein = PlangebietAllgemeinExtractor()
 
     def extract(self, doc):
         items = []
@@ -104,6 +106,8 @@ class ValueExtractor:
                 values = [value for value in self.anfluchtlinie.extract(sen[SenFields.TEXT])]
             elif attribute == AttributesNames.BEGRUENUNG_DACH:
                 values = [value for value in self.begruenung_dach.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.PLANGEBIET_ALLGEMEIN:
+                values = [value for value in self.plangebiet_allgemein.extract(sen[SenFields.TEXT])]
             self._add_to_gen_values(sen, attribute, values, field_to_add)
 
 

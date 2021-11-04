@@ -26,6 +26,7 @@ class DocumentFields:
     ID = "id"
     SENS = "sens"
     ANNOTATORS = "annotators"
+    FULL_ANNOTATORS = "full_annotators"
     LABELS_GOLD = "labels_gold"
     FULL_GOLD = "full_gold"
     LABELS_REVIEWERS = "labels_reviewers"
@@ -43,8 +44,10 @@ class SenFields:
     FULL_GOLD_EXISTS = "full_gold_exists"
     GOLD_ATTRIBUTES = "gold_attributes"
     ANNOTATED_ATTRIBUTES = "annotated_attributes"
+    FULL_ANNOTATED_ATTRIBUTES = "full_annotated_attributes"
     ATTRIBUTES = "attributes"
     SEGMENTATION_ERROR = "segmentation_error"
+
 class AttributeFields:
     NAME = "name"
     TYPE = "type"

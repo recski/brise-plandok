@@ -62,7 +62,7 @@ cat data/train/8303.json | jq '.sens[]' | jq 'select(.id == "8303_20_0")'
 {
   "id": "8303_20_0",
   "text": "Für die mit BB1 bezeichneten Grundflächen wird bestimmt: Die Unterbrechung der geschlossenen Bauweise ist zulässig.",
-  "modality": null,
+  "gold_modality": null,
   "already_gold_on_annotation": true,
   "labels_gold_exists": true,
   "gold_attributes": {
@@ -134,7 +134,7 @@ Attributes relevant for the second annotation step (this is still an ongoing pro
 
 Other attributes:
 
-- `modality`: one of {`prohibition`, `permission`, `obligation`} - not yet annotated
+- `gold_modality`: one of {`prohibition`, `permission`, `obligation`} - not yet annotated
 - `gen_attributes`: placeholder for generated attributes, mostly used temporary for evaluation
 
 ### Dataset

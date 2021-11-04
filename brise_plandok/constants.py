@@ -35,7 +35,7 @@ class DocumentFields:
 class SenFields:
     ID = "id"
     TEXT = "text"
-    MODALITY = "modality"
+    GOLD_MODALITY = "gold_modality"
     ALREADY_GOLD_ON_ANNOTATION = "already_gold_on_annotation"
     GEN_ATTRIBUTES_ON_ANNOTATION = "gen_attributes_on_annotation"
     GEN_ATTRIBUTES_ON_FULL_ANNOTATION = "gen_attributes_on_full_annotation"

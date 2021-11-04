@@ -27,7 +27,7 @@ def dump_json(obj, fn):
 def create_sen(
     sen_id,
     text,
-    modality=None,
+    gold_modality=None,
     already_gold_on_annotation=False,
     labels_gold_exists=False,
     full_gold_exists=False,
@@ -41,7 +41,7 @@ def create_sen(
     return {
         SenFields.ID: sen_id,
         SenFields.TEXT: text,
-        SenFields.MODALITY: modality,
+        SenFields.GOLD_MODALITY: gold_modality,
         SenFields.ALREADY_GOLD_ON_ANNOTATION: already_gold_on_annotation,
         SenFields.LABELS_GOLD_EXISTS: labels_gold_exists,
         SenFields.FULL_GOLD_EXISTS: full_gold_exists,

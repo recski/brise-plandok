@@ -1,7 +1,7 @@
 import argparse
+from brise_plandok.annotation_process.utils.constants import ATTRIBUTES_TO_IGNORE, ReviewXlsxConstants
 from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, DocumentFields, SenFields
-from brise_plandok.review.utils.constants import ATTRIBUTES_TO_IGNORE, ReviewXlsxConstants
 from brise_plandok.utils import dump_json, load_json
 
 import openpyxl

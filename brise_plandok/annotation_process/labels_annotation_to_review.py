@@ -1,11 +1,11 @@
 import argparse
+from brise_plandok.annotation_process.utils.constants import ReviewXlsxConstants
+from brise_plandok.annotation_process.utils.review_excel_generator import ReviewExcelGenerator
 from brise_plandok.constants import ANNOTATOR_NAME_INDEX, AnnotatedAttributeFields, AttributeFields, DocumentFields, OldDocumentFields, OldSectionFields, OldSenFields, SenFields
 import os
 import logging
 from brise_plandok.convert import Converter
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
-from brise_plandok.review.utils.constants import ReviewXlsxConstants
-from brise_plandok.review.utils.review_excel_generator import ReviewExcelGenerator
 from brise_plandok.utils import dump_json, load_json
 
 
@@ -40,7 +40,7 @@ class AnnotationConverter(Converter):
         if not self.review:
             logging.info(f"Review = false for {data[DocumentFields.ID]}, no reviewers will be added to data.")
             return
-        reviewer = os.path.basename(output_fn).split('.')[0].split('_')[1]
+        reviewer = os.path.basename(output_fn).split('.')[0].split('_')[-1]
         if DocumentFields.REVIEWERS not in data:
             data[DocumentFields.REVIEWERS] = [reviewer]
             return

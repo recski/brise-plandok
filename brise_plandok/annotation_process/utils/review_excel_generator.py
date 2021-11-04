@@ -16,7 +16,7 @@ class ReviewExcelGenerator(ExcelGenerator):
 
     def __init__(self, output_file, CONSTANTS, sen_to_gold_attrs=None):
         self.input_template = os.path.join(os.path.dirname(
-            __file__), "input", "review_template.xlsx")
+            __file__), "../input", "labels_review_template.xlsx")
         self.output_file = output_file
         self.sen_to_gold_attrs = sen_to_gold_attrs
         self.CONSTANTS = CONSTANTS

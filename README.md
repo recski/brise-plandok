@@ -126,8 +126,9 @@ The output is save to `sample_data/annotation/8141_annotation_full.xlsx`.
 #### Excel for review
 
 ```bash
-# TBD
+python brise_plandok/annotation_process/full_annotation_to_review.py -a sample_data/annotation/01/phase2/upload/8141.xlsx sample_data/annotation/02/phase2/upload/8141.xlsx -d sample_data/annotation/full_data/8141.json -g data/train/ -of sample_data/annotation/8141_full_review_XY.xlsx -r
 ```
+The output is save to `sample_data/annotation/8141_labels_review_XY.xlsx`.
 
 #### Generate gold after review
 

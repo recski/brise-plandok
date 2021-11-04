@@ -4,28 +4,23 @@ from brise_plandok.annotation_process.utils.label_review_excel_generator import 
 from brise_plandok.constants import ANNOTATOR_NAME_INDEX, AnnotatedAttributeFields, AttributeFields, DocumentFields, OldDocumentFields, OldSectionFields, OldSenFields, SenFields
 import os
 import logging
-from brise_plandok.convert import Converter
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.utils import dump_json, load_json
 
-
-
-class AnnotationConverter(Converter):
+class FullAnnotationConverter:
 
     def __init__(self, args):
-        super().__init__(args)
-        self.sen_to_attr = SenToAttrMap(args.gold_folder, fuzzy=True)
+        self.sen_to_attr = SenToAttrMap(args.gold_folder, fuzzy=True, full=True)
         self.review = args.review
 
     def convert(self, annotated_xlsx_files, output_file, data_file):
-        annotations = self._read_annotations(annotated_xlsx_files)
         assert data_file is not None
         doc = load_json(data_file)
-        self._fill_labels_reviewers(doc, output_file)
-        self._fill_annotated_attributes(annotations, doc)
-        self._fill_with_gold(doc)
+        self._fill_full_reviewers(doc, output_file)
+        # self._fill_annotated_attributes(annotated_xlsx_files, doc)
+        # self._fill_with_gold(doc)
         dump_json(doc, data_file)
-        self._generate_review_excel(doc, output_file)
+        # self._generate_review_excel(doc, output_file)
 
     def _read_annotations(self, annotated_xlsx_files):
         annotations = {}
@@ -36,18 +31,18 @@ class AnnotationConverter(Converter):
                 annotations[annotator] = doc
         return annotations
 
-    def _fill_labels_reviewers(self, data, output_fn):
+    def _fill_full_reviewers(self, data, output_fn):
         if not self.review:
-            logging.info(f"Review = false for {data[DocumentFields.ID]}, no labels_reviewers will be added to data.")
+            logging.info(f"Review = false for {data[DocumentFields.ID]}, no full_reviewers will be added to data.")
             return
         reviewer = os.path.basename(output_fn).split('.')[0].split('_')[-1]
-        if DocumentFields.LABELS_REVIEWERS not in data:
-            data[DocumentFields.LABELS_REVIEWERS] = [reviewer]
+        if DocumentFields.FULL_REVIEWERS not in data:
+            data[DocumentFields.FULL_REVIEWERS] = [reviewer]
             return
-        if reviewer in set(data[DocumentFields.LABELS_REVIEWERS]):
-            logging.warning(f"reviewer {reviewer} is already among labels_reviewers")
+        if reviewer in set(data[DocumentFields.FULL_REVIEWERS]):
+            logging.warning(f"reviewer {reviewer} is already among full_reviewers")
             return
-        data[DocumentFields.LABELS_REVIEWERS].append(reviewer)
+        data[DocumentFields.FULL_REVIEWERS].append(reviewer)
 
 
     def _fill_annotated_attributes(self, annotations, data):
@@ -121,7 +116,7 @@ def main():
         format="%(asctime)s : " +
                "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     args = get_args()
-    converter = AnnotationConverter(args)
+    converter = FullAnnotationConverter(args)
     converter.convert(args.annotations, args.output_file, args.data_file)
 
 

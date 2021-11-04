@@ -12,7 +12,7 @@ from brise_plandok.annotation.attributes import ATTR_TO_CAT
 IS_GOLD = "gold_attr"
 
 
-class ReviewExcelGenerator(ExcelGenerator):
+class LabelReviewExcelGenerator(ExcelGenerator):
 
     def __init__(self, output_file, CONSTANTS, sen_to_gold_attrs=None):
         self.input_template = os.path.join(os.path.dirname(

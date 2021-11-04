@@ -1,8 +1,10 @@
 import argparse
+
+import openpyxl
 from brise_plandok.annotation_process.utils.annotation_converter import AnnotationConverter
-from brise_plandok.annotation_process.utils.constants import ReviewXlsxConstants
+from brise_plandok.annotation_process.utils.constants import FullAnnotationExcelConstants
 from brise_plandok.annotation_process.utils.label_review_excel_generator import LabelReviewExcelGenerator
-from brise_plandok.constants import ANNOTATOR_NAME_INDEX, AnnotatedAttributeFields, AttributeFields, DocumentFields, OldDocumentFields, OldSectionFields, OldSenFields, SenFields
+from brise_plandok.constants import ANNOTATOR_NAME_INDEX, EMPTY, AnnotatedAttributeFields, AttributeFields, AttributeTypes, DocumentFields, FullAnnotatedAttributeFields, Modalities, SenFields
 import os
 import logging
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
@@ -25,45 +27,91 @@ class FullAnnotationConverter(AnnotationConverter):
         dump_json(doc, data_file)
         # self._generate_review_excel(doc, output_file)
 
-    def _read_annotations(self, annotated_xlsx_files):
-        annotations = {}
-        for annotated_xlsx in annotated_xlsx_files:
-            annotator = os.path.normpath(annotated_xlsx).split(
-                os.path.sep)[ANNOTATOR_NAME_INDEX]
-            for doc in self.read(annotated_xlsx):
-                annotations[annotator] = doc
-        return annotations
-
     def _fill_annotated_attributes(self, annotated_xlsx_files, doc):
-        self._clear_previous_annotation_info(doc, DocumentFields.FULL_ANNOTATORS, SenFields.FULL_ANNOTATED_ATTRIBUTES)
+        self._clear_previous_annotation_info(
+            doc, DocumentFields.FULL_ANNOTATORS, SenFields.FULL_ANNOTATED_ATTRIBUTES)
         for annotated_xlsx in annotated_xlsx_files:
             annotator = os.path.normpath(annotated_xlsx).split(
                 os.path.sep)[ANNOTATOR_NAME_INDEX]
             self._add_annotator(doc, annotator, DocumentFields.FULL_ANNOTATORS)
-            # Todo
+            self._fill_full_annotations(annotated_xlsx, doc, annotator)
 
-    def _fill_for_section(self, section, data, annotator):
-        for sen in section[OldSectionFields.SENS]:
-            self._fill_for_sen(sen, data, annotator)
+    def _fill_full_annotations(self, annotation_xlsx, doc, annotator):
+        workbook = openpyxl.load_workbook(annotation_xlsx)
+        ann_sheet = workbook[FullAnnotationExcelConstants.MAIN_SHEET_NAME]
 
-    def _fill_for_sen(self, sen, data, annotator):
-        sen_id = sen[OldSenFields.ID]
-        annotated_attributes = data[DocumentFields.SENS][sen_id][SenFields.ANNOTATED_ATTRIBUTES]
-        for attribute in sen[OldSenFields.ATTRIBUTES]:
-            self._fill_for_attr(sen_id, data, attribute,
-                                annotated_attributes, annotator)
+        for row_id in range(FullAnnotationExcelConstants.FIRST_DATA_ROW, ann_sheet.max_row + 1):
+            sen_id = ann_sheet.cell(
+                row=row_id, column=FullAnnotationExcelConstants.SEN_ID_COL).value
+            modality = ann_sheet.cell(
+                row=row_id, column=FullAnnotationExcelConstants.MODALITY_COL).value
+            self._fill_modality(doc, sen_id, modality, annotator)
+            for col in range(FullAnnotationExcelConstants.ATTRIBUTE_OFFSET, ann_sheet.max_column, FullAnnotationExcelConstants.ATTRIBUTE_STEP):
+                label = ann_sheet.cell(
+                    row=row_id, column=col+FullAnnotationExcelConstants.LABEL_OFFSET).value
+                if label is None:
+                    continue
+                value = ann_sheet.cell(
+                    row=row_id, column=col+FullAnnotationExcelConstants.VALUE_OFFSET).value
+                type = ann_sheet.cell(
+                    row=row_id, column=col+FullAnnotationExcelConstants.TYPE_OFFSET).value
+                self._fill_attribute(doc, sen_id, label,
+                                     value, type, annotator)
 
-    def _fill_for_attr(self, sen_id, data, attribute, annotated_attributes, annotator):
-        assert sen_id in data[DocumentFields.SENS]
-        attr_name = attribute[AttributeFields.NAME]
-        if attr_name not in annotated_attributes:
-            annotated_attributes[attr_name] = {
+    def _fill_modality(self, doc, sen_id, modality, annotator):
+        if modality is None:
+            logging.debug(f"Modality is left empty for {sen_id}")
+            return
+        full_annotation = doc[DocumentFields.SENS][sen_id][SenFields.FULL_ANNOTATED_ATTRIBUTES]
+        if FullAnnotatedAttributeFields.MODALITY not in full_annotation:
+            full_annotation[FullAnnotatedAttributeFields.MODALITY] = {}
+        modalities = full_annotation[FullAnnotatedAttributeFields.MODALITY]
+        if modality not in modalities:
+            modalities[modality] = {
                 AnnotatedAttributeFields.ANNOTATORS: [annotator]
             }
-            return
-        annotators = annotated_attributes[attr_name][AnnotatedAttributeFields.ANNOTATORS]
-        if annotator not in annotators:
-            annotators.append(annotator)
+        else:
+            modalities[modality][AnnotatedAttributeFields.ANNOTATORS].append(
+                annotator)
+
+    def _fill_attribute(self, doc, sen_id, label, value, type, annotator):
+        if type not in [AttributeTypes.CONDITION, AttributeTypes.CONTENT]:
+            logging.warning(
+                f"No such type exists: {type}. Type is set to {EMPTY}")
+            type = EMPTY
+        sen = doc[DocumentFields.SENS][sen_id]
+        annotated_attributes = self.__get_annotated_attributes(sen)
+        annotated_types = self.__get_label(annotated_attributes, label)
+        annotated_type = self.__get_type(annotated_types, type)
+        self.__add_value_and_annotator(annotated_type, value, annotator)
+
+    def __get_annotated_attributes(self, sen):
+        full_annotation = sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]
+        if FullAnnotatedAttributeFields.ATTRIBUTES not in full_annotation:
+            full_annotation[FullAnnotatedAttributeFields.ATTRIBUTES] = {}
+        return full_annotation[FullAnnotatedAttributeFields.ATTRIBUTES]
+
+    def __get_label(self, annotated_attributes, label):
+        if label not in annotated_attributes:
+            annotated_attributes[label] = {
+                AttributeFields.TYPE: {}
+            }
+        return annotated_attributes[label][AttributeFields.TYPE]
+
+    def __get_type(self, annotated_types, type):
+        if type not in annotated_types:
+            annotated_types[type] = {
+                AttributeFields.VALUE: [],
+                AnnotatedAttributeFields.ANNOTATORS: [],
+            }
+        return annotated_types[type]
+
+    def __add_value_and_annotator(self, annotated_type, value, annotator):
+        if value is not None and value not in annotated_type[AttributeFields.VALUE]:
+            annotated_type[AttributeFields.VALUE].append(value)
+        if annotator not in annotated_type[AnnotatedAttributeFields.ANNOTATORS]:
+            annotated_type[AnnotatedAttributeFields.ANNOTATORS].append(
+                annotator)
 
     def _fill_with_gold(self, doc):
         for sen in doc[DocumentFields.SENS].values():
@@ -75,7 +123,7 @@ class FullAnnotationConverter(AnnotationConverter):
                 f"Review = false for {data[DocumentFields.ID]}, no review excel will be generated.")
             return
         generator = LabelReviewExcelGenerator(
-            output_file, ReviewXlsxConstants())
+            output_file, FullAnnotationExcelConstants())
         generator.generate_excel(data)
 
 

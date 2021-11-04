@@ -54,7 +54,7 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
             for value in attribute[AttributeFields.VALUE]:
                 yield {
                     AttributeFields.NAME: attribute[AttributeFields.NAME],
-                    AttributeFields.VALUE: value,
+                    AttributeFields.VALUE: str(value),
                     AttributeFields.TYPE: attribute[AttributeFields.TYPE],
                     LABELS_GOLD: sen[SenFields.LABELS_GOLD_EXISTS],
                     FULL_GOLD: sen[SenFields.FULL_GOLD_EXISTS],

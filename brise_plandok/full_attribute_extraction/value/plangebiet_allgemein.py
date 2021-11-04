@@ -1,7 +1,9 @@
 import re
 
+from brise_plandok.full_attribute_extraction.utils.constants import TRUE
+
 VALUES = {
-    r".*": True,
+    r".*": TRUE,
 }
 
 class PlangebietAllgemeinExtractor:

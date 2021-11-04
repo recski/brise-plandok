@@ -1,8 +1,10 @@
 import re
 
+from brise_plandok.full_attribute_extraction.utils.constants import FALSE, TRUE
+
 VALUES = {
-    r".*(darf unmittelbar bebaut werden|sind unmittelbar bebaubar|Errichtung .* zulässig).*": True,
-    r".*(Errichtung .* (untersagt|unzulässig)|keine .* errichtet werden).*": False,
+    r".*(darf unmittelbar bebaut werden|sind unmittelbar bebaubar|Errichtung .* zulässig).*": TRUE,
+    r".*(Errichtung .* (untersagt|unzulässig)|keine .* errichtet werden).*": FALSE,
 }
 
 class ErrichtungGebaeudeExtractor:

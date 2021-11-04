@@ -56,6 +56,10 @@ class AttributeFields:
 class AnnotatedAttributeFields:
     ANNOTATORS = "annotators"
 
+class FullAnnotatedAttributeFields:
+    ATTRIBUTES = "attributes"
+    MODALITY = "modality"
+
 class OldDocumentFields:
     ID = "id"
     SECTIONS = "sections"    
@@ -97,3 +101,10 @@ class AttributesNames:
 class AttributeTypes:
     CONDITION = "condition"
     CONTENT = "content"
+
+class Modalities:
+    OBLIGATION = "obligation"
+    PERMISSION = "permission"
+    PROHIBITION = "prohibition"
+
+EMPTY = "EMPTY"

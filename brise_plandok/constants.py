@@ -28,7 +28,7 @@ class DocumentFields:
     ANNOTATORS = "annotators"
     LABELS_GOLD = "labels_gold"
     FULL_GOLD = "full_gold"
-    REVIEWERS = "reviewers"
+    LABELS_REVIEWERS = "labels_reviewers"
 
 class SenFields:
     ID = "id"

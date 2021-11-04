@@ -21,7 +21,7 @@ cat data/train/8303.json | jq '. | keys'
   "full_gold",
   "id",
   "labels_gold",
-  "reviewers",
+  "labels_reviewers",
   "sens"
 ]
 ```
@@ -34,7 +34,7 @@ cat data/train/8303.json | jq
         ...
     },
     "labels_gold": true,
-    "reviewers": [
+    "labels_reviewers": [
         "eszti"
     ],
     "annotators": [
@@ -53,7 +53,7 @@ cat data/train/8303.json | jq
 - `labels_gold`: true if gold labels exist for this document (i.e. annotations from step 1 were adjudicated)
 - `full_gold`: true if full gold labels with values, types and modalities exist for this document (i.e. annotations from step 2 were adjudicated - currently there are no such documents)
 - `annotators`: anonymized annotator information
-- `reviewers`: adjudicators for this document 
+- `labels_reviewers`: adjudicators for this document 
 
 #### Sentence level attributes
 

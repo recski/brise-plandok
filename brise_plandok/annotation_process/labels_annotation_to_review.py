@@ -21,7 +21,7 @@ class AnnotationConverter(Converter):
         annotations = self._read_annotations(annotated_xlsx_files)
         assert data_file is not None
         doc = load_json(data_file)
-        self._fill_reviewers(doc, output_file)
+        self._fill_labels_reviewers(doc, output_file)
         self._fill_annotated_attributes(annotations, doc)
         self._fill_with_gold(doc)
         dump_json(doc, data_file)
@@ -36,18 +36,18 @@ class AnnotationConverter(Converter):
                 annotations[annotator] = doc
         return annotations
 
-    def _fill_reviewers(self, data, output_fn):
+    def _fill_labels_reviewers(self, data, output_fn):
         if not self.review:
-            logging.info(f"Review = false for {data[DocumentFields.ID]}, no reviewers will be added to data.")
+            logging.info(f"Review = false for {data[DocumentFields.ID]}, no labels_reviewers will be added to data.")
             return
         reviewer = os.path.basename(output_fn).split('.')[0].split('_')[-1]
-        if DocumentFields.REVIEWERS not in data:
-            data[DocumentFields.REVIEWERS] = [reviewer]
+        if DocumentFields.LABELS_REVIEWERS not in data:
+            data[DocumentFields.LABELS_REVIEWERS] = [reviewer]
             return
-        if reviewer in set(data[DocumentFields.REVIEWERS]):
-            logging.warning(f"reviewer {reviewer} is already among reviewers")
+        if reviewer in set(data[DocumentFields.LABELS_REVIEWERS]):
+            logging.warning(f"reviewer {reviewer} is already among labels_reviewers")
             return
-        data[DocumentFields.REVIEWERS].append(reviewer)
+        data[DocumentFields.LABELS_REVIEWERS].append(reviewer)
 
 
     def _fill_annotated_attributes(self, annotations, data):

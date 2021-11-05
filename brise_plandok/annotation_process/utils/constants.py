@@ -115,4 +115,4 @@ class FullReviewExcelConstants:
     TYPE_ANN_2_OFFSET = 4
     TYPE_ANN_REV_OFFSET = 5
 
-    LAST_COLUMN = "CK1"
+    LAST_COLUMN = "CX1"

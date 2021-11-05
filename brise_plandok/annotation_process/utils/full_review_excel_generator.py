@@ -35,12 +35,22 @@ class FullReviewExcelGenerator(ExcelGenerator):
             sheet.cell(
                 row=1, column=self.CONSTANTS.MODALITY_ANN_2_COL).value = self.annotators[1]
         for col in range(self.CONSTANTS.ATTRIBUTE_OFFSET, column_index_from_string(coordinate_from_string(self.CONSTANTS.LAST_COLUMN)[0]), self.CONSTANTS.ATTRIBUTE_STEP):
+            att_count_suffix = " - " + str(self.__get_attribute_count(col))
+            sheet.cell(
+                    row=1, column=col+self.CONSTANTS.CATEGORY_OFFSET).value += att_count_suffix
+            sheet.cell(
+                    row=1, column=col+self.CONSTANTS.LABEL_OFFSET).value += att_count_suffix
+            sheet.cell(
+                    row=1, column=col+self.CONSTANTS.VALUE_OFFSET).value += att_count_suffix
             if len(self.annotators) > 0:
                 sheet.cell(
                     row=1, column=col+self.CONSTANTS.TYPE_ANN_1_OFFSET).value = self.annotators[0]
             if len(self.annotators) > 1:
                 sheet.cell(
                     row=1, column=col+self.CONSTANTS.TYPE_ANN_2_OFFSET).value = self.annotators[1]
+
+    def __get_attribute_count(self, col):
+        return int(((col - self.CONSTANTS.ATTRIBUTE_OFFSET) / self.CONSTANTS.ATTRIBUTE_STEP) + 1)
 
     def _fill_modality(self, sen, sheet, row):
         if sen[SenFields.FULL_ANNOTATED_ATTRIBUTES] != {}:

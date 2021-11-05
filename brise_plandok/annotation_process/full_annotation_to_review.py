@@ -75,7 +75,7 @@ class FullAnnotationConverter(AnnotationConverter):
                 annotator)
 
     def _fill_attribute(self, doc, sen_id, label, value, type, annotator):
-        if type not in [AttributeTypes.CONDITION, AttributeTypes.CONTENT]:
+        if type not in [AttributeTypes.CONDITION, AttributeTypes.CONTENT, AttributeTypes.CONTENT_EXCEPTION, AttributeTypes.CONDITION_EXCEPTION]:
             logging.warning(
                 f"No such type exists: {type}. Type is set to {EMPTY}")
             type = EMPTY

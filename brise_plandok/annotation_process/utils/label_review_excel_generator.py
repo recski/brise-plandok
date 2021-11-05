@@ -24,6 +24,9 @@ class LabelReviewExcelGenerator(ExcelGenerator):
     def _modify_header(self, sheet, doc):
         return
 
+    def _fill_modality(self, sen, sheet, row):
+        return
+
     def _gen_attributes(self, sen):
         return [{AttributeFields.NAME: attr} for attr in list(sen[SF.ANNOTATED_ATTRIBUTES].keys()) + list(sen[SF.GOLD_ATTRIBUTES].keys())]
 

@@ -49,6 +49,7 @@ class ExcelGenerator:
 
     def _fill_attributes(self, sen, sheet, row):
         col = self.CONSTANTS.ATTRIBUTE_OFFSET
+        self._fill_modality(sen, sheet, row)
         for attribute in self._gen_attributes(sen):
             attribute_name = normalize_attribute_name(
                 attribute[AttributeFields.NAME])
@@ -67,6 +68,9 @@ class ExcelGenerator:
         raise NotImplementedError()
 
     def _gen_attributes(self, sen):
+        raise NotImplementedError()
+
+    def _fill_modality(self, sen, sheet, row):
         raise NotImplementedError()
 
     def _fill_attribute(self, attribute, sen, sheet, col, row):

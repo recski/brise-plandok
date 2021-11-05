@@ -42,6 +42,22 @@ class FullReviewExcelGenerator(ExcelGenerator):
                 sheet.cell(
                     row=1, column=col+self.CONSTANTS.TYPE_ANN_2_OFFSET).value = self.annotators[1]
 
+    def _fill_modality(self, sen, sheet, row):
+        if sen[SenFields.FULL_ANNOTATED_ATTRIBUTES] != {}:
+            ann_modalities = [None] * len(self.annotators)
+            for i, annotator in enumerate(self.annotators):
+                for modality, annotators in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES][FullAnnotatedAttributeFields.MODALITY].items():
+                    if annotator in annotators[AnnotatedAttributeFields.ANNOTATORS]:
+                        ann_modalities[i] = modality
+            sheet.cell(
+                row=row, column=self.CONSTANTS.MODALITY_ANN_1_COL).value = ann_modalities[0]
+            sheet.cell(
+                row=row, column=self.CONSTANTS.MODALITY_ANN_2_COL).value = ann_modalities[1]
+            if len(ann_modalities) > 1 and ann_modalities[0] == ann_modalities[1]:
+                sheet.cell(
+                    row=row, column=self.CONSTANTS.MODALITY_ANN_REV_COL).value = ann_modalities[0]
+
+
     def _gen_attributes(self, sen):
         if sen[SenFields.FULL_ANNOTATED_ATTRIBUTES] != {}:
             ann_types = [None] * len(self.annotators)
@@ -49,7 +65,7 @@ class FullReviewExcelGenerator(ExcelGenerator):
                 for value_name, annotated_types in attribute[AttributeFields.VALUE].items():
                     for i, annotator in enumerate(self.annotators):
                         try:
-                            ann_types[i] = self.__get_type_for_ann(annotated_types[AttributeFields.TYPE], annotator)
+                            ann_types[i] = self.__get_type_for_annotator(annotated_types[AttributeFields.TYPE], annotator)
                         except ValueError as err:
                             logging.error(err)
                             logging.error(f"Conflict in {sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]}")
@@ -62,7 +78,7 @@ class FullReviewExcelGenerator(ExcelGenerator):
                         FULL_GOLD: sen[SenFields.FULL_GOLD_EXISTS],
                     }
 
-    def __get_type_for_ann(self, annotated_types, annotator):
+    def __get_type_for_annotator(self, annotated_types, annotator):
         types_from_ann = []
         for type, annotators in annotated_types.items():
             if annotator in annotators[AnnotatedAttributeFields.ANNOTATORS]:

@@ -101,6 +101,8 @@ class AttributesNames:
 class AttributeTypes:
     CONDITION = "condition"
     CONTENT = "content"
+    CONDITION_EXCEPTION = "conditionException"
+    CONTENT_EXCEPTION = "contentException"
 
 class Modalities:
     OBLIGATION = "obligation"

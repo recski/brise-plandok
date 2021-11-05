@@ -31,6 +31,9 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
     def _modify_header(self, sheet, doc):
         return
 
+    def _fill_modality(self, sen, sheet, row):
+        return
+
     def _gen_attributes(self, sen):
         for attribute in sen[SenFields.GEN_ATTRIBUTES_ON_FULL_ANNOTATION].values():
             if attribute[AttributeFields.VALUE] == []:

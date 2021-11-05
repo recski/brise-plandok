@@ -81,9 +81,11 @@ class FullAnnotationConverter(AnnotationConverter):
             type = EMPTY
         sen = doc[DocumentFields.SENS][sen_id]
         annotated_attributes = self.__get_annotated_attributes(sen)
-        annotated_types = self.__get_label(annotated_attributes, label)
-        annotated_type = self.__get_type(annotated_types, type)
-        self.__add_value_and_annotator(annotated_type, value, annotator)
+        annotated_values = self.__get_values_for_label(
+            annotated_attributes, label)
+        annotated_types = self.__get_types_for_value(annotated_values, value)
+        annotators = self.__get_annotators_for_type(annotated_types, type)
+        self.__add_annotator(annotators, annotator)
 
     def __get_annotated_attributes(self, sen):
         full_annotation = sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]
@@ -91,27 +93,32 @@ class FullAnnotationConverter(AnnotationConverter):
             full_annotation[FullAnnotatedAttributeFields.ATTRIBUTES] = {}
         return full_annotation[FullAnnotatedAttributeFields.ATTRIBUTES]
 
-    def __get_label(self, annotated_attributes, label):
+    def __get_values_for_label(self, annotated_attributes, label):
         if label not in annotated_attributes:
             annotated_attributes[label] = {
-                AttributeFields.TYPE: {}
+                AttributeFields.VALUE: {}
             }
-        return annotated_attributes[label][AttributeFields.TYPE]
+        return annotated_attributes[label][AttributeFields.VALUE]
 
-    def __get_type(self, annotated_types, type):
+    def __get_types_for_value(self, annotated_values, value):
+        if value is None:
+            value = EMPTY
+        if value not in annotated_values:
+            annotated_values[value] = {
+                AttributeFields.TYPE: {},
+            }
+        return annotated_values[value][AttributeFields.TYPE]
+
+    def __get_annotators_for_type(self, annotated_types, type):
         if type not in annotated_types:
             annotated_types[type] = {
-                AttributeFields.VALUE: [],
                 AnnotatedAttributeFields.ANNOTATORS: [],
             }
-        return annotated_types[type]
+        return annotated_types[type][AnnotatedAttributeFields.ANNOTATORS]
 
-    def __add_value_and_annotator(self, annotated_type, value, annotator):
-        if value is not None and value not in annotated_type[AttributeFields.VALUE]:
-            annotated_type[AttributeFields.VALUE].append(value)
-        if annotator not in annotated_type[AnnotatedAttributeFields.ANNOTATORS]:
-            annotated_type[AnnotatedAttributeFields.ANNOTATORS].append(
-                annotator)
+    def __add_annotator(self, annotators, annotator):
+        if annotator not in annotators:
+            annotators.append(annotator)
 
     def _fill_with_gold(self, doc):
         for sen in doc[DocumentFields.SENS].values():

@@ -69,7 +69,7 @@ class ExcelGenerator:
     def _gen_attributes(self, sen):
         raise NotImplementedError()
 
-    def _fill_attribute(self, sen):
+    def _fill_attribute(self, attribute, sen, sheet, col, row):
         raise NotImplementedError()
 
     def _labels_gold_exists(self, sen):

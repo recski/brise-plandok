@@ -110,11 +110,15 @@ class FullReviewExcelGenerator(ExcelGenerator):
         modality_val = DataValidation(
             type="list", formula1=f"={self.CONSTANTS.MODALITY_NAMED_RANGE}")
         sheet.add_data_validation(modality_val)
+        sen_review_val = DataValidation(
+            type="list", formula1=f"={self.CONSTANTS.SENTENCE_REVIEW_NAMED_RANGE}")
+        sheet.add_data_validation(sen_review_val)
         for row in range(self.CONSTANTS.FIRST_DATA_ROW, sheet.max_row + 1):
             self._add_validation_for_row(
-                sheet, row, category_val, type_val, modality_val)
+                sheet, row, category_val, type_val, modality_val, sen_review_val)
 
-    def _add_validation_for_row(self, sheet, row, category_val, type_val, modality_val):
+    def _add_validation_for_row(self, sheet, row, category_val, type_val, modality_val, sen_review_val):
+        sen_review_val.add(sheet.cell(row=row, column=self.CONSTANTS.SEN_REVIEW_COL))
         modality_val.add(sheet.cell(row=row, column=self.CONSTANTS.MODALITY_ANN_1_COL))
         modality_val.add(sheet.cell(row=row, column=self.CONSTANTS.MODALITY_ANN_2_COL))
         modality_val.add(sheet.cell(row=row, column=self.CONSTANTS.MODALITY_ANN_REV_COL))

@@ -2,10 +2,9 @@ import argparse
 
 import openpyxl
 from brise_plandok.annotation_process.utils.annotation_converter import AnnotationConverter
-from brise_plandok.annotation_process.utils.constants import FullAnnotationExcelConstants
+from brise_plandok.annotation_process.utils.constants import FullAnnotationExcelConstants, FullReviewExcelConstants
 from brise_plandok.annotation_process.utils.full_review_excel_generator import FullReviewExcelGenerator
-from brise_plandok.annotation_process.utils.label_review_excel_generator import LabelReviewExcelGenerator
-from brise_plandok.constants import ANNOTATOR_NAME_INDEX, EMPTY, AnnotatedAttributeFields, AttributeFields, AttributeTypes, DocumentFields, FullAnnotatedAttributeFields, Modalities, SenFields
+from brise_plandok.constants import ANNOTATOR_NAME_INDEX, EMPTY, AnnotatedAttributeFields, AttributeFields, AttributeTypes, DocumentFields, FullAnnotatedAttributeFields, SenFields
 import os
 import logging
 from brise_plandok.attrs_from_gold import SenToAttrMap, full_attrs_from_gold_sen
@@ -26,7 +25,7 @@ class FullAnnotationConverter(AnnotationConverter):
         self._fill_annotated_attributes(annotated_xlsx_files, doc)
         self._fill_with_gold(doc)
         dump_json(doc, data_file)
-        # self._generate_review_excel(doc, output_file)
+        self._generate_review_excel(doc, output_file)
 
     def _fill_annotated_attributes(self, annotated_xlsx_files, doc):
         self._clear_previous_annotation_info(
@@ -118,14 +117,14 @@ class FullAnnotationConverter(AnnotationConverter):
         for sen in doc[DocumentFields.SENS].values():
             full_attrs_from_gold_sen(sen, self.sen_to_attr, False)
 
-    def _generate_review_excel(self, data, output_file):
+    def _generate_review_excel(self, doc, output_file):
         if not self.review:
             logging.info(
-                f"Review = false for {data[DocumentFields.ID]}, no review excel will be generated.")
+                f"Review = false for {doc[DocumentFields.ID]}, no review excel will be generated.")
             return
         generator = FullReviewExcelGenerator(
-            output_file, FullAnnotationExcelConstants())
-        generator.generate_excel(data)
+            output_file, FullReviewExcelConstants())
+        generator.generate_excel(doc)
 
 
 def get_args():

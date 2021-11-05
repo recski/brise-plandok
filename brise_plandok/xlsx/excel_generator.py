@@ -1,14 +1,14 @@
-from brise_plandok.constants import GOLD_COLOR, GRAY_COLOR, ROW_HEIGHT
+from brise_plandok.constants import GOLD_COLOR, GRAY_COLOR, ROW_HEIGHT, AttributeFields
+from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.constants import SenFields as SF
 from brise_plandok.constants import DocumentFields as DF
 from openpyxl.styles.fills import PatternFill
 import logging
-import os
-
 import openpyxl
 from openpyxl.utils.cell import get_column_letter
 from openpyxl.styles import Alignment, Font
 from openpyxl.worksheet.datavalidation import DataValidation
+from brise_plandok.utils import normalize_attribute_name
 
 
 class ExcelGenerator:
@@ -26,6 +26,7 @@ class ExcelGenerator:
     def _fill_workbook(self, workbook, doc):
         main_sheet = workbook[self.CONSTANTS.MAIN_SHEET_NAME]
         row = self.CONSTANTS.FIRST_DATA_ROW
+        self._modify_header(main_sheet, doc)
         for sen_id, sen in doc[DF.SENS].items():
             self._fill_sentences(sen_id, main_sheet, row, sen)
             self._fill_attributes(sen, main_sheet, row)
@@ -46,10 +47,29 @@ class ExcelGenerator:
         main_sheet.cell(
             row=row, column=self.CONSTANTS.SEN_TEXT_COL).font = Font(size=12)
 
-    def _fill_attributes(self, sen, main_sheet, row):
+    def _fill_attributes(self, sen, sheet, row):
+        col = self.CONSTANTS.ATTRIBUTE_OFFSET
+        for attribute in self._gen_attributes(sen):
+            attribute_name = normalize_attribute_name(
+                attribute[AttributeFields.NAME])
+            if attribute_name not in ATTR_TO_CAT:
+                logging.warning(
+                    f"\"{attribute_name}\" does not belong to any category - will be ignored")
+            else:
+                self._fill_attribute(
+                    attribute, sen, sheet, col, row)
+                col += self.CONSTANTS.ATTRIBUTE_STEP
+
+    def _modify_header(self, sheet, doc):
         raise NotImplementedError()
 
     def _add_validation(self, main_sheet):
+        raise NotImplementedError()
+
+    def _gen_attributes(self, sen):
+        raise NotImplementedError()
+
+    def _fill_attribute(self, sen):
         raise NotImplementedError()
 
     def _labels_gold_exists(self, sen):

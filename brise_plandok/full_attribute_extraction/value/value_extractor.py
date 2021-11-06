@@ -3,25 +3,28 @@ import json
 import sys
 
 from brise_plandok.constants import AttributeFields, AttributesNames, DocumentFields, SenFields
-from brise_plandok.value_extraction.abschuss_gebaeude import AbschlussDachMaxBezugGebaeudeExtractor
-from brise_plandok.value_extraction.ausnahme_gaertnerisch import AusnahmeGaertnerischAuszugestaltendeExtractor
-from brise_plandok.value_extraction.dachart import DachartExtractor
-from brise_plandok.value_extraction.dachneigung_max import DachneigungMaxExtractor
-from brise_plandok.value_extraction.durchgang_breite import DurchgangBreiteExtractor
-from brise_plandok.value_extraction.durchgang_hoehe import DurchgangHoeheExtractor
-from brise_plandok.value_extraction.errichtung_gebaeude import ErrichtungGebaeudeExtractor
-from brise_plandok.value_extraction.flaechen import FlaechenExtractor
-from brise_plandok.value_extraction.gebaeude_bautyp import GebaeudeBautypExtractor
-from brise_plandok.value_extraction.gebaeude_hoehe_art import GebaeudeHoeheArtExtractor
-from brise_plandok.value_extraction.gebaeude_hoehe_max import GebaeudeHoeheMaxExtractor
-from brise_plandok.value_extraction.gehsteig_breite_min import GehsteigBreiteMinExtractor
-from brise_plandok.value_extraction.planzeichen import PlanzeichenExtractor
-from brise_plandok.value_extraction.strassenbreite_min import StrassenbreiteMinExtractor
-from brise_plandok.value_extraction.utils import contains_attr
-from brise_plandok.value_extraction.von_bebauung import VonBebauungFreizuhaltenExtractor
-from brise_plandok.value_extraction.vorkehrung_bepflanzung import VorkehrungBepflanzungExtractor
-from brise_plandok.value_extraction.wuz import WidmungUndZweckbestimmungExtractor
-from brise_plandok.value_extraction.wuz_mehrere import WidmungInMehrerenEbenenExtractor
+from brise_plandok.full_attribute_extraction.utils.utils import contains_attr
+from brise_plandok.full_attribute_extraction.value.abschuss_gebaeude import AbschlussDachMaxBezugGebaeudeExtractor
+from brise_plandok.full_attribute_extraction.value.an_fluchtlinie import AnFluchtlinieExtractor
+from brise_plandok.full_attribute_extraction.value.ausnahme_gaertnerisch import AusnahmeGaertnerischAuszugestaltendeExtractor
+from brise_plandok.full_attribute_extraction.value.begruenung_dach import BegruenungDachExtractor
+from brise_plandok.full_attribute_extraction.value.dachart import DachartExtractor
+from brise_plandok.full_attribute_extraction.value.dachneigung_max import DachneigungMaxExtractor
+from brise_plandok.full_attribute_extraction.value.durchgang_breite import DurchgangBreiteExtractor
+from brise_plandok.full_attribute_extraction.value.durchgang_hoehe import DurchgangHoeheExtractor
+from brise_plandok.full_attribute_extraction.value.errichtung_gebaeude import ErrichtungGebaeudeExtractor
+from brise_plandok.full_attribute_extraction.value.flaechen import FlaechenExtractor
+from brise_plandok.full_attribute_extraction.value.gebaeude_bautyp import GebaeudeBautypExtractor
+from brise_plandok.full_attribute_extraction.value.gebaeude_hoehe_art import GebaeudeHoeheArtExtractor
+from brise_plandok.full_attribute_extraction.value.gebaeude_hoehe_max import GebaeudeHoeheMaxExtractor
+from brise_plandok.full_attribute_extraction.value.gehsteig_breite_min import GehsteigBreiteMinExtractor
+from brise_plandok.full_attribute_extraction.value.plangebiet_allgemein import PlangebietAllgemeinExtractor
+from brise_plandok.full_attribute_extraction.value.planzeichen import PlanzeichenExtractor
+from brise_plandok.full_attribute_extraction.value.strassenbreite_min import StrassenbreiteMinExtractor
+from brise_plandok.full_attribute_extraction.value.von_bebauung import VonBebauungFreizuhaltenExtractor
+from brise_plandok.full_attribute_extraction.value.vorkehrung_bepflanzung import VorkehrungBepflanzungExtractor
+from brise_plandok.full_attribute_extraction.value.wuz import WidmungUndZweckbestimmungExtractor
+from brise_plandok.full_attribute_extraction.value.wuz_mehrere import WidmungInMehrerenEbenenExtractor
 
 class ValueExtractor:
 
@@ -45,6 +48,9 @@ class ValueExtractor:
         self.wuz = WidmungUndZweckbestimmungExtractor()
         self.wuz_mehrere = WidmungInMehrerenEbenenExtractor()
         self.flaechen = FlaechenExtractor()
+        self.anfluchtlinie = AnFluchtlinieExtractor()
+        self.begruenung_dach = BegruenungDachExtractor()
+        self.plangebiet_allgemein = PlangebietAllgemeinExtractor()
 
     def extract(self, doc):
         items = []
@@ -96,6 +102,12 @@ class ValueExtractor:
                 values = [value for value in self.wuz_mehrere.extract(sen[SenFields.TEXT])]
             elif attribute == AttributesNames.FLAECHEN:
                 values = [value for value in self.flaechen.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.AN_FLUCHTLINIE:
+                values = [value for value in self.anfluchtlinie.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.BEGRUENUNG_DACH:
+                values = [value for value in self.begruenung_dach.extract(sen[SenFields.TEXT])]
+            elif attribute == AttributesNames.PLANGEBIET_ALLGEMEIN:
+                values = [value for value in self.plangebiet_allgemein.extract(sen[SenFields.TEXT])]
             self._add_to_gen_values(sen, attribute, values, field_to_add)
 
 

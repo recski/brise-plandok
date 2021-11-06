@@ -102,14 +102,14 @@ python brise_plandok/annotation_process/utils/label_annotation_excel_generator.p
 #### Excel for review
 
 ```bash
-python brise_plandok/review/annotation_to_review.py -a sample_data/annotation/01/phase1/upload/8141.xlsx sample_data/annotation/02/phase1/upload/8141.xlsx -d sample_data/annotation/full_data/8141.json -g data/train/ -of sample_data/annotation/8141_review.xlsx -r
+python brise_plandok/annotation_process/labels_annotation_to_review.py -a sample_data/annotation/01/phase1/upload/8141.xlsx sample_data/annotation/02/phase1/upload/8141.xlsx -d sample_data/annotation/full_data/8141.json -g data/train/ -of sample_data/annotation/8141_labels_review_XY.xlsx -r
 ```
-The output is save to `sample_data/annotation/8141_review.xlsx`.
+The output is save to `sample_data/annotation/8141_labels_review_XY.xlsx`.
 
 #### Generate gold after review
 
 ```bash
-python brise_plandok/review/review_to_gold.py -r sample_data/annotation/8141_review.xlsx -d sample_data/annotation/full_data/8141.json -g sample_data/annotation/full_data
+python brise_plandok/annotation_process/labels_review_to_gold.py -r sample_data/annotation/8141_labels_review_XY.xlsx -d sample_data/annotation/full_data/8141.json -g data/train/
 ```
 
 Gold `gold_attributes` should be filled out and `labels_gold` and all `labels_gold_exists` should be set to true in `sample_data/annotation/full_data/8141.json`.
@@ -119,15 +119,16 @@ Gold `gold_attributes` should be filled out and `labels_gold` and all `labels_go
 #### Excel for annotation
 
 ```bash
-python brise_plandok/annotation_process/utils/full_annotation_excel_generator.py -d sample_data/annotation/full_data/8141.json -o sample_data/annotation/8141_annotation_full.xlsx
+python brise_plandok/annotation_process/utils/full_annotation_excel_generator.py -d sample_data/annotation/full_data/8141.json -df data/train -o sample_data/annotation/8141_annotation_full.xlsx
 ```
 The output is save to `sample_data/annotation/8141_annotation_full.xlsx`.
 
 #### Excel for review
 
 ```bash
-# TBD
+python brise_plandok/annotation_process/full_annotation_to_review.py -a sample_data/annotation/01/phase2/upload/8141.xlsx sample_data/annotation/02/phase2/upload/8141.xlsx -d sample_data/annotation/full_data/8141.json -g data/train/ -of sample_data/annotation/8141_full_review_XY.xlsx -r
 ```
+The output is save to `sample_data/annotation/8141_labels_review_XY.xlsx`.
 
 #### Generate gold after review
 

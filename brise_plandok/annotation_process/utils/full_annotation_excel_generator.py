@@ -2,10 +2,12 @@
 import argparse
 
 from openpyxl.utils.cell import column_index_from_string, coordinate_from_string
+from brise_plandok.annotation_process.utils.constants import FullAnnotationExcelConstants
+from brise_plandok.annotation_process.utils.full_annotation_pre_filler import FullAnnotationPreFiller
+from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, SenFields
 import logging
 import os
-from brise_plandok.annotation_process.utils.constants import FullAnnotationExcelConstants
 from brise_plandok.utils import load_json, normalize_attribute_name
 from brise_plandok.xlsx.excel_generator import ExcelGenerator
 
@@ -21,25 +23,18 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
 
     def __init__(self, output_file, CONSTANTS, sen_to_gold_attrs=None):
         self.input_template = os.path.join(os.path.dirname(
-            __file__), "../input", "annotation_phase2_template.xlsx")
+            __file__), "../input", "annotation_full_template.xlsx")
         self.output_file = output_file
         self.sen_to_gold_attrs = sen_to_gold_attrs
         self.CONSTANTS = CONSTANTS
 
-    def _fill_attributes(self, sen, sheet, row):
-        col = self.CONSTANTS.ATTRIBUTE_OFFSET
-        for attribute in self.__gen_one_attribute_per_value(sen):
-            attribute_name = normalize_attribute_name(
-                attribute[AttributeFields.NAME])
-            if attribute_name not in ATTR_TO_CAT:
-                logging.warn(
-                    f"\"{attribute_name}\" does not belong to any category - will be ignored")
-            else:
-                self._fill_attribute(
-                    attribute, sheet, col, row)
-                col += self.CONSTANTS.ATTRIBUTE_STEP
+    def _modify_header(self, sheet, doc):
+        return
 
-    def __gen_one_attribute_per_value(self, sen):
+    def _fill_modality(self, sen, sheet, row):
+        return
+
+    def _gen_attributes(self, sen):
         for attribute in sen[SenFields.GEN_ATTRIBUTES_ON_FULL_ANNOTATION].values():
             if attribute[AttributeFields.VALUE] == []:
                 yield {
@@ -52,13 +47,13 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
             for value in attribute[AttributeFields.VALUE]:
                 yield {
                     AttributeFields.NAME: attribute[AttributeFields.NAME],
-                    AttributeFields.VALUE: value,
+                    AttributeFields.VALUE: str(value),
                     AttributeFields.TYPE: attribute[AttributeFields.TYPE],
                     LABELS_GOLD: sen[SenFields.LABELS_GOLD_EXISTS],
                     FULL_GOLD: sen[SenFields.FULL_GOLD_EXISTS],
                 }
 
-    def _fill_attribute(self, attribute, sheet, col, row):
+    def _fill_attribute(self, attribute, sen, sheet, col, row):
         sheet.cell(
             row=row, column=col+self.CONSTANTS.CATEGORY_OFFSET).value = ATTR_TO_CAT[attribute[AttributeFields.NAME]]
         sheet.cell(row=row, column=col +
@@ -109,6 +104,7 @@ def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-o", "--output-file", type=str)
     parser.add_argument("-d", "--data-file", type=str, default=None)
+    parser.add_argument("-df", "--data-folder", type=str, default=None)
     return parser.parse_args()
 
 
@@ -121,6 +117,11 @@ def main():
     doc = load_json(args.data_file)
     generator = FullAnnotationExcelGenerator(
         args.output_file, FullAnnotationExcelConstants())
+    prefiller = FullAnnotationPreFiller()
+    sen_to_gold_attrs = SenToAttrMap(
+            gold_dir=args.data_folder, fuzzy=True, full=False) if args.data_folder else None
+    prefiller.pre_fill_gold_labels(doc, sen_to_gold_attrs)
+    prefiller.fill_gen_attributes_for_full(doc)
     generator.generate_excel(doc)
 
 

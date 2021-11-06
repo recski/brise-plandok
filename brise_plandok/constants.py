@@ -26,14 +26,16 @@ class DocumentFields:
     ID = "id"
     SENS = "sens"
     ANNOTATORS = "annotators"
+    FULL_ANNOTATORS = "full_annotators"
     LABELS_GOLD = "labels_gold"
     FULL_GOLD = "full_gold"
-    REVIEWERS = "reviewers"
+    LABELS_REVIEWERS = "labels_reviewers"
+    FULL_REVIEWERS = "full_reviewers"
 
 class SenFields:
     ID = "id"
     TEXT = "text"
-    MODALITY = "modality"
+    GOLD_MODALITY = "gold_modality"
     ALREADY_GOLD_ON_ANNOTATION = "already_gold_on_annotation"
     GEN_ATTRIBUTES_ON_ANNOTATION = "gen_attributes_on_annotation"
     GEN_ATTRIBUTES_ON_FULL_ANNOTATION = "gen_attributes_on_full_annotation"
@@ -42,8 +44,10 @@ class SenFields:
     FULL_GOLD_EXISTS = "full_gold_exists"
     GOLD_ATTRIBUTES = "gold_attributes"
     ANNOTATED_ATTRIBUTES = "annotated_attributes"
+    FULL_ANNOTATED_ATTRIBUTES = "full_annotated_attributes"
     ATTRIBUTES = "attributes"
     SEGMENTATION_ERROR = "segmentation_error"
+
 class AttributeFields:
     NAME = "name"
     TYPE = "type"
@@ -51,6 +55,10 @@ class AttributeFields:
 
 class AnnotatedAttributeFields:
     ANNOTATORS = "annotators"
+
+class FullAnnotatedAttributeFields:
+    ATTRIBUTES = "attributes"
+    MODALITY = "modality"
 
 class OldDocumentFields:
     ID = "id"
@@ -85,7 +93,20 @@ class AttributesNames:
     WIDMUNG_IN_MEHREREN_EBENEN = "WidmungInMehrerenEbenen"
     FLAECHEN = "Flaechen"
     ANORDNUNG_GAERTNERISCH = "AnordnungGaertnerischeAusgestaltung"
+    AN_FLUCHTLINIE = "AnFluchtlinie"
+    VERKEHRSFLAECHE_ID = "VerkehrsflaecheID"
+    BEGRUENUNG_DACH = "BegruenungDach"
+    PLANGEBIET_ALLGEMEIN = "PlangebietAllgemein"
 
 class AttributeTypes:
     CONDITION = "condition"
     CONTENT = "content"
+    CONDITION_EXCEPTION = "conditionException"
+    CONTENT_EXCEPTION = "contentException"
+
+class Modalities:
+    OBLIGATION = "obligation"
+    PERMISSION = "permission"
+    PROHIBITION = "prohibition"
+
+EMPTY = "EMPTY"

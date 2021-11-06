@@ -1,4 +1,4 @@
-from brise_plandok.constants import Review, SenFields
+from brise_plandok.constants import AttributeFields, Review, SenFields
 from brise_plandok.constants import SenFields as SF
 from brise_plandok.constants import AnnotatedAttributeFields as AAF
 import logging
@@ -12,31 +12,26 @@ from brise_plandok.annotation.attributes import ATTR_TO_CAT
 IS_GOLD = "gold_attr"
 
 
-class ReviewExcelGenerator(ExcelGenerator):
+class LabelReviewExcelGenerator(ExcelGenerator):
 
     def __init__(self, output_file, CONSTANTS, sen_to_gold_attrs=None):
         self.input_template = os.path.join(os.path.dirname(
-            __file__), "input", "review_template.xlsx")
+            __file__), "../input", "labels_review_template.xlsx")
         self.output_file = output_file
         self.sen_to_gold_attrs = sen_to_gold_attrs
         self.CONSTANTS = CONSTANTS
 
-    def _fill_attributes(self, sen, sheet, row):
-        col = self.CONSTANTS.ATTRIBUTE_OFFSET
-        for attribute_name in self.__get_annotated_and_gold_attrs(sen):
-            attribute_name = normalize_attribute_name(attribute_name)
-            if attribute_name not in ATTR_TO_CAT:
-                logging.warn(
-                    f"\"{attribute_name}\" does not belong to any category - will be ignored")
-            else:
-                self.__fill_attribute(
-                    attribute_name, sen, sheet, col, row)
-                col += self.CONSTANTS.ATTRIBUTE_STEP
+    def _modify_header(self, sheet, doc):
+        return
 
-    def __get_annotated_and_gold_attrs(self, sen):
-        return set(list(sen[SF.ANNOTATED_ATTRIBUTES].keys()) + list(sen[SF.GOLD_ATTRIBUTES].keys()))
+    def _fill_modality(self, sen, sheet, row):
+        return
 
-    def __fill_attribute(self, attribute_name, sen, sheet, col, row):
+    def _gen_attributes(self, sen):
+        return [{AttributeFields.NAME: attr} for attr in list(sen[SF.ANNOTATED_ATTRIBUTES].keys()) + list(sen[SF.GOLD_ATTRIBUTES].keys())]
+
+    def _fill_attribute(self, attribute, sen, sheet, col, row):
+        attribute_name = attribute[AttributeFields.NAME]
         sheet.cell(
             row=row, column=col+self.CONSTANTS.CATEGORY_OFFSET).value = ATTR_TO_CAT[attribute_name]
         sheet.cell(row=row, column=col +

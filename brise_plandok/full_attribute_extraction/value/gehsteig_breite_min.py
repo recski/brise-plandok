@@ -1,6 +1,6 @@
 import re
 
-from brise_plandok.value_extraction.constants import NUMBER_WITH_METER
+from brise_plandok.full_attribute_extraction.utils.constants import NUMBER_WITH_METER
 
 VALUES = {
     # w/o jeweils

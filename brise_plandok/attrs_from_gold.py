@@ -12,11 +12,11 @@ from tqdm import tqdm
 class SenToAttrMap():
     fuzzy_patt = re.compile('[0-9]+')
 
-    def __init__(self, gold_dir, fuzzy):
+    def __init__(self, gold_dir, fuzzy, full=False):
         self.fuzzy = fuzzy
-        self.build_map(gold_dir)
+        self.build_map(gold_dir, full)
 
-    def gen_sens_attrs(self, gold_dir):
+    def gen_sens_attrs(self, gold_dir, full):
         if not os.path.exists(gold_dir):
             raise ValueError(f'path does not exist: {gold_dir}')
         for fn in os.listdir(gold_dir):
@@ -26,15 +26,13 @@ class SenToAttrMap():
             with open(os.path.join(gold_dir, fn)) as f:
                 for line in f:
                     doc = json.loads(line)
-                    if doc[DocumentFields.LABELS_GOLD]:
+                    if (full and doc[DocumentFields.FULL_GOLD]) or (not full and doc[DocumentFields.LABELS_GOLD]):
                         for sen_id, sen in doc[DocumentFields.SENS].items():
                             gold_attrs = sen.get(SenFields.GOLD_ATTRIBUTES)
                             if gold_attrs is None:
                                 # support outputs from convert.py
                                 gold_attrs = sen[SenFields.ATTRIBUTES]
                             sen_id = sen.get(SenFields.ID)
-                            if sen_id is None:
-                                sen_id = sen[SenFields.ID]
                             yield sen_id, sen[SenFields.TEXT], gold_attrs, fn
 
     def sen_to_key(self, sen):
@@ -43,9 +41,9 @@ class SenToAttrMap():
         else:
             return SenToAttrMap.fuzzy_patt.sub('', sen)
 
-    def build_map(self, gold_dir):
+    def build_map(self, gold_dir, full):
         self.sen_to_attr = {}
-        for sen_id, sen, attr, fn in self.gen_sens_attrs(gold_dir):
+        for sen_id, sen, attr, fn in self.gen_sens_attrs(gold_dir, full):
             sen_key = self.sen_to_key(sen)
             if sen_key in self.sen_to_attr:
                 if self.sen_to_attr[sen_key]["attr"] == attr:
@@ -92,9 +90,8 @@ def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
 
     if SenFields.LABELS_GOLD_EXISTS in sen and sen[SenFields.LABELS_GOLD_EXISTS]:
         if overwrite:
-            if sen[SenFields.LABELS_GOLD_EXISTS]:
-                del sen[SenFields.GEN_ATTRIBUTES]
-                sen[SenFields.LABELS_GOLD_EXISTS] = False
+            del sen[SenFields.GOLD_ATTRIBUTES]
+            sen[SenFields.LABELS_GOLD_EXISTS] = False
         else:
             if sen[SenFields.GOLD_ATTRIBUTES] != attrs:
                 sen_to_attr.log_conflict(sen)
@@ -106,6 +103,27 @@ def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
 
     if attrs is not None:
         sen[SenFields.LABELS_GOLD_EXISTS] = True
+        sen[SenFields.GOLD_ATTRIBUTES] = attrs
+
+
+def full_attrs_from_gold_sen(sen, sen_to_attr, overwrite):
+    attrs = sen_to_attr.get_attrs(sen['text'])
+
+    if SenFields.FULL_GOLD_EXISTS in sen and sen[SenFields.FULL_GOLD_EXISTS]:
+        if overwrite:
+            del sen[SenFields.GOLD_ATTRIBUTES]
+            sen[SenFields.LABELS_GOLD_EXISTS] = False
+            sen[SenFields.FULL_GOLD_EXISTS] = False
+        else:
+            if sen[SenFields.GOLD_ATTRIBUTES] != attrs:
+                sen_to_attr.log_conflict(sen)
+                raise ValueError(
+                    'field "full_gold_exists" already present in input and'
+                    '--overwrite not set')
+
+    if attrs is not None:
+        sen[SenFields.LABELS_GOLD_EXISTS] = True
+        sen[SenFields.FULL_GOLD_EXISTS] = True
         sen[SenFields.GOLD_ATTRIBUTES] = attrs
 
 

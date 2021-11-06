@@ -59,7 +59,7 @@ class FullDataConverter:
             yield id, {
                 SenFields.ID: id,
                 SenFields.TEXT: text,
-                SenFields.MODALITY: None,
+                SenFields.GOLD_MODALITY: None,
                 SenFields.ALREADY_GOLD_ON_ANNOTATION: already_gold_on_annotation,
                 SenFields.LABELS_GOLD_EXISTS: labels_gold_exists,
                 SenFields.GOLD_ATTRIBUTES: gold_attr,

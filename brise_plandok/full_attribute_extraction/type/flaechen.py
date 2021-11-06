@@ -1,8 +1,7 @@
 import re
 
 from brise_plandok.constants import AttributeTypes
-
-AREA_SIZE = r"(\d\d*.\d*) ?(m ?(²|2)|v. ?H.?|%)"
+from brise_plandok.full_attribute_extraction.utils.constants import AREA_SIZE
 
 VALUES = {
     # Bebaubarkeit

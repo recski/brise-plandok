@@ -21,7 +21,7 @@ cat data/train/8303.json | jq '. | keys'
   "full_gold",
   "id",
   "labels_gold",
-  "reviewers",
+  "labels_reviewers",
   "sens"
 ]
 ```
@@ -34,7 +34,7 @@ cat data/train/8303.json | jq
         ...
     },
     "labels_gold": true,
-    "reviewers": [
+    "labels_reviewers": [
         "eszti"
     ],
     "annotators": [
@@ -53,7 +53,7 @@ cat data/train/8303.json | jq
 - `labels_gold`: true if gold labels exist for this document (i.e. annotations from step 1 were adjudicated)
 - `full_gold`: true if full gold labels with values, types and modalities exist for this document (i.e. annotations from step 2 were adjudicated - currently there are no such documents)
 - `annotators`: anonymized annotator information
-- `reviewers`: adjudicators for this document 
+- `labels_reviewers`: adjudicators for this document 
 
 #### Sentence level attributes
 
@@ -62,7 +62,7 @@ cat data/train/8303.json | jq '.sens[]' | jq 'select(.id == "8303_20_0")'
 {
   "id": "8303_20_0",
   "text": "Für die mit BB1 bezeichneten Grundflächen wird bestimmt: Die Unterbrechung der geschlossenen Bauweise ist zulässig.",
-  "modality": null,
+  "gold_modality": null,
   "already_gold_on_annotation": true,
   "labels_gold_exists": true,
   "gold_attributes": {
@@ -134,7 +134,7 @@ Attributes relevant for the second annotation step (this is still an ongoing pro
 
 Other attributes:
 
-- `modality`: one of {`prohibition`, `permission`, `obligation`} - not yet annotated
+- `gold_modality`: one of {`prohibition`, `permission`, `obligation`} - not yet annotated
 - `gen_attributes`: placeholder for generated attributes, mostly used temporary for evaluation
 
 ### Dataset

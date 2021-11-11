@@ -3,3 +3,6 @@ AREA_SIZE = r"(\d\d*.\d*) ?(m ?(²|2)|v. ?H.?|%)"
 
 TRUE = "True"
 FALSE = "False"
+
+GROUP = "group"
+VALUE = "value"

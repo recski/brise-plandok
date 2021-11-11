@@ -1,14 +1,14 @@
 import re
 
-VALUES = [
+VALUES = {
     # all
-    r".*((Erhaltung|Pflanzung|Pflanzen|Herstellung) .* (ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können)).*",
-]
+    r".*(((die Erhaltung|die Pflanzung|das Pflanzen|die Herstellung) .*) (zu ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können)).*": 2,
+}
 
 class VorkehrungBepflanzungExtractor:
 
     def extract(self, text):
-        for regex in VALUES:
+        for regex, group in VALUES.items():
             m = re.search(regex, text)
             if m is not None:
-                yield m.group(1)
+                yield m.group(group)

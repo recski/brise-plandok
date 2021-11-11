@@ -45,23 +45,23 @@ class TypeExtractor:
     def extract_for_attr(self, sen, attribute, field_to_add = SenFields.GEN_ATTRIBUTES,  only_if_gold=True):
         att_type = None
         if not only_if_gold or contains_attr(sen, attribute):
-            if attribute == AttributesNames.DACHART:
+            if attribute == AttributesNames.Dachart:
                 att_type = self.dachart.extract(sen[SenFields.TEXT])
             elif attribute == AttributesNames.ANORDNUNG_GAERTNERISCH:
                 att_type = self.anordnung_gaertnerisch.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.GEBAEUDE_HOEHE_MAX:
+            elif attribute == AttributesNames.GebaeudeHoeheMax:
                 att_type = self.gebaeude_hoehe_max.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.DACHNEIGUNG_MAX:
+            elif attribute == AttributesNames.DachneigungMax:
                 att_type = self.dachneigung_max.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.FLAECHEN:
+            elif attribute == AttributesNames.Flaechen:
                 att_type = self.flaechen.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.PLANZEICHEN:
+            elif attribute == AttributesNames.Planzeichen:
                 att_type = self.planzeichen.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.AN_FLUCHTLINIE:
+            elif attribute == AttributesNames.AnFluchtlinie:
                 att_type = self.anfluchtlinie.extract(sen[SenFields.TEXT])
             elif attribute == AttributesNames.VERKEHRSFLAECHE_ID:
                 att_type = self.verkehrsflaeche.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.BEGRUENUNG_DACH:
+            elif attribute == AttributesNames.BegruenungDach:
                 att_type = self.begruenung_dach.extract(sen[SenFields.TEXT])
             elif attribute == AttributesNames.PLANGEBIET_ALLGEMEIN:
                 att_type = self.plangebiet_allgemein.extract(sen[SenFields.TEXT])

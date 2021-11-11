@@ -1,5 +1,5 @@
 from brise_plandok.constants import AttributesNames
-from brise_plandok.full_attribute_extraction.utils.constants import AREA_SIZE, FALSE, NUMBER_WITH_METER, GROUP, TRUE, VALUE
+from brise_plandok.full_attribute_extraction.utils.constants import AREA_SIZE, DACH, FALSE, NUMBER_WITH_METER, GROUP, TRUE, VALUE
 from brise_plandok.full_attribute_extraction.value.widmung import WIDMUNG
 
 
@@ -45,19 +45,19 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.Dachart: {
-        r".*(Flach).*": {
+        r"(Flach)" + DACH: {
             VALUE: "Flachdach",
         },
-        r".*(Pult).*": {
+        r"(Pult)" + DACH: {
             VALUE: "Pultdach",
         },
-        r".*(Glas).*": {
+        r"(Glas)" + DACH: {
             VALUE: "Glasdach",
         },
-        r".*(Flug).*": {
+        r"(Flug)" + DACH: {
             VALUE: "Flugdach",
         },
-        r".*(Vor).*": {
+        r"(Vor)" + DACH: {
             VALUE: "Vordach",
         },
     },
@@ -198,25 +198,10 @@ VALUE_PATTERNS = {
         r"(BB ?\d?)": {
             GROUP: 1,
         },
-        r"\s(G)\s": {
-            GROUP: 1,
-        },
-        r"\s\((G)\)\s": {
-            GROUP: 1,
-        },
-        r"\s(L)\s": {
-            GROUP: 1,
-        },
-        r"\s\((L)\)\s": {
-            GROUP: 1,
-        },
-        r"\s(Esp)\s": {
+        r"(A(-[A-Z])+)": {
             GROUP: 1,
         },
         r"\s(öD[gf])\s": {
-            GROUP: 1,
-        },
-        r"\s(StrG)\s": {
             GROUP: 1,
         },
     },

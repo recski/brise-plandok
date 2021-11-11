@@ -24,8 +24,8 @@ class ValueExtractor:
 
     def extract_for_attr(self, sen, attribute, field_to_add=SenFields.GEN_ATTRIBUTES, only_if_gold=True):
         if not only_if_gold or contains_attr(sen, attribute):
-            values = [value for value in extract_values(
-                attribute, sen[SenFields.TEXT])]
+            values = list(set([value for value in extract_values(
+                attribute, sen[SenFields.TEXT])]))
             self._add_to_gen_values(sen, attribute, values, field_to_add)
 
     def _add_to_gen_values(self, sen, attribute, values, field_to_add):

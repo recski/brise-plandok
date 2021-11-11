@@ -63,7 +63,7 @@ class TypeExtractor:
                 att_type = self.verkehrsflaeche.extract(sen[SenFields.TEXT])
             elif attribute == AttributesNames.BegruenungDach:
                 att_type = self.begruenung_dach.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.PLANGEBIET_ALLGEMEIN:
+            elif attribute == AttributesNames.PlangebietAllgemein:
                 att_type = self.plangebiet_allgemein.extract(sen[SenFields.TEXT])
             self._add_to_gen_values(sen, attribute, att_type, field_to_add)
 

@@ -2,34 +2,14 @@ import argparse
 import json
 import sys
 
-from brise_plandok.constants import AttributeFields, AttributesNames, DocumentFields, SenFields
-from brise_plandok.full_attribute_extraction.type.an_fluchtlinie import AnFluchtlinieExtractor
-from brise_plandok.full_attribute_extraction.type.anordnung_gaertnerisch import AnordnungGaertnerischeAusgestaltungExtractor
-from brise_plandok.full_attribute_extraction.type.begruenung_dach import BegruenungDachExtractor
-from brise_plandok.full_attribute_extraction.type.dachart import DachartExtractor
-from brise_plandok.full_attribute_extraction.type.dachneigung_max import DachneigungMaxExtractor
-from brise_plandok.full_attribute_extraction.type.flaechen import FlaechenExtractor
-from brise_plandok.full_attribute_extraction.type.gebaeude_hoehe_max import GebaeudeHoeheMaxExtractor
-from brise_plandok.full_attribute_extraction.type.plangebiet_allgemein import PlangebietAllgemeinExtractor
-from brise_plandok.full_attribute_extraction.type.planzeichen import PlanzeichenExtractor
-from brise_plandok.full_attribute_extraction.type.verkehrflaeche_id import VerkehrsflaecheIDExtractor
-from brise_plandok.full_attribute_extraction.utils.utils import contains_attr
+from brise_plandok.constants import AttributeFields, DocumentFields, SenFields
+from brise_plandok.full_attribute_extraction.utils.utils import contains_attr, extract_types
 
 
 class TypeExtractor:
 
     def __init__(self, attributes=[]):
         self.attributes = attributes
-        self.dachart = DachartExtractor()
-        self.anordnung_gaertnerisch = AnordnungGaertnerischeAusgestaltungExtractor()
-        self.gebaeude_hoehe_max = GebaeudeHoeheMaxExtractor()
-        self.dachneigung_max = DachneigungMaxExtractor()
-        self.flaechen = FlaechenExtractor()
-        self.planzeichen = PlanzeichenExtractor()
-        self.anfluchtlinie = AnFluchtlinieExtractor()
-        self.verkehrsflaeche = VerkehrsflaecheIDExtractor()
-        self.begruenung_dach = BegruenungDachExtractor()
-        self.plangebiet_allgemein = PlangebietAllgemeinExtractor()
 
     def extract(self, doc):
         items = []
@@ -45,26 +25,7 @@ class TypeExtractor:
     def extract_for_attr(self, sen, attribute, field_to_add = SenFields.GEN_ATTRIBUTES,  only_if_gold=True):
         att_type = None
         if not only_if_gold or contains_attr(sen, attribute):
-            if attribute == AttributesNames.Dachart:
-                att_type = self.dachart.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.ANORDNUNG_GAERTNERISCH:
-                att_type = self.anordnung_gaertnerisch.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.GebaeudeHoeheMax:
-                att_type = self.gebaeude_hoehe_max.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.DachneigungMax:
-                att_type = self.dachneigung_max.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.Flaechen:
-                att_type = self.flaechen.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.Planzeichen:
-                att_type = self.planzeichen.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.AnFluchtlinie:
-                att_type = self.anfluchtlinie.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.VERKEHRSFLAECHE_ID:
-                att_type = self.verkehrsflaeche.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.BegruenungDach:
-                att_type = self.begruenung_dach.extract(sen[SenFields.TEXT])
-            elif attribute == AttributesNames.PlangebietAllgemein:
-                att_type = self.plangebiet_allgemein.extract(sen[SenFields.TEXT])
+            att_type = extract_types(attribute, sen[SenFields.TEXT])    
             self._add_to_gen_values(sen, attribute, att_type, field_to_add)
 
 

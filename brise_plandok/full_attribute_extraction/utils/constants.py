@@ -5,8 +5,11 @@ SPACE_OR_BRACKET = r"[\s\(\)]"
 
 DACH =r"(dach|dächer)"
 
+ALL = r".*"
+
 TRUE = "True"
 FALSE = "False"
 
 GROUP = "group"
 VALUE = "value"
+TYPE = "type"

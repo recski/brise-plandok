@@ -1,5 +1,5 @@
 ATTRIBUTE_NORM_MAP = {
-    "Verkehrsflaeche_ID": "VerkehrsflaecheID", 
+    "Verkehrsflaeche_ID": "VerkehrsflaecheID",
     "VorkehrungBepflanzungOeffentlicheVerkehrsflaeche": "VorkehrungBepflanzung",
     "AnBaulinie": "AnFluchtlinie",
     "AnStrassenfluchtlinie": "AnFluchtlinie",
@@ -17,10 +17,12 @@ ROW_HEIGHT = 75
 ANNOTATOR_NAME_INDEX = -4
 DO_NOT_ANNOTATE = "DON'T ANNOTATE THIS SENTENCE"
 
+
 class Review:
     OK = "OK"
     MISSING = "MISSING"
     ERROR = "ERROR"
+
 
 class DocumentFields:
     ID = "id"
@@ -31,6 +33,7 @@ class DocumentFields:
     FULL_GOLD = "full_gold"
     LABELS_REVIEWERS = "labels_reviewers"
     FULL_REVIEWERS = "full_reviewers"
+
 
 class SenFields:
     ID = "id"
@@ -48,24 +51,30 @@ class SenFields:
     ATTRIBUTES = "attributes"
     SEGMENTATION_ERROR = "segmentation_error"
 
+
 class AttributeFields:
     NAME = "name"
     TYPE = "type"
     VALUE = "value"
 
+
 class AnnotatedAttributeFields:
     ANNOTATORS = "annotators"
+
 
 class FullAnnotatedAttributeFields:
     ATTRIBUTES = "attributes"
     MODALITY = "modality"
 
+
 class OldDocumentFields:
     ID = "id"
-    SECTIONS = "sections"    
+    SECTIONS = "sections"
+
 
 class OldSectionFields:
-    SENS = "sens"    
+    SENS = "sens"
+
 
 class OldSenFields:
     ID = "sen_id"
@@ -73,30 +82,32 @@ class OldSenFields:
     GEN_ATTRIBUTES = "gen_attributes"
     ATTRIBUTES = "attributes"
 
+
 class AttributesNames:
-    PLANZEICHEN = "Planzeichen"
-    DACHART = "Dachart"
-    GEHSTEIG_BREITE_MIN = "GehsteigbreiteMin"
-    VORKEHRUNG_BEPFLANZUNG = "VorkehrungBepflanzung"
-    VON_BEBAUUNG_FREIZUHALTEN = "VonBebauungFreizuhalten"
-    GEBAEUDE_BAUTYP = "GebaeudeBautyp"
-    GEBAEUDE_HOEHE_ART = "GebaeudeHoeheArt"
-    GEBAEUDE_HOEHE_MAX = "GebaeudeHoeheMax"
-    STRASSENBREITE_MIN = "StrassenbreiteMin"
-    ABSCHUSS_GEBAEUDE = "AbschlussDachMaxBezugGebaeude"
-    DURCHGANG_BREITE = "DurchgangBreite"
-    DURCHGANG_HOEHE = "DurchgangHoehe"
-    ERRICHTUNG_GEBAEUDE = "ErrichtungGebaeude"
-    AUSNAHME_GAERTNERISCH = "AusnahmeGaertnerischAuszugestaltende"
-    DACHNEIGUNG_MAX = "DachneigungMax"
-    WuZ = "WidmungUndZweckbestimmung"
-    WIDMUNG_IN_MEHREREN_EBENEN = "WidmungInMehrerenEbenen"
-    FLAECHEN = "Flaechen"
-    ANORDNUNG_GAERTNERISCH = "AnordnungGaertnerischeAusgestaltung"
-    AN_FLUCHTLINIE = "AnFluchtlinie"
-    VERKEHRSFLAECHE_ID = "VerkehrsflaecheID"
-    BEGRUENUNG_DACH = "BegruenungDach"
-    PLANGEBIET_ALLGEMEIN = "PlangebietAllgemein"
+    AbschlussDachMaxBezugGebaeude = "AbschlussDachMaxBezugGebaeude"
+    AnFluchtlinie = "AnFluchtlinie"
+    AnordnungGaertnerischeAusgestaltung = "AnordnungGaertnerischeAusgestaltung"
+    AusnahmeGaertnerischAuszugestaltende = "AusnahmeGaertnerischAuszugestaltende"
+    BegruenungDach = "BegruenungDach"
+    DachneigungMax = "DachneigungMax"
+    Dachart = "Dachart"
+    DurchgangBreite = "DurchgangBreite"
+    DurchgangHoehe = "DurchgangHoehe"
+    ErrichtungGebaeude = "ErrichtungGebaeude"
+    Flaechen = "Flaechen"
+    GebaeudeBautyp = "GebaeudeBautyp"
+    GebaeudeHoeheArt = "GebaeudeHoeheArt"
+    GebaeudeHoeheMax = "GebaeudeHoeheMax"
+    GehsteigbreiteMin = "GehsteigbreiteMin"
+    PlangebietAllgemein = "PlangebietAllgemein"
+    Planzeichen = "Planzeichen"
+    StrassenbreiteMin = "StrassenbreiteMin"
+    VerkehrsflaecheID = "VerkehrsflaecheID"
+    VonBebauungFreizuhalten = "VonBebauungFreizuhalten"
+    VorkehrungBepflanzung = "VorkehrungBepflanzung"
+    WidmungInMehrerenEbenen = "WidmungInMehrerenEbenen"
+    WidmungUndZweckbestimmung = "WidmungUndZweckbestimmung"
+
 
 class AttributeTypes:
     CONDITION = "condition"
@@ -104,9 +115,11 @@ class AttributeTypes:
     CONDITION_EXCEPTION = "conditionException"
     CONTENT_EXCEPTION = "contentException"
 
+
 class Modalities:
     OBLIGATION = "obligation"
     PERMISSION = "permission"
     PROHIBITION = "prohibition"
+
 
 EMPTY = "EMPTY"

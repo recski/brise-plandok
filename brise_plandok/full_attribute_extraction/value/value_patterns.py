@@ -227,6 +227,12 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.VorkehrungBepflanzung: {
+        r"(((die Erhaltung|die Pflanzung|das Pflanzen|die Herstellung) .*) (zu ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können))": {
+            GROUP: 2,
+        },
+    },
+
     AttributesNames.WidmungInMehrerenEbenen: WIDMUNG,
 
     AttributesNames.WidmungUndZweckbestimmung: WIDMUNG,

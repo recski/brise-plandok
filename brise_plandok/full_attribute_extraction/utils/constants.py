@@ -5,6 +5,8 @@ SPACE_OR_BRACKET = r"[\s\(\)]"
 
 DACH =r"(dach|dächer)"
 
+STRASSE = r"([A-Z]\w+(( S|s)traße|( G|g)asse))"
+
 ALL = r".*"
 
 TRUE = "True"

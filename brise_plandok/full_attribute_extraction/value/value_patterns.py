@@ -1,5 +1,5 @@
 from brise_plandok.constants import AttributesNames
-from brise_plandok.full_attribute_extraction.utils.constants import ALL, AREA_SIZE, DACH, FALSE, NUMBER_WITH_METER, GROUP, TRUE, VALUE
+from brise_plandok.full_attribute_extraction.utils.constants import ALL, AREA_SIZE, DACH, FALSE, NUMBER_WITH_METER, GROUP, STRASSE, TRUE, VALUE
 from brise_plandok.full_attribute_extraction.value.widmung import WIDMUNG
 
 
@@ -209,6 +209,12 @@ VALUE_PATTERNS = {
     AttributesNames.StrassenbreiteMin: {
         r"Straßen(breiten?)? (ab|von mehr als|von über) (\d\d*( ?, ?\d\d*)? ?m)": {
             GROUP: 3,
+        },
+    },
+
+    AttributesNames.VerkehrsflaecheID: {
+        r"(" + STRASSE + r"( und " + STRASSE + r")?)": {
+            GROUP: 1,
         },
     },
 

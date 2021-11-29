@@ -1,5 +1,5 @@
 from brise_plandok.constants import AttributesNames
-from brise_plandok.full_attribute_extraction.utils.constants import ALL, AREA_SIZE, DACH, FALSE, NUMBER_WITH_METER, GROUP, STRASSE, TRUE, VALUE
+from brise_plandok.full_attribute_extraction.utils.constants import ALL, AREA_SIZE, DACH, FALSE, NUMBER_WITH_METER, GROUP, PERCENT, STRASSE, TRUE, VALUE
 from brise_plandok.full_attribute_extraction.value.widmung import WIDMUNG
 
 
@@ -26,6 +26,18 @@ VALUE_PATTERNS = {
     AttributesNames.AnordnungGaertnerischeAusgestaltung: {
         ALL: {
             VALUE: TRUE,
+        },
+    },
+
+    AttributesNames.AnordnungGaertnerischeAusgestaltungProzentual: {
+        PERCENT: {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.AnteilDachbegruenung: {
+     PERCENT: {
+            GROUP: 1,
         },
     },
 
@@ -90,6 +102,9 @@ VALUE_PATTERNS = {
         r"(Vor)" + DACH: {
             VALUE: "Vordach",
         },
+        r"(begehbar)": {
+            GROUP: 1,
+        },
     },
 
     AttributesNames.DachneigungMax: {
@@ -98,6 +113,12 @@ VALUE_PATTERNS = {
         },
         r"zwischen ((\d\d*( ?, ?\d\d*)?|.*)(°| Grad)) und ((\d\d*( ?, ?\d\d*)?|.*)(°| Grad))": {
             GROUP: 5
+        },
+    },
+
+    AttributesNames.DachflaecheMin: {
+        AREA_SIZE: {
+            GROUP: 1
         },
     },
 
@@ -276,7 +297,7 @@ VALUE_PATTERNS = {
         r"(A(-[A-Z])+)": {
             GROUP: 1,
         },
-        r"\s(öD[gf])\s": {
+        r"\s((Ak )?(öD[gf]))\s": {
             GROUP: 1,
         },
     },
@@ -320,7 +341,19 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.VerbotBueroGeschaeftsgebaeude: {
+        ALL: {
+            VALUE: TRUE,
+        },
+    },
+
     AttributesNames.VerbotFensterZuOeffentlichenVerkehrsflaechen: {
+        ALL: {
+            VALUE: TRUE,
+        },
+    },
+
+    AttributesNames.VerbotStaffelung: {
         ALL: {
             VALUE: TRUE,
         },
@@ -334,6 +367,15 @@ VALUE_PATTERNS = {
 
     AttributesNames.VerkehrsflaecheID: {
         r"(" + STRASSE + r"( und " + STRASSE + r")?)": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.VorbautenVerbot: {
+        r" Errichtung von (((?!Baulinien).)*) (an den Baulinien|untersagt|nicht zulässig)": {
+            GROUP: 1,
+        },
+        r" dürfen keine (.*) vorragen": {
             GROUP: 1,
         },
     },
@@ -366,7 +408,7 @@ VALUE_PATTERNS = {
         r"Ausladung von (höchstens )?" + NUMBER_WITH_METER: {
             GROUP: 2,
         },
-        r"höchstens " + NUMBER_WITH_METER + r" (zulässig|über die Baulinie (vor)?ragen|und)": {
+        r"höchstens " + NUMBER_WITH_METER + r" (zulässig|über die Baulinie (vor)?ragen|und|,)": {
             GROUP: 1,
         },
     },

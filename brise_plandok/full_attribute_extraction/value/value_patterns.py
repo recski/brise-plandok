@@ -17,6 +17,36 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.AnOeffentlichenVerkehrsflaechen: {
+        ALL: {
+            VALUE: TRUE,
+        },
+    },
+
+    AttributesNames.AnordnungGaertnerischeAusgestaltung: {
+        ALL: {
+            VALUE: TRUE,
+        },
+    },
+
+    AttributesNames.AnzahlGebaeudeMax: {
+     r"[Pp]ro Bauplatz( darf)?( nur)? (ein)( Nebengebäude)": {
+            GROUP: 3,
+        },
+    },
+
+    AttributesNames.AufbautenZulaessig: {
+        ALL: {
+            VALUE: TRUE,
+        },
+    },
+
+    AttributesNames.AusnahmeVonWohnungenUnzulaessig: {
+        r"mit Ausnahme( der| von)? (.*) untersagt": {
+            GROUP: 2,
+        },
+    },
+
     AttributesNames.AusnahmeGaertnerischAuszugestaltende: {
         r"mit Ausnahme( der| von)? ([^:]*),? gärtnerisch auszugestalten": {
             GROUP: 2,
@@ -72,10 +102,16 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.DurchgangBreite: {
-        r"(B|b)reite von( mindestens)? (\d\d*( ?, ?\d\d*)? ?m)": {
+        r"(B|b)reite von( mindestens)? " + NUMBER_WITH_METER: {
             GROUP: 3
         },
-        r" (\d\d*( ?, ?\d\d*)? ?m) (B|b)reite": {
+        r" " + NUMBER_WITH_METER + r" (B|b)reite": {
+            GROUP: 1
+        },
+        r"hat " + NUMBER_WITH_METER + r" zu betragen": {
+            GROUP: 1
+        },
+        r"(im Plan dargestellten Breite)": {
             GROUP: 1
         },
     },
@@ -85,6 +121,42 @@ VALUE_PATTERNS = {
             GROUP: 3,
         },
         r" (\d\d*( ?, ?\d\d*)? ?m)( lichter)? (H|h)öhe": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.EinfriedungAusgestaltung: {
+        r"((ab einer Höhe von " + NUMBER_WITH_METER + r" )?(den freien Durchblick|die freie Durchsicht) nicht hindern)": {
+            GROUP: 1,
+        },
+        r"(transparent)": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.EinfriedungHoeheGesamt: {
+        r"dürfen " + NUMBER_WITH_METER + r" nicht überragen": {
+            GROUP: 1,
+        },
+        r"bis zu einer Höhe von " + NUMBER_WITH_METER + r" zulässig": {
+            GROUP: 1,
+        },
+        r"maximal " + NUMBER_WITH_METER + r" (.*)zulässig": {
+            GROUP: 1,
+        },
+        r"darf nicht höher als " + NUMBER_WITH_METER + r" über Wiener Null liegen": {
+            GROUP: 1,
+        },
+        NUMBER_WITH_METER + r"( nicht)? überragen": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.EinfriedungLage: {
+        r"(an (den )?(seitlichen und hinteren )?(zu Verkehrsflächen gewandten )?(Grund|Bauplatz)grenzen)": {
+            GROUP: 1,
+        },
+        r"(gegen die öffentlichen Verkehrsflächen)": {
             GROUP: 1,
         },
     },
@@ -162,7 +234,7 @@ VALUE_PATTERNS = {
         r"(tatsächlich errichtet)": {
             GROUP: 1,
         },
-        r"(ausgeführt)": {
+        r"(tatsächlich ausgeführt)": {
             GROUP: 1,
         },
         r"(festgesetzt)": {
@@ -186,6 +258,9 @@ VALUE_PATTERNS = {
         r"Gehsteige? mit (jeweils|einer Breite von) mindestens " + NUMBER_WITH_METER: {
             GROUP: 2
         },
+        r"mindestens " + NUMBER_WITH_METER + r" Breite als Gehsteig": {
+            GROUP: 1
+        },
     },
 
     AttributesNames.PlangebietAllgemein: {
@@ -206,9 +281,54 @@ VALUE_PATTERNS = {
         },
     },
 
-    AttributesNames.StrassenbreiteMin: {
-        r"Straßen(breiten?)? (ab|von mehr als|von über) (\d\d*( ?, ?\d\d*)? ?m)": {
+    AttributesNames.Stockwerk: {
+        r"((Erd|Dach|Haupt)(geschoss|geschoß))": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.StrassenbreiteMax: {
+        r"Straßen(breiten?)?( bis)? unter " + NUMBER_WITH_METER: {
             GROUP: 3,
+        },
+        r"Straßen(breiten?)? bis (zu |zu einer Breite von )?" + NUMBER_WITH_METER + r"( Breite)?": {
+            GROUP: 3,
+        },
+    },
+
+    AttributesNames.StrassenbreiteMin: {
+        r"Straßen(breiten?)? (ab|von mehr als|von über) " + NUMBER_WITH_METER: {
+            GROUP: 3,
+        },
+    },
+
+    AttributesNames.StrassenbreiteVonBis: {
+        r"Straßenbreite (von " + NUMBER_WITH_METER + r" bis (unter )?" + NUMBER_WITH_METER + r")": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.UnterbrechungGeschlosseneBauweise: {
+        ALL: {
+            VALUE: TRUE,
+        },
+    },
+
+    AttributesNames.UnterirdischeBaulichkeiten: {
+        ALL: {
+            VALUE: TRUE,
+        },
+    },
+
+    AttributesNames.VerbotFensterZuOeffentlichenVerkehrsflaechen: {
+        ALL: {
+            VALUE: TRUE,
+        },
+    },
+
+    AttributesNames.VerbotWohnung: {
+        ALL: {
+            VALUE: TRUE,
         },
     },
 
@@ -234,8 +354,20 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.VorkehrungBepflanzung: {
-        r"(((die Erhaltung|die Pflanzung|das Pflanzen|die Herstellung) .*) (zu ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können))": {
+        r"(((Erhaltung|Pflanzung|(für )?das Pflanzen|Herstellung) .*) (zu ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können))": {
             GROUP: 2,
+        },
+        r"(der Bestand der Baumreihen sicher zu stellen)": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.VorstehendeBauelementeAusladungMax: {
+        r"Ausladung von (höchstens )?" + NUMBER_WITH_METER: {
+            GROUP: 2,
+        },
+        r"höchstens " + NUMBER_WITH_METER + r" (zulässig|über die Baulinie (vor)?ragen|und)": {
+            GROUP: 1,
         },
     },
 

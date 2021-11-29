@@ -121,7 +121,7 @@ WIDMUNG = {
     r"(Gartensiedlungsgebiet-Gemeinschaftsanlage)": {
         GROUP: 1,
     },
-    r"(Gemischtes Baugebiet)": {
+    r"(Gemischtes Baugebiet) ": {
         GROUP: 1,
     },
     r"(Industriegebiet)": {
@@ -394,7 +394,7 @@ WIDMUNG = {
     SPACE_OR_BRACKET + r"(G)" + SPACE_OR_BRACKET: {
         GROUP: 1,
     },
-    r"(Ekz)": {
+    r"(Ekz|EKZ)": {
         GROUP: 1,
     },
     r"(ÖZ)": {

@@ -8,6 +8,7 @@ from brise_plandok.constants import ANNOTATOR_NAME_INDEX, EMPTY, AnnotatedAttrib
 import os
 import logging
 from brise_plandok.attrs_from_gold import SenToAttrMap, full_attrs_from_gold_sen
+from brise_plandok.full_attribute_extraction.value.value_extractor import ValueExtractor
 from brise_plandok.utils import dump_json, load_json
 
 
@@ -17,6 +18,7 @@ class FullAnnotationConverter(AnnotationConverter):
         super().__init__(args)
         self.sen_to_attr = SenToAttrMap(
             args.gold_folder, fuzzy=True, full=True)
+        self.value_extractor = ValueExtractor()
 
     def convert(self, annotated_xlsx_files, output_file, data_file):
         assert data_file is not None
@@ -46,17 +48,21 @@ class FullAnnotationConverter(AnnotationConverter):
             modality = ann_sheet.cell(
                 row=row_id, column=FullAnnotationExcelConstants.MODALITY_COL).value
             self._fill_modality(doc, sen_id, modality, annotator)
+            sen = doc[DocumentFields.SENS][sen_id]
             for col in range(FullAnnotationExcelConstants.ATTRIBUTE_OFFSET, ann_sheet.max_column, FullAnnotationExcelConstants.ATTRIBUTE_STEP):
                 label = ann_sheet.cell(
                     row=row_id, column=col+FullAnnotationExcelConstants.LABEL_OFFSET).value
                 if label is None:
                     continue
-                value = ann_sheet.cell(
-                    row=row_id, column=col+FullAnnotationExcelConstants.VALUE_OFFSET).value
+                self._generate_value(sen, label)
+                value = "\n".join(sen[SenFields.GEN_ATTRIBUTES][label][AttributeFields.VALUE])
                 type = ann_sheet.cell(
                     row=row_id, column=col+FullAnnotationExcelConstants.TYPE_OFFSET).value
                 self._fill_attribute(doc, sen_id, label,
                                      value, type, annotator)
+
+    def _generate_value(self, sen, attribute):
+        self.value_extractor.extract_for_attr(sen, attribute, only_if_gold=False)
 
     def _fill_modality(self, doc, sen_id, modality, annotator):
         if modality is None:

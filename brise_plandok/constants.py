@@ -103,6 +103,7 @@ class AttributesNames:
     EinfriedungAusgestaltung = "EinfriedungAusgestaltung"
     EinfriedungHoeheGesamt = "EinfriedungHoeheGesamt"
     EinfriedungLage = "EinfriedungLage"
+    EinfriedungZulaessig = "EinfriedungZulaessig"
     ErrichtungGebaeude = "ErrichtungGebaeude"
     Flaechen = "Flaechen"
     GebaeudeBautyp = "GebaeudeBautyp"

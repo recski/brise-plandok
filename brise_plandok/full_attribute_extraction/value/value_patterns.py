@@ -182,6 +182,12 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.EinfriedungZulaessig: {
+        ALL: {
+            VALUE: FALSE,
+        },
+    },
+
     AttributesNames.ErrichtungGebaeude: {
         r"(darf unmittelbar bebaut werden|sind unmittelbar bebaubar|Errichtung .* zulässig)": {
             VALUE: TRUE,
@@ -291,7 +297,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.Planzeichen: {
-        r"(BB ?\d?)": {
+        r"(BB(S| ?\d?\d?))": {
             GROUP: 1,
         },
         r"(A(-[A-Z])+)": {

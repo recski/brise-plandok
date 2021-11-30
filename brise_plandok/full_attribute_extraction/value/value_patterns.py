@@ -1,5 +1,5 @@
 from brise_plandok.constants import AttributesNames
-from brise_plandok.full_attribute_extraction.utils.constants import ALL, AREA_SIZE, DACH, FALSE, NUMBER_WITH_METER, GROUP, PERCENT, STRASSE, TRUE, VALUE
+from brise_plandok.full_attribute_extraction.utils.constants import ALL, FLAECHEN_NUMBER, NUMBER_WITH_SQUARE_METER, DACH, FALSE, NUMBER_WITH_METER, GROUP, NUMBER_WITH_PERCENT, STRASSE, TRUE, VALUE
 from brise_plandok.full_attribute_extraction.value.widmung import WIDMUNG
 
 
@@ -30,13 +30,13 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.AnordnungGaertnerischeAusgestaltungProzentual: {
-        PERCENT: {
+        NUMBER_WITH_PERCENT: {
             GROUP: 1,
         },
     },
 
     AttributesNames.AnteilDachbegruenung: {
-     PERCENT: {
+     NUMBER_WITH_PERCENT: {
             GROUP: 1,
         },
     },
@@ -117,7 +117,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.DachflaecheMin: {
-        AREA_SIZE: {
+        NUMBER_WITH_SQUARE_METER: {
             GROUP: 1
         },
     },
@@ -212,29 +212,29 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
         # Maximum
-        r"((in Summe|in Anspruch genommene Gesamtnutzfläche) " + AREA_SIZE + r" nicht überschreiten)": {
+        r"((in Summe|in Anspruch genommene Gesamtnutzfläche) " + FLAECHEN_NUMBER + r" nicht überschreiten)": {
             GROUP: 1,
         },
-        r"(höchstens " + AREA_SIZE + r")": {
+        r"(höchstens " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"(maximal(en Grundfläche von( insgesamt)?)? " + AREA_SIZE + r")": {
+        r"(maximal(en Grundfläche von( insgesamt)?)? " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"(bis zu einem (Flächen)?(A|a)usmaß von " + AREA_SIZE + r")": {
+        r"(bis zu einem (Flächen)?(A|a)usmaß von " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"(die bebaute Fläche nicht mehr als " + AREA_SIZE + r")": {
+        r"(die bebaute Fläche nicht mehr als " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
         # Minimum
-        r"(f|F)lächen? (von mehr als " + AREA_SIZE + r")": {
+        r"(f|F)lächen? (von mehr als " + FLAECHEN_NUMBER + r")": {
             GROUP: 2,
         },
-        r"((m|M)indestens " + AREA_SIZE + r")": {
+        r"((m|M)indestens " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"(nicht weniger als " + AREA_SIZE + r")": {
+        r"(nicht weniger als " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
     },

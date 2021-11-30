@@ -1,6 +1,12 @@
-NUMBER_WITH_METER = r"((\+|-)?\d\d*( ?, ?\d\d*)? ?m)"
-PERCENT = r"(\d+ ?(%|v. ?H.))"
-AREA_SIZE = r"((\d\d*.\d*) ?(m ?(²|2)|v. ?H.?|%))"
+NUMBER = r"((\+|-)?\d\d*( ?[,\.] ?\d\d*)?)"
+PERCENT = r"(%|v. ?H.)"
+
+NUMBER_WITH_METER = r"(" + NUMBER + r" ?m)"
+NUMBER_WITH_PERCENT = r"(" + NUMBER + r" ?" + PERCENT + r")"
+NUMBER_WITH_SQUARE_METER = r"(" + NUMBER + r" ?(m ?[²2]))"
+
+FLAECHEN_NUMBER = r"(" + NUMBER_WITH_PERCENT + r"|" + NUMBER_WITH_SQUARE_METER + r")"
+
 
 SPACE_OR_BRACKET = r"[\s\(\)]"
 

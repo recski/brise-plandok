@@ -4,6 +4,7 @@ PERCENT = r"(%|v. ?H.)"
 NUMBER_WITH_METER = r"(" + NUMBER + r" ?m)"
 NUMBER_WITH_PERCENT = r"(" + NUMBER + r" ?" + PERCENT + r")"
 NUMBER_WITH_SQUARE_METER = r"(" + NUMBER + r" ?(m ?[²2]))"
+NUMBER_WITH_DEGREE = r"(" + NUMBER + r" ?(°|Grad))"
 
 FLAECHEN_NUMBER = r"(" + NUMBER_WITH_PERCENT + r"|" + NUMBER_WITH_SQUARE_METER + r")"
 

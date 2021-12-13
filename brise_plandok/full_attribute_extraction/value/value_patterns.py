@@ -1,5 +1,5 @@
 from brise_plandok.constants import AttributesNames
-from brise_plandok.full_attribute_extraction.utils.constants import ALL, FLAECHEN_NUMBER, NUMBER_WITH_SQUARE_METER, DACH, FALSE, NUMBER_WITH_METER, GROUP, NUMBER_WITH_PERCENT, STRASSE, TRUE, VALUE
+from brise_plandok.full_attribute_extraction.utils.constants import ALL, FLAECHEN_NUMBER, NUMBER_WITH_SQUARE_METER, NUMBER_WITH_DEGREE, DACH, FALSE, NUMBER_WITH_METER, GROUP, NUMBER_WITH_PERCENT, STRASSE, TRUE, VALUE
 from brise_plandok.full_attribute_extraction.value.widmung import WIDMUNG
 
 
@@ -108,11 +108,11 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.DachneigungMax: {
-        r"(bis zu einer Dachneigung von|maximal|bis) ((\d\d*( ?, ?\d\d*)?|.*)(°| Grad))": {
+        r"(bis zu einer Dachneigung von|maximal|bis) " + NUMBER_WITH_DEGREE: {
             GROUP: 2
         },
-        r"zwischen ((\d\d*( ?, ?\d\d*)?|.*)(°| Grad)) und ((\d\d*( ?, ?\d\d*)?|.*)(°| Grad))": {
-            GROUP: 5
+        r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {
+            GROUP: 6
         },
     },
 
@@ -208,7 +208,7 @@ VALUE_PATTERNS = {
         r"((B|b)ebaubaren?,? (aber )?von Bebauung freibleibenden? (Grund|Bauland)flächen?)": {
             GROUP: 1,
         },
-        r"(bebauten? Fläche)": {
+        r"((un)?bebauten? Fläche)": {
             GROUP: 1,
         },
         # Maximum

@@ -133,7 +133,6 @@ dmypy.json
 
 # IDEA
 .idea/
-.idea/vcs.xml
 
 # Excel/Libreoffice
 *.xlsx#

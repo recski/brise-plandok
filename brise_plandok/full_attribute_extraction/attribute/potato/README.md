@@ -50,7 +50,7 @@ python  POTATO_DIR/scripts/evaluate.py \
 | Dachart                             | 0.96      | 0.84   | 0.89     | 25      |
 | Flaechen                            | 1.00      | 0.19   | 0.31     | 43      |
 | GebaeudeBautyp                      |           |        |          | 21      |
-| GebaeudeHoeheArt                    |           |        |          | 19      |
+| GebaeudeHoeheArt                    | 1.00      | 0.47   | 0.64     | 19      |
 | GebaeudeHoeheMax                    | 1.00      | 0.55   | 0.71     | 22      |
 | Planzeichen                         | 0.88      | 0.23   | 0.36     | 163     |
 | VerkehrsflaecheID                   | 0.26      | 0.33   | 0.29     | 21      |

@@ -1,0 +1,32 @@
+{
+    "AnFluchtlinie": [
+        [
+            [
+                "(u_0 / entlang  :2 (u_1 / Fluchtlinie))"
+            ],
+            [],
+            "AnFluchtlinie"
+        ],
+        [
+            [
+                "(u_0 / an  :2 (u_1 / Fluchtlinie))"
+            ],
+            [],
+            "AnFluchtlinie"
+        ],
+        [
+            [
+                "(u_0 / entlang  :2 (u_1 / Baulinie))"
+            ],
+            [],
+            "AnFluchtlinie"
+        ],
+        [
+            [
+                "(u_0 / an  :2 (u_1 / Baulinie))"
+            ],
+            [],
+            "AnFluchtlinie"
+        ]
+    ]
+}

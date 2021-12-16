@@ -49,12 +49,12 @@ python  POTATO_DIR/scripts/evaluate.py \
 | BegruenungDach                      | 0.88      | 0.91   | 0.89     | 23      |
 | Dachart                             | 0.96      | 0.84   | 0.89     | 25      |
 | Flaechen                            | 1.00      | 0.19   | 0.31     | 43      |
-| GebaeudeBautyp                      |           |        |          | 21      |
+| GebaeudeBautyp                      | 1.00      | 0.67   | 0.80     | 21      |
 | GebaeudeHoeheArt                    | 1.00      | 0.47   | 0.64     | 19      |
 | GebaeudeHoeheMax                    | 1.00      | 0.55   | 0.71     | 22      |
 | Planzeichen                         | 0.88      | 0.23   | 0.36     | 163     |
 | VerkehrsflaecheID                   | 0.26      | 0.33   | 0.29     | 21      |
-| VonBebauungFreizuhalten             |           |        |          | 20      |
+| VonBebauungFreizuhalten             | -         | -      | -        | 20      |
 | VorkehrungBepflanzung               | 1.00      | 0.91   | 0.95     | 21      |
 | WidmungInMehrerenEbenen             | 0.90      | 0.64   | 0.75     | 14      |
 | WidmungUndZweckbestimmung           | 0.93      | 0.21   | 0.34     | 62      |

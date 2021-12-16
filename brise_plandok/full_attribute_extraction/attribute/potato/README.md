@@ -43,7 +43,7 @@ python  POTATO_DIR/scripts/evaluate.py \
 
 | Manual rules                        | precision | recall | f1-score | support |
 |-------------------------------------|-----------|--------|----------|---------| 
-| AbschlussDachMaxBezugGebaeude       |           |        |          | 18      |
+| AbschlussDachMaxBezugGebaeude       | 1.00      | 0.89   | 0.94     | 18      |
 | AnFluchtlinie                       | 0.90      | 0.71   | 0.79     | 24      |
 | AnordnungGaertnerischeAusgestaltung | 0.93      | 0.90   | 0.91     | 29      |
 | BegruenungDach                      | 0.88      | 0.91   | 0.89     | 23      |

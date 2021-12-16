@@ -19,9 +19,6 @@ python create_dataset.py -d ../../../../data/valid -g fourlang -n valid
 ## Start GUI for a specific attribute
 
 ```bash
-```
-
-## Evaluate rules
-
-```bash
+# Start for Planzeichen
+streamlit run POTATO_DIR/frontend/app.py -- -t data/train -v data/valid -g fourlang -sr features/manual/Planzeichen.json -l Planzeichen
 ```

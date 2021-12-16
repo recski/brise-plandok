@@ -1,0 +1,32 @@
+{
+    "WidmungUndZweckbestimmung": [
+        [
+            [
+                "(u_0 / Zweck)"
+            ],
+            [],
+            "WidmungUndZweckbestimmung"
+        ],
+        [
+            [
+                "(u_0 / Nutzung)"
+            ],
+            [],
+            "WidmungUndZweckbestimmung"
+        ],
+        [
+            [
+                "(u_0 / Zusammenhang)"
+            ],
+            [],
+            "WidmungUndZweckbestimmung"
+        ],
+        [
+            [
+                "(u_0 / Esp)"
+            ],
+            [],
+            "WidmungUndZweckbestimmung"
+        ]
+    ]
+}

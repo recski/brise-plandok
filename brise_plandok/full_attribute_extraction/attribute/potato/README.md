@@ -56,7 +56,7 @@ python  POTATO_DIR/scripts/evaluate.py \
 | VerkehrsflaecheID                   | 0.26      | 0.33   | 0.29     | 21      |
 | VonBebauungFreizuhalten             |           |        |          | 20      |
 | VorkehrungBepflanzung               | 1.00      | 0.91   | 0.95     | 21      |
-| WidmungInMehrerenEbenen             |           |        |          | 14      |
+| WidmungInMehrerenEbenen             | 0.90      | 0.64   | 0.75     | 14      |
 | WidmungUndZweckbestimmung           | 0.93      | 0.21   | 0.34     | 62      |
 |                                     |           |        |          |         | 
 | micro avg                           | -         | -      | -        | 525     |

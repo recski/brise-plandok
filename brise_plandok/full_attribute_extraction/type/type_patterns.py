@@ -1,7 +1,7 @@
 
 
 from brise_plandok.constants import AttributeTypes, AttributesNames
-from brise_plandok.full_attribute_extraction.utils.constants import ALL, AREA_SIZE, NUMBER_WITH_METER, TYPE
+from brise_plandok.full_attribute_extraction.utils.constants import ALL, NUMBER_WITH_SQUARE_METER, NUMBER_WITH_METER, TYPE
 
 
 TYPE_PATTERNS = {
@@ -84,29 +84,29 @@ TYPE_PATTERNS = {
             TYPE: AttributeTypes.CONDITION,
         },
         # Maximum
-        r"((in Summe|in Anspruch genommene Gesamtnutzfläche) " + AREA_SIZE + r" nicht überschreiten)": {
+        r"((in Summe|in Anspruch genommene Gesamtnutzfläche) " + NUMBER_WITH_SQUARE_METER + r" nicht überschreiten)": {
             TYPE: AttributeTypes.CONTENT,
         },
-        r"(höchstens " + AREA_SIZE + r")": {
+        r"(höchstens " + NUMBER_WITH_SQUARE_METER + r")": {
             TYPE: AttributeTypes.CONTENT,
         },
-        r"(maximal(en Grundfläche von( insgesamt)?)? " + AREA_SIZE + r")": {
+        r"(maximal(en Grundfläche von( insgesamt)?)? " + NUMBER_WITH_SQUARE_METER + r")": {
             TYPE: AttributeTypes.CONTENT,
         },
-        r"(bis zu einem (Flächen)?(A|a)usmaß von " + AREA_SIZE + r")": {
+        r"(bis zu einem (Flächen)?(A|a)usmaß von " + NUMBER_WITH_SQUARE_METER + r")": {
             TYPE: AttributeTypes.CONTENT,
         },
-        r"(die bebaute Fläche nicht mehr als " + AREA_SIZE + r")": {
+        r"(die bebaute Fläche nicht mehr als " + NUMBER_WITH_SQUARE_METER + r")": {
             TYPE: AttributeTypes.CONTENT,
         },
         # Minimum
-        r"(f|F)lächen? (von mehr als " + AREA_SIZE + r")": {
+        r"(f|F)lächen? (von mehr als " + NUMBER_WITH_SQUARE_METER + r")": {
             TYPE: AttributeTypes.CONTENT,
         },
-        r"((m|M)indestens " + AREA_SIZE + r")": {
+        r"((m|M)indestens " + NUMBER_WITH_SQUARE_METER + r")": {
             TYPE: AttributeTypes.CONTENT,
         },
-        r"(nicht weniger als " + AREA_SIZE + r")": {
+        r"(nicht weniger als " + NUMBER_WITH_SQUARE_METER + r")": {
             TYPE: AttributeTypes.CONTENT,
         },
     },

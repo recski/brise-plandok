@@ -1,5 +1,5 @@
 from brise_plandok.constants import AttributesNames
-from brise_plandok.full_attribute_extraction.utils.constants import ALL, AREA_SIZE, DACH, FALSE, NUMBER_WITH_METER, GROUP, STRASSE, TRUE, VALUE
+from brise_plandok.full_attribute_extraction.utils.constants import ALL, FLAECHEN_NUMBER, NUMBER_WITH_SQUARE_METER, NUMBER_WITH_DEGREE, DACH, FALSE, NUMBER_WITH_METER, GROUP, NUMBER_WITH_PERCENT, STRASSE, TRUE, VALUE
 from brise_plandok.full_attribute_extraction.value.widmung import WIDMUNG
 
 
@@ -26,6 +26,18 @@ VALUE_PATTERNS = {
     AttributesNames.AnordnungGaertnerischeAusgestaltung: {
         ALL: {
             VALUE: TRUE,
+        },
+    },
+
+    AttributesNames.AnordnungGaertnerischeAusgestaltungProzentual: {
+        NUMBER_WITH_PERCENT: {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.AnteilDachbegruenung: {
+     NUMBER_WITH_PERCENT: {
+            GROUP: 1,
         },
     },
 
@@ -90,14 +102,23 @@ VALUE_PATTERNS = {
         r"(Vor)" + DACH: {
             VALUE: "Vordach",
         },
+        r"(begehbar)": {
+            GROUP: 1,
+        },
     },
 
     AttributesNames.DachneigungMax: {
-        r"(bis zu einer Dachneigung von|maximal|bis) ((\d\d*( ?, ?\d\d*)?|.*)(°| Grad))": {
+        r"(bis zu einer Dachneigung von|maximal|bis) " + NUMBER_WITH_DEGREE: {
             GROUP: 2
         },
-        r"zwischen ((\d\d*( ?, ?\d\d*)?|.*)(°| Grad)) und ((\d\d*( ?, ?\d\d*)?|.*)(°| Grad))": {
-            GROUP: 5
+        r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {
+            GROUP: 6
+        },
+    },
+
+    AttributesNames.DachflaecheMin: {
+        NUMBER_WITH_SQUARE_METER: {
+            GROUP: 1
         },
     },
 
@@ -161,6 +182,12 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.EinfriedungZulaessig: {
+        ALL: {
+            VALUE: FALSE,
+        },
+    },
+
     AttributesNames.ErrichtungGebaeude: {
         r"(darf unmittelbar bebaut werden|sind unmittelbar bebaubar|Errichtung .* zulässig)": {
             VALUE: TRUE,
@@ -181,33 +208,33 @@ VALUE_PATTERNS = {
         r"((B|b)ebaubaren?,? (aber )?von Bebauung freibleibenden? (Grund|Bauland)flächen?)": {
             GROUP: 1,
         },
-        r"(bebauten? Fläche)": {
+        r"((un)?bebauten? Fläche)": {
             GROUP: 1,
         },
         # Maximum
-        r"((in Summe|in Anspruch genommene Gesamtnutzfläche) " + AREA_SIZE + r" nicht überschreiten)": {
+        r"((in Summe|in Anspruch genommene Gesamtnutzfläche) " + FLAECHEN_NUMBER + r" nicht überschreiten)": {
             GROUP: 1,
         },
-        r"(höchstens " + AREA_SIZE + r")": {
+        r"(höchstens " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"(maximal(en Grundfläche von( insgesamt)?)? " + AREA_SIZE + r")": {
+        r"(maximal(en Grundfläche von( insgesamt)?)? " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"(bis zu einem (Flächen)?(A|a)usmaß von " + AREA_SIZE + r")": {
+        r"(bis zu einem (Flächen)?(A|a)usmaß von " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"(die bebaute Fläche nicht mehr als " + AREA_SIZE + r")": {
+        r"(die bebaute Fläche nicht mehr als " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
         # Minimum
-        r"(f|F)lächen? (von mehr als " + AREA_SIZE + r")": {
+        r"(f|F)lächen? (von mehr als " + FLAECHEN_NUMBER + r")": {
             GROUP: 2,
         },
-        r"((m|M)indestens " + AREA_SIZE + r")": {
+        r"((m|M)indestens " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"(nicht weniger als " + AREA_SIZE + r")": {
+        r"(nicht weniger als " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
     },
@@ -270,13 +297,13 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.Planzeichen: {
-        r"(BB ?\d?)": {
+        r"(BB(S| ?\d?\d?))": {
             GROUP: 1,
         },
         r"(A(-[A-Z])+)": {
             GROUP: 1,
         },
-        r"\s(öD[gf])\s": {
+        r"\s((Ak )?(öD[gf]))\s": {
             GROUP: 1,
         },
     },
@@ -320,7 +347,19 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.VerbotBueroGeschaeftsgebaeude: {
+        ALL: {
+            VALUE: TRUE,
+        },
+    },
+
     AttributesNames.VerbotFensterZuOeffentlichenVerkehrsflaechen: {
+        ALL: {
+            VALUE: TRUE,
+        },
+    },
+
+    AttributesNames.VerbotStaffelung: {
         ALL: {
             VALUE: TRUE,
         },
@@ -334,6 +373,15 @@ VALUE_PATTERNS = {
 
     AttributesNames.VerkehrsflaecheID: {
         r"(" + STRASSE + r"( und " + STRASSE + r")?)": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.VorbautenVerbot: {
+        r" Errichtung von (((?!Baulinien).)*) (an den Baulinien|untersagt|nicht zulässig)": {
+            GROUP: 1,
+        },
+        r" dürfen keine (.*) vorragen": {
             GROUP: 1,
         },
     },
@@ -366,7 +414,7 @@ VALUE_PATTERNS = {
         r"Ausladung von (höchstens )?" + NUMBER_WITH_METER: {
             GROUP: 2,
         },
-        r"höchstens " + NUMBER_WITH_METER + r" (zulässig|über die Baulinie (vor)?ragen|und)": {
+        r"höchstens " + NUMBER_WITH_METER + r" (zulässig|über die Baulinie (vor)?ragen|und|,)": {
             GROUP: 1,
         },
     },

@@ -6,7 +6,7 @@ WIDMUNG = {
     r"(sind( nur der)?) ([^0-9]*) vorbehalten": {
         GROUP: 3,
     },
-    r"(dem|der Widmung|der) (.*) zugeordnet": {
+    r"(dem|der Widmung|der) ([^0-9]*) zugeordnet": {
         GROUP: 2,
     },
     r"Nutzung (als|für) (.*) (erforderlich|zugeführt)": {

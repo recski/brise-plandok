@@ -1,11 +1,19 @@
-NUMBER_WITH_METER = r"((\+|-)?\d\d*( ?, ?\d\d*)? ?m)"
-AREA_SIZE = r"(\d\d*.\d*) ?(m ?(²|2)|v. ?H.?|%)"
+NUMBER = r"((\+|-)?\d\d*( ?[,\.] ?\d\d*)?)"
+PERCENT = r"(%|v. ?H.)"
+
+NUMBER_WITH_METER = r"(" + NUMBER + r" ?m)"
+NUMBER_WITH_PERCENT = r"(" + NUMBER + r" ?" + PERCENT + r")"
+NUMBER_WITH_SQUARE_METER = r"(" + NUMBER + r" ?(m ?[²2]))"
+NUMBER_WITH_DEGREE = r"(" + NUMBER + r" ?(°|Grad))"
+
+FLAECHEN_NUMBER = r"(" + NUMBER_WITH_PERCENT + r"|" + NUMBER_WITH_SQUARE_METER + r")"
+
 
 SPACE_OR_BRACKET = r"[\s\(\)]"
 
 DACH =r"(dach|dächer)"
 
-STRASSE = r" (([A-ZÖ]\w+-?)+(( S|-S|s)traße|( G|-G|g)asse|( P|-P|p)latz))"
+STRASSE = r" (((?!Verkehrsfläche)[A-ZÖ]\w+[- ]?)+(( S|-S|s)traße|( G|-G|g)asse|( P|-P|p)latz|( Z|-Z|z)eile|( G|-G|g)ürtel))"
 
 ALL = r".*"
 

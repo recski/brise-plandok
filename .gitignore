@@ -131,6 +131,9 @@ dmypy.json
 # VS code
 .vscode/
 
+# IDEA
+.idea/
+
 # Excel/Libreoffice
 *.xlsx#
 

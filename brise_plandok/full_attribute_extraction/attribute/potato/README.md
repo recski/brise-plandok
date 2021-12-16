@@ -46,7 +46,7 @@ python  POTATO_DIR/scripts/evaluate.py \
 | AbschlussDachMaxBezugGebaeude       |           |        |          | 18      |
 | AnFluchtlinie                       | 0.90      | 0.71   | 0.79     | 24      |
 | AnordnungGaertnerischeAusgestaltung | 0.93      | 0.90   | 0.91     | 29      |
-| BegruenungDach                      |           |        |          | 23      |
+| BegruenungDach                      | 0.88      | 0.91   | 0.89     | 23      |
 | Dachart                             | 0.96      | 0.84   | 0.89     | 25      |
 | Flaechen                            | 1.00      | 0.19   | 0.31     | 43      |
 | GebaeudeBautyp                      |           |        |          | 21      |

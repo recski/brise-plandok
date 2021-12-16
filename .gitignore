@@ -148,3 +148,6 @@ scripts/*/
 
 # tmp folder
 tmp/
+
+# cache
+/brise_plandok/cache/*.json

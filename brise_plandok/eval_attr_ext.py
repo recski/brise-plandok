@@ -1,5 +1,5 @@
 import argparse
-from brise_plandok.constants import ATTRIBUTE_NORM_MAP
+from brise_plandok.constants import ATTRIBUTE_NORM_MAP, SenFields, DocumentFields
 import json
 import logging
 import sys
@@ -37,6 +37,14 @@ ATTR_CATS = {}
 def preprocess_attrs(attrs):
     pp_attrs = []
     for attr in attrs:
+        if type(attr) is str:
+            name = attr
+            attr = {
+                'name': name,
+                'value': None,
+                'type': None,
+            }
+
         name = attr['name']
         if name.startswith('"'):
             continue
@@ -74,22 +82,38 @@ def load_sample(stream, flat):
     sections = []
     for line in stream:
         doc = json.loads(line)
+        gold = False
+        if DocumentFields.LABELS_GOLD in doc:
+            gold = doc[DocumentFields.LABELS_GOLD]
+        annotated = False
+        if DocumentFields.ANNOTATORS in doc:
+            annotated = len(doc[DocumentFields.ANNOTATORS]) > 0
         if flat:
-            for sen in doc['sens']:
+            for sen in doc['sens'].values():
                 if len(sections) == 0:
                     sections.append({"sens": []})
-                _load_sen(sen, sections)
+                _load_sen(sen, sections, gold, annotated)
         else:
             for section in doc['sections']:
                 sections.append({"sens": []})
                 for sen in section['sens']:
-                    _load_sen(sen, sections)
+                    _load_sen(sen, sections, gold, annotated)
     return sections
 
-def _load_sen(sen, sections):
-    if sen['attributes']:
-        sen['attributes'] = preprocess_attrs(sen['attributes'])
-        sections[-1]['sens'].append(sen)
+
+def _load_sen(sen, sections, gold, annotated):
+    if gold:
+        add_attribute(sections, sen, sen[SenFields.GOLD_ATTRIBUTES].keys())
+    elif annotated:
+        add_attribute(sections, sen, sen[SenFields.ANNOTATED_ATTRIBUTES].keys())
+    elif sen['attributes']:
+        add_attribute(sections, sen, sen['attributes'])
+
+
+def add_attribute(sections, sen, attributes):
+    sen['attributes'] = preprocess_attrs(attributes)
+    sections[-1]['sens'].append(sen)
+
 
 def get_err_ids(label, results):
     return [

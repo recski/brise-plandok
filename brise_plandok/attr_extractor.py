@@ -6,6 +6,7 @@ from tuw_nlp.grammar.ud_fl import UD_FL
 from tuw_nlp.graph.utils import pn_to_graph, GraphMatcher
 
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
+from brise_plandok.constants import SenFields
 from brise_plandok.extractor import Extractor
 from brise_plandok.regex_decompounder import regex_decompounder
 
@@ -163,7 +164,10 @@ class AttributeExtractor(Extractor):
         results = {}
         for section in sections:
             for sen in section['sens']:
-                sen_id = sen['sen_id']
+                if SenFields.ID in sen:
+                    sen_id = sen[SenFields.ID]
+                else:
+                    sen_id = sen['sen_id']
                 parsed_sen = Document([sen['tokens']]).sentences[0]
                 logging.debug(f'processing sen {sen_id}')
                 attrs = self.get_attr_sen(parsed_sen)

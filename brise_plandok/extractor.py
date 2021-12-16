@@ -7,6 +7,8 @@ from contextlib import contextmanager
 
 from tuw_nlp.text.pipeline import CachedStanzaPipeline, CustomStanzaPipeline
 
+from brise_plandok.constants import SenFields
+
 
 class Extractor():
     def __init__(self, nlp, cache_dir='cache'):
@@ -34,8 +36,12 @@ class Extractor():
         for section in sections:
             for sen in section["sens"]:
                 # both types of return values should have all data
-                sen.update(results[sen['sen_id']])
-                results[sen['sen_id']].update(sen)
+                if SenFields.ID in sen:
+                    sen_id = sen[SenFields.ID]
+                else:
+                    sen_id = sen['sen_id']
+                sen.update(results[sen_id])
+                results[sen_id].update(sen)
 
         return sections, results
 

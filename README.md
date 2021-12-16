@@ -32,7 +32,11 @@ cat sample_data/json/sample.jsonl | python brise_plandok/extractor.py > output/s
 ### Evalutaion
 
 ```bash
+# On sample data
 cat sample_data/json/sample_10.jsonl | python brise_plandok/eval_attr_ext.py
+
+# On the annotated dataset
+for f in data/valid/*.json ; do (cat "${f}"; echo) done | python brise_plandok/eval_attr_ext.py -f
 ```
 
 ## Rule extraction

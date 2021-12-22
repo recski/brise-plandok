@@ -1,12 +1,14 @@
 import argparse
 from brise_plandok.annotation_process.utils.annotation_converter import AnnotationConverter
-from brise_plandok.annotation_process.utils.constants import ReviewXlsxConstants
+from brise_plandok.annotation_process.utils.constants import LabelReviewExcelConstants
 from brise_plandok.annotation_process.utils.label_review_excel_generator import LabelReviewExcelGenerator
-from brise_plandok.constants import ANNOTATOR_NAME_INDEX, AnnotatedAttributeFields, AttributeFields, DocumentFields, OldDocumentFields, OldSectionFields, OldSenFields, SenFields
+from brise_plandok.constants import ANNOTATOR_NAME_INDEX, AnnotatedAttributeFields, AttributeFields, DocumentFields, \
+    OldDocumentFields, OldSectionFields, OldSenFields, SenFields
 import os
 import logging
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.utils import dump_json, load_json
+
 
 class LabelAnnotationConverter(AnnotationConverter):
 
@@ -72,9 +74,8 @@ class LabelAnnotationConverter(AnnotationConverter):
         if not self.review:
             logging.info(f"Review = false for {data[DocumentFields.ID]}, no review excel will be generated.")
             return
-        generator = LabelReviewExcelGenerator(output_file, ReviewXlsxConstants())
+        generator = LabelReviewExcelGenerator(output_file, LabelReviewExcelConstants())
         generator.generate_excel(data)
-
 
 
 def get_args():

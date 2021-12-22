@@ -16,24 +16,6 @@ class FullReviewConverter(ReviewConverter):
         self.DOC_GOLD = DocumentFields.FULL_GOLD
         self.CONSTANTS = FullReviewExcelConstants
 
-    def _get_gold_candidate(self, sen_id, attributes):
-        gold_candidate = {}
-        for attr in attributes:
-            attr_name = attr[AttributeFields.NAME]
-            if attr_name not in gold_candidate:
-                gold_candidate[attr_name] = {
-                    AttributeFields.NAME: attr_name,
-                    AttributeFields.VALUE: [],
-                    AttributeFields.TYPE: [],
-                }
-            gold_candidate[attr_name][AttributeFields.VALUE].append(attr[AttributeFields.VALUE])
-            gold_candidate[attr_name][AttributeFields.TYPE].append(attr[AttributeFields.TYPE])
-        for attr_name in gold_candidate.keys():
-            if len(set(gold_candidate[attr_name][AttributeFields.TYPE])) > 1:
-                logging.warning(
-                    f"Same attribute has different types in {sen_id}: {gold_candidate}. Please prove validity.")
-        return gold_candidate
-
     def _generate_attributes(self, review_sheet, row_id):
         for col in range(FullReviewExcelConstants.ATTRIBUTE_OFFSET, review_sheet.max_column,
                          FullReviewExcelConstants.ATTRIBUTE_STEP):
@@ -54,6 +36,27 @@ class FullReviewConverter(ReviewConverter):
                     AttributeFields.VALUE: value,
                     AttributeFields.TYPE: ann_type,
                 }
+
+    def _get_gold_candidate(self, sen_id, attributes):
+        gold_candidate = {}
+        for attr in attributes:
+            attr_name = attr[AttributeFields.NAME]
+            if attr_name not in gold_candidate:
+                gold_candidate[attr_name] = {
+                    AttributeFields.NAME: attr_name,
+                    AttributeFields.VALUE: [],
+                    AttributeFields.TYPE: [],
+                }
+            gold_candidate[attr_name][AttributeFields.VALUE].append(attr[AttributeFields.VALUE])
+            gold_candidate[attr_name][AttributeFields.TYPE].append(attr[AttributeFields.TYPE])
+        for attr_name in gold_candidate.keys():
+            if len(set(gold_candidate[attr_name][AttributeFields.TYPE])) > 1:
+                logging.warning(
+                    f"Same attribute has different types in {sen_id}: {gold_candidate}. Please prove validity.")
+        return gold_candidate
+
+    def _get_modality(self, review_sheet, row_id):
+        return review_sheet.cell(row=row_id, column=FullReviewExcelConstants.MODALITY_ANN_REV_COL).value
 
 
 def get_args():

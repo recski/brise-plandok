@@ -56,6 +56,9 @@ class LabelReviewConverter(ReviewConverter):
                     "gold": _labels_gold(review),
                 }
 
+    def _get_modality(self, review_sheet, row_id):
+        return None
+
 
 def get_args():
     parser = argparse.ArgumentParser(description="Convert label review to gold data")

@@ -28,13 +28,7 @@ class SenToAttrMap():
                     doc = json.loads(line)
                     if (full and doc[DocumentFields.FULL_GOLD]) or (not full and doc[DocumentFields.LABELS_GOLD]):
                         for sen_id, sen in doc[DocumentFields.SENS].items():
-                            gold_attrs = sen.get(SenFields.GOLD_ATTRIBUTES)
-                            if gold_attrs is None:
-                                # support outputs from convert.py
-                                gold_attrs = sen[SenFields.ATTRIBUTES]
-                            sen_id = sen.get(SenFields.ID)
-                            gold_modality = sen[SenFields.GOLD_MODALITY]
-                            yield sen_id, sen[SenFields.TEXT], gold_modality, gold_attrs, fn
+                            yield sen, fn
 
     def sen_to_key(self, sen):
         if not self.fuzzy:
@@ -44,8 +38,11 @@ class SenToAttrMap():
 
     def build_map(self, gold_dir, full):
         self.sen_to_attr = {}
-        for sen_id, sen, mod, attr, fn in self.gen_sens_mod_attrs(gold_dir, full):
-            sen_key = self.sen_to_key(sen)
+        for sen, fn in self.gen_sens_mod_attrs(gold_dir, full):
+            sen_key = self.sen_to_key(sen[SenFields.TEXT])
+            attr = sen[SenFields.GOLD_ATTRIBUTES]
+            mod = sen[SenFields.GOLD_MODALITY]
+            sen_id = sen[SenFields.ID]
             if sen_key in self.sen_to_attr:
                 if self.sen_to_attr[sen_key]["attr"] == attr:
                     if self.sen_to_attr[sen_key]["mod"] == mod:

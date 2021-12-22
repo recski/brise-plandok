@@ -1,15 +1,15 @@
 import argparse
+import logging
+
+import openpyxl
+
 from brise_plandok.annotation_process.utils.constants import ATTRIBUTES_TO_IGNORE, ReviewXlsxConstants
 from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, DocumentFields, SenFields
 from brise_plandok.utils import dump_json, load_json
 
-import openpyxl
-import logging
-from brise_plandok.convert import Converter
 
-
-class ReviewConverter(Converter):
+class LabelReviewConverter:
 
     def __init__(self, data_file, gold_folder):
         self.data = load_json(data_file)
@@ -38,7 +38,7 @@ class ReviewConverter(Converter):
                     f"error row found '{sen_id}' - skipping from gold")
                 continue
 
-            gold_candidate = self._get_gold_candidate(attributes)
+            gold_candidate = self._get_gold_candidate(sen_id, attributes)
             self._raise_error_on_internal_conflict(sen_id, gold_candidate)
             self._raise_error_on_external_conflict(sen_id, gold_candidate)
 
@@ -47,10 +47,11 @@ class ReviewConverter(Converter):
 
         self.data[DocumentFields.LABELS_GOLD] = True
 
-    def _get_gold_candidate(self, attributes):
+    def _get_gold_candidate(self, sen_id, attributes):
         gold_candidate = {}
         for attr_name, attr in self._generate_gold_attrs(attributes):
-            assert attr_name not in gold_candidate
+            if attr_name in gold_candidate:
+                logging.warning(f"In {sen_id}: {attr_name} is already in gold candidates: {gold_candidate}")
             gold_candidate[attr_name] = attr
         return gold_candidate
 
@@ -106,7 +107,7 @@ class ReviewConverter(Converter):
 
 
 def get_args():
-    parser = argparse.ArgumentParser(description="")
+    parser = argparse.ArgumentParser(description="Convert label review to gold data")
     parser.add_argument("-r", "--review", default=None)
     parser.add_argument("-d", "--data-file", default=None)
     parser.add_argument("-g", "--gold-folder", default=None)
@@ -120,7 +121,7 @@ def main():
         format="%(asctime)s : " +
                "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     args = get_args()
-    converter = ReviewConverter(args.data_file, args.gold_folder)
+    converter = LabelReviewConverter(args.data_file, args.gold_folder)
     converter.convert(args.review)
 
 

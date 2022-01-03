@@ -137,8 +137,9 @@ The output is save to `sample_data/annotation/8141_labels_review_XY.xlsx`.
 #### Generate gold after review
 
 ```bash
-# TBD
+python brise_plandok/annotation_process/full_review_to_gold.py -r sample_data/annotation/8141_full_review_XY.xlsx -d sample_data/annotation/full_data/8141.json -g data/train/
 ```
+Gold `gold_attributes` should be filled out and `Full_gold` and all `full_gold_exists` should be set to true in `sample_data/annotation/full_data/8141.json`.
 
 ## Pre-fill attributes from gold
 

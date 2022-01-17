@@ -4,7 +4,8 @@ import openpyxl
 from brise_plandok.annotation_process.utils.annotation_converter import AnnotationConverter
 from brise_plandok.annotation_process.utils.constants import FullAnnotationExcelConstants, FullReviewExcelConstants
 from brise_plandok.annotation_process.utils.full_review_excel_generator import FullReviewExcelGenerator
-from brise_plandok.constants import ANNOTATOR_NAME_INDEX, EMPTY, AnnotatedAttributeFields, AttributeFields, AttributeTypes, DocumentFields, FullAnnotatedAttributeFields, SenFields
+from brise_plandok.constants import ANNOTATOR_NAME_INDEX, EMPTY, AnnotatedAttributeFields, AttributeFields, \
+    AttributeTypes, DocumentFields, FullAnnotatedAttributeFields, SenFields
 import os
 import logging
 from brise_plandok.attrs_from_gold import SenToAttrMap, full_attrs_from_gold_sen
@@ -17,7 +18,7 @@ class FullAnnotationConverter(AnnotationConverter):
     def __init__(self, args):
         super().__init__(args)
         self.sen_to_attr = SenToAttrMap(
-            args.gold_folder, fuzzy=True, full=True)
+            args.gold_folder, fuzzy=False, full=True)
         self.value_extractor = ValueExtractor()
 
     def convert(self, annotated_xlsx_files, output_file, data_file):
@@ -49,15 +50,16 @@ class FullAnnotationConverter(AnnotationConverter):
                 row=row_id, column=FullAnnotationExcelConstants.MODALITY_COL).value
             self._fill_modality(doc, sen_id, modality, annotator)
             sen = doc[DocumentFields.SENS][sen_id]
-            for col in range(FullAnnotationExcelConstants.ATTRIBUTE_OFFSET, ann_sheet.max_column, FullAnnotationExcelConstants.ATTRIBUTE_STEP):
+            for col in range(FullAnnotationExcelConstants.ATTRIBUTE_OFFSET, ann_sheet.max_column,
+                             FullAnnotationExcelConstants.ATTRIBUTE_STEP):
                 label = ann_sheet.cell(
-                    row=row_id, column=col+FullAnnotationExcelConstants.LABEL_OFFSET).value
+                    row=row_id, column=col + FullAnnotationExcelConstants.LABEL_OFFSET).value
                 if label is None:
                     continue
                 self._generate_value(sen, label)
                 value = "\n".join(sen[SenFields.GEN_ATTRIBUTES][label][AttributeFields.VALUE])
                 type = ann_sheet.cell(
-                    row=row_id, column=col+FullAnnotationExcelConstants.TYPE_OFFSET).value
+                    row=row_id, column=col + FullAnnotationExcelConstants.TYPE_OFFSET).value
                 self._fill_attribute(doc, sen_id, label,
                                      value, type, annotator)
 
@@ -81,7 +83,8 @@ class FullAnnotationConverter(AnnotationConverter):
                 annotator)
 
     def _fill_attribute(self, doc, sen_id, label, value, type, annotator):
-        if type not in [AttributeTypes.CONDITION, AttributeTypes.CONTENT, AttributeTypes.CONTENT_EXCEPTION, AttributeTypes.CONDITION_EXCEPTION]:
+        if type not in [AttributeTypes.CONDITION, AttributeTypes.CONTENT, AttributeTypes.CONTENT_EXCEPTION,
+                        AttributeTypes.CONDITION_EXCEPTION]:
             logging.warning(
                 f"No such type exists: {type}. Type is set to {EMPTY}")
             type = EMPTY

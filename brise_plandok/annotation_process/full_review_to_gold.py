@@ -74,8 +74,7 @@ class FullReviewConverter(ReviewConverter):
     def _get_modality(self, review_sheet, row_id, attributes):
         modality = review_sheet.cell(row=row_id, column=FullReviewExcelConstants.MODALITY_ANN_REV_COL).value
         if len(attributes) > 0 and not self._is_error(attributes) and modality is None:
-            raise ValueError(
-                "Modality is missing for row " + str(row_id))
+            logging.warning("Modality is missing for row " + str(row_id))
         return modality
 
 

@@ -53,7 +53,8 @@ class FullReviewExcelGenerator(ExcelGenerator):
         return int(((col - self.CONSTANTS.ATTRIBUTE_OFFSET) / self.CONSTANTS.ATTRIBUTE_STEP) + 1)
 
     def _fill_modality(self, sen, sheet, row):
-        if sen[SenFields.FULL_ANNOTATED_ATTRIBUTES] != {}:
+        if sen[SenFields.FULL_ANNOTATED_ATTRIBUTES] != {} and FullAnnotatedAttributeFields.MODALITY in sen[
+            SenFields.FULL_ANNOTATED_ATTRIBUTES]:
             ann_modalities = [None] * len(self.annotators)
             for i, annotator in enumerate(self.annotators):
                 for modality, annotators in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES][

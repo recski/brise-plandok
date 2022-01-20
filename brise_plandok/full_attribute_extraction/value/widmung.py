@@ -410,4 +410,9 @@ WIDMUNG = {
         GROUP: 1,
     },
 
+    # Not included in the list from WP4
+    r"(Winterg[aä]rten)" : {
+        GROUP: 1,
+    }
+
 }

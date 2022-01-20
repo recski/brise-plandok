@@ -56,7 +56,7 @@ class LabelReviewConverter(ReviewConverter):
                     "gold": _labels_gold(review),
                 }
 
-    def _get_modality(self, review_sheet, row_id):
+    def _get_modality(self, review_sheet, row_id, attributes):
         return None
 
 

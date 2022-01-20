@@ -47,6 +47,12 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.ArkadeHoehe: {
+        r"(H|h)öhe von( mindestens)? " + NUMBER_WITH_METER: {
+            GROUP: 3,
+        },
+    },
+
     AttributesNames.AufbautenZulaessig: {
         ALL: {
             VALUE: TRUE,
@@ -122,6 +128,21 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.DurchfahrtBreite: {
+        r"(B|b)reite von( mindestens)? " + NUMBER_WITH_METER: {
+            GROUP: 3
+        },
+        r" " + NUMBER_WITH_METER + r" (B|b)reite": {
+            GROUP: 1
+        },
+        r"hat " + NUMBER_WITH_METER + r" zu betragen": {
+            GROUP: 1
+        },
+        r"(im Plan dargestellten Breite)": {
+            GROUP: 1
+        },
+    },
+
     AttributesNames.DurchgangBreite: {
         r"(B|b)reite von( mindestens)? " + NUMBER_WITH_METER: {
             GROUP: 3
@@ -138,10 +159,10 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.DurchgangHoehe: {
-        r"(H|h)öhe von( mindestens)? (\d\d*( ?, ?\d\d*)? ?m)": {
+        r"(H|h)öhe von( mindestens)? " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
-        r" (\d\d*( ?, ?\d\d*)? ?m)( lichter)? (H|h)öhe": {
+        NUMBER_WITH_METER + r"( lichter)? (H|h)öhe": {
             GROUP: 1,
         },
     },
@@ -306,6 +327,12 @@ VALUE_PATTERNS = {
         r"\s((Ak )?(öD[gf]))\s": {
             GROUP: 1,
         },
+        r"\s(Ak)\s": {
+            GROUP: 1,
+        },
+        r"\s(Df)\s": {
+            GROUP: 1,
+        },
     },
 
     AttributesNames.Stockwerk: {
@@ -373,6 +400,12 @@ VALUE_PATTERNS = {
 
     AttributesNames.VerkehrsflaecheID: {
         r"(" + STRASSE + r"( und " + STRASSE + r")?)": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.VolumenUndUmbaubarerRaum: {
+        NUMBER_WITH_PERCENT: {
             GROUP: 1,
         },
     },

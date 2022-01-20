@@ -31,8 +31,8 @@ class ReviewConverter:
         for row_id in range(self.CONSTANTS.FIRST_DATA_ROW, review_sheet.max_row + 1):
             sen_id = review_sheet.cell(row=row_id, column=self.CONSTANTS.SEN_ID_COL).value
 
-            gold_modality_candidate = self._get_modality(review_sheet, row_id)
             attributes = [attribute for attribute in self._generate_attributes(review_sheet, row_id)]
+            gold_modality_candidate = self._get_modality(review_sheet, row_id, attributes)
 
             if self._is_error(attributes):
                 self.data[DocumentFields.SENS][sen_id][SenFields.SEGMENTATION_ERROR] = True
@@ -55,7 +55,7 @@ class ReviewConverter:
     def _get_gold_candidate(self, sen_id, attributes):
         raise NotImplementedError()
 
-    def _get_modality(self, review_sheet, row_id):
+    def _get_modality(self, review_sheet, row_id, attributes):
         raise NotImplementedError()
 
     def _raise_error_on_internal_conflict(self, sen_id, gold_attr_candidate, gold_mod_candidate):

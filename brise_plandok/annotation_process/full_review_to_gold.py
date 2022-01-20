@@ -27,9 +27,6 @@ class FullReviewConverter(ReviewConverter):
                 row=row_id, column=col + FullReviewExcelConstants.VALUE_OFFSET).value
             ann_type = review_sheet.cell(
                 row=row_id, column=col + FullReviewExcelConstants.TYPE_ANN_REV_OFFSET).value
-            if ann_type is None:
-                raise ValueError(
-                    "Review field for type is missing for row " + str(row_id))
             if label not in ATTRIBUTES_TO_IGNORE:
                 yield {
                     AttributeFields.NAME: label,
@@ -47,16 +44,39 @@ class FullReviewConverter(ReviewConverter):
                     AttributeFields.VALUE: [],
                     AttributeFields.TYPE: [],
                 }
-            gold_candidate[attr_name][AttributeFields.VALUE].append(attr[AttributeFields.VALUE])
-            gold_candidate[attr_name][AttributeFields.TYPE].append(attr[AttributeFields.TYPE])
+
+            self.__append_values(attr, attr_name, gold_candidate, sen_id)
+            self.__append_type(attr, attr_name, gold_candidate, sen_id)
+
+        self.__warn_on_multiple_types(gold_candidate, sen_id)
+        return gold_candidate
+
+    def __warn_on_multiple_types(self, gold_candidate, sen_id):
         for attr_name in gold_candidate.keys():
             if len(set(gold_candidate[attr_name][AttributeFields.TYPE])) > 1:
                 logging.warning(
-                    f"Same attribute has different types in {sen_id}: {gold_candidate}. Please prove validity.")
-        return gold_candidate
+                    f"\n\nPlease prove validity:\nSame attribute has different reviewed_type in {sen_id}: {gold_candidate}.\n")
 
-    def _get_modality(self, review_sheet, row_id):
-        return review_sheet.cell(row=row_id, column=FullReviewExcelConstants.MODALITY_ANN_REV_COL).value
+    def __append_type(self, attr, attr_name, gold_candidate, sen_id):
+        reviewed_type = attr[AttributeFields.TYPE]
+        if reviewed_type is None:
+            raise ValueError(
+                "Reviewed type is missing for " + str(sen_id))
+        gold_candidate[attr_name][AttributeFields.TYPE].append(reviewed_type)
+
+    def __append_values(self, attr, attr_name, gold_candidate, sen_id):
+        values = attr[AttributeFields.VALUE]
+        if values is None:
+            raise ValueError(
+                "Value is missing for " + str(sen_id))
+        gold_candidate[attr_name][AttributeFields.VALUE].append(values)
+
+    def _get_modality(self, review_sheet, row_id, attributes):
+        modality = review_sheet.cell(row=row_id, column=FullReviewExcelConstants.MODALITY_ANN_REV_COL).value
+        if len(attributes) > 0 and not self._is_error(attributes) and modality is None:
+            raise ValueError(
+                "Modality is missing for row " + str(row_id))
+        return modality
 
 
 def get_args():

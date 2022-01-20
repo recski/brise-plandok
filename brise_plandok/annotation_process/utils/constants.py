@@ -61,6 +61,7 @@ class LabelReviewExcelConstants:
 ############
 # Full xlsx
 ############
+
 class FullAnnotationExcelConstants:
     MAIN_SHEET_NAME = "Data"
     ATTRIBUTE_NAMED_RANGE = "Attribute"

@@ -59,7 +59,7 @@ python  POTATO_DIR/scripts/evaluate.py \
 | WidmungInMehrerenEbenen             | 0.90      | 0.64   | 0.75     | 14      |
 | WidmungUndZweckbestimmung           | 0.93      | 0.21   | 0.34     | 62      |
 |                                     |           |        |          |         | 
-| micro avg                           | -         | -      | -        | 525     |
-| macro avg                           | -         | -      | -        | 525     |
+| micro avg                           | 0.90      | 0.45   | 0.55     | 525     |
+| macro avg                           | 0.90      | 0.59   | 0.68     | 525     |
 | weighted avg                        | -         | -      | -        | 525     |
 | samples avg                         | -         | -      | -        | 525     |

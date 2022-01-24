@@ -103,6 +103,7 @@ class AttributesNames:
     Dachart = "Dachart"
     DachflaecheMin = "DachflaecheMin"
     DurchfahrtBreite = "DurchfahrtBreite"
+    DurchfahrtHoehe = "DurchfahrtHoehe"
     DurchgangBreite = "DurchgangBreite"
     DurchgangHoehe = "DurchgangHoehe"
     EinfriedungAusgestaltung = "EinfriedungAusgestaltung"

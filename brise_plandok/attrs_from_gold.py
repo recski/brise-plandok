@@ -40,8 +40,11 @@ class SenToAttrMap():
         self.sen_to_attr = {}
         for sen, fn in self.gen_sens_mod_attrs(gold_dir, full):
             sen_key = self.sen_to_key(sen[SenFields.TEXT])
-            attr = sen[SenFields.GOLD_ATTRIBUTES]
-            mod = sen[SenFields.GOLD_MODALITY]
+            attr, mod = None, None
+            if SenFields.GOLD_ATTRIBUTES in sen:
+                attr = sen[SenFields.GOLD_ATTRIBUTES]
+            if SenFields.GOLD_MODALITY in sen:
+                mod = sen[SenFields.GOLD_MODALITY]
             sen_id = sen[SenFields.ID]
             if sen_key in self.sen_to_attr:
                 if self.sen_to_attr[sen_key]["attr"] == attr:

@@ -139,6 +139,9 @@ VALUE_PATTERNS = {
         r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {
             GROUP: 6
         },
+        r"Dachneigung darf " + NUMBER_WITH_DEGREE + r" nicht unterschreiten": {
+            GROUP: 1
+        },
     },
 
     AttributesNames.DachflaecheMin: {
@@ -158,6 +161,15 @@ VALUE_PATTERNS = {
             GROUP: 1
         },
         r"(im Plan dargestellten Breite)": {
+            GROUP: 1
+        },
+    },
+
+    AttributesNames.DurchfahrtHoehe: {
+        r"(H|h)öhe von( mindestens)? " + NUMBER_WITH_METER: {
+            GROUP: 3
+        },
+        r" " + NUMBER_WITH_METER + r" (H|h)öhe": {
             GROUP: 1
         },
     },
@@ -301,7 +313,7 @@ VALUE_PATTERNS = {
         r"(tatsächlich errichtet)": {
             GROUP: 1,
         },
-        r"(tatsächlich ausgeführt)": {
+        r"((tatsächlich )?ausgeführt)": {
             GROUP: 1,
         },
         r"(festgesetzt)": {

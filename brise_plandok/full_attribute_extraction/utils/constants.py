@@ -9,12 +9,11 @@ NUMBER_WITH_DEGREE = r"(" + NUMBER + r" ?(°|Grad))"
 
 FLAECHEN_NUMBER = r"(" + NUMBER_WITH_PERCENT + r"|" + NUMBER_WITH_SQUARE_METER + r")"
 
-
 SPACE_OR_BRACKET = r"[\s\(\)]"
 
-DACH =r"(dach|dächer)"
+DACH = r"(dach|dächer)"
 
-STRASSE = r" (((?!Verkehrsfläche)[A-ZÖ]\w+[- ]?)+(( S|-S|s)traße|( G|-G|g)asse|( P|-P|p)latz|( Z|-Z|z)eile|( G|-G|g)ürtel))"
+STRASSE = r" (((?!Verkehrsfläche)[A-ZÖ]\w+[- ]?)+(( S|-S|s)traße|( G|-G|g)asse|( P|-P|p)latz|( Z|-Z|z)eile|( G|-G|g)ürtel|( W|w)eg))"
 
 ALL = r".*"
 

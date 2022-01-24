@@ -77,10 +77,12 @@ class FullReviewExcelGenerator(ExcelGenerator):
                     row=row, column=self.CONSTANTS.MODALITY_ANN_REV_COL).value = ann_modalities[0]
 
     def _gen_attributes(self, sen):
-        if sen[SenFields.FULL_ANNOTATED_ATTRIBUTES] != {}:
-            if sen[SenFields.FULL_GOLD_EXISTS]:
-                yield from self.__gen_attributes_from_gold(sen)
-            else:
+        if sen[SenFields.FULL_GOLD_EXISTS]:
+            yield from self.__gen_attributes_from_gold(sen)
+        else:
+            attributes_exist = FullAnnotatedAttributeFields.ATTRIBUTES in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]
+            ann_not_empty = sen[SenFields.FULL_ANNOTATED_ATTRIBUTES] != {}
+            if ann_not_empty and attributes_exist:
                 yield from self.__gen_attributes_from_annotation(sen)
 
     def __gen_attributes_from_gold(self, sen):

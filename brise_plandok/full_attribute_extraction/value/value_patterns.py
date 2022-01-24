@@ -1,7 +1,8 @@
 from brise_plandok.constants import AttributesNames
-from brise_plandok.full_attribute_extraction.utils.constants import ALL, FLAECHEN_NUMBER, NUMBER_WITH_SQUARE_METER, NUMBER_WITH_DEGREE, DACH, FALSE, NUMBER_WITH_METER, GROUP, NUMBER_WITH_PERCENT, STRASSE, TRUE, VALUE
+from brise_plandok.full_attribute_extraction.utils.constants import ALL, FLAECHEN_NUMBER, NUMBER_WITH_SQUARE_METER, \
+    NUMBER_WITH_CUBIC_METER, NUMBER_WITH_DEGREE, DACH, FALSE, NUMBER_WITH_METER, GROUP, NUMBER_WITH_PERCENT, STRASSE, \
+    TRUE, VALUE
 from brise_plandok.full_attribute_extraction.value.widmung import WIDMUNG
-
 
 VALUE_PATTERNS = {
 
@@ -35,14 +36,20 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.AnteilBaumbepflanzung: {
+        NUMBER_WITH_PERCENT: {
+            GROUP: 1,
+        },
+    },
+
     AttributesNames.AnteilDachbegruenung: {
-     NUMBER_WITH_PERCENT: {
+        NUMBER_WITH_PERCENT: {
             GROUP: 1,
         },
     },
 
     AttributesNames.AnzahlGebaeudeMax: {
-     r"[Pp]ro Bauplatz( darf)?( nur)? (ein)( Nebengebäude)": {
+        r"[Pp]ro Bauplatz( darf)?( nur)? (ein)( Nebengebäude)": {
             GROUP: 3,
         },
     },
@@ -83,6 +90,18 @@ VALUE_PATTERNS = {
         },
         r"(A|a)usgenommen davon sind (.*).": {
             GROUP: 2,
+        },
+    },
+
+    AttributesNames.Bauklasse: {
+        r" (I|II|III|IV|V|VI)[ ,]": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.BauweiseID: {
+        r"(geschlossen|offen|gekuppelt|gruppenbauweise)": {
+            GROUP: 1,
         },
     },
 
@@ -311,6 +330,12 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.OeffentlicheVerkehrsflaecheBreiteMin: {
+        r"mit einer Gesamtbreite von " + NUMBER_WITH_METER + r" (und|oder) mehr": {
+            GROUP: 1,
+        },
+    },
+
     AttributesNames.PlangebietAllgemein: {
         ALL: {
             VALUE: TRUE,
@@ -322,6 +347,9 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
         r"(A(-[A-Z])+)": {
+            GROUP: 1,
+        },
+        r"([a-z]-[a-z])": {
             GROUP: 1,
         },
         r"\s((Ak )?(öD[gf]))\s": {
@@ -359,6 +387,12 @@ VALUE_PATTERNS = {
     AttributesNames.StrassenbreiteVonBis: {
         r"Straßenbreite (von " + NUMBER_WITH_METER + r" bis (unter )?" + NUMBER_WITH_METER + r")": {
             GROUP: 1,
+        },
+    },
+
+    AttributesNames.Struktureinheit: {
+        ALL: {
+            VALUE: TRUE,
         },
     },
 
@@ -406,6 +440,9 @@ VALUE_PATTERNS = {
 
     AttributesNames.VolumenUndUmbaubarerRaum: {
         NUMBER_WITH_PERCENT: {
+            GROUP: 1,
+        },
+        NUMBER_WITH_CUBIC_METER: {
             GROUP: 1,
         },
     },

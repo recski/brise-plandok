@@ -1,7 +1,7 @@
 from brise_plandok.full_attribute_extraction.utils.constants import GROUP, SPACE_OR_BRACKET
 
 WIDMUNG = {
-    
+
     # Konstruktionen
     r"(sind( nur der)?) ([^0-9]*) vorbehalten": {
         GROUP: 3,
@@ -411,8 +411,11 @@ WIDMUNG = {
     },
 
     # Not included in the list from WP4
-    r"(Winterg[aä]rten)" : {
+    r"(Winterg[aä]rten)": {
         GROUP: 1,
-    }
+    },
+    r"(Sporthalle)": {
+        GROUP: 1,
+    },
 
 }

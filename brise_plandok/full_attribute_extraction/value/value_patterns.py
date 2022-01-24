@@ -330,6 +330,12 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.HoehenlageGrundflaeche: {
+        r"Höhenlage von (" + NUMBER_WITH_METER + r" über Wr. Null) herzustellen": {
+            GROUP: 1
+        },
+    },
+
     AttributesNames.OeffentlicheVerkehrsflaecheBreiteMin: {
         r"mit einer Gesamtbreite von " + NUMBER_WITH_METER + r" (und|oder) mehr": {
             GROUP: 1,

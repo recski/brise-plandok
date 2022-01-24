@@ -115,6 +115,7 @@ class AttributesNames:
     GebaeudeHoeheArt = "GebaeudeHoeheArt"
     GebaeudeHoeheMax = "GebaeudeHoeheMax"
     GehsteigbreiteMin = "GehsteigbreiteMin"
+    HoehenlageGrundflaeche = "HoehenlageGrundflaeche"
     OeffentlicheVerkehrsflaecheBreiteMin = "OeffentlicheVerkehrsflaecheBreiteMin"
     PlangebietAllgemein = "PlangebietAllgemein"
     Planzeichen = "Planzeichen"

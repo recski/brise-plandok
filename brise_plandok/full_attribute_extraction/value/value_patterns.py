@@ -144,6 +144,15 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.DachneigungMin: {
+        r"von einer Dachneigung von mindestens " + NUMBER_WITH_DEGREE: {
+            GROUP: 1
+        },
+        r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {
+            GROUP: 1
+        },
+    },
+
     AttributesNames.DachflaecheMin: {
         NUMBER_WITH_SQUARE_METER: {
             GROUP: 1
@@ -332,19 +341,25 @@ VALUE_PATTERNS = {
 
     AttributesNames.GehsteigbreiteMin: {
         r"Gehsteige? mit mindestens " + NUMBER_WITH_METER: {
-            GROUP: 1
+            GROUP: 1,
         },
         r"Gehsteige? mit (jeweils|einer Breite von) mindestens " + NUMBER_WITH_METER: {
-            GROUP: 2
+            GROUP: 2,
         },
         r"mindestens " + NUMBER_WITH_METER + r" Breite als Gehsteig": {
-            GROUP: 1
+            GROUP: 1,
         },
     },
 
     AttributesNames.HoehenlageGrundflaeche: {
         r"Höhenlage von (" + NUMBER_WITH_METER + r" über Wr. Null) herzustellen": {
-            GROUP: 1
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.InSchutzzone: {
+        ALL: {
+            VALUE: TRUE,
         },
     },
 

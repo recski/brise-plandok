@@ -147,7 +147,7 @@ def full_attrs_from_gold_sen(sen, sen_to_attr, overwrite):
                     'field "full_gold_exists" already present in input and'
                     '--overwrite not set')
 
-    if attrs is not None and mod is not None:
+    if attrs is not None:
         sen[SenFields.LABELS_GOLD_EXISTS] = True
         sen[SenFields.FULL_GOLD_EXISTS] = True
         sen[SenFields.GOLD_ATTRIBUTES] = attrs

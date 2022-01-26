@@ -142,6 +142,9 @@ VALUE_PATTERNS = {
         r"Dachneigung darf " + NUMBER_WITH_DEGREE + r" nicht unterschreiten": {
             GROUP: 1
         },
+        r"(fünf Grad)": {
+            GROUP: 1
+        },
     },
 
     AttributesNames.DachneigungMin: {
@@ -187,7 +190,7 @@ VALUE_PATTERNS = {
         r"(B|b)reite von( mindestens)? " + NUMBER_WITH_METER: {
             GROUP: 3
         },
-        r" " + NUMBER_WITH_METER + r" (B|b)reite": {
+        r" " + NUMBER_WITH_METER + r" [Bb]reite": {
             GROUP: 1
         },
         r"hat " + NUMBER_WITH_METER + r" zu betragen": {
@@ -202,7 +205,7 @@ VALUE_PATTERNS = {
         r"(H|h)öhe von( mindestens)? " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
-        NUMBER_WITH_METER + r"( lichter)? (H|h)öhe": {
+        NUMBER_WITH_METER + r"( lichter)? [Hh][oö]he": {
             GROUP: 1,
         },
     },
@@ -211,7 +214,7 @@ VALUE_PATTERNS = {
         r"((ab einer Höhe von " + NUMBER_WITH_METER + r" )?(den freien Durchblick|die freie Durchsicht) nicht hindern)": {
             GROUP: 1,
         },
-        r"(transparent)": {
+        r"(transparent|vollflächig)": {
             GROUP: 1,
         },
     },
@@ -220,10 +223,10 @@ VALUE_PATTERNS = {
         r"dürfen " + NUMBER_WITH_METER + r" nicht überragen": {
             GROUP: 1,
         },
-        r"bis zu einer Höhe von " + NUMBER_WITH_METER + r" zulässig": {
-            GROUP: 1,
+        r"(bis zu einer Höhe von|höchstens) " + NUMBER_WITH_METER: {
+            GROUP: 2,
         },
-        r"maximal " + NUMBER_WITH_METER + r" (.*)zulässig": {
+        r"maximal " + NUMBER_WITH_METER: {
             GROUP: 1,
         },
         r"darf nicht höher als " + NUMBER_WITH_METER + r" über Wiener Null liegen": {
@@ -244,13 +247,16 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.EinfriedungZulaessig: {
-        ALL: {
+        r"(die Errichtung .* Einfriedungen zulässig|ist zulässig)": {
+            VALUE: TRUE,
+        },
+        r"(ist nicht zulässig|untersagt)": {
             VALUE: FALSE,
         },
     },
 
     AttributesNames.ErrichtungGebaeude: {
-        r"(darf unmittelbar bebaut werden|sind unmittelbar bebaubar|Errichtung .* zulässig)": {
+        r"((darf|dürfen) unmittelbar bebaut werden|sind unmittelbar bebaubar|Errichtung .* zulässig)": {
             VALUE: TRUE,
         },
         r"(Errichtung .* (untersagt|unzulässig)|keine .* errichtet werden)": {
@@ -276,7 +282,7 @@ VALUE_PATTERNS = {
         r"((in Summe|in Anspruch genommene Gesamtnutzfläche) " + FLAECHEN_NUMBER + r" nicht überschreiten)": {
             GROUP: 1,
         },
-        r"(höchstens " + FLAECHEN_NUMBER + r")": {
+        r"((höchstens|nicht mehr als) " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
         r"(maximal(en Grundfläche von( insgesamt)?)? " + FLAECHEN_NUMBER + r")": {
@@ -337,6 +343,9 @@ VALUE_PATTERNS = {
         r"(Gebäudehöhe|Höhe) \D*" + NUMBER_WITH_METER: {
             GROUP: 2,
         },
+        r"nicht mehr als" + NUMBER_WITH_METER: {
+            GROUP: 1,
+        },
     },
 
     AttributesNames.GehsteigbreiteMin: {
@@ -364,8 +373,8 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.OeffentlicheVerkehrsflaecheBreiteMin: {
-        r"mit einer Gesamtbreite von " + NUMBER_WITH_METER + r" (und|oder) mehr": {
-            GROUP: 1,
+        r"mit einer Gesamtbreite von (mehr als )?" + NUMBER_WITH_METER + r"( (und|oder) mehr)?": {
+            GROUP: 2,
         },
     },
 
@@ -379,7 +388,7 @@ VALUE_PATTERNS = {
         r"(BB(S| ?\d?\d?))": {
             GROUP: 1,
         },
-        r"(A(-[A-Z])+)": {
+        r"([A-Z](-[A-Z])+)": {
             GROUP: 1,
         },
         r"([a-z]-[a-z])": {
@@ -393,6 +402,12 @@ VALUE_PATTERNS = {
         },
         r"\s(Df)\s": {
             GROUP: 1,
+        },
+    },
+
+    AttributesNames.StellplatzImNiveauZulaessig: {
+        ALL: {
+            VALUE: TRUE,
         },
     },
 
@@ -426,6 +441,12 @@ VALUE_PATTERNS = {
     AttributesNames.Struktureinheit: {
         ALL: {
             VALUE: TRUE,
+        },
+    },
+
+    AttributesNames.TechnischeAufbautenHoeheMax: {
+        r"bis zu einer Gesamthöhe von " + NUMBER_WITH_METER: {
+            GROUP: 1,
         },
     },
 
@@ -496,7 +517,7 @@ VALUE_PATTERNS = {
         r"((ober|unter)irdische(n|r)? (Bauten?|Bebauung|Bauwerk(en)?))": {
             GROUP: 1,
         },
-        r"((ober- und unterirdischen|oberirdischer) Gebäude)": {
+        r"((ober- und unterirdischen|oberirdische[rn]|unterirdische[rn]) Gebäude)": {
             GROUP: 1,
         },
         r"(keine Bauwerke)": {

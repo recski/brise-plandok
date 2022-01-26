@@ -100,7 +100,7 @@ WIDMUNG = {
     r"(Verkehrsbänder)": {
         GROUP: 1,
     },
-    r"(Wohngebiet)": {
+    r"((Bauland/)?Wohngebiet)": {
         GROUP: 1,
     },
     r"(Wohnzone)": {
@@ -121,7 +121,7 @@ WIDMUNG = {
     r"(Gartensiedlungsgebiet-Gemeinschaftsanlage)": {
         GROUP: 1,
     },
-    r"(Gemischtes Baugebiet) ": {
+    r"((Bauland/)?Gemischtes Baugebiet) ": {
         GROUP: 1,
     },
     r"(Industriegebiet)": {
@@ -403,7 +403,7 @@ WIDMUNG = {
     r"(StrG)": {
         GROUP: 1,
     },
-    r"(StrE)": {
+    r"(StrE (\d)?)": {
         GROUP: 1,
     },
     SPACE_OR_BRACKET + r"(P)" + SPACE_OR_BRACKET: {

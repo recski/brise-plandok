@@ -199,14 +199,23 @@ VALUE_PATTERNS = {
         r"(im Plan dargestellten Breite)": {
             GROUP: 1
         },
+        r"DurchgangBreitemit einer lichten Breite und einer lichten Höhe von je mindestens " + NUMBER_WITH_METER: {
+            GROUP: 1
+        },
     },
 
     AttributesNames.DurchgangHoehe: {
-        r"(H|h)öhe von( mindestens)? " + NUMBER_WITH_METER: {
+        r"(H|h)öhe von(( je)? mindestens)? " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
         NUMBER_WITH_METER + r"( lichter)? [Hh][oö]he": {
             GROUP: 1,
+        },
+        r"einer (lichten )?Höhe von " + NUMBER_WITH_METER: {
+            GROUP: 2,
+        },
+        r"DurchgangBreitemit einer lichten Breite und einer lichten Höhe von je mindestens " + NUMBER_WITH_METER: {
+            GROUP: 1
         },
     },
 
@@ -214,19 +223,22 @@ VALUE_PATTERNS = {
         r"((ab einer Höhe von " + NUMBER_WITH_METER + r" )?(den freien Durchblick|die freie Durchsicht) nicht hindern)": {
             GROUP: 1,
         },
-        r"(transparent|vollflächig)": {
+        r"(transparent|vollflächig|fassadenmäßig)": {
             GROUP: 1,
         },
     },
 
     AttributesNames.EinfriedungHoeheGesamt: {
-        r"dürfen " + NUMBER_WITH_METER + r" nicht überragen": {
+        r"dürfen " + NUMBER_WITH_METER + r"( Höhe)? nicht überragen": {
             GROUP: 1,
         },
         r"(bis zu einer Höhe von|höchstens) " + NUMBER_WITH_METER: {
             GROUP: 2,
         },
-        r"maximal " + NUMBER_WITH_METER: {
+        r"maximal(en Höhe von)? " + NUMBER_WITH_METER: {
+            GROUP: 1,
+        },
+        r"Höhe von bis zu " + NUMBER_WITH_METER: {
             GROUP: 1,
         },
         r"darf nicht höher als " + NUMBER_WITH_METER + r" über Wiener Null liegen": {
@@ -250,7 +262,7 @@ VALUE_PATTERNS = {
         r"(die Errichtung .* Einfriedungen zulässig|ist zulässig)": {
             VALUE: TRUE,
         },
-        r"(ist nicht zulässig|untersagt)": {
+        r"(nicht zulässig|untersagt)": {
             VALUE: FALSE,
         },
     },
@@ -261,6 +273,12 @@ VALUE_PATTERNS = {
         },
         r"(Errichtung .* (untersagt|unzulässig)|keine .* errichtet werden)": {
             VALUE: FALSE,
+        },
+    },
+
+    AttributesNames.FBOKMinimumWohnungen: {
+        r"Fußbodenoberkante mindestens" + NUMBER_WITH_METER: {
+            VALUE: TRUE,
         },
     },
 
@@ -373,7 +391,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.OeffentlicheVerkehrsflaecheBreiteMin: {
-        r"mit einer Gesamtbreite von (mehr als )?" + NUMBER_WITH_METER + r"( (und|oder) mehr)?": {
+        r"mit einer Gesamtbreite von (mehr als |über )?" + NUMBER_WITH_METER + r"( (und|oder) mehr)?": {
             GROUP: 2,
         },
     },
@@ -400,7 +418,7 @@ VALUE_PATTERNS = {
         r"\s(Ak)\s": {
             GROUP: 1,
         },
-        r"\s(Df)\s": {
+        r"\s(D[fg])\s": {
             GROUP: 1,
         },
     },
@@ -408,6 +426,18 @@ VALUE_PATTERNS = {
     AttributesNames.StellplatzImNiveauZulaessig: {
         ALL: {
             VALUE: TRUE,
+        },
+    },
+
+    AttributesNames.StellplatzregulativUmfangMaximumRelativ: {
+        r"insgesamt höchstens " + NUMBER_WITH_PERCENT: {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.StellplatzregulativUmfangMinimumRelativ: {
+        r"Stellplatzverpflichtung beträgt " + NUMBER_WITH_PERCENT: {
+            GROUP: 1,
         },
     },
 
@@ -427,7 +457,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.StrassenbreiteMin: {
-        r"Straßen(breiten?)? (ab|von mehr als|von über) " + NUMBER_WITH_METER: {
+        r"[Ss]traßen(breiten?)? (ab|von mehr als|von über) " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
     },
@@ -517,7 +547,7 @@ VALUE_PATTERNS = {
         r"((ober|unter)irdische(n|r)? (Bauten?|Bebauung|Bauwerk(en)?))": {
             GROUP: 1,
         },
-        r"((ober- und unterirdischen|oberirdische[rn]|unterirdische[rn]) Gebäude)": {
+        r"((ober- und unterirdischen|oberirdische[rn]|unterirdische[rn]|oberirdischen und unterirdischen) (Gebäude|Baulichkeit))": {
             GROUP: 1,
         },
         r"(keine Bauwerke)": {
@@ -530,6 +560,9 @@ VALUE_PATTERNS = {
             GROUP: 2,
         },
         r"(der Bestand der Baumreihen sicher zu stellen)": {
+            GROUP: 1,
+        },
+        r"(Aufbringung eines Erdkörpers mit der Mächtigkeit von " + NUMBER_WITH_METER + r")": {
             GROUP: 1,
         },
     },

@@ -64,7 +64,10 @@ WIDMUNG = {
     r"(Ländliche Gebiete)": {
         GROUP: 1,
     },
-    r"(Erholungsgebiet(/( |-)?Sport- und Spielplätze)?)": {
+    r"(Erholungsgebiet/( |-)?Sport- und Spielplätze)": {
+        GROUP: 1,
+    },
+    r"(Grünland/Erholungsgebiete?/Parkanlage)": {
         GROUP: 1,
     },
     r"(Kleingartengebiete(  für ganzjähriges Wohnen)?)": {
@@ -346,7 +349,7 @@ WIDMUNG = {
     r"(GSGM)": {
         GROUP: 1,
     },
-    r"(GB)": {
+    r"(GB(cv)?)": {
         GROUP: 1,
     },
     r"(GBGV)": {
@@ -415,6 +418,12 @@ WIDMUNG = {
         GROUP: 1,
     },
     r"(Sporthalle)": {
+        GROUP: 1,
+    },
+    r"(Landesverteidigung)": {
+        GROUP: 1,
+    },
+    r"dem (Verkehrsband)": {
         GROUP: 1,
     },
 

@@ -1,0 +1,25 @@
+{
+    "GebaeudeHoeheMax": [
+        [
+            [
+                "(u_0 / Gebaeudehoehe :0 (u_1 / maximal))"
+            ],
+            [],
+            "GebaeudeHoeheMax"
+        ],
+        [
+            [
+                "(u_0 / ueberschreiten :1 (u_1 / Gebaeudehoehe))"
+            ],
+            [],
+            "GebaeudeHoeheMax"
+        ],
+        [
+            [
+                "(u_0 / bis :2 (u_1 / Gebaeudehoehe))"
+            ],
+            [],
+            "GebaeudeHoeheMax"
+        ]
+    ]
+}

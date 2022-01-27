@@ -131,6 +131,9 @@ dmypy.json
 # VS code
 .vscode/
 
+# IDEA
+.idea/
+
 # Excel/Libreoffice
 *.xlsx#
 
@@ -138,7 +141,13 @@ dmypy.json
 brise_plandok/review/output/
 
 # Data split
-brise_plandok/data_split/example/
+brise_plandok/annotation_process/example/
 
 # Personal scripts
 scripts/*/
+
+# tmp folder
+tmp/
+
+# cache
+/brise_plandok/cache/*.json

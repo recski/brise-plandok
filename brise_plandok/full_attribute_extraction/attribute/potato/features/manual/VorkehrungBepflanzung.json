@@ -1,0 +1,18 @@
+{
+    "VorkehrungBepflanzung": [
+        [
+            [
+                "(u_0 / Pflanze)"
+            ],
+            [],
+            "VorkehrungBepflanzung"
+        ],
+        [
+            [
+                "(u_0 / Pflanzung)"
+            ],
+            [],
+            "VorkehrungBepflanzung"
+        ]
+    ]
+}

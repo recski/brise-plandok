@@ -21,14 +21,12 @@ FULL_GOLD = "full_gold"
 
 class FullAnnotationExcelGenerator(ExcelGenerator):
 
-    def __init__(self, output_file, CONSTANTS, sen_to_gold_attrs=None):
+    def __init__(self, output_file, CONSTANTS, doc, sen_to_gold_attrs=None):
+        super().__init__(output_file, CONSTANTS, doc, sen_to_gold_attrs)
         self.input_template = os.path.join(os.path.dirname(
             __file__), "../input", "annotation_full_template.xlsx")
-        self.output_file = output_file
-        self.sen_to_gold_attrs = sen_to_gold_attrs
-        self.CONSTANTS = CONSTANTS
 
-    def _modify_header(self, sheet, doc):
+    def _modify_header(self, sheet):
         return
 
     def _fill_modality(self, sen, sheet, row):
@@ -116,13 +114,13 @@ def main():
     args = get_args()
     doc = load_json(args.data_file)
     generator = FullAnnotationExcelGenerator(
-        args.output_file, FullAnnotationExcelConstants())
+        args.output_file, FullAnnotationExcelConstants(), doc)
     prefiller = FullAnnotationPreFiller()
     sen_to_gold_attrs = SenToAttrMap(
             gold_dir=args.data_folder, fuzzy=True, full=False) if args.data_folder else None
     prefiller.pre_fill_gold_labels(doc, sen_to_gold_attrs)
     prefiller.fill_gen_attributes_for_full(doc)
-    generator.generate_excel(doc)
+    generator.generate_excel()
 
 
 if __name__ == "__main__":

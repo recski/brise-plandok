@@ -7,13 +7,7 @@ from xpotato.dataset.dataset import Dataset
 
 from brise_plandok.full_attribute_extraction.attribute.potato.constants import NOT, TOP_15_ANNOTATED
 from brise_plandok.full_attribute_extraction.attribute.potato.utils import load_data_to_df, filter_labels, \
-    get_data_folder_path, get_label_vocab
-
-
-def get_sentences(df):
-    df_with_nots = df[["text"]]
-    df_with_nots.loc[:, "dummy_label"] = NOT
-    return df_with_nots.to_records(index=False)
+    get_data_folder_path, get_label_vocab, get_sentences
 
 
 def add_graphs(dataset, graph_path, graph_format):

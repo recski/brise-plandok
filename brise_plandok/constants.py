@@ -118,6 +118,7 @@ class AttributesNames:
     GebaeudeHoeheArt = "GebaeudeHoeheArt"
     GebaeudeHoeheMax = "GebaeudeHoeheMax"
     GehsteigbreiteMin = "GehsteigbreiteMin"
+    GaragengebaeudeAusfuehrung = "GaragengebaeudeAusfuehrung"
     HoehenlageGrundflaeche = "HoehenlageGrundflaeche"
     InSchutzzone = "InSchutzzone"
     OeffentlicheVerkehrsflaecheBreiteMin = "OeffentlicheVerkehrsflaecheBreiteMin"

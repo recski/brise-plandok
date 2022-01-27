@@ -64,6 +64,9 @@ WIDMUNG = {
     r"(Ländliche Gebiete)": {
         GROUP: 1,
     },
+    r"\s(Erholungsgebiet)(es)?\s": {
+        GROUP: 1,
+    },
     r"(Erholungsgebiet/( |-)?Sport- und Spielplätze)": {
         GROUP: 1,
     },

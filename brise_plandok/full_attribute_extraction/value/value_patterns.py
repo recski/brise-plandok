@@ -3,7 +3,6 @@ from brise_plandok.full_attribute_extraction.utils.constants import ALL, FLAECHE
     NUMBER_WITH_CUBIC_METER, NUMBER_WITH_DEGREE, DACH, FALSE, NUMBER_WITH_METER, GROUP, NUMBER_WITH_PERCENT, STRASSE, \
     TRUE, VALUE
 from brise_plandok.full_attribute_extraction.value.widmung import WIDMUNG
-
 VALUE_PATTERNS = {
 
     AttributesNames.AbschlussDachMaxBezugGebaeude: {
@@ -139,7 +138,7 @@ VALUE_PATTERNS = {
         r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {
             GROUP: 6
         },
-        r"Dachneigung darf " + NUMBER_WITH_DEGREE + r" nicht unterschreiten": {
+        r"Dachneigung( darf)? " + NUMBER_WITH_DEGREE + r" nicht überschreiten": {
             GROUP: 1
         },
         r"(fünf Grad)": {
@@ -152,6 +151,9 @@ VALUE_PATTERNS = {
             GROUP: 1
         },
         r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {
+            GROUP: 1
+        },
+        r"Dachneigung darf " + NUMBER_WITH_DEGREE + r" nicht unterschreiten": {
             GROUP: 1
         },
     },
@@ -199,7 +201,7 @@ VALUE_PATTERNS = {
         r"(im Plan dargestellten Breite)": {
             GROUP: 1
         },
-        r"DurchgangBreitemit einer lichten Breite und einer lichten Höhe von je mindestens " + NUMBER_WITH_METER: {
+        r"mit einer lichten Breite und einer lichten Höhe von je mindestens " + NUMBER_WITH_METER: {
             GROUP: 1
         },
     },
@@ -211,10 +213,10 @@ VALUE_PATTERNS = {
         NUMBER_WITH_METER + r"( lichter)? [Hh][oö]he": {
             GROUP: 1,
         },
-        r"einer (lichten )?Höhe von " + NUMBER_WITH_METER: {
-            GROUP: 2,
+        r"einer (lichten )?Höhe von (mindestens )?" + NUMBER_WITH_METER: {
+            GROUP: 3,
         },
-        r"DurchgangBreitemit einer lichten Breite und einer lichten Höhe von je mindestens " + NUMBER_WITH_METER: {
+        r"mit einer lichten Breite und einer lichten Höhe von je mindestens " + NUMBER_WITH_METER: {
             GROUP: 1
         },
     },
@@ -268,10 +270,16 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.ErrichtungGebaeude: {
-        r"((darf|dürfen) unmittelbar bebaut werden|sind unmittelbar bebaubar|Errichtung .* zulässig)": {
+        r"((darf|dürfen) unmittelbar bebaut werden|sind unmittelbar bebaubar|Errichtung ((?!nicht).)* zulässig)": {
+            VALUE: TRUE,
+        },
+        r"sind Gebäude und bauliche Anlagen ((?!nicht).)* zulässig": {
             VALUE: TRUE,
         },
         r"(Errichtung .* (untersagt|unzulässig)|keine .* errichtet werden)": {
+            VALUE: FALSE,
+        },
+        r"(Errichtung von Gebäuden nicht zulässig)": {
             VALUE: FALSE,
         },
     },
@@ -376,6 +384,15 @@ VALUE_PATTERNS = {
         r"mindestens " + NUMBER_WITH_METER + r" Breite als Gehsteig": {
             GROUP: 1,
         },
+        r"Gehsteige mit (insgesamt )?mindestens " + NUMBER_WITH_METER + r" Breite": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.GaragengebaeudeAusfuehrung: {
+        r"mit einer maximalen Gebäudehöhe von " + NUMBER_WITH_METER: {
+            GROUP: 1,
+        },
     },
 
     AttributesNames.HoehenlageGrundflaeche: {
@@ -421,6 +438,9 @@ VALUE_PATTERNS = {
         r"\s(D[fg])\s": {
             GROUP: 1,
         },
+        r"Punkte ([A-Z] und [A-Z])": {
+            GROUP: 1,
+        },
     },
 
     AttributesNames.StellplatzImNiveauZulaessig: {
@@ -448,7 +468,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.StrassenbreiteMax: {
-        r"Straßen(breiten?)?( bis)? unter " + NUMBER_WITH_METER: {
+        r"Straßen(breiten?)?( bis| von)? unter " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
         r"Straßen(breiten?)? bis (zu |zu einer Breite von )?" + NUMBER_WITH_METER + r"( Breite)?": {
@@ -581,3 +601,4 @@ VALUE_PATTERNS = {
     AttributesNames.WidmungUndZweckbestimmung: WIDMUNG,
 
 }
+

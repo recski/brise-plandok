@@ -438,7 +438,7 @@ VALUE_PATTERNS = {
         r"\s(D[fg])\s": {
             GROUP: 1,
         },
-        r"Punkte ([A-Z] und [A-Z])": {
+        r"Punkte ([a-zA-Z] und [a-zA-Z])": {
             GROUP: 1,
         },
     },

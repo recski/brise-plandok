@@ -103,7 +103,7 @@ WIDMUNG = {
     r"(Sondernutzungsgebiete)": {
         GROUP: 1,
     },
-    r"(Verkehrsbänder)": {
+    r"(Verkehrs(bänder|band))": {
         GROUP: 1,
     },
     r"((Bauland/)?Wohngebiet)": {

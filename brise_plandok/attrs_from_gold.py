@@ -40,8 +40,11 @@ class SenToAttrMap():
         self.sen_to_attr = {}
         for sen, fn in self.gen_sens_mod_attrs(gold_dir, full):
             sen_key = self.sen_to_key(sen[SenFields.TEXT])
-            attr = sen[SenFields.GOLD_ATTRIBUTES]
-            mod = sen[SenFields.GOLD_MODALITY]
+            attr, mod = None, None
+            if SenFields.GOLD_ATTRIBUTES in sen:
+                attr = sen[SenFields.GOLD_ATTRIBUTES]
+            if SenFields.GOLD_MODALITY in sen:
+                mod = sen[SenFields.GOLD_MODALITY]
             sen_id = sen[SenFields.ID]
             if sen_key in self.sen_to_attr:
                 if self.sen_to_attr[sen_key]["attr"] == attr:
@@ -144,7 +147,7 @@ def full_attrs_from_gold_sen(sen, sen_to_attr, overwrite):
                     'field "full_gold_exists" already present in input and'
                     '--overwrite not set')
 
-    if attrs is not None and mod is not None:
+    if attrs is not None:
         sen[SenFields.LABELS_GOLD_EXISTS] = True
         sen[SenFields.FULL_GOLD_EXISTS] = True
         sen[SenFields.GOLD_ATTRIBUTES] = attrs

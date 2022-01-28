@@ -13,21 +13,22 @@ from brise_plandok.utils import normalize_attribute_name
 
 class ExcelGenerator:
 
-    def __init__(self, output_file, CONSTANTS, sen_to_gold_attrs=None):
+    def __init__(self, output_file, CONSTANTS, doc, sen_to_gold_attrs=None):
         self.output_file = output_file
         self.sen_to_gold_attrs = sen_to_gold_attrs
         self.CONSTANTS = CONSTANTS
+        self.doc = doc
 
-    def generate_excel(self, doc):
+    def generate_excel(self):
         workbook = openpyxl.load_workbook(self.input_template)
-        self._fill_workbook(workbook, doc)
+        self._fill_workbook(workbook)
         self._save_workbook(workbook)
 
-    def _fill_workbook(self, workbook, doc):
+    def _fill_workbook(self, workbook):
         main_sheet = workbook[self.CONSTANTS.MAIN_SHEET_NAME]
         row = self.CONSTANTS.FIRST_DATA_ROW
-        self._modify_header(main_sheet, doc)
-        for sen_id, sen in doc[DF.SENS].items():
+        self._modify_header(main_sheet)
+        for sen_id, sen in self.doc[DF.SENS].items():
             self._fill_sentences(sen_id, main_sheet, row, sen)
             self._fill_attributes(sen, main_sheet, row)
             row += 1
@@ -61,7 +62,7 @@ class ExcelGenerator:
                     attribute, sen, sheet, col, row)
                 col += self.CONSTANTS.ATTRIBUTE_STEP
 
-    def _modify_header(self, sheet, doc):
+    def _modify_header(self, sheet):
         raise NotImplementedError()
 
     def _add_validation(self, main_sheet):

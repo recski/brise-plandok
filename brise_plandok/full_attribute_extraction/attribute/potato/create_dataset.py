@@ -7,13 +7,7 @@ from xpotato.dataset.dataset import Dataset
 
 from brise_plandok.full_attribute_extraction.attribute.potato.constants import NOT, TOP_15_ANNOTATED
 from brise_plandok.full_attribute_extraction.attribute.potato.utils import load_data_to_df, filter_labels, \
-    get_data_folder_path, get_label_vocab
-
-
-def get_sentences(df):
-    df_with_nots = df[["text"]]
-    df_with_nots.loc[:, "dummy_label"] = NOT
-    return df_with_nots.to_records(index=False)
+    get_data_folder_path, get_label_vocab, get_sentences
 
 
 def add_graphs(dataset, graph_path, graph_format):
@@ -30,9 +24,9 @@ def add_graphs(dataset, graph_path, graph_format):
     return df
 
 
-def get_dataset(data, label_vocab, dataset_fn, graph_format):
-    dataset_path = os.path.join(get_data_folder_path(), dataset_fn)
-    graph_path = os.path.join(get_data_folder_path(), f"{dataset_fn}_{graph_format}.pickle")
+def get_dataset(data, label_vocab, dataset_name, graph_format):
+    dataset_path = os.path.join(get_data_folder_path(), dataset_name)
+    graph_path = os.path.join(get_data_folder_path(), f"{dataset_name}_{graph_format}.pickle")
     logging.info(f"Start processing data for {dataset_path} with {graph_format} graphs...")
 
     dataset = Dataset(get_sentences(data), label_vocab=label_vocab, lang="de")
@@ -46,12 +40,12 @@ def get_dataset(data, label_vocab, dataset_fn, graph_format):
     return potato_df
 
 
-def create_dataset(dir_path, only_gold, dataset_fn, graph_format):
+def create_dataset(dir_path, only_gold, dataset_name, graph_format):
     data_df = load_data_to_df(dir_path, only_gold)
     filter_labels(data_df, TOP_15_ANNOTATED, NOT)
     logging.info(f"Data loaded to DataFrame for {dir_path}. Shape: {data_df.shape}")
 
-    potato_df = get_dataset(data_df, get_label_vocab(TOP_15_ANNOTATED), dataset_fn, graph_format)
+    potato_df = get_dataset(data_df, get_label_vocab(TOP_15_ANNOTATED), dataset_name, graph_format)
     logging.info(f"POTATO dataset is created")
     logging.info(f"\n{potato_df.head()}")
 
@@ -59,7 +53,7 @@ def create_dataset(dir_path, only_gold, dataset_fn, graph_format):
 def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-d", "--dir-path")
-    parser.add_argument("-o", "--only-gold", type=bool, default=False)
+    parser.add_argument("-o", "--only-gold", action="store_true")
     parser.add_argument("-g", "--graph")
     parser.add_argument("-n", "--dataset-name")
     return parser.parse_args()

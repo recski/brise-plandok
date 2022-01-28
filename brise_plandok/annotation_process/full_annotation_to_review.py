@@ -139,8 +139,8 @@ class FullAnnotationConverter(AnnotationConverter):
                 f"Review = false for {doc[DocumentFields.ID]}, no review excel will be generated.")
             return
         generator = FullReviewExcelGenerator(
-            output_file, FullReviewExcelConstants())
-        generator.generate_excel(doc)
+            output_file, FullReviewExcelConstants(), doc)
+        generator.generate_excel()
 
 
 def get_args():

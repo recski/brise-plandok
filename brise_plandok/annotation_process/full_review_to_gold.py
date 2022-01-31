@@ -74,8 +74,7 @@ class FullReviewConverter(ReviewConverter):
     def _get_modality(self, review_sheet, row_id, attributes):
         modality = review_sheet.cell(row=row_id, column=FullReviewExcelConstants.MODALITY_ANN_REV_COL).value
         if len(attributes) > 0 and not self._is_error(attributes) and modality is None:
-            raise ValueError(
-                "Modality is missing for row " + str(row_id))
+            logging.warning("Modality is missing for row " + str(row_id))
         return modality
 
 
@@ -84,7 +83,7 @@ def get_args():
     parser.add_argument("-r", "--review", default=None)
     parser.add_argument("-d", "--data-file", default=None)
     parser.add_argument("-g", "--gold-folder", default=None)
-    parser.set_defaults(input_format="XLSX", output_format="JSON")
+    parser.add_argument("-o", "--override", action="store_true")
     return parser.parse_args()
 
 
@@ -95,7 +94,7 @@ def main():
                "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
     args = get_args()
     converter = FullReviewConverter(args.data_file, args.gold_folder)
-    converter.convert(args.review)
+    converter.convert(args.review, args.override)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 from brise_plandok.full_attribute_extraction.utils.constants import GROUP, SPACE_OR_BRACKET
 
 WIDMUNG = {
-    
+
     # Konstruktionen
     r"(sind( nur der)?) ([^0-9]*) vorbehalten": {
         GROUP: 3,
@@ -64,7 +64,13 @@ WIDMUNG = {
     r"(Ländliche Gebiete)": {
         GROUP: 1,
     },
-    r"(Erholungsgebiet(/( |-)?Sport- und Spielplätze)?)": {
+    r"\s(Erholungsgebiet)(es)?\s": {
+        GROUP: 1,
+    },
+    r"(Erholungsgebiet/( |-)?Sport- und Spielplätze)": {
+        GROUP: 1,
+    },
+    r"(Grünland/Erholungsgebiete?/Parkanlage)": {
         GROUP: 1,
     },
     r"(Kleingartengebiete(  für ganzjähriges Wohnen)?)": {
@@ -97,10 +103,10 @@ WIDMUNG = {
     r"(Sondernutzungsgebiete)": {
         GROUP: 1,
     },
-    r"(Verkehrsbänder)": {
+    r"(Verkehrs(bänder|band))": {
         GROUP: 1,
     },
-    r"(Wohngebiet)": {
+    r"((Bauland/)?Wohngebiet)": {
         GROUP: 1,
     },
     r"(Wohnzone)": {
@@ -121,7 +127,7 @@ WIDMUNG = {
     r"(Gartensiedlungsgebiet-Gemeinschaftsanlage)": {
         GROUP: 1,
     },
-    r"(Gemischtes Baugebiet) ": {
+    r"((Bauland/)?Gemischtes Baugebiet) ": {
         GROUP: 1,
     },
     r"(Industriegebiet)": {
@@ -346,7 +352,7 @@ WIDMUNG = {
     r"(GSGM)": {
         GROUP: 1,
     },
-    r"(GB)": {
+    r"(GB(cv)?)": {
         GROUP: 1,
     },
     r"(GBGV)": {
@@ -403,7 +409,7 @@ WIDMUNG = {
     r"(StrG)": {
         GROUP: 1,
     },
-    r"(StrE)": {
+    r"(StrE (\d)?)": {
         GROUP: 1,
     },
     SPACE_OR_BRACKET + r"(P)" + SPACE_OR_BRACKET: {
@@ -411,8 +417,17 @@ WIDMUNG = {
     },
 
     # Not included in the list from WP4
-    r"(Winterg[aä]rten)" : {
+    r"(Winterg[aä]rten)": {
         GROUP: 1,
-    }
+    },
+    r"(Sporthalle)": {
+        GROUP: 1,
+    },
+    r"(Landesverteidigung)": {
+        GROUP: 1,
+    },
+    r"dem (Verkehrsband)": {
+        GROUP: 1,
+    },
 
 }

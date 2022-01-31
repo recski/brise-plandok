@@ -31,7 +31,7 @@ def genereate_xlsx_files(docs, xlsx_folder, overwrite, phase):
             Converter(ConverterArgs(xlsx_file)).write_xlsx(doc, xlsx_file)
         else:
             FullAnnotationExcelGenerator(
-                xlsx_file, FullAnnotationExcelConstants()).generate_excel(doc)
+                xlsx_file, FullAnnotationExcelConstants(), doc).generate_excel()
     logging.info("xlsx files have been generated from json files")
 
 

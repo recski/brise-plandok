@@ -27,6 +27,7 @@ ATTRIBUTES_TO_IGNORE = {
     "StrittigeBedeutung",
 }
 
+REVIEW_DONE_FLAG = "Done"
 
 ############
 # Labels review

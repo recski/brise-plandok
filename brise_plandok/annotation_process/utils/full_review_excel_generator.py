@@ -169,8 +169,9 @@ class FullReviewExcelGenerator(ExcelGenerator):
         types = attribute[AttributeFields.TYPE]
         if attribute[FULL_GOLD]:
             sheet.cell(row=row, column=col + self.CONSTANTS.TYPE_ANN_REV_OFFSET).value = types[-1]
-        else:
-            sheet.cell(row=row, column=col + self.CONSTANTS.TYPE_ANN_1_OFFSET).value = types[0]
+        elif types is not None:
+            if len(types) > 0:
+                sheet.cell(row=row, column=col + self.CONSTANTS.TYPE_ANN_1_OFFSET).value = types[0]
             if len(types) > 1:
                 sheet.cell(row=row, column=col + self.CONSTANTS.TYPE_ANN_2_OFFSET).value = types[1]
                 if types[0] == types[1] and types[0] != EMPTY:
@@ -189,7 +190,6 @@ class FullReviewExcelGenerator(ExcelGenerator):
             self._color_gray(sheet, row, col)
             self._color_gray(sheet, row, col + self.CONSTANTS.LABEL_OFFSET)
             self._color_gray(sheet, row, col + self.CONSTANTS.VALUE_OFFSET)
-
 
     def _add_validation(self, sheet):
         category_val = DataValidation(

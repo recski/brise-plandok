@@ -1,25 +1,53 @@
 {
-    "GebaeudeHoeheMax": [
-        [
-            [
-                "(u_0 / Gebaeudehoehe :0 (u_1 / maximal))"
-            ],
-            [],
-            "GebaeudeHoeheMax"
-        ],
-        [
-            [
-                "(u_0 / ueberschreiten :1 (u_1 / Gebaeudehoehe))"
-            ],
-            [],
-            "GebaeudeHoeheMax"
-        ],
-        [
-            [
-                "(u_0 / bis :2 (u_1 / Gebaeudehoehe))"
-            ],
-            [],
-            "GebaeudeHoeheMax"
-        ]
+  "GebaeudeHoeheMax": [
+    [
+      [
+        "(u_0 / Gebaeudehoehe :0 (u_1 / maximal))"
+      ],
+      [],
+      "GebaeudeHoeheMax"
+    ],
+    [
+      [
+        "(u_0 / ueberschreiten :1 (u_1 / Gebaeudehoehe))"
+      ],
+      [],
+      "GebaeudeHoeheMax"
+    ],
+    [
+      [
+        "(u_0 / bis :2 (u_1 / Gebaeudehoehe))"
+      ],
+      [],
+      "GebaeudeHoeheMax"
+    ],
+    [
+      [
+        "(u_482 / betragen :2 (u_96 / m :0 (u_744 / .* :0 (u_127 / hoechstens))) :1 (u_123 / Gebaeudehoehe))"
+      ],
+      [],
+      "GebaeudeHoeheMax"
+    ],
+    [
+      [
+        "(u_150 / betragen :1 (u_123 / Gebaeudehoehe) :0 (u_127 / hoechstens))"
+      ],
+      [],
+      "GebaeudeHoeheMax"
+    ],
+    [
+      [
+        "(u_482 / betragen :2 (u_96 / m :0 (u_744 / .* :0 (u_127 / maximal))) :1 (u_123 / Gebaeudehoehe))"
+      ],
+      [],
+      "GebaeudeHoeheMax"
+    ],
+    [
+      [
+        "(u_889 / ueberschreiten :2 (u_269 / Hoehe ) :1 (u_897 / Bauteil :0 (u_411 / Gebaeude)))"
+      ],
+      [],
+      "GebaeudeHoeheMax"
     ]
+  ]
 }

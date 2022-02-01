@@ -1,18 +1,39 @@
 {
-    "VorkehrungBepflanzung": [
-        [
-            [
-                "(u_0 / Pflanze)"
-            ],
-            [],
-            "VorkehrungBepflanzung"
-        ],
-        [
-            [
-                "(u_0 / Pflanzung)"
-            ],
-            [],
-            "VorkehrungBepflanzung"
-        ]
+  "VorkehrungBepflanzung": [
+    [
+      [
+        "(u_0 / Pflanze)"
+      ],
+      [],
+      "VorkehrungBepflanzung"
+    ],
+    [
+      [
+        "(u_0 / Pflanzung)"
+      ],
+      [],
+      "VorkehrungBepflanzung"
+    ],
+    [
+      [
+        "(u_0 / Baumreihe)"
+      ],
+      [],
+      "VorkehrungBepflanzung"
+    ],
+    [
+      [
+        "(u_0 / Baumreihen)"
+      ],
+      [],
+      "VorkehrungBepflanzung"
+    ],
+    [
+      [
+        "(u_542 / Erdkoerper)"
+      ],
+      [],
+      "VorkehrungBepflanzung"
     ]
+  ]
 }

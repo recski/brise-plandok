@@ -151,3 +151,7 @@ tmp/
 
 # cache
 /brise_plandok/cache/*.json
+
+# Cache
+de_nlp_cache
+UD_FL.json

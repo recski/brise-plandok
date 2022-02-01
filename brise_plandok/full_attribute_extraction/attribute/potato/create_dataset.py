@@ -46,7 +46,7 @@ def create_dataset(dir_path, only_gold, dataset_name, graph_format):
     logging.info(f"Data loaded to DataFrame for {dir_path}. Shape: {data_df.shape}")
 
     potato_df = get_dataset(data_df, get_label_vocab(TOP_15_ANNOTATED), dataset_name, graph_format)
-    logging.info(f"POTATO dataset is created")
+    logging.info("POTATO dataset is created")
     logging.info(f"\n{potato_df.head()}")
 
 

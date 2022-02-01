@@ -429,7 +429,7 @@ WIDMUNG = {
     r"(Landesverteidigung)": {
         GROUP: 1,
     },
-    r"dem (Verkehrsband)": {
+    r"der (öffentlichen Verkehrsfläche)": {
         GROUP: 1,
     },
 

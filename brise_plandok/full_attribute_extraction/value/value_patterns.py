@@ -132,8 +132,8 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.DachneigungMax: {
-        r"(bis zu einer Dachneigung von|maximal|bis) " + NUMBER_WITH_DEGREE: {
-            GROUP: 2
+        r"((bis zu|mit) einer (Dach)?[Nn]eigung von|maximal|bis|bis zu) " + NUMBER_WITH_DEGREE: {
+            GROUP: 4
         },
         r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {
             GROUP: 6
@@ -326,7 +326,7 @@ VALUE_PATTERNS = {
         r"(die bebaute Fläche nicht mehr als " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"([Ff]läche von " + FLAECHEN_NUMBER + r" nicht überschreiten)": {
+        r"([Ff]läche .* " + FLAECHEN_NUMBER + r" .*nicht überschreiten)": {
             GROUP: 1,
         },
         # Minimum
@@ -447,8 +447,8 @@ VALUE_PATTERNS = {
         r"\s(D[fg])\s": {
             GROUP: 1,
         },
-        r"Punkte ([a-zA-Z] und [a-zA-Z])": {
-            GROUP: 1,
+        r"(Punkten?|Buchstaben?) ([a-zA-Z] und [a-zA-Z])": {
+            GROUP: 2,
         },
     },
 

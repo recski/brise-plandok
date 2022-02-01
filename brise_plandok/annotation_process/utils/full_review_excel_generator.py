@@ -31,7 +31,7 @@ class FullReviewExcelGenerator(ExcelGenerator):
         self.type_extractor = TypeExtractor()
 
     def _modify_header(self, sheet):
-        self.annotators = self.doc[DocumentFields.ANNOTATORS]
+        self.annotators = self.doc[DocumentFields.FULL_ANNOTATORS]
         if len(self.annotators) > 0:
             sheet.cell(
                 row=1, column=self.CONSTANTS.MODALITY_ANN_1_COL).value = self.annotators[0]

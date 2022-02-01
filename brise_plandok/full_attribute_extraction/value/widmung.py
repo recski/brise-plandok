@@ -130,6 +130,9 @@ WIDMUNG = {
     r"((Bauland/)?Gemischtes Baugebiet) ": {
         GROUP: 1,
     },
+    r"(Gemischte Baugebiet/Betriebsbaugebiet)": {
+        GROUP: 1,
+    },
     r"(Industriegebiet)": {
         GROUP: 1,
     },

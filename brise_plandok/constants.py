@@ -111,6 +111,7 @@ class AttributesNames:
     EinfriedungHoeheGesamt = "EinfriedungHoeheGesamt"
     EinfriedungLage = "EinfriedungLage"
     EinfriedungZulaessig = "EinfriedungZulaessig"
+    EinleitungNiederschlagswaesser = "EinleitungNiederschlagswaesser"
     ErrichtungGebaeude = "ErrichtungGebaeude"
     FBOKMinimumWohnungen = "FBOKMinimumWohnungen"
     Flaechen = "Flaechen"

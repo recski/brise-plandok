@@ -149,5 +149,7 @@ scripts/*/
 # tmp folder
 tmp/
 
-# cache
+# Cache
 /brise_plandok/cache/*.json
+de_nlp_cache
+UD_FL.json

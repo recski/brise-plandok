@@ -27,6 +27,13 @@
             ],
             [],
             "AnFluchtlinie"
+        ],
+        [
+            [
+                "(u_0 / an  :2 (u_1 / Baufluchtlinie))"
+            ],
+            [],
+            "AnFluchtlinie"
         ]
     ]
 }

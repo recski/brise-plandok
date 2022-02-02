@@ -10,7 +10,7 @@ __The [asail2021](https://github.com/recski/brise-plandok/tree/asail2021) tag co
 
 Install the brise_plandok repository:
 
-```
+```bash
 pip install .
 ```
 
@@ -23,49 +23,26 @@ Ensure that you have at least `Java 8` for the [alto](https://github.com/coli-sa
 
 See [DATA.md](./DATA.md).
 
-## Attribute extraction
+## Extraction service
 
 ```bash
-cat sample_data/json/sample.jsonl | python brise_plandok/extractor.py > output/sample_attr.jsonl
+# Start service
+ python brise_plandok/services/full_extractor.py -d <DATA_DIR>
 ```
 
-### Evalutaion
+You can now reach the service by calling the url `http://localhost:5005/extract/<doc_id>`.
 
-```bash
-# On sample data
-cat sample_data/json/sample_10.jsonl | python brise_plandok/eval_attr_ext.py
-
-# On the annotated dataset
-for f in data/valid/*.json ; do (cat "${f}"; echo) done | python brise_plandok/eval_attr_ext.py -f
-```
-
-## Rule extraction
-
-To run the rule extraction system described in the [2021 ASAIL paper](#references) on a small annotated sample, run:
-
-```bash
-cat sample_data/json/asail.jsonl | python brise_plandok/extractor.py -r > output/asail_rules.jsonl
-```
-
-### Evaluation
-
-To perform evaluation on the same sample, run:
-
-```bash
-cat sample_data/json/asail.jsonl | python brise_plandok/eval_attr_ext.py -r
-```
-
-## Demo
+## Demo for attribute names only
 
 To run the browser-based demo described in the paper (also available [online](https://ir-group.ec.tuwien.ac.at/brise-extract)), first start rule extraction as a service like this:
 
-```
+```bash
 python brise_plandok/services/attribute_extractor.py
 ```
 
 Then run the frontend with this command:
 
-```
+```bash
 streamlit run brise_plandok/frontend/extract.py
 ```
 
@@ -87,82 +64,17 @@ to customize preprocessing, you can also download the [raw text documents](https
 
 Extract section structure from raw text and run NLP pipeline (sentence segmentation, tokenization, dependency parsing):
 
-```
+```bash
 python brise_plandok/plandok.py sample_data/txt/*.txt > sample_data/json/sample.jsonl
 ```
 
+## Attribute extraction with [POTATO](https://github.com/adaamko/POTATO)
+
+For attribution extraction experiments with [POTATO](https://github.com/adaamko/POTATO), see [here](brise_plandok/full_attribute_extraction/attribute/potato/README.md).
+
 ## Annotation process
 
-For details on how the dataset was split for the annotation see the [data split documentation](brise_plandok/annotation_process/documentation.md).
-
-### Step 1 - Multi-label annotation
-
-#### Excel for annotation
-
-```bash
-python brise_plandok/annotation_process/utils/label_annotation_excel_generator.py -d sample_data/annotation/full_data/8141.json -o sample_data/annotation/8141_annotation_labels.xlsx
-```
-
-#### Excel for review
-
-```bash
-python brise_plandok/annotation_process/labels_annotation_to_review.py -a sample_data/annotation/01/phase1/upload/8141.xlsx sample_data/annotation/02/phase1/upload/8141.xlsx -d sample_data/annotation/full_data/8141.json -g data/train/ -of sample_data/annotation/8141_labels_review_XY.xlsx -r
-```
-The output is save to `sample_data/annotation/8141_labels_review_XY.xlsx`.
-
-#### Generate gold after review
-
-```bash
-python brise_plandok/annotation_process/labels_review_to_gold.py -r sample_data/annotation/8141_labels_review_XY.xlsx -d sample_data/annotation/full_data/8141.json -g data/train/
-```
-
-Gold `gold_attributes` should be filled out and `labels_gold` and all `labels_gold_exists` should be set to true in `sample_data/annotation/full_data/8141.json`.
-
-### Step 2 - Full annotation
-
-#### Excel for annotation
-
-```bash
-python brise_plandok/annotation_process/utils/full_annotation_excel_generator.py -d sample_data/annotation/full_data/8141.json -df data/train -o sample_data/annotation/8141_annotation_full.xlsx
-```
-The output is save to `sample_data/annotation/8141_annotation_full.xlsx`.
-
-#### Excel for review
-
-```bash
-python brise_plandok/annotation_process/full_annotation_to_review.py -a sample_data/annotation/01/phase2/upload/8141.xlsx sample_data/annotation/02/phase2/upload/8141.xlsx -d sample_data/annotation/full_data/8141.json -g data/train/ -of sample_data/annotation/8141_full_review_XY.xlsx -r
-```
-The output is save to `sample_data/annotation/8141_labels_review_XY.xlsx`.
-
-#### Generate gold after review
-
-```bash
-python brise_plandok/annotation_process/full_review_to_gold.py -r sample_data/annotation/8141_full_review_XY.xlsx -d sample_data/annotation/full_data/8141.json -g data/train/
-```
-Gold `gold_attributes` should be filled out and `Full_gold` and all `full_gold_exists` should be set to true in `sample_data/annotation/full_data/8141.json`.
-
-## Pre-fill attributes from gold
-
-Use gold to add attributes to documents (-f enables fuzzy sentence matching, which currently ignores digits):
-
-```bash
-cat sample_data/json/sample_10.jsonl | python brise_plandok/attrs_from_gold.py -g data/train -f > sample_data/json/sample_10_prefilled.jsonl
-```
-
-## Annotation agreement
-
-Calculates the inter-annotator agreement.
-
-```bash
-python brise_plandok/annotation/agreement.py -a sample_data/xlsx/asail_annot1.xlsx sample_data/xlsx/asail_annot2.xlsx sample_data/xlsx/asail_gold.xlsx -of output/annotation_output.tsv
-```
-Constraints
-
-- File names must follow a `<doc_id>_<annotator_name>.xlsx` pattern.
-- You must provide exactly one gold annotation in the form of `<doc_id>_gold.xlsx`.
-- You must provide at least two non-gold annotations.
-
-You can find a comparative summary in `output/annotation_output.tsv`.
+For details about annotation process, see [here](ANNOTATION.md).
 
 ## Development
 

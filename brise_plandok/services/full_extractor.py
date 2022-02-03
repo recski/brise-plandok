@@ -35,7 +35,7 @@ def extract(doc_id):
     app.logger.info(f"Doc id {doc_id} was requested")
     doc_fn = os.path.join(DATA_DIR, doc_id + ".json")
     if os.path.exists(doc_fn):
-        return json_to_html(filter_json(load_json(doc_fn)))
+        return filter_json(load_json(doc_fn))
     else:
         return abort(404)
 

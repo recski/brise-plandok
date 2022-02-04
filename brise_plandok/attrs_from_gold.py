@@ -9,10 +9,11 @@ import sys
 from tqdm import tqdm
 
 
-class SenToAttrMap():
+class SenToAttrMap:
     fuzzy_patt = re.compile('[0-9]+')
 
     def __init__(self, gold_dir, fuzzy, full=False):
+        self.sen_to_attr = None
         self.fuzzy = fuzzy
         self.build_map(gold_dir, full)
 
@@ -47,24 +48,36 @@ class SenToAttrMap():
                 mod = sen[SenFields.GOLD_MODALITY]
             sen_id = sen[SenFields.ID]
             if sen_key in self.sen_to_attr:
-                if self.sen_to_attr[sen_key]["attr"] == attr:
-                    if self.sen_to_attr[sen_key]["mod"] == mod:
-                        self.sen_to_attr[sen_key]["sens"].append(sen_id)
-                        continue
-                    else:
-                        self.log_conflict(sen, sen_key, attr=False)
-                        raise ValueError(f'gold conflict with modalities')
+                if full:
+                    self._check_conflict_for_full(attr, mod, sen, sen_id, sen_key)
                 else:
-                    self.log_conflict(sen, sen_key, attr=True)
-                    raise ValueError(f'gold conflict with attributes')
+                    self._check_conflict_for_label(attr, sen, sen_id, sen_key)
+            else:
+                self.sen_to_attr[sen_key] = {
+                    "attr": attr,
+                    "sens": [
+                        sen_id
+                    ],
+                    "mod": mod,
+                }
 
-            self.sen_to_attr[sen_key] = {
-                "attr": attr, 
-                "sens": [
-                    sen_id
-                ],
-                "mod": mod,
-            }
+    def _check_conflict_for_label(self, attr, sen, sen_id, sen_key):
+        if set(self.sen_to_attr[sen_key]["attr"].keys()) == set(attr.keys()):
+            self.sen_to_attr[sen_key]["sens"].append(sen_id)
+        else:
+            self.log_conflict(sen, sen_key, attr=True)
+            raise ValueError(f'full gold conflict with attributes')
+
+    def _check_conflict_for_full(self, attr, mod, sen, sen_id, sen_key):
+        if self.sen_to_attr[sen_key]["attr"] == attr:
+            if self.sen_to_attr[sen_key]["mod"] == mod:
+                self.sen_to_attr[sen_key]["sens"].append(sen_id)
+            else:
+                self.log_conflict(sen, sen_key, attr=False)
+                raise ValueError(f'full gold conflict with modalities')
+        else:
+            self.log_conflict(sen, sen_key, attr=True)
+            raise ValueError(f'full gold conflict with attributes')
 
     def get_attrs(self, sen):
         sen_key = self.sen_to_key(sen)

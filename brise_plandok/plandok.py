@@ -2,12 +2,10 @@ import json
 import os
 import re
 import sys
-# from itertools import chain
 
+from tqdm import tqdm
 from tuw_nlp.text.pipeline import CachedStanzaPipeline, CustomStanzaPipeline
 from tuw_nlp.text.utils import normalize_whitespace
-from tqdm import tqdm
-
 
 SEC_NUM_PATT = re.compile(
     r'^(?P<secnum>(?:II*\.|[1-9][0-9]?(\.[1-9][0-9]?)*[.\s]+)+)(?P<rest>$|[^0-9])')  # noqa
@@ -15,7 +13,7 @@ SEC_NUM_PATT = re.compile(
 PAGE_NO_PATT = re.compile(r'^-[0-9][0-9]*-$')
 
 
-class PlanDok():
+class PlanDok:
 
     @staticmethod
     def from_file(fn):
@@ -70,13 +68,10 @@ class PlanDok():
             match = SEC_NUM_PATT.match(line)
             if match is None:
                 if curr_text[-1].endswith('-'):
-                    # sys.stderr.write(
-                    #     curr_text[-1].split()[-1]+'\t'+line.split()[0]+'\n')
                     curr_text[-1] = curr_text[-1][:-1] + f'{line}'
                 else:
                     curr_text[-1] += f' {line}'
             else:
-                # sys.stderr.write('{0}\t{1}\n'.format(line, match.groups()))
                 sections.append([curr_section, curr_text])
                 curr_section = match.group('secnum').strip().replace(' ', '_')
                 rest = SEC_NUM_PATT.sub(r'\g<rest>', line).strip()
@@ -97,10 +92,8 @@ class PlanDok():
             section['sens'] = []
             if section['text'] == "":
                 continue
-            # for i, sen in enumerate(chain(
-            #         *(tokenizer.tokenize(par) for par in section['text']))):
-            for i, sen in enumerate(
-                    nlp(section['text']).sentences):
+            for i, sen in enumerate(nlp(section['text']).sentences):
+                assert sen.text is not None
                 section['sens'].append({
                     "sen_id": f"{self.id}_{section['id']}_{i}",
                     "text": sen.text,
@@ -108,13 +101,17 @@ class PlanDok():
                     "tokens": sen.to_dict()})
 
 
+def parse_txt(fn, nlp):
+    doc = PlanDok.from_file(fn)
+    doc.analyze(nlp)
+    return doc.to_dict()
+
+
 def main():
-    with CachedStanzaPipeline(
-            CustomStanzaPipeline(), 'cache/nlp_cache.json') as nlp:
+    with CachedStanzaPipeline(CustomStanzaPipeline(), 'cache/nlp_cache.json') as nlp:
         for fn in tqdm(sys.argv[1:]):
-            doc = PlanDok.from_file(fn)
-            doc.analyze(nlp)
-            print(json.dumps(doc.to_dict()))
+            doc = parse_txt(fn, nlp)
+            print(json.dumps(doc))
 
 
 if __name__ == "__main__":

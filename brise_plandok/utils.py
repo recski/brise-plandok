@@ -1,7 +1,10 @@
-import os
-from brise_plandok.constants import ATTRIBUTE_NORM_MAP, SenFields
 import json
 import logging
+import os
+
+from brise_plandok.attrs_from_gold import attrs_from_gold_sen, full_attrs_from_gold_sen
+from brise_plandok.constants import ATTRIBUTE_NORM_MAP, SenFields, DocumentFields, OldDocumentFields, OldSectionFields, \
+    OldSenFields
 
 
 def normalize_attribute_name(attribute_name):
@@ -25,19 +28,29 @@ def dump_json(obj, fn):
 
 
 def create_sen(
-    sen_id,
-    text,
-    gold_modality=None,
-    already_gold_on_annotation=False,
-    labels_gold_exists=False,
-    full_gold_exists=False,
-    gold_attributes={},
-    gen_attributes_on_annotation={},
-    gen_attributes_on_full_annotation={},
-    annotated_attributes={},
-    gen_attributes={},
-    segmentation_error=False
+        sen_id,
+        text,
+        gold_modality=None,
+        already_gold_on_annotation=False,
+        labels_gold_exists=False,
+        full_gold_exists=False,
+        gold_attributes=None,
+        gen_attributes_on_annotation=None,
+        gen_attributes_on_full_annotation=None,
+        annotated_attributes=None,
+        gen_attributes=None,
+        segmentation_error=False
 ):
+    if gen_attributes is None:
+        gen_attributes = {}
+    if annotated_attributes is None:
+        annotated_attributes = {}
+    if gen_attributes_on_full_annotation is None:
+        gen_attributes_on_full_annotation = {}
+    if gen_attributes_on_annotation is None:
+        gen_attributes_on_annotation = {}
+    if gold_attributes is None:
+        gold_attributes = {}
     return {
         SenFields.ID: sen_id,
         SenFields.TEXT: text,
@@ -52,3 +65,32 @@ def create_sen(
         SenFields.GEN_ATTRIBUTES: gen_attributes,
         SenFields.SEGMENTATION_ERROR: segmentation_error,
     }
+
+
+def fill_json(doc, sen_to_gold_attrs, sen_to_full_gold_attrs, old_doc=False):
+    filled_doc = {
+        DocumentFields.ID: doc[DocumentFields.ID],
+        DocumentFields.SENS: {},
+        DocumentFields.ANNOTATORS: {},
+        DocumentFields.LABELS_GOLD: False,
+        DocumentFields.FULL_GOLD: False,
+    }
+    for sen_id, text in generate_minimal_sens(doc, old_doc):
+        sen = create_sen(
+            sen_id,
+            text,
+        )
+        attrs_from_gold_sen(sen, sen_to_gold_attrs, False)
+        full_attrs_from_gold_sen(sen, sen_to_full_gold_attrs, False)
+        filled_doc[DocumentFields.SENS][sen_id] = sen
+    return filled_doc
+
+
+def generate_minimal_sens(doc, old_doc=False):
+    if old_doc:
+        for section in doc[OldDocumentFields.SECTIONS]:
+            for sen in section[OldSectionFields.SENS]:
+                yield sen[OldSenFields.ID], sen[OldSenFields.TEXT]
+    else:
+        for sen in doc[DocumentFields.SENS].values():
+            yield sen[SenFields.ID], sen[SenFields.TEXT]

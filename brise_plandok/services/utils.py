@@ -5,9 +5,11 @@ def filter_json(doc):
     response = {}
     for sen_id, sen in doc[DocumentFields.SENS].items():
         response[sen_id] = {
-            SenFields.TEXT: sen[SenFields.TEXT],
-            SenFields.GOLD_MODALITY: sen[SenFields.GOLD_MODALITY],
-            SenFields.GOLD_ATTRIBUTES: sen[SenFields.GOLD_ATTRIBUTES],
+            SenFields.TEXT: sen[SenFields.TEXT] if SenFields.TEXT in sen else None,
+            SenFields.GOLD_MODALITY: sen[SenFields.GOLD_MODALITY] if SenFields.GOLD_MODALITY in sen else None,
+            SenFields.GOLD_ATTRIBUTES: sen[SenFields.GOLD_ATTRIBUTES] if SenFields.GOLD_ATTRIBUTES in sen else None,
+            SenFields.PREDICTED_ATTRIBUTES: sen[
+                SenFields.PREDICTED_ATTRIBUTES] if SenFields.PREDICTED_ATTRIBUTES in sen else None,
         }
     return response
 

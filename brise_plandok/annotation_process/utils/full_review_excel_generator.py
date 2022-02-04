@@ -9,7 +9,7 @@ from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.annotation_process.utils.constants import FullReviewExcelConstants, REVIEW_DONE_FLAG
 from brise_plandok.constants import EMPTY, AnnotatedAttributeFields, AttributeFields, DocumentFields, \
     FullAnnotatedAttributeFields, SenFields
-from brise_plandok.full_attribute_extraction.attribute.potato.predict_potato_attributes import PotatoPredictor
+from brise_plandok.full_attribute_extraction.attribute.potato.potato_predictor import PotatoPredictor
 from brise_plandok.full_attribute_extraction.type.type_extractor import TypeExtractor
 from brise_plandok.full_attribute_extraction.value.value_extractor import ValueExtractor
 from brise_plandok.utils import load_json
@@ -88,7 +88,7 @@ class FullReviewExcelGenerator(ExcelGenerator):
         else:
             attributes_exist = FullAnnotatedAttributeFields.ATTRIBUTES in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]
             ann_not_empty = sen[SenFields.FULL_ANNOTATED_ATTRIBUTES] != {}
-            potato_predictions = self.potato_predictor.get_prediction_for_sen_id(sen[SenFields.ID])
+            potato_predictions = self.potato_predictor.get_prediction_for_sen(sen)
             if ann_not_empty and attributes_exist:
                 yield from self.__gen_attributes_from_annotation(sen, potato_predictions)
 

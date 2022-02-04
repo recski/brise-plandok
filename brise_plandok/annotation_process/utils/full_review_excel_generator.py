@@ -9,7 +9,7 @@ from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.annotation_process.utils.constants import FullReviewExcelConstants, REVIEW_DONE_FLAG
 from brise_plandok.constants import EMPTY, AnnotatedAttributeFields, AttributeFields, DocumentFields, \
     FullAnnotatedAttributeFields, SenFields
-from brise_plandok.full_attribute_extraction.attribute.potato.predict_potato_attributes import PotatoPredictor
+from brise_plandok.full_attribute_extraction.attribute.potato.potato_predictor import PotatoPredictor
 from brise_plandok.full_attribute_extraction.type.type_extractor import TypeExtractor
 from brise_plandok.full_attribute_extraction.value.value_extractor import ValueExtractor
 from brise_plandok.utils import load_json
@@ -31,7 +31,7 @@ class FullReviewExcelGenerator(ExcelGenerator):
         self.type_extractor = TypeExtractor()
 
     def _modify_header(self, sheet):
-        self.annotators = self.doc[DocumentFields.ANNOTATORS]
+        self.annotators = self.doc[DocumentFields.FULL_ANNOTATORS]
         if len(self.annotators) > 0:
             sheet.cell(
                 row=1, column=self.CONSTANTS.MODALITY_ANN_1_COL).value = self.annotators[0]
@@ -88,7 +88,7 @@ class FullReviewExcelGenerator(ExcelGenerator):
         else:
             attributes_exist = FullAnnotatedAttributeFields.ATTRIBUTES in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]
             ann_not_empty = sen[SenFields.FULL_ANNOTATED_ATTRIBUTES] != {}
-            potato_predictions = self.potato_predictor.get_prediction_for_sen_id(sen[SenFields.ID])
+            potato_predictions = self.potato_predictor.get_prediction_for_sen(sen)
             if ann_not_empty and attributes_exist:
                 yield from self.__gen_attributes_from_annotation(sen, potato_predictions)
 
@@ -169,8 +169,9 @@ class FullReviewExcelGenerator(ExcelGenerator):
         types = attribute[AttributeFields.TYPE]
         if attribute[FULL_GOLD]:
             sheet.cell(row=row, column=col + self.CONSTANTS.TYPE_ANN_REV_OFFSET).value = types[-1]
-        else:
-            sheet.cell(row=row, column=col + self.CONSTANTS.TYPE_ANN_1_OFFSET).value = types[0]
+        elif types is not None:
+            if len(types) > 0:
+                sheet.cell(row=row, column=col + self.CONSTANTS.TYPE_ANN_1_OFFSET).value = types[0]
             if len(types) > 1:
                 sheet.cell(row=row, column=col + self.CONSTANTS.TYPE_ANN_2_OFFSET).value = types[1]
                 if types[0] == types[1] and types[0] != EMPTY:
@@ -189,7 +190,6 @@ class FullReviewExcelGenerator(ExcelGenerator):
             self._color_gray(sheet, row, col)
             self._color_gray(sheet, row, col + self.CONSTANTS.LABEL_OFFSET)
             self._color_gray(sheet, row, col + self.CONSTANTS.VALUE_OFFSET)
-
 
     def _add_validation(self, sheet):
         category_val = DataValidation(

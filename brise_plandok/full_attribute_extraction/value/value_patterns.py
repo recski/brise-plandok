@@ -132,8 +132,8 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.DachneigungMax: {
-        r"(bis zu einer Dachneigung von|maximal|bis) " + NUMBER_WITH_DEGREE: {
-            GROUP: 2
+        r"((bis zu|mit) einer (Dach)?[Nn]eigung von|maximal|bis|bis zu) " + NUMBER_WITH_DEGREE: {
+            GROUP: 4
         },
         r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {
             GROUP: 6
@@ -269,6 +269,12 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.EinleitungNiederschlagswaesser: {
+        r"Einleitung von Niederschlagswässern in den Kanal ist (.*), zulässig.": {
+            GROUP: 1,
+        },
+    },
+
     AttributesNames.ErrichtungGebaeude: {
         r"((darf|dürfen) unmittelbar bebaut werden|sind unmittelbar bebaubar|Errichtung ((?!nicht).)* zulässig)": {
             VALUE: TRUE,
@@ -320,6 +326,9 @@ VALUE_PATTERNS = {
         r"(die bebaute Fläche nicht mehr als " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
+        r"([Ff]läche .* " + FLAECHEN_NUMBER + r" .*nicht überschreiten)": {
+            GROUP: 1,
+        },
         # Minimum
         r"(f|F)lächen? (von mehr als " + FLAECHEN_NUMBER + r")": {
             GROUP: 2,
@@ -351,7 +360,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.GebaeudeHoeheArt: {
-        r"(tatsächlich errichtet)": {
+        r"(tatsächlich(en)? errichtet)": {
             GROUP: 1,
         },
         r"((tatsächlich )?ausgeführt)": {
@@ -385,7 +394,7 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
         r"Gehsteige mit (insgesamt )?mindestens " + NUMBER_WITH_METER + r" Breite": {
-            GROUP: 1,
+            GROUP: 2,
         },
     },
 
@@ -438,8 +447,8 @@ VALUE_PATTERNS = {
         r"\s(D[fg])\s": {
             GROUP: 1,
         },
-        r"Punkte ([a-zA-Z] und [a-zA-Z])": {
-            GROUP: 1,
+        r"(Punkten?|Buchstaben?) ([a-zA-Z] und [a-zA-Z])": {
+            GROUP: 2,
         },
     },
 
@@ -561,13 +570,13 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.VonBebauungFreizuhalten: {
-        r"(von( jeder)? Bebauung)": {
+        r"ist (von.* Bebauung) freizuhalten": {
             GROUP: 1,
         },
         r"((ober|unter)irdische(n|r)? (Bauten?|Bebauung|Bauwerk(en)?))": {
             GROUP: 1,
         },
-        r"((ober- und unterirdischen|oberirdische[rn]|unterirdische[rn]|oberirdischen und unterirdischen) (Gebäude|Baulichkeit))": {
+        r"((ober- und unterirdischen|oberirdische[rn]|unterirdische[rn]|oberirdischen und unterirdischen) (Gebäude|Baulichkeit|Bauten?))": {
             GROUP: 1,
         },
         r"(keine Bauwerke)": {

@@ -160,6 +160,9 @@ def main():
         level=logging.INFO,
         format="%(asctime)s : " +
                "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
+    logging.getLogger('penman').setLevel(logging.WARNING)
+    logging.getLogger('stanza').setLevel(logging.WARNING)
+    logging.getLogger('tuw_nlp').setLevel(logging.WARNING)
     args = get_args()
     converter = FullAnnotationConverter(args)
     converter.convert(args.annotations, args.output_file, args.data_file)

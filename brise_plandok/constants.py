@@ -50,6 +50,7 @@ class SenFields:
     FULL_ANNOTATED_ATTRIBUTES = "full_annotated_attributes"
     ATTRIBUTES = "attributes"
     SEGMENTATION_ERROR = "segmentation_error"
+    PREDICTED_ATTRIBUTES = "predicted_attributes"
 
 
 class AttributeFields:
@@ -111,6 +112,7 @@ class AttributesNames:
     EinfriedungHoeheGesamt = "EinfriedungHoeheGesamt"
     EinfriedungLage = "EinfriedungLage"
     EinfriedungZulaessig = "EinfriedungZulaessig"
+    EinleitungNiederschlagswaesser = "EinleitungNiederschlagswaesser"
     ErrichtungGebaeude = "ErrichtungGebaeude"
     FBOKMinimumWohnungen = "FBOKMinimumWohnungen"
     Flaechen = "Flaechen"

@@ -5,9 +5,8 @@ import pickle
 
 from xpotato.dataset.dataset import Dataset
 
-from brise_plandok.full_attribute_extraction.attribute.potato.constants import NOT, TOP_15_ANNOTATED
-from brise_plandok.full_attribute_extraction.attribute.potato.utils import load_data_to_df, filter_labels, \
-    get_data_folder_path, get_label_vocab, get_sentences
+from brise_plandok.full_attribute_extraction.attribute.potato.utils import load_data_to_df, \
+    get_data_folder_path, get_sentences, get_vocab_for_all_attributes
 
 
 def add_graphs(dataset, graph_path, graph_format):
@@ -42,10 +41,9 @@ def get_dataset(data, label_vocab, dataset_name, graph_format):
 
 def create_dataset(dir_path, only_gold, dataset_name, graph_format):
     data_df = load_data_to_df(dir_path, only_gold)
-    filter_labels(data_df, TOP_15_ANNOTATED, NOT)
     logging.info(f"Data loaded to DataFrame for {dir_path}. Shape: {data_df.shape}")
 
-    potato_df = get_dataset(data_df, get_label_vocab(TOP_15_ANNOTATED), dataset_name, graph_format)
+    potato_df = get_dataset(data_df, get_vocab_for_all_attributes(), dataset_name, graph_format)
     logging.info("POTATO dataset is created")
     logging.info(f"\n{potato_df.head()}")
 

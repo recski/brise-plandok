@@ -358,7 +358,7 @@ WIDMUNG = {
     r"(GB(cv)?)": {
         GROUP: 1,
     },
-    r"(GBGV)": {
+    r"(GB ?GV)": {
         GROUP: 1,
     },
     r"(GBGF)": {
@@ -430,6 +430,9 @@ WIDMUNG = {
         GROUP: 1,
     },
     r"der (öffentlichen Verkehrsfläche)": {
+        GROUP: 1,
+    },
+    r"(Gemischtes Baugebiet/Geschäftsviertel)": {
         GROUP: 1,
     },
 

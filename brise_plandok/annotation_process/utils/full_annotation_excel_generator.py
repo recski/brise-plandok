@@ -8,7 +8,8 @@ from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, SenFields
 import logging
 import os
-from brise_plandok.utils import load_json, normalize_attribute_name
+from brise_plandok.utils import load_json
+from brise_plandok.data_utils import normalize_attribute_name
 from brise_plandok.xlsx.excel_generator import ExcelGenerator
 
 from openpyxl.worksheet.datavalidation import DataValidation

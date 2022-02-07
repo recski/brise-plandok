@@ -4,11 +4,11 @@ from logging.config import dictConfig
 
 from flask import Flask, abort
 
-from brise_plandok.services.utils import filter_json, json_to_html
+from brise_plandok.services.utils import filter_json
 from brise_plandok.utils import load_json
 
-HOST = 'localhost'
-PORT = 5005
+HOST = '0.0.0.0'
+PORT = 5000
 app = Flask(__name__)
 
 DATA_DIR = None
@@ -30,7 +30,7 @@ dictConfig({
 })
 
 
-@app.route("/extract/<doc_id>", methods=["GET"])
+@app.route("/brise/<doc_id>", methods=["GET"])
 def extract(doc_id):
     app.logger.info(f"Doc id {doc_id} was requested")
     doc_fn = os.path.join(DATA_DIR, doc_id + ".json")

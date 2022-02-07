@@ -8,7 +8,7 @@ import openpyxl
 from openpyxl.utils.cell import get_column_letter
 from openpyxl.styles import Alignment, Font
 from openpyxl.worksheet.datavalidation import DataValidation
-from brise_plandok.utils import normalize_attribute_name
+from brise_plandok.data_utils import normalize_attribute_name
 
 
 class ExcelGenerator:

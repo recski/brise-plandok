@@ -7,7 +7,8 @@ from tuw_nlp.text.pipeline import CachedStanzaPipeline, CustomStanzaPipeline
 
 from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.plandok import parse_txt
-from brise_plandok.utils import fill_json, dump_json
+from brise_plandok.utils import dump_json
+from brise_plandok.data_utils import fill_json
 
 
 def text_to_json(text_dir, json_dir, doc_ids):

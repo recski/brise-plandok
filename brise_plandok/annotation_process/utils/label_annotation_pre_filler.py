@@ -4,7 +4,8 @@ import logging
 import os
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.constants import AttributeFields, DocumentFields, OldDocumentFields, OldSectionFields, OldSenFields, SenFields
-from brise_plandok.utils import create_sen, dump_json, load_json
+from brise_plandok.utils import dump_json, load_json
+from brise_plandok.data_utils import create_sen
 
 
 class LabelAnnotationPreFiller:

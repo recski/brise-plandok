@@ -18,7 +18,7 @@ import brise_plandok.annotation
 from brise_plandok.annotation.annotate import Annotate
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.annotation.agreement import gen_sens_from_file
-from brise_plandok.utils import normalize_attribute_name
+from brise_plandok.data_utils import normalize_attribute_name
 
 
 class Converter():

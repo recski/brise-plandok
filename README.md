@@ -30,7 +30,7 @@ See [DATA.md](./DATA.md).
  python brise_plandok/services/full_extractor.py -d <DATA_DIR>
 ```
 
-You can now reach the service by calling the url `http://localhost:5005/extract/<doc_id>`.
+You can now reach the service by calling the url `http://localhost:5005/brise/<doc_id>`.
 
 ## Demo for attribute names only
 

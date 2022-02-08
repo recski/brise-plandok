@@ -46,7 +46,7 @@ docker run -p 5000:5000 brise-attr-extraction
 
 ### Call service
 
-You can now reach the service in both cases by calling `curl http://localhost:5005/brise/<doc_id>`. If the `doc_id` does not exist, `Not found` will be returned.
+You can now reach the service in both cases by calling `curl http://localhost:5000/brise-extract-api/<doc_id>`. If the `doc_id` does not exist, `Not found` will be returned.
 
 ## Demo for attribute names only
 

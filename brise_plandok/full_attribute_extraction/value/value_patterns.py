@@ -311,7 +311,7 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
         # Maximum
-        r"((in Summe|in Anspruch genommene Gesamtnutzfläche) " + FLAECHEN_NUMBER + r" nicht überschreiten)": {
+        r"((in Summe|in Anspruch genommene Gesamtnutzfläche) " + FLAECHEN_NUMBER + r" nicht über(schreiten|steigen))": {
             GROUP: 1,
         },
         r"((höchstens|nicht mehr als) " + FLAECHEN_NUMBER + r")": {

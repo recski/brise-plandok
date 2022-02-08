@@ -25,12 +25,28 @@ See [DATA.md](./DATA.md).
 
 ## Extraction service
 
+### Start service with your own data
+
 ```bash
-# Start service
  python brise_plandok/services/full_extractor.py -d <DATA_DIR>
 ```
 
-You can now reach the service by calling the url `http://localhost:5005/extract/<doc_id>`.
+
+### Start service from Docker
+
+The docker image downloads the data from our cloud storage.
+
+```bash
+# Build docker image
+docker build --tag brise-attr-extraction .
+
+# Start service
+docker run -p 5000:5000 brise-attr-extraction
+```
+
+### Call service
+
+You can now reach the service in both cases by calling `curl http://localhost:5000/brise-extract-api/<doc_id>`. If the `doc_id` does not exist, `Not found` will be returned.
 
 ## Demo for attribute names only
 

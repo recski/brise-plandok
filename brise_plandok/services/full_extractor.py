@@ -30,7 +30,7 @@ dictConfig({
 })
 
 
-@app.route("/brise/<doc_id>", methods=["GET"])
+@app.route("/brise-extract-api/<doc_id>", methods=["GET"])
 def extract(doc_id):
     app.logger.info(f"Doc id {doc_id} was requested")
     doc_fn = os.path.join(DATA_DIR, doc_id + ".json")

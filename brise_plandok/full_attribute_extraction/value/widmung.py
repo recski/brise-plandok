@@ -70,7 +70,7 @@ WIDMUNG = {
     r"(Erholungsgebiet/( |-)?Sport- und Spielplätze)": {
         GROUP: 1,
     },
-    r"(Grünland/Erholungsgebiete?/Parkanlage)": {
+    r"((Grünland/)?Erholungsgebiete?/Parkanlage)": {
         GROUP: 1,
     },
     r"(Kleingartengebiete(  für ganzjähriges Wohnen)?)": {

@@ -87,6 +87,7 @@ class OldSenFields:
 class AttributesNames:
     AbschlussDachMaxBezugGebaeude = "AbschlussDachMaxBezugGebaeude"
     AnFluchtlinie = "AnFluchtlinie"
+    AnlageZumEinstellenVorhanden = "AnlageZumEinstellenVorhanden"
     AnOeffentlichenVerkehrsflaechen = "AnOeffentlichenVerkehrsflaechen"
     AnordnungGaertnerischeAusgestaltung = "AnordnungGaertnerischeAusgestaltung"
     AnordnungGaertnerischeAusgestaltungProzentual = "AnordnungGaertnerischeAusgestaltungProzentual"
@@ -123,6 +124,7 @@ class AttributesNames:
     GaragengebaeudeAusfuehrung = "GaragengebaeudeAusfuehrung"
     HoehenlageGrundflaeche = "HoehenlageGrundflaeche"
     InSchutzzone = "InSchutzzone"
+    MindestraumhoeheEG = "MindestraumhoeheEG"
     OeffentlicheVerkehrsflaecheBreiteMin = "OeffentlicheVerkehrsflaecheBreiteMin"
     PlangebietAllgemein = "PlangebietAllgemein"
     Planzeichen = "Planzeichen"

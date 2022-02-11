@@ -17,6 +17,12 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.AnlageZumEinstellenVorhanden: {
+        ALL: {
+            VALUE: TRUE,
+        },
+    },
+
     AttributesNames.AnOeffentlichenVerkehrsflaechen: {
         ALL: {
             VALUE: TRUE,
@@ -84,11 +90,17 @@ VALUE_PATTERNS = {
         r"soweit nicht (.*) erforderlich ist, gärtnerisch auszugestalten": {
             GROUP: 1,
         },
+        r"sofern nicht eine Befestigung für die Nutzung als (.*) erforderlich ist, gärtnerisch auszugestalten": {
+            GROUP: 1,
+        },
         r"nicht von (.*) in Anspruch genommenen Bereiche,? sind gärtnerisch auszugestalten": {
             GROUP: 1,
         },
         r"(A|a)usgenommen davon sind (.*).": {
             GROUP: 2,
+        },
+        r"(Sport- und Spielplätzen)": {
+            GROUP: 1,
         },
     },
 
@@ -238,9 +250,9 @@ VALUE_PATTERNS = {
             GROUP: 2,
         },
         r"maximal(en Höhe von)? " + NUMBER_WITH_METER: {
-            GROUP: 1,
+            GROUP: 2,
         },
-        r"Höhe von bis zu " + NUMBER_WITH_METER: {
+        r"Höhe von (bis zu )?" + NUMBER_WITH_METER: {
             GROUP: 1,
         },
         r"darf nicht höher als " + NUMBER_WITH_METER + r" über Wiener Null liegen": {
@@ -273,6 +285,9 @@ VALUE_PATTERNS = {
         r"Einleitung von Niederschlagswässern in den Kanal ist (.*), zulässig.": {
             GROUP: 1,
         },
+        r"(im Neubaufall .* nicht überschreiten)": {
+            GROUP: 1,
+        },
     },
 
     AttributesNames.ErrichtungGebaeude: {
@@ -291,8 +306,8 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.FBOKMinimumWohnungen: {
-        r"Fußbodenoberkante mindestens" + NUMBER_WITH_METER: {
-            VALUE: TRUE,
+        r"Fußbodenoberkante.* mindestens" + NUMBER_WITH_METER: {
+            GROUP: 1,
         },
     },
 
@@ -363,6 +378,9 @@ VALUE_PATTERNS = {
         r"(tatsächlich(en)? errichtet)": {
             GROUP: 1,
         },
+        r"(tatsächlich(en)? erreichte)": {
+            GROUP: 1,
+        },
         r"((tatsächlich )?ausgeführt)": {
             GROUP: 1,
         },
@@ -378,16 +396,13 @@ VALUE_PATTERNS = {
         r"(Gebäudehöhe|Höhe) \D*" + NUMBER_WITH_METER: {
             GROUP: 2,
         },
-        r"nicht mehr als" + NUMBER_WITH_METER: {
-            GROUP: 1,
-        },
     },
 
     AttributesNames.GehsteigbreiteMin: {
         r"Gehsteige? mit mindestens " + NUMBER_WITH_METER: {
             GROUP: 1,
         },
-        r"Gehsteige? mit (jeweils|einer Breite von) mindestens " + NUMBER_WITH_METER: {
+        r"Gehsteige? mit (jeweils|einer Breite von|je) mindestens " + NUMBER_WITH_METER: {
             GROUP: 2,
         },
         r"mindestens " + NUMBER_WITH_METER + r" Breite als Gehsteig": {
@@ -416,9 +431,15 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.MindestraumhoeheEG: {
+        r"Mindestraumhöhe im Erdgeschoß hat " + NUMBER_WITH_METER: {
+            GROUP: 1,
+        },
+    },
+
     AttributesNames.OeffentlicheVerkehrsflaecheBreiteMin: {
-        r"mit einer Gesamtbreite von (mehr als |über )?" + NUMBER_WITH_METER + r"( (und|oder) mehr)?": {
-            GROUP: 2,
+        r"(von (mehr als |über )?|ab)" + NUMBER_WITH_METER + r"( (und|oder) mehr)?": {
+            GROUP: 3,
         },
     },
 
@@ -459,13 +480,19 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.StellplatzregulativUmfangMaximumRelativ: {
-        r"insgesamt höchstens " + NUMBER_WITH_PERCENT: {
+        r"(insgesamt )?höchstens " + NUMBER_WITH_PERCENT: {
+            GROUP: 2,
+        },
+        r"maximale Stellplatzzahl mit  " + NUMBER_WITH_PERCENT: {
             GROUP: 1,
         },
     },
 
     AttributesNames.StellplatzregulativUmfangMinimumRelativ: {
         r"Stellplatzverpflichtung beträgt " + NUMBER_WITH_PERCENT: {
+            GROUP: 1,
+        },
+        r"mit " + NUMBER_WITH_PERCENT + " und die maximale": {
             GROUP: 1,
         },
     },
@@ -585,7 +612,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.VorkehrungBepflanzung: {
-        r"(((Erhaltung|Pflanzung|(für )?das Pflanzen|Herstellung) .*) (zu ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können))": {
+        r"(((Erhaltung|Pflanzung|(für )?das Pflanzen|Herstellung|Erreichung) .*) (zu ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können))": {
             GROUP: 2,
         },
         r"(der Bestand der Baumreihen sicher zu stellen)": {

@@ -1,0 +1,18 @@
+{
+    "PlangebietAllgemein": [
+        [
+            [
+                "(u_0 / innerhalb :2 (u_1 / Plangebiet) :1 (u_2 / liegen) )"
+            ],
+            [],
+            "PlangebietAllgemein"
+        ],
+        [
+            [
+                "(u_0 / .* :2 (u_1 / Plangebiet :0 (u_2 / gesamt)))"
+            ],
+            [],
+            "PlangebietAllgemein"
+        ]
+    ]
+}

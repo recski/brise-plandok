@@ -151,10 +151,13 @@ VALUE_PATTERNS = {
             GROUP: 6
         },
         r"Dachneigung( darf)? " + NUMBER_WITH_DEGREE + r" nicht überschreiten": {
-            GROUP: 1
+            GROUP: 2
         },
         r"(fünf Grad)": {
             GROUP: 1
+        },
+        r"Dachneigung mindestens " + NUMBER_WITH_DEGREE + r" und höchstens " + NUMBER_WITH_DEGREE + r" zu betragen": {
+            GROUP: 6
         },
     },
 
@@ -166,6 +169,9 @@ VALUE_PATTERNS = {
             GROUP: 1
         },
         r"Dachneigung darf " + NUMBER_WITH_DEGREE + r" nicht unterschreiten": {
+            GROUP: 1
+        },
+        r"Dachneigung mindestens " + NUMBER_WITH_DEGREE + r" und höchstens " + NUMBER_WITH_DEGREE + r" zu betragen": {
             GROUP: 1
         },
     },
@@ -453,10 +459,10 @@ VALUE_PATTERNS = {
         r"(BB(S| ?\d?\d?))": {
             GROUP: 1,
         },
-        r"([A-Z](-[A-Z])+)": {
+        r" ([A-Z](-[A-Z])+) ": {
             GROUP: 1,
         },
-        r"([a-z]-[a-z])": {
+        r" ([a-z](-[a-z])+) ": {
             GROUP: 1,
         },
         r"\s((Ak )?(öD[gf]))\s": {
@@ -480,7 +486,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.StellplatzregulativUmfangMaximumRelativ: {
-        r"(insgesamt )?höchstens " + NUMBER_WITH_PERCENT: {
+        r"(insgesamt|höchstens|insgesamt höchstens) " + NUMBER_WITH_PERCENT: {
             GROUP: 2,
         },
         r"maximale Stellplatzzahl mit  " + NUMBER_WITH_PERCENT: {
@@ -489,8 +495,8 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.StellplatzregulativUmfangMinimumRelativ: {
-        r"Stellplatzverpflichtung beträgt " + NUMBER_WITH_PERCENT: {
-            GROUP: 1,
+        r"Stellplatzverpflichtung (für Wohnungen )?beträgt " + NUMBER_WITH_PERCENT: {
+            GROUP: 2,
         },
         r"mit " + NUMBER_WITH_PERCENT + " und die maximale": {
             GROUP: 1,
@@ -504,16 +510,16 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.StrassenbreiteMax: {
-        r"Straßen(breiten?)?( bis| von)? unter " + NUMBER_WITH_METER: {
+        r"Straßen(breiten?|querschnitte)?( bis| von)? unter " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
-        r"Straßen(breiten?)? bis (zu |zu einer Breite von )?" + NUMBER_WITH_METER + r"( Breite)?": {
+        r"Straßen(breiten?|querschnitte)? bis (zu |zu einer Breite von )?" + NUMBER_WITH_METER + r"( Breite)?": {
             GROUP: 3,
         },
     },
 
     AttributesNames.StrassenbreiteMin: {
-        r"[Ss]traßen(breiten?)? (ab|von mehr als|von über) " + NUMBER_WITH_METER: {
+        r"[Ss]traßen(breiten?|querschnitte)? (ab|von mehr als|von über|über) " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
     },

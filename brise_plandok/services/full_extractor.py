@@ -10,6 +10,7 @@ from brise_plandok.utils import load_json
 HOST = '0.0.0.0'
 PORT = 5000
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 
 DATA_DIR = None
 

@@ -3,8 +3,8 @@
 import os
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen, full_attrs_from_gold_sen
 from brise_plandok.constants import DocumentFields, SenFields
-from brise_plandok.full_attribute_extraction.type.type_extractor import TypeExtractor
-from brise_plandok.full_attribute_extraction.value.value_extractor import ValueExtractor
+from brise_plandok.full_attribute_extraction.type.extract_types import extract_type
+from brise_plandok.full_attribute_extraction.value.extract_values import extract_value
 from brise_plandok.utils import dump_json, load_json
 
 
@@ -36,16 +36,14 @@ class FullAnnotationPreFiller:
 
     def fill_gen_attributes_for_full(self, doc):
         is_annotated = len(doc[DocumentFields.ANNOTATORS]) > 0 if DocumentFields.ANNOTATORS in doc else False
-        value_extractor = ValueExtractor()
-        type_extractor = TypeExtractor()
         for sen in doc[DocumentFields.SENS].values():
             labels_gold = sen[SenFields.LABELS_GOLD_EXISTS]
             attribute_names = self._get_attributes_names(
                 sen, labels_gold, is_annotated)
             for attribute in attribute_names:
-                value_extractor.extract_for_attr(
+                extract_value(
                     sen, attribute, SenFields.GEN_ATTRIBUTES_ON_FULL_ANNOTATION, False)
-                type_extractor.extract_for_attr(
+                extract_type(
                     sen, attribute, SenFields.GEN_ATTRIBUTES_ON_FULL_ANNOTATION, False)
 
     def _get_attributes_names(self, sen, labels_gold, is_annotated):

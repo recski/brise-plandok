@@ -39,7 +39,7 @@ class ValueEvaluator:
                 self.fn_list.append((sen[SenFields.ID], sen[SenFields.TEXT],
                                     sen[SenFields.GOLD_ATTRIBUTES][attribute][AttributeFields.VALUE], value))
 
-    def _calc_sore(self):
+    def calc_sore(self):
         precision = self.tp / (self.tp + self.fp)
         recall = self.tp / (self.tp + self.fn)
         print(f"precision: {precision}\trecall: {recall}")
@@ -84,7 +84,7 @@ def main():
     for line in sys.stdin:
         sen = json.loads(line)
         value_evaluator.evaluate(sen)
-    value_evaluator._calc_sore()
+    value_evaluator.calc_sore()
 
 
 if __name__ == "__main__":

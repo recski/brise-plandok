@@ -1,8 +1,9 @@
 from brise_plandok.constants import AttributesNames
-from brise_plandok.full_attribute_extraction.utils.constants import ALL, FLAECHEN_NUMBER, NUMBER_WITH_SQUARE_METER, \
-    NUMBER_WITH_CUBIC_METER, NUMBER_WITH_DEGREE, DACH, FALSE, NUMBER_WITH_METER, GROUP, NUMBER_WITH_PERCENT, STRASSE, \
-    TRUE, VALUE, GAERTNERISH_GESTALTEN
+from brise_plandok.full_attribute_extraction.constants import NUMBER_WITH_METER, GROUP, ALL, VALUE, TRUE, \
+    NUMBER_WITH_PERCENT, GAERTNERISH_GESTALTEN, DACH, NUMBER_WITH_DEGREE, NUMBER_WITH_SQUARE_METER, FALSE, \
+    FLAECHEN_NUMBER, STRASSE, NUMBER_WITH_CUBIC_METER
 from brise_plandok.full_attribute_extraction.value.widmung import WIDMUNG
+
 VALUE_PATTERNS = {
 
     AttributesNames.AbschlussDachMaxBezugGebaeude: {
@@ -649,4 +650,3 @@ VALUE_PATTERNS = {
     AttributesNames.WidmungUndZweckbestimmung: WIDMUNG,
 
 }
-

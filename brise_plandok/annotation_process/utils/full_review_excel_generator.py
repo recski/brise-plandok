@@ -10,8 +10,8 @@ from brise_plandok.annotation_process.utils.constants import FullReviewExcelCons
 from brise_plandok.constants import EMPTY, AnnotatedAttributeFields, AttributeFields, DocumentFields, \
     FullAnnotatedAttributeFields, SenFields
 from brise_plandok.full_attribute_extraction.attribute.potato.potato_predictor import PotatoPredictor
-from brise_plandok.full_attribute_extraction.type.type_extractor import TypeExtractor
-from brise_plandok.full_attribute_extraction.value.value_extractor import ValueExtractor
+from brise_plandok.full_attribute_extraction.type.extract_types import extract_type
+from brise_plandok.full_attribute_extraction.value.extract_values import extract_value
 from brise_plandok.utils import load_json
 from brise_plandok.xlsx.excel_generator import ExcelGenerator
 
@@ -27,8 +27,6 @@ class FullReviewExcelGenerator(ExcelGenerator):
         self.input_template = os.path.join(os.path.dirname(
             __file__), "../input", "annotation_full_review_template.xlsx")
         self.potato_predictor = PotatoPredictor(doc)
-        self.value_extractor = ValueExtractor()
-        self.type_extractor = TypeExtractor()
 
     def _modify_header(self, sheet):
         self.annotators = self.doc[DocumentFields.FULL_ANNOTATORS]
@@ -86,11 +84,12 @@ class FullReviewExcelGenerator(ExcelGenerator):
         if sen[SenFields.FULL_GOLD_EXISTS]:
             yield from self.__gen_attributes_from_gold(sen)
         else:
-            attributes_exist = FullAnnotatedAttributeFields.ATTRIBUTES in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]
-            ann_not_empty = sen[SenFields.FULL_ANNOTATED_ATTRIBUTES] != {}
+            ann_attributes = {}
+            if FullAnnotatedAttributeFields.ATTRIBUTES in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]:
+                ann_attributes = sen[SenFields.FULL_ANNOTATED_ATTRIBUTES][FullAnnotatedAttributeFields.ATTRIBUTES]
             potato_predictions = self.potato_predictor.get_prediction_for_sen(sen)
-            if ann_not_empty and attributes_exist:
-                yield from self.__gen_attributes_from_annotation(sen, potato_predictions)
+            yield from self.__gen_attributes_from_annotation(sen, ann_attributes, potato_predictions)
+            yield from self.__add_attributes_from_prediction(sen, ann_attributes, potato_predictions)
 
     def __gen_attributes_from_gold(self, sen):
         for full_attribute in sen[SenFields.GOLD_ATTRIBUTES].values():
@@ -112,8 +111,7 @@ class FullReviewExcelGenerator(ExcelGenerator):
                     PREDICTED_ATTR: False,
                 }
 
-    def __gen_attributes_from_annotation(self, sen, attr_predictions):
-        ann_attributes = sen[SenFields.FULL_ANNOTATED_ATTRIBUTES][FullAnnotatedAttributeFields.ATTRIBUTES]
+    def __gen_attributes_from_annotation(self, sen, ann_attributes, attribute_predictions):
         for attribute_name, attribute in ann_attributes.items():
             ann_types = [None] * len(self.annotators)
             for value_name, annotated_types in attribute[AttributeFields.VALUE].items():
@@ -127,25 +125,26 @@ class FullReviewExcelGenerator(ExcelGenerator):
                         logging.error(f"Conflict in {sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]}")
                 yield {
                     AttributeFields.NAME: attribute_name,
-                    AttributeFields.VALUE: value_name,
+                    AttributeFields.VALUE: "\n".join(
+                        extract_value(sen, attribute_name, field_to_add=None, only_gold=False)),
                     AttributeFields.TYPE: ann_types,
                     LABELS_GOLD: sen[SenFields.LABELS_GOLD_EXISTS],
                     FULL_GOLD: sen[SenFields.FULL_GOLD_EXISTS],
-                    PREDICTED_ATTR: attribute_name in attr_predictions
+                    PREDICTED_ATTR: attribute_name in attribute_predictions
                 }
-        yield from self.__add_attributes_from_prediction(ann_attributes, attr_predictions, sen)
 
-    def __add_attributes_from_prediction(self, ann_attributes, attr_predictions, sen):
-        for attribute_name in attr_predictions:
+    def __add_attributes_from_prediction(self, sen, ann_attributes, attribute_predictions):
+        for attribute_name in attribute_predictions:
             if attribute_name not in ann_attributes.keys():
+                extracted_type = extract_type(sen, attribute_name, field_to_add=None, only_gold=False)
                 yield {
                     AttributeFields.NAME: attribute_name,
-                    AttributeFields.VALUE: self.value_extractor.extract_for_attr(sen, attribute_name,
-                                                                                 only_if_gold=False),
-                    AttributeFields.TYPE: self.type_extractor.extract_for_attr(sen, attribute_name, only_if_gold=False),
+                    AttributeFields.VALUE: "\n".join(
+                        extract_value(sen, attribute_name, field_to_add=None, only_gold=False)),
+                    AttributeFields.TYPE: [extracted_type] * (len(self.annotators)),
                     LABELS_GOLD: False,
                     FULL_GOLD: False,
-                    PREDICTED_ATTR: attribute_name in attr_predictions
+                    PREDICTED_ATTR: True,
                 }
 
     def __get_type_for_annotator(self, sen_id, annotated_types, annotator):

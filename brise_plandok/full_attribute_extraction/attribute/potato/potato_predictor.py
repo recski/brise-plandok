@@ -18,5 +18,5 @@ class PotatoPredictor:
 
     def get_prediction_for_sen(self, sen):
         if sen[SenFields.SEGMENTATION_ERROR]:
-            return ['']
+            return []
         return self.pred_df.loc[self.pred_df["sen_id"] == sen[SenFields.ID]]["Predicted label"].to_list()[0]

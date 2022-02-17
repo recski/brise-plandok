@@ -1,6 +1,7 @@
 from brise_plandok.full_attribute_extraction.constants import GROUP, SPACE_OR_BRACKET
 
 WIDMUNG = {
+
     # Konstruktionen
     r"(sind( nur der)?) ([^0-9]*) vorbehalten": {
         GROUP: 3,
@@ -47,6 +48,7 @@ WIDMUNG = {
     r"Zweckbestimmung „?([^„“]*)“? zuzuführen": {
         GROUP: 1,
     },
+
     # Gesetz
     r"(Nutzungen im Sinne des . 50 \(1\) des Wiener Garagengesetzes)": {
         GROUP: 1,
@@ -57,6 +59,7 @@ WIDMUNG = {
     r"(Nutzung gemäß § 6 Abs. 6 der BO für Wien)": {
         GROUP: 1,
     },
+
     # Widmung
     r"(Ländliche Gebiete)": {
         GROUP: 1,
@@ -139,6 +142,7 @@ WIDMUNG = {
     r"(Lagerplätze und Landflächen)": {
         GROUP: 1,
     },
+
     # Nutzungsart
     r"(landwirtschaftliche Nutzung)": {
         GROUP: 1,
@@ -266,6 +270,7 @@ WIDMUNG = {
     r"(Wohnungen für den Bedarf der Betriebsleitung der Betriebsaufsicht)": {
         GROUP: 1,
     },
+
     # BBAllgemien
     r"(Einkaufszentr(en|um))": {
         GROUP: 1,
@@ -282,15 +287,12 @@ WIDMUNG = {
     r"(Anlagen zum Einstellen von Kraftfahrzeugen)": {
         GROUP: 1,
     },
+
     # Kürzel
-    SPACE_OR_BRACKET
-    + r"(L)"
-    + SPACE_OR_BRACKET: {
+    SPACE_OR_BRACKET + r"(L)" + SPACE_OR_BRACKET: {
         GROUP: 1,
     },
-    SPACE_OR_BRACKET
-    + r"(E)"
-    + SPACE_OR_BRACKET: {
+    SPACE_OR_BRACKET + r"(E)" + SPACE_OR_BRACKET: {
         GROUP: 1,
     },
     r"(Epk)": {
@@ -323,9 +325,7 @@ WIDMUNG = {
     r"(Spk)": {
         GROUP: 1,
     },
-    SPACE_OR_BRACKET
-    + r"(F)"
-    + SPACE_OR_BRACKET: {
+    SPACE_OR_BRACKET + r"(F)" + SPACE_OR_BRACKET: {
         GROUP: 1,
     },
     r"(SN)": {
@@ -334,9 +334,7 @@ WIDMUNG = {
     r"(VB)": {
         GROUP: 1,
     },
-    SPACE_OR_BRACKET
-    + r"(W)"
-    + SPACE_OR_BRACKET: {
+    SPACE_OR_BRACKET + r"(W)" + SPACE_OR_BRACKET: {
         GROUP: 1,
     },
     r"(WGV)": {
@@ -399,9 +397,7 @@ WIDMUNG = {
     r"(SOMarkt)": {
         GROUP: 1,
     },
-    SPACE_OR_BRACKET
-    + r"(G)"
-    + SPACE_OR_BRACKET: {
+    SPACE_OR_BRACKET + r"(G)" + SPACE_OR_BRACKET: {
         GROUP: 1,
     },
     r"(Ekz|EKZ)": {
@@ -416,11 +412,10 @@ WIDMUNG = {
     r"(StrE (\d)?)": {
         GROUP: 1,
     },
-    SPACE_OR_BRACKET
-    + r"(P)"
-    + SPACE_OR_BRACKET: {
+    SPACE_OR_BRACKET + r"(P)" + SPACE_OR_BRACKET: {
         GROUP: 1,
     },
+
     # Not included in the list from WP4
     r"(Winterg[aä]rten)": {
         GROUP: 1,
@@ -437,4 +432,5 @@ WIDMUNG = {
     r"(Gemischtes Baugebiet/Geschäftsviertel)": {
         GROUP: 1,
     },
+
 }

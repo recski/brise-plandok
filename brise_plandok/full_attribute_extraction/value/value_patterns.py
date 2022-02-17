@@ -1,89 +1,85 @@
 from brise_plandok.constants import AttributesNames
-from brise_plandok.full_attribute_extraction.constants import (
-    NUMBER_WITH_METER,
-    GROUP,
-    ALL,
-    VALUE,
-    TRUE,
-    NUMBER_WITH_PERCENT,
-    GAERTNERISH_GESTALTEN,
-    DACH,
-    NUMBER_WITH_DEGREE,
-    NUMBER_WITH_SQUARE_METER,
-    FALSE,
-    FLAECHEN_NUMBER,
-    STRASSE,
-    NUMBER_WITH_CUBIC_METER,
-)
-from brise_plandok.full_attribute_extraction.value.widmung import WIDMUNG
+from brise_plandok.full_attribute_extraction.constants import NUMBER_WITH_METER, GROUP, ALL, VALUE, TRUE, \
+    NUMBER_WITH_PERCENT, GAERTNERISH_GESTALTEN, DACH, NUMBER_WITH_DEGREE, NUMBER_WITH_SQUARE_METER, FALSE, \
+    FLAECHEN_NUMBER, STRASSE, NUMBER_WITH_CUBIC_METER
+from brise_plandok.full_attribute_extraction.value.widmung_patterns import WIDMUNG
 
 VALUE_PATTERNS = {
+
     AttributesNames.AbschlussDachMaxBezugGebaeude: {
-        r"(nicht höher als|nicht mehr als|höchstens|maximal|bis zu) "
-        + NUMBER_WITH_METER
-        + r" über": {
+        r"(nicht höher als|nicht mehr als|höchstens|maximal|bis zu) " + NUMBER_WITH_METER + r" über": {
             GROUP: 2,
         },
     },
+
     AttributesNames.AnFluchtlinie: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.AnlageZumEinstellenVorhanden: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.AnOeffentlichenVerkehrsflaechen: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.AnordnungGaertnerischeAusgestaltung: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.AnordnungGaertnerischeAusgestaltungProzentual: {
         NUMBER_WITH_PERCENT: {
             GROUP: 1,
         },
     },
+
     AttributesNames.AnteilBaumbepflanzung: {
         NUMBER_WITH_PERCENT: {
             GROUP: 1,
         },
     },
+
     AttributesNames.AnteilDachbegruenung: {
         NUMBER_WITH_PERCENT: {
             GROUP: 1,
         },
     },
+
     AttributesNames.AnzahlGebaeudeMax: {
         r"[Pp]ro Bauplatz( darf)?( nur)? (ein)( Nebengebäude)": {
             GROUP: 3,
         },
     },
+
     AttributesNames.ArkadeHoehe: {
-        r"(H|h)öhe von( mindestens)? "
-        + NUMBER_WITH_METER: {
+        r"(H|h)öhe von( mindestens)? " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
     },
+
     AttributesNames.AufbautenZulaessig: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.AusnahmeVonWohnungenUnzulaessig: {
         r"mit Ausnahme( der| von)? (.*) untersagt": {
             GROUP: 2,
         },
     },
+
     AttributesNames.AusnahmeGaertnerischAuszugestaltende: {
-        r"mit Ausnahme( der| von| für)? ([^:]*),? "
-        + GAERTNERISH_GESTALTEN: {
+        r"mit Ausnahme( der| von| für)? ([^:]*),? " + GAERTNERISH_GESTALTEN: {
             GROUP: 2,
         },
         r"mit Ausnahme( der| von)? (.*), wird bestimmt*": {
@@ -92,16 +88,13 @@ VALUE_PATTERNS = {
         r"soweit sie nicht (für|als) (.*) benötigt werden, .*gärtnerisch": {
             GROUP: 2,
         },
-        r"soweit nicht (.*) erforderlich ist, "
-        + GAERTNERISH_GESTALTEN: {
+        r"soweit nicht (.*) erforderlich ist, " + GAERTNERISH_GESTALTEN: {
             GROUP: 1,
         },
-        r"sofern nicht eine Befestigung für die Nutzung als (.*) erforderlich ist, "
-        + GAERTNERISH_GESTALTEN: {
+        r"sofern nicht eine Befestigung für die Nutzung als (.*) erforderlich ist, " + GAERTNERISH_GESTALTEN: {
             GROUP: 1,
         },
-        r"nicht von (.*) in Anspruch genommenen Bereiche,? sind "
-        + GAERTNERISH_GESTALTEN: {
+        r"nicht von (.*) in Anspruch genommenen Bereiche,? sind " + GAERTNERISH_GESTALTEN: {
             GROUP: 1,
         },
         r"(A|a)usgenommen davon sind (.*).": {
@@ -111,155 +104,181 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
     },
+
     AttributesNames.Bauklasse: {
         r" (I|II|III|IV|V|VI)[ ,]": {
             GROUP: 1,
         },
     },
+
     AttributesNames.BauweiseID: {
         r"(geschlossen|offen|gekuppelt|gruppenbauweise)": {
             GROUP: 1,
         },
     },
+
     AttributesNames.BegruenungDach: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.Dachart: {
-        r"(Flach)"
-        + DACH: {
+        r"(Flach)" + DACH: {
             VALUE: "Flachdach",
         },
-        r"(Pult)"
-        + DACH: {
+        r"(Pult)" + DACH: {
             VALUE: "Pultdach",
         },
-        r"(Glas)"
-        + DACH: {
+        r"(Glas)" + DACH: {
             VALUE: "Glasdach",
         },
-        r"(Flug)"
-        + DACH: {
+        r"(Flug)" + DACH: {
             VALUE: "Flugdach",
         },
-        r"(Vor)"
-        + DACH: {
+        r"(Vor)" + DACH: {
             VALUE: "Vordach",
         },
         r"(begehbar)": {
             GROUP: 1,
         },
     },
+
     AttributesNames.DachneigungMax: {
-        r"((bis zu|mit) einer (Dach)?[Nn]eigung von|maximal|bis|bis zu) "
-        + NUMBER_WITH_DEGREE: {GROUP: 4},
-        r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {GROUP: 6},
-        r"Dachneigung( darf)? "
-        + NUMBER_WITH_DEGREE
-        + r" nicht überschreiten": {GROUP: 2},
-        r"(fünf Grad)": {GROUP: 1},
-        r"Dachneigung mindestens "
-        + NUMBER_WITH_DEGREE
-        + r" und höchstens "
-        + NUMBER_WITH_DEGREE
-        + r" zu betragen": {GROUP: 6},
-    },
-    AttributesNames.DachneigungMin: {
-        r"von einer Dachneigung von mindestens " + NUMBER_WITH_DEGREE: {GROUP: 1},
-        r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {GROUP: 1},
-        r"Dachneigung darf "
-        + NUMBER_WITH_DEGREE
-        + r" nicht unterschreiten": {GROUP: 1},
-        r"Dachneigung mindestens "
-        + NUMBER_WITH_DEGREE
-        + r" und höchstens "
-        + NUMBER_WITH_DEGREE
-        + r" zu betragen": {GROUP: 1},
-    },
-    AttributesNames.DachflaecheMin: {
-        NUMBER_WITH_SQUARE_METER: {GROUP: 1},
-    },
-    AttributesNames.DurchfahrtBreite: {
-        r"(B|b)reite von( mindestens)? " + NUMBER_WITH_METER: {GROUP: 3},
-        r" " + NUMBER_WITH_METER + r" (B|b)reite": {GROUP: 1},
-        r"hat " + NUMBER_WITH_METER + r" zu betragen": {GROUP: 1},
-        r"(im Plan dargestellten Breite)": {GROUP: 1},
-    },
-    AttributesNames.DurchfahrtHoehe: {
-        r"(H|h)öhe von( mindestens)? " + NUMBER_WITH_METER: {GROUP: 3},
-        r" " + NUMBER_WITH_METER + r" (H|h)öhe": {GROUP: 1},
-    },
-    AttributesNames.DurchgangBreite: {
-        r"(B|b)reite von( mindestens)? " + NUMBER_WITH_METER: {GROUP: 3},
-        r" " + NUMBER_WITH_METER + r" [Bb]reite": {GROUP: 1},
-        r"hat " + NUMBER_WITH_METER + r" zu betragen": {GROUP: 1},
-        r"(im Plan dargestellten Breite)": {GROUP: 1},
-        r"mit einer lichten Breite und einer lichten Höhe von je mindestens "
-        + NUMBER_WITH_METER: {GROUP: 1},
-    },
-    AttributesNames.DurchgangHoehe: {
-        r"(H|h)öhe von(( je)? mindestens)? "
-        + NUMBER_WITH_METER: {
-            GROUP: 3,
+        r"((bis zu|mit) einer (Dach)?[Nn]eigung von|maximal|bis|bis zu) " + NUMBER_WITH_DEGREE: {
+            GROUP: 4
         },
-        NUMBER_WITH_METER
-        + r"( lichter)? [Hh][oö]he": {
+        r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {
+            GROUP: 6
+        },
+        r"Dachneigung( darf)? " + NUMBER_WITH_DEGREE + r" nicht überschreiten": {
+            GROUP: 2
+        },
+        r"(fünf Grad)": {
+            GROUP: 1
+        },
+        r"Dachneigung mindestens " + NUMBER_WITH_DEGREE + r" und höchstens " + NUMBER_WITH_DEGREE + r" zu betragen": {
+            GROUP: 6
+        },
+    },
+
+    AttributesNames.DachneigungMin: {
+        r"von einer Dachneigung von mindestens " + NUMBER_WITH_DEGREE: {
+            GROUP: 1
+        },
+        r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {
+            GROUP: 1
+        },
+        r"Dachneigung darf " + NUMBER_WITH_DEGREE + r" nicht unterschreiten": {
+            GROUP: 1
+        },
+        r"Dachneigung mindestens " + NUMBER_WITH_DEGREE + r" und höchstens " + NUMBER_WITH_DEGREE + r" zu betragen": {
+            GROUP: 1
+        },
+    },
+
+    AttributesNames.DachflaecheMin: {
+        NUMBER_WITH_SQUARE_METER: {
+            GROUP: 1
+        },
+    },
+
+    AttributesNames.DurchfahrtBreite: {
+        r"(B|b)reite von( mindestens)? " + NUMBER_WITH_METER: {
+            GROUP: 3
+        },
+        r" " + NUMBER_WITH_METER + r" (B|b)reite": {
+            GROUP: 1
+        },
+        r"hat " + NUMBER_WITH_METER + r" zu betragen": {
+            GROUP: 1
+        },
+        r"(im Plan dargestellten Breite)": {
+            GROUP: 1
+        },
+    },
+
+    AttributesNames.DurchfahrtHoehe: {
+        r"(H|h)öhe von( mindestens)? " + NUMBER_WITH_METER: {
+            GROUP: 3
+        },
+        r" " + NUMBER_WITH_METER + r" (H|h)öhe": {
+            GROUP: 1
+        },
+    },
+
+    AttributesNames.DurchgangBreite: {
+        r"(B|b)reite von( mindestens)? " + NUMBER_WITH_METER: {
+            GROUP: 3
+        },
+        r" " + NUMBER_WITH_METER + r" [Bb]reite": {
+            GROUP: 1
+        },
+        r"hat " + NUMBER_WITH_METER + r" zu betragen": {
+            GROUP: 1
+        },
+        r"(im Plan dargestellten Breite)": {
+            GROUP: 1
+        },
+        r"mit einer lichten Breite und einer lichten Höhe von je mindestens " + NUMBER_WITH_METER: {
+            GROUP: 1
+        },
+    },
+
+    AttributesNames.DurchgangHoehe: {
+        r"(H|h)öhe von(( je)? mindestens)? " + NUMBER_WITH_METER: {
+            GROUP: 4,
+        },
+        NUMBER_WITH_METER + r"( lichter)? [Hh][oö]he": {
             GROUP: 1,
         },
-        r"einer (lichten )?Höhe von (mindestens )?"
-        + NUMBER_WITH_METER: {
+        r"einer (lichten )?Höhe von (mindestens )?" + NUMBER_WITH_METER: {
             GROUP: 3,
         },
-        r"mit einer lichten Breite und einer lichten Höhe von je mindestens "
-        + NUMBER_WITH_METER: {GROUP: 1},
+        r"mit einer lichten Breite und einer lichten Höhe von je mindestens " + NUMBER_WITH_METER: {
+            GROUP: 1
+        },
     },
+
     AttributesNames.EinfriedungAusgestaltung: {
-        r"((ab einer Höhe von "
-        + NUMBER_WITH_METER
-        + r" )?(den freien Durchblick|die freie Durchsicht) nicht hindern)": {
+        r"((ab einer Höhe von " + NUMBER_WITH_METER + r" )?(den freien Durchblick|die freie Durchsicht) nicht hindern)": {
             GROUP: 1,
         },
         r"(transparent|vollflächig|fassadenmäßig)": {
             GROUP: 1,
         },
     },
+
     AttributesNames.EinfriedungHoeheGesamt: {
-        r"dürfen "
-        + NUMBER_WITH_METER
-        + r"( Höhe)? nicht überragen": {
+        r"dürfen " + NUMBER_WITH_METER + r"( Höhe)? nicht überragen": {
             GROUP: 1,
         },
-        r"(bis zu einer Höhe von|höchstens) "
-        + NUMBER_WITH_METER: {
+        r"(bis zu einer Höhe von|höchstens) " + NUMBER_WITH_METER: {
             GROUP: 2,
         },
-        r"maximal(en Höhe von)? "
-        + NUMBER_WITH_METER: {
+        r"maximal(en Höhe von)? " + NUMBER_WITH_METER: {
             GROUP: 2,
         },
-        r"Höhe von (bis zu )?"
-        + NUMBER_WITH_METER: {
+        r"Höhe von (bis zu )?" + NUMBER_WITH_METER: {
             GROUP: 1,
         },
-        r"darf nicht höher als "
-        + NUMBER_WITH_METER
-        + r" über Wiener Null liegen": {
+        r"darf nicht höher als " + NUMBER_WITH_METER + r" über Wiener Null liegen": {
             GROUP: 1,
         },
-        NUMBER_WITH_METER
-        + r"( nicht)? überragen": {
+        NUMBER_WITH_METER + r"( nicht)? überragen": {
             GROUP: 1,
         },
     },
+
     AttributesNames.EinfriedungLage: {
-        r"(an (den )?(seitlichen und hinteren )?(zu Verkehrsflächen gewandten )?(Grund|Bauplatz)grenzen)": {
+        r"((an|zu) (den )?(seitlichen und hinteren )?(zu Verkehrsflächen gewandten )?(Grund|Bauplatz)grenzen)": {
             GROUP: 1,
         },
         r"(gegen die öffentlichen Verkehrsflächen)": {
             GROUP: 1,
         },
     },
+
     AttributesNames.EinfriedungZulaessig: {
         r"(die Errichtung .* Einfriedungen zulässig|ist zulässig)": {
             VALUE: TRUE,
@@ -268,6 +287,7 @@ VALUE_PATTERNS = {
             VALUE: FALSE,
         },
     },
+
     AttributesNames.EinleitungNiederschlagswaesser: {
         r"Einleitung von Niederschlagswässern in den Kanal ist (.*), zulässig.": {
             GROUP: 1,
@@ -276,6 +296,7 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
     },
+
     AttributesNames.ErrichtungGebaeude: {
         r"((darf|dürfen) unmittelbar bebaut werden|sind unmittelbar bebaubar|Errichtung ((?!nicht).)* zulässig)": {
             VALUE: TRUE,
@@ -290,12 +311,13 @@ VALUE_PATTERNS = {
             VALUE: FALSE,
         },
     },
+
     AttributesNames.FBOKMinimumWohnungen: {
-        r"Fußbodenoberkante.* mindestens "
-        + NUMBER_WITH_METER: {
+        r"Fußbodenoberkante.* mindestens " + NUMBER_WITH_METER: {
             GROUP: 1,
         },
     },
+
     AttributesNames.Flaechen: {
         # Bebaubarkeit
         r"(((b|B)ebaubare,? jedoch)? unbebaut bleibenden? (Grund|Bauland)?(F|f)lächen?)": {
@@ -311,53 +333,36 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
         # Maximum
-        r"((in Summe|in Anspruch genommene Gesamtnutzfläche) "
-        + FLAECHEN_NUMBER
-        + r" nicht über(schreiten|steigen))": {
+        r"((in Summe|in Anspruch genommene Gesamtnutzfläche) " + FLAECHEN_NUMBER + r" nicht über(schreiten|steigen))": {
             GROUP: 1,
         },
-        r"((höchstens|nicht mehr als) "
-        + FLAECHEN_NUMBER
-        + r")": {
+        r"((höchstens|nicht mehr als) " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"(maximal(en Grundfläche von( insgesamt)?)? "
-        + FLAECHEN_NUMBER
-        + r")": {
+        r"(maximal(en Grundfläche von( insgesamt)?)? " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"(bis zu einem (Flächen)?(A|a)usmaß von "
-        + FLAECHEN_NUMBER
-        + r")": {
+        r"(bis zu einem (Flächen)?(A|a)usmaß von " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"(die bebaute Fläche nicht mehr als "
-        + FLAECHEN_NUMBER
-        + r")": {
+        r"(die bebaute Fläche nicht mehr als " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"([Ff]läche .* "
-        + FLAECHEN_NUMBER
-        + r" .*nicht überschreiten)": {
+        r"([Ff]läche .* " + FLAECHEN_NUMBER + r" .*nicht überschreiten)": {
             GROUP: 1,
         },
         # Minimum
-        r"(f|F)lächen? (von mehr als "
-        + FLAECHEN_NUMBER
-        + r")": {
+        r"(f|F)lächen? (von mehr als " + FLAECHEN_NUMBER + r")": {
             GROUP: 2,
         },
-        r"((m|M)indestens "
-        + FLAECHEN_NUMBER
-        + r")": {
+        r"((m|M)indestens " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
-        r"(nicht weniger als "
-        + FLAECHEN_NUMBER
-        + r")": {
+        r"(nicht weniger als " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
     },
+
     AttributesNames.GebaeudeBautyp: {
         r"(Hauptgebäude)": {
             GROUP: 1,
@@ -375,6 +380,7 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
     },
+
     AttributesNames.GebaeudeHoeheArt: {
         r"(tatsächlich(en)? errichtet)": {
             GROUP: 1,
@@ -392,73 +398,73 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
     },
+
     AttributesNames.GebaeudeHoeheMax: {
-        r"(Gebäudehöhe|Höhe) \D*"
-        + NUMBER_WITH_METER: {
+        r"(Gebäudehöhe|Höhe) \D*" + NUMBER_WITH_METER: {
             GROUP: 2,
         },
     },
+
     AttributesNames.GehsteigbreiteMin: {
-        r"Gehsteige? mit mindestens "
-        + NUMBER_WITH_METER: {
+        r"Gehsteige? mit mindestens " + NUMBER_WITH_METER: {
             GROUP: 1,
         },
-        r"Gehsteige? mit (jeweils|einer Breite von|je) mindestens "
-        + NUMBER_WITH_METER: {
+        r"Gehsteige? mit (jeweils|einer Breite von|je) mindestens " + NUMBER_WITH_METER: {
             GROUP: 2,
         },
-        r"mindestens "
-        + NUMBER_WITH_METER
-        + r" Breite als Gehsteig": {
+        r"mindestens " + NUMBER_WITH_METER + r" Breite als Gehsteig": {
             GROUP: 1,
         },
-        r"Gehsteige mit (insgesamt )?mindestens "
-        + NUMBER_WITH_METER
-        + r" Breite": {
+        r"Gehsteige mit (insgesamt )?mindestens " + NUMBER_WITH_METER + r" Breite": {
             GROUP: 2,
         },
     },
+
     AttributesNames.GaragengebaeudeAusfuehrung: {
-        r"mit einer maximalen Gebäudehöhe von "
-        + NUMBER_WITH_METER: {
+        r"mit einer maximalen Gebäudehöhe von " + NUMBER_WITH_METER: {
             GROUP: 1,
         },
     },
+
     AttributesNames.HoehenlageGrundflaeche: {
-        r"Höhenlage von ("
-        + NUMBER_WITH_METER
-        + r" über Wr. Null) herzustellen": {
+        r"Höhenlage von (" + NUMBER_WITH_METER + r" über Wr. Null) herzustellen": {
             GROUP: 1,
         },
     },
+
     AttributesNames.InSchutzzone: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.MaxAnzahlGeschosseOberirdisch: {
         r"mit höchstens (zwei|drei|vier|fünf) Hauptgeschossen zulässig": {
             GROUP: 1,
         },
     },
+
     AttributesNames.MindestraumhoeheEG: {
-        r"Mindestraumhöhe im Erdgeschoß hat "
-        + NUMBER_WITH_METER: {
+        r"Mindestraumhöhe im Erdgeschoß hat " + NUMBER_WITH_METER: {
+            GROUP: 1,
+        },
+        r"[Hh]öhe im Erdgeschoß hat mindestens" + NUMBER_WITH_METER: {
             GROUP: 1,
         },
     },
+
     AttributesNames.OeffentlicheVerkehrsflaecheBreiteMin: {
-        r"(von (mehr als |über )?|ab)"
-        + NUMBER_WITH_METER
-        + r"( (und|oder) mehr)?": {
+        r"(von (mehr als |über )?|ab)" + NUMBER_WITH_METER + r"( (und|oder) mehr)?": {
             GROUP: 3,
         },
     },
+
     AttributesNames.PlangebietAllgemein: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.Planzeichen: {
         r"(BB(S| ?\d?\d?))": {
             GROUP: 1,
@@ -482,113 +488,112 @@ VALUE_PATTERNS = {
             GROUP: 2,
         },
     },
+
     AttributesNames.StellplatzImNiveauZulaessig: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.StellplatzregulativUmfangMaximumRelativ: {
-        r"(insgesamt|höchstens|insgesamt höchstens) "
-        + NUMBER_WITH_PERCENT: {
+        r"(insgesamt|höchstens|insgesamt höchstens) " + NUMBER_WITH_PERCENT: {
             GROUP: 2,
         },
-        r"maximale Stellplatzzahl mit  "
-        + NUMBER_WITH_PERCENT: {
+        r"maximale Stellplatzzahl mit  " + NUMBER_WITH_PERCENT: {
             GROUP: 1,
         },
     },
+
     AttributesNames.StellplatzregulativUmfangMinimumRelativ: {
-        r"Stellplatzverpflichtung .*"
-        + NUMBER_WITH_PERCENT: {
+        r"Stellplatzverpflichtung .*" + NUMBER_WITH_PERCENT: {
             GROUP: 2,
         },
-        r"mit "
-        + NUMBER_WITH_PERCENT
-        + " und die maximale": {
+        r"mit " + NUMBER_WITH_PERCENT + " und die maximale": {
             GROUP: 1,
         },
     },
+
     AttributesNames.Stockwerk: {
         r"((Erd|Dach|Haupt)(geschoss|geschoß))": {
             GROUP: 1,
         },
     },
+
     AttributesNames.StrassenbreiteMax: {
-        r"Straßen(breiten?|querschnitte)?( bis| von)? unter "
-        + NUMBER_WITH_METER: {
+        r"Straßen(breiten?|querschnitte)?( bis| von)? unter " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
-        r"Straßen(breiten?|querschnitte)? bis (zu |zu einer Breite von )?"
-        + NUMBER_WITH_METER
-        + r"( Breite)?": {
+        r"Straßen(breiten?|querschnitte)? bis (zu |zu einer Breite von )?" + NUMBER_WITH_METER + r"( Breite)?": {
             GROUP: 3,
         },
     },
+
     AttributesNames.StrassenbreiteMin: {
-        r"[Ss]traßen(breiten?|querschnitte)? (ab|von mehr als|von über|über|mit mehr als) "
-        + NUMBER_WITH_METER: {
+        r"[Ss]traßen(breiten?|querschnitte)? (ab|von mehr als|von über|über|mit mehr als) " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
     },
+
     AttributesNames.StrassenbreiteVonBis: {
-        r"Straßenbreite (von "
-        + NUMBER_WITH_METER
-        + r" bis (unter )?"
-        + NUMBER_WITH_METER
-        + r")": {
+        r"Straßenbreite (von " + NUMBER_WITH_METER + r" bis (unter )?" + NUMBER_WITH_METER + r")": {
             GROUP: 1,
         },
     },
+
     AttributesNames.Struktureinheit: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.TechnischeAufbautenHoeheMax: {
-        r"bis zu einer Gesamthöhe von "
-        + NUMBER_WITH_METER: {
+        r"bis zu einer Gesamthöhe von " + NUMBER_WITH_METER: {
             GROUP: 1,
         },
     },
+
     AttributesNames.UnterbrechungGeschlosseneBauweise: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.UnterirdischeBaulichkeiten: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.VerbotBueroGeschaeftsgebaeude: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.VerbotFensterZuOeffentlichenVerkehrsflaechen: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.VerbotStaffelung: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.VerbotWohnung: {
         ALL: {
             VALUE: TRUE,
         },
     },
+
     AttributesNames.VerkehrsflaecheID: {
-        r"("
-        + STRASSE
-        + r"( und "
-        + STRASSE
-        + r")?)": {
+        r"(" + STRASSE + r"( und " + STRASSE + r")?)": {
             GROUP: 1,
         },
     },
+
     AttributesNames.VolumenUndUmbaubarerRaum: {
         NUMBER_WITH_PERCENT: {
             GROUP: 1,
@@ -597,6 +602,7 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
     },
+
     AttributesNames.VorbautenVerbot: {
         r" Errichtung von (((?!Baulinien).)*) (an den Baulinien|untersagt|nicht zulässig)": {
             GROUP: 1,
@@ -605,6 +611,7 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
     },
+
     AttributesNames.VonBebauungFreizuhalten: {
         r"ist (von.* Bebauung) freizuhalten": {
             GROUP: 1,
@@ -619,6 +626,7 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
     },
+
     AttributesNames.VorkehrungBepflanzung: {
         r"(((Erhaltung|Pflanzung|(für )?das Pflanzen|Herstellung|Erreichung) .*) (zu ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können))": {
             GROUP: 2,
@@ -626,23 +634,22 @@ VALUE_PATTERNS = {
         r"(der Bestand der Baumreihen sicher zu stellen)": {
             GROUP: 1,
         },
-        r"(Aufbringung eines Erdkörpers mit der Mächtigkeit von "
-        + NUMBER_WITH_METER
-        + r")": {
+        r"(Aufbringung eines Erdkörpers mit der Mächtigkeit von " + NUMBER_WITH_METER + r")": {
             GROUP: 1,
         },
     },
+
     AttributesNames.VorstehendeBauelementeAusladungMax: {
-        r"Ausladung von (höchstens )?"
-        + NUMBER_WITH_METER: {
+        r"Ausladung von (höchstens )?" + NUMBER_WITH_METER: {
             GROUP: 2,
         },
-        r"höchstens "
-        + NUMBER_WITH_METER
-        + r" (zulässig|über die Baulinien? (vor)?ragen|und|,)": {
+        r"höchstens " + NUMBER_WITH_METER + r" (zulässig|über die Baulinien? (vor)?ragen|und|,)": {
             GROUP: 1,
         },
     },
+
     AttributesNames.WidmungInMehrerenEbenen: WIDMUNG,
+
     AttributesNames.WidmungUndZweckbestimmung: WIDMUNG,
+
 }

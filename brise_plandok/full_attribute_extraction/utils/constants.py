@@ -12,8 +12,8 @@ FLAECHEN_NUMBER = r"(" + NUMBER_WITH_PERCENT + r"|" + NUMBER_WITH_SQUARE_METER +
 SPACE_OR_BRACKET = r"[\s\(\)]"
 
 DACH = r"(dach|dächer)"
-
 STRASSE = r"(((?!Verkehrsfläche)[A-ZÖ]\w+[- ]?)+(( S|-S|s)traße|( G|-G|g)asse|( P|-P|p)latz|( Z|-Z|z)eile|( G|-G|g)ürtel|( W|w)eg|( A|a)llee))"
+GAERTNERISH_GESTALTEN = r"(gärtnerisch (auszugestalten|zu gestalten)|die gärtnerische Ausgestaltung vorgeschrieben)"
 
 ALL = r".*"
 

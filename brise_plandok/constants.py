@@ -124,6 +124,7 @@ class AttributesNames:
     GaragengebaeudeAusfuehrung = "GaragengebaeudeAusfuehrung"
     HoehenlageGrundflaeche = "HoehenlageGrundflaeche"
     InSchutzzone = "InSchutzzone"
+    MaxAnzahlGeschosseOberirdisch = "MaxAnzahlGeschosseOberirdisch"
     MindestraumhoeheEG = "MindestraumhoeheEG"
     OeffentlicheVerkehrsflaecheBreiteMin = "OeffentlicheVerkehrsflaecheBreiteMin"
     PlangebietAllgemein = "PlangebietAllgemein"

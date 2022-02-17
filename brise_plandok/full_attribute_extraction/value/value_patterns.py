@@ -1,12 +1,12 @@
 from brise_plandok.constants import AttributesNames
 from brise_plandok.full_attribute_extraction.utils.constants import ALL, FLAECHEN_NUMBER, NUMBER_WITH_SQUARE_METER, \
     NUMBER_WITH_CUBIC_METER, NUMBER_WITH_DEGREE, DACH, FALSE, NUMBER_WITH_METER, GROUP, NUMBER_WITH_PERCENT, STRASSE, \
-    TRUE, VALUE
+    TRUE, VALUE, GAERTNERISH_GESTALTEN
 from brise_plandok.full_attribute_extraction.value.widmung import WIDMUNG
 VALUE_PATTERNS = {
 
     AttributesNames.AbschlussDachMaxBezugGebaeude: {
-        r"(nicht höher als|nicht mehr als|höchstens|maximal) " + NUMBER_WITH_METER + r" über": {
+        r"(nicht höher als|nicht mehr als|höchstens|maximal|bis zu) " + NUMBER_WITH_METER + r" über": {
             GROUP: 2,
         },
     },
@@ -78,7 +78,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.AusnahmeGaertnerischAuszugestaltende: {
-        r"mit Ausnahme( der| von)? ([^:]*),? gärtnerisch auszugestalten": {
+        r"mit Ausnahme( der| von| für)? ([^:]*),? " + GAERTNERISH_GESTALTEN: {
             GROUP: 2,
         },
         r"mit Ausnahme( der| von)? (.*), wird bestimmt*": {
@@ -87,13 +87,13 @@ VALUE_PATTERNS = {
         r"soweit sie nicht (für|als) (.*) benötigt werden, .*gärtnerisch": {
             GROUP: 2,
         },
-        r"soweit nicht (.*) erforderlich ist, gärtnerisch auszugestalten": {
+        r"soweit nicht (.*) erforderlich ist, " + GAERTNERISH_GESTALTEN: {
             GROUP: 1,
         },
-        r"sofern nicht eine Befestigung für die Nutzung als (.*) erforderlich ist, gärtnerisch auszugestalten": {
+        r"sofern nicht eine Befestigung für die Nutzung als (.*) erforderlich ist, " + GAERTNERISH_GESTALTEN: {
             GROUP: 1,
         },
-        r"nicht von (.*) in Anspruch genommenen Bereiche,? sind gärtnerisch auszugestalten": {
+        r"nicht von (.*) in Anspruch genommenen Bereiche,? sind " + GAERTNERISH_GESTALTEN: {
             GROUP: 1,
         },
         r"(A|a)usgenommen davon sind (.*).": {
@@ -312,7 +312,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.FBOKMinimumWohnungen: {
-        r"Fußbodenoberkante.* mindestens" + NUMBER_WITH_METER: {
+        r"Fußbodenoberkante.* mindestens " + NUMBER_WITH_METER: {
             GROUP: 1,
         },
     },
@@ -437,6 +437,12 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.MaxAnzahlGeschosseOberirdisch: {
+        r"mit höchstens (zwei|drei|vier|fünf) Hauptgeschossen zulässig": {
+            GROUP: 1,
+        },
+    },
+
     AttributesNames.MindestraumhoeheEG: {
         r"Mindestraumhöhe im Erdgeschoß hat " + NUMBER_WITH_METER: {
             GROUP: 1,
@@ -459,10 +465,10 @@ VALUE_PATTERNS = {
         r"(BB(S| ?\d?\d?))": {
             GROUP: 1,
         },
-        r" ([A-Z](-[A-Z])+) ": {
+        r" ([A-Z](-[A-Z])+),? ": {
             GROUP: 1,
         },
-        r" ([a-z](-[a-z])+) ": {
+        r" ([a-z](-[a-z])+),? ": {
             GROUP: 1,
         },
         r"\s((Ak )?(öD[gf]))\s": {
@@ -495,7 +501,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.StellplatzregulativUmfangMinimumRelativ: {
-        r"Stellplatzverpflichtung (für Wohnungen )?beträgt " + NUMBER_WITH_PERCENT: {
+        r"Stellplatzverpflichtung .*" + NUMBER_WITH_PERCENT: {
             GROUP: 2,
         },
         r"mit " + NUMBER_WITH_PERCENT + " und die maximale": {
@@ -519,7 +525,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.StrassenbreiteMin: {
-        r"[Ss]traßen(breiten?|querschnitte)? (ab|von mehr als|von über|über) " + NUMBER_WITH_METER: {
+        r"[Ss]traßen(breiten?|querschnitte)? (ab|von mehr als|von über|über|mit mehr als) " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
     },
@@ -633,7 +639,7 @@ VALUE_PATTERNS = {
         r"Ausladung von (höchstens )?" + NUMBER_WITH_METER: {
             GROUP: 2,
         },
-        r"höchstens " + NUMBER_WITH_METER + r" (zulässig|über die Baulinie (vor)?ragen|und|,)": {
+        r"höchstens " + NUMBER_WITH_METER + r" (zulässig|über die Baulinien? (vor)?ragen|und|,)": {
             GROUP: 1,
         },
     },

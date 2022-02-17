@@ -2,18 +2,18 @@ import re
 
 SIMPLE_PATTERNS = {
     # case sensitive on purpose :( (to avoid e.g. Strassenbreite)
-    "Xstrasse": [re.compile('strasse')],
-    "Xgasse": [re.compile('gasse')],
-    "Xdach": [re.compile('dae?ch')],
+    "Xstrasse": [re.compile("strasse")],
+    "Xgasse": [re.compile("gasse")],
+    "Xdach": [re.compile("dae?ch")],
 }
 
 GROUP_PATTERNS = {
     # quantities with units
-    re.compile(r'^([1-9][0-9]*)(m[23]?)$'),
+    re.compile(r"^([1-9][0-9]*)(m[23]?)$"),
     # BB
-    re.compile(r'^(BB)([1-9][0-9]*)$'),
+    re.compile(r"^(BB)([1-9][0-9]*)$"),
     # /
-    re.compile(r'(.*)SLASH(.*)')
+    re.compile(r"(.*)SLASH(.*)"),
 }
 
 
@@ -31,7 +31,6 @@ def regex_decompounder(word):
                 lemmas.append(lemma)
                 break
 
-    lemmas += [
-        slemma for lemma in lemmas for slemma in regex_decompounder(lemma)]
+    lemmas += [slemma for lemma in lemmas for slemma in regex_decompounder(lemma)]
 
     return lemmas

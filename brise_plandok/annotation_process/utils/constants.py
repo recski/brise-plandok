@@ -1,7 +1,15 @@
 GOLD = ["7374", "7857", "7990", "8065", "8250"]
 ANNOTATORS = ["01", "02", "03", "04", "05", "06"]
-DOC_HEADER = ["order", "doc_id", "assigned", "nr_sens_calculated", "nr_sens", "annotator_1", "annotator_2",
-              "assigned_2"]
+DOC_HEADER = [
+    "order",
+    "doc_id",
+    "assigned",
+    "nr_sens_calculated",
+    "nr_sens",
+    "annotator_1",
+    "annotator_2",
+    "assigned_2",
+]
 
 CYCLE_FILE = "../input/batch_cycles.csv"
 CYCLE_COL = "cycle"
@@ -33,6 +41,7 @@ REVIEW_DONE_FLAG = "Done"
 # Labels review
 ############
 
+
 class LabelReviewExcelConstants:
     MAIN_SHEET_NAME = "Review"
     ATTRIBUTE_NAMED_RANGE = "Attribute"
@@ -62,6 +71,7 @@ class LabelReviewExcelConstants:
 ############
 # Full xlsx
 ############
+
 
 class FullAnnotationExcelConstants:
     MAIN_SHEET_NAME = "Data"

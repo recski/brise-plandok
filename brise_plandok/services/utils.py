@@ -6,10 +6,15 @@ def filter_json(doc):
     for sen_id, sen in doc[DocumentFields.SENS].items():
         response[sen_id] = {
             SenFields.TEXT: sen[SenFields.TEXT] if SenFields.TEXT in sen else None,
-            SenFields.GOLD_MODALITY: sen[SenFields.GOLD_MODALITY] if SenFields.GOLD_MODALITY in sen else None,
-            SenFields.GOLD_ATTRIBUTES: sen[SenFields.GOLD_ATTRIBUTES] if SenFields.GOLD_ATTRIBUTES in sen else None,
-            SenFields.PREDICTED_ATTRIBUTES: sen[
-                SenFields.PREDICTED_ATTRIBUTES] if SenFields.PREDICTED_ATTRIBUTES in sen else None,
+            SenFields.GOLD_MODALITY: sen[SenFields.GOLD_MODALITY]
+            if SenFields.GOLD_MODALITY in sen
+            else None,
+            SenFields.GOLD_ATTRIBUTES: sen[SenFields.GOLD_ATTRIBUTES]
+            if SenFields.GOLD_ATTRIBUTES in sen
+            else None,
+            SenFields.PREDICTED_ATTRIBUTES: sen[SenFields.PREDICTED_ATTRIBUTES]
+            if SenFields.PREDICTED_ATTRIBUTES in sen
+            else None,
         }
     return response
 
@@ -28,7 +33,11 @@ def json_to_html(response_json):
 
 def _print_modality(response_html, sen):
     response_html += "<h3>Modality</h3>"
-    modality = sen[SenFields.GOLD_MODALITY] if sen[SenFields.GOLD_MODALITY] is not None else "-"
+    modality = (
+        sen[SenFields.GOLD_MODALITY]
+        if sen[SenFields.GOLD_MODALITY] is not None
+        else "-"
+    )
     response_html += f"<p>{modality}</p>"
     return response_html
 
@@ -36,7 +45,7 @@ def _print_modality(response_html, sen):
 def _print_attributes(response_html, sen):
     response_html += "<h3>Attributes</h3>"
     response_html += '<table style="width:50%">'
-    response_html += f"<tr><th>Name</th><th>value</th><th>Type</th></tr>"
+    response_html += "<tr><th>Name</th><th>value</th><th>Type</th></tr>"
     for attr_name, attr in sen[SenFields.GOLD_ATTRIBUTES].items():
         for i in range(len(attr[AttributeFields.VALUE])):
             response_html += "<tr>"

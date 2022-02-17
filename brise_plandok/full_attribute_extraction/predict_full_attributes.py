@@ -26,9 +26,9 @@ def get_args():
     return parser.parse_args()
 
 
-if __name__ == '__main__':
-    logging.getLogger('penman').setLevel(logging.WARNING)
-    logging.getLogger('stanza').setLevel(logging.WARNING)
-    logging.getLogger('tuw_nlp').setLevel(logging.WARNING)
+if __name__ == "__main__":
+    logging.getLogger("penman").setLevel(logging.WARNING)
+    logging.getLogger("stanza").setLevel(logging.WARNING)
+    logging.getLogger("tuw_nlp").setLevel(logging.WARNING)
     args = get_args()
     predict_attributes(args.doc_file, args.console_output)

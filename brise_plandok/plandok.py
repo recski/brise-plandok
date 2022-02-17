@@ -8,18 +8,18 @@ from tuw_nlp.text.pipeline import CachedStanzaPipeline, CustomStanzaPipeline
 from tuw_nlp.text.utils import normalize_whitespace
 
 SEC_NUM_PATT = re.compile(
-    r'^(?P<secnum>(?:II*\.|[1-9][0-9]?(\.[1-9][0-9]?)*[.\s]+)+)(?P<rest>$|[^0-9])')  # noqa
+    r"^(?P<secnum>(?:II*\.|[1-9][0-9]?(\.[1-9][0-9]?)*[.\s]+)+)(?P<rest>$|[^0-9])"
+)  # noqa
 
-PAGE_NO_PATT = re.compile(r'^-[0-9][0-9]*-$')
+PAGE_NO_PATT = re.compile(r"^-[0-9][0-9]*-$")
 
 
 class PlanDok:
-
     @staticmethod
     def from_file(fn):
         with open(fn) as f:
             txt = f.read()
-            doc_id = os.path.basename(fn).replace('.txt', '')
+            doc_id = os.path.basename(fn).replace(".txt", "")
             return PlanDok.from_txt(txt, doc_id)
 
     @staticmethod
@@ -32,8 +32,8 @@ class PlanDok:
 
     @staticmethod
     def from_dict(data):
-        d = PlanDok(data['id'])
-        d.sections = data['sections']
+        d = PlanDok(data["id"])
+        d.sections = data["sections"]
         return d
 
     def __init__(self, doc_id):
@@ -42,14 +42,11 @@ class PlanDok:
         self.tokenizer = None
 
     def to_dict(self):
-        return {
-            "id": self.id,
-            "txt": self.txt,
-            "sections": self.sections}
+        return {"id": self.id, "txt": self.txt, "sections": self.sections}
 
     def gen_tsv(self):
         for section in self.sections:
-            for sen in section['sens']:
+            for sen in section["sens"]:
                 yield f"{sen['sen_id']}\t{sen['text']}"
 
     def to_tsv(self):
@@ -57,48 +54,56 @@ class PlanDok:
 
     def get_sections(self, txt):
         sections = []
-        curr_section = 'header'
-        curr_text = ['']
-        for raw_line in txt.split('\n'):
+        curr_section = "header"
+        curr_text = [""]
+        for raw_line in txt.split("\n"):
             line = raw_line.strip()
             if not line or PAGE_NO_PATT.match(line):
                 if not line:
-                    curr_text.append('')
+                    curr_text.append("")
                 continue
             match = SEC_NUM_PATT.match(line)
             if match is None:
-                if curr_text[-1].endswith('-'):
-                    curr_text[-1] = curr_text[-1][:-1] + f'{line}'
+                if curr_text[-1].endswith("-"):
+                    curr_text[-1] = curr_text[-1][:-1] + f"{line}"
                 else:
-                    curr_text[-1] += f' {line}'
+                    curr_text[-1] += f" {line}"
             else:
                 sections.append([curr_section, curr_text])
-                curr_section = match.group('secnum').strip().replace(' ', '_')
-                rest = SEC_NUM_PATT.sub(r'\g<rest>', line).strip()
-                curr_text = [rest] if rest else ['']
+                curr_section = match.group("secnum").strip().replace(" ", "_")
+                rest = SEC_NUM_PATT.sub(r"\g<rest>", line).strip()
+                curr_text = [rest] if rest else [""]
 
         sections.append([curr_section, curr_text])
 
         sections = [
-            {"id": i, "num": num, "text": " ".join([
-                par for par in [
-                    normalize_whitespace(sen) for sen in sec] if par])}
-            for i, (num, sec) in enumerate(sections)]
+            {
+                "id": i,
+                "num": num,
+                "text": " ".join(
+                    [par for par in [normalize_whitespace(sen) for sen in sec] if par]
+                ),
+            }
+            for i, (num, sec) in enumerate(sections)
+        ]
 
         return sections
 
     def analyze(self, nlp):
         for section in self.sections:
-            section['sens'] = []
-            if section['text'] == "":
+            section["sens"] = []
+            if section["text"] == "":
                 continue
-            for i, sen in enumerate(nlp(section['text']).sentences):
+            for i, sen in enumerate(nlp(section["text"]).sentences):
                 assert sen.text is not None
-                section['sens'].append({
-                    "sen_id": f"{self.id}_{section['id']}_{i}",
-                    "text": sen.text,
-                    "attributes": [],
-                    "tokens": sen.to_dict()})
+                section["sens"].append(
+                    {
+                        "sen_id": f"{self.id}_{section['id']}_{i}",
+                        "text": sen.text,
+                        "attributes": [],
+                        "tokens": sen.to_dict(),
+                    }
+                )
 
 
 def parse_txt(fn, nlp):
@@ -108,7 +113,7 @@ def parse_txt(fn, nlp):
 
 
 def main():
-    with CachedStanzaPipeline(CustomStanzaPipeline(), 'cache/nlp_cache.json') as nlp:
+    with CachedStanzaPipeline(CustomStanzaPipeline(), "cache/nlp_cache.json") as nlp:
         for fn in tqdm(sys.argv[1:]):
             doc = parse_txt(fn, nlp)
             print(json.dumps(doc))

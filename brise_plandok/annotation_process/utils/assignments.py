@@ -1,20 +1,33 @@
-
 import itertools
 import logging
 import os
 
 import pandas
-from brise_plandok.annotation_process.utils.constants import ANNOTATOR_DOWNLOAD_FOLDER, ASSIGNMENT_ADDITIONAL_HEADER, ASSIGNMENT_DF_HEADER_BASE, ASSIGNMENT_TXT, ASSIGNMENT_FILE_HEADER, ASSIGNMENT_XLSX, DOC_HEADER, PHASE_STR
+from brise_plandok.annotation_process.utils.constants import (
+    ANNOTATOR_DOWNLOAD_FOLDER,
+    ASSIGNMENT_ADDITIONAL_HEADER,
+    ASSIGNMENT_DF_HEADER_BASE,
+    ASSIGNMENT_TXT,
+    ASSIGNMENT_FILE_HEADER,
+    ASSIGNMENT_XLSX,
+    DOC_HEADER,
+    PHASE_STR,
+)
 from brise_plandok.annotation_process.utils.sentences import sum_sens_for_docs
 from numberpartitioning import karmarkar_karp
 
 
 def get_assignment_header(phase):
-    return [ASSIGNMENT_DF_HEADER_BASE[0], ASSIGNMENT_DF_HEADER_BASE[1] + "_" + PHASE_STR + "_" + str(phase)]
+    return [
+        ASSIGNMENT_DF_HEADER_BASE[0],
+        ASSIGNMENT_DF_HEADER_BASE[1] + "_" + PHASE_STR + "_" + str(phase),
+    ]
 
 
 def get_download_folder(ann_folder, annotator, phase):
-    return os.path.join(ann_folder, annotator, PHASE_STR + str(phase), ANNOTATOR_DOWNLOAD_FOLDER)
+    return os.path.join(
+        ann_folder, annotator, PHASE_STR + str(phase), ANNOTATOR_DOWNLOAD_FOLDER
+    )
 
 
 def get_assignment_path(ann_folder, annotator, phase):
@@ -22,13 +35,16 @@ def get_assignment_path(ann_folder, annotator, phase):
 
 
 def load_assigned_docs_as_list(ann_folder, annotator, phase):
-    return list(itertools.chain(*load_assigned_docs_as_df(ann_folder, annotator, phase).values))
+    return list(
+        itertools.chain(*load_assigned_docs_as_df(ann_folder, annotator, phase).values)
+    )
 
 
 def load_assigned_docs_as_df(ann_folder, annotator, phase):
     return pandas.read_csv(
         filepath_or_buffer=get_assignment_path(ann_folder, annotator, phase),
-        dtype={ASSIGNMENT_FILE_HEADER[0]: str})
+        dtype={ASSIGNMENT_FILE_HEADER[0]: str},
+    )
 
 
 def get_assignment(doc_ids, df, nr_groups):
@@ -71,11 +87,12 @@ def _get_doc_partition(result, num_to_doc):
 def _check_if_all_docs_used(num_to_doc):
     for docs in num_to_doc.values():
         if len(docs) != 0:
-            raise ValueError(
-                f"Some docs were not used in the partition {docs}")
+            raise ValueError(f"Some docs were not used in the partition {docs}")
 
 
-def fill_assignments_with_batch(docs, cycle, assignments, partition, next_doc_ids, phase):
+def fill_assignments_with_batch(
+    docs, cycle, assignments, partition, next_doc_ids, phase
+):
     assignments[ASSIGNMENT_ADDITIONAL_HEADER[0]] = None
     assignments[ASSIGNMENT_ADDITIONAL_HEADER[1]] = -1
     assignments[ASSIGNMENT_ADDITIONAL_HEADER[2]] = -1
@@ -86,9 +103,10 @@ def fill_assignments_with_batch(docs, cycle, assignments, partition, next_doc_id
 
 
 def _log_for_review_tracking(docs, next_doc_ids, cycle):
-    next_docs = docs.loc[docs[DOC_HEADER[1]].isin(
-        next_doc_ids)].iloc[:, [1, 4] + [5 + i for i in range(len(cycle.columns))]]
-    view = next_docs.to_csv(sep=';', index=False)
+    next_docs = docs.loc[docs[DOC_HEADER[1]].isin(next_doc_ids)].iloc[
+        :, [1, 4] + [5 + i for i in range(len(cycle.columns))]
+    ]
+    view = next_docs.to_csv(sep=";", index=False)
     logging.info(f"print new assignment for review tracking:\n\n{view}")
 
 
@@ -101,8 +119,7 @@ def _enrich_docs_with_annotators(docs, cycle, partition):
 
 
 def _fill_for_group(assignments, group_members, partition, docs, phase):
-    group_members_mask = assignments[ASSIGNMENT_DF_HEADER_BASE[0]].isin(
-        group_members)
+    group_members_mask = assignments[ASSIGNMENT_DF_HEADER_BASE[0]].isin(group_members)
     assignment_header = get_assignment_header(phase)
     _fill_assigned_docs(partition, assignments, group_members_mask)
     _fill_assigned_sens(docs, partition, assignments, group_members_mask)
@@ -110,35 +127,42 @@ def _fill_for_group(assignments, group_members, partition, docs, phase):
 
 
 def _fill_assigned_sens(docs, partition, assignments, group_members_mask):
-    assignments.loc[group_members_mask, ASSIGNMENT_ADDITIONAL_HEADER[1]
-                    ] = sum_sens_for_docs(docs, partition)
+    assignments.loc[
+        group_members_mask, ASSIGNMENT_ADDITIONAL_HEADER[1]
+    ] = sum_sens_for_docs(docs, partition)
 
 
 def _fill_assigned_docs(partition, assignments, group_members_mask):
-    assignments.loc[group_members_mask, ASSIGNMENT_ADDITIONAL_HEADER[0]
-                    ] = ",".join(partition)
+    assignments.loc[group_members_mask, ASSIGNMENT_ADDITIONAL_HEADER[0]] = ",".join(
+        partition
+    )
 
 
 def _fill_sens_sum(group, assignments, assignment_header):
     for annotator in group:
         annotator_mask = assignments[assignment_header[0]] == annotator
-        sentences_before = assignments.loc[annotator_mask,
-                                           assignment_header[1]]
-        sentences_batch = assignments.loc[annotator_mask,
-                                          ASSIGNMENT_ADDITIONAL_HEADER[1]]
-        assignments.loc[annotator_mask, ASSIGNMENT_ADDITIONAL_HEADER[2]
-                        ] = sentences_before + sentences_batch
+        sentences_before = assignments.loc[annotator_mask, assignment_header[1]]
+        sentences_batch = assignments.loc[
+            annotator_mask, ASSIGNMENT_ADDITIONAL_HEADER[1]
+        ]
+        assignments.loc[annotator_mask, ASSIGNMENT_ADDITIONAL_HEADER[2]] = (
+            sentences_before + sentences_batch
+        )
 
 
 def update_assignments(doc_ids, annotator, annotator_folder, phase):
-    assignment_xlsx = os.path.join(get_download_folder(
-        annotator_folder, annotator, phase), ASSIGNMENT_XLSX)
+    assignment_xlsx = os.path.join(
+        get_download_folder(annotator_folder, annotator, phase), ASSIGNMENT_XLSX
+    )
     df = load_assigned_docs_as_df(annotator_folder, annotator, phase)
     assignment_txt = get_assignment_path(annotator_folder, annotator, phase)
     for doc_id in doc_ids:
-        df = df.append(pandas.DataFrame(
-            [[doc_id]], columns=ASSIGNMENT_FILE_HEADER), ignore_index=True)
+        df = df.append(
+            pandas.DataFrame([[doc_id]], columns=ASSIGNMENT_FILE_HEADER),
+            ignore_index=True,
+        )
     df.to_csv(path_or_buf=assignment_txt, sep=";", index=False)
     df.to_excel(assignment_xlsx, index=False)  # pylint: disable=no-member
     logging.info(
-        f"assignment text files were updated: {assignment_txt}\t{assignment_xlsx}")
+        f"assignment text files were updated: {assignment_txt}\t{assignment_xlsx}"
+    )

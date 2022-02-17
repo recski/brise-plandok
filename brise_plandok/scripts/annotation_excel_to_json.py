@@ -24,11 +24,10 @@ XLSX_FOLDER = "/home/eszter/ownCloud/Shared/BRISE/data/plandok/ana/2021_09/xlsx"
 
 GOLD_COLOR = "00FFD700"
 
-class FullDataConverter:
 
+class FullDataConverter:
     def __init__(self):
-        self.sen_to_gold_attrs = SenToAttrMap(
-            gold_dir=OLD_GOLD_FOLDER, fuzzy=True)
+        self.sen_to_gold_attrs = SenToAttrMap(gold_dir=OLD_GOLD_FOLDER, fuzzy=True)
 
     def gen_sens_from_xlsx(self, fn):
         fn = os.path.join(XLSX_FOLDER, fn)
@@ -46,7 +45,7 @@ class FullDataConverter:
         self._save(doc_id, doc)
 
     def _get_json_attr(self, doc_id):
-        with open(os.path.join(JSON_ATTR, doc_id+".jsonl")) as f:
+        with open(os.path.join(JSON_ATTR, doc_id + ".jsonl")) as f:
             return json.load(f)
 
     def _gen_sens(self, sheet, json_attr):
@@ -87,7 +86,9 @@ class FullDataConverter:
     def _get_gold_attr(self, text):
         sen = {SenFields.TEXT: text}
         attrs_from_gold_sen(sen, self.sen_to_gold_attrs, False)
-        gold_attr = sen[SenFields.GOLD_ATTRIBUTES] if SenFields.GOLD_ATTRIBUTES in sen else []
+        gold_attr = (
+            sen[SenFields.GOLD_ATTRIBUTES] if SenFields.GOLD_ATTRIBUTES in sen else []
+        )
         return sen[SenFields.LABELS_GOLD_EXISTS], gold_attr
 
 

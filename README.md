@@ -29,8 +29,20 @@ This repository uses [black](https://github.com/psf/black) for code formatting a
 pre-commit install
 ```
 
-This will create the `.git/hooks/pre-commit` file will be automatically executed prior to any commit.
+This creates the `.git/hooks/pre-commit` file, which automatically reformats all the modified files prior to any commit.
 
+### Run `black` separately
+
+```bash
+pip install black
+`black .`
+```
+
+### Run `flake8` separately
+```bash
+pip install flake8
+`flake8 .`
+```
 
 ## Annotated Data Description
 

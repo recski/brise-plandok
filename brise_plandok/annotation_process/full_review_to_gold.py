@@ -1,32 +1,42 @@
 import argparse
 import logging
 
-from brise_plandok.annotation_process.utils.constants import ATTRIBUTES_TO_IGNORE, FullReviewExcelConstants
+from brise_plandok.annotation_process.utils.constants import (
+    ATTRIBUTES_TO_IGNORE,
+    FullReviewExcelConstants,
+)
 from brise_plandok.annotation_process.utils.review_converter import ReviewConverter
 from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, DocumentFields, SenFields
 
 
 class FullReviewConverter(ReviewConverter):
-
     def __init__(self, data_file, gold_folder):
         super().__init__(data_file)
-        self.sen_to_gold_attrs = SenToAttrMap(gold_dir=gold_folder, fuzzy=False, full=True)
+        self.sen_to_gold_attrs = SenToAttrMap(
+            gold_dir=gold_folder, fuzzy=False, full=True
+        )
         self.SEN_GOLD = SenFields.FULL_GOLD_EXISTS
         self.DOC_GOLD = DocumentFields.FULL_GOLD
         self.CONSTANTS = FullReviewExcelConstants
 
     def _generate_attributes(self, review_sheet, row_id):
-        for col in range(FullReviewExcelConstants.ATTRIBUTE_OFFSET, review_sheet.max_column,
-                         FullReviewExcelConstants.ATTRIBUTE_STEP):
+        for col in range(
+            FullReviewExcelConstants.ATTRIBUTE_OFFSET,
+            review_sheet.max_column,
+            FullReviewExcelConstants.ATTRIBUTE_STEP,
+        ):
             label = review_sheet.cell(
-                row=row_id, column=col + FullReviewExcelConstants.LABEL_OFFSET).value
+                row=row_id, column=col + FullReviewExcelConstants.LABEL_OFFSET
+            ).value
             if label is None:
                 continue
             value = review_sheet.cell(
-                row=row_id, column=col + FullReviewExcelConstants.VALUE_OFFSET).value
+                row=row_id, column=col + FullReviewExcelConstants.VALUE_OFFSET
+            ).value
             ann_type = review_sheet.cell(
-                row=row_id, column=col + FullReviewExcelConstants.TYPE_ANN_REV_OFFSET).value
+                row=row_id, column=col + FullReviewExcelConstants.TYPE_ANN_REV_OFFSET
+            ).value
             if label not in ATTRIBUTES_TO_IGNORE:
                 yield {
                     AttributeFields.NAME: label,
@@ -55,24 +65,25 @@ class FullReviewConverter(ReviewConverter):
         for attr_name in gold_candidate.keys():
             if len(set(gold_candidate[attr_name][AttributeFields.TYPE])) > 1:
                 logging.warning(
-                    f"\n\nPlease prove validity:\nSame attribute has different reviewed_type in {sen_id}: {gold_candidate}.\n")
+                    f"\n\nPlease prove validity:\nSame attribute has different reviewed_type in {sen_id}: {gold_candidate}.\n"
+                )
 
     def __append_type(self, attr, attr_name, gold_candidate, sen_id):
         reviewed_type = attr[AttributeFields.TYPE]
         if reviewed_type is None:
-            raise ValueError(
-                "Reviewed type is missing for " + str(sen_id))
+            raise ValueError("Reviewed type is missing for " + str(sen_id))
         gold_candidate[attr_name][AttributeFields.TYPE].append(reviewed_type)
 
     def __append_values(self, attr, attr_name, gold_candidate, sen_id):
         values = attr[AttributeFields.VALUE]
         if values is None:
-            raise ValueError(
-                "Value is missing for " + str(sen_id))
+            raise ValueError("Value is missing for " + str(sen_id))
         gold_candidate[attr_name][AttributeFields.VALUE].append(values)
 
     def _get_modality(self, review_sheet, row_id, attributes):
-        modality = review_sheet.cell(row=row_id, column=FullReviewExcelConstants.MODALITY_ANN_REV_COL).value
+        modality = review_sheet.cell(
+            row=row_id, column=FullReviewExcelConstants.MODALITY_ANN_REV_COL
+        ).value
         if len(attributes) > 0 and not self._is_error(attributes) and modality is None:
             logging.warning("Modality is missing for row " + str(row_id))
         return modality
@@ -90,8 +101,9 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : " +
-               "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
+        format="%(asctime)s : "
+        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+    )
     args = get_args()
     converter = FullReviewConverter(args.data_file, args.gold_folder)
     converter.convert(args.review, args.override)

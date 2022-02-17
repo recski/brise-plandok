@@ -1,9 +1,12 @@
-
 import argparse
 
 from openpyxl.utils.cell import column_index_from_string, coordinate_from_string
-from brise_plandok.annotation_process.utils.constants import FullAnnotationExcelConstants
-from brise_plandok.annotation_process.utils.full_annotation_pre_filler import FullAnnotationPreFiller
+from brise_plandok.annotation_process.utils.constants import (
+    FullAnnotationExcelConstants,
+)
+from brise_plandok.annotation_process.utils.full_annotation_pre_filler import (
+    FullAnnotationPreFiller,
+)
 from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, SenFields
 import logging
@@ -21,11 +24,11 @@ FULL_GOLD = "full_gold"
 
 
 class FullAnnotationExcelGenerator(ExcelGenerator):
-
     def __init__(self, output_file, CONSTANTS, doc, sen_to_gold_attrs=None):
         super().__init__(output_file, CONSTANTS, doc, sen_to_gold_attrs)
-        self.input_template = os.path.join(os.path.dirname(
-            __file__), "../input", "annotation_full_template.xlsx")
+        self.input_template = os.path.join(
+            os.path.dirname(__file__), "../input", "annotation_full_template.xlsx"
+        )
 
     def _modify_header(self, sheet):
         return
@@ -54,14 +57,20 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
 
     def _fill_attribute(self, attribute, sen, sheet, col, row):
         sheet.cell(
-            row=row, column=col+self.CONSTANTS.CATEGORY_OFFSET).value = ATTR_TO_CAT[attribute[AttributeFields.NAME]]
-        sheet.cell(row=row, column=col +
-                   self.CONSTANTS.LABEL_OFFSET).value = attribute[AttributeFields.NAME]
-        sheet.cell(row=row, column=col +
-                   self.CONSTANTS.VALUE_OFFSET).value = attribute[AttributeFields.VALUE]
-        sheet.cell(row=row, column=col +
-                   self.CONSTANTS.TYPE_OFFSET).value = attribute[AttributeFields.TYPE]
-        self._add_coloring(sheet, col, row, attribute[LABELS_GOLD], attribute[FULL_GOLD])
+            row=row, column=col + self.CONSTANTS.CATEGORY_OFFSET
+        ).value = ATTR_TO_CAT[attribute[AttributeFields.NAME]]
+        sheet.cell(row=row, column=col + self.CONSTANTS.LABEL_OFFSET).value = attribute[
+            AttributeFields.NAME
+        ]
+        sheet.cell(row=row, column=col + self.CONSTANTS.VALUE_OFFSET).value = attribute[
+            AttributeFields.VALUE
+        ]
+        sheet.cell(row=row, column=col + self.CONSTANTS.TYPE_OFFSET).value = attribute[
+            AttributeFields.TYPE
+        ]
+        self._add_coloring(
+            sheet, col, row, attribute[LABELS_GOLD], attribute[FULL_GOLD]
+        )
 
     def _add_coloring(self, sheet, col, row, lables_gold, full_gold):
         if lables_gold:
@@ -73,27 +82,36 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
 
     def _add_validation(self, sheet):
         category_val = DataValidation(
-            type="list", formula1=f"={self.CONSTANTS.ATTRIBUTE_NAMED_RANGE}")
+            type="list", formula1=f"={self.CONSTANTS.ATTRIBUTE_NAMED_RANGE}"
+        )
         sheet.add_data_validation(category_val)
         type_val = DataValidation(
-            type="list", formula1=f"={self.CONSTANTS.TYPE_NAMED_RANGE}")
+            type="list", formula1=f"={self.CONSTANTS.TYPE_NAMED_RANGE}"
+        )
         sheet.add_data_validation(type_val)
         modality_val = DataValidation(
-            type="list", formula1=f"={self.CONSTANTS.MODALITY_NAMED_RANGE}")
+            type="list", formula1=f"={self.CONSTANTS.MODALITY_NAMED_RANGE}"
+        )
         sheet.add_data_validation(modality_val)
         for row in range(self.CONSTANTS.FIRST_DATA_ROW, sheet.max_row + 1):
             self._add_validation_for_row(
-                sheet, row, category_val, type_val, modality_val)
+                sheet, row, category_val, type_val, modality_val
+            )
 
     def _add_validation_for_row(self, sheet, row, category_val, type_val, modality_val):
-        for col in range(1, column_index_from_string(coordinate_from_string(self.CONSTANTS.LAST_COLUMN)[0])):
+        for col in range(
+            1,
+            column_index_from_string(
+                coordinate_from_string(self.CONSTANTS.LAST_COLUMN)[0]
+            ),
+        ):
             if self.__is_modality_cell(col):
                 modality_val.add(sheet.cell(row=row, column=col))
             if self._is_category_cell(col):
-                self._add_validations_for_attribute(
-                    sheet, row, col, category_val)
-                type_val.add(sheet.cell(row=row, column=col +
-                             self.CONSTANTS.TYPE_OFFSET))
+                self._add_validations_for_attribute(sheet, row, col, category_val)
+                type_val.add(
+                    sheet.cell(row=row, column=col + self.CONSTANTS.TYPE_OFFSET)
+                )
 
     def __is_modality_cell(self, col):
         return col == self.CONSTANTS.MODALITY_COL
@@ -110,15 +128,20 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : " +
-               "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
+        format="%(asctime)s : "
+        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+    )
     args = get_args()
     doc = load_json(args.data_file)
     generator = FullAnnotationExcelGenerator(
-        args.output_file, FullAnnotationExcelConstants(), doc)
+        args.output_file, FullAnnotationExcelConstants(), doc
+    )
     prefiller = FullAnnotationPreFiller()
-    sen_to_gold_attrs = SenToAttrMap(
-            gold_dir=args.data_folder, fuzzy=True, full=False) if args.data_folder else None
+    sen_to_gold_attrs = (
+        SenToAttrMap(gold_dir=args.data_folder, fuzzy=True, full=False)
+        if args.data_folder
+        else None
+    )
     prefiller.pre_fill_gold_labels(doc, sen_to_gold_attrs)
     prefiller.fill_gen_attributes_for_full(doc)
     generator.generate_excel()

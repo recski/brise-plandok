@@ -19,6 +19,39 @@ TYPE_PATTERNS = {
         r"die angrenzende gärtnerisch auszugestaltenden": {
             TYPE: AttributeTypes.CONDITION,
         },
+        r"gärtnerisch auszugestalten": {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.ArkadeHoehe: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.AufbautenZulaessig: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.AusnahmeGaertnerischAuszugestaltende: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION_EXCEPTION,
+        },
+    },
+
+    AttributesNames.Bauklasse: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.BauweiseID: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
     },
 
     AttributesNames.BegruenungDach: {
@@ -63,6 +96,37 @@ TYPE_PATTERNS = {
         },
         r"mit einer (Dachn|N)eigung bis": {
             TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
+    AttributesNames.DurchfahrtBreite: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.DurchfahrtHoehe: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+
+    AttributesNames.DurchgangBreite: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.DurchgangHoehe: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.EinleitungNiederschlagswaesser: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
         },
     },
 
@@ -114,6 +178,18 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.GehsteigbreiteMin: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.OeffentlicheVerkehrsflaecheBreiteMin: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
     AttributesNames.PlangebietAllgemein: {
         ALL: {
             TYPE: AttributeTypes.CONDITION,
@@ -126,9 +202,51 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.StellplatzregulativUmfangMaximumAbsolut: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.StellplatzregulativUmfangMinimumRelativ: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.UnterirdischeBaulichkeiten: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
+    AttributesNames.VerbotWohnung: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.VerkehrsflaecheID: {
         ALL: {
             TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
+    AttributesNames.VonBebauungFreizuhalten: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.VorkehrungBepflanzung: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.WidmungInMehrerenEbenen: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
         },
     },
 

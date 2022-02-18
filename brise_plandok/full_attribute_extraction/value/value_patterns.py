@@ -202,13 +202,13 @@ VALUE_PATTERNS = {
         r"(H|h)öhe von( mindestens)? " + NUMBER_WITH_METER: {
             GROUP: 3
         },
-        r" " + NUMBER_WITH_METER + r" (H|h)öhe": {
+        r" " + NUMBER_WITH_METER + r" (H|h)[öo]he": {
             GROUP: 1
         },
     },
 
     AttributesNames.DurchgangBreite: {
-        r"(B|b)reite von( mindestens)? " + NUMBER_WITH_METER: {
+        r"[Bb]reite von( mindestens)? (von )?" + NUMBER_WITH_METER: {
             GROUP: 3
         },
         r" " + NUMBER_WITH_METER + r" [Bb]reite": {
@@ -400,7 +400,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.GebaeudeHoeheMax: {
-        r"(Gebäudehöhe|Höhe) \D*" + NUMBER_WITH_METER: {
+        r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von) " + NUMBER_WITH_METER: {
             GROUP: 2,
         },
     },
@@ -430,6 +430,9 @@ VALUE_PATTERNS = {
         r"Höhenlage von (" + NUMBER_WITH_METER + r" über Wr. Null) herzustellen": {
             GROUP: 1,
         },
+        r"Höhenlage mit " + NUMBER_WITH_METER: {
+            GROUP: 1,
+        },
     },
 
     AttributesNames.InSchutzzone: {
@@ -454,7 +457,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.OeffentlicheVerkehrsflaecheBreiteMin: {
-        r"(von (mehr als |über )?|ab)" + NUMBER_WITH_METER + r"( (und|oder) mehr)?": {
+        r"(von (mehr als |über )?|ab )" + NUMBER_WITH_METER + r"( (und|oder) mehr)?": {
             GROUP: 3,
         },
     },
@@ -470,6 +473,9 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
         r" ([A-Z](-[A-Z])+),? ": {
+            GROUP: 1,
+        },
+        r" ([A-Z][A-Z] und [A-Z][A-Z]) ": {
             GROUP: 1,
         },
         r" ([a-z](-[a-z])+),? ": {
@@ -499,7 +505,7 @@ VALUE_PATTERNS = {
         r"(insgesamt|höchstens|insgesamt höchstens) " + NUMBER_WITH_PERCENT: {
             GROUP: 2,
         },
-        r"maximale Stellplatzzahl mit  " + NUMBER_WITH_PERCENT: {
+        r"maximale Stellplatzzahl mit " + NUMBER_WITH_PERCENT: {
             GROUP: 1,
         },
     },

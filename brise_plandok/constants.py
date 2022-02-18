@@ -90,9 +90,7 @@ class AttributesNames:
     AnlageZumEinstellenVorhanden = "AnlageZumEinstellenVorhanden"
     AnOeffentlichenVerkehrsflaechen = "AnOeffentlichenVerkehrsflaechen"
     AnordnungGaertnerischeAusgestaltung = "AnordnungGaertnerischeAusgestaltung"
-    AnordnungGaertnerischeAusgestaltungProzentual = (
-        "AnordnungGaertnerischeAusgestaltungProzentual"
-    )
+    AnordnungGaertnerischeAusgestaltungProzentual = "AnordnungGaertnerischeAusgestaltungProzentual"
     AnteilBaumbepflanzung = "AnteilBaumbepflanzung"
     AnteilDachbegruenung = "AnteilDachbegruenung"
     AnzahlGebaeudeMax = "AnzahlGebaeudeMax"
@@ -132,6 +130,7 @@ class AttributesNames:
     PlangebietAllgemein = "PlangebietAllgemein"
     Planzeichen = "Planzeichen"
     StellplatzImNiveauZulaessig = "StellplatzImNiveauZulaessig"
+    StellplatzregulativUmfangMaximumAbsolut = "StellplatzregulativUmfangMaximumAbsolut"
     StellplatzregulativUmfangMaximumRelativ = "StellplatzregulativUmfangMaximumRelativ"
     StellplatzregulativUmfangMinimumRelativ = "StellplatzregulativUmfangMinimumRelativ"
     Stockwerk = "Stockwerk"
@@ -143,9 +142,7 @@ class AttributesNames:
     UnterbrechungGeschlosseneBauweise = "UnterbrechungGeschlosseneBauweise"
     UnterirdischeBaulichkeiten = "UnterirdischeBaulichkeiten"
     VerbotBueroGeschaeftsgebaeude = "VerbotBueroGeschaeftsgebaeude"
-    VerbotFensterZuOeffentlichenVerkehrsflaechen = (
-        "VerbotFensterZuOeffentlichenVerkehrsflaechen"
-    )
+    VerbotFensterZuOeffentlichenVerkehrsflaechen = "VerbotFensterZuOeffentlichenVerkehrsflaechen"
     VerbotStaffelung = "VerbotStaffelung"
     VerbotWohnung = "VerbotWohnung"
     VerkehrsflaecheID = "VerkehrsflaecheID"

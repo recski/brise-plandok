@@ -29,12 +29,8 @@ def add_graphs(dataset, graph_path, graph_format):
 
 def get_dataset(data, label_vocab, dataset_name, graph_format):
     dataset_path = os.path.join(get_data_folder_path(), dataset_name)
-    graph_path = os.path.join(
-        get_data_folder_path(), f"{dataset_name}_{graph_format}.pickle"
-    )
-    logging.info(
-        f"Start processing data for {dataset_path} with {graph_format} graphs..."
-    )
+    graph_path = os.path.join(get_data_folder_path(), f"{dataset_name}_{graph_format}.pickle")
+    logging.info(f"Start processing data for {dataset_path} with {graph_format} graphs...")
 
     dataset = Dataset(get_sentences(data), label_vocab=label_vocab, lang="de")
     potato_df = add_graphs(dataset, graph_path, graph_format)
@@ -43,9 +39,7 @@ def get_dataset(data, label_vocab, dataset_name, graph_format):
     potato_df.loc[:, "labels"] = data["labels"]
 
     potato_df.to_pickle(dataset_path)
-    logging.info(
-        f"...finished processing data for {dataset_path} with {graph_format} graphs"
-    )
+    logging.info(f"...finished processing data for {dataset_path} with {graph_format} graphs")
     return potato_df
 
 
@@ -53,9 +47,7 @@ def create_dataset(dir_path, only_gold, dataset_name, graph_format):
     data_df = load_data_to_df(dir_path, only_gold)
     logging.info(f"Data loaded to DataFrame for {dir_path}. Shape: {data_df.shape}")
 
-    potato_df = get_dataset(
-        data_df, get_vocab_for_all_attributes(), dataset_name, graph_format
-    )
+    potato_df = get_dataset(data_df, get_vocab_for_all_attributes(), dataset_name, graph_format)
     logging.info("POTATO dataset is created")
     logging.info(f"\n{potato_df.head()}")
 
@@ -72,8 +64,7 @@ def get_args():
 if __name__ == "__main__":
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     args = get_args()
     create_dataset(args.dir_path, args.only_gold, args.dataset_name, args.graph)

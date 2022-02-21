@@ -74,9 +74,7 @@ class Annotate:
                 split_labels = split_labels[1:]
 
             row_id = i + 3
-            self._set_sentence_data(
-                row_id, sentences[i], sheet_obj, sentence_ids[i], gold
-            )
+            self._set_sentence_data(row_id, sentences[i], sheet_obj, sentence_ids[i], gold)
 
             if sentence_ids[i].split("_")[-2] == "0":
                 self._add_header(row_id, sheet_obj)
@@ -134,9 +132,7 @@ class Annotate:
         cleaned_labels = label_split.copy()
         for label in label_split:
             if label and label not in ATTR_TO_CAT:
-                logging.warning(
-                    f"{label} attribute not in the attribute list, will be skipped!"
-                )
+                logging.warning(f"{label} attribute not in the attribute list, will be skipped!")
                 cleaned_labels.remove(label)
         return cleaned_labels
 
@@ -190,12 +186,8 @@ class Annotate:
         sheet_obj[sentence_id_coord].alignment = Alignment(wrapText=True)
         sheet_obj[sentence_id_coord].font = Font(size=12)
         if gold:
-            sheet_obj[sentence_coord].fill = PatternFill(
-                fgColor=GOLD_COLOR, fill_type="solid"
-            )
-            sheet_obj[sentence_id_coord].fill = PatternFill(
-                fgColor=GOLD_COLOR, fill_type="solid"
-            )
+            sheet_obj[sentence_coord].fill = PatternFill(fgColor=GOLD_COLOR, fill_type="solid")
+            sheet_obj[sentence_id_coord].fill = PatternFill(fgColor=GOLD_COLOR, fill_type="solid")
 
     def _add_header(self, row_id, sheet_obj):
         for j in range(ord("C"), ord("P") + 1):
@@ -222,14 +214,11 @@ class Annotate:
 def main():
     logging.basicConfig(
         level=logging.WARNING,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     annotate = Annotate()
     parser = argparse.ArgumentParser(description="Create excel files for annotation.")
-    parser.add_argument(
-        "--dataset", required=True, help="the path to the dataset to be annotated"
-    )
+    parser.add_argument("--dataset", required=True, help="the path to the dataset to be annotated")
     parser.add_argument(
         "--template",
         required=True,

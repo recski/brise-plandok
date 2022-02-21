@@ -101,8 +101,7 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.WARNING,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     args = get_args()
 

@@ -47,6 +47,4 @@ def _set_assigned_true(df, first, batch_size, phase):
 def _get_next_batch_doc_ids(df, first, batch_size):
     order_col = DOC_HEADER[0]
     doc_id_col = DOC_HEADER[1]
-    return list(
-        df[doc_id_col][(df[order_col] >= first) & (df[order_col] < first + batch_size)]
-    )
+    return list(df[doc_id_col][(df[order_col] >= first) & (df[order_col] < first + batch_size)])

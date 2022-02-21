@@ -202,6 +202,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.GebaeudeBautyp: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
     AttributesNames.GebaeudeHoeheMax: {
         r" (mit|bis zu) einer Gebäudehöhe von( bis zu)? \d\d m": {
             TYPE: AttributeTypes.CONDITION,

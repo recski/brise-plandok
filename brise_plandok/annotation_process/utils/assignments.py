@@ -25,9 +25,7 @@ def get_assignment_header(phase):
 
 
 def get_download_folder(ann_folder, annotator, phase):
-    return os.path.join(
-        ann_folder, annotator, PHASE_STR + str(phase), ANNOTATOR_DOWNLOAD_FOLDER
-    )
+    return os.path.join(ann_folder, annotator, PHASE_STR + str(phase), ANNOTATOR_DOWNLOAD_FOLDER)
 
 
 def get_assignment_path(ann_folder, annotator, phase):
@@ -35,9 +33,7 @@ def get_assignment_path(ann_folder, annotator, phase):
 
 
 def load_assigned_docs_as_list(ann_folder, annotator, phase):
-    return list(
-        itertools.chain(*load_assigned_docs_as_df(ann_folder, annotator, phase).values)
-    )
+    return list(itertools.chain(*load_assigned_docs_as_df(ann_folder, annotator, phase).values))
 
 
 def load_assigned_docs_as_df(ann_folder, annotator, phase):
@@ -90,9 +86,7 @@ def _check_if_all_docs_used(num_to_doc):
             raise ValueError(f"Some docs were not used in the partition {docs}")
 
 
-def fill_assignments_with_batch(
-    docs, cycle, assignments, partition, next_doc_ids, phase
-):
+def fill_assignments_with_batch(docs, cycle, assignments, partition, next_doc_ids, phase):
     assignments[ASSIGNMENT_ADDITIONAL_HEADER[0]] = None
     assignments[ASSIGNMENT_ADDITIONAL_HEADER[1]] = -1
     assignments[ASSIGNMENT_ADDITIONAL_HEADER[2]] = -1
@@ -127,24 +121,20 @@ def _fill_for_group(assignments, group_members, partition, docs, phase):
 
 
 def _fill_assigned_sens(docs, partition, assignments, group_members_mask):
-    assignments.loc[
-        group_members_mask, ASSIGNMENT_ADDITIONAL_HEADER[1]
-    ] = sum_sens_for_docs(docs, partition)
+    assignments.loc[group_members_mask, ASSIGNMENT_ADDITIONAL_HEADER[1]] = sum_sens_for_docs(
+        docs, partition
+    )
 
 
 def _fill_assigned_docs(partition, assignments, group_members_mask):
-    assignments.loc[group_members_mask, ASSIGNMENT_ADDITIONAL_HEADER[0]] = ",".join(
-        partition
-    )
+    assignments.loc[group_members_mask, ASSIGNMENT_ADDITIONAL_HEADER[0]] = ",".join(partition)
 
 
 def _fill_sens_sum(group, assignments, assignment_header):
     for annotator in group:
         annotator_mask = assignments[assignment_header[0]] == annotator
         sentences_before = assignments.loc[annotator_mask, assignment_header[1]]
-        sentences_batch = assignments.loc[
-            annotator_mask, ASSIGNMENT_ADDITIONAL_HEADER[1]
-        ]
+        sentences_batch = assignments.loc[annotator_mask, ASSIGNMENT_ADDITIONAL_HEADER[1]]
         assignments.loc[annotator_mask, ASSIGNMENT_ADDITIONAL_HEADER[2]] = (
             sentences_before + sentences_batch
         )
@@ -163,6 +153,4 @@ def update_assignments(doc_ids, annotator, annotator_folder, phase):
         )
     df.to_csv(path_or_buf=assignment_txt, sep=";", index=False)
     df.to_excel(assignment_xlsx, index=False)  # pylint: disable=no-member
-    logging.info(
-        f"assignment text files were updated: {assignment_txt}\t{assignment_xlsx}"
-    )
+    logging.info(f"assignment text files were updated: {assignment_txt}\t{assignment_xlsx}")

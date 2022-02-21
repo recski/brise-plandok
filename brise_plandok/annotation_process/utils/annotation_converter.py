@@ -24,9 +24,7 @@ class AnnotationConverter(Converter):
             return
         data[reviewers_field].append(reviewer)
 
-    def _clear_previous_annotation_info(
-        self, data, annotators_field, annotated_attribute_field
-    ):
+    def _clear_previous_annotation_info(self, data, annotators_field, annotated_attribute_field):
         data[annotators_field] = []
         for sen in data[DocumentFields.SENS].values():
             sen[annotated_attribute_field] = {}

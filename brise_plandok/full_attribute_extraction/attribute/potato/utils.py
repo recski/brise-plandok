@@ -52,9 +52,7 @@ def doc_to_df(data, doc, labels_present=True):
 
 
 def filter_labels(df, labels_to_keep, empty_label):
-    df.labels = df.labels.apply(
-        lambda x: [label for label in x if label in labels_to_keep]
-    )
+    df.labels = df.labels.apply(lambda x: [label for label in x if label in labels_to_keep])
     df.labels = df.labels.apply(lambda x: [empty_label] if len(x) == 0 else x)
 
 
@@ -63,9 +61,7 @@ def get_data_folder_path():
 
 
 def get_manual_feature_folder_path():
-    return os.path.join(
-        os.path.dirname(os.path.abspath(__file__)), "features", "manual"
-    )
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "features", "manual")
 
 
 def get_label_vocab(labels):
@@ -83,9 +79,7 @@ def gen_all_attributes_names():
 
 
 def get_vocab_for_all_attributes():
-    all_attribute_names = [NOT] + [
-        attr_name for attr_name in gen_all_attributes_names()
-    ]
+    all_attribute_names = [NOT] + [attr_name for attr_name in gen_all_attributes_names()]
     return get_label_vocab(all_attribute_names)
 
 
@@ -108,9 +102,7 @@ def create_potato_dataset(doc):
     doc_to_df(data, doc, labels_present=False)
     df = pd.DataFrame.from_dict(data)
     sen_ids = df.sen_id
-    dataset = Dataset(
-        get_sentences(df), label_vocab=get_vocab_for_all_attributes(), lang="de"
-    )
+    dataset = Dataset(get_sentences(df), label_vocab=get_vocab_for_all_attributes(), lang="de")
     dataset.set_graphs(dataset.parse_graphs(graph_format="fourlang"))
     return dataset, sen_ids
 

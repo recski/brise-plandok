@@ -58,9 +58,7 @@ class LabelReviewConverter(ReviewConverter):
                 column=col + LabelReviewExcelConstants.ATTRIBUTE_REVIEW_OFFSET,
             ).value
             if review is None:
-                raise ValueError(
-                    "Review field is not filled out for row " + str(row_id)
-                )
+                raise ValueError("Review field is not filled out for row " + str(row_id))
             if label not in ATTRIBUTES_TO_IGNORE:
                 yield {
                     "name": label,
@@ -83,8 +81,7 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     args = get_args()
     converter = LabelReviewConverter(args.data_file, args.gold_folder)

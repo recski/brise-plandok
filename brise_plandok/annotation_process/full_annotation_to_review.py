@@ -47,9 +47,7 @@ class FullAnnotationConverter(AnnotationConverter):
             doc, DocumentFields.FULL_ANNOTATORS, SenFields.FULL_ANNOTATED_ATTRIBUTES
         )
         for annotated_xlsx in annotated_xlsx_files:
-            annotator = os.path.normpath(annotated_xlsx).split(os.path.sep)[
-                ANNOTATOR_NAME_INDEX
-            ]
+            annotator = os.path.normpath(annotated_xlsx).split(os.path.sep)[ANNOTATOR_NAME_INDEX]
             self._add_annotator(doc, annotator, DocumentFields.FULL_ANNOTATORS)
             self._fill_full_annotations(annotated_xlsx, doc, annotator)
 
@@ -57,9 +55,7 @@ class FullAnnotationConverter(AnnotationConverter):
         workbook = openpyxl.load_workbook(annotation_xlsx)
         ann_sheet = workbook[FullAnnotationExcelConstants.MAIN_SHEET_NAME]
 
-        for row_id in range(
-            FullAnnotationExcelConstants.FIRST_DATA_ROW, ann_sheet.max_row + 1
-        ):
+        for row_id in range(FullAnnotationExcelConstants.FIRST_DATA_ROW, ann_sheet.max_row + 1):
             sen_id = ann_sheet.cell(
                 row=row_id, column=FullAnnotationExcelConstants.SEN_ID_COL
             ).value
@@ -90,9 +86,7 @@ class FullAnnotationConverter(AnnotationConverter):
         if modality is None:
             logging.debug(f"Modality is left empty for {sen_id}")
             return
-        full_annotation = doc[DocumentFields.SENS][sen_id][
-            SenFields.FULL_ANNOTATED_ATTRIBUTES
-        ]
+        full_annotation = doc[DocumentFields.SENS][sen_id][SenFields.FULL_ANNOTATED_ATTRIBUTES]
         if FullAnnotatedAttributeFields.MODALITY not in full_annotation:
             full_annotation[FullAnnotatedAttributeFields.MODALITY] = {}
         modalities = full_annotation[FullAnnotatedAttributeFields.MODALITY]
@@ -157,9 +151,7 @@ class FullAnnotationConverter(AnnotationConverter):
                 f"Review = false for {doc[DocumentFields.ID]}, no review excel will be generated."
             )
             return
-        generator = FullReviewExcelGenerator(
-            output_file, FullReviewExcelConstants(), doc
-        )
+        generator = FullReviewExcelGenerator(output_file, FullReviewExcelConstants(), doc)
         generator.generate_excel()
 
 
@@ -177,8 +169,7 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     logging.getLogger("penman").setLevel(logging.WARNING)
     logging.getLogger("stanza").setLevel(logging.WARNING)

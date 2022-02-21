@@ -56,9 +56,7 @@ class ProgressTacker:
             uploaded_dict[annotator] = set(uploaded)
         return uploaded_dict
 
-    def get_ready_docs(
-        self, doc_tracking_file, uploaded_dict, first, last, only_yes, only_new
-    ):
+    def get_ready_docs(self, doc_tracking_file, uploaded_dict, first, last, only_yes, only_new):
         df = pandas.read_excel(
             doc_tracking_file,
             sheet_name=TRACKING_SHEET,
@@ -120,8 +118,7 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     args = get_args()
     progress_tracker = ProgressTacker(args.phase)

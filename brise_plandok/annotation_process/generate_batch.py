@@ -44,9 +44,7 @@ def generate_batch(
     partition = get_assignment(next_doc_ids, docs_df, cycle_df.shape[0])
     logging.info(f"partition: {partition}")
 
-    fill_assignments_with_batch(
-        docs_df, cycle_df, assignment_df, partition, next_doc_ids, phase
-    )
+    fill_assignments_with_batch(docs_df, cycle_df, assignment_df, partition, next_doc_ids, phase)
     logging.info(f"assignments with new batch:\n{assignment_df}")
 
     if not generate_xlsx:
@@ -81,8 +79,7 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     args = get_args()
     generate_batch(

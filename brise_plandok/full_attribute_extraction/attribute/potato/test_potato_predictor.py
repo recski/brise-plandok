@@ -21,7 +21,5 @@ class TestPotatoPredictor(unittest.TestCase):
         )
         predictor = PotatoPredictor(doc)
 
-        pred_labels = predictor.get_prediction_for_sen(
-            doc[DocumentFields.SENS]["8228_10_0"]
-        )
+        pred_labels = predictor.get_prediction_for_sen(doc[DocumentFields.SENS]["8228_10_0"])
         self.assertLess(len(pred_labels), 3)

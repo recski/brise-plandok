@@ -97,9 +97,7 @@ def extract():
                 fl, new_words = extractor.postprocess_fl(fl)
                 ret_value["result"]["graph"].append(fl)
                 vocabulary = set(w.lemma for w in sen.words).union(new_words)
-                attr_tree = extractor.fl_attr.parse(
-                    fl, "fl", "attr", "alg", vocabulary=vocabulary
-                )
+                attr_tree = extractor.fl_attr.parse(fl, "fl", "attr", "alg", vocabulary=vocabulary)
 
                 rules = extractor.attrs_to_rules(attr_tree, to_inherit)
                 to_inherit.update(

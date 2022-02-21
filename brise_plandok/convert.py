@@ -64,9 +64,7 @@ class Converter:
         return {
             "id": doc_id,
             "text": None,
-            "sections": [
-                {"id": section_id, "text": None, "num": section_num, "sens": [sentence]}
-            ],
+            "sections": [{"id": section_id, "text": None, "num": section_num, "sens": [sentence]}],
         }
 
     @staticmethod
@@ -280,9 +278,7 @@ class Converter:
             if cat == "modal":
                 curr_sen["modality"].add(attr)
             else:
-                curr_sen["attributes"].append(
-                    {"type": cat, "name": attr, "value": value}
-                )
+                curr_sen["attributes"].append({"type": cat, "name": attr, "value": value})
         if curr_sen:
             Converter.check_attribute(curr_sen)
             yield curr_sen
@@ -294,19 +290,13 @@ class Converter:
             if i < 2:
                 continue
 
-            sen_id, sen, rest = (
-                (row[0], row[1], row[2:]) if has_id else (f"{i}", row[0], row[1:])
-            )
+            sen_id, sen, rest = (row[0], row[1], row[2:]) if has_id else (f"{i}", row[0], row[1:])
 
-            attrs = [
-                field for j, field in enumerate(rest) if field and j in (1, 3, 5, 7)
-            ]
+            attrs = [field for j, field in enumerate(rest) if field and j in (1, 3, 5, 7)]
 
             attributes = Converter.attrs_from_names(attrs)
             logging.warning(attributes)
-            yield Converter.build_json(
-                sen, attributes=attributes, sen_id=sen_id, modality=None
-            )
+            yield Converter.build_json(sen, attributes=attributes, sen_id=sen_id, modality=None)
 
     def read_xlsx(self, stream):
         sens = [
@@ -388,9 +378,7 @@ class Converter:
                 self._parse_sen(sen, dataset)
         annotate.parse(
             dataset,
-            os.path.join(
-                os.path.dirname(brise_plandok.annotation.__file__), "BRISE.xlsx"
-            ),
+            os.path.join(os.path.dirname(brise_plandok.annotation.__file__), "BRISE.xlsx"),
             file,
         )
 

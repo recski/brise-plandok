@@ -3,7 +3,7 @@ import unittest
 import numpy as np
 
 from brise_plandok.full_attribute_extraction.attribute.potato.constants import (
-    TOP_15_ANNOTATED,
+    TOP_14_ANNOTATED,
     NOT,
 )
 from brise_plandok.full_attribute_extraction.attribute.potato.utils import (
@@ -34,13 +34,13 @@ class TestUtils(unittest.TestCase):
 
     def test_filter_labels(self):
         df = load_data_to_df("../../../../data/train", ONLY_GOLD)
-        filter_labels(df, TOP_15_ANNOTATED, NOT)
+        filter_labels(df, TOP_14_ANNOTATED, NOT)
         unique_labels = len(df["labels"].explode().unique())
         self.assertEqual(unique_labels, 16)
 
     def test_get_label_vocab(self):
-        label_vocab = get_label_vocab(TOP_15_ANNOTATED)
-        self.assertSetEqual(set(label_vocab.keys()), set(TOP_15_ANNOTATED))
+        label_vocab = get_label_vocab(TOP_14_ANNOTATED)
+        self.assertSetEqual(set(label_vocab.keys()), set(TOP_14_ANNOTATED))
 
     def test_get_all_attributes_names(self):
         attribute_names = [attr for attr in gen_all_attributes_names()]
@@ -50,6 +50,4 @@ class TestUtils(unittest.TestCase):
         all_features = get_all_manual_features()
         attribute_names = [attr for attr in gen_all_attributes_names()]
         attribute_names_from_features = [feat[-1] for feat in all_features]
-        self.assertLessEqual(
-            len(set(attribute_names_from_features)), len(set(attribute_names))
-        )
+        self.assertLessEqual(len(set(attribute_names_from_features)), len(set(attribute_names)))

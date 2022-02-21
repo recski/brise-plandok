@@ -14,9 +14,7 @@ import logging
 import os
 
 
-def calculate_sentences_for_next_batch(
-    doc_tracking_file, batch_size, json_folder, phase
-):
+def calculate_sentences_for_next_batch(doc_tracking_file, batch_size, json_folder, phase):
     docs = load_doc_tracking_data(doc_tracking_file)
     next_docs = get_next_batch(docs, batch_size, False, phase)
     logging.info(f"next documents to assign: {next_docs}")
@@ -76,8 +74,7 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     args = get_args()
     calculate_sentences_for_next_batch(

@@ -28,9 +28,7 @@ PATTERNS_BY_ATTR = {
     "Dachart": {
         "(u_0 / Flachdaecher)",
     },
-    "DachflaecheMin": {
-        "(u_0 / ab :2 (u_1 / Groesse) :1 (u_2 / ausbilden :2 (u_3 / Dach)))"
-    },
+    "DachflaecheMin": {"(u_0 / ab :2 (u_1 / Groesse) :1 (u_2 / ausbilden :2 (u_3 / Dach)))"},
     "DachneigungMax": {"(u_0 / Dachneigung :0 (u_1 / bis))"},
     "Flaechen": {
         "(u_0 / Bauplatzflaeche)",

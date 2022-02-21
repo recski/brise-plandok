@@ -36,18 +36,14 @@ class ExcelGenerator:
 
     def _fill_sentences(self, sen_id, main_sheet, row, sen):
         main_sheet.cell(row=row, column=self.CONSTANTS.SEN_ID_COL).value = sen_id
-        main_sheet.cell(row=row, column=self.CONSTANTS.SEN_TEXT_COL).value = sen[
-            SF.TEXT
-        ]
+        main_sheet.cell(row=row, column=self.CONSTANTS.SEN_TEXT_COL).value = sen[SF.TEXT]
         if self._full_gold_exists(sen):
             self._color_gold(main_sheet, row, self.CONSTANTS.SEN_ID_COL)
             self._color_gold(main_sheet, row, self.CONSTANTS.SEN_TEXT_COL)
-        main_sheet.cell(
-            row=row, column=self.CONSTANTS.SEN_TEXT_COL
-        ).alignment = Alignment(wrapText=True)
-        main_sheet.cell(row=row, column=self.CONSTANTS.SEN_TEXT_COL).font = Font(
-            size=12
+        main_sheet.cell(row=row, column=self.CONSTANTS.SEN_TEXT_COL).alignment = Alignment(
+            wrapText=True
         )
+        main_sheet.cell(row=row, column=self.CONSTANTS.SEN_TEXT_COL).font = Font(size=12)
 
     def _fill_attributes(self, sen, sheet, row):
         col = self.CONSTANTS.ATTRIBUTE_OFFSET
@@ -90,9 +86,7 @@ class ExcelGenerator:
         self._color(main_sheet, row, col, GOLD_COLOR)
 
     def _color(self, main_sheet, row, col, color):
-        main_sheet.cell(row=row, column=col).fill = PatternFill(
-            fgColor=color, fill_type="solid"
-        )
+        main_sheet.cell(row=row, column=col).fill = PatternFill(fgColor=color, fill_type="solid")
         main_sheet.cell(row=row, column=col).font = Font(size=12)
 
     def _add_validations_for_attribute(self, main_sheet, row, col, category_val):
@@ -102,14 +96,10 @@ class ExcelGenerator:
             formula1="==INDIRECT(${0}${1})".format(get_column_letter(col), str(row)),
         )
         main_sheet.add_data_validation(sub_data_val)
-        sub_data_val.add(
-            main_sheet.cell(row=row, column=col + self.CONSTANTS.LABEL_OFFSET)
-        )
+        sub_data_val.add(main_sheet.cell(row=row, column=col + self.CONSTANTS.LABEL_OFFSET))
 
     def _is_category_cell(self, col):
-        return (
-            col - self.CONSTANTS.ATTRIBUTE_OFFSET
-        ) % self.CONSTANTS.ATTRIBUTE_STEP == 0
+        return (col - self.CONSTANTS.ATTRIBUTE_OFFSET) % self.CONSTANTS.ATTRIBUTE_STEP == 0
 
     def _set_row_height(self, main_sheet):
         for row in range(self.CONSTANTS.FIRST_DATA_ROW, main_sheet.max_row + 1):

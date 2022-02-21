@@ -68,9 +68,7 @@ def eval_against_gold(data, attr_vocab, annotator_vocab):
     gold_ann = annotator_vocab.get_id("gold")
     print("gold ann id:", gold_ann)
     attr_stats = defaultdict(
-        lambda: {
-            ann: Counter() for ann in annotator_vocab.id_to_word if ann != gold_ann
-        }
+        lambda: {ann: Counter() for ann in annotator_vocab.id_to_word if ann != gold_ann}
     )
 
     for i, (sen_id, sen) in enumerate(data.items()):
@@ -112,13 +110,9 @@ def eval_against_gold(data, attr_vocab, annotator_vocab):
     for attr, stats in attr_stats[:10]:
         named_stats = {annotator_vocab.get_word(ann): st for ann, st in stats.items()}
 
-        real_annot = {
-            ann: st for ann, st in named_stats.items() if not ann.startswith("min")
-        }
+        real_annot = {ann: st for ann, st in named_stats.items() if not ann.startswith("min")}
 
-        vote_annot = {
-            ann: st for ann, st in named_stats.items() if ann.startswith("min")
-        }
+        vote_annot = {ann: st for ann, st in named_stats.items() if ann.startswith("min")}
 
         print("===============")
         print(attr_vocab.get_word(attr))
@@ -131,9 +125,7 @@ def add_votes(data, attr_vocab, annotator_vocab):
     """add new annotators representing the adjudication strategies of choosing
     attributes that are chosen by at least 1, 2, 3 annotators"""
     real_annotators = list(annotator_vocab.id_to_word.keys())
-    vote_anns = {
-        n: annotator_vocab.get_id(f"min{n}", allow_new=True) for n in (1, 2, 3)
-    }
+    vote_anns = {n: annotator_vocab.get_id(f"min{n}", allow_new=True) for n in (1, 2, 3)}
 
     for i, (sen_id, sen) in enumerate(data.items()):
         attr_counter = Counter()
@@ -200,8 +192,7 @@ def measure_agreement(data, attr_vocab, annotator_vocab):
         attr_freq = ratings[attr].sum()
 
         attr_counts_str = " ".join(
-            f"{n}:{count}"
-            for n, count in sorted(attr_counts[attr].items(), reverse=True)
+            f"{n}:{count}" for n, count in sorted(attr_counts[attr].items(), reverse=True)
         )
 
         stats.append(
@@ -276,9 +267,7 @@ def load_data(filenames):
             try:
                 doc_id, annotator = name.split("_")
             except ValueError:
-                annotator = os.path.normpath(fn).split(os.path.sep)[
-                    ANNOTATOR_NAME_INDEX
-                ]
+                annotator = os.path.normpath(fn).split(os.path.sep)[ANNOTATOR_NAME_INDEX]
 
         annotator = annotator_vocab.get_id(annotator.lower(), allow_new=True)
 
@@ -324,9 +313,7 @@ def _is_header(sen):
 
 def remove_empty(data):
     new_data = {
-        sen_id: sen_data
-        for sen_id, sen_data in data.items()
-        if any(sen_data["annot"].values())
+        sen_id: sen_data for sen_id, sen_data in data.items() if any(sen_data["annot"].values())
     }
 
     logging.warning(
@@ -361,9 +348,7 @@ def gen_sens_from_json(fn):
 def gen_sens_from_xlsx(fn):
     for i, row in enumerate(xlsx_to_data(fn)):
         if i == 0:
-            assert (
-                row[0] == "Sentence_ID" or row[0] == "ID"
-            ), f"unexpected header in {fn}: {row}"
+            assert row[0] == "Sentence_ID" or row[0] == "ID", f"unexpected header in {fn}: {row}"
             continue
 
         if row[0] is None:
@@ -454,8 +439,7 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     args = get_args()
     filenames = args.annotations

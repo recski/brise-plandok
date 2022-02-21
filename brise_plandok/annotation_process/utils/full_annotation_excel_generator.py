@@ -56,9 +56,9 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
                 }
 
     def _fill_attribute(self, attribute, sen, sheet, col, row):
-        sheet.cell(
-            row=row, column=col + self.CONSTANTS.CATEGORY_OFFSET
-        ).value = ATTR_TO_CAT[attribute[AttributeFields.NAME]]
+        sheet.cell(row=row, column=col + self.CONSTANTS.CATEGORY_OFFSET).value = ATTR_TO_CAT[
+            attribute[AttributeFields.NAME]
+        ]
         sheet.cell(row=row, column=col + self.CONSTANTS.LABEL_OFFSET).value = attribute[
             AttributeFields.NAME
         ]
@@ -68,9 +68,7 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
         sheet.cell(row=row, column=col + self.CONSTANTS.TYPE_OFFSET).value = attribute[
             AttributeFields.TYPE
         ]
-        self._add_coloring(
-            sheet, col, row, attribute[LABELS_GOLD], attribute[FULL_GOLD]
-        )
+        self._add_coloring(sheet, col, row, attribute[LABELS_GOLD], attribute[FULL_GOLD])
 
     def _add_coloring(self, sheet, col, row, lables_gold, full_gold):
         if lables_gold:
@@ -85,33 +83,25 @@ class FullAnnotationExcelGenerator(ExcelGenerator):
             type="list", formula1=f"={self.CONSTANTS.ATTRIBUTE_NAMED_RANGE}"
         )
         sheet.add_data_validation(category_val)
-        type_val = DataValidation(
-            type="list", formula1=f"={self.CONSTANTS.TYPE_NAMED_RANGE}"
-        )
+        type_val = DataValidation(type="list", formula1=f"={self.CONSTANTS.TYPE_NAMED_RANGE}")
         sheet.add_data_validation(type_val)
         modality_val = DataValidation(
             type="list", formula1=f"={self.CONSTANTS.MODALITY_NAMED_RANGE}"
         )
         sheet.add_data_validation(modality_val)
         for row in range(self.CONSTANTS.FIRST_DATA_ROW, sheet.max_row + 1):
-            self._add_validation_for_row(
-                sheet, row, category_val, type_val, modality_val
-            )
+            self._add_validation_for_row(sheet, row, category_val, type_val, modality_val)
 
     def _add_validation_for_row(self, sheet, row, category_val, type_val, modality_val):
         for col in range(
             1,
-            column_index_from_string(
-                coordinate_from_string(self.CONSTANTS.LAST_COLUMN)[0]
-            ),
+            column_index_from_string(coordinate_from_string(self.CONSTANTS.LAST_COLUMN)[0]),
         ):
             if self.__is_modality_cell(col):
                 modality_val.add(sheet.cell(row=row, column=col))
             if self._is_category_cell(col):
                 self._add_validations_for_attribute(sheet, row, col, category_val)
-                type_val.add(
-                    sheet.cell(row=row, column=col + self.CONSTANTS.TYPE_OFFSET)
-                )
+                type_val.add(sheet.cell(row=row, column=col + self.CONSTANTS.TYPE_OFFSET))
 
     def __is_modality_cell(self, col):
         return col == self.CONSTANTS.MODALITY_COL
@@ -128,14 +118,11 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     args = get_args()
     doc = load_json(args.data_file)
-    generator = FullAnnotationExcelGenerator(
-        args.output_file, FullAnnotationExcelConstants(), doc
-    )
+    generator = FullAnnotationExcelGenerator(args.output_file, FullAnnotationExcelConstants(), doc)
     prefiller = FullAnnotationPreFiller()
     sen_to_gold_attrs = (
         SenToAttrMap(gold_dir=args.data_folder, fuzzy=True, full=False)

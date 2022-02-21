@@ -132,8 +132,7 @@ def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
             if sen[SenFields.GOLD_ATTRIBUTES] != attrs:
                 sen_to_attr.log_conflict(sen)
                 raise ValueError(
-                    'field "labels_gold_exists" already present in input and'
-                    "--overwrite not set"
+                    'field "labels_gold_exists" already present in input and' "--overwrite not set"
                 )
     else:
         sen[SenFields.LABELS_GOLD_EXISTS] = False
@@ -157,14 +156,12 @@ def full_attrs_from_gold_sen(sen, sen_to_attr, overwrite):
             if sen[SenFields.GOLD_ATTRIBUTES] != attrs:
                 sen_to_attr.log_conflict(sen)
                 raise ValueError(
-                    'field "full_gold_exists" already present in input and'
-                    "--overwrite not set"
+                    'field "full_gold_exists" already present in input and' "--overwrite not set"
                 )
             if sen[SenFields.GOLD_MODALITY] != mod:
                 sen_to_attr.log_conflict(sen, attr=False)
                 raise ValueError(
-                    'field "full_gold_exists" already present in input and'
-                    "--overwrite not set"
+                    'field "full_gold_exists" already present in input and' "--overwrite not set"
                 )
 
     if attrs is not None:
@@ -198,8 +195,7 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     args = get_args()
 

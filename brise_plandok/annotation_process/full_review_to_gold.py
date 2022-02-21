@@ -13,9 +13,7 @@ from brise_plandok.constants import AttributeFields, DocumentFields, SenFields
 class FullReviewConverter(ReviewConverter):
     def __init__(self, data_file, gold_folder):
         super().__init__(data_file)
-        self.sen_to_gold_attrs = SenToAttrMap(
-            gold_dir=gold_folder, fuzzy=False, full=True
-        )
+        self.sen_to_gold_attrs = SenToAttrMap(gold_dir=gold_folder, fuzzy=False, full=True)
         self.SEN_GOLD = SenFields.FULL_GOLD_EXISTS
         self.DOC_GOLD = DocumentFields.FULL_GOLD
         self.CONSTANTS = FullReviewExcelConstants
@@ -101,8 +99,7 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     args = get_args()
     converter = FullReviewConverter(args.data_file, args.gold_folder)

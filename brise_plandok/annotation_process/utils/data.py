@@ -17,7 +17,5 @@ def generate_data(doc_ids, gen_attr_folder, data_folder, phase):
     else:
         return [
             doc
-            for doc in FullAnnotationPreFiller().generate_for_full_annotation(
-                doc_ids, data_folder
-            )
+            for doc in FullAnnotationPreFiller().generate_for_full_annotation(doc_ids, data_folder)
         ]

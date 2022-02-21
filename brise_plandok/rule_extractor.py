@@ -133,9 +133,7 @@ class RuleExtractor(Extractor):
             return fl, new_words
 
         logging.debug("new words:", new_words)
-        new_fl = graph_to_isi(
-            new_graph, ud=False, algebra="graph", root_id=root, preprocess=True
-        )
+        new_fl = graph_to_isi(new_graph, ud=False, algebra="graph", root_id=root, preprocess=True)
 
         return new_fl, new_words
 
@@ -166,9 +164,7 @@ class RuleExtractor(Extractor):
                 names.append(attr)
 
         vals_to_quants = {}
-        logging.debug(
-            f"names: {names}, values: {values}, quants: {quants}" f"mods: {modalities}"
-        )
+        logging.debug(f"names: {names}, values: {values}, quants: {quants}" f"mods: {modalities}")
         values_remaining = [v for v in values if v not in NONQ_VALS]
         for q in quants:
             logging.debug(f"matching q: {q}")
@@ -184,9 +180,7 @@ class RuleExtractor(Extractor):
 
         names_remaining = [n for n in names if n not in CONDITIONS]
         for mod in modalities:
-            if (
-                mod.startswith("OBL") or mod.startswith("EXC") or mod.startswith("FOR")
-            ):  # noqa
+            if mod.startswith("OBL") or mod.startswith("EXC") or mod.startswith("FOR"):  # noqa
                 logging.debug(f"matching mod: {mod}")
                 if not names_remaining:
                     logging.debug("nothing left :(")
@@ -211,9 +205,7 @@ class RuleExtractor(Extractor):
 
         values_remaining = [v for v in values]
         while len(values_remaining) > 0 and len(names_to_match) > 0:
-            logging.debug(
-                "names and values to match:", names_to_match, values_remaining
-            )
+            logging.debug("names and values to match:", names_to_match, values_remaining)
             all_pairs = [(n, v) for n in names_to_match for v in values_remaining]
             best_pair = min(all_pairs, key=lambda p: attr_tree.d[p[0]][p[1]])
             logging.debug("best pair:", best_pair)

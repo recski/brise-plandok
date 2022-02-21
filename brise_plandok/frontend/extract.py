@@ -58,15 +58,15 @@ def to_dot(graph, marked_nodes=set()):
                 "-", "_"
             )
         elif printname in marked_nodes:
-            node_line = '\t{0} [shape = circle, label = "{1}", style=filled, fillcolor=lightblue];'.format(
-                d_node, printname
-            ).replace(
-                "-", "_"
+            node_line = (
+                '\t{0} [shape = circle, label = "{1}", style=filled, fillcolor=lightblue];'.format(
+                    d_node, printname
+                ).replace("-", "_")
             )
         else:
-            node_line = '\t{0} [shape = circle, label = "{1}"];'.format(
-                d_node, printname
-            ).replace("-", "_")
+            node_line = '\t{0} [shape = circle, label = "{1}"];'.format(d_node, printname).replace(
+                "-", "_"
+            )
         node_lines.append(node_line)
     lines += sorted(node_lines)
 
@@ -101,9 +101,7 @@ def gen_tmp_path():
 
 def prove_logic(deontic, to_prove, output_format):
     host = f"{HOST}:5007"
-    data_json = json.dumps(
-        {"deontic": deontic, "prove": to_prove, "format": output_format}
-    )
+    data_json = json.dumps({"deontic": deontic, "prove": to_prove, "format": output_format})
     headers = {
         "Content-type": "application/json",
     }
@@ -268,9 +266,7 @@ def main():
             if st.button("Clear assumptions"):
                 assumptions_set.assumptions.clear()
 
-            assumptions_set_expander = st.beta_expander(
-                "Show the assumption set:", expanded=False
-            )
+            assumptions_set_expander = st.beta_expander("Show the assumption set:", expanded=False)
 
             with assumptions_set_expander:
                 assumpts = ", ".join(assumptions_set.assumptions)

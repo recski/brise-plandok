@@ -1,9 +1,7 @@
 import csv
 import os
 
-ATTR_FN = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)), "merkmale_categories.csv"
-)
+ATTR_FN = os.path.join(os.path.dirname(os.path.abspath(__file__)), "merkmale_categories.csv")
 
 with open(ATTR_FN) as f:
     for i, row in enumerate(csv.reader(f, delimiter=";", quotechar='"')):

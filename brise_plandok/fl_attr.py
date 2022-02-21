@@ -26,10 +26,7 @@ class FL_Attr(IRTGGrammar):
 
     def preprocess_input(self, input_obj, **kwargs):
         self.vocabulary += sorted(
-            set(
-                preprocess_node_alto(preprocess_lemma(word))
-                for word in kwargs["vocabulary"]
-            )
+            set(preprocess_node_alto(preprocess_lemma(word)) for word in kwargs["vocabulary"])
         )
         return input_obj
 

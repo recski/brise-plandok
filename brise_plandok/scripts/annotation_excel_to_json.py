@@ -86,9 +86,7 @@ class FullDataConverter:
     def _get_gold_attr(self, text):
         sen = {SenFields.TEXT: text}
         attrs_from_gold_sen(sen, self.sen_to_gold_attrs, False)
-        gold_attr = (
-            sen[SenFields.GOLD_ATTRIBUTES] if SenFields.GOLD_ATTRIBUTES in sen else []
-        )
+        gold_attr = sen[SenFields.GOLD_ATTRIBUTES] if SenFields.GOLD_ATTRIBUTES in sen else []
         return sen[SenFields.LABELS_GOLD_EXISTS], gold_attr
 
 

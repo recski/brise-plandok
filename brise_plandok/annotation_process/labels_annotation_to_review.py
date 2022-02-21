@@ -41,9 +41,7 @@ class LabelAnnotationConverter(AnnotationConverter):
     def _read_annotations(self, annotated_xlsx_files):
         annotations = {}
         for annotated_xlsx in annotated_xlsx_files:
-            annotator = os.path.normpath(annotated_xlsx).split(os.path.sep)[
-                ANNOTATOR_NAME_INDEX
-            ]
+            annotator = os.path.normpath(annotated_xlsx).split(os.path.sep)[ANNOTATOR_NAME_INDEX]
             for doc in self.read(annotated_xlsx):
                 annotations[annotator] = doc
         return annotations
@@ -63,25 +61,17 @@ class LabelAnnotationConverter(AnnotationConverter):
 
     def _fill_for_sen(self, sen, data, annotator):
         sen_id = sen[OldSenFields.ID]
-        annotated_attributes = data[DocumentFields.SENS][sen_id][
-            SenFields.ANNOTATED_ATTRIBUTES
-        ]
+        annotated_attributes = data[DocumentFields.SENS][sen_id][SenFields.ANNOTATED_ATTRIBUTES]
         for attribute in sen[OldSenFields.ATTRIBUTES]:
-            self._fill_for_attr(
-                sen_id, data, attribute, annotated_attributes, annotator
-            )
+            self._fill_for_attr(sen_id, data, attribute, annotated_attributes, annotator)
 
     def _fill_for_attr(self, sen_id, data, attribute, annotated_attributes, annotator):
         assert sen_id in data[DocumentFields.SENS]
         attr_name = attribute[AttributeFields.NAME]
         if attr_name not in annotated_attributes:
-            annotated_attributes[attr_name] = {
-                AnnotatedAttributeFields.ANNOTATORS: [annotator]
-            }
+            annotated_attributes[attr_name] = {AnnotatedAttributeFields.ANNOTATORS: [annotator]}
             return
-        annotators = annotated_attributes[attr_name][
-            AnnotatedAttributeFields.ANNOTATORS
-        ]
+        annotators = annotated_attributes[attr_name][AnnotatedAttributeFields.ANNOTATORS]
         if annotator not in annotators:
             annotators.append(annotator)
 
@@ -113,8 +103,7 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     args = get_args()
     converter = LabelAnnotationConverter(args)

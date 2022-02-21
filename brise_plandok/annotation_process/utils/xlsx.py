@@ -52,15 +52,11 @@ def distribute_xlsx_files(xlsx_folder, df, annotators_folder, update, phase):
                 doc_id, xlsx_folder, annotators_folder, annotator, phase
             )
         if update:
-            update_assignments(
-                doc_ids_for_annotator, annotator, annotators_folder, phase
-            )
+            update_assignments(doc_ids_for_annotator, annotator, annotators_folder, phase)
     logging.info("xlsx files have been distributed to annotators")
 
 
-def _copy_xlsx_files_to_annotators(
-    doc_id, xlsx_folder, annotators_folder, annotator, phase
-):
+def _copy_xlsx_files_to_annotators(doc_id, xlsx_folder, annotators_folder, annotator, phase):
     xlsx_file = os.path.join(xlsx_folder, doc_id + ".xlsx")
     dest = os.path.join(
         get_download_folder(annotators_folder, annotator, phase),

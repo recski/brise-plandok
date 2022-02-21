@@ -13,6 +13,7 @@ setup(
         "graphviz",
         "networkx",
         "numberpartitioning",
+        "numpy",
         "openpyxl",
         "pre-commit",
         "pydot",

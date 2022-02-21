@@ -24,18 +24,13 @@ class ValueEvaluator:
 
     def _eval_for_attr(self, sen, attribute):
         for value in sen[SenFields.GEN_ATTRIBUTES][attribute][AttributeFields.VALUE]:
-            if (
-                value
-                in sen[SenFields.GOLD_ATTRIBUTES][attribute][AttributeFields.VALUE]
-            ):
+            if value in sen[SenFields.GOLD_ATTRIBUTES][attribute][AttributeFields.VALUE]:
                 self.tp += 1
                 self.tp_list.append(
                     (
                         sen[SenFields.ID],
                         sen[SenFields.TEXT],
-                        sen[SenFields.GOLD_ATTRIBUTES][attribute][
-                            AttributeFields.VALUE
-                        ],
+                        sen[SenFields.GOLD_ATTRIBUTES][attribute][AttributeFields.VALUE],
                         value,
                     )
                 )
@@ -45,25 +40,18 @@ class ValueEvaluator:
                     (
                         sen[SenFields.ID],
                         sen[SenFields.TEXT],
-                        sen[SenFields.GOLD_ATTRIBUTES][attribute][
-                            AttributeFields.VALUE
-                        ],
+                        sen[SenFields.GOLD_ATTRIBUTES][attribute][AttributeFields.VALUE],
                         value,
                     )
                 )
         for value in sen[SenFields.GOLD_ATTRIBUTES][attribute][AttributeFields.VALUE]:
-            if (
-                value
-                not in sen[SenFields.GEN_ATTRIBUTES][attribute][AttributeFields.VALUE]
-            ):
+            if value not in sen[SenFields.GEN_ATTRIBUTES][attribute][AttributeFields.VALUE]:
                 self.fn += 1
                 self.fn_list.append(
                     (
                         sen[SenFields.ID],
                         sen[SenFields.TEXT],
-                        sen[SenFields.GOLD_ATTRIBUTES][attribute][
-                            AttributeFields.VALUE
-                        ],
+                        sen[SenFields.GOLD_ATTRIBUTES][attribute][AttributeFields.VALUE],
                         value,
                     )
                 )

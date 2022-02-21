@@ -33,11 +33,7 @@ def json_to_html(response_json):
 
 def _print_modality(response_html, sen):
     response_html += "<h3>Modality</h3>"
-    modality = (
-        sen[SenFields.GOLD_MODALITY]
-        if sen[SenFields.GOLD_MODALITY] is not None
-        else "-"
-    )
+    modality = sen[SenFields.GOLD_MODALITY] if sen[SenFields.GOLD_MODALITY] is not None else "-"
     response_html += f"<p>{modality}</p>"
     return response_html
 

@@ -68,9 +68,7 @@ def preprocess_attrs(attrs):
         if attr["value"]:
             attr["value"] = attr["value"].replace("ä", "ae")
 
-        pp_attrs.append(
-            {"name": new_name, "value": attr["value"], "type": attr["type"]}
-        )
+        pp_attrs.append({"name": new_name, "value": attr["value"], "type": attr["type"]})
 
     return pp_attrs
 
@@ -114,9 +112,7 @@ def add_attribute(sections, sen, attributes):
 
 def get_err_ids(label, results):
     return [
-        i
-        for i, (text, attrs, preds) in enumerate(results)
-        if (label in attrs) ^ (label in preds)
+        i for i, (text, attrs, preds) in enumerate(results) if (label in attrs) ^ (label in preds)
     ]
 
 
@@ -153,9 +149,7 @@ def count_attr_stats(sample, label_cats=None, print_errs=False):
             if print_errs:
                 print(f"FP: {attr}: {sen_id}")
 
-    cats["total"] = {
-        stat: sum(s[stat] for s in cats.values()) for stat in ("TP", "FN", "FP")
-    }
+    cats["total"] = {stat: sum(s[stat] for s in cats.values()) for stat in ("TP", "FN", "FP")}
 
     return cats
 
@@ -301,8 +295,7 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.WARNING,
-        format="%(asctime)s : "
-        + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     args = get_args()
     eval_rule_ext(args)

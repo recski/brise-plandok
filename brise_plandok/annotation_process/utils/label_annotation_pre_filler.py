@@ -16,9 +16,7 @@ from brise_plandok.data_utils import create_sen
 
 class LabelAnnotationPreFiller:
     def generate_for_label_annotation(self, doc_ids, gen_attr_folder, data_folder):
-        sen_to_gold_attrs = (
-            SenToAttrMap(gold_dir=data_folder, fuzzy=True) if data_folder else None
-        )
+        sen_to_gold_attrs = SenToAttrMap(gold_dir=data_folder, fuzzy=True) if data_folder else None
         for doc_id in doc_ids:
             full_data_file = os.path.join(data_folder, doc_id + ".json")
             json_file = os.path.join(gen_attr_folder, doc_id + ".jsonl")
@@ -32,9 +30,7 @@ class LabelAnnotationPreFiller:
             )
             return full_data
         gen_attrs = self._get_gen_attrs(json_file)
-        return self._create_data_for_doc(
-            doc_id, gen_attrs, sen_to_gold_attrs, full_data_file
-        )
+        return self._create_data_for_doc(doc_id, gen_attrs, sen_to_gold_attrs, full_data_file)
 
     def _get_gen_attrs(self, json_file):
         with open(json_file) as f:

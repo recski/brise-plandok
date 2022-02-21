@@ -91,6 +91,9 @@ VALUE_PATTERNS = {
         r"soweit nicht (.*) erforderlich ist, " + GAERTNERISH_GESTALTEN: {
             GROUP: 1,
         },
+        r"soweit sie nicht für (.*) benötigt werden": {
+            GROUP: 1,
+        },
         r"sofern nicht eine Befestigung für die Nutzung als (.*) erforderlich ist, " + GAERTNERISH_GESTALTEN: {
             GROUP: 1,
         },
@@ -295,7 +298,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.EinfriedungLage: {
-        r"((an|zu) (den )?(seitlichen und hinteren )?(zu Verkehrsflächen gewandten )?(Grund|Bauplatz)grenzen)": {
+        r"((an|zu) (den )?(seitlichen und hinteren )?(zu Verkehrsflächen gewandten )?(Grund|Bauplatz)(stück)?grenzen)": {
             GROUP: 1,
         },
         r"(gegen die öffentlichen Verkehrsflächen)": {
@@ -525,6 +528,9 @@ VALUE_PATTERNS = {
     AttributesNames.StrassenbreiteMin: {
         r"[Ss]traßen(breiten?|querschnitte)? (ab|von mehr als|von über|über|mit mehr als) " + NUMBER_WITH_METER: {
             GROUP: 3,
+        },
+        r"Straßen mit einer Breite von " + NUMBER_WITH_METER + r" oder mehr": {
+            GROUP: 1,
         },
     },
 

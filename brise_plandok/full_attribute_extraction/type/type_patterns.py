@@ -28,21 +28,27 @@ TYPE_PATTERNS = {
     },
 
     AttributesNames.AnordnungGaertnerischeAusgestaltung: {
-        r"für die die gärtnerische Ausgestaltung (vorgeschrieben|angeordnet) ist": {
+        r"gärtnerische Ausgestaltung": {
             TYPE: AttributeTypes.CONDITION,
         },
-        r"auf gärtnerisch auszugestaltenden (Grundf|F)lächen": {
+        r"gärtnerisch auszugestaltend": {
             TYPE: AttributeTypes.CONDITION,
         },
-        r"die angrenzende gärtnerisch auszugestaltenden": {
+        r"gärtnerisch zu gestalten": {
             TYPE: AttributeTypes.CONDITION,
         },
-        r"gärtnerisch auszugestalten": {
+        r"gärtnerisch auszugestalten[., ]": {
             TYPE: AttributeTypes.CONTENT,
         },
     },
 
     AttributesNames.AnordnungGaertnerischeAusgestaltungProzentual: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.AnteilDachbegruenung: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
         },
@@ -145,6 +151,9 @@ TYPE_PATTERNS = {
         r"mit einer (Dachn|N)eigung bis": {
             TYPE: AttributeTypes.CONDITION,
         },
+        ALL: {
+            TYPE: AttributeTypes.CONTENT
+        }
     },
 
     AttributesNames.DurchfahrtBreite: {
@@ -172,6 +181,19 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.EinfriedungLage: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
+
+    AttributesNames.EinfriedungZulaessig: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.EinleitungNiederschlagswaesser: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
@@ -194,7 +216,7 @@ TYPE_PATTERNS = {
         r" (mit|bis zu) einer Gebäudehöhe von( bis zu)? \d\d m": {
             TYPE: AttributeTypes.CONDITION,
         },
-        NUMBER_WITH_METER + r" zulässig": {
+        ALL: {
             TYPE: AttributeTypes.CONTENT,
         },
     },
@@ -235,6 +257,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.StellplatzImNiveauZulaessig: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.StellplatzregulativUmfangMaximumAbsolut: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
@@ -244,6 +272,12 @@ TYPE_PATTERNS = {
     AttributesNames.StellplatzregulativUmfangMinimumRelativ: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.Stockwerk: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
         },
     },
 

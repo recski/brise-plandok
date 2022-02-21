@@ -78,6 +78,30 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.BebauteFlaecheMax: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.BebauteFlaecheMaxNebengebaeude: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.BebauteFlaecheMaxProzentual: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.BebauteFlaecheMin: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
     AttributesNames.BegruenungDach: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
@@ -156,48 +180,6 @@ TYPE_PATTERNS = {
 
     AttributesNames.ErrichtungGebaeude: {
         ALL: {
-            TYPE: AttributeTypes.CONTENT,
-        },
-    },
-
-    AttributesNames.Flaechen: {
-        # Bebaubarkeit
-        r"(((b|B)ebaubare,? jedoch)? unbebaut bleibenden? (Grund|Bauland)?(F|f)lächen?)": {
-            TYPE: AttributeTypes.CONDITION,
-        },
-        r"((N|n)icht bebaute,? jedoch bebaubare (Grund|Bauland)flächen?)": {
-            TYPE: AttributeTypes.CONDITION,
-        },
-        r"((B|b)ebaubaren?,? (aber )?von Bebauung freibleibenden? (Grund|Bauland)flächen?)": {
-            TYPE: AttributeTypes.CONDITION,
-        },
-        r"unbebauten? Fläche": {
-            TYPE: AttributeTypes.CONDITION,
-        },
-        # Maximum
-        r"((in Summe|in Anspruch genommene Gesamtnutzfläche) " + NUMBER_WITH_SQUARE_METER + r" nicht überschreiten)": {
-            TYPE: AttributeTypes.CONTENT,
-        },
-        r"(höchstens " + NUMBER_WITH_SQUARE_METER + r")": {
-            TYPE: AttributeTypes.CONTENT,
-        },
-        r"(maximal(en Grundfläche von( insgesamt)?)? " + NUMBER_WITH_SQUARE_METER + r")": {
-            TYPE: AttributeTypes.CONTENT,
-        },
-        r"(bis zu einem (Flächen)?(A|a)usmaß von " + NUMBER_WITH_SQUARE_METER + r")": {
-            TYPE: AttributeTypes.CONTENT,
-        },
-        r"(die bebaute Fläche nicht mehr als " + NUMBER_WITH_SQUARE_METER + r")": {
-            TYPE: AttributeTypes.CONTENT,
-        },
-        # Minimum
-        r"(f|F)lächen? (von mehr als " + NUMBER_WITH_SQUARE_METER + r")": {
-            TYPE: AttributeTypes.CONTENT,
-        },
-        r"((m|M)indestens " + NUMBER_WITH_SQUARE_METER + r")": {
-            TYPE: AttributeTypes.CONTENT,
-        },
-        r"(nicht weniger als " + NUMBER_WITH_SQUARE_METER + r")": {
             TYPE: AttributeTypes.CONTENT,
         },
     },

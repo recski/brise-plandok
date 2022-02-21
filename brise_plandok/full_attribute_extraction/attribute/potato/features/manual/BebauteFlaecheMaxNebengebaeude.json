@@ -1,0 +1,6 @@
+{
+    "BebauteFlaecheMaxNebengebaeude": [
+        [["(u_1 / Flaeche :0 (u_2 / bebaut));(u_3 / Nebengebaeude);(u_4 / maximal);(u_5 / Bauplatz)"], [], "BebauteFlaecheMaxNebengebaeude"],
+        [["(u_1 / Flaeche :0 (u_2 / bebaut))"], [], "BebauteFlaecheMaxNebengebaeude"]
+    ]
+}

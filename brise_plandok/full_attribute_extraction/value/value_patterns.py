@@ -117,6 +117,30 @@ VALUE_PATTERNS = {
         },
     },
 
+    AttributesNames.BebauteFlaecheMax: {
+        NUMBER_WITH_SQUARE_METER: {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.BebauteFlaecheMaxNebengebaeude: {
+        NUMBER_WITH_SQUARE_METER: {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.BebauteFlaecheMaxProzentual: {
+        NUMBER_WITH_PERCENT: {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.BebauteFlaecheMin: {
+        NUMBER_WITH_SQUARE_METER: {
+            GROUP: 1,
+        },
+    },
+
     AttributesNames.BegruenungDach: {
         ALL: {
             VALUE: TRUE,
@@ -317,51 +341,6 @@ VALUE_PATTERNS = {
 
     AttributesNames.FBOKMinimumWohnungen: {
         r"Fußbodenoberkante.* mindestens " + NUMBER_WITH_METER: {
-            GROUP: 1,
-        },
-    },
-
-    AttributesNames.Flaechen: {
-        # Bebaubarkeit
-        r"(((b|B)ebaubare,? jedoch)? unbebaut bleibenden? (Grund|Bauland)?(F|f)lächen?)": {
-            GROUP: 1,
-        },
-        r"((N|n)icht bebaute,? jedoch bebaubare (Grund|Bauland)flächen?)": {
-            GROUP: 1,
-        },
-        r"((B|b)ebaubaren?,? (aber )?von Bebauung freibleibenden? (Grund|Bauland)flächen?)": {
-            GROUP: 1,
-        },
-        r"((un)?bebauten? Fläche)": {
-            GROUP: 1,
-        },
-        # Maximum
-        r"((in Summe|in Anspruch genommene Gesamtnutzfläche) " + FLAECHEN_NUMBER + r" nicht über(schreiten|steigen))": {
-            GROUP: 1,
-        },
-        r"((höchstens|nicht mehr als) " + FLAECHEN_NUMBER + r")": {
-            GROUP: 1,
-        },
-        r"(maximal(en Grundfläche von( insgesamt)?)? " + FLAECHEN_NUMBER + r")": {
-            GROUP: 1,
-        },
-        r"(bis zu einem (Flächen)?(A|a)usmaß von " + FLAECHEN_NUMBER + r")": {
-            GROUP: 1,
-        },
-        r"(die bebaute Fläche nicht mehr als " + FLAECHEN_NUMBER + r")": {
-            GROUP: 1,
-        },
-        r"([Ff]läche .* " + FLAECHEN_NUMBER + r" .*nicht überschreiten)": {
-            GROUP: 1,
-        },
-        # Minimum
-        r"(f|F)lächen? (von mehr als " + FLAECHEN_NUMBER + r")": {
-            GROUP: 2,
-        },
-        r"((m|M)indestens " + FLAECHEN_NUMBER + r")": {
-            GROUP: 1,
-        },
-        r"(nicht weniger als " + FLAECHEN_NUMBER + r")": {
             GROUP: 1,
         },
     },

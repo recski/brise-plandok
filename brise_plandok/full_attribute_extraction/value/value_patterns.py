@@ -295,6 +295,9 @@ VALUE_PATTERNS = {
         r"(im Neubaufall .* nicht überschreiten)": {
             GROUP: 1,
         },
+        r"(in den Kanal).* nicht zulässig": {
+            GROUP: 1,
+        },
     },
 
     AttributesNames.ErrichtungGebaeude: {
@@ -307,7 +310,7 @@ VALUE_PATTERNS = {
         r"(Errichtung .* (untersagt|unzulässig)|keine .* errichtet werden)": {
             VALUE: FALSE,
         },
-        r"(Errichtung von Gebäuden nicht zulässig)": {
+        r"nicht zulässig": {
             VALUE: FALSE,
         },
     },
@@ -401,7 +404,7 @@ VALUE_PATTERNS = {
 
     AttributesNames.GebaeudeHoeheMax: {
         r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von) " + NUMBER_WITH_METER: {
-            GROUP: 2,
+            GROUP: 3,
         },
     },
 
@@ -436,6 +439,12 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.InSchutzzone: {
+        ALL: {
+            VALUE: TRUE,
+        },
+    },
+
+    AttributesNames.Kleinhaeuser: {
         ALL: {
             VALUE: TRUE,
         },

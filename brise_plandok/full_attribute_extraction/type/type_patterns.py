@@ -1,9 +1,27 @@
 from brise_plandok.constants import AttributeTypes, AttributesNames
-from brise_plandok.full_attribute_extraction.constants import ALL, TYPE, NUMBER_WITH_SQUARE_METER
+from brise_plandok.full_attribute_extraction.constants import ALL, TYPE, NUMBER_WITH_SQUARE_METER, NUMBER_WITH_METER
 
 TYPE_PATTERNS = {
 
+    AttributesNames.AbschlussDachMaxBezugGebaeude: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.AbschlussDachMaxBezugGelaende: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.AnFluchtlinie: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
+    AttributesNames.AnOeffentlichenVerkehrsflaechen: {
         ALL: {
             TYPE: AttributeTypes.CONDITION,
         },
@@ -20,6 +38,12 @@ TYPE_PATTERNS = {
             TYPE: AttributeTypes.CONDITION,
         },
         r"gärtnerisch auszugestalten": {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.AnordnungGaertnerischeAusgestaltungProzentual: {
+        ALL: {
             TYPE: AttributeTypes.CONTENT,
         },
     },
@@ -130,6 +154,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.ErrichtungGebaeude: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.Flaechen: {
         # Bebaubarkeit
         r"(((b|B)ebaubare,? jedoch)? unbebaut bleibenden? (Grund|Bauland)?(F|f)lächen?)": {
@@ -176,11 +206,26 @@ TYPE_PATTERNS = {
         r" (mit|bis zu) einer Gebäudehöhe von( bis zu)? \d\d m": {
             TYPE: AttributeTypes.CONDITION,
         },
+        NUMBER_WITH_METER + r" zulässig": {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.GebaeudeHoeheArt: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
     },
 
     AttributesNames.GehsteigbreiteMin: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.Kleinhaeuser: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
         },
     },
 
@@ -214,6 +259,24 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.StrassenbreiteMin: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
+    AttributesNames.StrassenbreiteVonBis: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
+    AttributesNames.UnterbrechungGeschlosseneBauweise: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.UnterirdischeBaulichkeiten: {
         ALL: {
             TYPE: AttributeTypes.CONDITION,
@@ -233,6 +296,18 @@ TYPE_PATTERNS = {
     },
 
     AttributesNames.VonBebauungFreizuhalten: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.VorbautenVerbot: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.VerbotFensterZuOeffentlichenVerkehrsflaechen: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
         },

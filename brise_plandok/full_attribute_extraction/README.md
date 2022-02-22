@@ -26,3 +26,11 @@ The extracted values and types are stored in the `predicted_attributes` field.
 ```bash
  python brise_plandok/full_attribute_extraction/predict_full_attributes.py -d data/train/8228.json -c |  jq '.sens[] | .id, .text, .predicted_attributes'
 ```
+
+## Migrate attributes
+
+```bash
+# Flachen -> 
+# BebauteFlaecheMax BebauteFlaecheMaxNebengebaeude BebauteFlaecheMaxProzentual BebauteFlaecheMin
+python brise_plandok/full_attribute_extraction/migrate_attribute.py -g GOLD_DIR -i Flaechen -o BebauteFlaecheMax BebauteFlaecheMaxNebengebaeude BebauteFlaecheMaxProzentual BebauteFlaecheMin
+```

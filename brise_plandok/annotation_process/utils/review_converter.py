@@ -1,10 +1,9 @@
 import logging
-import os.path
 
 import openpyxl
 
 from brise_plandok.constants import DocumentFields, SenFields
-from brise_plandok.utils import dump_json, load_json
+from brise_plandok.utils import dump_json, load_json, update_gold_docs
 
 
 class ReviewConverter:
@@ -120,7 +119,7 @@ class ReviewConverter:
                 update_docs,
             )
             if update_docs:
-                self._update_other_docs(gold_attr_candidate, gold_mod_candidate, current_gold_sens)
+                update_gold_docs(gold_attr_candidate, gold_mod_candidate, current_gold_sens)
 
     def _handle_external_attribute_conflict(
         self,
@@ -168,20 +167,3 @@ class ReviewConverter:
 
     def _is_error(self, attributes):
         return self.CONSTANTS.ERROR_LABEL in set([attr["name"] for attr in attributes])
-
-    def _update_other_docs(self, gold_attr_candidate, gold_mod_candidate, current_gold_sens):
-        update_map = {}
-        for sen_id in current_gold_sens:
-            doc_id = sen_id.split("_")[0]
-            if doc_id not in update_map:
-                update_map[doc_id] = [sen_id]
-            else:
-                update_map[doc_id].append(sen_id)
-        logging.info(f"The following docs and sentences will be updated: {update_map}")
-        for doc_id in update_map.keys():
-            fn = os.path.join(self.gold_folder, doc_id + ".json")
-            doc = load_json(fn)
-            for sen_id in update_map[doc_id]:
-                doc[DocumentFields.SENS][sen_id][SenFields.GOLD_ATTRIBUTES] = gold_attr_candidate
-                doc[DocumentFields.SENS][sen_id][SenFields.GOLD_MODALITY] = gold_mod_candidate
-            dump_json(doc, fn)

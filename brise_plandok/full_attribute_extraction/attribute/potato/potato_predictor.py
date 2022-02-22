@@ -2,7 +2,7 @@ from xpotato.graph_extractor.extract import FeatureEvaluator
 
 from brise_plandok.constants import SenFields
 from brise_plandok.full_attribute_extraction.attribute.potato.utils import (
-    get_all_manual_features,
+    load_features,
     create_potato_dataset,
 )
 
@@ -13,7 +13,7 @@ class PotatoPredictor:
         self.df = dataset.to_dataframe()
         self.df["sen_id"] = sen_ids
         self.evaluator = FeatureEvaluator()
-        self.features = get_all_manual_features()
+        self.features = load_features()
         self.pred_df = self.evaluator.match_features(self.df, self.features, multi=True)
         self.pred_df["sen_id"] = self.df.sen_id
 

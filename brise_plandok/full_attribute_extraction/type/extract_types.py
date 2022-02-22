@@ -8,13 +8,13 @@ from brise_plandok.utils import is_gold_attribute
 
 def extract_type(sen, attribute, field_to_add=SenFields.GEN_ATTRIBUTES, only_gold=True):
     if not only_gold or is_gold_attribute(sen, attribute):
-        att_type = _match_types(attribute, sen[SenFields.TEXT])
+        att_type = match_types(attribute, sen[SenFields.TEXT])
         if field_to_add is None:
             return att_type
         _add_to_gen_values(sen, attribute, att_type, field_to_add)
 
 
-def _match_types(attribute, text):
+def match_types(attribute, text):
     if attribute in TYPE_PATTERNS:
         for pattern, resolution in TYPE_PATTERNS[attribute].items():
             m = re.search(pattern, text)

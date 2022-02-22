@@ -12,10 +12,10 @@ from tqdm import tqdm
 class SenToAttrMap:
     fuzzy_patt = re.compile("[0-9]+")
 
-    def __init__(self, gold_dir, fuzzy, full=False):
+    def __init__(self, gold_dir, fuzzy, full=False, attributes=None):
         self.sen_to_attr = None
         self.fuzzy = fuzzy
-        self.build_map(gold_dir, full)
+        self.build_map(gold_dir, full, attributes)
 
     def gen_sens_mod_attrs(self, gold_dir, full):
         if not os.path.exists(gold_dir):
@@ -39,7 +39,7 @@ class SenToAttrMap:
         else:
             return SenToAttrMap.fuzzy_patt.sub("", sen)
 
-    def build_map(self, gold_dir, full):
+    def build_map(self, gold_dir, full, attributes=None):
         self.sen_to_attr = {}
         for sen, fn in self.gen_sens_mod_attrs(gold_dir, full):
             sen_key = self.sen_to_key(sen[SenFields.TEXT])
@@ -55,11 +55,19 @@ class SenToAttrMap:
                 else:
                     self._check_conflict_for_label(attr, sen, sen_id, sen_key)
             else:
-                self.sen_to_attr[sen_key] = {
-                    "attr": attr,
-                    "sens": [sen_id],
-                    "mod": mod,
-                }
+                if self._contains_attribute_to_add(attr, attributes):
+                    self.sen_to_attr[sen_key] = {
+                        "attr": attr,
+                        "sens": [sen_id],
+                        "mod": mod,
+                    }
+
+    def _contains_attribute_to_add(self, attr, attributes):
+        to_add = True if attributes is None else False
+        for gold_attr in attr.keys():
+            if gold_attr in attributes:
+                return True
+        return to_add
 
     def _check_conflict_for_label(self, attr, sen, sen_id, sen_key):
         if set(self.sen_to_attr[sen_key]["attr"].keys()) == set(attr.keys()):

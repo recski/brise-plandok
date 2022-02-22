@@ -1,6 +1,5 @@
 from brise_plandok.constants import AttributeTypes, AttributesNames
 from brise_plandok.full_attribute_extraction.constants import ALL, TYPE, NUMBER_WITH_SQUARE_METER, NUMBER_WITH_METER
-
 TYPE_PATTERNS = {
 
     AttributesNames.AbschlussDachMaxBezugGebaeude: {
@@ -139,7 +138,7 @@ TYPE_PATTERNS = {
         r"Errichtung gelangende .*(da|dächer)": {
             TYPE: AttributeTypes.CONDITION,
         },
-        r"als( begrünte)? .*(dach|dher)": {
+        r"als( begrünte)? .*(dach|dächer)": {
             TYPE: AttributeTypes.CONTENT,
         },
         r"mit .*(dach|dächern) ausz*": {
@@ -251,6 +250,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.MaxAnzahlGeschosseOberirdisch: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.OeffentlicheVerkehrsflaecheBreiteMin: {
         ALL: {
             TYPE: AttributeTypes.CONDITION,
@@ -323,6 +328,18 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.VerbotBueroGeschaeftsgebaeude: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.VerbotFensterZuOeffentlichenVerkehrsflaechen: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.VerbotWohnung: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
@@ -335,6 +352,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.VolumenUndUmbaubarerRaum: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.VonBebauungFreizuhalten: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
@@ -342,18 +365,6 @@ TYPE_PATTERNS = {
     },
 
     AttributesNames.VorbautenVerbot: {
-        ALL: {
-            TYPE: AttributeTypes.CONTENT,
-        },
-    },
-
-    AttributesNames.VerbotFensterZuOeffentlichenVerkehrsflaechen: {
-        ALL: {
-            TYPE: AttributeTypes.CONTENT,
-        },
-    },
-
-    AttributesNames.VolumenUndUmbaubarerRaum: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
         },

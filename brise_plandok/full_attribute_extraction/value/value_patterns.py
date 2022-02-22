@@ -385,7 +385,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.GebaeudeHoeheMax: {
-        r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von) " + NUMBER_WITH_METER: {
+        r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von|von bis zu) " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
     },

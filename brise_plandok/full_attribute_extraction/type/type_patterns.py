@@ -54,6 +54,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.AnzahlGebaeudeMax: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.ArkadeHoehe: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
@@ -142,6 +148,12 @@ TYPE_PATTERNS = {
         r"(dach|dächern) zulässig": {
             TYPE: AttributeTypes.CONTENT,
         },
+    },
+
+    AttributesNames.DachflaecheMin: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION
+        }
     },
 
     AttributesNames.DachneigungMax: {
@@ -281,6 +293,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.StrassenbreiteMax: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
     AttributesNames.StrassenbreiteMin: {
         ALL: {
             TYPE: AttributeTypes.CONDITION,
@@ -335,7 +353,19 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.VolumenUndUmbaubarerRaum: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.VorkehrungBepflanzung: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.VorstehendeBauelementeAusladungMax: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
         },

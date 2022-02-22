@@ -619,7 +619,7 @@ VALUE_PATTERNS = {
         r"((ober|unter)irdische(n|r)? (Bauten?|Bebauung|Bauwerk(en)?))": {
             GROUP: 1,
         },
-        r"((ober- und unterirdischen|oberirdische[rn]|unterirdische[rn]|oberirdischen und unterirdischen) (Gebäude|Baulichkeit|Bauten?))": {
+        r"((ober- und unterirdischen|oberund unterirdischen|oberirdische[rn]|unterirdische[rn]|oberirdischen und unterirdischen) (Gebäude|Baulichkeit|Bauten?))": {
             GROUP: 1,
         },
         r"(keine Bauwerke)": {
@@ -628,7 +628,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.VorkehrungBepflanzung: {
-        r"(((Erhaltung|Pflanzung|(für )?das Pflanzen|Herstellung|Erreichung) .*) (zu ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können))": {
+        r"(((Erhaltung|Pflanzung|(für )?das Pflanzen|Herstellung|Erreichung) .*) (zu ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können|zu sichern))": {
             GROUP: 2,
         },
         r"(der Bestand der Baumreihen sicher zu stellen)": {

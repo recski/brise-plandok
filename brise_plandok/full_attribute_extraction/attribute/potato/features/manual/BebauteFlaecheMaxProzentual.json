@@ -1,6 +1,6 @@
 {
     "BebauteFlaecheMaxProzentual": [
-        [["(u_2 / Ausnue?tzbarkeit)","(u_4 / PERCENTAGE)"], [], "BebauteFlaecheMaxProzentual"],
-        [["(u_2 / Ausnue?tzbarkeit)","(u_4 / HPERIOD)"], [], "BebauteFlaecheMaxProzentual"]
+        [["(u_2 / Ausnue?tzbarkeit)","(u_4 / PERCENTAGE|HPERIOD)"], [], "BebauteFlaecheMaxProzentual"],
+        [["(u_1 / Flaeche :0 (u_2 / bebaut|bebauen))","(u_3 / PERCENTAGE|HPERIOD)"], [], "BebauteFlaecheMaxProzentual"]
     ]
 }

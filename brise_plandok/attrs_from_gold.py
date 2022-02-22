@@ -86,12 +86,20 @@ class SenToAttrMap:
             return None
         return full_attr["attr"]
 
+    def set_attrs(self, sen, attributes):
+        sen_key = self.sen_to_key(sen)
+        self.sen_to_attr[sen_key]["attr"] = attributes
+
     def get_mod(self, sen):
         sen_key = self.sen_to_key(sen)
         full_attr = self.sen_to_attr.get(sen_key)
         if full_attr is None:
             return None
         return full_attr["mod"]
+
+    def set_mod(self, sen, mod):
+        sen_key = self.sen_to_key(sen)
+        self.sen_to_attr[sen_key]["mod"] = mod
 
     def get_sens(self, sen):
         sen_key = self.sen_to_key(sen)

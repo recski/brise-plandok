@@ -12,7 +12,7 @@ from brise_plandok.constants import AttributeFields, DocumentFields, SenFields
 
 class FullReviewConverter(ReviewConverter):
     def __init__(self, data_file, gold_folder):
-        super().__init__(data_file)
+        super().__init__(data_file, gold_folder)
         self.sen_to_gold_attrs = SenToAttrMap(gold_dir=gold_folder, fuzzy=False, full=True)
         self.SEN_GOLD = SenFields.FULL_GOLD_EXISTS
         self.DOC_GOLD = DocumentFields.FULL_GOLD
@@ -92,7 +92,8 @@ def get_args():
     parser.add_argument("-r", "--review", default=None)
     parser.add_argument("-d", "--data-file", default=None)
     parser.add_argument("-g", "--gold-folder", default=None)
-    parser.add_argument("-o", "--override", action="store_true")
+    parser.add_argument("-i", "--overwrite-internal", action="store_true")
+    parser.add_argument("-e", "--overwrite-external", action="store_true")
     return parser.parse_args()
 
 
@@ -103,7 +104,7 @@ def main():
     )
     args = get_args()
     converter = FullReviewConverter(args.data_file, args.gold_folder)
-    converter.convert(args.review, args.override)
+    converter.convert(args.review, args.overwrite_internal, args.overwrite_external)
 
 
 if __name__ == "__main__":

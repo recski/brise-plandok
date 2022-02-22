@@ -5,8 +5,12 @@ import pickle
 
 from xpotato.dataset.dataset import Dataset
 
-from brise_plandok.full_attribute_extraction.attribute.potato.utils import load_data_to_df, \
-    get_data_folder_path, get_sentences, get_vocab_for_all_attributes
+from brise_plandok.full_attribute_extraction.attribute.potato.utils import (
+    load_data_to_df,
+    get_data_folder_path,
+    get_sentences,
+    get_vocab_for_all_attributes,
+)
 
 
 def add_graphs(dataset, graph_path, graph_format):
@@ -57,10 +61,10 @@ def get_args():
     return parser.parse_args()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : " +
-               "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+    )
     args = get_args()
     create_dataset(args.dir_path, args.only_gold, args.dataset_name, args.graph)

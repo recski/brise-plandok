@@ -14,10 +14,14 @@ from brise_plandok.data_utils import fill_json
 def text_to_json(text_dir, json_dir, doc_ids):
     assert os.path.exists(text_dir)
     assert os.path.exists(json_dir)
-    sen_to_gold_attrs = SenToAttrMap(gold_dir=json_dir, fuzzy=True, full=False) if json_dir else None
-    sen_to_full_gold_attrs = SenToAttrMap(gold_dir=json_dir, fuzzy=False, full=True) if json_dir else None
+    sen_to_gold_attrs = (
+        SenToAttrMap(gold_dir=json_dir, fuzzy=True, full=False) if json_dir else None
+    )
+    sen_to_full_gold_attrs = (
+        SenToAttrMap(gold_dir=json_dir, fuzzy=False, full=True) if json_dir else None
+    )
 
-    with CachedStanzaPipeline(CustomStanzaPipeline(), 'cache/nlp_cache.json') as nlp:
+    with CachedStanzaPipeline(CustomStanzaPipeline(), "cache/nlp_cache.json") as nlp:
         for doc_id in tqdm(doc_ids):
             txt_path = os.path.join(text_dir, doc_id + ".txt")
             assert os.path.exists(txt_path)
@@ -26,7 +30,9 @@ def text_to_json(text_dir, json_dir, doc_ids):
                 logging.info(f"Json {json_path} already exists - skipping document")
             else:
                 doc = parse_txt(txt_path, nlp)
-                filled_json = fill_json(doc, sen_to_gold_attrs, sen_to_full_gold_attrs, old_doc=True)
+                filled_json = fill_json(
+                    doc, sen_to_gold_attrs, sen_to_full_gold_attrs, old_doc=True
+                )
                 dump_json(filled_json, json_path)
 
 

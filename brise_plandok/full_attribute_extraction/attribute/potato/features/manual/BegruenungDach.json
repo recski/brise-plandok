@@ -2,14 +2,14 @@
     "BegruenungDach": [
         [
             [
-                "(u_0 / begruenen)"
+                "(u_0 / Dach :0 (u_1 / begruente?))"
             ],
             [],
             "BegruenungDach"
         ],
         [
             [
-                "(u_0 / begruent)"
+                "(u_0 / begruenen)"
             ],
             [],
             "BegruenungDach"

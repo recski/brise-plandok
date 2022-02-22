@@ -12,12 +12,37 @@ Install the brise_plandok repository:
 
 ```bash
 pip install .
+
+# To follow changes
+pip install -e .
 ```
 
 Installing this repository will also install the `tuw_nlp` repository, a graph-transformation framework. To get to know more, visit https://github.com/recski/tuw-nlp.
 
 Ensure that you have at least `Java 8` for the [alto](https://github.com/coli-saar/alto) library.
 
+## Coding guidelines
+
+This repository uses [black](https://github.com/psf/black) for code formatting and [flake8](https://gitlab.com/pycqa/flake8) for PEP8 compliance. To install the pre-commit hooks run:
+
+```bash
+pre-commit install
+```
+
+This creates the `.git/hooks/pre-commit` file, which automatically reformats all the modified files prior to any commit.
+
+### Run `black` separately
+
+```bash
+pip install black
+`black .`
+```
+
+### Run `flake8` separately
+```bash
+pip install flake8
+`flake8 .`
+```
 
 ## Annotated Data Description
 

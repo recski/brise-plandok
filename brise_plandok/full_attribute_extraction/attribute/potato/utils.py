@@ -6,8 +6,14 @@ import pandas as pd
 from xpotato.dataset.dataset import Dataset
 
 from brise_plandok.constants import AttributesNames
-from brise_plandok.full_attribute_extraction.attribute.potato.constants import GOLD_ATTRIBUTES, GOLD, \
-    ANNOTATED_ATTRIBUTES, SEGMENTATION_ERROR, DO_NOT_ANNOTATE, NOT
+from brise_plandok.full_attribute_extraction.attribute.potato.constants import (
+    GOLD_ATTRIBUTES,
+    GOLD,
+    ANNOTATED_ATTRIBUTES,
+    SEGMENTATION_ERROR,
+    DO_NOT_ANNOTATE,
+    NOT,
+)
 
 
 def _get_attributes(keys):
@@ -36,11 +42,13 @@ def doc_to_df(data, doc, labels_present=True):
                 labels = _get_attributes(sen[GOLD_ATTRIBUTES].keys())
             else:
                 labels = _get_attributes(sen[ANNOTATED_ATTRIBUTES].keys())
-        data.append({
-            "sen_id": sen["id"],
-            "text": sen["text"],
-            "labels": labels,
-        })
+        data.append(
+            {
+                "sen_id": sen["id"],
+                "text": sen["text"],
+                "labels": labels,
+            }
+        )
 
 
 def filter_labels(df, labels_to_keep, empty_label):
@@ -65,7 +73,7 @@ def get_label_vocab(labels):
 
 def gen_all_attributes_names():
     for i in inspect.getmembers(AttributesNames()):
-        if not i[0].startswith('_'):
+        if not i[0].startswith("_"):
             if not inspect.ismethod(i[1]):
                 yield i[1]
 

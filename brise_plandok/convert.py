@@ -7,7 +7,13 @@ CSV_FULL: sample from Bjoern, in csv, with all features
 JSON is used as the internal format for conversion
 """
 import argparse
-from brise_plandok.constants import DO_NOT_ANNOTATE, GOLD_PREFIX, DocumentFields, OldSenFields, SenFields
+from brise_plandok.constants import (
+    DO_NOT_ANNOTATE,
+    GOLD_PREFIX,
+    DocumentFields,
+    OldSenFields,
+    SenFields,
+)
 import csv
 import json
 import logging
@@ -21,7 +27,7 @@ from brise_plandok.annotation.agreement import gen_sens_from_file
 from brise_plandok.data_utils import normalize_attribute_name
 
 
-class Converter():
+class Converter:
     input_formats = {"JSON", "CSV_ATTR", "CSV_FULL", "XLSX"}
     output_formats = {"JSON", "JSON_FLAT", "TXT", "XLSX"}  # , "CSV_ATTR", "CSV_FULL"}
 
@@ -30,30 +36,35 @@ class Converter():
         for attribute in curr_sen["attributes"]:
             if attribute["name"] not in ATTR_TO_CAT:
                 logging.warning(
-                    f'Sen ID: {curr_sen["sen_id"]}, Attribute: {attribute["name"]} not in the Attribute list')
+                    f'Sen ID: {curr_sen["sen_id"]}, Attribute: {attribute["name"]} not in the Attribute list'
+                )
 
     @staticmethod
     def build_json(
-            sen, attributes=None, sen_id=None, section_id=None,
-            section_num=None, doc_id=None, modality=None):
+        sen,
+        attributes=None,
+        sen_id=None,
+        section_id=None,
+        section_num=None,
+        doc_id=None,
+        modality=None,
+    ):
         if isinstance(sen, dict):
             sentence = sen
         elif isinstance(sen, str):
             sentence = {
-                "sen_id": sen_id, "text": sen, "attributes": attributes,
-                "modality": [] if modality is None else modality}
+                "sen_id": sen_id,
+                "text": sen,
+                "attributes": attributes,
+                "modality": [] if modality is None else modality,
+            }
         else:
             assert False
 
         return {
             "id": doc_id,
             "text": None,
-            "sections": [{
-                "id": section_id,
-                "text": None,
-                'num': section_num,
-                "sens": [sentence]
-            }]
+            "sections": [{"id": section_id, "text": None, "num": section_num, "sens": [sentence]}],
         }
 
     @staticmethod
@@ -66,8 +77,7 @@ class Converter():
         attributes = extracted_attributes["attributes"]
 
         def normalize_attribute(attribute):
-            numbers = re.compile(
-                r"^(?P<number>\d+((,|\.)\d+)?)(?P<unit>m|m2|cm|cm2)$")
+            numbers = re.compile(r"^(?P<number>\d+((,|\.)\d+)?)(?P<unit>m|m2|cm|cm2)$")
 
             if attribute and isinstance(attribute, str):
                 if "Grad" in attribute:
@@ -96,59 +106,75 @@ class Converter():
                 return attribute
 
         def normalize_attributes(attribute):
-            return {"name": normalize_attribute(attribute["name"]),
-                    "value": normalize_attribute(attribute["value"]),
-                    "type": attribute["type"]}
+            return {
+                "name": normalize_attribute(attribute["name"]),
+                "value": normalize_attribute(attribute["value"]),
+                "type": attribute["type"],
+            }
 
-        contents = [normalize_attributes(attribute) for attribute in attributes if attribute["type"] == "content"]  # noqa
-        conditions = [normalize_attributes(attribute) for attribute in attributes if attribute["type"] == "condition"]  # noqa
-        content_exceptions = [normalize_attributes(attribute) for attribute in attributes if attribute["type"] == "contentException"]  # noqa
-        condition_exceptions = [normalize_attributes(attribute) for attribute in attributes if attribute["type"] == "conditionException"]  # noqa
+        contents = [
+            normalize_attributes(attribute)
+            for attribute in attributes
+            if attribute["type"] == "content"
+        ]  # noqa
+        conditions = [
+            normalize_attributes(attribute)
+            for attribute in attributes
+            if attribute["type"] == "condition"
+        ]  # noqa
+        content_exceptions = [
+            normalize_attributes(attribute)
+            for attribute in attributes
+            if attribute["type"] == "contentException"
+        ]  # noqa
+        condition_exceptions = [
+            normalize_attributes(attribute)
+            for attribute in attributes
+            if attribute["type"] == "conditionException"
+        ]  # noqa
 
         contents_string = []
         for content in contents:
-            if content["value"] == True or content["value"] == None:
+            if content["value"] or content["value"] is None:
                 contents_string.append(content["name"])
-            elif content["value"] == False:
+            elif not content["value"]:
                 contents_string.append(f'neg {content["name"]}')
             else:
-                contents_string.append(
-                    f'{content["name"]}({content["value"]})')
+                contents_string.append(f'{content["name"]}({content["value"]})')
         contents_string = " and ".join(contents_string)
 
         conditions_string = []
         for condition in conditions:
-            if condition["value"] == True or condition["value"] == None:
+            if condition["value"] or condition["value"] is None:
                 conditions_string.append(condition["name"])
-            elif condition["value"] == False:
+            elif not condition["value"]:
                 conditions_string.append(f'neg {condition["name"]}')
             else:
-                conditions_string.append(
-                    f'{condition["name"]}({condition["value"]})')
+                conditions_string.append(f'{condition["name"]}({condition["value"]})')
         conditions_string = " and ".join(conditions_string)
 
         content_exceptions_string = []
         for content_exception in content_exceptions:
-            if content_exception["value"] == True or content_exception["value"] == None:
+            if content_exception["value"] or content_exception["value"] is None:
                 content_exceptions_string.append(content_exception["name"])
-            elif content_exception["value"] == False:
-                content_exceptions_string.append(
-                    f'neg {content_exception["name"]}')
+            elif not content_exception["value"]:
+                content_exceptions_string.append(f'neg {content_exception["name"]}')
             else:
                 content_exceptions_string.append(
-                    f'{content_exception["name"]}({content_exception["value"]})')
+                    f'{content_exception["name"]}({content_exception["value"]})'
+                )
         content_exceptions_string = " or ".join(content_exceptions_string)
 
         condition_exceptions_string = []
         for condition_exception in condition_exceptions:
-            if condition_exception["value"] == True or condition_exception["value"] == None:
+            if condition_exception["value"] or condition_exception["value"] is None:
                 condition_exceptions_string.append(condition_exception["name"])
-            elif condition_exception["value"] == False:
-                condition_exceptions_string.append(
-                    f'neg {condition_exception["name"]}')
+            elif not condition_exception["value"]:
+                condition_exceptions_string.append(f'neg {condition_exception["name"]}')
             else:
                 condition_exceptions_string.append(
-                    f'{condition_exception["name"]}({condition_exception["value"]})')
+                    f'{condition_exception["name"]}({condition_exception["value"]})'
+                )
         condition_exceptions_string = " or ".join(condition_exceptions_string)
 
         logical_form = ""
@@ -158,11 +184,11 @@ class Converter():
             if contents:
                 logical_form += contents_string
             if content_exceptions:
-                logical_form += f' or {content_exceptions_string}'
+                logical_form += f" or {content_exceptions_string}"
             if conditions:
-                logical_form += f', {conditions_string}'
+                logical_form += f", {conditions_string}"
 
-            logical_form = f'obl({logical_form})'
+            logical_form = f"obl({logical_form})"
             prover_form = logical_form
 
             if condition_exceptions:
@@ -170,23 +196,23 @@ class Converter():
                 if contents:
                     exception_logical_form += contents_string
                 if content_exceptions:
-                    exception_logical_form += f' or {content_exceptions_string}'
+                    exception_logical_form += f" or {content_exceptions_string}"
 
-                exception_logical_form = f'neg({exception_logical_form})'
-                exception_logical_form += f', {condition_exceptions_string}'
+                exception_logical_form = f"neg({exception_logical_form})"
+                exception_logical_form += f", {condition_exceptions_string}"
 
-                prover_form = f'{logical_form} and per({exception_logical_form})'
-                logical_form = f'{logical_form}, per({exception_logical_form})'
+                prover_form = f"{logical_form} and per({exception_logical_form})"
+                logical_form = f"{logical_form}, per({exception_logical_form})"
 
         elif modality == "prohibition":
             if contents:
                 logical_form += contents_string
             if content_exceptions:
-                logical_form += f' and neg {content_exceptions_string}'
+                logical_form += f" and neg {content_exceptions_string}"
             if conditions:
-                logical_form += f', {conditions_string}'
+                logical_form += f", {conditions_string}"
 
-            logical_form = f'for({logical_form})'
+            logical_form = f"for({logical_form})"
             prover_form = logical_form
 
             if condition_exceptions:
@@ -194,13 +220,13 @@ class Converter():
                 if contents:
                     exception_logical_form += contents_string
                 if content_exceptions:
-                    exception_logical_form += f' and neg {content_exceptions_string}'
+                    exception_logical_form += f" and neg {content_exceptions_string}"
 
                 if condition_exception:
-                    exception_logical_form += f', {condition_exceptions_string}'
+                    exception_logical_form += f", {condition_exceptions_string}"
 
-                prover_form = f'{logical_form} and per({exception_logical_form})'
-                logical_form = f'{logical_form}, per({exception_logical_form})'
+                prover_form = f"{logical_form} and per({exception_logical_form})"
+                logical_form = f"{logical_form}, per({exception_logical_form})"
 
         return logical_form, prover_form
 
@@ -213,27 +239,24 @@ class Converter():
         self.gen_attributes = args.gen_attributes
 
     def postprocess_full(self, sen):
-        if len(sen['modality']) > 1:
-            logging.warning(
-                f'multiple modalities given for sentence {sen["sen_id"]}')
+        if len(sen["modality"]) > 1:
+            logging.warning(f'multiple modalities given for sentence {sen["sen_id"]}')
 
-        sen['modality'] = sorted(sen['modality'])
+        sen["modality"] = sorted(sen["modality"])
         return Converter.build_json(sen)
 
     def read_csv_full(self, stream):
-        yield from (
-            self.postprocess_full(sen) for sen in self._read_csv_full(stream))
+        yield from (self.postprocess_full(sen) for sen in self._read_csv_full(stream))
 
     def _read_csv_full(self, stream):
         curr_sen = {}
-        for i, row in enumerate(
-                csv.reader(stream, delimiter=";", quotechar='"')):
+        for i, row in enumerate(csv.reader(stream, delimiter=";", quotechar='"')):
             if i == 0:
                 continue
-            fields = [s if s not in ('N/A', '') else None for s in row[1:7]]
+            fields = [s if s not in ("N/A", "") else None for s in row[1:7]]
             if fields[0] is None:
                 assert fields[1] is None
-            elif curr_sen and fields[0] == curr_sen['sen_id']:
+            elif curr_sen and fields[0] == curr_sen["sen_id"]:
                 # sometimes the id and text are repeated
                 pass
             else:
@@ -242,74 +265,71 @@ class Converter():
                     yield curr_sen
                 sen_id, text = fields[:2]
                 curr_sen = {
-                    "sen_id": sen_id, 
+                    "sen_id": sen_id,
                     "text": text,
-                    'modality': set(), 
-                    "attributes": []
+                    "modality": set(),
+                    "attributes": [],
                 }
 
             attr, cat, _, value = fields[2:]
             if not attr:
                 assert not cat and not value
                 continue
-            if cat == 'modal':
-                curr_sen['modality'].add(attr)
+            if cat == "modal":
+                curr_sen["modality"].add(attr)
             else:
-                curr_sen['attributes'].append({
-                    "type": cat,
-                    "name": attr,
-                    "value": value})
+                curr_sen["attributes"].append({"type": cat, "name": attr, "value": value})
         if curr_sen:
             Converter.check_attribute(curr_sen)
             yield curr_sen
 
     def read_csv_attr(self, stream):
-        for i, row in enumerate(
-                csv.reader(stream, delimiter=",", quotechar='"')):
+        for i, row in enumerate(csv.reader(stream, delimiter=",", quotechar='"')):
             if i == 0:
-                has_id = row[0] == 'Sentence_ID'
+                has_id = row[0] == "Sentence_ID"
             if i < 2:
                 continue
 
-            sen_id, sen, rest = (
-                (row[0], row[1], row[2:])
-                if has_id else (f'{i}', row[0], row[1:]))
+            sen_id, sen, rest = (row[0], row[1], row[2:]) if has_id else (f"{i}", row[0], row[1:])
 
-            attrs = [
-                field for j, field in enumerate(rest)
-                if field and j in (1, 3, 5, 7)]
+            attrs = [field for j, field in enumerate(rest) if field and j in (1, 3, 5, 7)]
 
             attributes = Converter.attrs_from_names(attrs)
             logging.warning(attributes)
-            yield Converter.build_json(
-                sen, attributes=attributes, sen_id=sen_id, modality=None)
+            yield Converter.build_json(sen, attributes=attributes, sen_id=sen_id, modality=None)
 
     def read_xlsx(self, stream):
-        sens = [Converter.build_json(line["text"], attributes=line["attributes"], sen_id=line["id"], modality=None)[
-            "sections"][0]["sens"][0] for line in gen_sens_from_file(stream, "xlsx")]
+        sens = [
+            Converter.build_json(
+                line["text"],
+                attributes=line["attributes"],
+                sen_id=line["id"],
+                modality=None,
+            )["sections"][0]["sens"][0]
+            for line in gen_sens_from_file(stream, "xlsx")
+        ]
 
         for sen in sens:
             atts = []
             for attribute in sen["attributes"]:
                 if attribute not in ATTR_TO_CAT and attribute != DO_NOT_ANNOTATE:
                     logging.warning(
-                        f"{attribute} attribute not in the attribute list, will be skipped!")
+                        f"{attribute} attribute not in the attribute list, will be skipped!"
+                    )
                     continue
-                atts.append({
-                    "type": None,
-                    "name": normalize_attribute_name(attribute),
-                    "value": None})
+                atts.append(
+                    {
+                        "type": None,
+                        "name": normalize_attribute_name(attribute),
+                        "value": None,
+                    }
+                )
             sen["attributes"] = atts
 
         doc = {
             "id": None,
             "text": None,
-            "sections": [{
-                "id": None,
-                "text": None,
-                'num': None,
-                "sens": sens
-            }]
+            "sections": [{"id": None, "text": None, "num": None, "sens": sens}],
         }
 
         yield doc
@@ -319,11 +339,11 @@ class Converter():
             yield json.loads(line)
 
     def read(self, stream):
-        if self.input_format == 'JSON':
+        if self.input_format == "JSON":
             yield from self.read_json(stream)
-        elif self.input_format == 'CSV_ATTR':
+        elif self.input_format == "CSV_ATTR":
             yield from self.read_csv_attr(stream)
-        elif self.input_format == 'CSV_FULL':
+        elif self.input_format == "CSV_FULL":
             yield from self.read_csv_full(stream)
         elif self.input_format == "XLSX":
             yield from self.read_xlsx(stream)
@@ -332,19 +352,19 @@ class Converter():
 
     def write_json(self, doc, stream):
         stream.write(json.dumps(doc))
-        stream.write('\n')
+        stream.write("\n")
 
     def guess_doc_id(self, doc):
-        return doc['sections'][0]['sens'][0]['sen_id'].split('_')[0]
+        return doc["sections"][0]["sens"][0]["sen_id"].split("_")[0]
 
     def write_json_flat(self, doc, stream):
         out_doc = {
-            "id": doc['id'] if doc['id'] else self.guess_doc_id(doc),
-            "sens": [
-                sen for section in doc["sections"] for sen in section["sens"]]}
+            "id": doc["id"] if doc["id"] else self.guess_doc_id(doc),
+            "sens": [sen for section in doc["sections"] for sen in section["sens"]],
+        }
 
         stream.write(json.dumps(out_doc))
-        stream.write('\n')
+        stream.write("\n")
 
     def write_xlsx(self, doc, file):
         annotate = Annotate()
@@ -356,8 +376,11 @@ class Converter():
         else:
             for sen in doc[DocumentFields.SENS].values():
                 self._parse_sen(sen, dataset)
-        annotate.parse(dataset, os.path.join(os.path.dirname(
-            brise_plandok.annotation.__file__), "BRISE.xlsx"), file)
+        annotate.parse(
+            dataset,
+            os.path.join(os.path.dirname(brise_plandok.annotation.__file__), "BRISE.xlsx"),
+            file,
+        )
 
     def _parse_sen(self, sen, dataset):
         attribute_key = self._get_attribute_key(sen)
@@ -381,17 +404,16 @@ class Converter():
     def write_txt(self, doc, stream):
         for section in doc["sections"]:
             for sen in section["sens"]:
-                attrs_text = ",".join(
-                    attr['name'] for attr in sen['attributes'])
-                line = '\t'.join([sen['sen_id'], sen['text'], attrs_text])
+                attrs_text = ",".join(attr["name"] for attr in sen["attributes"])
+                line = "\t".join([sen["sen_id"], sen["text"], attrs_text])
                 stream.write(f"{line}\n")
 
     def write(self, doc, stream):
-        if self.output_format == 'JSON':
+        if self.output_format == "JSON":
             self.write_json(doc, stream)
-        elif self.output_format == 'JSON_FLAT':
+        elif self.output_format == "JSON_FLAT":
             self.write_json_flat(doc, stream)
-        elif self.output_format == 'TXT':
+        elif self.output_format == "TXT":
             self.write_txt(doc, stream)
         elif self.output_format == "XLSX":
             self.write_xlsx(doc, stream)
@@ -409,8 +431,8 @@ def get_args():
     parser.add_argument("-o", "--output-format", type=str)
     parser.add_argument("-if", "--input-file", type=str, default=None)
     parser.add_argument("-of", "--output-file", type=str, default=None)
-    parser.add_argument("-g", "--gen-attributes", action='store_true')
-    parser.add_argument("-f", "--fuzzy", default=False, action='store_true')
+    parser.add_argument("-g", "--gen-attributes", action="store_true")
+    parser.add_argument("-f", "--fuzzy", default=False, action="store_true")
     parser.set_defaults(input_format="JSON", output_format="JSON", gen_attributes=False)
     return parser.parse_args()
 
@@ -418,8 +440,8 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : " +
-               "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
+        format="%(asctime)s :%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+    )
     args = get_args()
     converter = Converter(args)
 
@@ -428,8 +450,8 @@ def main():
     if args.output_format == "XLSX":
         assert args.output_file
 
-    input_stream = args.input_file if args.input_file != None else sys.stdin
-    output_stream = args.output_file if args.output_file != None else sys.stdout
+    input_stream = args.input_file if args.input_file is not None else sys.stdin
+    output_stream = args.output_file if args.output_file is not None else sys.stdout
 
     converter.convert(input_stream, output_stream)
 

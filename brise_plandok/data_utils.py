@@ -1,21 +1,27 @@
 from brise_plandok.attrs_from_gold import attrs_from_gold_sen, full_attrs_from_gold_sen
-from brise_plandok.constants import SenFields, DocumentFields, OldDocumentFields, OldSectionFields, OldSenFields, \
-    ATTRIBUTE_NORM_MAP
+from brise_plandok.constants import (
+    SenFields,
+    DocumentFields,
+    OldDocumentFields,
+    OldSectionFields,
+    OldSenFields,
+    ATTRIBUTE_NORM_MAP,
+)
 
 
 def create_sen(
-        sen_id,
-        text,
-        gold_modality=None,
-        already_gold_on_annotation=False,
-        labels_gold_exists=False,
-        full_gold_exists=False,
-        gold_attributes=None,
-        gen_attributes_on_annotation=None,
-        gen_attributes_on_full_annotation=None,
-        annotated_attributes=None,
-        gen_attributes=None,
-        segmentation_error=False
+    sen_id,
+    text,
+    gold_modality=None,
+    already_gold_on_annotation=False,
+    labels_gold_exists=False,
+    full_gold_exists=False,
+    gold_attributes=None,
+    gen_attributes_on_annotation=None,
+    gen_attributes_on_full_annotation=None,
+    annotated_attributes=None,
+    gen_attributes=None,
+    segmentation_error=False,
 ):
     if gen_attributes is None:
         gen_attributes = {}

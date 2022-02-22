@@ -1,4 +1,6 @@
 import argparse
+
+from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import DocumentFields, SenFields
 import json
 import logging
@@ -9,8 +11,8 @@ import sys
 from tqdm import tqdm
 
 
-class SenToFullAttrMap():
-    fuzzy_patt = re.compile('[0-9]+')
+class SenToFullAttrMap:
+    fuzzy_patt = re.compile("[0-9]+")
 
     def __init__(self, gold_dir, fuzzy):
         self.fuzzy = fuzzy
@@ -18,10 +20,10 @@ class SenToFullAttrMap():
 
     def gen_sens_attrs(self, gold_dir):
         if not os.path.exists(gold_dir):
-            raise ValueError(f'path does not exist: {gold_dir}')
+            raise ValueError(f"path does not exist: {gold_dir}")
         for fn in os.listdir(gold_dir):
-            if not (fn.endswith('json') or fn.endswith('jsonl')):
-                logging.warning(f'skipping file not ending in json(l): {fn}')
+            if not (fn.endswith("json") or fn.endswith("jsonl")):
+                logging.warning(f"skipping file not ending in json(l): {fn}")
                 continue
             with open(os.path.join(gold_dir, fn)) as f:
                 for line in f:
@@ -36,7 +38,7 @@ class SenToFullAttrMap():
         if not self.fuzzy:
             return sen
         else:
-            return SenToFullAttrMap.fuzzy_patt.sub('', sen)
+            return SenToFullAttrMap.fuzzy_patt.sub("", sen)
 
     def build_map(self, gold_dir):
         self.sen_to_attr = {}
@@ -48,14 +50,9 @@ class SenToFullAttrMap():
                     continue
                 else:
                     self.log_conflict(sen, sen_key)
-                    raise ValueError(f'gold conflict')
+                    raise ValueError("gold conflict")
 
-            self.sen_to_attr[sen_key] = {
-                "attr": attr, 
-                "sens": [
-                    sen_id
-                ]
-            }
+            self.sen_to_attr[sen_key] = {"attr": attr, "sens": [sen_id]}
 
     def get_attrs(self, sen):
         sen_key = self.sen_to_key(sen)
@@ -78,12 +75,14 @@ class SenToFullAttrMap():
         old_sens = self.sen_to_attr[sen_key]["sens"]
         new_attrs = json.dumps(sen[SenFields.GOLD_ATTRIBUTES], indent=2)
         new_sen = sen[SenFields.ID]
-        logging.error(f"matching sens in gold with different attrs:\n" + 
-            f"\nold attrs {old_sens}:\n{old_attrs}\n\nnew attrs {new_sen}:\n{new_attrs}\n")
+        logging.error(
+            "matching sens in gold with different attrs:\n"
+            + f"\nold attrs {old_sens}:\n{old_attrs}\n\nnew attrs {new_sen}:\n{new_attrs}\n"
+        )
 
 
 def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
-    attrs = sen_to_attr.get_attrs(sen['text'])
+    attrs = sen_to_attr.get_attrs(sen["text"])
 
     if SenFields.LABELS_GOLD_EXISTS in sen and sen[SenFields.LABELS_GOLD_EXISTS]:
         if overwrite:
@@ -94,8 +93,8 @@ def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
             if sen[SenFields.GOLD_ATTRIBUTES] != attrs:
                 sen_to_attr.log_conflict(sen)
                 raise ValueError(
-                    'field "labels_gold_exists" already present in input and'
-                    '--overwrite not set')
+                    'field "labels_gold_exists" already present in input and' "--overwrite not set"
+                )
     else:
         sen[SenFields.LABELS_GOLD_EXISTS] = False
 
@@ -105,32 +104,31 @@ def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
 
 
 def attrs_from_gold(args):
-    logging.info('building map...')
+    logging.info("building map...")
     sen_to_attr = SenToAttrMap(gold_dir=args.gold_dir, fuzzy=args.fuzzy)
-    logging.info('done, processing docs...')
+    logging.info("done, processing docs...")
     for line in tqdm(sys.stdin):
         doc = json.loads(line)
-        for section in doc['sections']:
-            for sen in section['sens']:
+        for section in doc["sections"]:
+            for sen in section["sens"]:
                 attrs_from_gold_sen(sen, sen_to_attr, args.overwrite)
         sys.stdout.write(json.dumps(doc))
-        sys.stdout.write('\n')
+        sys.stdout.write("\n")
 
 
 def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-g", "--gold-dir", type=str)
-    parser.add_argument("-f", "--fuzzy", default=False, action='store_true')
-    parser.add_argument(
-        "-o", "--overwrite", default=False, action='store_true')
+    parser.add_argument("-f", "--fuzzy", default=False, action="store_true")
+    parser.add_argument("-o", "--overwrite", default=False, action="store_true")
     return parser.parse_args()
 
 
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : " +
-        "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+    )
     args = get_args()
 
     attrs_from_gold(args)

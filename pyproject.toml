@@ -1,0 +1,3 @@
+[tool.black]
+line-length = 99
+force-exclude = '(.*_patterns.py|.*.json)'

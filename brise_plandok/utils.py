@@ -2,6 +2,8 @@ import json
 import logging
 import os
 
+from brise_plandok.constants import SenFields
+
 
 def load_json(fn):
     logging.debug(f"loading {fn}")
@@ -17,3 +19,5 @@ def dump_json(obj, fn):
         json.dump(obj, f)
 
 
+def is_gold_attribute(sen, attr_name):
+    return attr_name in sen[SenFields.GOLD_ATTRIBUTES].keys()

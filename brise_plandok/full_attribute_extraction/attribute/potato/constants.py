@@ -8,10 +8,9 @@ SEGMENTATION_ERROR = "segmentation_error"
 NOT = "NOT"
 DO_NOT_ANNOTATE = "DON'T ANNOTATE THIS SENTENCE"
 
-TOP_15_ANNOTATED = [
+TOP_14_ANNOTATED = [
     NOT,
     AttributesNames.Planzeichen,
-    AttributesNames.Flaechen,
     AttributesNames.WidmungUndZweckbestimmung,
     AttributesNames.VerkehrsflaecheID,
     AttributesNames.AnFluchtlinie,

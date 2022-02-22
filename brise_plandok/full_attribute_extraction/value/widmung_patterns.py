@@ -1,4 +1,4 @@
-from brise_plandok.full_attribute_extraction.utils.constants import GROUP, SPACE_OR_BRACKET
+from brise_plandok.full_attribute_extraction.constants import GROUP, SPACE_OR_BRACKET
 
 WIDMUNG = {
 
@@ -89,9 +89,6 @@ WIDMUNG = {
         GROUP: 1,
     },
     r"(Wald- und Wiesengürtel)": {
-        GROUP: 1,
-    },
-    r"(landwirtschaftliche Nutzung)": {
         GROUP: 1,
     },
     r"(Parkschutzgebiet)": {

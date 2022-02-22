@@ -6,6 +6,13 @@
             ],
             [],
             "AusnahmeGaertnerischAuszugestaltende"
+        ],
+        [
+            [
+                "(u_0 / ausgestalten :0 (u_1 / gaertnerisch) :0 (u_2 / benoetigen :0 (u_3 / soweit) :0 (u_4 / NEG) ))"
+            ],
+            [],
+            "AusnahmeGaertnerischAuszugestaltende"
         ]
     ]
 }

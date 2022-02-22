@@ -20,7 +20,6 @@ DOC_ID_FILTER = [
 
 
 class FullDataConverter:
-
     def convert_sens(self, doc_map, sen_map, doc_id_filter=None):
         for data_file in os.listdir(DATA_FOLDER):
             data_path = os.path.join(DATA_FOLDER, data_file)

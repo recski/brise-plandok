@@ -10,7 +10,7 @@ from tqdm import tqdm
 
 
 class SenToAttrMap:
-    fuzzy_patt = re.compile('[0-9]+')
+    fuzzy_patt = re.compile("[0-9]+")
 
     def __init__(self, gold_dir, fuzzy, full=False):
         self.sen_to_attr = None
@@ -19,15 +19,17 @@ class SenToAttrMap:
 
     def gen_sens_mod_attrs(self, gold_dir, full):
         if not os.path.exists(gold_dir):
-            raise ValueError(f'path does not exist: {gold_dir}')
+            raise ValueError(f"path does not exist: {gold_dir}")
         for fn in os.listdir(gold_dir):
-            if not (fn.endswith('json') or fn.endswith('jsonl')):
-                logging.warning(f'skipping file not ending in json(l): {fn}')
+            if not (fn.endswith("json") or fn.endswith("jsonl")):
+                logging.warning(f"skipping file not ending in json(l): {fn}")
                 continue
             with open(os.path.join(gold_dir, fn)) as f:
                 for line in f:
                     doc = json.loads(line)
-                    if (full and doc[DocumentFields.FULL_GOLD]) or (not full and doc[DocumentFields.LABELS_GOLD]):
+                    if (full and doc[DocumentFields.FULL_GOLD]) or (
+                        not full and doc[DocumentFields.LABELS_GOLD]
+                    ):
                         for sen_id, sen in doc[DocumentFields.SENS].items():
                             yield sen, fn
 
@@ -35,7 +37,7 @@ class SenToAttrMap:
         if not self.fuzzy:
             return sen
         else:
-            return SenToAttrMap.fuzzy_patt.sub('', sen)
+            return SenToAttrMap.fuzzy_patt.sub("", sen)
 
     def build_map(self, gold_dir, full):
         self.sen_to_attr = {}
@@ -55,9 +57,7 @@ class SenToAttrMap:
             else:
                 self.sen_to_attr[sen_key] = {
                     "attr": attr,
-                    "sens": [
-                        sen_id
-                    ],
+                    "sens": [sen_id],
                     "mod": mod,
                 }
 
@@ -66,7 +66,7 @@ class SenToAttrMap:
             self.sen_to_attr[sen_key]["sens"].append(sen_id)
         else:
             self.log_conflict(sen, sen_key, attr=True)
-            raise ValueError(f'full gold conflict with attributes')
+            raise ValueError("full gold conflict with attributes")
 
     def _check_conflict_for_full(self, attr, mod, sen, sen_id, sen_key):
         if self.sen_to_attr[sen_key]["attr"] == attr:
@@ -74,10 +74,10 @@ class SenToAttrMap:
                 self.sen_to_attr[sen_key]["sens"].append(sen_id)
             else:
                 self.log_conflict(sen, sen_key, attr=False)
-                raise ValueError(f'full gold conflict with modalities')
+                raise ValueError("full gold conflict with modalities")
         else:
             self.log_conflict(sen, sen_key, attr=True)
-            raise ValueError(f'full gold conflict with attributes')
+            raise ValueError("full gold conflict with attributes")
 
     def get_attrs(self, sen):
         sen_key = self.sen_to_key(sen)
@@ -108,17 +108,21 @@ class SenToAttrMap:
         if attr:
             old_attrs = json.dumps(self.sen_to_attr[sen_key]["attr"], indent=2)
             new_attrs = json.dumps(sen[SenFields.GOLD_ATTRIBUTES], indent=2)
-            logging.error(f"matching sens in gold with different attrs:\n" +
-                f"\nold attrs {old_sens}:\n{old_attrs}\n\nnew attrs {new_sen}:\n{new_attrs}\n")
+            logging.error(
+                "matching sens in gold with different attrs:\n"
+                + f"\nold attrs {old_sens}:\n{old_attrs}\n\nnew attrs {new_sen}:\n{new_attrs}\n"
+            )
         else:
             old_mod = json.dumps(self.sen_to_attr[sen_key]["mod"], indent=2)
             new_mod = json.dumps(sen[SenFields.GOLD_MODALITY], indent=2)
-            logging.error(f"matching sens in gold with different attrs:\n" +
-                f"\nold attrs {old_sens}:\n{old_mod}\n\nnew attrs {new_sen}:\n{new_mod}\n")
+            logging.error(
+                "matching sens in gold with different attrs:\n"
+                + f"\nold attrs {old_sens}:\n{old_mod}\n\nnew attrs {new_sen}:\n{new_mod}\n"
+            )
 
 
 def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
-    attrs = sen_to_attr.get_attrs(sen['text'])
+    attrs = sen_to_attr.get_attrs(sen["text"])
 
     if SenFields.LABELS_GOLD_EXISTS in sen and sen[SenFields.LABELS_GOLD_EXISTS]:
         if overwrite:
@@ -128,8 +132,8 @@ def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
             if sen[SenFields.GOLD_ATTRIBUTES] != attrs:
                 sen_to_attr.log_conflict(sen)
                 raise ValueError(
-                    'field "labels_gold_exists" already present in input and'
-                    '--overwrite not set')
+                    'field "labels_gold_exists" already present in input and' "--overwrite not set"
+                )
     else:
         sen[SenFields.LABELS_GOLD_EXISTS] = False
 
@@ -139,8 +143,8 @@ def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
 
 
 def full_attrs_from_gold_sen(sen, sen_to_attr, overwrite):
-    attrs = sen_to_attr.get_attrs(sen['text'])
-    mod = sen_to_attr.get_mod(sen['text'])
+    attrs = sen_to_attr.get_attrs(sen["text"])
+    mod = sen_to_attr.get_mod(sen["text"])
 
     if SenFields.FULL_GOLD_EXISTS in sen and sen[SenFields.FULL_GOLD_EXISTS]:
         if overwrite:
@@ -152,13 +156,13 @@ def full_attrs_from_gold_sen(sen, sen_to_attr, overwrite):
             if sen[SenFields.GOLD_ATTRIBUTES] != attrs:
                 sen_to_attr.log_conflict(sen)
                 raise ValueError(
-                    'field "full_gold_exists" already present in input and'
-                    '--overwrite not set')
+                    'field "full_gold_exists" already present in input and' "--overwrite not set"
+                )
             if sen[SenFields.GOLD_MODALITY] != mod:
                 sen_to_attr.log_conflict(sen, attr=False)
                 raise ValueError(
-                    'field "full_gold_exists" already present in input and'
-                    '--overwrite not set')
+                    'field "full_gold_exists" already present in input and' "--overwrite not set"
+                )
 
     if attrs is not None:
         sen[SenFields.LABELS_GOLD_EXISTS] = True
@@ -168,32 +172,31 @@ def full_attrs_from_gold_sen(sen, sen_to_attr, overwrite):
 
 
 def attrs_from_gold(args):
-    logging.info('building map...')
+    logging.info("building map...")
     sen_to_attr = SenToAttrMap(gold_dir=args.gold_dir, fuzzy=args.fuzzy)
-    logging.info('done, processing docs...')
+    logging.info("done, processing docs...")
     for line in tqdm(sys.stdin):
         doc = json.loads(line)
-        for section in doc['sections']:
-            for sen in section['sens']:
+        for section in doc["sections"]:
+            for sen in section["sens"]:
                 attrs_from_gold_sen(sen, sen_to_attr, args.overwrite)
         sys.stdout.write(json.dumps(doc))
-        sys.stdout.write('\n')
+        sys.stdout.write("\n")
 
 
 def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-g", "--gold-dir", type=str)
-    parser.add_argument("-f", "--fuzzy", default=False, action='store_true')
-    parser.add_argument(
-        "-o", "--overwrite", default=False, action='store_true')
+    parser.add_argument("-f", "--fuzzy", default=False, action="store_true")
+    parser.add_argument("-o", "--overwrite", default=False, action="store_true")
     return parser.parse_args()
 
 
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : " +
-        "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+    )
     args = get_args()
 
     attrs_from_gold(args)

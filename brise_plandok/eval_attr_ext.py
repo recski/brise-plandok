@@ -15,15 +15,16 @@ ATTR_IGNORE = {
     "?",
     "N/A",
     "Weitere_Bestimmung_Prüfung_erforderlich",
-    'WeitereBestimmungPruefungErforderlich',
-    'AusnahmePruefungErforderlich',
+    "WeitereBestimmungPruefungErforderlich",
+    "AusnahmePruefungErforderlich",
     "ZuVorherigemSatzGehoerig",
     "Plangebiet",
     "PlanzeichenBBID",
     "WidmungID",
     "obligation",
     "prohibition",
-    "permission"}
+    "permission",
+}
 
 ATTR_CATS = {}
 # ATTR_CATS = {label: '*Flaeche*' for label in {
@@ -34,46 +35,40 @@ ATTR_CATS = {}
 #    'BBAusnuetzbarkeitFlaecheGrundflaechenbezug',
 #    'BBAusnuetzbarkeitFlaecheWohnnutzflaeche'}}
 
+
 def preprocess_attrs(attrs):
     pp_attrs = []
     for attr in attrs:
         if type(attr) is str:
             name = attr
             attr = {
-                'name': name,
-                'value': None,
-                'type': None,
+                "name": name,
+                "value": None,
+                "type": None,
             }
 
-        name = attr['name']
+        name = attr["name"]
         if name.startswith('"'):
             continue
 
-        new_name = name.replace(
-            '(?)', '').strip('? ').replace('ä', 'ae')
+        new_name = name.replace("(?)", "").strip("? ").replace("ä", "ae")
 
         if new_name in ATTRIBUTE_NORM_MAP:
             new = ATTRIBUTE_NORM_MAP[new_name]
-            logging.warning(
-                f'converting old attr ({new_name}) to new ({new})')
+            logging.warning(f"converting old attr ({new_name}) to new ({new})")
             new_name = new
 
         if new_name in ATTR_IGNORE:
             continue
 
         if new_name not in ATTR_TO_CAT:
-            logging.warning(
-                f"{new_name} attribute is not recognized - will be ignored")
+            logging.warning(f"{new_name} attribute is not recognized - will be ignored")
             continue
 
-        if attr['value']:
-            attr['value'] = attr['value'].replace('ä', 'ae')
+        if attr["value"]:
+            attr["value"] = attr["value"].replace("ä", "ae")
 
-        pp_attrs.append({
-            "name": new_name,
-            "value": attr['value'],
-            'type': attr['type']
-        })
+        pp_attrs.append({"name": new_name, "value": attr["value"], "type": attr["type"]})
 
     return pp_attrs
 
@@ -89,14 +84,14 @@ def load_sample(stream, flat):
         if DocumentFields.ANNOTATORS in doc:
             annotated = len(doc[DocumentFields.ANNOTATORS]) > 0
         if flat:
-            for sen in doc['sens'].values():
+            for sen in doc["sens"].values():
                 if len(sections) == 0:
                     sections.append({"sens": []})
                 _load_sen(sen, sections, gold, annotated)
         else:
-            for section in doc['sections']:
+            for section in doc["sections"]:
                 sections.append({"sens": []})
-                for sen in section['sens']:
+                for sen in section["sens"]:
                     _load_sen(sen, sections, gold, annotated)
     return sections
 
@@ -106,19 +101,19 @@ def _load_sen(sen, sections, gold, annotated):
         add_attribute(sections, sen, sen[SenFields.GOLD_ATTRIBUTES].keys())
     elif annotated:
         add_attribute(sections, sen, sen[SenFields.ANNOTATED_ATTRIBUTES].keys())
-    elif sen['attributes']:
-        add_attribute(sections, sen, sen['attributes'])
+    elif sen["attributes"]:
+        add_attribute(sections, sen, sen["attributes"])
 
 
 def add_attribute(sections, sen, attributes):
-    sen['attributes'] = preprocess_attrs(attributes)
-    sections[-1]['sens'].append(sen)
+    sen["attributes"] = preprocess_attrs(attributes)
+    sections[-1]["sens"].append(sen)
 
 
 def get_err_ids(label, results):
     return [
-        i for i, (text, attrs, preds) in enumerate(results)
-        if (label in attrs) ^ (label in preds)]
+        i for i, (text, attrs, preds) in enumerate(results) if (label in attrs) ^ (label in preds)
+    ]
 
 
 def get_err_ids_cat(cat, results):
@@ -126,12 +121,14 @@ def get_err_ids_cat(cat, results):
         return {ATTR_CATS.get(a, a) for a in s}
 
     return [
-        i for i, (text, attrs, preds) in enumerate(results)
-        if (cat in cats(attrs)) ^ (cat in cats(preds))]
+        i
+        for i, (text, attrs, preds) in enumerate(results)
+        if (cat in cats(attrs)) ^ (cat in cats(preds))
+    ]
 
 
 def print_output(results, fn):
-    with open(fn, 'w') as f_obj:
+    with open(fn, "w") as f_obj:
         for _, rec in results.items():
             json.dump(rec, f_obj)
 
@@ -139,81 +136,75 @@ def print_output(results, fn):
 def count_attr_stats(sample, label_cats=None, print_errs=False):
     cats = defaultdict(Counter)
     for sen_id, orig_attrs, orig_preds in sample:
-        attrs = {
-            label_cats.get(a, a) for a in orig_attrs}
-        preds = {
-            label_cats.get(a, a) for a in orig_preds}
+        attrs = {label_cats.get(a, a) for a in orig_attrs}
+        preds = {label_cats.get(a, a) for a in orig_preds}
         for attr in attrs & preds:
-            cats[attr]['TP'] += 1
+            cats[attr]["TP"] += 1
         for attr in attrs - preds:
-            cats[attr]['FN'] += 1
+            cats[attr]["FN"] += 1
             if print_errs:
                 print(f"FN: {attr}: {sen_id}")
         for attr in preds - attrs:
-            cats[attr]['FP'] += 1
+            cats[attr]["FP"] += 1
             if print_errs:
                 print(f"FP: {attr}: {sen_id}")
 
-    cats['total'] = {
-        stat: sum(s[stat] for s in cats.values())
-        for stat in ('TP', 'FN', 'FP')}
+    cats["total"] = {stat: sum(s[stat] for s in cats.values()) for stat in ("TP", "FN", "FP")}
 
     return cats
 
 
 def eval_attrs(results, print_errs=False):
     print()
-    print('='*10)
-    print('Attribute extraction')
-    print('='*10)
+    print("=" * 10)
+    print("Attribute extraction")
+    print("=" * 10)
     attr_results = []
     for sen_id, sen in results.items():
-        gold_attr_names = set(attr['name'] for attr in sen['attributes'])
-        gen_attr_names = set(attr['name'] for attr in sen['gen_attributes'])
-        attr_results.append(
-            (sen_id, gold_attr_names, gen_attr_names))
+        gold_attr_names = set(attr["name"] for attr in sen["attributes"])
+        gen_attr_names = set(attr["name"] for attr in sen["gen_attributes"])
+        attr_results.append((sen_id, gold_attr_names, gen_attr_names))
 
-    cats = count_attr_stats(
-        attr_results, label_cats=ATTR_CATS, print_errs=print_errs)
+    cats = count_attr_stats(attr_results, label_cats=ATTR_CATS, print_errs=print_errs)
     print_cat_stats(cats, 500)
 
 
 def eval_modality(results):
     print()
-    print('='*10)
-    print('Modality')
-    print('='*10)
+    print("=" * 10)
+    print("Modality")
+    print("=" * 10)
     stats = Counter()
     for sen_id, sen in results.items():
-        stats['all'] += 1
-        mod = sen['modality'][0]
-        gen_mod = sen['gen_mod']
+        stats["all"] += 1
+        mod = sen["modality"][0]
+        gen_mod = sen["gen_mod"]
         if mod == gen_mod:
-            stats['corr'] += 1
+            stats["corr"] += 1
         else:
-            print(f'{sen_id} incorrect modality: {gen_mod} (correct: {mod})')
+            print(f"{sen_id} incorrect modality: {gen_mod} (correct: {mod})")
 
-    acc = stats['corr'] / stats['all']
+    acc = stats["corr"] / stats["all"]
     print(f'modality accuracy: {acc:.2%} ({stats["corr"]} of {stats["all"]})')
 
 
 def eval_types_values(results):
     print()
-    print('='*10)
-    print('Attr. types and values')
-    print('='*10)
+    print("=" * 10)
+    print("Attr. types and values")
+    print("=" * 10)
     stats = Counter()
     fp_errs = Counter()
     fn_errs = Counter()
     for sen_id, sen in results.items():
         gold_attrs = defaultdict(lambda: defaultdict(set))
         gen_attrs = defaultdict(lambda: defaultdict(set))
-        for attr in sen['attributes']:
-            if attr['name'] not in ATTR_IGNORE:
-                gold_attrs[attr['name']][attr['type']].add(attr['value'])
+        for attr in sen["attributes"]:
+            if attr["name"] not in ATTR_IGNORE:
+                gold_attrs[attr["name"]][attr["type"]].add(attr["value"])
 
-        for attr in sen['gen_attributes']:
-            gen_attrs[attr['name']][attr['type']].add(attr['value'])
+        for attr in sen["gen_attributes"]:
+            gen_attrs[attr["name"]][attr["type"]].add(attr["value"])
 
         all_names = set()
         for name in gen_attrs:
@@ -221,55 +212,53 @@ def eval_types_values(results):
             all_types = set()
             for atype, values in gen_attrs[name].items():
                 all_types.add(atype)
-                stats['gen_attr'] += len(values)
+                stats["gen_attr"] += len(values)
                 if name not in gold_attrs:
-                    print(f'{sen_id} incorrect attribute: {name}')
-                    stats['FP'] += len(values)
-                    fp_errs['no such attr'] += len(values)
+                    print(f"{sen_id} incorrect attribute: {name}")
+                    stats["FP"] += len(values)
+                    fp_errs["no such attr"] += len(values)
                     continue
 
                 if atype not in gold_attrs[name]:
                     print(
-                        f'{sen_id} incorrect attr type {atype} of {name}'
-                        f'(correct: {gold_attrs[name]})')
-                    stats['FP'] += len(values)
-                    fp_errs['wrong type'] += len(values)
+                        f"{sen_id} incorrect attr type {atype} of {name}"
+                        f"(correct: {gold_attrs[name]})"
+                    )
+                    stats["FP"] += len(values)
+                    fp_errs["wrong type"] += len(values)
                     continue
 
                 gold_vals = gold_attrs[name][atype]
-                stats['TP'] += len(gold_vals & values)
+                stats["TP"] += len(gold_vals & values)
                 for fp in values - gold_vals:
-                    fp_errs['wrong value'] += 1
-                    stats['FP'] += 1
-                    print(f'{sen_id} incorrect value {fp} of {name}')
+                    fp_errs["wrong value"] += 1
+                    stats["FP"] += 1
+                    print(f"{sen_id} incorrect value {fp} of {name}")
                 for fn in gold_vals - values:
-                    stats['FN'] += 1
-                    fn_errs['value'] += 1
-                    print(f'{sen_id} missing value {fn} of {name}')
+                    stats["FN"] += 1
+                    fn_errs["value"] += 1
+                    print(f"{sen_id} missing value {fn} of {name}")
 
             for atype, gold_vals in gold_attrs[name].items():
                 if atype not in all_types:
-                    print(f'{sen_id} missing attr type: {atype} of {name}')
-                    stats['FN'] += len(gold_vals)
-                    fn_errs['type'] += len(gold_vals)
+                    print(f"{sen_id} missing attr type: {atype} of {name}")
+                    stats["FN"] += len(gold_vals)
+                    fn_errs["type"] += len(gold_vals)
 
         for name in gold_attrs:
             if name not in all_names:
-                print(
-                    f'{sen_id} missing attribute: '
-                    f'{name} ({gold_attrs[name]})')
+                print(f"{sen_id} missing attribute: " f"{name} ({gold_attrs[name]})")
 
-                total = sum(
-                    len(g_values) for g_values in gold_attrs[name].values())
-                fn_errs['missing attr'] += total
-                stats['FN'] += total
+                total = sum(len(g_values) for g_values in gold_attrs[name].values())
+                fn_errs["missing attr"] += total
+                stats["FN"] += total
 
     print_cat_stats({"attrs": stats})
     print()
-    print('FN errs:')
+    print("FN errs:")
     print(fn_errs.most_common())
     print()
-    print('FP errs:')
+    print("FP errs:")
     print(fp_errs.most_common())
 
 
@@ -296,19 +285,18 @@ def eval_rule_ext(args):
 def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-o", "--output-file", type=str)
-    parser.add_argument(
-        "-p", "--print-errs", default=False, action='store_true')
-    parser.add_argument("-cd", "--cache-dir", default='cache', type=str)
-    parser.add_argument("-r", "--rule-ext", default=False, action='store_true')
-    parser.add_argument("-f", "--flat", default=False, action='store_true')
+    parser.add_argument("-p", "--print-errs", default=False, action="store_true")
+    parser.add_argument("-cd", "--cache-dir", default="cache", type=str)
+    parser.add_argument("-r", "--rule-ext", default=False, action="store_true")
+    parser.add_argument("-f", "--flat", default=False, action="store_true")
     return parser.parse_args()
 
 
 def main():
     logging.basicConfig(
         level=logging.WARNING,
-        format="%(asctime)s : " +
-        "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+    )
     args = get_args()
     eval_rule_ext(args)
 

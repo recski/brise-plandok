@@ -12,7 +12,6 @@ from brise_plandok.data_utils import normalize_attribute_name
 
 
 class ExcelGenerator:
-
     def __init__(self, output_file, CONSTANTS, doc, sen_to_gold_attrs=None):
         self.output_file = output_file
         self.sen_to_gold_attrs = sen_to_gold_attrs
@@ -36,30 +35,27 @@ class ExcelGenerator:
         self._set_row_height(main_sheet)
 
     def _fill_sentences(self, sen_id, main_sheet, row, sen):
-        main_sheet.cell(
-            row=row, column=self.CONSTANTS.SEN_ID_COL).value = sen_id
-        main_sheet.cell(
-            row=row, column=self.CONSTANTS.SEN_TEXT_COL).value = sen[SF.TEXT]
+        main_sheet.cell(row=row, column=self.CONSTANTS.SEN_ID_COL).value = sen_id
+        main_sheet.cell(row=row, column=self.CONSTANTS.SEN_TEXT_COL).value = sen[SF.TEXT]
         if self._full_gold_exists(sen):
             self._color_gold(main_sheet, row, self.CONSTANTS.SEN_ID_COL)
             self._color_gold(main_sheet, row, self.CONSTANTS.SEN_TEXT_COL)
-        main_sheet.cell(
-            row=row, column=self.CONSTANTS.SEN_TEXT_COL).alignment = Alignment(wrapText=True)
-        main_sheet.cell(
-            row=row, column=self.CONSTANTS.SEN_TEXT_COL).font = Font(size=12)
+        main_sheet.cell(row=row, column=self.CONSTANTS.SEN_TEXT_COL).alignment = Alignment(
+            wrapText=True
+        )
+        main_sheet.cell(row=row, column=self.CONSTANTS.SEN_TEXT_COL).font = Font(size=12)
 
     def _fill_attributes(self, sen, sheet, row):
         col = self.CONSTANTS.ATTRIBUTE_OFFSET
         self._fill_modality(sen, sheet, row)
         for attribute in self._gen_attributes(sen):
-            attribute_name = normalize_attribute_name(
-                attribute[AttributeFields.NAME])
+            attribute_name = normalize_attribute_name(attribute[AttributeFields.NAME])
             if attribute_name not in ATTR_TO_CAT:
                 logging.warning(
-                    f"\"{attribute_name}\" does not belong to any category - will be ignored")
+                    f'"{attribute_name}" does not belong to any category - will be ignored'
+                )
             else:
-                self._fill_attribute(
-                    attribute, sen, sheet, col, row)
+                self._fill_attribute(attribute, sen, sheet, col, row)
                 col += self.CONSTANTS.ATTRIBUTE_STEP
 
     def _modify_header(self, sheet):
@@ -90,17 +86,17 @@ class ExcelGenerator:
         self._color(main_sheet, row, col, GOLD_COLOR)
 
     def _color(self, main_sheet, row, col, color):
-        main_sheet.cell(row=row, column=col).fill = PatternFill(
-            fgColor=color, fill_type="solid")
+        main_sheet.cell(row=row, column=col).fill = PatternFill(fgColor=color, fill_type="solid")
         main_sheet.cell(row=row, column=col).font = Font(size=12)
 
     def _add_validations_for_attribute(self, main_sheet, row, col, category_val):
         category_val.add(main_sheet.cell(row=row, column=col))
         sub_data_val = DataValidation(
-            type="list", formula1='==INDIRECT(${0}${1})'.format(get_column_letter(col), str(row)))
+            type="list",
+            formula1="==INDIRECT(${0}${1})".format(get_column_letter(col), str(row)),
+        )
         main_sheet.add_data_validation(sub_data_val)
-        sub_data_val.add(main_sheet.cell(
-            row=row, column=col+self.CONSTANTS.LABEL_OFFSET))
+        sub_data_val.add(main_sheet.cell(row=row, column=col + self.CONSTANTS.LABEL_OFFSET))
 
     def _is_category_cell(self, col):
         return (col - self.CONSTANTS.ATTRIBUTE_OFFSET) % self.CONSTANTS.ATTRIBUTE_STEP == 0

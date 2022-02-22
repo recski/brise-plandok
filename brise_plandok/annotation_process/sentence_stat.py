@@ -1,6 +1,12 @@
 import argparse
-from brise_plandok.annotation_process.utils.sentences import count_sentences_in_doc, sum_sens_for_docs
-from brise_plandok.annotation_process.utils.doc_tracking import get_next_batch, load_doc_tracking_data
+from brise_plandok.annotation_process.utils.sentences import (
+    count_sentences_in_doc,
+    sum_sens_for_docs,
+)
+from brise_plandok.annotation_process.utils.doc_tracking import (
+    get_next_batch,
+    load_doc_tracking_data,
+)
 from brise_plandok.annotation_process.utils.constants import ANNOTATORS, DOC_HEADER
 
 import json
@@ -21,9 +27,11 @@ def calculate_sentence_counts(df, doc_ids, json_folder):
             _calculate_nr_sens_for_doc(df, doc_id, json_folder)
     sum = sum_sens_for_docs(df, doc_ids)
     logging.info(
-        f"number of sentences for each document in batch:\n {df[df[DOC_HEADER[1]].isin(doc_ids)]}")
+        f"number of sentences for each document in batch:\n {df[df[DOC_HEADER[1]].isin(doc_ids)]}"
+    )
     logging.info(
-        f"next batch of size {len(doc_ids)} would add {sum} new sentences - without overlap ~{int(sum/len(ANNOTATORS))} sens / annotator")
+        f"next batch of size {len(doc_ids)} would add {sum} new sentences - without overlap ~{int(sum/len(ANNOTATORS))} sens / annotator"
+    )
     return sum
 
 
@@ -66,11 +74,12 @@ def get_args():
 def main():
     logging.basicConfig(
         level=logging.INFO,
-        format="%(asctime)s : " +
-               "%(module)s (%(lineno)s) - %(levelname)s - %(message)s")
+        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
+    )
     args = get_args()
     calculate_sentences_for_next_batch(
-        args.dataset_file, args.batch_size, args.json_folder, args.phase)
+        args.dataset_file, args.batch_size, args.json_folder, args.phase
+    )
 
 
 if __name__ == "__main__":

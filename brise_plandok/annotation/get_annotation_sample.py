@@ -4,11 +4,11 @@ import sys
 
 
 def print_doc(doc):
-    for sec in doc['sections']:
-        if sec['num'] == 'header':
+    for sec in doc["sections"]:
+        if sec["num"] == "header":
             continue
 
-        for sen in sec['sens']:
+        for sen in sec["sens"]:
             print(f"{sen['sen_id']}\t{sen['text']}")
 
 
@@ -28,9 +28,7 @@ def main():
     n = int(sys.argv[2])
     seed = int(sys.argv[3])
     with open(sys.argv[1]) as f:
-        ids_to_docs = {
-            doc['id']: doc
-            for doc in (json.loads(line.strip()) for line in f)}
+        ids_to_docs = {doc["id"]: doc for doc in (json.loads(line.strip()) for line in f)}
 
     for i in sorted(sample_ids(ids_to_docs.keys(), n, seed)):
         print_doc(ids_to_docs[i])

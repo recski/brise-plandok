@@ -174,4 +174,10 @@ class Modalities:
     PROHIBITION = "prohibition"
 
 
+class SenToAttrFields:
+    ATTR = "attr"
+    SENS = "sens"
+    MOD = "mod"
+
+
 EMPTY = "EMPTY"

@@ -5,7 +5,7 @@ from xpotato.dataset.dataset import Dataset
 from xpotato.graph_extractor.extract import FeatureEvaluator
 
 from brise_plandok.attrs_from_gold import SenToAttrMap
-from brise_plandok.constants import AttributeFields, AttributeTypes
+from brise_plandok.constants import AttributeFields, AttributeTypes, SenToAttrFields
 from brise_plandok.full_attribute_extraction.attribute.potato.utils import load_features
 from brise_plandok.full_attribute_extraction.type.extract_types import match_types
 from brise_plandok.full_attribute_extraction.value.extract_values import match_values
@@ -23,7 +23,7 @@ def migrate_attribute(gold_folder, input_attribute, output_attributes):
     print(f"Number of different texts to update: {len(sen_to_gold_attrs.sen_to_attr.keys())}")
     predicted = _predict_output_attributes(evaluator, output_attributes, sen_to_gold_attrs)
     for text, entry in sen_to_gold_attrs.sen_to_attr.items():
-        old_attributes = entry["attr"]
+        old_attributes = entry[SenToAttrFields.ATTR]
         predicted_attributes = predicted.loc[predicted["Sentence"] == text][
             "Predicted label"
         ].to_list()[0]
@@ -36,12 +36,12 @@ def migrate_attribute(gold_folder, input_attribute, output_attributes):
         del old_attributes[input_attribute]
 
         print(f"\nNew attributes:\n{old_attributes}\n")
-        print(f"Sentences to update: {entry['sens']}")
+        print(f"Sentences to update: {entry[SenToAttrFields.SENS]}")
         input()
         update_gold_docs(
             gold_attr_candidate=old_attributes,
-            gold_mod_candidate=entry["mod"],
-            current_gold_sens=entry["sens"],
+            gold_mod_candidate=entry[SenToAttrFields.MOD],
+            current_gold_sens=entry[SenToAttrFields.SENS],
             gold_folder=gold_folder,
         )
 

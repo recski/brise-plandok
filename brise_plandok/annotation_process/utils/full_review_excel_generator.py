@@ -121,6 +121,8 @@ class FullReviewExcelGenerator(ExcelGenerator):
             values = full_attribute[AttributeFields.VALUE]
             types = full_attribute[AttributeFields.TYPE]
             if len(values) != len(types):
+                logging.warning(sen[SenFields.TEXT])
+                logging.warning(full_attribute)
                 raise ValueError(
                     f"{sen[SenFields.ID]}: Lenght of values {len(values)} is not equal to lenght of types {len(types)}"
                 )

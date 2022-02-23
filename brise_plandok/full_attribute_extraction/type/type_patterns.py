@@ -304,6 +304,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.StellplatzregulativUmfangMaximumRelativ: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.StellplatzregulativUmfangMinimumRelativ: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,

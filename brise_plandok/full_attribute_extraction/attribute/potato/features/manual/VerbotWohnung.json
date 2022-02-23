@@ -7,6 +7,14 @@
             ],
             [],
             "VerbotWohnung"
+        ],
+        [
+            [
+                "(u_0 / Wohnung)",
+                "(u_1 / PER :0 (u_2 / NEG))"
+            ],
+            [],
+            "VerbotWohnung"
         ]
     ]
 }

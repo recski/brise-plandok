@@ -67,7 +67,10 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.AufbautenZulaessig: {
-        ALL: {
+        r"nicht zulässig": {
+            VALUE: FALSE,
+        },
+        r"((?!nicht).)* zulässig": {
             VALUE: TRUE,
         },
     },
@@ -388,6 +391,9 @@ VALUE_PATTERNS = {
         r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von|von bis zu|darf|beträgt) " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
+        NUMBER_WITH_METER + r" über Wr. Null": {
+            GROUP: 1,
+        },
     },
 
     AttributesNames.GehsteigbreiteMin: {
@@ -503,7 +509,7 @@ VALUE_PATTERNS = {
 
     AttributesNames.StellplatzregulativUmfangMinimumRelativ: {
         r"Stellplatzverpflichtung .*" + NUMBER_WITH_PERCENT: {
-            GROUP: 2,
+            GROUP: 1,
         },
         r"mit " + NUMBER_WITH_PERCENT + " und die maximale": {
             GROUP: 1,

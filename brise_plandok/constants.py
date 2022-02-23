@@ -152,6 +152,7 @@ class AttributesNames:
     VerbotWohnung = "VerbotWohnung"
     VerkehrsflaecheID = "VerkehrsflaecheID"
     VolumenUndUmbaubarerRaum = "VolumenUndUmbaubarerRaum"
+    VorbautenBeschraenkung = "VorbautenBeschraenkung"
     VorbautenVerbot = "VorbautenVerbot"
     VonBebauungFreizuhalten = "VonBebauungFreizuhalten"
     VorkehrungBepflanzung = "VorkehrungBepflanzung"

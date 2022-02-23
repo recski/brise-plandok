@@ -20,6 +20,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.AnlageZumEinstellenVorhanden: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.AnOeffentlichenVerkehrsflaechen: {
         ALL: {
             TYPE: AttributeTypes.CONDITION,
@@ -167,6 +173,12 @@ TYPE_PATTERNS = {
         }
     },
 
+    AttributesNames.DachneigungMin: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT
+        }
+    },
+
     AttributesNames.DurchfahrtBreite: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
@@ -224,7 +236,7 @@ TYPE_PATTERNS = {
     },
 
     AttributesNames.GebaeudeHoeheMax: {
-        r" (mit|bis zu) einer Gebäudehöhe von( bis zu)? \d\d m": {
+        r" (mit|bis zu) einer Gebäudehöhe von( bis zu)? " + NUMBER_WITH_METER: {
             TYPE: AttributeTypes.CONDITION,
         },
         ALL: {
@@ -241,6 +253,12 @@ TYPE_PATTERNS = {
     AttributesNames.GehsteigbreiteMin: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.InSchutzzone: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
         },
     },
 
@@ -340,6 +358,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.VerbotStaffelung: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.VerbotWohnung: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
@@ -359,6 +383,12 @@ TYPE_PATTERNS = {
     },
 
     AttributesNames.VonBebauungFreizuhalten: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.VorbautenBeschraenkung: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
         },

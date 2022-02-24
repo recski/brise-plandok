@@ -5,7 +5,9 @@
                 "(u_0 / Wohnung)",
                 "(u_1 / FOR)"
             ],
-            [],
+            [
+                "(u_2 / .*[Ff]enster)"
+            ],
             "VerbotWohnung"
         ],
         [
@@ -13,7 +15,9 @@
                 "(u_0 / Wohnung)",
                 "(u_1 / PER :0 (u_2 / NEG))"
             ],
-            [],
+            [
+                "(u_2 / .*[Ff]enster)"
+            ],
             "VerbotWohnung"
         ]
     ]

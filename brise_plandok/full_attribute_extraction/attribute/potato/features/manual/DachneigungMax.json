@@ -3,7 +3,7 @@
         [
             [
                 "(u_0 / bis :2 (u_1 / Neigung))",
-                "(u_2 / Dach)"
+                "(u_2 / .*[Dd]ae?ch.*)"
             ],
             [],
             "DachneigungMax"

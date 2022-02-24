@@ -116,7 +116,6 @@ class FullReviewExcelGenerator(ExcelGenerator):
 
     def __gen_attributes_from_gold(self, sen):
         for full_attribute in sen[SenFields.GOLD_ATTRIBUTES].values():
-            ann_types = [None] * (len(self.annotators) + 1)
             name = full_attribute[AttributeFields.NAME]
             values = full_attribute[AttributeFields.VALUE]
             types = full_attribute[AttributeFields.TYPE]
@@ -127,6 +126,7 @@ class FullReviewExcelGenerator(ExcelGenerator):
                     f"{sen[SenFields.ID]}: Lenght of values {len(values)} is not equal to lenght of types {len(types)}"
                 )
             for i in range(len(values)):
+                ann_types = [None] * (len(self.annotators) + 1)
                 ann_types[-1] = types[i]
                 yield {
                     AttributeFields.NAME: name,

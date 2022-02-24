@@ -6,6 +6,13 @@
             ],
             [],
             "VerbotFensterZuOeffentlichenVerkehrsflaechen"
+        ],
+        [
+            [
+                "(u_0 / von :1 (u_1 / .*[Ff]enster)) :2 (u_2 / Wohnung))"
+            ],
+            [],
+            "VerbotFensterZuOeffentlichenVerkehrsflaechen"
         ]
     ]
 }

@@ -262,6 +262,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.GesamtePlangebiet: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
     AttributesNames.InSchutzzone: {
         ALL: {
             TYPE: AttributeTypes.CONDITION,
@@ -281,12 +287,6 @@ TYPE_PATTERNS = {
     },
 
     AttributesNames.OeffentlicheVerkehrsflaecheBreiteMin: {
-        ALL: {
-            TYPE: AttributeTypes.CONDITION,
-        },
-    },
-
-    AttributesNames.PlangebietAllgemein: {
         ALL: {
             TYPE: AttributeTypes.CONDITION,
         },
@@ -341,6 +341,18 @@ TYPE_PATTERNS = {
     },
 
     AttributesNames.StrassenbreiteVonBis: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
+    AttributesNames.Struktureinheit: {
+        r"als Strukturgebiet festgelegt": {
+            TYPE: AttributeTypes.CONTENT,
+        },
+        r"bilden in ihrer Gesamtheit eine Struktur": {
+            TYPE: AttributeTypes.CONTENT,
+        },
         ALL: {
             TYPE: AttributeTypes.CONDITION,
         },

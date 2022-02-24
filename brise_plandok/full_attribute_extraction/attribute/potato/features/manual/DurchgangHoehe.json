@@ -1,0 +1,12 @@
+{
+    "DurchgangHoehe": [
+        [
+            [
+                "(u_0 / Durchgang.*)",
+                "(u_1 / Hoehe|hoch)"
+            ],
+            [],
+            "DurchgangHoehe"
+        ]
+    ]
+}

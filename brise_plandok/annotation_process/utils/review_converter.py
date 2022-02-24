@@ -1,3 +1,4 @@
+import json
 import logging
 
 import openpyxl
@@ -82,12 +83,20 @@ class ReviewConverter:
                 current_gold_mod = self.data[DocumentFields.SENS][sen_id][SenFields.GOLD_MODALITY]
                 if gold_attr_candidate != current_gold_attr:
                     logging.error(
-                        f"Conflict within already gold sentence {sen_id}:\nCurrent ({sen_id}):\n{current_gold_attr}\nNew:\n{gold_attr_candidate}"
+                        f"Conflict within already gold sentence {sen_id}:\n"
+                        f"Current ({sen_id}):\n"
+                        f"{json.dumps(current_gold_attr, indent=2)}\n"
+                        f"New:\n"
+                        f"{json.dumps(gold_attr_candidate, indent=2)}"
                     )
                     raise ValueError("Gold conflict with attributes")
                 if gold_mod_candidate != current_gold_mod:
                     logging.error(
-                        f"Conflict within already gold sentence {sen_id}:\nCurrent ({sen_id}):\n{current_gold_mod}\nNew:\n{gold_mod_candidate}"
+                        f"Conflict within already gold sentence {sen_id}:\n"
+                        f"Current ({sen_id}):\n"
+                        f"{json.dumps(current_gold_mod, indent=2)}\n"
+                        f"New:\n"
+                        f"{json.dumps(gold_mod_candidate, indent=2)}"
                     )
                     raise ValueError("Gold conflict with modality")
 

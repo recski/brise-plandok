@@ -152,6 +152,7 @@ class AttributesNames:
     VerbotWohnung = "VerbotWohnung"
     VerkehrsflaecheID = "VerkehrsflaecheID"
     VolumenUndUmbaubarerRaum = "VolumenUndUmbaubarerRaum"
+    VorbautenBeschraenkung = "VorbautenBeschraenkung"
     VorbautenVerbot = "VorbautenVerbot"
     VonBebauungFreizuhalten = "VonBebauungFreizuhalten"
     VorkehrungBepflanzung = "VorkehrungBepflanzung"
@@ -171,6 +172,12 @@ class Modalities:
     OBLIGATION = "obligation"
     PERMISSION = "permission"
     PROHIBITION = "prohibition"
+
+
+class SenToAttrFields:
+    ATTR = "attr"
+    SENS = "sens"
+    MOD = "mod"
 
 
 EMPTY = "EMPTY"

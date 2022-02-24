@@ -2,7 +2,7 @@
     "GebaeudeBautyp": [
         [
             [
-                "(u_0 / Nebengebaeude)"
+                "(u_0 / Nebengebaeude|Hauptgebaeude)"
             ],
             [],
             "GebaeudeBautyp"

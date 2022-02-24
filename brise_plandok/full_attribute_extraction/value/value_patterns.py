@@ -1,7 +1,7 @@
 from brise_plandok.constants import AttributesNames
 from brise_plandok.full_attribute_extraction.constants import NUMBER_WITH_METER, GROUP, ALL, VALUE, TRUE, \
     NUMBER_WITH_PERCENT, GAERTNERISH_GESTALTEN, DACH, NUMBER_WITH_DEGREE, NUMBER_WITH_SQUARE_METER, FALSE, \
-    FLAECHEN_NUMBER, STRASSE, NUMBER_WITH_CUBIC_METER
+    STRASSE, NUMBER_WITH_CUBIC_METER, NUMBER
 from brise_plandok.full_attribute_extraction.value.widmung_patterns import WIDMUNG
 
 VALUE_PATTERNS = {
@@ -67,7 +67,10 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.AufbautenZulaessig: {
-        ALL: {
+        r"nicht zulässig": {
+            VALUE: FALSE,
+        },
+        r"((?!nicht).)* zulässig": {
             VALUE: TRUE,
         },
     },
@@ -175,7 +178,7 @@ VALUE_PATTERNS = {
         r"((bis zu|mit) einer (Dach)?[Nn]eigung von|maximal|bis|bis zu) " + NUMBER_WITH_DEGREE: {
             GROUP: 4
         },
-        r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {
+        r"zwischen " + NUMBER + r" und " + NUMBER_WITH_DEGREE: {
             GROUP: 6
         },
         r"Dachneigung( darf)? " + NUMBER_WITH_DEGREE + r" nicht überschreiten": {
@@ -193,7 +196,7 @@ VALUE_PATTERNS = {
         r"von einer Dachneigung von mindestens " + NUMBER_WITH_DEGREE: {
             GROUP: 1
         },
-        r"zwischen " + NUMBER_WITH_DEGREE + r" und " + NUMBER_WITH_DEGREE: {
+        r"zwischen " + NUMBER + r" und " + NUMBER_WITH_DEGREE: {
             GROUP: 1
         },
         r"Dachneigung darf " + NUMBER_WITH_DEGREE + r" nicht unterschreiten": {
@@ -385,8 +388,11 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.GebaeudeHoeheMax: {
-        r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von) " + NUMBER_WITH_METER: {
+        r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von|von bis zu|darf|beträgt) " + NUMBER_WITH_METER: {
             GROUP: 3,
+        },
+        NUMBER_WITH_METER + r" über Wr. Null": {
+            GROUP: 1,
         },
     },
 
@@ -503,7 +509,7 @@ VALUE_PATTERNS = {
 
     AttributesNames.StellplatzregulativUmfangMinimumRelativ: {
         r"Stellplatzverpflichtung .*" + NUMBER_WITH_PERCENT: {
-            GROUP: 2,
+            GROUP: 1,
         },
         r"mit " + NUMBER_WITH_PERCENT + " und die maximale": {
             GROUP: 1,
@@ -619,7 +625,7 @@ VALUE_PATTERNS = {
         r"((ober|unter)irdische(n|r)? (Bauten?|Bebauung|Bauwerk(en)?))": {
             GROUP: 1,
         },
-        r"((ober- und unterirdischen|oberirdische[rn]|unterirdische[rn]|oberirdischen und unterirdischen) (Gebäude|Baulichkeit|Bauten?))": {
+        r"((ober- und unterirdischen|oberund unterirdischen|oberirdische[rn]|unterirdische[rn]|oberirdischen und unterirdischen) (Gebäude|Baulichkeit|Bauten?))": {
             GROUP: 1,
         },
         r"(keine Bauwerke)": {
@@ -628,7 +634,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.VorkehrungBepflanzung: {
-        r"(((Erhaltung|Pflanzung|(für )?das Pflanzen|Herstellung|Erreichung) .*) (zu ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können))": {
+        r"(((Erhaltung|Pflanzung|(für )?das Pflanzen|Herstellung|Erreichung) .*) (zu ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können|zu sichern))": {
             GROUP: 2,
         },
         r"(der Bestand der Baumreihen sicher zu stellen)": {

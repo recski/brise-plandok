@@ -11,7 +11,7 @@ from brise_plandok.full_attribute_extraction.attribute.potato.utils import (
     filter_labels,
     get_label_vocab,
     gen_all_attributes_names,
-    get_all_manual_features,
+    load_features,
 )
 
 ONLY_GOLD = False
@@ -47,7 +47,7 @@ class TestUtils(unittest.TestCase):
         self.assertLess(len(attribute_names), 100)
 
     def test_get_all_manual_features(self):
-        all_features = get_all_manual_features()
+        all_features = load_features()
         attribute_names = [attr for attr in gen_all_attributes_names()]
         attribute_names_from_features = [feat[-1] for feat in all_features]
         self.assertLessEqual(len(set(attribute_names_from_features)), len(set(attribute_names)))

@@ -7,13 +7,13 @@ from brise_plandok.full_attribute_extraction.value.value_patterns import VALUE_P
 
 def extract_value(sen, attribute, field_to_add=SenFields.GEN_ATTRIBUTES, only_gold=True):
     if not only_gold or is_gold_attribute(sen, attribute):
-        values = list(set([value for value in _match_values(attribute, sen[SenFields.TEXT])]))
+        values = list(set([value for value in match_values(attribute, sen[SenFields.TEXT])]))
         if field_to_add is None:
             return values
         _add_to_gen_values(sen, attribute, values, field_to_add)
 
 
-def _match_values(attribute, text):
+def match_values(attribute, text):
     if attribute in VALUE_PATTERNS:
         for pattern, resolution in VALUE_PATTERNS[attribute].items():
             matches = re.findall(pattern, text)

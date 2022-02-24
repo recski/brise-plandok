@@ -4,7 +4,9 @@
             [
                 "(u_0 / Bauweise)"
             ],
-            [],
+            [
+                "(u_1 / Unterbrechung)"
+            ],
             "BauweiseID"
         ]
     ]

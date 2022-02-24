@@ -1,6 +1,5 @@
 from brise_plandok.constants import AttributeTypes, AttributesNames
 from brise_plandok.full_attribute_extraction.constants import ALL, TYPE, NUMBER_WITH_SQUARE_METER, NUMBER_WITH_METER
-
 TYPE_PATTERNS = {
 
     AttributesNames.AbschlussDachMaxBezugGebaeude: {
@@ -18,6 +17,12 @@ TYPE_PATTERNS = {
     AttributesNames.AnFluchtlinie: {
         ALL: {
             TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
+    AttributesNames.AnlageZumEinstellenVorhanden: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
         },
     },
 
@@ -49,6 +54,12 @@ TYPE_PATTERNS = {
     },
 
     AttributesNames.AnteilDachbegruenung: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.AnzahlGebaeudeMax: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
         },
@@ -133,7 +144,7 @@ TYPE_PATTERNS = {
         r"Errichtung gelangende .*(da|dächer)": {
             TYPE: AttributeTypes.CONDITION,
         },
-        r"als( begrünte)? .*(dach|dher)": {
+        r"als( begrünte)? .*(dach|dächer)": {
             TYPE: AttributeTypes.CONTENT,
         },
         r"mit .*(dach|dächern) ausz*": {
@@ -144,6 +155,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.DachflaecheMin: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION
+        }
+    },
+
     AttributesNames.DachneigungMax: {
         r"bis zu einer (Dachn|N)eigung von": {
             TYPE: AttributeTypes.CONDITION,
@@ -151,6 +168,12 @@ TYPE_PATTERNS = {
         r"mit einer (Dachn|N)eigung bis": {
             TYPE: AttributeTypes.CONDITION,
         },
+        ALL: {
+            TYPE: AttributeTypes.CONTENT
+        }
+    },
+
+    AttributesNames.DachneigungMin: {
         ALL: {
             TYPE: AttributeTypes.CONTENT
         }
@@ -213,7 +236,7 @@ TYPE_PATTERNS = {
     },
 
     AttributesNames.GebaeudeHoeheMax: {
-        r" (mit|bis zu) einer Gebäudehöhe von( bis zu)? \d\d m": {
+        r" (mit|bis zu) einer Gebäudehöhe von( bis zu)? " + NUMBER_WITH_METER: {
             TYPE: AttributeTypes.CONDITION,
         },
         ALL: {
@@ -233,9 +256,21 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.InSchutzzone: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
     AttributesNames.Kleinhaeuser: {
         ALL: {
             TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
+    AttributesNames.MaxAnzahlGeschosseOberirdisch: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
         },
     },
 
@@ -269,6 +304,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.StellplatzregulativUmfangMaximumRelativ: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.StellplatzregulativUmfangMinimumRelativ: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
@@ -276,6 +317,12 @@ TYPE_PATTERNS = {
     },
 
     AttributesNames.Stockwerk: {
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
+    AttributesNames.StrassenbreiteMax: {
         ALL: {
             TYPE: AttributeTypes.CONDITION,
         },
@@ -305,6 +352,24 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.VerbotBueroGeschaeftsgebaeude: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.VerbotFensterZuOeffentlichenVerkehrsflaechen: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.VerbotStaffelung: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.VerbotWohnung: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
@@ -317,7 +382,19 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.VolumenUndUmbaubarerRaum: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.VonBebauungFreizuhalten: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.VorbautenBeschraenkung: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
         },
@@ -329,13 +406,13 @@ TYPE_PATTERNS = {
         },
     },
 
-    AttributesNames.VerbotFensterZuOeffentlichenVerkehrsflaechen: {
+    AttributesNames.VorkehrungBepflanzung: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
         },
     },
 
-    AttributesNames.VorkehrungBepflanzung: {
+    AttributesNames.VorstehendeBauelementeAusladungMax: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
         },

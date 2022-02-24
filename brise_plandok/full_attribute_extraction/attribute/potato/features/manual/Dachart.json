@@ -1,1 +1,13 @@
-{"Dachart": [[["(u_0 / ..*dae?ch.*)"], ["(u_212 / Bedachtnahme)"], "Dachart"]]}
+{
+    "Dachart": [
+        [
+            [
+                "(u_0 / ..*dae?ch.*)"
+            ],
+            [
+                "(u_212 / Bedacht.*)"
+            ],
+            "Dachart"
+        ]
+    ]
+}

@@ -1,5 +1,5 @@
 import argparse
-from brise_plandok.constants import DocumentFields, SenFields
+from brise_plandok.constants import DocumentFields, SenFields, SenToAttrFields
 import json
 import logging
 import os
@@ -12,10 +12,10 @@ from tqdm import tqdm
 class SenToAttrMap:
     fuzzy_patt = re.compile("[0-9]+")
 
-    def __init__(self, gold_dir, fuzzy, full=False):
+    def __init__(self, gold_dir, fuzzy, full=False, attributes=None, text=None):
         self.sen_to_attr = None
         self.fuzzy = fuzzy
-        self.build_map(gold_dir, full)
+        self.build_map(gold_dir, full, attributes, text)
 
     def gen_sens_mod_attrs(self, gold_dir, full):
         if not os.path.exists(gold_dir):
@@ -39,39 +39,49 @@ class SenToAttrMap:
         else:
             return SenToAttrMap.fuzzy_patt.sub("", sen)
 
-    def build_map(self, gold_dir, full):
+    def build_map(self, gold_dir, full, attributes=None, text=None):
         self.sen_to_attr = {}
         for sen, fn in self.gen_sens_mod_attrs(gold_dir, full):
             sen_key = self.sen_to_key(sen[SenFields.TEXT])
-            attr, mod = None, None
-            if SenFields.GOLD_ATTRIBUTES in sen:
-                attr = sen[SenFields.GOLD_ATTRIBUTES]
-            if SenFields.GOLD_MODALITY in sen:
-                mod = sen[SenFields.GOLD_MODALITY]
-            sen_id = sen[SenFields.ID]
-            if sen_key in self.sen_to_attr:
-                if full:
-                    self._check_conflict_for_full(attr, mod, sen, sen_id, sen_key)
+            if text is None or sen_key == text:
+                attr, mod = None, None
+                if SenFields.GOLD_ATTRIBUTES in sen:
+                    attr = sen[SenFields.GOLD_ATTRIBUTES]
+                if SenFields.GOLD_MODALITY in sen:
+                    mod = sen[SenFields.GOLD_MODALITY]
+                sen_id = sen[SenFields.ID]
+                if sen_key in self.sen_to_attr:
+                    if full:
+                        self._check_conflict_for_full(attr, mod, sen, sen_id, sen_key)
+                    else:
+                        self._check_conflict_for_label(attr, sen, sen_id, sen_key)
                 else:
-                    self._check_conflict_for_label(attr, sen, sen_id, sen_key)
-            else:
-                self.sen_to_attr[sen_key] = {
-                    "attr": attr,
-                    "sens": [sen_id],
-                    "mod": mod,
-                }
+                    if self._contains_attribute_to_add(attr, attributes):
+                        self.sen_to_attr[sen_key] = {
+                            SenToAttrFields.ATTR: attr,
+                            SenToAttrFields.SENS: [sen_id],
+                            SenToAttrFields.MOD: mod,
+                        }
+
+    def _contains_attribute_to_add(self, attr, attributes):
+        if attributes is None:
+            return True
+        for gold_attr in attr.keys():
+            if gold_attr in attributes:
+                return True
+        return False
 
     def _check_conflict_for_label(self, attr, sen, sen_id, sen_key):
-        if set(self.sen_to_attr[sen_key]["attr"].keys()) == set(attr.keys()):
-            self.sen_to_attr[sen_key]["sens"].append(sen_id)
+        if set(self.sen_to_attr[sen_key][SenToAttrFields.ATTR].keys()) == set(attr.keys()):
+            self.sen_to_attr[sen_key][SenToAttrFields.SENS].append(sen_id)
         else:
             self.log_conflict(sen, sen_key, attr=True)
             raise ValueError("full gold conflict with attributes")
 
     def _check_conflict_for_full(self, attr, mod, sen, sen_id, sen_key):
-        if self.sen_to_attr[sen_key]["attr"] == attr:
-            if self.sen_to_attr[sen_key]["mod"] == mod:
-                self.sen_to_attr[sen_key]["sens"].append(sen_id)
+        if self.sen_to_attr[sen_key][SenToAttrFields.ATTR] == attr:
+            if self.sen_to_attr[sen_key][SenToAttrFields.MOD] == mod:
+                self.sen_to_attr[sen_key][SenToAttrFields.SENS].append(sen_id)
             else:
                 self.log_conflict(sen, sen_key, attr=False)
                 raise ValueError("full gold conflict with modalities")
@@ -84,36 +94,44 @@ class SenToAttrMap:
         full_attr = self.sen_to_attr.get(sen_key)
         if full_attr is None:
             return None
-        return full_attr["attr"]
+        return full_attr[SenToAttrFields.ATTR]
+
+    def set_attrs(self, sen, attributes):
+        sen_key = self.sen_to_key(sen)
+        self.sen_to_attr[sen_key][SenToAttrFields.ATTR] = attributes
 
     def get_mod(self, sen):
         sen_key = self.sen_to_key(sen)
         full_attr = self.sen_to_attr.get(sen_key)
         if full_attr is None:
             return None
-        return full_attr["mod"]
+        return full_attr[SenToAttrFields.MOD]
+
+    def set_mod(self, sen, mod):
+        sen_key = self.sen_to_key(sen)
+        self.sen_to_attr[sen_key][SenToAttrFields.MOD] = mod
 
     def get_sens(self, sen):
         sen_key = self.sen_to_key(sen)
         full_attr = self.sen_to_attr.get(sen_key)
         if full_attr is None:
             return None
-        return full_attr["sens"]
+        return full_attr[SenToAttrFields.SENS]
 
     def log_conflict(self, sen, sen_key=None, attr=True):
         if sen_key is None:
             sen_key = self.sen_to_key(sen[SenFields.TEXT])
-        old_sens = self.sen_to_attr[sen_key]["sens"]
+        old_sens = self.sen_to_attr[sen_key][SenToAttrFields.SENS]
         new_sen = sen[SenFields.ID]
         if attr:
-            old_attrs = json.dumps(self.sen_to_attr[sen_key]["attr"], indent=2)
+            old_attrs = json.dumps(self.sen_to_attr[sen_key][SenToAttrFields.ATTR], indent=2)
             new_attrs = json.dumps(sen[SenFields.GOLD_ATTRIBUTES], indent=2)
             logging.error(
                 "matching sens in gold with different attrs:\n"
                 + f"\nold attrs {old_sens}:\n{old_attrs}\n\nnew attrs {new_sen}:\n{new_attrs}\n"
             )
         else:
-            old_mod = json.dumps(self.sen_to_attr[sen_key]["mod"], indent=2)
+            old_mod = json.dumps(self.sen_to_attr[sen_key][SenToAttrFields.MOD], indent=2)
             new_mod = json.dumps(sen[SenFields.GOLD_MODALITY], indent=2)
             logging.error(
                 "matching sens in gold with different attrs:\n"
@@ -178,7 +196,7 @@ def attrs_from_gold(args):
     for line in tqdm(sys.stdin):
         doc = json.loads(line)
         for section in doc["sections"]:
-            for sen in section["sens"]:
+            for sen in section[SenToAttrFields.SENS]:
                 attrs_from_gold_sen(sen, sen_to_attr, args.overwrite)
         sys.stdout.write(json.dumps(doc))
         sys.stdout.write("\n")

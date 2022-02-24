@@ -83,18 +83,19 @@ def get_vocab_for_all_attributes():
     return get_label_vocab(all_attribute_names)
 
 
-def get_all_manual_features():
-    all_features = []
-    manual_features_path = get_manual_feature_folder_path()
-    for filename in os.listdir(manual_features_path):
+def load_features(attributes=None):
+    features = []
+    features_path = get_manual_feature_folder_path()
+    for filename in os.listdir(features_path):
         if not filename.endswith(".json"):
             continue
-        with open(os.path.join(manual_features_path, filename)) as f:
-            rules = json.load(f)
-            for attr_name in rules:
-                for rule in rules[attr_name]:
-                    all_features.append(rule)
-    return all_features
+        if attributes is None or filename.split(".")[0] in attributes:
+            with open(os.path.join(features_path, filename)) as f:
+                rules = json.load(f)
+                for attr_name in rules:
+                    for rule in rules[attr_name]:
+                        features.append(rule)
+    return features
 
 
 def create_potato_dataset(doc):

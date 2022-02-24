@@ -2,7 +2,8 @@
     "DachneigungMax": [
         [
             [
-                "(u_0 / bis :2 (u_1 / Neigung))","(u_2 / Dach)"
+                "(u_0 / bis :2 (u_1 / Neigung))",
+                "(u_2 / Dach)"
             ],
             [],
             "DachneigungMax"

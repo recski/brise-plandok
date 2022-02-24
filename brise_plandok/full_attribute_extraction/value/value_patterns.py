@@ -190,6 +190,9 @@ VALUE_PATTERNS = {
         r"Dachneigung mindestens " + NUMBER_WITH_DEGREE + r" und höchstens " + NUMBER_WITH_DEGREE + r" zu betragen": {
             GROUP: 6
         },
+        r"[Nn]eigung von höchstens " + NUMBER_WITH_DEGREE: {
+            GROUP: 6
+        },
     },
 
     AttributesNames.DachneigungMin: {
@@ -346,7 +349,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.FBOKMinimumWohnungen: {
-        r"Fußbodenoberkante.* mindestens " + NUMBER_WITH_METER: {
+        r"Fußboden.* mindestens " + NUMBER_WITH_METER: {
             GROUP: 1,
         },
     },

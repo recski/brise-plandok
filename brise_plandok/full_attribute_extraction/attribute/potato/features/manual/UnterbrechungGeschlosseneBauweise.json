@@ -1,0 +1,11 @@
+{
+    "UnterbrechungGeschlosseneBauweise": [
+        [
+            [
+                "(u_0 / PER :1 (u_1 / Unterbrechung :0 (u_2 / Bauweise :0 (u_3 / geschlossen))))"
+            ],
+            [],
+            "UnterbrechungGeschlosseneBauweise"
+        ]
+    ]
+}

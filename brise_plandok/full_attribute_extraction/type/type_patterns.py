@@ -229,6 +229,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.FBOKMinimumWohnungen: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.GebaeudeBautyp: {
         ALL: {
             TYPE: AttributeTypes.CONDITION,

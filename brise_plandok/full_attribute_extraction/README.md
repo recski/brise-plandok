@@ -98,6 +98,13 @@ python brise_plandok/full_attribute_extraction/migration/rename_attribute.py \
     -i PlangebietAllgemein \
     -o GesamtePlangebiet \
     -a
+    
+# Delete a specific attribute
+python brise_plandok/full_attribute_extraction/migration/rename_attribute.py \
+    -g GOLD_DIR \
+    -i Flaechen \
+    -o "" \
+    -a
 ```
 
 

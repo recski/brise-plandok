@@ -26,11 +26,12 @@ def _rename_in_all_gold_sentences(gold_folder, input_attribute, output_attribute
             gold_attributes = sen[SenFields.GOLD_ATTRIBUTES]
             if input_attribute in gold_attributes:
                 old_attributes = gold_attributes[input_attribute]
-                gold_attributes[output_attribute] = {
-                    AttributeFields.NAME: output_attribute,
-                    AttributeFields.VALUE: old_attributes[AttributeFields.VALUE],
-                    AttributeFields.TYPE: old_attributes[AttributeFields.TYPE],
-                }
+                if output_attribute != "":
+                    gold_attributes[output_attribute] = {
+                        AttributeFields.NAME: output_attribute,
+                        AttributeFields.VALUE: old_attributes[AttributeFields.VALUE],
+                        AttributeFields.TYPE: old_attributes[AttributeFields.TYPE],
+                    }
                 del gold_attributes[input_attribute]
                 changed = True
         if changed:

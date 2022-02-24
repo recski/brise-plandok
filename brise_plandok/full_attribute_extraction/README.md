@@ -36,7 +36,7 @@ To migrate one attribute into several new ones semi-manually. This program sugge
 This example turns `Flaechen` into `BebauteFlaecheMax`, `BebauteFlaecheMaxNebengebaeude`, `BebauteFlaecheMaxProzentual` and `BebauteFlaecheMin`.
 
 ```bash
-python brise_plandok/full_attribute_extraction/migrate_attribute.py \
+python brise_plandok/full_attribute_extraction/migration/migrate_attribute.py \
     -g GOLD_DIR \
     -i Flaechen \
     -o BebauteFlaecheMax BebauteFlaecheMaxNebengebaeude BebauteFlaecheMaxProzentual BebauteFlaecheMin
@@ -47,7 +47,7 @@ python brise_plandok/full_attribute_extraction/migrate_attribute.py \
 To change attributes for all sentences matching a specific text.
 
 ```bash
-python brise_plandok/full_attribute_extraction/update_sentence.py \
+python brise_plandok/full_attribute_extraction/migration/update_sentence.py \
     -g GOLD_DIR \
     -t "Pro Bauplatz darf nur ein Nebengebäude mit einer bebauten Fläche von maximal 30m² errichtet werden." \
     -a '{
@@ -87,16 +87,29 @@ To rename one attribute by keeping the sames values and types.
 
 ```bash
 # Rename only in gold docs
-python brise_plandok/full_attribute_extraction/rename_attribute.py \
+python brise_plandok/full_attribute_extraction/migration/rename_attribute.py \
     -g GOLD_DIR \
     -i PlangebietAllgemein \
     -o GesamtePlangebiet
     
 # Rename in all docs (only for gold_attributes)
-python brise_plandok/full_attribute_extraction/rename_attribute.py \
+python brise_plandok/full_attribute_extraction/migration/rename_attribute.py \
     -g GOLD_DIR \
     -i PlangebietAllgemein \
     -o GesamtePlangebiet \
     -a
+```
+
+
+### Migrate types
+
+To migrate one specific type to another in all gold_attributes of all docs.
+
+```bash
+# String representation to list representation
+python brise_plandok/full_attribute_extraction/migration/migrate_type.py \
+    -g GOLD_DIR \
+    -i '"condition"' \
+    -o '["condition"]'
 ```
 

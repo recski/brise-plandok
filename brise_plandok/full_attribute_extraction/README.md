@@ -86,9 +86,17 @@ python brise_plandok/full_attribute_extraction/update_sentence.py \
 To rename one attribute by keeping the sames values and types.
 
 ```bash
+# Rename only in gold docs
 python brise_plandok/full_attribute_extraction/rename_attribute.py \
     -g GOLD_DIR \
     -i PlangebietAllgemein \
     -o GesamtePlangebiet
+    
+# Rename in all docs (only for gold_attributes)
+python brise_plandok/full_attribute_extraction/rename_attribute.py \
+    -g GOLD_DIR \
+    -i PlangebietAllgemein \
+    -o GesamtePlangebiet \
+    -a
 ```
 

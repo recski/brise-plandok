@@ -6,6 +6,13 @@
             ],
             [],
             "GebaeudeHoeheArt"
+        ],
+        [
+            [
+                "(u_0 / Gebaeudehoehe :0 (u_1 / ausgefuehrt))"
+            ],
+            [],
+            "GebaeudeHoeheArt"
         ]
     ]
 }

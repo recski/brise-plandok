@@ -2,7 +2,7 @@
     "UnterirdischeBaulichkeiten": [
         [
             [
-                "(u_0 / Gebaeude)",
+                "(u_0 / Gebaeude|Bau.*)",
                 "(u_1 / unterirdisch)"
             ],
             [],

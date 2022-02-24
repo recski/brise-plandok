@@ -1,4 +1,5 @@
 import argparse
+import json
 import logging
 import os
 
@@ -121,7 +122,7 @@ class FullReviewExcelGenerator(ExcelGenerator):
             types = full_attribute[AttributeFields.TYPE]
             if len(values) != len(types):
                 logging.warning(sen[SenFields.TEXT])
-                logging.warning(full_attribute)
+                logging.warning(f"\n{json.dumps(full_attribute, indent=2)}")
                 raise ValueError(
                     f"{sen[SenFields.ID]}: Lenght of values {len(values)} is not equal to lenght of types {len(types)}"
                 )

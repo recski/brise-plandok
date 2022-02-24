@@ -2,7 +2,7 @@
     "Planzeichen": [
         [
             [
-                "(u_30 / BB)"
+                "(u_30 / BB\\d*)"
             ],
             [],
             "Planzeichen"
@@ -17,6 +17,13 @@
         [
             [
                 "(u_586 / Buchstabe)"
+            ],
+            [],
+            "Planzeichen"
+        ],
+        [
+            [
+                "(u_0 / mit :1 (u_1 / bezeichnet) :2 (u_2 / BB.*))"
             ],
             [],
             "Planzeichen"

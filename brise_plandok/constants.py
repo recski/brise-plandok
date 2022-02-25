@@ -124,6 +124,7 @@ class AttributesNames:
     GebaeudeBautyp = "GebaeudeBautyp"
     GebaeudeHoeheArt = "GebaeudeHoeheArt"
     GebaeudeHoeheMax = "GebaeudeHoeheMax"
+    GebaeudeHoeheMin = "GebaeudeHoeheMin"
     GehsteigbreiteMin = "GehsteigbreiteMin"
     GaragengebaeudeAusfuehrung = "GaragengebaeudeAusfuehrung"
     GesamtePlangebiet = "GesamtePlangebiet"

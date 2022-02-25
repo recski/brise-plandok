@@ -250,6 +250,12 @@ TYPE_PATTERNS = {
         },
     },
 
+    AttributesNames.GebaeudeHoeheMin: {
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
     AttributesNames.GebaeudeHoeheArt: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,

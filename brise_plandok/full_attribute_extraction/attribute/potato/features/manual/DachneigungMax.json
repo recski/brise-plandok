@@ -7,6 +7,14 @@
             ],
             [],
             "DachneigungMax"
+        ],
+        [
+            [
+                "(u_0 / von :1 (u_1 / Dachneigung) :2 (u_2 / Grad)))",
+                "(u_3 / bis|zu)"
+            ],
+            [],
+            "DachneigungMax"
         ]
     ]
 }

@@ -191,7 +191,7 @@ VALUE_PATTERNS = {
             GROUP: 6
         },
         r"[Nn]eigung von höchstens " + NUMBER_WITH_DEGREE: {
-            GROUP: 6
+            GROUP: 1
         },
     },
 
@@ -391,10 +391,16 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.GebaeudeHoeheMax: {
-        r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von|von bis zu|darf|beträgt|darf nicht mehr als|darf höchstens) " + NUMBER_WITH_METER: {
+        r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von|von bis zu|darf|beträgt|darf nicht mehr als|darf höchstens|maximal) " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
         NUMBER_WITH_METER + r" über Wr. Null": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.GebaeudeHoeheMin: {
+        r"(Gebäudehöhe|Höhe) (.*) mindestens " + NUMBER_WITH_METER: {
             GROUP: 1,
         },
     },
@@ -511,7 +517,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.StellplatzregulativUmfangMinimumRelativ: {
-        r"Stellplatzverpflichtung .*" + NUMBER_WITH_PERCENT: {
+        r"Stellplatzverpflichtung beträgt " + NUMBER_WITH_PERCENT: {
             GROUP: 1,
         },
         r"mit " + NUMBER_WITH_PERCENT + " und die maximale": {
@@ -625,16 +631,10 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.VonBebauungFreizuhalten: {
-        r"ist (von.* Bebauung) freizuhalten": {
+        r"(von jeder Bebauung) freizuhalten": {
             GROUP: 1,
         },
-        r"((ober|unter)irdische(n|r)? (Bauten?|Bebauung|Bauwerk(en)?))": {
-            GROUP: 1,
-        },
-        r"((ober- und unterirdischen|oberund unterirdischen|oberirdische[rn]|unterirdische[rn]|oberirdischen und unterirdischen) (Gebäude|Baulichkeit|Bauten?))": {
-            GROUP: 1,
-        },
-        r"(keine Bauwerke)": {
+        r"((ober- und unterirdischen|oberund unterirdischen|oberirdische[rn]|unterirdische[rn]|oberirdischen und unterirdischen) (Gebäude|Baulichkeit|Bauten?|Bebauung))": {
             GROUP: 1,
         },
     },

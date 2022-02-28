@@ -1,0 +1,12 @@
+{
+    "DurchgangBreite": [
+        [
+            [
+                "(u_0 / Durchgang.*)",
+                "(u_1 / Breite|breit)"
+            ],
+            [],
+            "DurchgangBreite"
+        ]
+    ]
+}

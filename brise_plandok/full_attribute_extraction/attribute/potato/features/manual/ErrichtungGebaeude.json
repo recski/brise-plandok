@@ -1,0 +1,15 @@
+{
+    "ErrichtungGebaeude": [
+        [
+            [
+                "(u_0 / Errichtung)",
+                "(u_1 / Gebaeude)",
+                "(u_2 / PER)"
+            ],
+            [
+                "(u_0 / m)"
+            ],
+            "ErrichtungGebaeude"
+        ]
+    ]
+}

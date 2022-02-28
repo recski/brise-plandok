@@ -5,7 +5,8 @@
                 "(u_0 / Bebauung)"
             ],
             [
-                "(u_1 / von  :2 (u_3 / Bebauung) :1 (u_2 / freibleibend))","(u_3 / Durchgang|Durchfahrt)"
+                "(u_1 / von  :2 (u_3 / Bebauung) :1 (u_2 / freibleibend))",
+                "(u_3 / Durchgang.*|Durchfahrt)"
             ],
             "VonBebauungFreizuhalten"
         ]

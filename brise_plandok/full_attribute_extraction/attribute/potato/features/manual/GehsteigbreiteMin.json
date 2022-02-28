@@ -2,7 +2,9 @@
     "GehsteigbreiteMin": [
         [
             [
-                "(u_0 / mit :2 (u_1 / Breite) :1 (u_2 / herstellen :2 (u_3 / Gehsteig)))"
+                "(u_0 / Gehsteig)",
+                "(u_1 / Breite)",
+                "(u_2 / mindestens)"
             ],
             [],
             "GehsteigbreiteMin"

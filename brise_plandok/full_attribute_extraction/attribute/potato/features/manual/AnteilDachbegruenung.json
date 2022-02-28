@@ -1,0 +1,12 @@
+{
+    "AnteilDachbegruenung": [
+        [
+            [
+                "(u_0 / begruenen|begruente?)",
+                "(u_1  / PERCENTAGE|vPERIODHPERIOD|HPERIOD)"
+            ],
+            [],
+            "AnteilDachbegruenung"
+        ]
+    ]
+}

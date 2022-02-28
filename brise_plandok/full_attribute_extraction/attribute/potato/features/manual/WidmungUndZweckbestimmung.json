@@ -1,7 +1,34 @@
 {
     "WidmungUndZweckbestimmung": [
-        [["(u_514 / gewidmet)"], [], "WidmungUndZweckbestimmung"],
-        [["(u_276 / vorbehalte?n?)"], ["(u_274 / daru..er)"], "WidmungUndZweckbestimmung"],
-        [["(u_0 / mit :1 (u_1 / bezeichnet) :2 (u_2 / G))"], [], "WidmungUndZweckbestimmung"]
+        [
+            [
+                "(u_514 / gewidmet)"
+            ],
+            [],
+            "WidmungUndZweckbestimmung"
+        ],
+        [
+            [
+                "(u_276 / vorbehalte?n?)"
+            ],
+            [
+                "(u_274 / daru..er)"
+            ],
+            "WidmungUndZweckbestimmung"
+        ],
+        [
+            [
+                "(u_0 / mit :1 (u_1 / bezeichnet) :2 (u_2 / G|StrG))"
+            ],
+            [],
+            "WidmungUndZweckbestimmung"
+        ],
+        [
+            [
+                "(u_0 / StrE\\d*))"
+            ],
+            [],
+            "WidmungUndZweckbestimmung"
+        ]
     ]
 }

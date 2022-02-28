@@ -13,6 +13,14 @@
             ],
             [],
             "AbschlussDachMaxBezugGebaeude"
+        ],
+        [
+            [
+                "(u_0 / liegen :1 (u_1 / Abschluss :0 (u_2 / Dach)) :0 (u_3 / NEG))",
+                "(u_4 / Gebaeudehoehe)"
+            ],
+            [],
+            "AbschlussDachMaxBezugGebaeude"
         ]
     ]
 }

@@ -190,6 +190,9 @@ VALUE_PATTERNS = {
         r"Dachneigung mindestens " + NUMBER_WITH_DEGREE + r" und höchstens " + NUMBER_WITH_DEGREE + r" zu betragen": {
             GROUP: 6
         },
+        r"[Nn]eigung von höchstens " + NUMBER_WITH_DEGREE: {
+            GROUP: 1
+        },
     },
 
     AttributesNames.DachneigungMin: {
@@ -346,7 +349,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.FBOKMinimumWohnungen: {
-        r"Fußbodenoberkante.* mindestens " + NUMBER_WITH_METER: {
+        r"Fußboden.* mindestens " + NUMBER_WITH_METER: {
             GROUP: 1,
         },
     },
@@ -388,10 +391,16 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.GebaeudeHoeheMax: {
-        r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von|von bis zu|darf|beträgt) " + NUMBER_WITH_METER: {
+        r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von|von bis zu|darf|beträgt|darf nicht mehr als|darf höchstens|maximal) " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
         NUMBER_WITH_METER + r" über Wr. Null": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.GebaeudeHoeheMin: {
+        r"(Gebäudehöhe|Höhe) (.*) mindestens " + NUMBER_WITH_METER: {
             GROUP: 1,
         },
     },
@@ -414,6 +423,12 @@ VALUE_PATTERNS = {
     AttributesNames.GaragengebaeudeAusfuehrung: {
         r"mit einer maximalen Gebäudehöhe von " + NUMBER_WITH_METER: {
             GROUP: 1,
+        },
+    },
+
+    AttributesNames.GesamtePlangebiet: {
+        ALL: {
+            VALUE: TRUE,
         },
     },
 
@@ -456,12 +471,6 @@ VALUE_PATTERNS = {
     AttributesNames.OeffentlicheVerkehrsflaecheBreiteMin: {
         r"(von (mehr als |über )?|ab )" + NUMBER_WITH_METER + r"( (und|oder) mehr)?": {
             GROUP: 3,
-        },
-    },
-
-    AttributesNames.PlangebietAllgemein: {
-        ALL: {
-            VALUE: TRUE,
         },
     },
 
@@ -508,7 +517,7 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.StellplatzregulativUmfangMinimumRelativ: {
-        r"Stellplatzverpflichtung .*" + NUMBER_WITH_PERCENT: {
+        r"Stellplatzverpflichtung beträgt " + NUMBER_WITH_PERCENT: {
             GROUP: 1,
         },
         r"mit " + NUMBER_WITH_PERCENT + " und die maximale": {
@@ -525,6 +534,9 @@ VALUE_PATTERNS = {
     AttributesNames.StrassenbreiteMax: {
         r"Straßen(breiten?|querschnitte)?( bis| von)? unter " + NUMBER_WITH_METER: {
             GROUP: 3,
+        },
+        r"Straßen mit weniger als " + NUMBER_WITH_METER: {
+            GROUP: 1,
         },
         r"Straßen(breiten?|querschnitte)? bis (zu |zu einer Breite von )?" + NUMBER_WITH_METER + r"( Breite)?": {
             GROUP: 3,
@@ -619,16 +631,10 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.VonBebauungFreizuhalten: {
-        r"ist (von.* Bebauung) freizuhalten": {
+        r"(von jeder Bebauung) freizuhalten": {
             GROUP: 1,
         },
-        r"((ober|unter)irdische(n|r)? (Bauten?|Bebauung|Bauwerk(en)?))": {
-            GROUP: 1,
-        },
-        r"((ober- und unterirdischen|oberund unterirdischen|oberirdische[rn]|unterirdische[rn]|oberirdischen und unterirdischen) (Gebäude|Baulichkeit|Bauten?))": {
-            GROUP: 1,
-        },
-        r"(keine Bauwerke)": {
+        r"((ober- und unterirdischen|oberund unterirdischen|oberirdische[rn]|unterirdische[rn]|oberirdischen und unterirdischen) (Gebäude|Baulichkeit|Bauten?|Bebauung))": {
             GROUP: 1,
         },
     },

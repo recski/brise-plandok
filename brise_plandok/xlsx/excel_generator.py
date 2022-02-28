@@ -48,7 +48,7 @@ class ExcelGenerator:
     def _fill_attributes(self, sen, sheet, row):
         col = self.CONSTANTS.ATTRIBUTE_OFFSET
         self._fill_modality(sen, sheet, row)
-        for attribute in self._gen_attributes(sen):
+        for attribute in self._get_unique_attribute_entries(sen):
             attribute_name = normalize_attribute_name(attribute[AttributeFields.NAME])
             if attribute_name not in ATTR_TO_CAT:
                 logging.warning(
@@ -57,6 +57,19 @@ class ExcelGenerator:
             else:
                 self._fill_attribute(attribute, sen, sheet, col, row)
                 col += self.CONSTANTS.ATTRIBUTE_STEP
+
+    def _get_unique_attribute_entries(self, sen):
+        gen_attributes = [attr for attr in self._gen_attributes(sen)]
+        unique_attributes = []
+        for gen_attr in gen_attributes:
+            unique = True
+            for attr in unique_attributes:
+                if gen_attr == attr:
+                    unique = False
+                    break
+            if unique:
+                unique_attributes.append(gen_attr)
+        return unique_attributes
 
     def _modify_header(self, sheet):
         raise NotImplementedError()

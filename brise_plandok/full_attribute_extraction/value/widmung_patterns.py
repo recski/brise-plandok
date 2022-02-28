@@ -426,7 +426,7 @@ WIDMUNG = {
     r"(Landesverteidigung)": {
         GROUP: 1,
     },
-    r"der (öffentlichen Verkehrsfläche)": {
+    r"(öffentlichen? Verkehrsfläche)": {
         GROUP: 1,
     },
     r"(Gemischtes Baugebiet/Geschäftsviertel)": {

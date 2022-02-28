@@ -41,8 +41,8 @@ TYPE_PATTERNS = {
         r"gärtnerisch auszugestaltend": {
             TYPE: AttributeTypes.CONDITION,
         },
-        r"gärtnerisch zu gestalten": {
-            TYPE: AttributeTypes.CONDITION,
+        r"sind gärtnerisch zu gestalten": {
+            TYPE: AttributeTypes.CONTENT,
         },
         r"gärtnerisch auszugestalten[., ]": {
             TYPE: AttributeTypes.CONTENT,

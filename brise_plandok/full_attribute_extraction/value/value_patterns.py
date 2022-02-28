@@ -397,6 +397,9 @@ VALUE_PATTERNS = {
         NUMBER_WITH_METER + r" über Wr. Null": {
             GROUP: 1,
         },
+        NUMBER_WITH_METER + r" Gebäudehöhey": {
+            GROUP: 1,
+        },
     },
 
     AttributesNames.GebaeudeHoeheMin: {
@@ -640,8 +643,8 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.VorkehrungBepflanzung: {
-        r"(((Erhaltung|Pflanzung|(für )?das Pflanzen|Herstellung|Erreichung) .*) (zu ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können|zu sichern))": {
-            GROUP: 2,
+        r"((Erhaltung|Erhalt|Pflanzung|(für )?das Pflanzen|Herstellung|Erreichung) .*) (zu ermöglichen|ermöglicht|zu treffen|vorhanden bleiben|möglich|geschaffen werden können|zu sichern)": {
+            GROUP: 1,
         },
         r"(der Bestand der Baumreihen sicher zu stellen)": {
             GROUP: 1,

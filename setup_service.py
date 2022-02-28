@@ -9,6 +9,7 @@ setup(
     license="tbd",
     install_requires=[
         "flask",
+        "logging_json",
     ],
     packages=find_packages(),
     include_package_data=True,

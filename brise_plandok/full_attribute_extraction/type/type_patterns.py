@@ -1,5 +1,7 @@
 from brise_plandok.constants import AttributeTypes, AttributesNames
-from brise_plandok.full_attribute_extraction.constants import ALL, TYPE, NUMBER_WITH_SQUARE_METER, NUMBER_WITH_METER
+from brise_plandok.full_attribute_extraction.constants import ALL, TYPE, NUMBER_WITH_METER
+
+
 TYPE_PATTERNS = {
 
     AttributesNames.AbschlussDachMaxBezugGebaeude: {

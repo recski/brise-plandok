@@ -1,23 +1,21 @@
-from brise_plandok.constants import DocumentFields, SenFields
+import logging
+import os
+import shutil
+
 from brise_plandok.annotation_process.utils.assignments import (
     get_download_folder,
     update_assignments,
 )
-import logging
 from brise_plandok.annotation_process.utils.constants import (
     ASSIGNMENT_ADDITIONAL_HEADER,
     ASSIGNMENT_DF_HEADER_BASE,
     FullAnnotationExcelConstants,
 )
-import shutil
-from brise_plandok.convert import Converter
-import os
 from brise_plandok.annotation_process.utils.full_annotation_excel_generator import (
     FullAnnotationExcelGenerator,
 )
-from brise_plandok.full_attribute_extraction.type.type_extractor import TypeExtractor
-from brise_plandok.full_attribute_extraction.value.value_extractor import ValueExtractor
-from brise_plandok.utils import dump_json
+from brise_plandok.constants import DocumentFields
+from brise_plandok.convert import Converter
 
 
 class ConverterArgs:

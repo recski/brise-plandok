@@ -1,10 +1,8 @@
-import base64
 import datetime
 import json
 import os
 import random
 import re
-from collections import defaultdict
 
 import networkx as nx
 import penman as pn

@@ -11,6 +11,7 @@ setup(
     install_requires=[
         "flask",
         "graphviz",
+        "logging_json",
         "networkx",
         "numberpartitioning",
         "numpy",

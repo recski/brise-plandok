@@ -20,17 +20,25 @@ dictConfig(
         "version": 1,
         "formatters": {
             "default": {
-                "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s",
-            }
+                "format": "{%(message)s}",
+            },
+            "json": {
+                "()": "logging_json.JSONFormatter",
+                "fields": {
+                    "time": "asctime",
+                    "level": "levelname",
+                },
+                "datefmt": "%Y-%m-%d %H:%M:%S",
+            },
         },
         "handlers": {
-            "wsgi": {
+            "standard_output": {
                 "class": "logging.StreamHandler",
+                "formatter": "json",
                 "stream": "ext://flask.logging.wsgi_errors_stream",
-                "formatter": "default",
-            }
+            },
         },
-        "root": {"level": "INFO", "handlers": ["wsgi"]},
+        "root": {"level": "INFO", "handlers": ["standard_output"]},
     }
 )
 

@@ -1,6 +1,11 @@
 import argparse
+import logging
+import os
 
 from openpyxl.utils.cell import column_index_from_string, coordinate_from_string
+from openpyxl.worksheet.datavalidation import DataValidation
+
+from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.annotation_process.utils.constants import (
     FullAnnotationExcelConstants,
 )
@@ -9,15 +14,8 @@ from brise_plandok.annotation_process.utils.full_annotation_pre_filler import (
 )
 from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, SenFields
-import logging
-import os
 from brise_plandok.utils import load_json
-from brise_plandok.data_utils import normalize_attribute_name
 from brise_plandok.xlsx.excel_generator import ExcelGenerator
-
-from openpyxl.worksheet.datavalidation import DataValidation
-from brise_plandok.annotation.attributes import ATTR_TO_CAT
-
 
 LABELS_GOLD = "lables_gold"
 FULL_GOLD = "full_gold"

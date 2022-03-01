@@ -12,6 +12,8 @@ COPY brise_plandok/constants.py brise_plandok/
 COPY brise_plandok/services/__init__.py brise_plandok/services/
 COPY brise_plandok/services/full_extractor.py brise_plandok/services/
 COPY brise_plandok/services/filter_predicted_attributes.py brise_plandok/services/
+COPY brise_plandok/services/filter_psets.py brise_plandok/services/
+COPY brise_plandok/services/psets.py brise_plandok/services/
 
 
 # Install packages

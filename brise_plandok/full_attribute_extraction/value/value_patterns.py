@@ -391,10 +391,16 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.GebaeudeHoeheMax: {
-        r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von|von bis zu|darf|beträgt|darf nicht mehr als|darf höchstens|maximal) " + NUMBER_WITH_METER: {
+        r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von|von bis zu|beträgt|maximal) " + NUMBER_WITH_METER: {
+            GROUP: 3,
+        },
+        r"(Gebäudehöhe|Höhe) darf (nicht mehr als |höchstens |maximal )?" + NUMBER_WITH_METER: {
             GROUP: 3,
         },
         NUMBER_WITH_METER + r" über Wr. Null": {
+            GROUP: 1,
+        },
+        NUMBER_WITH_METER + r" ü.W.N.": {
             GROUP: 1,
         },
         NUMBER_WITH_METER + r" Gebäudehöhey": {

@@ -1,5 +1,7 @@
 from brise_plandok.constants import AttributeTypes, AttributesNames
-from brise_plandok.full_attribute_extraction.constants import ALL, TYPE, NUMBER_WITH_SQUARE_METER, NUMBER_WITH_METER
+from brise_plandok.full_attribute_extraction.constants import ALL, TYPE, NUMBER_WITH_METER
+
+
 TYPE_PATTERNS = {
 
     AttributesNames.AbschlussDachMaxBezugGebaeude: {
@@ -39,8 +41,8 @@ TYPE_PATTERNS = {
         r"gärtnerisch auszugestaltend": {
             TYPE: AttributeTypes.CONDITION,
         },
-        r"gärtnerisch zu gestalten": {
-            TYPE: AttributeTypes.CONDITION,
+        r"sind gärtnerisch zu gestalten": {
+            TYPE: AttributeTypes.CONTENT,
         },
         r"gärtnerisch auszugestalten[., ]": {
             TYPE: AttributeTypes.CONTENT,

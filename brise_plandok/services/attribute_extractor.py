@@ -4,11 +4,10 @@ import sys
 import traceback
 
 import graphviz
+from flask import Flask, request
+
 from brise_plandok.convert import Converter
 from brise_plandok.extractor import get_extractor
-from brise_plandok.rule_extractor import RuleExtractor
-from flask import Flask, request
-from tuw_nlp.text.pipeline import CachedStanzaPipeline, CustomStanzaPipeline
 
 HOST = "localhost"
 PORT = 5005

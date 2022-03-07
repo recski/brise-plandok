@@ -193,6 +193,9 @@ VALUE_PATTERNS = {
         r"[Nn]eigung von höchstens " + NUMBER_WITH_DEGREE: {
             GROUP: 1
         },
+        r"höchstens " + NUMBER_WITH_DEGREE: {
+            GROUP: 1
+        },
     },
 
     AttributesNames.DachneigungMin: {
@@ -394,7 +397,7 @@ VALUE_PATTERNS = {
         r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von|von bis zu|beträgt|maximal) " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
-        r"(Gebäudehöhe|Höhe) darf (nicht mehr als |höchstens |maximal )?" + NUMBER_WITH_METER: {
+        r"(Gebäudehöhe|Höhe|Gebäude) darf (nicht mehr als |höchstens |maximal )?" + NUMBER_WITH_METER: {
             GROUP: 3,
         },
         NUMBER_WITH_METER + r" über Wr. Null": {
@@ -410,7 +413,7 @@ VALUE_PATTERNS = {
 
     AttributesNames.GebaeudeHoeheMin: {
         r"(Gebäudehöhe|Höhe) (.*) mindestens " + NUMBER_WITH_METER: {
-            GROUP: 1,
+            GROUP: 3,
         },
     },
 
@@ -643,7 +646,7 @@ VALUE_PATTERNS = {
         r"(von jeder Bebauung) freizuhalten": {
             GROUP: 1,
         },
-        r"((ober- und unterirdischen|oberund unterirdischen|oberirdische[rn]|unterirdische[rn]|oberirdischen und unterirdischen) (Gebäude|Baulichkeit|Bauten?|Bebauung))": {
+        r"((ober- und unterirdische[nr]|oberund unterirdische[nr]|oberirdische[rn]|unterirdische[rn]|oberirdische[nr] und unterirdische[nr]) (Gebäude|Baulichkeit|Bauten?|Bebauung))": {
             GROUP: 1,
         },
     },

@@ -125,7 +125,9 @@ Extract section structure from raw text and run NLP pipeline (sentence segmentat
 python brise_plandok/plandok.py sample_data/txt/*.txt > sample_data/json/sample.jsonl
 ```
 
-## Attribute extraction with [POTATO](https://github.com/adaamko/POTATO)
+## Attribute extraction
+
+To run current best extraction, see [here](brise_plandok/full_attribute_extraction/README.md).
 
 For attribution extraction experiments with [POTATO](https://github.com/adaamko/POTATO), see [here](brise_plandok/full_attribute_extraction/attribute/potato/README.md).
 

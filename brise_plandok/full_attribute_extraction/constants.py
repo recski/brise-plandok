@@ -1,5 +1,5 @@
 NUMBER = r"((\+|-)?\d\d*( ?[,\.] ?\d\d*)?)"
-PERCENT = r"(%|v. ?H.)"
+PERCENT = r"(%|v. ?H.|Prozent)"
 
 NUMBER_WITH_METER = r"(" + NUMBER + r" ?m)"
 NUMBER_WITH_PERCENT = r"(" + NUMBER + r" ?" + PERCENT + r")"

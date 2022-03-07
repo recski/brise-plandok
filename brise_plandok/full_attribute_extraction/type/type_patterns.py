@@ -1,6 +1,5 @@
 from brise_plandok.constants import AttributeTypes, AttributesNames
-from brise_plandok.full_attribute_extraction.constants import ALL, TYPE, NUMBER_WITH_METER
-
+from brise_plandok.full_attribute_extraction.constants import ALL, TYPE, NUMBER_WITH_METER, SPACE_OR_BRACKET
 
 TYPE_PATTERNS = {
 
@@ -447,6 +446,15 @@ TYPE_PATTERNS = {
     AttributesNames.WidmungInMehrerenEbenen: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.WidmungUndZweckbestimmung: {
+        SPACE_OR_BRACKET + r"([GPL])" + SPACE_OR_BRACKET: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        r"Esp": {
+            TYPE: AttributeTypes.CONDITION,
         },
     },
 

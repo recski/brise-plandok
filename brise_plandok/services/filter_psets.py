@@ -7,6 +7,8 @@ def filter_psets(doc, full):
     _group_sections(doc, response)
     _add_psets(response, PSETJson.GOLD_PSETS, PSETJson.GOLD_ATTRIBUTES)
     _add_psets(response, PSETJson.PRED_PSETS, PSETJson.PRED_ATTRIBUTES)
+    _flatten(response, PSETJson.GOLD_PSETS)
+    _flatten(response, PSETJson.PRED_PSETS)
     if not full:
         _retain_minimal(response)
     return response
@@ -26,8 +28,11 @@ def _group_sections(doc, response):
 def _add_values(section, sen, attribute_field, pset_field):
     for attr_name, attr in sen[attribute_field].items():
         if attr_name in section[pset_field]:
-            section[pset_field][attr_name][AttributeFields.VALUE].append(
-                attr[AttributeFields.VALUE]
+            section[pset_field][attr_name][AttributeFields.VALUE] = list(
+                set(
+                    section[pset_field][attr_name][AttributeFields.VALUE]
+                    + attr[AttributeFields.VALUE]
+                )
             )
         else:
             section[pset_field][attr_name] = {
@@ -82,6 +87,35 @@ def _add_pset_attribute(pset_attr, pset_name, section, pset_type, pset_field):
                 PSETJson.PROPERTY_TYPE: pset_attr[PSETJson.PROPERTY_TYPE],
             }
         )
+
+
+def _flatten(response, pset_type):
+    for section_id, section in response.items():
+        psets_old = section[pset_type]
+        pset_new = {}
+        for pset_name, pset_attributes in psets_old.items():
+            pset_new[pset_name] = []
+            for pset_attr in pset_attributes[PSETJson.PROPERTIES]:
+                if pset_attr[PSETJson.PROPERTY_VALUE] is not None:
+                    if len(pset_attr[PSETJson.PROPERTY_VALUE]) == 1:
+                        pset_new[pset_name].append(
+                            {
+                                PSETJson.PROPERTY_NAME: pset_attr[PSETJson.PROPERTY_NAME],
+                                PSETJson.PROPERTY_VALUE: pset_attr[PSETJson.PROPERTY_VALUE][0],
+                                PSETJson.PROPERTY_TYPE: pset_attr[PSETJson.PROPERTY_TYPE],
+                            }
+                        )
+                    else:
+                        for i, value in enumerate(pset_attr[PSETJson.PROPERTY_VALUE]):
+                            pset_new[pset_name].append(
+                                {
+                                    PSETJson.PROPERTY_NAME: pset_attr[PSETJson.PROPERTY_NAME]
+                                    + str(i + 1),
+                                    PSETJson.PROPERTY_VALUE: value,
+                                    PSETJson.PROPERTY_TYPE: pset_attr[PSETJson.PROPERTY_TYPE],
+                                }
+                            )
+        section[pset_type] = pset_new
 
 
 def _retain_minimal(response):

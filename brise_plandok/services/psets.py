@@ -9,8 +9,11 @@ class PSETJson:
     GOLD_PSETS = "gold_psets"
     PRED_PSETS = "predicted_psets"
     PROPERTIES = "properties"
-    PROPERTY_NAME = "property_name"
-    PROPERTY_VALUE = "property_value"
+    PROPERTY_NAME = "name"
+    PROPERTY_VALUE = "value"
+    PROPERTY_TYPE = "datatype"
+    REQUIRED = "required"
+    OPTIONAL = "optional"
 
 
 class PSETNames:
@@ -24,73 +27,243 @@ class PSETNames:
     VerbotFenster = "WIenBV_TBVerbotFenster"
 
 
+class IFCType:
+    TEXT = "Text"
+    BOOL = "Wahrheitswert"
+    PERCENT = "positive Zahl [%]"
+    LENGTH = "positive Zahl [m]"
+    SQUARE = "positive Zahl [m2]"
+    CUBIC = "positive Zahl [m3]"
+    DEGREE = "positive Zahl (Gradzahl)"
+    QUANTITY = "positive Zahl [Anzahl]"
+
+
+class PSETAttributes:
+    Planzeichen = {
+        PSETJson.PROPERTY_NAME: AttributesNames.Planzeichen,
+        PSETJson.PROPERTY_TYPE: IFCType.TEXT,
+    }
+    WidmungUndZweckbestimmung = {
+        PSETJson.PROPERTY_NAME: AttributesNames.WidmungUndZweckbestimmung,
+        PSETJson.PROPERTY_TYPE: IFCType.TEXT,
+    }
+    AnFluchtlinie = {
+        PSETJson.PROPERTY_NAME: AttributesNames.AnFluchtlinie,
+        PSETJson.PROPERTY_TYPE: IFCType.BOOL,
+    }
+    Dachart = {
+        PSETJson.PROPERTY_NAME: AttributesNames.Dachart,
+        PSETJson.PROPERTY_TYPE: IFCType.TEXT,
+    }
+    GebaeudeHoeheArt = {
+        PSETJson.PROPERTY_NAME: AttributesNames.GebaeudeHoeheArt,
+        PSETJson.PROPERTY_TYPE: IFCType.TEXT,
+    }
+    DachneigungMax = {
+        PSETJson.PROPERTY_NAME: AttributesNames.DachneigungMax,
+        PSETJson.PROPERTY_TYPE: IFCType.DEGREE,
+    }
+    Bauklasse = {
+        PSETJson.PROPERTY_NAME: AttributesNames.Bauklasse,
+        PSETJson.PROPERTY_TYPE: IFCType.DEGREE,
+    }
+    InSchutzzone = {
+        PSETJson.PROPERTY_NAME: AttributesNames.InSchutzzone,
+        PSETJson.PROPERTY_TYPE: IFCType.BOOL,
+    }
+    DachneigungMin = {
+        PSETJson.PROPERTY_NAME: AttributesNames.DachneigungMin,
+        PSETJson.PROPERTY_TYPE: IFCType.DEGREE,
+    }
+    BegruenungDach = {
+        PSETJson.PROPERTY_NAME: AttributesNames.BegruenungDach,
+        PSETJson.PROPERTY_TYPE: IFCType.BOOL,
+    }
+    GebaeudeHoeheMax = {
+        PSETJson.PROPERTY_NAME: AttributesNames.GebaeudeHoeheMax,
+        PSETJson.PROPERTY_TYPE: IFCType.LENGTH,
+    }
+    GebaeudeBautyp = {
+        PSETJson.PROPERTY_NAME: AttributesNames.GebaeudeBautyp,
+        PSETJson.PROPERTY_TYPE: IFCType.TEXT,
+    }
+    DachflaecheMin = {
+        PSETJson.PROPERTY_NAME: AttributesNames.DachflaecheMin,
+        PSETJson.PROPERTY_TYPE: IFCType.SQUARE,
+    }
+    AnteilDachbegruenung = {
+        PSETJson.PROPERTY_NAME: AttributesNames.AnteilDachbegruenung,
+        PSETJson.PROPERTY_TYPE: IFCType.PERCENT,
+    }
+    GesamtePlangebiet = {
+        PSETJson.PROPERTY_NAME: AttributesNames.GesamtePlangebiet,
+        PSETJson.PROPERTY_TYPE: IFCType.BOOL,
+    }
+    VerbotWohnung = {
+        PSETJson.PROPERTY_NAME: AttributesNames.VerbotWohnung,
+        PSETJson.PROPERTY_TYPE: IFCType.BOOL,
+    }
+    Stockwerk = {
+        PSETJson.PROPERTY_NAME: AttributesNames.Stockwerk,
+        PSETJson.PROPERTY_TYPE: IFCType.QUANTITY,
+    }
+    StellplatzregulativUmfangMaximumRelativ = {
+        PSETJson.PROPERTY_NAME: AttributesNames.StellplatzregulativUmfangMaximumRelativ,
+        PSETJson.PROPERTY_TYPE: IFCType.PERCENT,
+    }
+    StellplatzregulativUmfangMinimumRelativ = {
+        PSETJson.PROPERTY_NAME: AttributesNames.StellplatzregulativUmfangMinimumRelativ,
+        PSETJson.PROPERTY_TYPE: IFCType.PERCENT,
+    }
+    BebauteFlaecheMin = {
+        PSETJson.PROPERTY_NAME: AttributesNames.BebauteFlaecheMin,
+        PSETJson.PROPERTY_TYPE: IFCType.SQUARE,
+    }
+    BebauteFlaecheMax = {
+        PSETJson.PROPERTY_NAME: AttributesNames.BebauteFlaecheMax,
+        PSETJson.PROPERTY_TYPE: IFCType.SQUARE,
+    }
+    BebauteFlaecheMaxProzentual = {
+        PSETJson.PROPERTY_NAME: AttributesNames.BebauteFlaecheMaxProzentual,
+        PSETJson.PROPERTY_TYPE: IFCType.PERCENT,
+    }
+    BebauteFlaecheMaxNebengebaeude = {
+        PSETJson.PROPERTY_NAME: AttributesNames.BebauteFlaecheMaxNebengebaeude,
+        PSETJson.PROPERTY_TYPE: IFCType.SQUARE,
+    }
+    VerkehrsflaecheID = {
+        PSETJson.PROPERTY_NAME: AttributesNames.VerkehrsflaecheID,
+        PSETJson.PROPERTY_TYPE: IFCType.TEXT,
+    }
+    VorbautenVerbot = {
+        PSETJson.PROPERTY_NAME: AttributesNames.VorbautenVerbot,
+        PSETJson.PROPERTY_TYPE: IFCType.TEXT,
+    }
+    AnOeffentlichenVerkehrsflaechen = {
+        PSETJson.PROPERTY_NAME: AttributesNames.AnOeffentlichenVerkehrsflaechen,
+        PSETJson.PROPERTY_TYPE: IFCType.BOOL,
+    }
+    VerbotFensterZuOeffentlichenVerkehrsflaechen = {
+        PSETJson.PROPERTY_NAME: AttributesNames.VerbotFensterZuOeffentlichenVerkehrsflaechen,
+        PSETJson.PROPERTY_TYPE: IFCType.BOOL,
+    }
+    AbschlussDachMaxBezugGebaeude = {
+        PSETJson.PROPERTY_NAME: AttributesNames.AbschlussDachMaxBezugGebaeude,
+        PSETJson.PROPERTY_TYPE: IFCType.LENGTH,
+    }
+
+
 PSETS = {
-    PSETNames.Dachneigung: [
-        AttributesNames.Planzeichen,
-        AttributesNames.WidmungUndZweckbestimmung,
-        AttributesNames.AnFluchtlinie,
-        AttributesNames.Dachart,
-        AttributesNames.GebaeudeHoeheArt,
-        AttributesNames.DachneigungMax,
-        AttributesNames.Bauklasse,
-        AttributesNames.InSchutzzone,
-        AttributesNames.DachneigungMin,
-    ],
-    PSETNames.Dachbegruenung: [
-        AttributesNames.Planzeichen,
-        AttributesNames.WidmungUndZweckbestimmung,
-        AttributesNames.Dachart,
-        AttributesNames.BegruenungDach,
-        AttributesNames.GebaeudeHoeheMax,
-        AttributesNames.GebaeudeBautyp,
-        AttributesNames.GebaeudeHoeheArt,
-        AttributesNames.DachneigungMax,
-        AttributesNames.DachflaecheMin,
-        AttributesNames.Bauklasse,
-        AttributesNames.AnteilDachbegruenung,
-    ],
-    PSETNames.VerbotWohnung: [
-        AttributesNames.Planzeichen,
-        AttributesNames.WidmungUndZweckbestimmung,
-        AttributesNames.GesamtePlangebiet,
-        AttributesNames.VerbotWohnung,
-        AttributesNames.Stockwerk,
-    ],
-    PSETNames.Stellplaetze: [
-        AttributesNames.Planzeichen,
-        AttributesNames.WidmungUndZweckbestimmung,
-        AttributesNames.StellplatzregulativUmfangMaximumRelativ,
-        AttributesNames.StellplatzregulativUmfangMinimumRelativ,
-    ],
-    PSETNames.Gebaeudehoehe: [
-        AttributesNames.Planzeichen,
-        AttributesNames.BebauteFlaecheMin,
-        AttributesNames.BebauteFlaecheMax,
-        AttributesNames.BebauteFlaecheMaxProzentual,
-        AttributesNames.BebauteFlaecheMaxNebengebaeude,
-        AttributesNames.WidmungUndZweckbestimmung,
-        AttributesNames.GesamtePlangebiet,
-        AttributesNames.GebaeudeHoeheMax,
-        AttributesNames.Bauklasse,
-    ],
-    PSETNames.Dachabschluss: [
-        AttributesNames.Planzeichen,
-        AttributesNames.BebauteFlaecheMin,
-        AttributesNames.BebauteFlaecheMax,
-        AttributesNames.BebauteFlaecheMaxProzentual,
-        AttributesNames.BebauteFlaecheMaxNebengebaeude,
-        AttributesNames.WidmungUndZweckbestimmung,
-        AttributesNames.AnFluchtlinie,
-        AttributesNames.VerkehrsflaecheID,
-        AttributesNames.GesamtePlangebiet,
-        AttributesNames.VorbautenVerbot,
-        AttributesNames.AnOeffentlichenVerkehrsflaechen,
-    ],
-    PSETNames.VerbotFenster: [
-        AttributesNames.Planzeichen,
-        AttributesNames.AnFluchtlinie,
-        AttributesNames.VerkehrsflaecheID,
-        AttributesNames.VerbotFensterZuOeffentlichenVerkehrsflaechen,
-        AttributesNames.Stockwerk,
-    ],
+    PSETNames.Dachneigung: {
+        PSETJson.REQUIRED: [
+            PSETAttributes.DachneigungMax,
+            PSETAttributes.DachneigungMin,
+        ],
+        PSETJson.OPTIONAL: [
+            PSETAttributes.Planzeichen,
+            PSETAttributes.WidmungUndZweckbestimmung,
+            PSETAttributes.AnFluchtlinie,
+            PSETAttributes.Dachart,
+            PSETAttributes.GebaeudeHoeheArt,
+            PSETAttributes.Bauklasse,
+            PSETAttributes.InSchutzzone,
+        ],
+    },
+    PSETNames.Dachbegruenung: {
+        PSETJson.REQUIRED: [
+            PSETAttributes.BegruenungDach,
+            PSETAttributes.AnteilDachbegruenung,
+        ],
+        PSETJson.OPTIONAL: [
+            PSETAttributes.Planzeichen,
+            PSETAttributes.WidmungUndZweckbestimmung,
+            PSETAttributes.Dachart,
+            PSETAttributes.GebaeudeHoeheMax,
+            PSETAttributes.GebaeudeBautyp,
+            PSETAttributes.GebaeudeHoeheArt,
+            PSETAttributes.DachneigungMax,
+            PSETAttributes.DachflaecheMin,
+            PSETAttributes.Bauklasse,
+        ],
+    },
+    PSETNames.VerbotWohnung: {
+        PSETJson.REQUIRED: [
+            PSETAttributes.VerbotWohnung,
+        ],
+        PSETJson.OPTIONAL: [
+            PSETAttributes.Planzeichen,
+            PSETAttributes.WidmungUndZweckbestimmung,
+            PSETAttributes.GesamtePlangebiet,
+            PSETAttributes.Stockwerk,
+        ],
+    },
+    PSETNames.Stellplaetze: {
+        PSETJson.REQUIRED: [
+            PSETAttributes.StellplatzregulativUmfangMaximumRelativ,
+            PSETAttributes.StellplatzregulativUmfangMinimumRelativ,
+        ],
+        PSETJson.OPTIONAL: [
+            PSETAttributes.Planzeichen,
+            PSETAttributes.WidmungUndZweckbestimmung,
+        ],
+    },
+    PSETNames.Gebaeudehoehe: {
+        PSETJson.REQUIRED: [
+            PSETAttributes.GebaeudeHoeheMax,
+            PSETAttributes.Bauklasse,
+        ],
+        PSETJson.OPTIONAL: [
+            PSETAttributes.Planzeichen,
+            PSETAttributes.BebauteFlaecheMin,
+            PSETAttributes.BebauteFlaecheMax,
+            PSETAttributes.BebauteFlaecheMaxProzentual,
+            PSETAttributes.BebauteFlaecheMaxNebengebaeude,
+            PSETAttributes.WidmungUndZweckbestimmung,
+            PSETAttributes.GesamtePlangebiet,
+        ],
+    },
+    PSETNames.Dachabschluss: {
+        PSETJson.REQUIRED: [
+            PSETAttributes.AbschlussDachMaxBezugGebaeude,
+        ],
+        PSETJson.OPTIONAL: [
+            PSETAttributes.Planzeichen,
+            PSETAttributes.BebauteFlaecheMin,
+            PSETAttributes.BebauteFlaecheMax,
+            PSETAttributes.BebauteFlaecheMaxProzentual,
+            PSETAttributes.BebauteFlaecheMaxNebengebaeude,
+            PSETAttributes.WidmungUndZweckbestimmung,
+            PSETAttributes.GesamtePlangebiet,
+            PSETAttributes.GebaeudeHoeheMax,
+            PSETAttributes.GebaeudeHoeheArt,
+        ],
+    },
+    PSETNames.Vorbauten: {
+        PSETJson.REQUIRED: [
+            PSETAttributes.VorbautenVerbot,
+        ],
+        PSETJson.OPTIONAL: [
+            PSETAttributes.Planzeichen,
+            PSETAttributes.BebauteFlaecheMin,
+            PSETAttributes.BebauteFlaecheMax,
+            PSETAttributes.BebauteFlaecheMaxProzentual,
+            PSETAttributes.BebauteFlaecheMaxNebengebaeude,
+            PSETAttributes.WidmungUndZweckbestimmung,
+            PSETAttributes.AnFluchtlinie,
+            PSETAttributes.VerkehrsflaecheID,
+            PSETAttributes.GesamtePlangebiet,
+            PSETAttributes.AnOeffentlichenVerkehrsflaechen,
+        ],
+    },
+    PSETNames.VerbotFenster: {
+        PSETJson.REQUIRED: [
+            PSETAttributes.VerbotFensterZuOeffentlichenVerkehrsflaechen,
+        ],
+        PSETJson.OPTIONAL: [
+            PSETAttributes.Planzeichen,
+            PSETAttributes.AnFluchtlinie,
+            PSETAttributes.VerkehrsflaecheID,
+            PSETAttributes.Stockwerk,
+        ],
+    },
 }

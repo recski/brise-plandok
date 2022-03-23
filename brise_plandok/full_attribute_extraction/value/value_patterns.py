@@ -1,7 +1,7 @@
 from brise_plandok.constants import AttributesNames
 from brise_plandok.full_attribute_extraction.constants import NUMBER_WITH_METER, GROUP, ALL, VALUE, TRUE, \
     NUMBER_WITH_PERCENT, GAERTNERISH_GESTALTEN, DACH, NUMBER_WITH_DEGREE, NUMBER_WITH_SQUARE_METER, FALSE, \
-    STRASSE, NUMBER_WITH_CUBIC_METER, NUMBER
+    STRASSE, NUMBER_WITH_CUBIC_METER, NUMBER, Fluchtlinie
 from brise_plandok.full_attribute_extraction.value.widmung_patterns import WIDMUNG
 
 VALUE_PATTERNS = {
@@ -13,8 +13,26 @@ VALUE_PATTERNS = {
     },
 
     AttributesNames.AnFluchtlinie: {
-        ALL: {
-            VALUE: TRUE,
+        r"" + Fluchtlinie.FLUCHTLINIE: {
+            VALUE: Fluchtlinie.FLUCHTLINIE,
+        },
+        r"" + Fluchtlinie.VERKEHRS_FLUCHTLINIE: {
+            VALUE: Fluchtlinie.VERKEHRS_FLUCHTLINIE,
+        },
+        r"" + Fluchtlinie.GRENZLINIE: {
+            VALUE: Fluchtlinie.GRENZLINIE,
+        },
+        r"" + Fluchtlinie.STRASSEN_FLUCHTLINIE: {
+            VALUE: Fluchtlinie.STRASSEN_FLUCHTLINIE,
+        },
+        r"" + Fluchtlinie.BAULINIE: {
+            VALUE: Fluchtlinie.BAULINIE,
+        },
+        r"" + Fluchtlinie.BAU_FLUCHTLINIE: {
+            VALUE: Fluchtlinie.BAU_FLUCHTLINIE,
+        },
+        r"" + Fluchtlinie.GRENZ_FLUCHTLINIE: {
+            VALUE: Fluchtlinie.GRENZ_FLUCHTLINIE,
         },
     },
 

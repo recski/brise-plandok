@@ -1,5 +1,4 @@
 import argparse
-from brise_plandok.constants import DocumentFields, SenFields, SenToAttrFields
 import json
 import logging
 import os
@@ -8,14 +7,16 @@ import sys
 
 from tqdm import tqdm
 
+from brise_plandok.constants import DocumentFields, SenFields, SenToAttrFields, AttributeFields
+
 
 class SenToAttrMap:
     fuzzy_patt = re.compile("[0-9]+")
 
-    def __init__(self, gold_dir, fuzzy, full=False, attributes=None, text=None):
+    def __init__(self, gold_dir, fuzzy, full=False, attributes=None, text=None, values_map=None):
         self.sen_to_attr = None
         self.fuzzy = fuzzy
-        self.build_map(gold_dir, full, attributes, text)
+        self.build_map(gold_dir, full, attributes, text, values_map)
 
     def gen_sens_mod_attrs(self, gold_dir, full):
         if not os.path.exists(gold_dir):
@@ -39,7 +40,7 @@ class SenToAttrMap:
         else:
             return SenToAttrMap.fuzzy_patt.sub("", sen)
 
-    def build_map(self, gold_dir, full, attributes=None, text=None):
+    def build_map(self, gold_dir, full, attributes=None, text=None, values_map=None):
         self.sen_to_attr = {}
         for sen, fn in self.gen_sens_mod_attrs(gold_dir, full):
             sen_key = self.sen_to_key(sen[SenFields.TEXT])
@@ -56,19 +57,24 @@ class SenToAttrMap:
                     else:
                         self._check_conflict_for_label(attr, sen, sen_id, sen_key)
                 else:
-                    if self._contains_attribute_to_add(attr, attributes):
+                    if self._contains_attribute_to_add(attr, attributes, values_map):
                         self.sen_to_attr[sen_key] = {
                             SenToAttrFields.ATTR: attr,
                             SenToAttrFields.SENS: [sen_id],
                             SenToAttrFields.MOD: mod,
                         }
 
-    def _contains_attribute_to_add(self, attr, attributes):
-        if attributes is None:
+    def _contains_attribute_to_add(self, full_gold_attrs, attributes_to_select, values_map=None):
+        if attributes_to_select is None:
             return True
-        for gold_attr in attr.keys():
-            if gold_attr in attributes:
-                return True
+        for gold_attr_name, gold_attr in full_gold_attrs.items():
+            if gold_attr_name in attributes_to_select:
+                if (
+                    values_map is None
+                    or gold_attr_name not in values_map
+                    or gold_attr[AttributeFields.VALUE] == values_map[gold_attr_name]
+                ):
+                    return True
         return False
 
     def _check_conflict_for_label(self, attr, sen, sen_id, sen_key):

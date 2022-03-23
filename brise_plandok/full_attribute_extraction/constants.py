@@ -25,3 +25,13 @@ FALSE = "False"
 GROUP = "group"
 VALUE = "value"
 TYPE = "type"
+
+
+class Fluchtlinie:
+    FLUCHTLINIE = "Fluchtlinie"
+    VERKEHRS_FLUCHTLINIE = "Verkehrsfluchtlinie"
+    GRENZLINIE = "Grenzlinie"
+    STRASSEN_FLUCHTLINIE = "Straßenfluchtlinie"
+    BAULINIE = "Baulinie"
+    BAU_FLUCHTLINIE = "Baufluchtlinie"
+    GRENZ_FLUCHTLINIE = "Grenzfluchtlinie"

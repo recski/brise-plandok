@@ -42,6 +42,16 @@ python brise_plandok/full_attribute_extraction/migration/migrate_attribute.py \
     -o BebauteFlaecheMax BebauteFlaecheMaxNebengebaeude BebauteFlaecheMaxProzentual BebauteFlaecheMin
 ```
 
+You can also migrate an attribute with a specific value, even not changing the attribute itself, just the value only (e.g. migrate all the `AnFluchtlinie` attributes with a values of `['True']`):
+
+```bash
+python brise_plandok/full_attribute_extraction/migration/migrate_attribute.py \
+    -g GOLD_DIR \
+    -i AnFluchtlinie \
+    -o AnFluchtlinie \
+    -v True
+```
+
 ### Update attributes of a specific sentence
 
 To change attributes for all sentences matching a specific text.

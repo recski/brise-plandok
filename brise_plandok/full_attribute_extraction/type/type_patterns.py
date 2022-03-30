@@ -242,10 +242,16 @@ TYPE_PATTERNS = {
         },
     },
 
-    AttributesNames.GebaeudeHoeheMax: {
+    AttributesNames.GebaeudeHoeheMaxAbsolut: {
         r" (mit|bis zu) einer Gebäudehöhe von( bis zu)? " + NUMBER_WITH_METER: {
             TYPE: AttributeTypes.CONDITION,
         },
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
+        },
+    },
+
+    AttributesNames.GebaeudeHoeheMaxWN: {
         ALL: {
             TYPE: AttributeTypes.CONTENT,
         },

@@ -1,28 +1,30 @@
 import argparse
 import logging
 
-from xpotato.dataset.dataset import Dataset
-from xpotato.graph_extractor.extract import FeatureEvaluator
-
 from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, AttributeTypes, SenToAttrFields
 from brise_plandok.full_attribute_extraction.attribute.potato.utils import load_features
 from brise_plandok.full_attribute_extraction.type.extract_types import match_types
 from brise_plandok.full_attribute_extraction.value.extract_values import match_values
 from brise_plandok.utils import update_gold_docs
+from xpotato.dataset.dataset import Dataset
+from xpotato.graph_extractor.extract import FeatureEvaluator
 
 DUMMY_LABEL = "dummy"
 GRAPH_FORMAT = "fourlang"
 
 
-def migrate_attribute(gold_folder, input_attribute, output_attributes, values):
+def migrate_attribute(
+    gold_folder, input_attribute, output_attributes, only_for_values, copy_values_and_types
+):
     evaluator = FeatureEvaluator()
+    values_map = None if only_for_values is None else {input_attribute: only_for_values}
     sen_to_gold_attrs = SenToAttrMap(
         gold_dir=gold_folder,
         fuzzy=False,
         full=True,
         attributes=[input_attribute],
-        values_map={input_attribute: values},
+        values_map=values_map,
     )
     sens_to_update = len(sen_to_gold_attrs.sen_to_attr.keys())
     print(f"Number of different texts to update: {sens_to_update}")
@@ -38,7 +40,9 @@ def migrate_attribute(gold_folder, input_attribute, output_attributes, values):
             predicted_attributes = predicted.loc[predicted["Sentence"] == text][
                 "Predicted label"
             ].to_list()[0]
-        predicted_full_attributes = _predict_full_attributes(predicted_attributes, text)
+        predicted_full_attributes = _predict_full_attributes(
+            predicted_attributes, text, copy_values_and_types, old_attributes, input_attribute
+        )
 
         _check_suggestions(
             old_attributes, predicted_full_attributes, text, output_attributes, input_attribute
@@ -112,15 +116,21 @@ def _read_type():
     return type_input
 
 
-def _predict_full_attributes(predicted_attributes, text):
+def _predict_full_attributes(
+    predicted_attributes, text, copy_values_and_types, old_attributes, input_attribute
+):
     predicted_full_attributes = {}
     for new_attr in predicted_attributes:
-        value = list(set([value for value in match_values(new_attr, text)]))
-        attr_type = match_types(new_attr, text)
+        if copy_values_and_types:
+            value = old_attributes[input_attribute][AttributeFields.VALUE]
+            types = old_attributes[input_attribute][AttributeFields.TYPE]
+        else:
+            value = list(set([value for value in match_values(new_attr, text)]))
+            types = [match_types(new_attr, text)]
         predicted_full_attributes[new_attr] = {
             AttributeFields.NAME: new_attr,
             AttributeFields.VALUE: value,
-            AttributeFields.TYPE: [attr_type],
+            AttributeFields.TYPE: types,
         }
     return predicted_full_attributes
 
@@ -141,7 +151,8 @@ def get_args():
     parser.add_argument("-g", "--gold-dir")
     parser.add_argument("-i", "--input-attribute")
     parser.add_argument("-o", "--output-attributes", type=str, nargs="+")
-    parser.add_argument("-v", "--values", type=str, nargs="+", default=None)
+    parser.add_argument("-v", "--only-for-values", type=str, nargs="+", default=None)
+    parser.add_argument("-c", "--copy-values-and-type", default=False, action="store_true")
     return parser.parse_args()
 
 
@@ -150,4 +161,10 @@ if __name__ == "__main__":
     logging.getLogger("stanza").setLevel(logging.WARNING)
     logging.getLogger("tuw_nlp").setLevel(logging.WARNING)
     args = get_args()
-    migrate_attribute(args.gold_dir, args.input_attribute, args.output_attributes, args.values)
+    migrate_attribute(
+        args.gold_dir,
+        args.input_attribute,
+        args.output_attributes,
+        args.only_for_values,
+        args.copy_values_and_type,
+    )

@@ -411,7 +411,7 @@ VALUE_PATTERNS = {
         },
     },
 
-    AttributesNames.GebaeudeHoeheMax: {
+    AttributesNames.GebaeudeHoeheMaxAbsolut: {
         r"(Gebäudehöhe|Höhe) (wird mit|von maximal|von|von bis zu|beträgt|maximal) " + NUMBER_WITH_METER: {
             GROUP: 3,
         },
@@ -425,6 +425,15 @@ VALUE_PATTERNS = {
             GROUP: 1,
         },
         NUMBER_WITH_METER + r" Gebäudehöhey": {
+            GROUP: 1,
+        },
+    },
+
+    AttributesNames.GebaeudeHoeheMaxWN: {
+        NUMBER_WITH_METER + r" über Wr. Null": {
+            GROUP: 1,
+        },
+        NUMBER_WITH_METER + r" ü.W.N.": {
             GROUP: 1,
         },
     },

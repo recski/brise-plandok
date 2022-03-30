@@ -15,7 +15,7 @@ TOP_14_ANNOTATED = [
     AttributesNames.VerkehrsflaecheID,
     AttributesNames.AnFluchtlinie,
     AttributesNames.AnordnungGaertnerischeAusgestaltung,
-    AttributesNames.GebaeudeHoeheMax,
+    AttributesNames.GebaeudeHoeheMaxAbsolut,
     AttributesNames.Dachart,
     AttributesNames.GebaeudeHoeheArt,
     AttributesNames.VorkehrungBepflanzung,

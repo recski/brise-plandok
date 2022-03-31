@@ -1,0 +1,74 @@
+{
+    "Widmung": [
+        [
+            [
+                "(u_0 / L|G|E|Epk|Ekl|[Ee]klw.*|Esp.*|Ebd|Ebh|Sww|SwwL|Spk.*|F|SN|VB|W|WGV|WGF|WFB|GS|GSGM|GB|GBGV|SO )"
+            ],
+            [],
+            "Widmung"
+        ],
+        [
+            [
+                "(u_0 / GSLASH.* )"
+            ],
+            [],
+            "Widmung"
+        ],
+        [
+            [
+                "(u_0 / GBcv|GV|GBGF|GBFB|GBBG|GBF|IG|IGBS|IGSI|SOKlaeranlage|SOLL|SOSI|SOMarkt )"
+            ],
+            [],
+            "Widmung"
+        ],
+        [
+            [
+                "(u_0 / Erholungsgebiet|Spielpl[aae]tze?|Gruenland|Parkanlage|Kleingartengebiete? )"
+            ],
+            [],
+            "Widmung"
+        ],
+        [
+            [
+                "(u_0 / Freibaeder|Schutzgebiet|Schutzzone|Wiesenguertel|Parkschutzgebiet|Friedhoefe )"
+            ],
+            [],
+            "Widmung"
+        ],
+        [
+            [
+                "(u_0 / Sondernutzungsgebiete|Verkehrsb[aae]nd.*|Wohngebiet|Wohnzone )"
+            ],
+            [],
+            "Widmung"
+        ],
+        [
+            [
+                "(u_0 / Wohngebiet|.*Gartensiedlungsgebiet.*|Baugebiet|Betriebsbaugebiet|Industriegebiet )"
+            ],
+            [],
+            "Widmung"
+        ],
+        [
+            [
+                "(u_0 / Sondergebiet|Klaeranlage|Lagerplaetze|Lagerwiese|Landesverteidigung|Geschaeftsviertel )"
+            ],
+            [],
+            "Widmung"
+        ],
+        [
+            [
+                "(u_0 / Bauland.*|Baugebiet.*|Gruenland.*|.*Erholungsgebiet.* )"
+            ],
+            [],
+            "Widmung"
+        ],
+        [
+            [
+                "(u_0 / SondergebietSLASH.* )"
+            ],
+            [],
+            "Widmung"
+        ]
+    ]
+}

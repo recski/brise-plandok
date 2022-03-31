@@ -160,7 +160,9 @@ class AttributesNames:
     VorkehrungBepflanzung = "VorkehrungBepflanzung"
     VorstehendeBauelementeAusladungMax = "VorstehendeBauelementeAusladungMax"
     WidmungInMehrerenEbenen = "WidmungInMehrerenEbenen"
-    WidmungUndZweckbestimmung = "WidmungUndZweckbestimmung"
+    Widmung = "Widmung"
+    Nutzungsart = "Nutzungsart"
+    BBAllgemein = "BBAllgemein"
 
 
 class AttributeTypes:

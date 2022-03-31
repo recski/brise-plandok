@@ -1,79 +1,23 @@
-from brise_plandok.full_attribute_extraction.constants import GROUP, SPACE_OR_BRACKET
+from brise_plandok.full_attribute_extraction.constants import GROUP, SPACE_BRACKET_SLASH_DASH
 
 WIDMUNG = {
-
-    # Konstruktionen
-    r"(sind( nur der)?) ([^0-9]*) vorbehalten": {
-        GROUP: 3,
-    },
-    r"(dem|der Widmung|der) ([^0-9]*) zugeordnet": {
-        GROUP: 2,
-    },
-    r"Nutzung (als|für) (.*) (erforderlich|zugeführt)": {
-        GROUP: 2,
-    },
-    r"für ([^0-9]*) verwendet": {
-        GROUP: 1,
-    },
-    r"(für|als) ([^0-9]*) vor(zu)?behalten": {
-        GROUP: 2,
-    },
-    r"als ([^0-9]*) ausgewiesen": {
-        GROUP: 1,
-    },
-    r"als ((?!.*Esp)[^0-9]*) bezeichneten": {
-        GROUP: 1,
-    },
-    r"als ([^0-9()]*)( \(.\))? gewidmeten": {
-        GROUP: 1,
-    },
-    r"Errichtung( von)? ((?!gelangenden Gebäude.*)[^0-9]*) vorbehalten": {
-        GROUP: 2,
-    },
-    r"zur Errichtung gelangenden Gebäude sind( nur der)? ([^0-9]*) vorbehalten": {
-        GROUP: 2,
-    },
-    r"als ([^0-9]*) ÖZ festgesetzt": {
-        GROUP: 1,
-    },
-    r"Widmung ([^0-9()]*) (\(\w\w \w\w\))? ?wird": {
-        GROUP: 1,
-    },
-    r"Widmung ([^0-9()]*) (\(\w\w \w\w\))": {
-        GROUP: 1,
-    },
-    r" (\w* Nutzung und Pflege)": {
-        GROUP: 1,
-    },
-    r"Zweckbestimmung „?([^„“]*)“? zuzuführen": {
-        GROUP: 1,
-    },
-
-    # Gesetz
-    r"(Nutzungen im Sinne des . 50 \(1\) des Wiener Garagengesetzes)": {
-        GROUP: 1,
-    },
-    r"(Nutzungen im Sinne des . 50 \(2\) des Wiener Garagengesetzes)": {
-        GROUP: 1,
-    },
-    r"(Nutzung gemäß § 6 Abs. 6 der BO für Wien)": {
-        GROUP: 1,
-    },
-
     # Widmung
     r"(Ländliche Gebiete)": {
         GROUP: 1,
     },
-    r"\s(Erholungsgebiet)(es)?\s": {
+    r"(Erholungsgebiet)(es)?": {
         GROUP: 1,
     },
-    r"(Erholungsgebiet/( |-)?Sport- und Spielplätze)": {
+    r"(Sport-? ?und Spielplätze)": {
         GROUP: 1,
     },
-    r"((Grünland/)?Erholungsgebiete?/Parkanlage)": {
+    r"(Parkanlage)": {
         GROUP: 1,
     },
-    r"(Kleingartengebiete(  für ganzjähriges Wohnen)?)": {
+    r"(Grünland)": {
+        GROUP: 1,
+    },
+    r"(Kleingartengebiete?(  für ganzjähriges Wohnen)?)": {
         GROUP: 1,
     },
     r"(Freibäder)": {
@@ -85,7 +29,7 @@ WIDMUNG = {
     r"(Schutzgebiet)": {
         GROUP: 1,
     },
-    r"(Schutzzon)": {
+    r"(Schutzzone)": {
         GROUP: 1,
     },
     r"(Wald- und Wiesengürtel)": {
@@ -103,7 +47,13 @@ WIDMUNG = {
     r"(Verkehrs(bänder|band))": {
         GROUP: 1,
     },
-    r"((Bauland/)?Wohngebiet)": {
+    r"(Wohngebiet)": {
+        GROUP: 1,
+    },
+    r"(Industriegebiet)": {
+        GROUP: 1,
+    },
+    r"(Geschäftsviertel)": {
         GROUP: 1,
     },
     r"(Wohnzone)": {
@@ -118,22 +68,25 @@ WIDMUNG = {
     r"(Wohngebiet Teil für förderbaren Wohnbau)": {
         GROUP: 1,
     },
+    r"(Gartensiedlungsgebiet)(es)?": {
+        GROUP: 1,
+    },
     r"(Gartensiedlungsgebiet)": {
         GROUP: 1,
     },
-    r"(Gartensiedlungsgebiet-Gemeinschaftsanlage)": {
+    r"(Gemeinschaftsanlage)": {
         GROUP: 1,
     },
-    r"((Bauland/)?Gemischtes Baugebiet) ": {
+    r"(Gemeinschaftseinrichtung)": {
         GROUP: 1,
     },
-    r"(Gemischte Baugebiet/Betriebsbaugebiet)": {
+    r"([Gg]emischte[sn]? Baugebiet)": {
         GROUP: 1,
     },
-    r"(Industriegebiet)": {
+    r"(Betriebsbaugebiet)": {
         GROUP: 1,
     },
-    r"(Sondergebiet)": {
+    r"(Sondergebiet)(es)?": {
         GROUP: 1,
     },
     r"(Kläranlage)": {
@@ -143,293 +96,133 @@ WIDMUNG = {
         GROUP: 1,
     },
 
-    # Nutzungsart
-    r"(landwirtschaftliche Nutzung)": {
-        GROUP: 1,
-    },
-    r"(forstwirtschaftliche Nutzung)": {
-        GROUP: 1,
-    },
-    r"(berufsgärtnerische Nutzung)": {
-        GROUP: 1,
-    },
-    r"(öffentlicher Zweck)": {
-        GROUP: 1,
-    },
-    r"(Benützung und Erhaltung des Gebietes)": {
-        GROUP: 1,
-    },
-    r"(Badehütte)": {
-        GROUP: 1,
-    },
-    r"(Nutzung und Pflege notwendiges Bauwerk)": {
-        GROUP: 1,
-    },
-    r"(in freier Natur der Erholung suchenden Bevölkerung dienendes Bauwerk)": {
-        GROUP: 1,
-    },
-    r"(landwirtschaftliches Nutzbauwerk)": {
-        GROUP: 1,
-    },
-    r"(Steinbruch)": {
-        GROUP: 1,
-    },
-    r"(Schottergrube)": {
-        GROUP: 1,
-    },
-    r"(Sandgrube)": {
-        GROUP: 1,
-    },
-    r"(Lehmgrube)": {
-        GROUP: 1,
-    },
-    r"(Tongrube)": {
-        GROUP: 1,
-    },
-    r"(Andere Anlage zur Ausbeutung des Untergrundes)": {
-        GROUP: 1,
-    },
-    r"(Bauwerk die dem Betrieb oder der Erhaltung der Bestattungsanlagen dienend)": {
-        GROUP: 1,
-    },
-    r"(Wohngebäude)": {
-        GROUP: 1,
-    },
-    r"(Religiöser Zweck)": {
-        GROUP: 1,
-    },
-    r"(Kultureller Zweck)": {
-        GROUP: 1,
-    },
-    r"(Sozialer Zweck)": {
-        GROUP: 1,
-    },
-    r"(Öffentliche Verwaltung)": {
-        GROUP: 1,
-    },
-    r"(Gaststätte)": {
-        GROUP: 1,
-    },
-    r"(Beherbergungsstätte)": {
-        GROUP: 1,
-    },
-    r"(Versammlungsstätte)": {
-        GROUP: 1,
-    },
-    r"(Vergnügungsstätte)": {
-        GROUP: 1,
-    },
-    r"(Bürogebäude)": {
-        GROUP: 1,
-    },
-    r"(Geschäftsstätte)": {
-        GROUP: 1,
-    },
-    r"(Lagerraum)": {
-        GROUP: 1,
-    },
-    r"(Werkstätte)": {
-        GROUP: 1,
-    },
-    r"(Pferdestallung)": {
-        GROUP: 1,
-    },
-    r"(Büroraum)": {
-        GROUP: 1,
-    },
-    r"(Geschäftsraum)": {
-        GROUP: 1,
-    },
-    r"(Bauwerk mit Geschäftsräumen für Geschäfte des täglichen Bedarfs)": {
-        GROUP: 1,
-    },
-    r"(Gemeinschaftsanlage wirtschaftlicher Zweck)": {
-        GROUP: 1,
-    },
-    r"(Gemeinschaftsanlage sozialer Zweck)": {
-        GROUP: 1,
-    },
-    r"(Gemeinschaftsanlage kultureller Zweck)": {
-        GROUP: 1,
-    },
-    r"(Gemeinschaftsanlage gesundheitlicher Zweck)": {
-        GROUP: 1,
-    },
-    r"(Gemeinschaftsanlage sportlicher Zweck)": {
-        GROUP: 1,
-    },
-    r"(Bauwerke oder Anlagen für Betriebs- oder Geschäftszwecke)": {
-        GROUP: 1,
-    },
-    r"(Lagerplatz)": {
-        GROUP: 1,
-    },
-    r"(Ländefläche)": {
-        GROUP: 1,
-    },
-    r"(Wohnungen für den Bedarf der Betriebsleitung der Betriebsaufsicht)": {
-        GROUP: 1,
-    },
-
-    # BBAllgemien
-    r"(Einkaufszentr(en|um))": {
-        GROUP: 1,
-    },
-    r"(Grundflächen für öffentliche Zwecke)": {
-        GROUP: 1,
-    },
-    r"(Strukturgebiet)": {
-        GROUP: 1,
-    },
-    r"(Struktureinheit)": {
-        GROUP: 1,
-    },
-    r"(Anlagen zum Einstellen von Kraftfahrzeugen)": {
-        GROUP: 1,
-    },
-
     # Kürzel
-    SPACE_OR_BRACKET + r"(L)" + SPACE_OR_BRACKET: {
+    SPACE_BRACKET_SLASH_DASH + r"(L)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    SPACE_OR_BRACKET + r"(E)" + SPACE_OR_BRACKET: {
+    SPACE_BRACKET_SLASH_DASH + r"„?(E)“?" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(Epk)": {
+    SPACE_BRACKET_SLASH_DASH + r"(Epk)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(Ekl)": {
+    SPACE_BRACKET_SLASH_DASH + r"(Ekl)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(Eklw)": {
+    SPACE_BRACKET_SLASH_DASH + r"(Eklw)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(Esp)": {
+    SPACE_BRACKET_SLASH_DASH + r"(Esp)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(Ebd)": {
+    SPACE_BRACKET_SLASH_DASH + r"(Ebd)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(Ebh)": {
+    SPACE_BRACKET_SLASH_DASH + r"(Ebh)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(ELagerwiese)": {
+    SPACE_BRACKET_SLASH_DASH + r"(Lagerwiese)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(Sww)": {
+    SPACE_BRACKET_SLASH_DASH + r"(Sww)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(SwwL)": {
+    SPACE_BRACKET_SLASH_DASH + r"(SwwL)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(Spk)": {
+    SPACE_BRACKET_SLASH_DASH + r"(Spk)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    SPACE_OR_BRACKET + r"(F)" + SPACE_OR_BRACKET: {
+    SPACE_BRACKET_SLASH_DASH + r"(F)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(SN)": {
+    SPACE_BRACKET_SLASH_DASH + r"(SN)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(VB)": {
+    SPACE_BRACKET_SLASH_DASH + r"(VB)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    SPACE_OR_BRACKET + r"(W)" + SPACE_OR_BRACKET: {
+    SPACE_BRACKET_SLASH_DASH + r"(W)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(WGV)": {
+    SPACE_BRACKET_SLASH_DASH + r"(WGV)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(WGF)": {
+    SPACE_BRACKET_SLASH_DASH + r"(WGF)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(WFB)": {
+    SPACE_BRACKET_SLASH_DASH + r"(WFB)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(GS)": {
+    SPACE_BRACKET_SLASH_DASH + r"(GS)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(GSGM)": {
+    SPACE_BRACKET_SLASH_DASH + r"(GSGM)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(GB(cv)?)": {
+    SPACE_BRACKET_SLASH_DASH + r"(GB(cv)?)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(GB ?GV)": {
+    SPACE_BRACKET_SLASH_DASH + r"(GB)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(GBGF)": {
+    SPACE_BRACKET_SLASH_DASH + r"(GV)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(GBFB)": {
+    SPACE_BRACKET_SLASH_DASH + r"(GBGF)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(GBBG)": {
+    SPACE_BRACKET_SLASH_DASH + r"(GBGV)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(GBF)": {
+    SPACE_BRACKET_SLASH_DASH + r"(GBFB)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(lG)": {
+    SPACE_BRACKET_SLASH_DASH + r"(GBBG)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(lGBS)": {
+    SPACE_BRACKET_SLASH_DASH + r"(GBF)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(lGSI)": {
+    SPACE_BRACKET_SLASH_DASH + r"(BG)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(SO)": {
+    SPACE_BRACKET_SLASH_DASH + r"(IG)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(SOKläranlage)": {
+    SPACE_BRACKET_SLASH_DASH + r"(IGBS)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(SOLL)": {
+    SPACE_BRACKET_SLASH_DASH + r"(IGSI)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(SOLL/BS)": {
+    SPACE_BRACKET_SLASH_DASH + r"„?(SO)“?" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(SOSI)": {
+    SPACE_BRACKET_SLASH_DASH + r"(SOKläranlage)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(SOMarkt)": {
+    SPACE_BRACKET_SLASH_DASH + r"(SOLL)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    SPACE_OR_BRACKET + r"(G)" + SPACE_OR_BRACKET: {
+    SPACE_BRACKET_SLASH_DASH + r"(SOLL/BS)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(Ekz|EKZ)": {
+    SPACE_BRACKET_SLASH_DASH + r"(SOSI)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(ÖZ)": {
+    SPACE_BRACKET_SLASH_DASH + r"(SOMarkt)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
-    r"(StrG)": {
-        GROUP: 1,
-    },
-    r"(StrE (\d)?)": {
-        GROUP: 1,
-    },
-    SPACE_OR_BRACKET + r"(P)" + SPACE_OR_BRACKET: {
+    SPACE_BRACKET_SLASH_DASH + r"„?(G)“?" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
 
     # Not included in the list from WP4
-    r"(Winterg[aä]rten)": {
-        GROUP: 1,
-    },
-    r"(Sporthalle)": {
-        GROUP: 1,
-    },
     r"(Landesverteidigung)": {
         GROUP: 1,
     },
-    r"(öffentlichen? Verkehrsfläche)": {
-        GROUP: 1,
-    },
-    r"(Gemischtes Baugebiet/Geschäftsviertel)": {
+    r"(Wohn- oder gemischtem Baugebiet)": {
         GROUP: 1,
     },
 

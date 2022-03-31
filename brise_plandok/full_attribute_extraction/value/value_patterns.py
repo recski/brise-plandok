@@ -2,6 +2,8 @@ from brise_plandok.constants import AttributesNames
 from brise_plandok.full_attribute_extraction.constants import NUMBER_WITH_METER, GROUP, ALL, VALUE, TRUE, \
     NUMBER_WITH_PERCENT, GAERTNERISH_GESTALTEN, DACH, NUMBER_WITH_DEGREE, NUMBER_WITH_SQUARE_METER, FALSE, \
     STRASSE, NUMBER_WITH_CUBIC_METER, NUMBER, Fluchtlinie
+from brise_plandok.full_attribute_extraction.value.bb_allgemein_patterns import BB_ALLGEMEIN
+from brise_plandok.full_attribute_extraction.value.nutzung_patterns import NUTZUNG
 from brise_plandok.full_attribute_extraction.value.widmung_patterns import WIDMUNG
 
 VALUE_PATTERNS = {
@@ -701,6 +703,10 @@ VALUE_PATTERNS = {
 
     AttributesNames.WidmungInMehrerenEbenen: WIDMUNG,
 
-    AttributesNames.WidmungUndZweckbestimmung: WIDMUNG,
+    AttributesNames.Widmung: WIDMUNG,
+
+    AttributesNames.Nutzungsart: NUTZUNG,
+
+    AttributesNames.BBAllgemein: BB_ALLGEMEIN,
 
 }

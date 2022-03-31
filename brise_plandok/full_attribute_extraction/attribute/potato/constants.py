@@ -11,7 +11,7 @@ DO_NOT_ANNOTATE = "DON'T ANNOTATE THIS SENTENCE"
 TOP_14_ANNOTATED = [
     NOT,
     AttributesNames.Planzeichen,
-    AttributesNames.WidmungUndZweckbestimmung,
+    AttributesNames.Widmung,
     AttributesNames.VerkehrsflaecheID,
     AttributesNames.AnFluchtlinie,
     AttributesNames.AnordnungGaertnerischeAusgestaltung,

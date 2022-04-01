@@ -1,14 +1,15 @@
 import argparse
 import logging
 
+from xpotato.dataset.dataset import Dataset
+from xpotato.graph_extractor.extract import FeatureEvaluator
+
 from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, AttributeTypes, SenToAttrFields
 from brise_plandok.full_attribute_extraction.attribute.potato.utils import load_features
 from brise_plandok.full_attribute_extraction.type.extract_types import match_types
 from brise_plandok.full_attribute_extraction.value.extract_values import match_values
 from brise_plandok.utils import update_gold_docs
-from xpotato.dataset.dataset import Dataset
-from xpotato.graph_extractor.extract import FeatureEvaluator
 
 DUMMY_LABEL = "dummy"
 GRAPH_FORMAT = "fourlang"
@@ -74,11 +75,14 @@ def _check_suggestions(
     print(f"\nOld attributes:\n\n{old_attributes}\n\n{old_attributes[input_attribute]}")
     print(f"\nMigrated attributes: {output_attributes}\n")
     print(f"{predicted_full_attributes}")
-    take = input("\nTake it? (Enter=yes, else no)")
+    take = input("\nTake it? (Enter=yes, d=delete attribute, else read from input)")
     if take == "":
         for migrated_attr, full_migrated_attr in predicted_full_attributes.items():
             old_attributes[migrated_attr] = full_migrated_attr
+    elif take == "d":
+        return
     else:
+        attributes = []
         while True:
             name_input = input(f"Name: ")
             if name_input == "-":
@@ -90,10 +94,30 @@ def _check_suggestions(
                 AttributeFields.VALUE: [value_input],
                 AttributeFields.TYPE: [type_input],
             }
-            old_attributes[name_input] = attr_input
-            done = input(f"{attr_input}\nDone? (Enter=yes, else no)")
+            done = input(f"{attr_input}\nDone? (Enter=yes, w=next attribute, else no)")
             if done == "":
+                attributes.append(attr_input)
                 break
+            if done == "w":
+                attributes.append(attr_input)
+            else:
+                attributes = []
+        __update_attributes_after_user_input(attributes, old_attributes)
+
+
+def __update_attributes_after_user_input(attributes, old_attributes):
+    for attribute in attributes:
+        old_attributes[attribute[AttributeFields.NAME]] = None
+    for attribute in attributes:
+        if old_attributes[attribute[AttributeFields.NAME]] is None:
+            old_attributes[attribute[AttributeFields.NAME]] = attribute
+        else:
+            old_attributes[attribute[AttributeFields.NAME]][AttributeFields.VALUE].append(
+                attribute[AttributeFields.VALUE][0]
+            )
+            old_attributes[attribute[AttributeFields.NAME]][AttributeFields.TYPE].append(
+                attribute[AttributeFields.TYPE][0]
+            )
 
 
 def _read_type():
@@ -126,7 +150,7 @@ def _predict_full_attributes(
             types = old_attributes[input_attribute][AttributeFields.TYPE]
         else:
             value = list(set([value for value in match_values(new_attr, text)]))
-            types = [match_types(new_attr, text)]
+            types = [match_types(new_attr, text)] * len(value)
         predicted_full_attributes[new_attr] = {
             AttributeFields.NAME: new_attr,
             AttributeFields.VALUE: value,

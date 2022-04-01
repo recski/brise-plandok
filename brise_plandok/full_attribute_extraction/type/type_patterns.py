@@ -1,6 +1,5 @@
 from brise_plandok.constants import AttributeTypes, AttributesNames
-from brise_plandok.full_attribute_extraction.constants import ALL, TYPE, NUMBER_WITH_METER, SPACE_OR_BRACKET
-
+from brise_plandok.full_attribute_extraction.constants import ALL, TYPE, NUMBER_WITH_METER, SPACE_BRACKET_SLASH_DASH
 TYPE_PATTERNS = {
 
     AttributesNames.AbschlussDachMaxBezugGebaeude: {
@@ -455,12 +454,81 @@ TYPE_PATTERNS = {
         },
     },
 
-    AttributesNames.WidmungUndZweckbestimmung: {
-        SPACE_OR_BRACKET + r"([GPL])" + SPACE_OR_BRACKET: {
+    AttributesNames.Widmung: {
+        SPACE_BRACKET_SLASH_DASH + r"„?([GLWE])“?" + SPACE_BRACKET_SLASH_DASH: {
             TYPE: AttributeTypes.CONDITION,
         },
-        r"Esp": {
+        r"(GB|GV|Spk|Esp|Eklw?|Epk|SwwL?|SO)": {
             TYPE: AttributeTypes.CONDITION,
+        },
+        r"mit Ausnahme der Gartensiedlungsgebiete": {
+            TYPE: AttributeTypes.CONDITION_EXCEPTION,
+        },
+        r"wird als .* (gewidmete|ausgewiesen)": {
+            TYPE: AttributeTypes.CONTENT,
+        },
+        r"(als|mit) .* (gewidmete|ausgewiesen)": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        r"als .* bezeichnete": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        r"Innerhalb der (als|in|im)": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        r"(der Widmung|dem) (.*) zugeordnet": {
+            TYPE: AttributeTypes.CONTENT,
+        },
+        r"[iI]m „?(\w+land|[Gg]emischte[sn] Baugebiet|Geschäftsviertel|\w+gebiet)": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        r"als .* festgesetzt": {
+            TYPE: AttributeTypes.CONTENT,
+        },
+        r"[Ff]ür (das )?(Bauland|Gemischt)": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        r"mit der Festsetzung (Bauland|Geschäftsviertel|Wohn)": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        r"mit der Widmung": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        r"[Ii]n der Wohnzone": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        r"Grundflächen des Wohngebietes": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        r"bezeichneten Flächen des (Gemischten Baugebietes|Wohngebietes)": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        r"mit Grünland": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
+    AttributesNames.BBAllgemein: {
+        r"Einkaufszentrum ausgewiesen": {
+            TYPE: AttributeTypes.CONTENT,
+        },
+        ALL: {
+            TYPE: AttributeTypes.CONDITION,
+        },
+    },
+
+    AttributesNames.Nutzungsart: {
+        r"soweit nicht eine Befestigung für die Nutzung": {
+            TYPE: AttributeTypes.CONDITION_EXCEPTION,
+        },
+        r"Sondergebiet/": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        r"i[nm] Zusammenhang mit [\w\s,]+[Zz]weck": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        ALL: {
+            TYPE: AttributeTypes.CONTENT,
         },
     },
 

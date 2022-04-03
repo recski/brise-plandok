@@ -43,8 +43,12 @@ class PSETAttributes:
         PSETJson.PROPERTY_NAME: AttributesNames.Planzeichen,
         PSETJson.PROPERTY_TYPE: IFCType.TEXT,
     }
-    WidmungUndZweckbestimmung = {
-        PSETJson.PROPERTY_NAME: AttributesNames.WidmungUndZweckbestimmung,
+    Widmung = {
+        PSETJson.PROPERTY_NAME: AttributesNames.Widmung,
+        PSETJson.PROPERTY_TYPE: IFCType.TEXT,
+    }
+    Nutzungsart = {
+        PSETJson.PROPERTY_NAME: AttributesNames.Nutzungsart,
         PSETJson.PROPERTY_TYPE: IFCType.TEXT,
     }
     AnFluchtlinie = {
@@ -79,8 +83,12 @@ class PSETAttributes:
         PSETJson.PROPERTY_NAME: AttributesNames.BegruenungDach,
         PSETJson.PROPERTY_TYPE: IFCType.BOOL,
     }
-    GebaeudeHoeheMax = {
-        PSETJson.PROPERTY_NAME: AttributesNames.GebaeudeHoeheMax,
+    GebaeudeHoeheMaxAbsolut = {
+        PSETJson.PROPERTY_NAME: AttributesNames.GebaeudeHoeheMaxAbsolut,
+        PSETJson.PROPERTY_TYPE: IFCType.LENGTH,
+    }
+    GebaeudeHoeheMaxWN = {
+        PSETJson.PROPERTY_NAME: AttributesNames.GebaeudeHoeheMaxWN,
         PSETJson.PROPERTY_TYPE: IFCType.LENGTH,
     }
     GebaeudeBautyp = {
@@ -161,7 +169,8 @@ PSETS = {
         ],
         PSETJson.OPTIONAL: [
             PSETAttributes.Planzeichen,
-            PSETAttributes.WidmungUndZweckbestimmung,
+            PSETAttributes.Widmung,
+            PSETAttributes.Nutzungsart,
             PSETAttributes.AnFluchtlinie,
             PSETAttributes.Dachart,
             PSETAttributes.GebaeudeHoeheArt,
@@ -176,9 +185,11 @@ PSETS = {
         ],
         PSETJson.OPTIONAL: [
             PSETAttributes.Planzeichen,
-            PSETAttributes.WidmungUndZweckbestimmung,
+            PSETAttributes.Widmung,
+            PSETAttributes.Nutzungsart,
             PSETAttributes.Dachart,
-            PSETAttributes.GebaeudeHoeheMax,
+            PSETAttributes.GebaeudeHoeheMaxAbsolut,
+            PSETAttributes.GebaeudeHoeheMaxWN,
             PSETAttributes.GebaeudeBautyp,
             PSETAttributes.GebaeudeHoeheArt,
             PSETAttributes.DachneigungMax,
@@ -192,7 +203,8 @@ PSETS = {
         ],
         PSETJson.OPTIONAL: [
             PSETAttributes.Planzeichen,
-            PSETAttributes.WidmungUndZweckbestimmung,
+            PSETAttributes.Widmung,
+            PSETAttributes.Nutzungsart,
             PSETAttributes.GesamtePlangebiet,
             PSETAttributes.Stockwerk,
         ],
@@ -204,12 +216,13 @@ PSETS = {
         ],
         PSETJson.OPTIONAL: [
             PSETAttributes.Planzeichen,
-            PSETAttributes.WidmungUndZweckbestimmung,
+            PSETAttributes.Widmung,
+            PSETAttributes.Nutzungsart,
         ],
     },
     PSETNames.Gebaeudehoehe: {
         PSETJson.REQUIRED: [
-            PSETAttributes.GebaeudeHoeheMax,
+            PSETAttributes.GebaeudeHoeheMaxAbsolut,
             PSETAttributes.Bauklasse,
         ],
         PSETJson.OPTIONAL: [
@@ -218,7 +231,8 @@ PSETS = {
             PSETAttributes.BebauteFlaecheMax,
             PSETAttributes.BebauteFlaecheMaxProzentual,
             PSETAttributes.BebauteFlaecheMaxNebengebaeude,
-            PSETAttributes.WidmungUndZweckbestimmung,
+            PSETAttributes.Widmung,
+            PSETAttributes.Nutzungsart,
             PSETAttributes.GesamtePlangebiet,
         ],
     },
@@ -232,9 +246,11 @@ PSETS = {
             PSETAttributes.BebauteFlaecheMax,
             PSETAttributes.BebauteFlaecheMaxProzentual,
             PSETAttributes.BebauteFlaecheMaxNebengebaeude,
-            PSETAttributes.WidmungUndZweckbestimmung,
+            PSETAttributes.Widmung,
+            PSETAttributes.Nutzungsart,
             PSETAttributes.GesamtePlangebiet,
-            PSETAttributes.GebaeudeHoeheMax,
+            PSETAttributes.GebaeudeHoeheMaxAbsolut,
+            PSETAttributes.GebaeudeHoeheMaxWN,
             PSETAttributes.GebaeudeHoeheArt,
         ],
     },
@@ -248,7 +264,8 @@ PSETS = {
             PSETAttributes.BebauteFlaecheMax,
             PSETAttributes.BebauteFlaecheMaxProzentual,
             PSETAttributes.BebauteFlaecheMaxNebengebaeude,
-            PSETAttributes.WidmungUndZweckbestimmung,
+            PSETAttributes.Widmung,
+            PSETAttributes.Nutzungsart,
             PSETAttributes.AnFluchtlinie,
             PSETAttributes.VerkehrsflaecheID,
             PSETAttributes.GesamtePlangebiet,

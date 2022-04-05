@@ -1,7 +1,7 @@
 from brise_plandok.constants import AttributesNames
 
 GOLD_ATTRIBUTES = "gold_attributes"
-GOLD = "labels_gold"
+GOLD = "full_gold"
 ANNOTATED_ATTRIBUTES = "annotated_attributes"
 SEGMENTATION_ERROR = "segmentation_error"
 

@@ -1,7 +1,7 @@
 import json
 import os
 
-from brise_plandok.constants import DocumentFields, SenFields
+from brise_plandok.constants import DocumentFields, SenFields, AttributeFields
 from brise_plandok.utils import dump_json, load_json
 
 # DATA_FOLDER = "/home/eszter/research/brise-nlp/annotation/2021_09/full_data"
@@ -9,11 +9,7 @@ from brise_plandok.utils import dump_json, load_json
 DATA_FOLDER = "/home/eszter/research/brise-plandok/sample_data/annotation/full_data/"
 
 DOC_ID_FILTER = [
-    "7374",
-    "7857",
-    "7990",
-    "8065",
-    "8250",
+    "7377",
 ]
 
 
@@ -41,11 +37,28 @@ def doc_mapping_fn(doc):
     return doc
 
 
+def _flatten_gold_attributes(old):
+    new = {}
+    for attr_name, attr in old.items():
+        new[attr_name] = []
+        for i, value in enumerate(attr[AttributeFields.VALUE]):
+            for split_value in value.split("\n"):
+                new[attr_name].append(
+                    {
+                        AttributeFields.NAME: attr_name,
+                        AttributeFields.VALUE: split_value.strip(),
+                        AttributeFields.TYPE: attr[AttributeFields.TYPE][i],
+                    }
+                )
+    return new
+
+
 def sen_mapping_fn(sen):
-    # old = sen[SenFields.GEN_ATTRIBUTES_ON_ANNOTATION]
-    # new = attr_list_to_dict(old)
-    # sen[SenFields.GEN_ATTRIBUTES_ON_ANNOTATION] = new
-    sen[SenFields.FULL_GOLD_EXISTS] = False
+    if sen[SenFields.FULL_GOLD_EXISTS]:
+        print(sen[SenFields.ID])
+        old = sen[SenFields.GOLD_ATTRIBUTES]
+        new = _flatten_gold_attributes(old)
+        sen[SenFields.GOLD_ATTRIBUTES] = new
     return sen
 
 

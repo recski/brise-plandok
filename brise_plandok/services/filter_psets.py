@@ -9,6 +9,8 @@ def filter_psets(doc, full):
     _add_psets(response, PSETJson.PRED_PSETS, PSETJson.PRED_ATTRIBUTES)
     _flatten(response, PSETJson.GOLD_PSETS)
     _flatten(response, PSETJson.PRED_PSETS)
+    _index_psets(response, PSETJson.GOLD_PSETS)
+    _index_psets(response, PSETJson.PRED_PSETS)
     if not full:
         _retain_minimal(response)
     return response
@@ -123,3 +125,22 @@ def _retain_minimal(response):
         del section[PSETJson.GOLD_ATTRIBUTES]
         del section[PSETJson.PRED_ATTRIBUTES]
         del section[PSETJson.GOLD_PSETS]
+
+
+def _index_psets(response, pset_type):
+    pset_indices = {}
+    for pset in PSETS.keys():
+        pset_indices[pset] = 0
+    for section_id, section_data in response.items():
+        if pset_type in section_data:
+            indexed_psets = __index_section(pset_indices, pset_type, section_data)
+            section_data[pset_type] = indexed_psets
+
+
+def __index_section(pset_indices, pset_type, section_data):
+    indexed_psets = {}
+    for pset_name, pset_data in section_data[pset_type].items():
+        pset_indices[pset_name] += 1
+        indexed_name = pset_name + str(pset_indices[pset_name])
+        indexed_psets[indexed_name] = pset_data
+    return indexed_psets

@@ -1,5 +1,14 @@
+import re
+
 from brise_plandok.constants import DocumentFields, SenFields, AttributeFields
 from brise_plandok.services.psets import PSETJson, PSETS
+
+PERCENT = "%|v. ?H.|Prozent"
+METER = "m"
+SQUARE_METER = "m ?[²2]"
+CUBIC_METER = "m ?[³3]"
+DEGREE = "°|Grad"
+UNIT = f" ?({PERCENT}|{METER}|{SQUARE_METER}|{CUBIC_METER}|{DEGREE})"
 
 
 def filter_psets(doc, full):
@@ -120,7 +129,9 @@ def _flatten(response, pset_type):
                         pset_new[pset_name].append(
                             {
                                 PSETJson.PROPERTY_NAME: pset_attr[PSETJson.PROPERTY_NAME],
-                                PSETJson.PROPERTY_VALUE: pset_attr[PSETJson.PROPERTY_VALUE][0],
+                                PSETJson.PROPERTY_VALUE: __remove_units(
+                                    pset_attr[PSETJson.PROPERTY_VALUE][0]
+                                ),
                                 PSETJson.PROPERTY_TYPE: pset_attr[PSETJson.PROPERTY_TYPE],
                             }
                         )
@@ -130,11 +141,15 @@ def _flatten(response, pset_type):
                                 {
                                     PSETJson.PROPERTY_NAME: pset_attr[PSETJson.PROPERTY_NAME]
                                     + str(i + 1),
-                                    PSETJson.PROPERTY_VALUE: value,
+                                    PSETJson.PROPERTY_VALUE: __remove_units(value),
                                     PSETJson.PROPERTY_TYPE: pset_attr[PSETJson.PROPERTY_TYPE],
                                 }
                             )
         section[pset_type] = pset_new
+
+
+def __remove_units(value):
+    return re.sub(UNIT, "", value)
 
 
 def _retain_minimal(response):

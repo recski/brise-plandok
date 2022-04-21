@@ -108,15 +108,15 @@ python brise_plandok/annotation_process/generate_batch.py \
     -g
 ```
 
-You can find the generated xlsx files in `brise_plandok/annotation_process/example/xlsx` folder.  
+You can find the generated xlsx files in the [xlsx](./example/xlsx) folder.  
 
-Additionally, you can find for each annotator in their download folder (e.g. `brise_plandok/annotation_process/example/annotators/01/phase1/download`) the relevant xlsx files that they have to annotate.
+Additionally, you can find for each annotator in their download folder (e.g. for annotator [01](./example/annotators/01/phase1/download)) the relevant xlsx files that they have to annotate.
 
 Pre-filled gold data in the excel sheets comes from gold json files provided by the `--data-folder` option.
 
 #### Overwrite existing xlsx files
 
-The generated files can be found in `brise_plandok/annotation_process/example/xlsx`. If the files already exist, no new sheets will be generated. If you want to overwrite the existing ones, use the `-o` flag.
+The generated files can be found in [xlsx](./example/xlsx) folder. If the files already exist, no new sheets will be generated. If you want to overwrite the existing ones, use the `-o` flag.
 
 ```
 python brise_plandok/annotation_process/generate_batch.py \
@@ -133,7 +133,7 @@ python brise_plandok/annotation_process/generate_batch.py \
 
 ### Run with update
 
-To make the assignments final, let us use the `--update` flag. This will update the document tracking file, as well as all the assignment files of the annotators.
+To make the assignments final, use the `--update` flag. This will update the document tracking file, as well as all the assignment files of the annotators.
 
 ```
 python brise_plandok/annotation_process/generate_batch.py \
@@ -166,7 +166,9 @@ python brise_plandok/annotation_process/generate_batch.py \
     -p 2
 ```
 
-The document tracking file (`brise_plandok/annotation_process/shuffled_dataset.csv`) and all the assignment files (e.g. `brise_plandok/annotation_process/example/annotators/01/assignment.txt`) have been updated.
+The [document tracking file](./example/shuffled_dataset.csv) and all the assignment files (e.g. for annotator [01](./example/annotators/01/phase1/assignment.txt)) have been updated.
+
+You can check the status again by calling the script from the [Check existing assignments](#check-existing-assignments) section.
 
 ## Reset assignments
 

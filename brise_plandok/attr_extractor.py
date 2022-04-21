@@ -10,7 +10,6 @@ from brise_plandok.constants import SenFields
 from brise_plandok.extractor import Extractor
 from brise_plandok.regex_decompounder import regex_decompounder
 
-
 PATTERNS_BY_ATTR = {
     "AbschlussDachMaxBezugGebaeude": {
         "(u_0 / liegen :0 (u_1 / hoch :0 (u_2 / NEG)) :1 (u_3 / Punkt :0 (u_4 / Dach)))",  # noqa
@@ -83,7 +82,8 @@ PATTERNS_BY_ATTR = {
 def get_patterns():
     all_patterns = []
     for attr, patterns in PATTERNS_BY_ATTR.items():
-        assert attr in ATTR_TO_CAT, attr
+        if attr not in ATTR_TO_CAT:
+            logging.warning(f"Attribute not in the list (might be deprecated): {attr}")
         for patt in patterns:
             all_patterns.append((patt, attr))
     return all_patterns

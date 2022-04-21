@@ -1,5 +1,6 @@
-from brise_plandok.annotation_process.utils.constants import DOC_HEADER
 import pandas
+
+from brise_plandok.annotation_process.utils.constants import DOC_HEADER
 
 
 def load_doc_tracking_data(file):
@@ -34,7 +35,7 @@ def _get_assigned_doc_header(phase):
 def _get_first_not_assigned(df, phase):
     order_col = DOC_HEADER[0]
     assigned_col = _get_assigned_doc_header(phase)
-    return df[df[assigned_col] is False].iloc[0][order_col]
+    return df[df[assigned_col] == False].iloc[0][order_col]
 
 
 def _set_assigned_true(df, first, batch_size, phase):

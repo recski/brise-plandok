@@ -1,6 +1,6 @@
 import argparse
-import logging
 
+from brise_plandok import logger
 from brise_plandok.annotation_process.utils.constants import (
     ATTRIBUTES_TO_IGNORE,
     LabelReviewExcelConstants,
@@ -36,7 +36,7 @@ class LabelReviewConverter(ReviewConverter):
         gold_candidate = {}
         for attr_name, attr in _generate_gold_attrs(attributes):
             if attr_name in gold_candidate:
-                logging.warning(
+                logger.warning(
                     f"In {sen_id}: {attr_name} is already in gold candidates: {gold_candidate}"
                 )
             gold_candidate[attr_name] = attr
@@ -79,10 +79,6 @@ def get_args():
 
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
-    )
     args = get_args()
     converter = LabelReviewConverter(args.data_file, args.gold_folder)
     converter.convert(args.review)

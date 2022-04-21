@@ -8,11 +8,15 @@ A specific folder structure is expected for the following scripts to work. Gener
 ./scripts/TEST_gen_structure_for_annotation_process.sh
 ```
 
+You can find the generated folder under [here](./example).
+
 ## Shuffle data
 
 This step is already done by the previous script!
 
 First, we create a single file to track assignments and other stats for all documents. The dataset will also be shuffled at this step.
+
+To execute this step separately, run:
 
 ```
 python brise_plandok/annotation_process/shuffle_dataset.py -d sample_data/txt > brise_plandok/annotation_process/example/shuffled_dataset.csv
@@ -26,7 +30,7 @@ Parsing all txt files at once might take some time, so let just parse those we w
 ./scripts/TEST_text_to_jsonl.sh 7181 7272 7408 7443 7531 7545 7702 7774 7799 8159
 ```
 
-The generated files can be found in `brise_plandok/annotation_process/example/json`.
+The generated files can be found in the [json](./example/json) folder.
 
 ## Generate attributes with rule-based system
 
@@ -36,7 +40,7 @@ We want to pre-fill attributes suggested by our rule-based system to ease the wo
 ./scripts/TEST_gen_attributes.sh 7181 7272 7408 7443 7531 7545 7702 7774 7799 8159
 ```
 
-The generated files can be found in `brise_plandok/annotation_process/example/json_attr`.
+The generated files can be found in the [json_attr](./example/json_attr) folder. The generated attributes are contained in the `gen_attributes` field.
 
 ## Get a grasp of sentence counts in the next batch
 
@@ -46,8 +50,11 @@ In order to get a good feeling about the next batch size, we should check how ma
 python brise_plandok/annotation_process/sentence_stat.py \
     -d brise_plandok/annotation_process/example/shuffled_dataset.csv \
     -s 6 \
-    -jf brise_plandok/annotation_process/example/json_attr
+    -jf brise_plandok/annotation_process/example/json_attr \
+    -p 1
 ```
+
+The `assigned` and `assigned_2 ` columns show whether the document is already assigned for the first phase and the second phase, respectively. 
 
 ## Check existing assignments
 
@@ -56,7 +63,8 @@ We might want to check which assignments for each annotator already exist.
 ```
 python brise_plandok/annotation_process/assignment_loader.py \
     -d brise_plandok/annotation_process/example/shuffled_dataset.csv \
-    -af brise_plandok/annotation_process/example/annotators
+    -af brise_plandok/annotation_process/example/annotators \
+    -p 1
 ```
 
 For phase 2:

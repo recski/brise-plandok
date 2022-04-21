@@ -1,8 +1,10 @@
 import itertools
-import logging
 import os
 
 import pandas
+from numberpartitioning import karmarkar_karp
+
+from brise_plandok import logger
 from brise_plandok.annotation_process.utils.constants import (
     ANNOTATOR_DOWNLOAD_FOLDER,
     ASSIGNMENT_ADDITIONAL_HEADER,
@@ -14,7 +16,6 @@ from brise_plandok.annotation_process.utils.constants import (
     PHASE_STR,
 )
 from brise_plandok.annotation_process.utils.sentences import sum_sens_for_docs
-from numberpartitioning import karmarkar_karp
 
 
 def get_assignment_header(phase):
@@ -46,7 +47,7 @@ def load_assigned_docs_as_df(ann_folder, annotator, phase):
 def get_assignment(doc_ids, df, nr_groups):
     numbers, num_to_doc = _get_numbers(doc_ids, df)
     result = _get_partition(numbers, nr_groups)
-    logging.info(f"partition created: {result}")
+    logger.info(f"partition created: {result}")
     return _get_doc_partition(result, num_to_doc)
 
 
@@ -101,7 +102,7 @@ def _log_for_review_tracking(docs, next_doc_ids, cycle):
         :, [1, 4] + [5 + i for i in range(len(cycle.columns))]
     ]
     view = next_docs.to_csv(sep=";", index=False)
-    logging.info(f"print new assignment for review tracking:\n\n{view}")
+    logger.info(f"print new assignment for review tracking:\n\n{view}")
 
 
 def _enrich_docs_with_annotators(docs, cycle, partition):
@@ -153,4 +154,4 @@ def update_assignments(doc_ids, annotator, annotator_folder, phase):
         )
     df.to_csv(path_or_buf=assignment_txt, sep=";", index=False)
     df.to_excel(assignment_xlsx, index=False)  # pylint: disable=no-member
-    logging.info(f"assignment text files were updated: {assignment_txt}\t{assignment_xlsx}")
+    logger.info(f"assignment text files were updated: {assignment_txt}\t{assignment_xlsx}")

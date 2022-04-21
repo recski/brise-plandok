@@ -1,6 +1,7 @@
 import json
-import logging
 import os
+
+from brise_plandok import logger
 from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.constants import (
     AttributeFields,
@@ -10,8 +11,8 @@ from brise_plandok.constants import (
     OldSenFields,
     SenFields,
 )
-from brise_plandok.utils import dump_json, load_json
 from brise_plandok.data_utils import create_sen
+from brise_plandok.utils import dump_json, load_json
 
 
 class LabelAnnotationPreFiller:
@@ -25,7 +26,7 @@ class LabelAnnotationPreFiller:
     def _get_doc(self, json_file, full_data_file, doc_id, sen_to_gold_attrs):
         full_data = load_json(full_data_file)
         if full_data is not None:
-            logging.info(
+            logger.info(
                 f"Full data json already exists. The content of this file will be used w/o any modification: {full_data_file}"
             )
             return full_data
@@ -71,7 +72,7 @@ class LabelAnnotationPreFiller:
         for attr in attr_list:
             attr_name = attr[AttributeFields.NAME]
             if attr_name in attr_dict:
-                logging.warning(f"Attribute '{attr_name}' was generated twice")
+                logger.warning(f"Attribute '{attr_name}' was generated twice")
             attr_dict[attr_name] = attr
         return attr_dict
 

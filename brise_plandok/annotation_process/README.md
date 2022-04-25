@@ -8,11 +8,15 @@ A specific folder structure is expected for the following scripts to work. Gener
 ./scripts/TEST_gen_structure_for_annotation_process.sh
 ```
 
+You can find the generated folder under [here](./example).
+
 ## Shuffle data
 
 This step is already done by the previous script!
 
 First, we create a single file to track assignments and other stats for all documents. The dataset will also be shuffled at this step.
+
+To execute this step separately, run:
 
 ```
 python brise_plandok/annotation_process/shuffle_dataset.py -d sample_data/txt > brise_plandok/annotation_process/example/shuffled_dataset.csv
@@ -26,7 +30,7 @@ Parsing all txt files at once might take some time, so let just parse those we w
 ./scripts/TEST_text_to_jsonl.sh 7181 7272 7408 7443 7531 7545 7702 7774 7799 8159
 ```
 
-The generated files can be found in `brise_plandok/annotation_process/example/json`.
+The generated files can be found in the [json](./example/json) folder.
 
 ## Generate attributes with rule-based system
 
@@ -36,7 +40,7 @@ We want to pre-fill attributes suggested by our rule-based system to ease the wo
 ./scripts/TEST_gen_attributes.sh 7181 7272 7408 7443 7531 7545 7702 7774 7799 8159
 ```
 
-The generated files can be found in `brise_plandok/annotation_process/example/json_attr`.
+The generated files can be found in the [json_attr](./example/json_attr) folder. The generated attributes are contained in the `gen_attributes` field.
 
 ## Get a grasp of sentence counts in the next batch
 
@@ -46,8 +50,11 @@ In order to get a good feeling about the next batch size, we should check how ma
 python brise_plandok/annotation_process/sentence_stat.py \
     -d brise_plandok/annotation_process/example/shuffled_dataset.csv \
     -s 6 \
-    -jf brise_plandok/annotation_process/example/json_attr
+    -jf brise_plandok/annotation_process/example/json_attr \
+    -p 1
 ```
+
+The `assigned` and `assigned_2 ` columns show whether the document is already assigned for the first phase and the second phase, respectively. 
 
 ## Check existing assignments
 
@@ -56,7 +63,8 @@ We might want to check which assignments for each annotator already exist.
 ```
 python brise_plandok/annotation_process/assignment_loader.py \
     -d brise_plandok/annotation_process/example/shuffled_dataset.csv \
-    -af brise_plandok/annotation_process/example/annotators
+    -af brise_plandok/annotation_process/example/annotators \
+    -p 1
 ```
 
 For phase 2:
@@ -100,15 +108,15 @@ python brise_plandok/annotation_process/generate_batch.py \
     -g
 ```
 
-You can find the generated xlsx files in `brise_plandok/annotation_process/example/xlsx` folder.  
+You can find the generated xlsx files in the [xlsx](./example/xlsx) folder.  
 
-Additionally, you can find for each annotator in their download folder (e.g. `brise_plandok/annotation_process/example/annotators/01/phase1/download`) the relevant xlsx files that they have to annotate.
+Additionally, you can find for each annotator in their download folder (e.g. for annotator [01](./example/annotators/01/phase1/download)) the relevant xlsx files that they have to annotate.
 
 Pre-filled gold data in the excel sheets comes from gold json files provided by the `--data-folder` option.
 
 #### Overwrite existing xlsx files
 
-The generated files can be found in `brise_plandok/annotation_process/example/xlsx`. If the files already exist, no new sheets will be generated. If you want to overwrite the existing ones, use the `-o` flag.
+The generated files can be found in [xlsx](./example/xlsx) folder. If the files already exist, no new sheets will be generated. If you want to overwrite the existing ones, use the `-o` flag.
 
 ```
 python brise_plandok/annotation_process/generate_batch.py \
@@ -125,7 +133,7 @@ python brise_plandok/annotation_process/generate_batch.py \
 
 ### Run with update
 
-To make the assignments final, let us use the `--update` flag. This will update the document tracking file, as well as all the assignment files of the annotators.
+To make the assignments final, use the `--update` flag. This will update the document tracking file, as well as all the assignment files of the annotators.
 
 ```
 python brise_plandok/annotation_process/generate_batch.py \
@@ -158,7 +166,9 @@ python brise_plandok/annotation_process/generate_batch.py \
     -p 2
 ```
 
-The document tracking file (`brise_plandok/annotation_process/shuffled_dataset.csv`) and all the assignment files (e.g. `brise_plandok/annotation_process/example/annotators/01/assignment.txt`) have been updated.
+The [document tracking file](./example/shuffled_dataset.csv) and all the assignment files (e.g. for annotator [01](./example/annotators/01/phase1/assignment.txt)) have been updated.
+
+You can check the status again by calling the script from the [Check existing assignments](#check-existing-assignments) section.
 
 ## Reset assignments
 

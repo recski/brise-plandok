@@ -1,15 +1,14 @@
 import argparse
-from brise_plandok.constants import ATTRIBUTE_NORM_MAP, SenFields, DocumentFields
 import json
 import logging
 import sys
 from collections import Counter, defaultdict
 
-from brise_plandok.annotation.attributes import ATTR_TO_CAT
-from brise_plandok.extractor import get_extractor
-
 from tuw_nlp.common.eval import print_cat_stats
 
+from brise_plandok.annotation.attributes import ATTR_TO_CAT
+from brise_plandok.constants import ATTRIBUTE_NORM_MAP, SenFields, DocumentFields
+from brise_plandok.extractor import get_extractor
 
 ATTR_IGNORE = {
     "?",
@@ -294,7 +293,7 @@ def get_args():
 
 def main():
     logging.basicConfig(
-        level=logging.WARNING,
+        level=logging.INFO,
         format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     args = get_args()

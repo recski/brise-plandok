@@ -1,8 +1,8 @@
 import argparse
-import logging
 
 import pandas
 
+from brise_plandok import logger
 from brise_plandok.annotation_process.utils.assignments import (
     get_assignment_header,
     load_assigned_docs_as_list,
@@ -24,7 +24,7 @@ def load_assignments(docs, annotators_folder, phase):
             ),
             ignore_index=True,
         )
-    logging.info(f"loaded assignments:\n{df}")
+    logger.info(f"loaded assignments:\n{df}")
     return df
 
 
@@ -43,10 +43,6 @@ def get_args():
 
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
-    )
     args = get_args()
     docs = load_doc_tracking_data(args.dataset_file)
     load_assignments(docs, args.annotators_folder, args.phase)

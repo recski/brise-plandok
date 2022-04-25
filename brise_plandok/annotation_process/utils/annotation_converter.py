@@ -1,6 +1,7 @@
-from brise_plandok.constants import DocumentFields
 import os
-import logging
+
+from brise_plandok import logger
+from brise_plandok.constants import DocumentFields
 from brise_plandok.convert import Converter
 
 
@@ -11,7 +12,7 @@ class AnnotationConverter(Converter):
 
     def _fill_reviewers(self, data, output_fn, reviewers_field):
         if not self.review:
-            logging.info(
+            logger.info(
                 f"Review = false for {data[DocumentFields.ID]}, no labels_reviewers will be added to data."
             )
             return
@@ -20,7 +21,7 @@ class AnnotationConverter(Converter):
             data[reviewers_field] = [reviewer]
             return
         if reviewer in set(data[reviewers_field]):
-            logging.warning(f"reviewer {reviewer} is already among labels_reviewers")
+            logger.warning(f"reviewer {reviewer} is already among labels_reviewers")
             return
         data[reviewers_field].append(reviewer)
 

@@ -1,4 +1,7 @@
 import argparse
+import os
+
+from brise_plandok import logger
 from brise_plandok.annotation_process.utils.annotation_converter import (
     AnnotationConverter,
 )
@@ -6,6 +9,7 @@ from brise_plandok.annotation_process.utils.constants import LabelReviewExcelCon
 from brise_plandok.annotation_process.utils.label_review_excel_generator import (
     LabelReviewExcelGenerator,
 )
+from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.constants import (
     ANNOTATOR_NAME_INDEX,
     AnnotatedAttributeFields,
@@ -16,9 +20,6 @@ from brise_plandok.constants import (
     OldSenFields,
     SenFields,
 )
-import os
-import logging
-from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.utils import dump_json, load_json
 
 
@@ -81,7 +82,7 @@ class LabelAnnotationConverter(AnnotationConverter):
 
     def _generate_review_excel(self, data, output_file):
         if not self.review:
-            logging.info(
+            logger.info(
                 f"Review = false for {data[DocumentFields.ID]}, no review excel will be generated."
             )
             return
@@ -101,10 +102,6 @@ def get_args():
 
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
-    )
     args = get_args()
     converter = LabelAnnotationConverter(args)
     converter.convert(args.annotations, args.output_file, args.data_file)

@@ -1,5 +1,4 @@
 import argparse
-import logging
 import os
 
 from openpyxl.utils.cell import column_index_from_string, coordinate_from_string
@@ -114,10 +113,6 @@ def get_args():
 
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
-    )
     args = get_args()
     doc = load_json(args.data_file)
     generator = FullAnnotationExcelGenerator(args.output_file, FullAnnotationExcelConstants(), doc)

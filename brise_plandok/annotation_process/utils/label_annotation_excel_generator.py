@@ -1,7 +1,6 @@
 import argparse
 
 from brise_plandok.annotation_process.utils.xlsx import ConverterArgs
-import logging
 from brise_plandok.convert import Converter
 from brise_plandok.utils import load_json
 
@@ -14,10 +13,6 @@ def get_args():
 
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
-    )
     args = get_args()
     doc = load_json(args.data_file)
     xlsx_file = args.output_file

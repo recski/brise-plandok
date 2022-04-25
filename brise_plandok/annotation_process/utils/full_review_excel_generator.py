@@ -1,18 +1,17 @@
 import argparse
 import json
-import logging
 import os
 
 from openpyxl.utils.cell import column_index_from_string, coordinate_from_string
 from openpyxl.worksheet.datavalidation import DataValidation
 
+from brise_plandok import logger
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.annotation_process.utils.constants import (
     FullReviewExcelConstants,
     REVIEW_DONE_FLAG,
 )
 from brise_plandok.constants import (
-    EMPTY,
     AnnotatedAttributeFields,
     AttributeFields,
     DocumentFields,
@@ -121,8 +120,8 @@ class FullReviewExcelGenerator(ExcelGenerator):
             values = full_attribute[AttributeFields.VALUE]
             types = full_attribute[AttributeFields.TYPE]
             if len(values) != len(types):
-                logging.warning(sen[SenFields.TEXT])
-                logging.warning(f"\n{json.dumps(full_attribute, indent=2)}")
+                logger.warning(sen[SenFields.TEXT])
+                logger.warning(f"\n{json.dumps(full_attribute, indent=2)}")
                 raise ValueError(
                     f"{sen[SenFields.ID]}: Lenght of values {len(values)} is not equal to lenght of types {len(types)}"
                 )
@@ -150,8 +149,8 @@ class FullReviewExcelGenerator(ExcelGenerator):
                             annotator,
                         )
                     except ValueError as err:
-                        logging.error(err)
-                        logging.error(f"Conflict in {sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]}")
+                        logger.error(err)
+                        logger.error(f"Conflict in {sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]}")
                 ann_types.append(
                     extract_type(sen, attribute_name, field_to_add=None, only_gold=False)
                 )
@@ -284,10 +283,6 @@ def get_args():
 
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
-    )
     args = get_args()
     doc = load_json(args.data_file)
     generator = FullReviewExcelGenerator(args.output_file, FullReviewExcelConstants(), doc)

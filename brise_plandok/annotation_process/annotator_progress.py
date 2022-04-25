@@ -2,13 +2,14 @@ import argparse
 import os
 
 import pandas
+
+from brise_plandok import logger
 from brise_plandok.annotation_process.utils.assignments import load_assigned_docs_as_df
 from brise_plandok.annotation_process.utils.constants import (
     ANNOTATOR_UPLOAD_FOLDER,
     ANNOTATORS,
     ASSIGNMENT_FILE_HEADER,
 )
-import logging
 
 UPDATED_HEADER = "uploaded"
 TRACKING_SHEET = "tracking"
@@ -50,7 +51,7 @@ class ProgressTacker:
             for doc_id in uploaded:
                 mask = df[ASSIGNMENT_FILE_HEADER[0]] == doc_id
                 df.loc[mask, UPDATED_HEADER] = True
-            logging.info(
+            logger.info(
                 f"progress for {annotator}: {len(uploaded)}/{df.shape[0]}"
             )  # pylint: disable=no-member
             uploaded_dict[annotator] = set(uploaded)
@@ -91,13 +92,13 @@ class ProgressTacker:
                 df.loc[mask, ANNOTATOR_HEADERS[3]] = "Yes"
         if only_yes:
             df = df[df[ANNOTATOR_HEADERS[3]] == "Yes"]
-        logging.info(f"Documents ready for review:\n{df}")
+        logger.info(f"Documents ready for review:\n{df}")
         twice_annotated = df[df[ANNOTATOR_HEADERS[3]] == "Yes"].shape[0]
         once_annotated = df[
             (df[ANNOTATOR_HEADERS[-2]] is True) | (df[ANNOTATOR_HEADERS[-1]] is True)
         ].shape[0]
-        logging.info(f"{twice_annotated} documents have been annotated twice")
-        logging.info(f"{once_annotated} documents have been annotated once")
+        logger.info(f"{twice_annotated} documents have been annotated twice")
+        logger.info(f"{once_annotated} documents have been annotated once")
 
     def _get_uploaded_docs(self, dir):
         return [f.split(".")[0] for f in os.listdir(dir)]
@@ -116,10 +117,6 @@ def get_args():
 
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
-    )
     args = get_args()
     progress_tracker = ProgressTacker(args.phase)
     uploaded = progress_tracker.get_annotator_progress(args.annotator_folder)

@@ -1,11 +1,13 @@
-from brise_plandok.constants import ATTRIBUTE_NORM_MAP, GOLD_COLOR, GOLD_PREFIX
-import openpyxl
 import argparse
 import logging
-from openpyxl.worksheet.datavalidation import DataValidation
-from openpyxl.styles import Alignment, Font, PatternFill
 from collections import defaultdict
+
+import openpyxl
+from openpyxl.styles import Alignment, Font, PatternFill
+from openpyxl.worksheet.datavalidation import DataValidation
+
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
+from brise_plandok.constants import ATTRIBUTE_NORM_MAP, GOLD_COLOR, GOLD_PREFIX
 
 
 class Annotate:
@@ -213,7 +215,7 @@ class Annotate:
 
 def main():
     logging.basicConfig(
-        level=logging.WARNING,
+        level=logging.INFO,
         format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
     )
     annotate = Annotate()

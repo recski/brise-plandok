@@ -4,6 +4,7 @@ import os
 
 import openpyxl
 
+from brise_plandok import logger
 from brise_plandok.annotation_process.utils.annotation_converter import (
     AnnotationConverter,
 )
@@ -84,7 +85,7 @@ class FullAnnotationConverter(AnnotationConverter):
 
     def _fill_modality(self, doc, sen_id, modality, annotator):
         if modality is None:
-            logging.debug(f"Modality is left empty for {sen_id}")
+            logger.debug(f"Modality is left empty for {sen_id}")
             return
         full_annotation = doc[DocumentFields.SENS][sen_id][SenFields.FULL_ANNOTATED_ATTRIBUTES]
         if FullAnnotatedAttributeFields.MODALITY not in full_annotation:
@@ -102,7 +103,7 @@ class FullAnnotationConverter(AnnotationConverter):
             AttributeTypes.CONTENT_EXCEPTION,
             AttributeTypes.CONDITION_EXCEPTION,
         ]:
-            logging.warning(f"No such type exists: {type}. Type is set to {EMPTY}")
+            logger.warning(f"No such type exists: {type}. Type is set to {EMPTY}")
             type = EMPTY
         annotated_attributes = self.__get_annotated_attributes(sen)
         annotated_values = self.__get_values_for_label(annotated_attributes, label)
@@ -147,7 +148,7 @@ class FullAnnotationConverter(AnnotationConverter):
 
     def _generate_review_excel(self, doc, output_file):
         if not self.review:
-            logging.info(
+            logger.info(
                 f"Review = false for {doc[DocumentFields.ID]}, no review excel will be generated."
             )
             return
@@ -167,10 +168,6 @@ def get_args():
 
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
-    )
     logging.getLogger("penman").setLevel(logging.WARNING)
     logging.getLogger("stanza").setLevel(logging.WARNING)
     logging.getLogger("tuw_nlp").setLevel(logging.WARNING)

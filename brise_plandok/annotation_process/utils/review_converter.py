@@ -1,8 +1,8 @@
 import json
-import logging
 
 import openpyxl
 
+from brise_plandok import logger
 from brise_plandok.constants import DocumentFields, SenFields
 from brise_plandok.utils import dump_json, load_json, update_gold_docs
 
@@ -23,16 +23,16 @@ class ReviewConverter:
 
     def _save_gold_json(self):
         dump_json(self.data, self.data_file)
-        logging.info(f"DONE. Gold json was created to: {self.data_file}")
+        logger.info(f"DONE. Gold json was created to: {self.data_file}")
 
     def _fill_gold_attrs(self, fn, overwrite_internal, overwrite_external):
         workbook = openpyxl.load_workbook(fn)
         review_sheet = workbook[self.CONSTANTS.MAIN_SHEET_NAME]
 
         if overwrite_internal:
-            logging.info("Internal overwrite is true, no internal checks will be done.")
+            logger.info("Internal overwrite is true, no internal checks will be done.")
         if overwrite_external:
-            logging.info("External overwrite is true, other docs will be overwritten.")
+            logger.info("External overwrite is true, other docs will be overwritten.")
 
         for row_id in range(self.CONSTANTS.FIRST_DATA_ROW, review_sheet.max_row + 1):
             sen_id = review_sheet.cell(row=row_id, column=self.CONSTANTS.SEN_ID_COL).value
@@ -44,7 +44,7 @@ class ReviewConverter:
 
             if self._is_error(attributes):
                 self.data[DocumentFields.SENS][sen_id][SenFields.SEGMENTATION_ERROR] = True
-                logging.info(f"error row found '{sen_id}' - skipping from gold")
+                logger.info(f"error row found '{sen_id}' - skipping from gold")
                 continue
 
             gold_attr_candidate = self._get_gold_candidate(sen_id, attributes)
@@ -82,7 +82,7 @@ class ReviewConverter:
                 ]
                 current_gold_mod = self.data[DocumentFields.SENS][sen_id][SenFields.GOLD_MODALITY]
                 if gold_attr_candidate != current_gold_attr:
-                    logging.error(
+                    logger.error(
                         f"Conflict within already gold sentence {sen_id}:\n"
                         f"Current ({sen_id}):\n"
                         f"{json.dumps(current_gold_attr, indent=2)}\n"
@@ -91,7 +91,7 @@ class ReviewConverter:
                     )
                     raise ValueError("Gold conflict with attributes")
                 if gold_mod_candidate != current_gold_mod:
-                    logging.error(
+                    logger.error(
                         f"Conflict within already gold sentence {sen_id}:\n"
                         f"Current ({sen_id}):\n"
                         f"{json.dumps(current_gold_mod, indent=2)}\n"
@@ -142,7 +142,7 @@ class ReviewConverter:
     ):
         if current_gold_attr is not None:
             if gold_attr_candidate != current_gold_attr:
-                logging.info(
+                logger.info(
                     f"Conflict with current gold value of {sen_id}:\nCurrent ({current_gold_sens}):\n{current_gold_attr}\nNew:\n{gold_attr_candidate}"
                 )
                 if overwrite:
@@ -164,7 +164,7 @@ class ReviewConverter:
     ):
         if current_gold_mod is not None:
             if gold_mod_candidate != current_gold_mod:
-                logging.info(
+                logger.info(
                     f"Conflict with current gold value of {sen_id}:\nCurrent ({current_gold_sens}):\n{current_gold_mod}\nNew:\n{gold_mod_candidate}"
                 )
                 if overwrite:

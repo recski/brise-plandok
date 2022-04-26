@@ -1,6 +1,6 @@
 import argparse
-import logging
 
+from brise_plandok import logger
 from brise_plandok.annotation_process.utils.constants import (
     ATTRIBUTES_TO_IGNORE,
     FullReviewExcelConstants,
@@ -62,7 +62,7 @@ class FullReviewConverter(ReviewConverter):
     def __warn_on_multiple_types(self, gold_candidate, sen_id):
         for attr_name in gold_candidate.keys():
             if len(set(gold_candidate[attr_name][AttributeFields.TYPE])) > 1:
-                logging.warning(
+                logger.warning(
                     f"\n\nPlease prove validity:\nSame attribute has different reviewed_type in {sen_id}: {gold_candidate}.\n"
                 )
 
@@ -83,7 +83,7 @@ class FullReviewConverter(ReviewConverter):
             row=row_id, column=FullReviewExcelConstants.MODALITY_ANN_REV_COL
         ).value
         if len(attributes) > 0 and not self._is_error(attributes) and modality is None:
-            logging.warning("Modality is missing for row " + str(row_id))
+            logger.warning("Modality is missing for row " + str(row_id))
         return modality
 
 
@@ -98,10 +98,6 @@ def get_args():
 
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
-    )
     args = get_args()
     converter = FullReviewConverter(args.data_file, args.gold_folder)
     converter.convert(args.review, args.overwrite_internal, args.overwrite_external)

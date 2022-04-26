@@ -1,13 +1,13 @@
-from brise_plandok.constants import AttributeFields, Review, SenFields
-from brise_plandok.constants import SenFields as SF
-from brise_plandok.constants import AnnotatedAttributeFields as AAF
-import logging
 import os
-from brise_plandok.data_utils import normalize_attribute_name
-from brise_plandok.xlsx.excel_generator import ExcelGenerator
 
 from openpyxl.worksheet.datavalidation import DataValidation
+
+from brise_plandok import logger
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
+from brise_plandok.constants import AnnotatedAttributeFields as AAF
+from brise_plandok.constants import AttributeFields, Review, SenFields
+from brise_plandok.constants import SenFields as SF
+from brise_plandok.xlsx.excel_generator import ExcelGenerator
 
 IS_GOLD = "gold_attr"
 
@@ -47,7 +47,7 @@ class LabelReviewExcelGenerator(ExcelGenerator):
     def __set_annotator_count(self, attribute_name, sen, sheet, row, col):
         count = 0
         if attribute_name not in sen[SF.ANNOTATED_ATTRIBUTES]:
-            logging.info(
+            logger.info(
                 f"{sen[SenFields.ID]}: no annotator found - setting count for {attribute_name} to 0"
             )
         else:
@@ -57,7 +57,7 @@ class LabelReviewExcelGenerator(ExcelGenerator):
     def __set_annotator_text(self, attribute_name, sen, sheet, row, col):
         annotators = ""
         if attribute_name not in sen[SF.ANNOTATED_ATTRIBUTES]:
-            logging.info(
+            logger.info(
                 f"{sen[SenFields.ID]}: no annotator found - setting annotator for {attribute_name} to gold"
             )
             annotators = "gold"

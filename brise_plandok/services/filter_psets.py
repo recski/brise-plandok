@@ -1,5 +1,14 @@
+import re
+
 from brise_plandok.constants import DocumentFields, SenFields, AttributeFields
 from brise_plandok.services.psets import PSETJson, PSETS
+
+PERCENT = "%|v. ?H.|Prozent"
+METER = "m"
+SQUARE_METER = "m ?[²2]"
+CUBIC_METER = "m ?[³3]"
+DEGREE = "°|Grad"
+UNIT = f" ?({PERCENT}|{METER}|{SQUARE_METER}|{CUBIC_METER}|{DEGREE})"
 
 
 def filter_psets(doc, full):
@@ -23,21 +32,38 @@ def _group_sections(doc, response):
             _create_section_entry(response, section_id)
         section = response[section_id]
         section[PSETJson.SECTION_TEXT] += sen[SenFields.TEXT]
-        _add_values(section, sen, SenFields.GOLD_ATTRIBUTES, PSETJson.GOLD_ATTRIBUTES)
-        _add_values(section, sen, SenFields.PREDICTED_ATTRIBUTES, PSETJson.PRED_ATTRIBUTES)
+        _add_gold_values(section, sen)
+        _add_pred_values(section, sen)
 
 
-def _add_values(section, sen, attribute_field, pset_field):
-    for attr_name, attr in sen[attribute_field].items():
-        if attr_name in section[pset_field]:
-            section[pset_field][attr_name][AttributeFields.VALUE] = list(
+def _add_gold_values(section, sen):
+    for attr_name, attr_list in sen[SenFields.GOLD_ATTRIBUTES].items():
+        for attr in attr_list:
+            if attr_name in section[PSETJson.GOLD_ATTRIBUTES]:
+                section[PSETJson.GOLD_ATTRIBUTES][attr_name][AttributeFields.VALUE] = list(
+                    set(
+                        section[PSETJson.GOLD_ATTRIBUTES][attr_name][AttributeFields.VALUE]
+                        + [attr[AttributeFields.VALUE]]
+                    )
+                )
+            else:
+                section[PSETJson.GOLD_ATTRIBUTES][attr_name] = {
+                    AttributeFields.NAME: attr_name,
+                    AttributeFields.VALUE: [attr[AttributeFields.VALUE]],
+                }
+
+
+def _add_pred_values(section, sen):
+    for attr_name, attr in sen[SenFields.PREDICTED_ATTRIBUTES].items():
+        if attr_name in section[PSETJson.PRED_ATTRIBUTES]:
+            section[PSETJson.PRED_ATTRIBUTES][attr_name][AttributeFields.VALUE] = list(
                 set(
-                    section[pset_field][attr_name][AttributeFields.VALUE]
+                    section[PSETJson.PRED_ATTRIBUTES][attr_name][AttributeFields.VALUE]
                     + attr[AttributeFields.VALUE]
                 )
             )
         else:
-            section[pset_field][attr_name] = {
+            section[PSETJson.PRED_ATTRIBUTES][attr_name] = {
                 AttributeFields.NAME: attr_name,
                 AttributeFields.VALUE: attr[AttributeFields.VALUE],
             }
@@ -103,7 +129,9 @@ def _flatten(response, pset_type):
                         pset_new[pset_name].append(
                             {
                                 PSETJson.PROPERTY_NAME: pset_attr[PSETJson.PROPERTY_NAME],
-                                PSETJson.PROPERTY_VALUE: pset_attr[PSETJson.PROPERTY_VALUE][0],
+                                PSETJson.PROPERTY_VALUE: __remove_units(
+                                    pset_attr[PSETJson.PROPERTY_VALUE][0]
+                                ),
                                 PSETJson.PROPERTY_TYPE: pset_attr[PSETJson.PROPERTY_TYPE],
                             }
                         )
@@ -113,11 +141,15 @@ def _flatten(response, pset_type):
                                 {
                                     PSETJson.PROPERTY_NAME: pset_attr[PSETJson.PROPERTY_NAME]
                                     + str(i + 1),
-                                    PSETJson.PROPERTY_VALUE: value,
+                                    PSETJson.PROPERTY_VALUE: __remove_units(value),
                                     PSETJson.PROPERTY_TYPE: pset_attr[PSETJson.PROPERTY_TYPE],
                                 }
                             )
         section[pset_type] = pset_new
+
+
+def __remove_units(value):
+    return re.sub(UNIT, "", value)
 
 
 def _retain_minimal(response):

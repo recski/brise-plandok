@@ -1,9 +1,9 @@
 import argparse
-from brise_plandok.annotation_process.utils.constants import DOC_HEADER, GOLD
-import logging
 import os
-import sys
 import random
+import sys
+
+from brise_plandok.annotation_process.utils.constants import DOC_HEADER, GOLD
 
 
 def shuffle_dir(dir):
@@ -22,10 +22,6 @@ def get_args():
 
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
-    )
     args = get_args()
     sys.stdout.write(f'{";".join(DOC_HEADER)}\n')
     shuffle_dir(args.directory)

@@ -1,22 +1,23 @@
 import argparse
-from brise_plandok.annotation_process.utils.data import generate_data
-from brise_plandok.annotation_process.utils.xlsx import (
-    distribute_xlsx_files,
-    genereate_xlsx_files,
-)
+
+from brise_plandok import logger
+from brise_plandok.annotation_process.assignment_loader import load_assignments
+from brise_plandok.annotation_process.sentence_stat import calculate_sentence_counts
 from brise_plandok.annotation_process.utils.assignments import (
     fill_assignments_with_batch,
 )
+from brise_plandok.annotation_process.utils.assignments import get_assignment
 from brise_plandok.annotation_process.utils.cycles import get_cycle
-from brise_plandok.annotation_process.assignment_loader import load_assignments
-from brise_plandok.annotation_process.sentence_stat import calculate_sentence_counts
+from brise_plandok.annotation_process.utils.data import generate_data
 from brise_plandok.annotation_process.utils.doc_tracking import (
     get_next_batch,
     load_doc_tracking_data,
     save_doc_tracking_data,
 )
-from brise_plandok.annotation_process.utils.assignments import get_assignment
-import logging
+from brise_plandok.annotation_process.utils.xlsx import (
+    distribute_xlsx_files,
+    genereate_xlsx_files,
+)
 
 
 def generate_batch(
@@ -34,21 +35,21 @@ def generate_batch(
 ):
     docs_df = load_doc_tracking_data(doc_tracking_file)
     next_doc_ids = get_next_batch(docs_df, batch_size, True, phase)
-    logging.info(f"next documents to assign: {next_doc_ids}")
+    logger.info(f"next documents to assign: {next_doc_ids}")
 
     calculate_sentence_counts(docs_df, next_doc_ids, json_folder)
 
     cycle_df = get_cycle(cycle_nr)
-    logging.info(f"cycle ({cycle_nr}):\n {cycle_df}")
+    logger.info(f"cycle ({cycle_nr}):\n {cycle_df}")
     assignment_df = load_assignments(docs_df, annotators_folder, phase)
     partition = get_assignment(next_doc_ids, docs_df, cycle_df.shape[0])
-    logging.info(f"partition: {partition}")
+    logger.info(f"partition: {partition}")
 
     fill_assignments_with_batch(docs_df, cycle_df, assignment_df, partition, next_doc_ids, phase)
-    logging.info(f"assignments with new batch:\n{assignment_df}")
+    logger.info(f"assignments with new batch:\n{assignment_df}")
 
     if not generate_xlsx:
-        logging.info("No xlsx files will be generated. Job done")
+        logger.info("No xlsx files will be generated. Job done")
         return
 
     docs = generate_data(next_doc_ids, json_folder, data_folder, phase)
@@ -57,7 +58,7 @@ def generate_batch(
 
     if update:
         save_doc_tracking_data(doc_tracking_file, docs_df)
-        logging.info(f"tracking data {doc_tracking_file} was updated")
+        logger.info(f"tracking data {doc_tracking_file} was updated")
 
 
 def get_args():
@@ -77,10 +78,6 @@ def get_args():
 
 
 def main():
-    logging.basicConfig(
-        level=logging.INFO,
-        format="%(asctime)s : " + "%(module)s (%(lineno)s) - %(levelname)s - %(message)s",
-    )
     args = get_args()
     generate_batch(
         args.dataset_file,

@@ -1,7 +1,7 @@
-import logging
 import os
 import shutil
 
+from brise_plandok import logger
 from brise_plandok.annotation_process.utils.assignments import (
     get_download_folder,
     update_assignments,
@@ -38,7 +38,7 @@ def genereate_xlsx_files(docs, xlsx_folder, overwrite, phase):
             FullAnnotationExcelGenerator(
                 xlsx_file, FullAnnotationExcelConstants(), doc
             ).generate_excel()
-    logging.info("xlsx files have been generated from json files")
+    logger.info("xlsx files have been generated from json files")
 
 
 def distribute_xlsx_files(xlsx_folder, df, annotators_folder, update, phase):
@@ -51,7 +51,7 @@ def distribute_xlsx_files(xlsx_folder, df, annotators_folder, update, phase):
             )
         if update:
             update_assignments(doc_ids_for_annotator, annotator, annotators_folder, phase)
-    logging.info("xlsx files have been distributed to annotators")
+    logger.info("xlsx files have been distributed to annotators")
 
 
 def _copy_xlsx_files_to_annotators(doc_id, xlsx_folder, annotators_folder, annotator, phase):

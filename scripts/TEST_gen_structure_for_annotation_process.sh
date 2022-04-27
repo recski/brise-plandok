@@ -7,24 +7,11 @@ assignment_xlsx="assignment.xlsx"
 
 rm -rf brise_plandok/annotation_process/example/xlsx/
 
-if ! [ -d brise_plandok/annotation_process/example ]; then
-    mkdir brise_plandok/annotation_process/example
-fi
-if ! [ -d brise_plandok/annotation_process/example/json ]; then
-    mkdir brise_plandok/annotation_process/example/json
-fi
-if ! [ -d brise_plandok/annotation_process/example/json_attr ]; then
-    mkdir brise_plandok/annotation_process/example/json_attr
-fi
-if ! [ -d brise_plandok/annotation_process/example/xlsx ]; then
-    mkdir brise_plandok/annotation_process/example/xlsx
-fi
-if ! [ -d brise_plandok/annotation_process/example/full_data ]; then
-    mkdir brise_plandok/annotation_process/example/full_data
-fi
-if ! [ -d $annotators_folder ]; then
-    mkdir $annotators_folder
-fi
+mkdir -p brise_plandok/annotation_process/example/json
+mkdir -p brise_plandok/annotation_process/example/json_attr
+mkdir -p brise_plandok/annotation_process/example/xlsx
+mkdir -p brise_plandok/annotation_process/example/full_data
+mkdir -p $annotators_folder
 
 
 for ann in 01 02 03 04 05 06

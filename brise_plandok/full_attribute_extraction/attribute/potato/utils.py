@@ -111,4 +111,4 @@ def create_potato_dataset(doc):
 def get_sentences(df):
     df_with_nots = df[["text"]]
     df_with_nots.loc[:, "dummy_label"] = NOT
-    return df_with_nots.to_records(index=False)
+    return df_with_nots.to_records(index=False).tolist()

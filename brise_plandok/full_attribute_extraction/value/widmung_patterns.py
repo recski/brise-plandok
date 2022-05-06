@@ -1,4 +1,4 @@
-from brise_plandok.full_attribute_extraction.constants import GROUP, SPACE_BRACKET_SLASH_DASH
+from brise_plandok.full_attribute_extraction.attribute.utils.constants import GROUP, SPACE_BRACKET_SLASH_DASH
 
 WIDMUNG = {
     # Widmung

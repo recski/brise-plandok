@@ -8,22 +8,13 @@ You can find some manually defined features [here](./features/manual).
 
 ## Create dataset for 🥔
 
-### For gold dataset
+### For the complete gold dataset
 __Temporary, until dataset is moved to its final location in brise-plandok__
 The environment variable `BRISE_NLP` should point to the location of the [brise-nlp]
 repository
 
 ```bash
 python create_dataset.py -d $BRISE_NLP/annotation/2021_09/full_data -g fourlang -o -n gold.csv
-```
-
-### For train/validation sets (outdated)
-```bash
-# Train with 4lang graphs
-python create_dataset.py -d ../../../../data/train -g fourlang -n train
-
-# valid with 4lang graphs
-python create_dataset.py -d ../../../../data/valid -g fourlang -n valid
 ```
 
 ## Start GUI for specific attribute
@@ -34,14 +25,16 @@ repository_
 ```bash
 # Start for Planzeichen
 streamlit run $POTATO_DIR/frontend/app.py -- \
-      -t data/gold \
-      -v data/gold \
+      -t data/gold.csv \
+      -v data/gold.csv \
       -g fourlang \
       -hr features/manual/Planzeichen.json \
       -l Planzeichen
 ```
 
 ## Evalutate for specific attribute
+
+First, you have to create `data/gold.csv` as written above (if haven't already done).
 
 ```bash
 python  $POTATO_DIR/scripts/evaluate.py \

@@ -8,6 +8,16 @@ You can find some manually defined features [here](./features/manual).
 
 ## Create dataset for 🥔
 
+### For gold dataset
+__Temporary, until dataset is moved to its final location in brise-plandok__
+The environment variable `BRISE_NLP` should point to the location of the [brise-nlp]
+repository
+
+```bash
+python create_dataset.py -d $BRISE_NLP/annotation/2021_09/full_data -g fourlang -o -n gold.csv
+```
+
+### For train/validation sets (outdated)
 ```bash
 # Train with 4lang graphs
 python create_dataset.py -d ../../../../data/train -g fourlang -n train
@@ -18,28 +28,31 @@ python create_dataset.py -d ../../../../data/valid -g fourlang -n valid
 
 ## Start GUI for specific attribute
 
+_The environment variable `POTATO_DIR` should point to the location of the POTATO
+repository_
+
 ```bash
 # Start for Planzeichen
-streamlit run POTATO_DIR/frontend/app.py -- \
-      -t data/train \
-      -v data/valid \
+streamlit run $POTATO_DIR/frontend/app.py -- \
+      -t data/gold \
+      -v data/gold \
       -g fourlang \
-      -sr features/manual/Planzeichen.json \
+      -hr features/manual/Planzeichen.json \
       -l Planzeichen
 ```
 
 ## Evalutate for specific attribute
 
 ```bash
-python  POTATO_DIR/scripts/evaluate.py \
+python  $POTATO_DIR/scripts/evaluate.py \
     -t fourlang \
-    -f features/manual/Planzeichen.json \
-    -d data/valid \
+    -f features/manual \
+    -d data/gold.csv \
     -m report \
     -l Planzeichen
 ```
 
-## Manual rules evalutaion
+## Manual rules evaluation (old)
 
 | Manual rules                        | precision | recall | f1-score | support |
 |-------------------------------------|-----------|--------|----------|---------| 

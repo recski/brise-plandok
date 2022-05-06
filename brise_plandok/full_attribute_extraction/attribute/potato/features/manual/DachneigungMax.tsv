@@ -1,0 +1,2 @@
+DachneigungMax	(u_0 / bis :2 (u_1 / Neigung));(u_2 / .*[Dd]ae?ch.*)	
+DachneigungMax	(u_0 / von :1 (u_1 / Dachneigung) :2 (u_2 / Grad)));(u_3 / bis|zu)	

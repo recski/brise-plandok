@@ -28,7 +28,7 @@ streamlit run $POTATO_DIR/frontend/app.py -- \
       -t data/gold.csv \
       -v data/gold.csv \
       -g fourlang \
-      -hr features/manual/Planzeichen.json \
+      -hr features/manual/Planzeichen.tsv \
       -l Planzeichen
 ```
 

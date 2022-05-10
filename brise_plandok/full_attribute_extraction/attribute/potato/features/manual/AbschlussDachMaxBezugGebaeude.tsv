@@ -1,0 +1,3 @@
+AbschlussDachMaxBezugGebaeude	(u_0 / Punkt :0 (u_1 / Dach) :0 (u_2 / hoch))	
+AbschlussDachMaxBezugGebaeude	(u_0 / liegen :0 (u_1 / hoch :0 (u_2 / NEG)) :1 (u_3 / Punkt :0 (u_4 / Dach)))	
+AbschlussDachMaxBezugGebaeude	(u_0 / liegen :1 (u_1 / Abschluss :0 (u_2 / Dach)) :0 (u_3 / NEG));(u_4 / Gebaeudehoehe)	

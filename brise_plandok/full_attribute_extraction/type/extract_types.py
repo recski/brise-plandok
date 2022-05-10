@@ -1,8 +1,8 @@
 import re
 
 from brise_plandok.constants import AttributeFields, SenFields
+from brise_plandok.full_attribute_extraction.attribute.utils.constants import TYPE
 from brise_plandok.full_attribute_extraction.type.type_patterns import TYPE_PATTERNS
-from brise_plandok.full_attribute_extraction.constants import TYPE
 from brise_plandok.utils import is_gold_attribute
 
 

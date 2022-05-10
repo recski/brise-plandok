@@ -1,4 +1,5 @@
-from brise_plandok.full_attribute_extraction.constants import GROUP, SPACE_BRACKET_SLASH_DASH, SPACE_OR_BRACKET_OR_COMMA
+from brise_plandok.full_attribute_extraction.attribute.utils.constants import GROUP, SPACE_BRACKET_SLASH_DASH, \
+    SPACE_OR_BRACKET_OR_COMMA
 
 BB_ALLGEMEIN = {
     r"(Einkaufszentr(en|um))": {

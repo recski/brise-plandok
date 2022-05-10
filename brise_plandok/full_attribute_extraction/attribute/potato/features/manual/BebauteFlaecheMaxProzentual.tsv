@@ -1,0 +1,2 @@
+BebauteFlaecheMaxProzentual	(u_0 / bebaut|bebauen);(u_1  / PERCENTAGE|vPERIODHPERIOD|HPERIOD);(u_2 / .*[Ff]laechen?)	
+BebauteFlaecheMaxProzentual	(u_2 / Ausnue?tzbarkeit);(u_4 / PERCENTAGE|HPERIOD)	

@@ -1,4 +1,4 @@
-from brise_plandok.full_attribute_extraction.constants import GROUP
+from brise_plandok.full_attribute_extraction.attribute.utils.constants import GROUP
 
 NUTZUNG = {
     r"(landwirtschaftliche Nutzung)": {

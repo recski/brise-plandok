@@ -1,0 +1,5 @@
+GebaeudeHoeheMaxWN	(u_0 / begrenz.* :[12] (u_1 / Gebaeudehoehe) :0 (u_2 / uePERIODWPERIODNPERIOD) )	
+GebaeudeHoeheMaxWN	(u_0 / bis :2 (u_1 / Gebaeudehoehe) :1 (u_2 / COORD :0 (u_3 / uePERIODWPERIODNPERIOD)) )	
+GebaeudeHoeheMaxWN	(u_0 / ueber :2 (u_1 / WrPERIOD :0 (u_3 / null)) :1 (u_4 / ueberschreiten))	
+GebaeudeHoeheMaxWN	(u_0 / ueber :2 (u_1 / null :0 (u_3 / Wiener)));(u_4 / Gebaeude);(u_4 / Hoehe)	
+GebaeudeHoeheMaxWN	(u_0 / ueber :2 (u_1 / null :0 (u_3 / Wiener)));(u_4 / Gebaeudehoehe)	

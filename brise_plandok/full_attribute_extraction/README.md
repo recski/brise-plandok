@@ -7,14 +7,14 @@ To extract `values` and `types`.
 The extracted values and types are stored in the `gen_attributes` field.
 
 ```bash
-# Extract for one attribute, only if gold
+# Extract values and types for one attribute, only if attribute is among gold
 cat data/train/8228.json |  python brise_plandok/full_attribute_extraction/extract_types_and_values.py -t -v -a Planzeichen -g  | jq '.sens[] | .id, .text, .gen_attributes'
 
-# Extract for one attribute, not only if gold
-cat data/train/8228.json |  python brise_plandok/full_attribute_extraction/extract_types_and_values.py -t -v -a WidmungUndZweckbestimmung  | jq '.sens[] | .id, .text, .gen_attributes'
+# Extract values and types for one attribute, for all sentences
+cat data/train/8228.json |  python brise_plandok/full_attribute_extraction/extract_types_and_values.py -t -v -a Planzeichen  | jq '.sens[] | .id, .text, .gen_attributes'
 
-# Extract for multiple attributes, only if gold
-cat data/train/8228.json |  python brise_plandok/full_attribute_extraction/extract_types_and_values.py -t -v -a Planzeichen WidmungUndZweckbestimmung -g | jq '.sens[] | .id, .text, .gen_attributes'
+# Extract for multiple attributes, only if attributes are among gold
+cat data/train/8228.json |  python brise_plandok/full_attribute_extraction/extract_types_and_values.py -t -v -a Planzeichen ErrichtungGebaeude -g | jq '.sens[] | .id, .text, .gen_attributes'
 ```
 
 ## Predict full attributes

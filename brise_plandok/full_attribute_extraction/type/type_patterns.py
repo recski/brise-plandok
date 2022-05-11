@@ -507,6 +507,9 @@ TYPE_PATTERNS = {
         r"mit Grünland": {
             TYPE: AttributeTypes.CONDITION,
         },
+        r"im Bauland": {
+            TYPE: AttributeTypes.CONDITION,
+        },
     },
 
     AttributesNames.BBAllgemein: {

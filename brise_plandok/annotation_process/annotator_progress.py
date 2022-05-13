@@ -1,15 +1,15 @@
 import argparse
 import os
 
-import pandas
-
 from brise_plandok import logger
 from brise_plandok.annotation_process.utils.assignments import load_assigned_docs_as_df
 from brise_plandok.annotation_process.utils.constants import (
     ANNOTATOR_UPLOAD_FOLDER,
     ANNOTATORS,
     ASSIGNMENT_FILE_HEADER,
+    DOC_HEADER,
 )
+from brise_plandok.annotation_process.utils.doc_tracking import load_doc_tracking_data
 
 UPDATED_HEADER = "uploaded"
 TRACKING_SHEET = "tracking"
@@ -51,52 +51,34 @@ class ProgressTacker:
             for doc_id in uploaded:
                 mask = df[ASSIGNMENT_FILE_HEADER[0]] == doc_id
                 df.loc[mask, UPDATED_HEADER] = True
-            logger.info(
-                f"progress for {annotator}: {len(uploaded)}/{df.shape[0]}"
-            )  # pylint: disable=no-member
+            logger.info(f"progress for {annotator}: {len(uploaded)}/{df.shape[0]}")
             uploaded_dict[annotator] = set(uploaded)
         return uploaded_dict
 
-    def get_ready_docs(self, doc_tracking_file, uploaded_dict, first, last, only_yes, only_new):
-        df = pandas.read_excel(
-            doc_tracking_file,
-            sheet_name=TRACKING_SHEET,
-            dtype={
-                ANNOTATOR_HEADERS[0]: str,
-                ANNOTATOR_HEADERS[1]: str,
-                ANNOTATOR_HEADERS[2]: str,
-            },
-        )
-        first_idx, last_idx = 0, df.shape[0]
-        if first:
-            first_idx = df.index[df[ANNOTATOR_HEADERS[0]] == first][0]
-        if last:
-            last_idx = df.index[df[ANNOTATOR_HEADERS[0]] == last][0] + 1
-        if only_new:
-            df = df[df[ANNOTATOR_HEADERS[3]].isnull()]
-        df = df.iloc[first_idx:last_idx, [1, 3, 4, self.ready_for_review_index]]
-        df[ANNOTATOR_HEADERS[-2]] = False
-        df[ANNOTATOR_HEADERS[-1]] = False
+    def get_ready_docs(self, doc_tracking_file, uploaded_dict):
+        assigned_col = DOC_HEADER[2] if self.phase == 1 else DOC_HEADER[7]
+        df = load_doc_tracking_data(doc_tracking_file)
+        df[DOC_HEADER[8]] = False
+        df[DOC_HEADER[9]] = False
+        df[DOC_HEADER[10]] = False
         for _, row in df.iterrows():
-            doc_id = row[ANNOTATOR_HEADERS[0]]
-            ann_1 = row[ANNOTATOR_HEADERS[1]]
-            ann_2 = row[ANNOTATOR_HEADERS[2]]
+            doc_id = row[DOC_HEADER[1]]
+            ann_1 = row[DOC_HEADER[5]]
+            ann_2 = row[DOC_HEADER[6]]
+            if not row[assigned_col]:
+                continue
             ann_1_done = doc_id in uploaded_dict[ann_1]
             ann_2_done = doc_id in uploaded_dict[ann_2]
-            mask = df[ANNOTATOR_HEADERS[0]] == doc_id
+            mask = df[DOC_HEADER[1]] == doc_id
             if ann_1_done:
-                df.loc[mask, ANNOTATOR_HEADERS[-2]] = True
+                df.loc[mask, DOC_HEADER[8]] = True
             if ann_2_done:
-                df.loc[mask, ANNOTATOR_HEADERS[-1]] = True
-            if ann_1_done & ann_2_done:
-                df.loc[mask, ANNOTATOR_HEADERS[3]] = "Yes"
-        if only_yes:
-            df = df[df[ANNOTATOR_HEADERS[3]] == "Yes"]
+                df.loc[mask, DOC_HEADER[9]] = True
+            if ann_1_done and ann_2_done:
+                df.loc[mask, DOC_HEADER[10]] = True
         logger.info(f"Documents ready for review:\n{df}")
-        twice_annotated = df[df[ANNOTATOR_HEADERS[3]] == "Yes"].shape[0]
-        once_annotated = df[
-            (df[ANNOTATOR_HEADERS[-2]] is True) | (df[ANNOTATOR_HEADERS[-1]] is True)
-        ].shape[0]
+        once_annotated = df[(df[DOC_HEADER[8]] == True) | (df[DOC_HEADER[9]] == True)].shape[0]
+        twice_annotated = df[(df[DOC_HEADER[10]] == True)].shape[0]
         logger.info(f"{twice_annotated} documents have been annotated twice")
         logger.info(f"{once_annotated} documents have been annotated once")
 
@@ -108,10 +90,6 @@ def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-af", "--annotator-folder", type=str)
     parser.add_argument("-dt", "--doc-tracking", type=str, default=None)
-    parser.add_argument("-f", "--first", type=str, default=None)
-    parser.add_argument("-l", "--last", type=str, default=None)
-    parser.add_argument("-y", "--only-yes", default=False, action="store_true")
-    parser.add_argument("-n", "--only-new", default=False, action="store_true")
     parser.add_argument("-p", "--phase", type=int, default=1)
     return parser.parse_args()
 
@@ -124,10 +102,6 @@ def main():
         progress_tracker.get_ready_docs(
             args.doc_tracking,
             uploaded,
-            args.first,
-            args.last,
-            args.only_yes,
-            args.only_new,
         )
 
 

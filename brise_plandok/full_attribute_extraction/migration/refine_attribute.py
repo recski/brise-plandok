@@ -36,13 +36,17 @@ def refine_attribute(gold_folder, attr_name, attr_value, attr_type, sentence_pat
         print(old_attributes[attr_name])
 
         print(f"\nSentences to update: {entry[SenToAttrFields.SENS]}")
-        input()
-        update_gold_docs(
-            gold_attr_candidate=old_attributes,
-            gold_mod_candidate=entry[SenToAttrFields.MOD],
-            current_gold_sens=entry[SenToAttrFields.SENS],
-            gold_folder=gold_folder,
-        )
+        take = input("Add attribute? (Enter=yes, else no)")
+        if take == "":
+            update_gold_docs(
+                gold_attr_candidate=old_attributes,
+                gold_mod_candidate=entry[SenToAttrFields.MOD],
+                current_gold_sens=entry[SenToAttrFields.SENS],
+                gold_folder=gold_folder,
+            )
+            print(f"Updated docs: {entry[SenToAttrFields.SENS]}")
+        else:
+            print("No update was done")
         sens_to_update -= 1
 
 

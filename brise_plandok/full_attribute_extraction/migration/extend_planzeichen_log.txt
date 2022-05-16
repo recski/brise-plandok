@@ -1,0 +1,1973 @@
+Changes for 7498_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7498_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Erholungsgebiet/Sport- und Spielplätze', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7498_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Erholungsgebiet/Sport- und Spielplätze', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7498_20_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]
+Changes for 8089_21_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 8089_30_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7337k_11_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE', 'type': 'condition'}]
+Changes for 7337k_12_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE', 'type': 'condition'}]
+Changes for 7337k_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7337k_13_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE', 'type': 'condition'}]
+Changes for 7337k_14_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE', 'type': 'condition'}]
+Changes for 7471_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'IG', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'IG', 'type': 'condition'}]
+Changes for 7271_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7271_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7271_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7271_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GS', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GS', 'type': 'condition'}]
+Changes for 7271_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7649_4_4
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7649_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7649_21_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7775e_5_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7775e_8_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7775e_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]
+Changes for 7700_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'W', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}]
+Changes for 7700_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'W', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7700_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7700_20_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'Ak', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Ödg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Ak', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Ödg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7700_23_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Epk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Epk', 'type': 'condition'}]
+Changes for 8118_23_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 8118_30_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 8069_23_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7206_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'SN', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'SN', 'type': 'condition'}]
+Changes for 7206_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GS', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GS', 'type': 'condition'}]
+Changes for 7206_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'E', 'type': None}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'E', 'type': None}]
+Changes for 7768_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Bauland/Gemischtes Baugebiet Geschäftsviertel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7768_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Bauland/Gemischtes Baugebiet Geschäftsviertel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7768_25_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7255_21_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7255_24_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7255_24_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7255_25_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7255_25_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7422_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7248_18_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 6833_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 6833_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 6833_14_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 6833_16_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7180_7_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7180_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7180_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7180_11_1
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'ÖZ', 'type': 'content'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'ÖZ', 'type': 'content'}]
+Changes for 8095_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7097e_3_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7517_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'WGV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'WGV', 'type': 'condition'}]
+Changes for 7517_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'WGV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'WGV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'WGV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7517_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'WGV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'WGV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'WGV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}]
+Changes for 7517_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7517_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GBGV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GBGV', 'type': 'condition'}]
+Changes for 7517_20_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7517_22_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Epk', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland/Erholungsgebiet/Parkanlage', 'type': 'content'}, {'name': 'Widmung', 'value': 'Bauland/Wohngebiet', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Epk', 'type': 'condition'}]
+Changes for 7142_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 8055_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7335_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 8164_17_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7838_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'VB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Verkehrsband', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'VB', 'type': 'condition'}]
+Changes for 7838_15_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}]
+Changes for 7838_15_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}]
+Changes for 7838_15_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}]
+Changes for 7838_15_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}]
+Changes for 7838_15_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Changes for 7838_17_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7838_26_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}]
+Changes for 7838_31_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Changes for 7838_36_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}]
+Changes for 7838_41_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}]
+Changes for 7838_46_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}]
+Changes for 8165_19_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7991_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7991_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7668_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7668_19_2
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB 4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB 4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7668_19_3
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7811_4_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7811_4_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}]
+Changes for 7377_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7377_16_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7377_17_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7377_18_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 8230_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7916_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7863_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7863_19_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7863_20_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'A und B', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'A und B', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 6963_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 6963_16_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 6963_18_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 8114_8_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 4', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 3', 'type': 'condition'}]
+Changes for 8114_8_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 4', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE 3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}]
+Changes for 8114_8_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 4', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 1', 'type': 'condition'}]
+Changes for 8114_8_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 4', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 4', 'type': 'condition'}]
+Changes for 8114_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 8114_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7199_18_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7199_22_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7199_25_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7199_26_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7199_27_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7373e_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 8216_19_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 8216_20_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 8216_21_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 8216_22_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 8216_23_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7690_10_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7690_11_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}]
+Changes for 7690_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7690_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7690_18_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 5', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 1', 'type': 'condition'}]
+Changes for 7690_18_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 5', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE 1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 5', 'type': 'condition'}]
+Changes for 7690_19_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}]
+Changes for 7690_19_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GBGV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GBGV', 'type': 'condition'}]
+Changes for 7690_19_3
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}]
+Changes for 7690_20_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Changes for 7690_20_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GBGV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GBGV', 'type': 'condition'}]
+Changes for 7690_20_3
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Changes for 7690_20_4
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Changes for 7690_20_4
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7690_20_4
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7690_20_5
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB14', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB14', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Changes for 7690_20_5
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB14', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB14', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7690_20_5
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB14', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB14', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7690_20_6
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Changes for 7690_20_6
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7690_20_6
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7690_20_7
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Changes for 7690_20_7
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7690_20_7
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7690_20_8
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Changes for 7690_20_8
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7690_20_8
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7690_21_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}]
+Changes for 7690_21_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GBGV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GBGV', 'type': 'condition'}]
+Changes for 7690_21_3
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}]
+Changes for 7690_21_4
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}]
+Changes for 7690_21_4
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7690_21_4
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7690_22_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}]
+Changes for 7690_22_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GBGV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GBGV', 'type': 'condition'}]
+Changes for 7690_22_3
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}]
+Changes for 7690_23_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}]
+Changes for 7690_23_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GBGV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GBGV', 'type': 'condition'}]
+Changes for 7690_23_3
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}]
+Changes for 7690_23_4
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB13', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB13', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}]
+Changes for 7690_23_4
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB13', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB13', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7690_23_4
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB13', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB13', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7690_24_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE1 – 5', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE1 – 5', 'type': 'condition'}]
+Changes for 7690_27_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'Ekz', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Ekz', 'type': 'condition'}]
+Changes for 7690_28_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 1 – 5', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 1 – 5', 'type': 'condition'}]
+Changes for 7690_28_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE 1 – 5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 1 – 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7690_28_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE 1 – 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 1 – 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7328e_3_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7328e_3_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Wald- und Wiesengürtel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet/Kleingartengebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]
+Changes for 7215e_9_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7663_10_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7663_22_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemeinschaftsanlage', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]
+Changes for 7791_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7791_10_1
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 8260_29_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7201_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'WGV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GBGV', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'WGV', 'type': 'condition'}]
+Changes for 7201_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'WGV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GBGV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'WGV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'WGV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GBGV', 'type': 'condition'}]
+Changes for 7413_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 8208_29_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 8208_30_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 8208_30_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 8053_21_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 8053_22_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 8053_22_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'W', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}]
+Changes for 8053_22_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'W', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7995_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7995_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Wald- und Wiesengürtel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Sww', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Sww', 'type': 'condition'}]
+Changes for 7995_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Sondergebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'SO', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'SO', 'type': 'condition'}]
+Changes for 7747_14_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7747_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7747_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7747_18_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'ÖZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'ÖZ', 'type': 'condition'}]
+Changes for 7747_18_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'ÖZ', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'ÖZ', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7699_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7699_18_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 8013_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 8013_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}]
+Changes for 8013_26_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7761_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7356_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7356_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7356_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7808_5_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Betriebsbaugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7808_9_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 8159_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7158_12_1
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB 6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB 10', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB 6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB 10', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7158_12_2
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7158_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 8', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7158_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 8281_23_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 8281_23_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 8281_24_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 8281_24_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'BG', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 8281_28_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 8281_28_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'BG', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 8281_29_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 8281_29_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'BG', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 8281_31_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 8281_31_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'BG', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 8281_32_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 8281_32_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'BG', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7015k_5_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7676_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7788_10_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7788_11_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7788_12_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 6932e2_4_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7980_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7980_11_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7980_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}]
+Changes for 7980_12_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7980_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}]
+Changes for 7980_18_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7680_19_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7915_35_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7814_3_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7814_3_2
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7706_6_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7706_7_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Parkschutzgebiet', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7444_12_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7444_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 6770_18_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7671_11_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7671_15_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7671_17_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7683_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7683_18_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'ÖZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'ÖZ', 'type': 'condition'}]
+Changes for 7683_18_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Epk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'ÖZ', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'ÖZ', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Epk', 'type': 'condition'}]
+Changes for 7333_10_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7333_11_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7333_12_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7333_13_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7333_14_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7333_16_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7278_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7278_12_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7278_14_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BBS', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BBS', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7278_15_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7278_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BBS', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BBS', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7278_19_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7278_20_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'SwwL', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'SwwL', 'type': 'condition'}]
+Changes for 7278_21_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}, {'name': 'Widmung', 'value': 'SwwL', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7278_21_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}, {'name': 'Widmung', 'value': 'SwwL', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'SwwL', 'type': 'condition'}]
+Changes for 8061_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'W', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}]
+Changes for 8061_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Sport- und Spielplätze', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7769_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7769_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7769_19_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'content'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7807_17_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7807_22_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB16', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB16', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7807_23_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB17', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB17', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7807_27_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}]
+Changes for 7187_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7483_16_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7679_7_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7679_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 8255_18_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 8255_19_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 8255_19_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}]
+Changes for 8259_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7366_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]
+Changes for 7457_6_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7457_7_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7457_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7457_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemeinschaftsanlage', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]
+Changes for 7917_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7917_23_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7464_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7464_19_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7364_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7327_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemeinschaftsanlage', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]
+Changes for 7812_13_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7544_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'SwwL', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'SwwL', 'type': 'condition'}]
+Changes for 7544_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'SwwL', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'SwwL', 'type': 'condition'}]
+Changes for 7544_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'SwwL', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'SwwL', 'type': 'condition'}]
+Changes for 7544_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Sww', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Sww', 'type': 'condition'}]
+Changes for 7544_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Sww', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Sww', 'type': 'condition'}]
+Changes for 7544_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Sww', 'type': 'condition'}, {'name': 'Widmung', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Sww', 'type': 'condition'}]
+Changes for 7544_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Sww', 'type': 'condition'}, {'name': 'Widmung', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Sww', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Sww', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7986_20_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7986_21_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7986_23_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7261_24_1
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7269_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'VB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'VB', 'type': 'condition'}]
+Changes for 7269_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'VB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Verkehrsband', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'VB', 'type': 'condition'}]
+Changes for 7269_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'VB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Verkehrsband', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'VB', 'type': 'condition'}]
+Changes for 8315_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GBGV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischten Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GBGV', 'type': 'condition'}]
+Changes for 8315_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7460e_3_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7057_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]
+Changes for 7813_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Sport und Spielplätze', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7813_13_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7813_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7813_15_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7813_16_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB13', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Ödg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Ak', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB13', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Ödg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Ak', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7813_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB14', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB14', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7491_12_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7491_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7947_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7580_13_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7527_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7527_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7527_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'SwwL', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'SwwL', 'type': 'condition'}]
+Changes for 7559_5_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7559_6_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7559_6_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7559_12_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7536_20_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7536_21_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7536_28_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB15', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB15', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7979_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7528_12_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7528_13_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7528_16_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7528_17_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7487_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'conditionException'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'conditionException'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7487_19_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7487_20_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7487_21_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7953_16_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7562_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7456e2_5_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7456e2_6_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'Ödg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB21', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Ödg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB21', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7805_17_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7805_21_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 8195_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 8195_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 8195_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 8195_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 8205_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7393_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7393_14_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7393_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7746_11_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7914_24_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7914_25_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7639_18_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7639_28_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]
+Changes for 7730_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7730_18_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7284_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7284_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7284_13_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7121e_5_1
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB14', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB14', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7283_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemeinschaftsanlage', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]
+Changes for 7283_9_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7283_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]
+Changes for 7521_10_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7521_19_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7521_21_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7521_22_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7521_23_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7531_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7531_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7531_18_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 8015_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7257_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7929_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7929_14_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7875_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7875_19_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7913_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 8006_14_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 8006_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 8006_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'L', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'L', 'type': 'condition'}]
+Changes for 7603_17_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7962_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7577_17_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB 4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB 4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7577_19_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'Ödg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Ödg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7228_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7629_10_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7629_11_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7996_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7078_15_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7426_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7426_18_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7719_11_1
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7719_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}, {'name': 'Widmung', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7719_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}, {'name': 'Widmung', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7719_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7719_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 8228_15_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 8228_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Gemeinschaftsanlage', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]
+Changes for 8228_26_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}]
+Changes for 8228_26_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}]
+Changes for 8228_26_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 6', 'type': 'condition'}]
+Changes for 8228_26_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 5', 'type': 'condition'}]
+Changes for 8228_26_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 4', 'type': 'condition'}]
+Changes for 8228_26_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 3', 'type': 'condition'}]
+Changes for 8228_26_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE 1', 'type': 'condition'}]
+Changes for 8228_27_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 8228_32_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 1', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 1', 'type': 'condition'}]
+Changes for 8228_38_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 2', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 2', 'type': 'condition'}]
+Changes for 8228_43_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 3', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 3', 'type': 'condition'}]
+Changes for 8228_48_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 4', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 4', 'type': 'condition'}]
+Changes for 8228_53_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 5', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 5', 'type': 'condition'}]
+Changes for 8228_58_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 6', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 6', 'type': 'condition'}]
+Changes for 8228_63_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE 7', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE 7', 'type': 'condition'}]
+Changes for 7803_12_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7812e_5_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7841_21_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7841_22_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7841_22_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}]
+Changes for 7319e_5_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7716_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'SO', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'SO', 'type': 'condition'}]
+Changes for 7716_12_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'SO', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'SO', 'type': 'condition'}]
+Changes for 7876_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7876_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7876_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7876_21_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7053_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7053_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7053_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7053_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7053_17_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7053_18_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7053_19_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7053_20_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB11', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 8180_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 8241_9_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7310_23_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7547_6_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'SwwL', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'SwwL', 'type': 'condition'}]
+Changes for 7547_7_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'E', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'E', 'type': 'condition'}]
+Changes for 7547_8_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7547_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'E', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'E', 'type': 'condition'}]
+Changes for 6994_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 6994_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 6994_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'W', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'W', 'type': 'condition'}]
+Changes for 6994_15_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7455_11_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GBcv', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GBcv', 'type': 'condition'}]
+Changes for 7455_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Epk', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Parkanlage', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BBS', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BBS', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Epk', 'type': 'condition'}]
+Changes for 7689_15_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7689_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7689_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7689_18_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7689_22_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Changes for 7689_22_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7689_23_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB13', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB13', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7689_25_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7689_26_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemeinschaftsanlage', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]
+Changes for 7689_27_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE6', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}]
+Changes for 7689_27_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE6', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}]
+Changes for 7689_27_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE6', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE6', 'type': 'condition'}]
+Changes for 7689_27_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE6', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}]
+Changes for 7689_27_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE6', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}]
+Changes for 7689_27_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE6', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Changes for 7689_28_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE1', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE1', 'type': 'condition'}]
+Changes for 7689_32_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7689_35_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Changes for 7689_38_1
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE2', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE2', 'type': 'condition'}]
+Changes for 7689_42_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE3', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE3', 'type': 'condition'}]
+Changes for 7689_47_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE4', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE4', 'type': 'condition'}]
+Changes for 7689_51_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}]
+Changes for 7689_54_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE5', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE5', 'type': 'condition'}]
+Changes for 7689_60_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrE6', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrE6', 'type': 'condition'}]
+Changes for 7554_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7300k_4_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Sportund Spielplätze', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB18', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB18', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 7300k_5_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB19', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB19', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}]
+Changes for 8229_14_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7177e_8_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'VB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Verkehrsband', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'VB', 'type': 'condition'}]
+Changes for 8184_29_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 8184_33_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7626_13_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'P', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'P', 'type': 'condition'}]
+Changes for 7626_17_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7626_18_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'content'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 7626_19_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7626_20_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Epk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Epk', 'type': 'condition'}]
+Changes for 7626_30_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Ekl', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemeinschaftseinrichtung', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB14', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB14', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Ekl', 'type': 'condition'}]
+Changes for 7445_16_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7481_30_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'Ak öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}]
+Changes for 7481_34_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7481_35_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Changes for 7481_35_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'GBGV', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'StrG', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GBGV', 'type': 'condition'}]
+Changes for 7481_38_0
+Existing BBAllgemein: [{'name': 'BBAllgemein', 'value': 'EKZ', 'type': 'condition'}, {'name': 'BBAllgemein', 'value': 'Einkaufszentrum', 'type': 'content'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'EKZ', 'type': 'condition'}]
+Changes for 8256_15_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 8256_23_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Parkschutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Spk', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Spk', 'type': 'condition'}]
+Changes for 7737_5_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7737_6_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: None
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Changes for 7737_13_0
+Existing Widmung: [{'name': 'Widmung', 'value': 'G', 'type': 'condition'}]
+Planzeichen before: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}]
+Planzeichen after: [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'G', 'type': 'condition'}]
+Number of changed docs: 161

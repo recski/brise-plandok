@@ -76,7 +76,7 @@ python  $POTATO_DIR/scripts/evaluate.py \
 | WidmungUndZweckbestimmung                     | 0    | 332       | 0.00%     | 100.00% | 0.00%   |
 | BegruenungDach                                | 220  | 211       | 96.68%    | 92.73%  | 94.66%  |
 | AbschlussDachMaxBezugGebaeude                 | 219  | 191       | 98.43%    | 85.84%  | 91.71%  |
-| BBAllgemein                                   | 179  | 202       | 84.16%    | 94.97%  | 89.24%  |
+| BBAllgemein                                   | 179  | 202       | 87.28%    | 91.71%  | 89.44%  |
 | GebaeudeHoeheMaxAbsolut                       | 200  | 166       | 87.35%    | 72.50%  | 79.23%  |
 | GehsteigbreiteMin                             | 207  | 168       | 100.00%   | 81.16%  | 89.60%  |
 | WidmungInMehrerenEbenen                       | 219  | 107       | 82.24%    | 40.18%  | 53.99%  |

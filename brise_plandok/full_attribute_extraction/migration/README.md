@@ -110,3 +110,13 @@ python brise_plandok/full_attribute_extraction/migration/migrate_type.py \
     -g GOLD_DIR \
     -i '"condition"' \
     -o '["condition"]'
+```
+
+## One-time migration
+
+Extend `Planzeichen` with map signs from `Widmung` and `BBAllgemein`.
+
+```bash
+python brise_plandok/full_attribute_extraction/migration/fill_up_planzeichen.py \
+    -g ~/research/brise-nlp/annotation/2021_09/full_data > extend_planzeichen_log.txt
+```

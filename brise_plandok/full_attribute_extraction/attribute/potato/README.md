@@ -59,12 +59,12 @@ python  $POTATO_DIR/scripts/evaluate.py \
     -cs
 ```
 
-## Manual rules evaluation (2022-05-13)
+## Manual rules evaluation (2022-05-16)
 
-| Attributes                                | gold | predicted | precision | recall  | f1 | rank |
+| Attributes                                | gold | predicted | precision | recall  | f1      | rank |
 |-----------------------------------------------|------|-----------|-----------|---------|---------|------|
-| total                                         | 8066 | 7531      | 83.06%    | 77.55%  | 80.21%  |      |
-| Planzeichen                                   | 1700 | 1585      | 97.16%    | 90.59%  | 93.76%  | 1    | 
+| total                                         | ?    | ?         | ?         | ?       | ?       |      |
+| Planzeichen                                   | 1844 | 1855      | 94.82%    | 95.39%  | 95.11%  | 1    | 
 | Widmung                                       | 538  | 745       | 66.98%    | 92.75%  | 77.79%  | 2    |
 | VerkehrsflaecheID                             | 400  | 342       | 64.33%    | 55.00%  | 59.30%  | 3    |
 | GesamtePlangebiet                             | 189  | 358       | 47.49%    | 89.95%  | 62.16%  | 4    |

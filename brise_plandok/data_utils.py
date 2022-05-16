@@ -1,3 +1,5 @@
+import logging
+
 from brise_plandok.attrs_from_gold import attrs_from_gold_sen, full_attrs_from_gold_sen
 from brise_plandok.constants import (
     SenFields,
@@ -6,6 +8,7 @@ from brise_plandok.constants import (
     OldSectionFields,
     OldSenFields,
     ATTRIBUTE_NORM_MAP,
+    AttributeFields,
 )
 
 
@@ -82,3 +85,56 @@ def normalize_attribute_name(attribute_name):
     if attribute_name in ATTRIBUTE_NORM_MAP:
         return ATTRIBUTE_NORM_MAP[attribute_name]
     return attribute_name
+
+
+def add_attribute_to_sen(sen, attr_name, attr_value, attr_type, field):
+    if field not in sen:
+        raise ValueError(f"Field {field} is not in sen {sen}")
+    old_attributes = sen[field]
+    add_attribute(old_attributes, attr_name, attr_value, attr_type)
+
+
+def add_attribute(
+    old_attributes,
+    attr_name,
+    attr_value,
+    attr_type,
+):
+    if attr_name not in old_attributes:
+        _add_new_attribute(attr_name, attr_type, attr_value, old_attributes)
+    else:
+        _append_new_value(attr_name, attr_type, attr_value, old_attributes)
+    logging.info(f"Updated attributes:\n{old_attributes}")
+
+
+def _add_new_attribute(attr_name, attr_type, attr_value, old_attributes):
+    old_attributes[attr_name] = [
+        {
+            AttributeFields.NAME: attr_name,
+            AttributeFields.VALUE: attr_value,
+            AttributeFields.TYPE: attr_type,
+        }
+    ]
+
+
+def _append_new_value(attr_name, attr_type, attr_value, old_attributes):
+    for old_instance in old_attributes[attr_name]:
+        if old_instance[AttributeFields.VALUE] == attr_value:
+            if old_instance[AttributeFields.TYPE] == attr_type:
+                logging.info(
+                    f"Attribute with given value and type is already present:\n{old_attributes}\n- no changes done"
+                )
+            else:
+                logging.warning(
+                    f"Attribute with same value but different type is present\n{old_attributes}\n- please check"
+                )
+                raise ValueError(f"Conflict in {old_attributes}")
+        else:
+            old_attributes[attr_name].append(
+                {
+                    AttributeFields.NAME: attr_name,
+                    AttributeFields.VALUE: attr_value,
+                    AttributeFields.TYPE: attr_type,
+                }
+            )
+            return

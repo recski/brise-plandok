@@ -2,6 +2,7 @@ txt_folder="sample_data/txt"
 shuffled_dataset_file="brise_plandok/annotation_process/example/shuffled_dataset.csv"
 annotators_folder="brise_plandok/annotation_process/example/annotators"
 download_folder="download"
+upload_folder="upload"
 assignment_txt="assignment.txt"
 assignment_xlsx="assignment.xlsx"
 
@@ -19,7 +20,9 @@ do
   for phase in phase1 phase2
   do
     rm -rf $annotators_folder/$ann/$phase/$download_folder
+    rm -rf $annotators_folder/$ann/$phase/$upload_folder
     mkdir -p $annotators_folder/$ann/$phase/$download_folder
+    mkdir $annotators_folder/$ann/$phase/$upload_folder
     echo "doc_id" > $annotators_folder/$ann/$phase/$assignment_txt
     ssconvert $annotators_folder/$ann/$phase/$assignment_txt $annotators_folder/$ann/$phase/$download_folder/$assignment_xlsx
   done

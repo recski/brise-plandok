@@ -25,7 +25,7 @@ def migrate_attribute(
         fuzzy=False,
         full=True,
         attributes=[input_attribute],
-        values_map=values_map,
+        only_for_values=values_map,
     )
     sens_to_update = len(sen_to_gold_attrs.sen_to_attr.keys())
     print(f"Number of different texts to update: {sens_to_update}")

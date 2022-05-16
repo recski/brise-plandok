@@ -95,6 +95,9 @@ WIDMUNG = {
     r"(Lagerplätze und Landflächen)": {
         GROUP: 1,
     },
+    r"im (Bauland)": {
+        GROUP: 1,
+    },
 
     # Kürzel
     SPACE_BRACKET_SLASH_DASH + r"(L)" + SPACE_BRACKET_SLASH_DASH: {

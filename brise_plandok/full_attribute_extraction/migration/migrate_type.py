@@ -7,7 +7,7 @@ from brise_plandok.constants import AttributeFields, DocumentFields, SenFields
 from brise_plandok.utils import load_json, dump_json
 
 
-def migrate_type(gold_folder, input_type_json, output_type_json, all):
+def migrate_type(gold_folder, input_type_json, output_type_json):
     input_type = json.loads(input_type_json)
     output_type = json.loads(output_type_json)
     for doc_fn in os.listdir(gold_folder):
@@ -32,7 +32,6 @@ def get_args():
     parser.add_argument("-g", "--gold-dir")
     parser.add_argument("-i", "--input-type")
     parser.add_argument("-o", "--output-type")
-    parser.add_argument("-a", "--all", action="store_true")
     return parser.parse_args()
 
 
@@ -41,4 +40,4 @@ if __name__ == "__main__":
     logging.getLogger("stanza").setLevel(logging.WARNING)
     logging.getLogger("tuw_nlp").setLevel(logging.WARNING)
     args = get_args()
-    migrate_type(args.gold_dir, args.input_type, args.output_type, args.all)
+    migrate_type(args.gold_dir, args.input_type, args.output_type)

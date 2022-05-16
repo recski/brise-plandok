@@ -1,6 +1,6 @@
 from brise_plandok.constants import AttributesNames
-from brise_plandok.full_attribute_extraction.attribute.utils.constants import NUMBER_WITH_METER, GROUP, ALL, VALUE, TRUE, \
-    NUMBER_WITH_PERCENT, GAERTNERISH_GESTALTEN, DACH, NUMBER_WITH_DEGREE, NUMBER_WITH_SQUARE_METER, FALSE, \
+from brise_plandok.full_attribute_extraction.attribute.utils.constants import NUMBER_WITH_METER, GROUP, ALL, VALUE, \
+    NUMBER_WITH_PERCENT, GAERTNERISH_GESTALTEN, DACH, NUMBER_WITH_DEGREE, NUMBER_WITH_SQUARE_METER, \
     STRASSE, NUMBER_WITH_CUBIC_METER, NUMBER, Fluchtlinie
 from brise_plandok.full_attribute_extraction.value.bb_allgemein_patterns import BB_ALLGEMEIN
 from brise_plandok.full_attribute_extraction.value.nutzung_patterns import NUTZUNG
@@ -40,19 +40,19 @@ VALUE_PATTERNS = {
 
     AttributesNames.AnlageZumEinstellenVorhanden: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
     AttributesNames.AnOeffentlichenVerkehrsflaechen: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
     AttributesNames.AnordnungGaertnerischeAusgestaltung: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
@@ -88,10 +88,10 @@ VALUE_PATTERNS = {
 
     AttributesNames.AufbautenZulaessig: {
         r"nicht zulässig": {
-            VALUE: FALSE,
+            VALUE: False,
         },
         r"((?!nicht).)* zulässig": {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
@@ -169,7 +169,7 @@ VALUE_PATTERNS = {
 
     AttributesNames.BegruenungDach: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
@@ -337,10 +337,10 @@ VALUE_PATTERNS = {
 
     AttributesNames.EinfriedungZulaessig: {
         r"(die Errichtung .* Einfriedungen zulässig|ist zulässig)": {
-            VALUE: TRUE,
+            VALUE: True,
         },
         r"(nicht zulässig|untersagt)": {
-            VALUE: FALSE,
+            VALUE: False,
         },
     },
 
@@ -358,16 +358,16 @@ VALUE_PATTERNS = {
 
     AttributesNames.ErrichtungGebaeude: {
         r"((darf|dürfen) unmittelbar bebaut werden|sind unmittelbar bebaubar|Errichtung ((?!nicht).)* zulässig)": {
-            VALUE: TRUE,
+            VALUE: True,
         },
         r"sind Gebäude und bauliche Anlagen ((?!nicht).)* zulässig": {
-            VALUE: TRUE,
+            VALUE: True,
         },
         r"(Errichtung .* (untersagt|unzulässig)|keine .* errichtet werden)": {
-            VALUE: FALSE,
+            VALUE: False,
         },
         r"nicht zulässig": {
-            VALUE: FALSE,
+            VALUE: False,
         },
     },
 
@@ -469,7 +469,7 @@ VALUE_PATTERNS = {
 
     AttributesNames.GesamtePlangebiet: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
@@ -484,13 +484,13 @@ VALUE_PATTERNS = {
 
     AttributesNames.InSchutzzone: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
     AttributesNames.Kleinhaeuser: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
@@ -544,7 +544,7 @@ VALUE_PATTERNS = {
 
     AttributesNames.StellplatzImNiveauZulaessig: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
@@ -601,7 +601,7 @@ VALUE_PATTERNS = {
 
     AttributesNames.Struktureinheit: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
@@ -613,37 +613,37 @@ VALUE_PATTERNS = {
 
     AttributesNames.UnterbrechungGeschlosseneBauweise: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
     AttributesNames.UnterirdischeBaulichkeiten: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
     AttributesNames.VerbotBueroGeschaeftsgebaeude: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
     AttributesNames.VerbotFensterZuOeffentlichenVerkehrsflaechen: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
     AttributesNames.VerbotStaffelung: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 
     AttributesNames.VerbotWohnung: {
         ALL: {
-            VALUE: TRUE,
+            VALUE: True,
         },
     },
 

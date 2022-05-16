@@ -3,11 +3,10 @@ import logging
 import os
 
 from brise_plandok.constants import AttributeFields, DocumentFields, SenFields
-from brise_plandok.full_attribute_extraction.attribute.utils.constants import TRUE, FALSE
 from brise_plandok.utils import load_json, dump_json
 
 
-def migrate_value(gold_folder, input_value, output_value, boolean):
+def migrate_value(gold_folder, input_value, output_value):
     for doc_fn in os.listdir(gold_folder):
         if not (doc_fn.endswith("json") or doc_fn.endswith("jsonl")):
             logging.warning(f"skipping file not ending in json(l): {doc_fn}")
@@ -19,15 +18,7 @@ def migrate_value(gold_folder, input_value, output_value, boolean):
             gold_attributes = sen[SenFields.GOLD_ATTRIBUTES]
             for attr, entries in gold_attributes.items():
                 for entry in entries:
-                    entry_value = entry[AttributeFields.VALUE]
-                    if boolean:
-                        if entry_value == TRUE:
-                            entry[AttributeFields.VALUE] = True
-                            changed = True
-                        elif entry_value == FALSE:
-                            entry[AttributeFields.VALUE] = False
-                            changed = True
-                    elif entry_value == input_value:
+                    if entry[AttributeFields.VALUE] == input_value:
                         entry[AttributeFields.VALUE] = output_value
                         changed = True
         if changed:
@@ -39,7 +30,6 @@ def get_args():
     parser.add_argument("-g", "--gold-dir")
     parser.add_argument("-i", "--input-value", default=None)
     parser.add_argument("-o", "--output-value", default=None)
-    parser.add_argument("-b", "--boolean", action="store_true", default=False)
     return parser.parse_args()
 
 
@@ -48,4 +38,4 @@ if __name__ == "__main__":
     logging.getLogger("stanza").setLevel(logging.WARNING)
     logging.getLogger("tuw_nlp").setLevel(logging.WARNING)
     args = get_args()
-    migrate_value(args.gold_dir, args.input_value, args.output_value, args.boolean)
+    migrate_value(args.gold_dir, args.input_value, args.output_value)

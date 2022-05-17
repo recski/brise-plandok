@@ -20,8 +20,6 @@ GAERTNERISH_GESTALTEN = (
 
 ALL = r".*"
 
-TRUE = "True"
-FALSE = "False"
 
 GROUP = "group"
 VALUE = "value"

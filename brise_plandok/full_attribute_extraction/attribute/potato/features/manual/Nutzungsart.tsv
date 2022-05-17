@@ -5,6 +5,5 @@ Nutzungsart	(u_0 / Bevoelkerung :0 (u_1 / suchend) );(u_2 / in :1 (u_1 / suchend
 Nutzungsart	(u_0 / Geschaeftsstaette|Lagerraum|Werkstaette|Pferdestallung|Bueroraum|Geschaeftsraum )	
 Nutzungsart	(u_0 / Lagerplatz|Ländeflaeche|Sporthalle|Radverkehrsanlage|Radfahranlage|Gemeinschaftsflaeche|Betreuungseinrichtung )	
 Nutzungsart	(u_0 / Nutzbau )	
-Nutzungsart	(u_0 / Nutzung )	(u_1 / gemaess|fuer :1 (u_0 / Nutzung) )
 Nutzungsart	(u_0 / Schottergrube|Sandgrube|Lehmgrube|Tongrube|Wohngebaeuden?|Gaststaette )	
 Nutzungsart	(u_0 / forstwirtschaftlich|Wasserbehaelter )	

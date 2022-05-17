@@ -23,4 +23,7 @@ BB_ALLGEMEIN = {
     SPACE_BRACKET_SLASH_DASH + r"(P)" + SPACE_BRACKET_SLASH_DASH: {
         GROUP: 1,
     },
+    SPACE_BRACKET_SLASH_DASH + r"(öDg)" + SPACE_BRACKET_SLASH_DASH: {
+        GROUP: 1,
+    },
 }

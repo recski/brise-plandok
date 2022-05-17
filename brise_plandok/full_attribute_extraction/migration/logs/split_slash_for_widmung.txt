@@ -1,0 +1,288 @@
+7498_13_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}], 'BebauteFlaecheMax': [{'name': 'BebauteFlaecheMax', 'value': '70 m2', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Gartensiedlungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gartensiedlungsgebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}], 'BebauteFlaecheMax': [{'name': 'BebauteFlaecheMax', 'value': '70 m2', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gartensiedlungsgebiet', 'type': 'condition'}]}
+
+7498_16_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}], 'ErrichtungGebaeude': [{'name': 'ErrichtungGebaeude', 'value': False, 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Erholungsgebiet/Sport- und Spielplätze', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Sport- und Spielplätze', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}], 'ErrichtungGebaeude': [{'name': 'ErrichtungGebaeude', 'value': False, 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Sport- und Spielplätze', 'type': 'condition'}]}
+
+7498_17_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}], 'ErrichtungGebaeude': [{'name': 'ErrichtungGebaeude', 'value': False, 'type': 'content'}], 'UnterirdischeBaulichkeiten': [{'name': 'UnterirdischeBaulichkeiten', 'value': True, 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Erholungsgebiet/Sport- und Spielplätze', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Sport- und Spielplätze', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Esp', 'type': 'condition'}], 'ErrichtungGebaeude': [{'name': 'ErrichtungGebaeude', 'value': False, 'type': 'content'}], 'UnterirdischeBaulichkeiten': [{'name': 'UnterirdischeBaulichkeiten', 'value': True, 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Esp', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Sport- und Spielplätze', 'type': 'condition'}]}
+
+7498_19_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}], 'BebauteFlaecheMaxProzentual': [{'name': 'BebauteFlaecheMaxProzentual', 'value': '20 v. H.', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Erholungsgebiet/ Kleingartengebiet für ganzjähriges Wohnen', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': ' Kleingartengebiet für ganzjähriges Wohnen', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}], 'BebauteFlaecheMaxProzentual': [{'name': 'BebauteFlaecheMaxProzentual', 'value': '20 v. H.', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': ' Kleingartengebiet für ganzjähriges Wohnen', 'type': 'condition'}]}
+
+8089_19_0
+Gold attributes before:
+{'Bauklasse': [{'name': 'Bauklasse', 'value': 'I', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Gemischtes Baugebiet – Geschäftsviertel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet – Geschäftsviertel', 'type': 'condition'}]}
+Gold attributes after:
+{'Bauklasse': [{'name': 'Bauklasse', 'value': 'I', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet – Geschäftsviertel', 'type': 'condition'}]}
+
+8141_11_0
+Gold attributes before:
+{'GebaeudeBautyp': [{'name': 'GebaeudeBautyp', 'value': 'Nebengebäude', 'type': 'condition'}], 'BebauteFlaecheMaxNebengebaeude': [{'name': 'BebauteFlaecheMaxNebengebaeude', 'value': '30 m²', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Gemischtes Baugebiet/Betriebsbaugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Betriebsbaugebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'GebaeudeBautyp': [{'name': 'GebaeudeBautyp', 'value': 'Nebengebäude', 'type': 'condition'}], 'BebauteFlaecheMaxNebengebaeude': [{'name': 'BebauteFlaecheMaxNebengebaeude', 'value': '30 m²', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Betriebsbaugebiet', 'type': 'condition'}]}
+
+8141_13_0
+Gold attributes before:
+{'VerbotWohnung': [{'name': 'VerbotWohnung', 'value': True, 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Gemischtes Baugebiet/Geschäftsviertel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'condition'}]}
+Gold attributes after:
+{'VerbotWohnung': [{'name': 'VerbotWohnung', 'value': True, 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'condition'}]}
+
+7471_5_0
+Gold attributes before:
+{'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Industriegebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Industriegebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Industriegebiet', 'type': 'condition'}]}
+
+7649_18_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Parkschutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Parkschutzgebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Parkschutzgebiet', 'type': 'condition'}]}
+
+7649_19_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Parkschutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Parkschutzgebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Parkschutzgebiet', 'type': 'condition'}]}
+
+7649_27_0
+Gold attributes before:
+{'VonBebauungFreizuhalten': [{'name': 'VonBebauungFreizuhalten', 'value': 'von jeder Bebauung', 'type': 'content'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Erholungsgebiet/Kleingartengebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'VonBebauungFreizuhalten': [{'name': 'VonBebauungFreizuhalten', 'value': 'von jeder Bebauung', 'type': 'content'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB9', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiet', 'type': 'condition'}]}
+
+7649_28_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}], 'BebauteFlaecheMax': [{'name': 'BebauteFlaecheMax', 'value': '25 m²', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Erholungsgebiet/Kleingartengebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB10', 'type': 'condition'}], 'BebauteFlaecheMax': [{'name': 'BebauteFlaecheMax', 'value': '25 m²', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiet', 'type': 'condition'}]}
+
+6969_17_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB 2', 'type': 'condition'}], 'Nutzungsart': [{'name': 'Nutzungsart', 'value': 'Gemeinschaftsfläche', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland - Erholungsgebiet/Kleingartengebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland - Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB 2', 'type': 'condition'}], 'Nutzungsart': [{'name': 'Nutzungsart', 'value': 'Gemeinschaftsfläche', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland - Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiet', 'type': 'condition'}]}
+
+7700_18_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}], 'BebauteFlaecheMaxProzentual': [{'name': 'BebauteFlaecheMaxProzentual', 'value': '60 v. H.', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Wohngebiet/Geschäftsviertel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}], 'BebauteFlaecheMaxProzentual': [{'name': 'BebauteFlaecheMaxProzentual', 'value': '60 v. H.', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'condition'}]}
+
+7700_19_0
+Gold attributes before:
+{'DurchgangBreite': [{'name': 'DurchgangBreite', 'value': '5 m', 'type': 'content'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}], 'DurchgangHoehe': [{'name': 'DurchgangHoehe', 'value': '3,5 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Wohngebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'DurchgangBreite': [{'name': 'DurchgangBreite', 'value': '5 m', 'type': 'content'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}], 'DurchgangHoehe': [{'name': 'DurchgangHoehe', 'value': '3,5 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}]}
+
+8118_26_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '4,5 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Sondergebiet/Wasserbehälter', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Sondergebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wasserbehälter', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '4,5 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Sondergebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wasserbehälter', 'type': 'condition'}]}
+
+8069_20_1
+Gold attributes before:
+{'Widmung': [{'name': 'Widmung', 'value': 'Erholungsgebiet/ Sport- und Spielplätze', 'type': 'content'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'content'}, {'name': 'Widmung', 'value': ' Sport- und Spielplätze', 'type': 'content'}]}
+Gold attributes after:
+{'Widmung': [{'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'content'}, {'name': 'Widmung', 'value': ' Sport- und Spielplätze', 'type': 'content'}]}
+
+7206_10_1
+Gold attributes before:
+{'Widmung': [{'name': 'Widmung', 'value': 'Grünland/ Ländliches Gebiet', 'type': 'content'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'content'}, {'name': 'Widmung', 'value': ' Ländliches Gebiet', 'type': 'content'}]}
+Gold attributes after:
+{'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'content'}, {'name': 'Widmung', 'value': ' Ländliches Gebiet', 'type': 'content'}]}
+
+7768_13_0
+Gold attributes before:
+{'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Gemischtes Baugebiet Geschäftsviertel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet Geschäftsviertel', 'type': 'condition'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]}
+Gold attributes after:
+{'Widmung': [{'name': 'Widmung', 'value': 'GV', 'type': 'condition'}, {'name': 'Widmung', 'value': 'GB', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet Geschäftsviertel', 'type': 'condition'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'GV', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'GB', 'type': 'condition'}]}
+
+7768_49_1
+Gold attributes before:
+{'Widmung': [{'name': 'Widmung', 'value': 'gemischtes Baugebiet/Geschäftsviertel', 'type': 'content'}, {'name': 'Widmung', 'value': 'gemischtes Baugebiet', 'type': 'content'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'content'}]}
+Gold attributes after:
+{'Widmung': [{'name': 'Widmung', 'value': 'gemischtes Baugebiet', 'type': 'content'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'content'}]}
+
+7255_15_0
+Gold attributes before:
+{'Bauklasse': [{'name': 'Bauklasse', 'value': 'VI', 'type': 'condition'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB 8', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '97,00 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Gemischtes Baugebiet/Geschäftsviertel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'condition'}]}
+Gold attributes after:
+{'Bauklasse': [{'name': 'Bauklasse', 'value': 'VI', 'type': 'condition'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB 8', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '97,00 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'condition'}]}
+
+7255_20_0
+Gold attributes before:
+{'Bauklasse': [{'name': 'Bauklasse', 'value': 'VI', 'type': 'content'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '87,00 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Gemischtes Baugebiet/Geschäftsviertel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'condition'}]}
+Gold attributes after:
+{'Bauklasse': [{'name': 'Bauklasse', 'value': 'VI', 'type': 'content'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB12', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '87,00 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'condition'}]}
+
+7180_11_1
+Gold attributes before:
+{'Widmung': [{'name': 'Widmung', 'value': 'Erholungsgebiet/Parkanlage', 'type': 'content'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'content'}, {'name': 'Widmung', 'value': 'Parkanlage', 'type': 'content'}], 'BBAllgemein': [{'name': 'BBAllgemein', 'value': 'ÖZ', 'type': 'content'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'ÖZ', 'type': 'content'}]}
+Gold attributes after:
+{'Widmung': [{'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'content'}, {'name': 'Widmung', 'value': 'Parkanlage', 'type': 'content'}], 'BBAllgemein': [{'name': 'BBAllgemein', 'value': 'ÖZ', 'type': 'content'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'ÖZ', 'type': 'content'}]}
+
+7517_18_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}], 'BebauteFlaecheMaxProzentual': [{'name': 'BebauteFlaecheMaxProzentual', 'value': '40 v.H.', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Wohngebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}], 'BebauteFlaecheMaxProzentual': [{'name': 'BebauteFlaecheMaxProzentual', 'value': '40 v.H.', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}]}
+
+7517_19_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}], 'DurchgangBreite': [{'name': 'DurchgangBreite', 'value': '3 m', 'type': 'content'}], 'DurchgangHoehe': [{'name': 'DurchgangHoehe', 'value': '2,5 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Wohngebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB5', 'type': 'condition'}], 'DurchgangBreite': [{'name': 'DurchgangBreite', 'value': '3 m', 'type': 'content'}], 'DurchgangHoehe': [{'name': 'DurchgangHoehe', 'value': '2,5 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}]}
+
+7517_22_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Epk', 'type': 'condition'}], 'WidmungInMehrerenEbenen': [{'name': 'WidmungInMehrerenEbenen', 'value': 'Bauland/Wohngebiet', 'type': 'content'}, {'name': 'WidmungInMehrerenEbenen', 'value': 'Grünland/Erholungsgebiet/Parkanlage', 'type': 'content'}, {'name': 'WidmungInMehrerenEbenen', 'value': 'eine Anlage zum Einstellen von Kraftfahrzeugen', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Epk', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland/Erholungsgebiet/Parkanlage', 'type': 'content'}, {'name': 'Widmung', 'value': 'Bauland/Wohngebiet', 'type': 'content'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'content'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'content'}, {'name': 'Widmung', 'value': 'Parkanlage', 'type': 'content'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'content'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'content'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Epk', 'type': 'condition'}], 'WidmungInMehrerenEbenen': [{'name': 'WidmungInMehrerenEbenen', 'value': 'Bauland/Wohngebiet', 'type': 'content'}, {'name': 'WidmungInMehrerenEbenen', 'value': 'Grünland/Erholungsgebiet/Parkanlage', 'type': 'content'}, {'name': 'WidmungInMehrerenEbenen', 'value': 'eine Anlage zum Einstellen von Kraftfahrzeugen', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Epk', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'content'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'content'}, {'name': 'Widmung', 'value': 'Parkanlage', 'type': 'content'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'content'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'content'}]}
+
+7142_10_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}], 'TechnischeAufbautenHoeheMax': [{'name': 'TechnischeAufbautenHoeheMax', 'value': '26,0 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Industriegebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Industriegebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}], 'TechnischeAufbautenHoeheMax': [{'name': 'TechnischeAufbautenHoeheMax', 'value': '26,0 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Industriegebiet', 'type': 'condition'}]}
+
+7142_23_0
+Gold attributes before:
+{'BauweiseID': [{'name': 'BauweiseID', 'value': 'offen', 'type': 'condition'}, {'name': 'BauweiseID', 'value': 'gekuppelt', 'type': 'condition'}], 'ErrichtungGebaeude': [{'name': 'ErrichtungGebaeude', 'value': True, 'type': 'content'}], 'Kleinhaeuser': [{'name': 'Kleinhaeuser', 'value': True, 'type': 'condition'}], 'GesamtePlangebiet': [{'name': 'GesamtePlangebiet', 'value': True, 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Wohngebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'BauweiseID': [{'name': 'BauweiseID', 'value': 'offen', 'type': 'condition'}, {'name': 'BauweiseID', 'value': 'gekuppelt', 'type': 'condition'}], 'ErrichtungGebaeude': [{'name': 'ErrichtungGebaeude', 'value': True, 'type': 'content'}], 'Kleinhaeuser': [{'name': 'Kleinhaeuser', 'value': True, 'type': 'condition'}], 'GesamtePlangebiet': [{'name': 'GesamtePlangebiet', 'value': True, 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}]}
+
+7668_19_0
+Gold attributes before:
+{'ErrichtungGebaeude': [{'name': 'ErrichtungGebaeude', 'value': True, 'type': 'content'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB 6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB 4', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Parkschutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Parkschutzgebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'ErrichtungGebaeude': [{'name': 'ErrichtungGebaeude', 'value': True, 'type': 'content'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB 6', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB 5', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB 4', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Parkschutzgebiet', 'type': 'condition'}]}
+
+7668_26_0
+Gold attributes before:
+{'Kleinhaeuser': [{'name': 'Kleinhaeuser', 'value': True, 'type': 'condition'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB 10', 'type': 'condition'}], 'BebauteFlaecheMax': [{'name': 'BebauteFlaecheMax', 'value': '16 m²', 'type': 'content'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '3,0 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünlands/Erholungsgebiet – Kleingartengebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünlands', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet – Kleingartengebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Kleinhaeuser': [{'name': 'Kleinhaeuser', 'value': True, 'type': 'condition'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB 10', 'type': 'condition'}], 'BebauteFlaecheMax': [{'name': 'BebauteFlaecheMax', 'value': '16 m²', 'type': 'content'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '3,0 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünlands', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet – Kleingartengebiet', 'type': 'condition'}]}
+
+7377_9_0
+Gold attributes before:
+{'AufbautenZulaessig': [{'name': 'AufbautenZulaessig', 'value': True, 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Gemischtes Baugebiet/Betriebsbaugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Betriebsbaugebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'AufbautenZulaessig': [{'name': 'AufbautenZulaessig', 'value': True, 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Betriebsbaugebiet', 'type': 'condition'}]}
+
+7377_10_0
+Gold attributes before:
+{'AusnahmeVonWohnungenUnzulaessig': [{'name': 'AusnahmeVonWohnungenUnzulaessig', 'value': 'in § 6 (13) der Bauordnung für Wien angeführten,', 'type': 'contentException'}], 'VerbotWohnung': [{'name': 'VerbotWohnung', 'value': True, 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Gemischtes Baugebiet/Geschäftsviertel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'condition'}]}
+Gold attributes after:
+{'AusnahmeVonWohnungenUnzulaessig': [{'name': 'AusnahmeVonWohnungenUnzulaessig', 'value': 'in § 6 (13) der Bauordnung für Wien angeführten,', 'type': 'contentException'}], 'VerbotWohnung': [{'name': 'VerbotWohnung', 'value': True, 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Geschäftsviertel', 'type': 'condition'}]}
+
+7863_15_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '4,5m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Schutzgebiet Parkschutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet Parkschutzgebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '4,5m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet Parkschutzgebiet', 'type': 'condition'}]}
+
+7863_16_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '7,5m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Schutzgebiet Parkschutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet Parkschutzgebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '7,5m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet Parkschutzgebiet', 'type': 'condition'}]}
+
+7863_17_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '9m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Schutzgebiet Parkschutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet Parkschutzgebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '9m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet Parkschutzgebiet', 'type': 'condition'}]}
+
+7863_18_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}], 'BebauteFlaecheMax': [{'name': 'BebauteFlaecheMax', 'value': '600m²', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Schutzgebiet Parkschutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet Parkschutzgebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}], 'BebauteFlaecheMax': [{'name': 'BebauteFlaecheMax', 'value': '600m²', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet Parkschutzgebiet', 'type': 'condition'}]}
+
+7863_21_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}], 'Nutzungsart': [{'name': 'Nutzungsart', 'value': 'religiöse Einrichtung', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Schutzgebiet Parkschutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet Parkschutzgebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB7', 'type': 'condition'}], 'Nutzungsart': [{'name': 'Nutzungsart', 'value': 'religiöse Einrichtung', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet Parkschutzgebiet', 'type': 'condition'}]}
+
+7863_22_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}], 'Nutzungsart': [{'name': 'Nutzungsart', 'value': 'internationale Einrichtung', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Schutzgebiet Parkschutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet Parkschutzgebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB8', 'type': 'condition'}], 'Nutzungsart': [{'name': 'Nutzungsart', 'value': 'internationale Einrichtung', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet Parkschutzgebiet', 'type': 'condition'}]}
+
+7576_10_1
+Gold attributes before:
+{'Bauklasse': [{'name': 'Bauklasse', 'value': 'II', 'type': 'content'}], 'BauweiseID': [{'name': 'BauweiseID', 'value': 'geschlossen', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Wohngebiet', 'type': 'content'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'content'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'content'}]}
+Gold attributes after:
+{'Bauklasse': [{'name': 'Bauklasse', 'value': 'II', 'type': 'content'}], 'BauweiseID': [{'name': 'BauweiseID', 'value': 'geschlossen', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'content'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'content'}]}
+
+7650_12_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '3,5 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Schutzgebiete/Wald- und Wiesengürtel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiete', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wald- und Wiesengürtel', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB1', 'type': 'condition'}], 'GebaeudeHoeheMaxAbsolut': [{'name': 'GebaeudeHoeheMaxAbsolut', 'value': '3,5 m', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiete', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wald- und Wiesengürtel', 'type': 'condition'}]}
+
+7650_15_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}], 'BebauteFlaecheMax': [{'name': 'BebauteFlaecheMax', 'value': '25 m²', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Erholungsgebiete/Kleingartengebiete', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiete', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiete', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}], 'BebauteFlaecheMax': [{'name': 'BebauteFlaecheMax', 'value': '25 m²', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiete', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiete', 'type': 'condition'}]}
+
+7650_16_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}], 'ErrichtungGebaeude': [{'name': 'ErrichtungGebaeude', 'value': False, 'type': 'content'}], 'GebaeudeBautyp': [{'name': 'GebaeudeBautyp', 'value': 'Kleingartenhäuser', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Erholungsgebiete/Kleingartengebiete', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiete', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiete', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB3', 'type': 'condition'}], 'ErrichtungGebaeude': [{'name': 'ErrichtungGebaeude', 'value': False, 'type': 'content'}], 'GebaeudeBautyp': [{'name': 'GebaeudeBautyp', 'value': 'Kleingartenhäuser', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiete', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiete', 'type': 'condition'}]}
+
+7650_17_0
+Gold attributes before:
+{'DurchgangBreite': [{'name': 'DurchgangBreite', 'value': '3 m', 'type': 'content'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland/Erholungsgebiete/Kleingartengebiete', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiete', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiete', 'type': 'condition'}]}
+Gold attributes after:
+{'DurchgangBreite': [{'name': 'DurchgangBreite', 'value': '3 m', 'type': 'content'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB4', 'type': 'condition'}], 'Widmung': [{'name': 'Widmung', 'value': 'Grünland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiete', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiete', 'type': 'condition'}]}
+
+7199_11_0
+Gold attributes before:
+{'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Wohngebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Widmung': [{'name': 'Widmung', 'value': 'Gemischtes Baugebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}]}
+
+7199_16_0
+Gold attributes before:
+{'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Gemischtes Baugebiet - Betriebsbaugebiet bzw. Geschäftsviertel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet - Betriebsbaugebiet bzw. Geschäftsviertel', 'type': 'condition'}]}
+Gold attributes after:
+{'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gemischtes Baugebiet - Betriebsbaugebiet bzw. Geschäftsviertel', 'type': 'condition'}]}
+
+6817e_7_0
+Gold attributes before:
+{'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Wohngebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Wohngebiet', 'type': 'condition'}]}
+
+7427e_3_0
+Gold attributes before:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}], 'BebauteFlaecheMax': [{'name': 'BebauteFlaecheMax', 'value': '80 m2', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland/Gartensiedlungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gartensiedlungsgebiet', 'type': 'condition'}]}
+Gold attributes after:
+{'Planzeichen': [{'name': 'Planzeichen', 'value': 'BB', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'BB2', 'type': 'condition'}], 'BebauteFlaecheMax': [{'name': 'BebauteFlaecheMax', 'value': '80 m2', 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Bauland', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Gartensiedlungsgebiet', 'type': 'condition'}]}
+
+7328e_3_0
+Gold attributes before:
+{'EinfriedungZulaessig': [{'name': 'EinfriedungZulaessig', 'value': False, 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Wald- und Wiesengürtel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet/Kleingartengebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiet', 'type': 'condition'}], 'BBAllgemein': [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]}
+Gold attributes after:
+{'EinfriedungZulaessig': [{'name': 'EinfriedungZulaessig', 'value': False, 'type': 'content'}], 'Widmung': [{'name': 'Widmung', 'value': 'Wald- und Wiesengürtel', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Schutzgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Eklw', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Erholungsgebiet', 'type': 'condition'}, {'name': 'Widmung', 'value': 'Kleingartengebiet', 'type': 'condition'}], 'BBAllgemein': [{'name': 'BBAllgemein', 'value': 'öDg', 'type': 'condition'}], 'Planzeichen': [{'name': 'Planzeichen', 'value': 'öDg', 'type': 'condition'}, {'name': 'Planzeichen', 'value': 'Eklw', 'type': 'condition'}]}
+

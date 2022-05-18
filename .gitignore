@@ -144,7 +144,7 @@ brise_plandok/review/output/
 brise_plandok/annotation_process/example/
 
 # Personal scripts
-scripts/*/
+scripts/eszti/
 
 # tmp folder
 tmp/

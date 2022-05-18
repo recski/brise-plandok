@@ -273,62 +273,11 @@ cat data/train/8303.json | jq '.sens[]' | jq 'select(.id == "8303_20_0") | keys'
 
 The dataset contains 250 number of annotated and reviewed (a.k.a. gold) documents. The data was split into train-valid-test sets following the 80-10-10 rule.
 
-### Train
+### Run dataset statistics
 
 ```bash
-# Number of docs
-cat data/train/*.json | jq '.id' | wc -l
-200
+./scripts/dataset_stat.sh
 
-# Number of sentences
-cat data/train/*.json | jq '.sens[].id' | wc -l
-5759
+# Answer
 
-# Number of sentences with attributes
-cat data/train/*.json | jq ".sens[] | select(.full_annotated_attributes.attributes != null) | select(.full_annotated_attributes != {}) | select(.full_annotated_attributes | keys | index(\"DON'T ANNOTATE THIS SENTENCE\") | not) | .id" | wc -l
-3629
-
-# Sum of all gold attributes
-cat data/train/*.json | jq ".sens[] | select(.full_annotated_attributes.attributes != null) | select(.full_annotated_attributes | keys | index(\"DON'T ANNOTATE THIS SENTENCE\") | not) | .full_annotated_attributes.attributes" | jq 'keys[]' | wc -l
-8655
-```
-
-### Validation
-
-```bash
-# Validation data
-cat data/valid/*.json | jq '.id' | wc -l
-25
-
-# Number of sentences
-cat data/valid/*.json | jq '.sens[].id' | wc -l
-617
-
-# Number of sentences with attributes
-cat data/valid/*.json | jq ".sens[] | select(.full_annotated_attributes.attributes != null) | select(.full_annotated_attributes != {}) | select(.full_annotated_attributes | keys | index(\"DON'T ANNOTATE THIS SENTENCE\") | not) | .id" | wc -l
-368
-
-# Sum of all gold attributes
-cat data/valid/*.json | jq ".sens[] | select(.full_annotated_attributes.attributes != null) | select(.full_annotated_attributes | keys | index(\"DON'T ANNOTATE THIS SENTENCE\") | not) | .full_annotated_attributes.attributes" | jq 'keys[]' | wc -l
-834
-```
-
-### Test
-
-```bash
-# Test data
-cat data/test/*.json | jq '.id' | wc -l
-25
-
-# Number of sentences
-cat data/test/*.json | jq '.sens[].id' | wc -l
-673
-
-# Number of sentences with attributes
-cat data/test/*.json | jq ".sens[] | select(.full_annotated_attributes.attributes != null) | select(.full_annotated_attributes != {}) | select(.full_annotated_attributes | keys | index(\"DON'T ANNOTATE THIS SENTENCE\") | not) | .id" | wc -l
-424
-
-# Sum of all gold attributes
-cat data/test/*.json | jq ".sens[] | select(.full_annotated_attributes.attributes != null) | select(.full_annotated_attributes | keys | index(\"DON'T ANNOTATE THIS SENTENCE\") | not) | .full_annotated_attributes.attributes" | jq 'keys[]' | wc -l
-975
 ```

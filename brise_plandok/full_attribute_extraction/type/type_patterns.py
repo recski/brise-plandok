@@ -1,5 +1,6 @@
 from brise_plandok.constants import AttributeTypes, AttributesNames
-from brise_plandok.full_attribute_extraction.constants import ALL, TYPE, NUMBER_WITH_METER, SPACE_BRACKET_SLASH_DASH
+from brise_plandok.full_attribute_extraction.attribute.utils.constants import ALL, TYPE, NUMBER_WITH_METER, \
+    SPACE_BRACKET_SLASH_DASH
 TYPE_PATTERNS = {
 
     AttributesNames.AbschlussDachMaxBezugGebaeude: {
@@ -504,6 +505,9 @@ TYPE_PATTERNS = {
             TYPE: AttributeTypes.CONDITION,
         },
         r"mit Grünland": {
+            TYPE: AttributeTypes.CONDITION,
+        },
+        r"im Bauland": {
             TYPE: AttributeTypes.CONDITION,
         },
     },

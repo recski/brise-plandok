@@ -7,7 +7,9 @@ from brise_plandok.utils import update_gold_docs
 
 
 def update_sentence(gold_folder, text, new_attribute_json):
-    sen_to_gold_attrs = SenToAttrMap(gold_dir=gold_folder, fuzzy=False, full=True, text=text)
+    sen_to_gold_attrs = SenToAttrMap(
+        gold_dir=gold_folder, fuzzy=False, full=True, text_pattern=text
+    )
     assert len(sen_to_gold_attrs.sen_to_attr.keys()) == 1
     print(f"\n\nCurrent map:\n{json.dumps(sen_to_gold_attrs.sen_to_attr, indent=4)}\n")
     entry = sen_to_gold_attrs.sen_to_attr[text]

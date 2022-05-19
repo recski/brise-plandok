@@ -1,8 +1,9 @@
 import re
+
 from brise_plandok.constants import SenFields, AttributeFields
-from brise_plandok.full_attribute_extraction.constants import VALUE, GROUP
-from brise_plandok.utils import is_gold_attribute
+from brise_plandok.full_attribute_extraction.attribute.utils.constants import VALUE, GROUP
 from brise_plandok.full_attribute_extraction.value.value_patterns import VALUE_PATTERNS
+from brise_plandok.utils import is_gold_attribute
 
 
 def extract_value(sen, attribute, field_to_add=SenFields.GEN_ATTRIBUTES, only_gold=True):

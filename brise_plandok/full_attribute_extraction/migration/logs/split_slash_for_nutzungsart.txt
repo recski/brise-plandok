@@ -1,0 +1,12 @@
+Before delete:
+[{'name': 'Nutzungsart', 'value': 'Soziale Einrichtung/Behinderteneinrichtung', 'type': 'content'}, {'name': 'Nutzungsart', 'value': 'Soziale Einrichtung', 'type': 'content'}, {'name': 'Nutzungsart', 'value': 'Behinderteneinrichtung', 'type': 'content'}]
+After delete:
+[{'name': 'Nutzungsart', 'value': 'Soziale Einrichtung', 'type': 'content'}, {'name': 'Nutzungsart', 'value': 'Behinderteneinrichtung', 'type': 'content'}]
+Before delete:
+[{'name': 'Nutzungsart', 'value': 'Bildungs- und/oder Kinderbetreuungseinrichtungen', 'type': 'content'}, {'name': 'Nutzungsart', 'value': 'Bildungs- und', 'type': 'content'}, {'name': 'Nutzungsart', 'value': 'oder Kinderbetreuungseinrichtungen', 'type': 'content'}]
+After delete:
+[{'name': 'Nutzungsart', 'value': 'Bildungs- und', 'type': 'content'}, {'name': 'Nutzungsart', 'value': 'oder Kinderbetreuungseinrichtungen', 'type': 'content'}]
+Before delete:
+[{'name': 'Nutzungsart', 'value': 'Bildungs- und/oder Kinderbetreuungseinrichtungen', 'type': 'content'}, {'name': 'Nutzungsart', 'value': 'Bildungs- und', 'type': 'content'}, {'name': 'Nutzungsart', 'value': 'oder Kinderbetreuungseinrichtungen', 'type': 'content'}]
+After delete:
+[{'name': 'Nutzungsart', 'value': 'Bildungs- und', 'type': 'content'}, {'name': 'Nutzungsart', 'value': 'oder Kinderbetreuungseinrichtungen', 'type': 'content'}]

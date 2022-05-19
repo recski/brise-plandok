@@ -178,6 +178,50 @@ To reset the assigned documents to an empty state, simply call:
 ./scripts/TEST_gen_structure_for_annotation_process.sh
 ```
 
+## Check annotator progress
+
+Let's reset the environment and distribute all the 10 documents for both phases.
+
+```bash
+./scripts/TEST_annotator_process_setup.sh
+```
+
+Now you can check how many docuemnts have already been uploaded:
+
+```bash
+# For phase 1
+python brise_plandok/annotation_process/annotator_progress.py \
+    -af brise_plandok/annotation_process/example/annotators \
+    -p 1
+
+# For phase 2
+python brise_plandok/annotation_process/annotator_progress.py \
+    -af brise_plandok/annotation_process/example/annotators \
+    -p 2
+```
+
+Let's pretend that the annotators have already done some of their work. This means that they have already uploaded some of the annotated documents to their own uploaded folder (e.g. for annotator [01](./example/annotators/01/phase1/upload)). Let's imitate this by copying some content from the download folders to the upload folders.
+
+```bash
+./scripts/TEST_populate_upload_folders.sh
+```
+
+Now we can call the `annotator_progress` scripts again to see the progress. If you define the document tracking file, you can even find out how many documents have been annotated once and twice.
+
+```bash
+# For phase 1
+python brise_plandok/annotation_process/annotator_progress.py \
+    -dt brise_plandok/annotation_process/example/shuffled_dataset.csv \
+    -af brise_plandok/annotation_process/example/annotators \
+    -p 1
+
+# For phase 2
+python brise_plandok/annotation_process/annotator_progress.py \
+    -dt brise_plandok/annotation_process/example/shuffled_dataset.csv \
+    -af brise_plandok/annotation_process/example/annotators \
+    -p 2
+```
+
 ## Notes
 
 The partitioning of the documents can be described as a [multiway number partitioning](https://en.wikipedia.org/wiki/Multiway_number_partitioning) problem. For solving this problem the [Karmakar-Karp algorithm](https://en.wikipedia.org/wiki/Largest_differencing_method) was used. For the implementation we took the [numberpartitioning](https://github.com/fuglede/numberpartitioning) library.

@@ -9,6 +9,9 @@ DOC_HEADER = [
     "annotator_1",
     "annotator_2",
     "assigned_2",
+    "ann_1_done",
+    "ann_2_done",
+    "both_done",
 ]
 
 CYCLE_FILE = "../input/batch_cycles.csv"

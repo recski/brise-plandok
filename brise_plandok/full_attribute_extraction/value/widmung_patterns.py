@@ -1,4 +1,4 @@
-from brise_plandok.full_attribute_extraction.constants import GROUP, SPACE_BRACKET_SLASH_DASH
+from brise_plandok.full_attribute_extraction.attribute.utils.constants import GROUP, SPACE_BRACKET_SLASH_DASH
 
 WIDMUNG = {
     # Widmung
@@ -93,6 +93,9 @@ WIDMUNG = {
         GROUP: 1,
     },
     r"(Lagerplätze und Landflächen)": {
+        GROUP: 1,
+    },
+    r"im (Bauland)": {
         GROUP: 1,
     },
 

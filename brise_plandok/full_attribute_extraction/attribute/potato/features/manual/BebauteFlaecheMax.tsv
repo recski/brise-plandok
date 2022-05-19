@@ -1,0 +1,4 @@
+BebauteFlaecheMax	(u_0 / COORD :0 (u_1 / Grundflaeche) :0 (u_2 / maximal))	(u_4 / Nebengebaeude);(u_5  / PERCENTAGE|vPERIODHPERIOD|HPERIOD)
+BebauteFlaecheMax	(u_1 / .*[Ff]laechen? :0 (u_2 / .*bau.*));(u_3 / als :1 (u_4 / betragen :0 (u_5 / NEG)))	(u_4 / Nebengebaeude);(u_5  / PERCENTAGE|vPERIODHPERIOD|HPERIOD)
+BebauteFlaecheMax	(u_1 / .*[Ff]laechen? :0 (u_2 / .*bau.*));(u_3 / aufweisen|ueberschreiten :0 (u_4 / NEG))	(u_4 / Nebengebaeude);(u_5  / PERCENTAGE|vPERIODHPERIOD|HPERIOD)
+BebauteFlaecheMax	(u_1 / .*[Ff]laechen? :0 (u_2 / .*bau.*));(u_3 / maximal|hoechstens)	(u_4 / Nebengebaeude);(u_5  / PERCENTAGE|vPERIODHPERIOD|HPERIOD)

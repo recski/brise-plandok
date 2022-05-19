@@ -144,7 +144,7 @@ brise_plandok/review/output/
 brise_plandok/annotation_process/example/
 
 # Personal scripts
-scripts/*/
+scripts/eszti/
 
 # tmp folder
 tmp/
@@ -153,3 +153,4 @@ tmp/
 /brise_plandok/cache/*.json
 de_nlp_cache
 UD_FL.json
+*_cache.json

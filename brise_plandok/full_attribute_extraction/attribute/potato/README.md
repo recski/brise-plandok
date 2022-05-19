@@ -59,11 +59,7 @@ python  $POTATO_DIR/scripts/evaluate.py \
     -cs
 ```
 
-<<<<<<< HEAD
-## Manual rules evaluation (old)
-=======
 ## Manual rules evaluation (2022-05-18)
->>>>>>> 8499d321a49781be8e5bf5e733005cc3cfdfcff5
 
 | Attributes                                | gold | predicted | precision | recall   | f1       | rank |
 |-----------------------------------------------|------|-----------|-----------|----------|----------|------|

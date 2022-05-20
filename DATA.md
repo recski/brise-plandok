@@ -284,24 +284,128 @@ Dataset was split by calling the following script:
 ./scripts/dataset/dataset_stat.sh
 
 # Answer
+total
+Number of docs
+250
+Number of sentences
+7049
+Number of sentences with gold attributes
+4238
+Sum of all gold attributes
+9665
+Gold attribute distribution
+   1844 "Planzeichen"
+    641 "Widmung"
+    400 "VerkehrsflaecheID"
+    292 "AnordnungGaertnerischeAusgestaltung"
+    282 "Dachart"
+    276 "AnFluchtlinie"
+    274 "VorkehrungBepflanzung"
+    242 "GebaeudeHoeheArt"
+    220 "BegruenungDach"
+    219 "WidmungInMehrerenEbenen"
+    219 "AbschlussDachMaxBezugGebaeude"
+    217 "BBAllgemein"
+    213 "ErrichtungGebaeude"
+    207 "GehsteigbreiteMin"
+    200 "GebaeudeHoeheMaxAbsolut"
+    189 "GesamtePlangebiet"
+    177 "StrassenbreiteMin"
+    175 "GebaeudeBautyp"
+    157 "Nutzungsart"
+    154 "UnterbrechungGeschlosseneBauweise"
+    152 "AufbautenZulaessig"
+    144 "VonBebauungFreizuhalten"
+    132 "DachneigungMax"
+    116 "Bauklasse"
+    115 "EinfriedungAusgestaltung"
+    109 "DurchgangBreite"
+    107 "BebauteFlaecheMaxProzentual"
+    103 "AusnahmeGaertnerischAuszugestaltende"
+    100 "StrassenbreiteMax"
+     97 "BauweiseID"
+     96 "DurchgangHoehe"
+     91 "VolumenUndUmbaubarerRaum"
+     85 "UnterirdischeBaulichkeiten"
+     81 "Struktureinheit"
+     80 "Stockwerk"
+     77 "EinfriedungHoeheGesamt"
+     71 "DachflaecheMin"
+     69 "BebauteFlaecheMax"
+     67 "VerbotFensterZuOeffentlichenVerkehrsflaechen"
+     65 "BebauteFlaecheMaxNebengebaeude"
+     61 "VorstehendeBauelementeAusladungMax"
+     61 "VerbotWohnung"
+     56 "EinfriedungLage"
+     54 "AnOeffentlichenVerkehrsflaechen"
+     51 "OeffentlicheVerkehrsflaecheBreiteMin"
+     50 "AnordnungGaertnerischeAusgestaltungProzentual"
+     49 "StrassenbreiteVonBis"
+     48 "EinfriedungZulaessig"
+     48 "BebauteFlaecheMin"
+     46 "VorbautenVerbot"
+     44 "AnlageZumEinstellenVorhanden"
+     36 "EinleitungNiederschlagswaesser"
+     36 "AnteilDachbegruenung"
+     32 "VerbotStaffelung"
+     32 "GebaeudeHoeheMaxWN"
+     27 "StellplatzImNiveauZulaessig"
+     27 "ArkadeHoehe"
+     20 "FBOKMinimumWohnungen"
+     19 "MaxAnzahlGeschosseOberirdisch"
+     19 "AnzahlGebaeudeMax"
+     18 "StellplatzregulativUmfangMinimumRelativ"
+     18 "InSchutzzone"
+     17 "Massengliederung"
+     16 "BauklasseVIHoeheMax"
+     15 "StellplatzMax"
+     14 "BauklasseVIHoeheMin"
+     14 "AbschlussDachMaxBezugGelaende"
+     13 "Kleinhaeuser"
+     13 "DachneigungMin"
+     11 "TechnischeAufbautenHoeheMax"
+     11 "StellplatzregulativUmfangMaximumRelativ"
+     11 "OberflaecheBestimmungP"
+     11 "MaxAnzahlDachgeschosse"
+     11 "DurchfahrtHoehe"
+     10 "VorbautenBeschraenkung"
+     10 "VerbotBueroGeschaeftsgebaeude"
+      9 "GaragengebaeudeAusfuehrung"
+      8 "StellplatzregulativUmfangMaximumAbsolut"
+      8 "GebaeudeHoeheMin"
+      7 "MindestraumhoeheEG"
+      7 "BestimmmungenFuerHochhausUndGrossbauvorhaben"
+      6 "HoehenlageGrundflaeche"
+      6 "Geschaeftsstrassen"
+      6 "DurchfahrtBreite"
+      5 "GebaeudeEinschraenkungP"
+      5 "AusnahmeVonWohnungenUnzulaessig"
+      4 "HochhausZulaessigGemaessBB"
+      3 "MaxAnzahlGeschosseOberirdischOhneDachgeschoss"
+      2 "ZulaessigeGeschossanzahlEinkaufszentrum"
+      2 "Einbautrasse"
+      1 "VerbotStellplaetzeUndParkgebaeude"
+      1 "VerbotAufenthaltsraum"
+      1 "AnteilBaumbepflanzung"
+
 train
 Number of docs
 200
 Number of sentences
 5491
-Number of sentences with attributes
-3443
+Number of sentences with gold attributes
+3318
 Sum of all gold attributes
-8266
+7714
 Gold attribute distribution
-   1444 "Planzeichen"
-    545 "Widmung"
+   1441 "Planzeichen"
+    542 "Widmung"
     337 "VerkehrsflaecheID"
     227 "Dachart"
     221 "AnFluchtlinie"
     213 "VorkehrungBepflanzung"
     213 "AnordnungGaertnerischeAusgestaltung"
-    188 "BBAllgemein"
+    186 "BBAllgemein"
     185 "GebaeudeHoeheArt"
     175 "ErrichtungGebaeude"
     174 "WidmungInMehrerenEbenen"
@@ -392,10 +496,10 @@ Number of docs
 25
 Number of sentences
 875
-Number of sentences with attributes
-559
+Number of sentences with gold attributes
+515
 Sum of all gold attributes
-1221
+1064
 Gold attribute distribution
     228 "Planzeichen"
      59 "Widmung"
@@ -482,10 +586,10 @@ Number of docs
 25
 Number of sentences
 683
-Number of sentences with attributes
-419
+Number of sentences with gold attributes
+405
 Sum of all gold attributes
-977
+887
 Gold attribute distribution
     175 "Planzeichen"
      40 "Widmung"

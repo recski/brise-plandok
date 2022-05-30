@@ -528,13 +528,7 @@ VALUE_PATTERNS = {
         r" ([a-z](-[a-z])+),? ": {
             GROUP: 1,
         },
-        r"\s((Ak )?(öD[gf]))\s": {
-            GROUP: 1,
-        },
         r"\s(Ak)\s": {
-            GROUP: 1,
-        },
-        r"\s(D[fg])\s": {
             GROUP: 1,
         },
         r"(Punkten?|Buchstaben?) ([a-zA-Z] und [a-zA-Z])": {

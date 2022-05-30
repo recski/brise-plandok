@@ -149,7 +149,9 @@ def _flatten(response, pset_type):
 
 
 def __remove_units(value):
-    return re.sub(UNIT, "", value)
+    if type(value) is str:
+        return re.sub(UNIT, "", value)
+    return value
 
 
 def _retain_minimal(response):

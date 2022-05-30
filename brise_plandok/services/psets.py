@@ -17,6 +17,7 @@ class PSETJson:
 
 
 class PSETNames:
+    Bebauungfreizuhalten = "WIenBV_TBBebauungfreizuhalten"
     Dachneigung = "WienBV_TBDachneigung"
     Dachbegruenung = "WienBV_TBDachbegruenung"
     VerbotWohnung = "WienBV_TBVerbotWohnung"
@@ -24,6 +25,7 @@ class PSETNames:
     Gebaeudehoehe = "WienBV_TBGebaeudehoehe"
     Dachabschluss = "WienBV_TBDachabschluss"
     Vorbauten = "WienBV_TBVorbauten"
+    VorbautenAusladung = "WienBV_TBVorbautenAusladung"
     VerbotFenster = "WIenBV_TBVerbotFenster"
 
 
@@ -33,9 +35,7 @@ class IFCType:
     PERCENT = "positive Zahl [%]"
     LENGTH = "positive Zahl [m]"
     SQUARE = "positive Zahl [m2]"
-    CUBIC = "positive Zahl [m3]"
     DEGREE = "positive Zahl (Gradzahl)"
-    QUANTITY = "positive Zahl [Anzahl]"
 
 
 class PSETAttributes:
@@ -49,6 +49,10 @@ class PSETAttributes:
     }
     Nutzungsart = {
         PSETJson.PROPERTY_NAME: AttributesNames.Nutzungsart,
+        PSETJson.PROPERTY_TYPE: IFCType.TEXT,
+    }
+    BBAllgemein = {
+        PSETJson.PROPERTY_NAME: AttributesNames.BBAllgemein,
         PSETJson.PROPERTY_TYPE: IFCType.TEXT,
     }
     AnFluchtlinie = {
@@ -69,7 +73,7 @@ class PSETAttributes:
     }
     Bauklasse = {
         PSETJson.PROPERTY_NAME: AttributesNames.Bauklasse,
-        PSETJson.PROPERTY_TYPE: IFCType.DEGREE,
+        PSETJson.PROPERTY_TYPE: IFCType.TEXT,
     }
     InSchutzzone = {
         PSETJson.PROPERTY_NAME: AttributesNames.InSchutzzone,
@@ -113,7 +117,7 @@ class PSETAttributes:
     }
     Stockwerk = {
         PSETJson.PROPERTY_NAME: AttributesNames.Stockwerk,
-        PSETJson.PROPERTY_TYPE: IFCType.QUANTITY,
+        PSETJson.PROPERTY_TYPE: IFCType.TEXT,
     }
     StellplatzregulativUmfangMaximumRelativ = {
         PSETJson.PROPERTY_NAME: AttributesNames.StellplatzregulativUmfangMaximumRelativ,
@@ -159,6 +163,14 @@ class PSETAttributes:
         PSETJson.PROPERTY_NAME: AttributesNames.AbschlussDachMaxBezugGebaeude,
         PSETJson.PROPERTY_TYPE: IFCType.LENGTH,
     }
+    VorstehendeBauelementeAusladungMax = {
+        PSETJson.PROPERTY_NAME: AttributesNames.VorstehendeBauelementeAusladungMax,
+        PSETJson.PROPERTY_TYPE: IFCType.LENGTH,
+    }
+    VonBebauungFreizuhalten = {
+        PSETJson.PROPERTY_NAME: AttributesNames.VonBebauungFreizuhalten,
+        PSETJson.PROPERTY_TYPE: IFCType.TEXT,
+    }
 
 
 PSETS = {
@@ -171,6 +183,7 @@ PSETS = {
             PSETAttributes.Planzeichen,
             PSETAttributes.Widmung,
             PSETAttributes.Nutzungsart,
+            PSETAttributes.BBAllgemein,
             PSETAttributes.AnFluchtlinie,
             PSETAttributes.Dachart,
             PSETAttributes.GebaeudeHoeheArt,
@@ -187,6 +200,7 @@ PSETS = {
             PSETAttributes.Planzeichen,
             PSETAttributes.Widmung,
             PSETAttributes.Nutzungsart,
+            PSETAttributes.BBAllgemein,
             PSETAttributes.Dachart,
             PSETAttributes.GebaeudeHoeheMaxAbsolut,
             PSETAttributes.GebaeudeHoeheMaxWN,
@@ -205,6 +219,7 @@ PSETS = {
             PSETAttributes.Planzeichen,
             PSETAttributes.Widmung,
             PSETAttributes.Nutzungsart,
+            PSETAttributes.BBAllgemein,
             PSETAttributes.GesamtePlangebiet,
             PSETAttributes.Stockwerk,
         ],
@@ -218,21 +233,22 @@ PSETS = {
             PSETAttributes.Planzeichen,
             PSETAttributes.Widmung,
             PSETAttributes.Nutzungsart,
+            PSETAttributes.BBAllgemein,
         ],
     },
     PSETNames.Gebaeudehoehe: {
         PSETJson.REQUIRED: [
             PSETAttributes.GebaeudeHoeheMaxAbsolut,
+            PSETAttributes.GebaeudeHoeheMaxWN,
             PSETAttributes.Bauklasse,
         ],
         PSETJson.OPTIONAL: [
             PSETAttributes.Planzeichen,
-            PSETAttributes.BebauteFlaecheMin,
             PSETAttributes.BebauteFlaecheMax,
-            PSETAttributes.BebauteFlaecheMaxProzentual,
-            PSETAttributes.BebauteFlaecheMaxNebengebaeude,
+            PSETAttributes.BebauteFlaecheMin,
             PSETAttributes.Widmung,
             PSETAttributes.Nutzungsart,
+            PSETAttributes.BBAllgemein,
             PSETAttributes.GesamtePlangebiet,
         ],
     },
@@ -242,12 +258,11 @@ PSETS = {
         ],
         PSETJson.OPTIONAL: [
             PSETAttributes.Planzeichen,
-            PSETAttributes.BebauteFlaecheMin,
             PSETAttributes.BebauteFlaecheMax,
-            PSETAttributes.BebauteFlaecheMaxProzentual,
-            PSETAttributes.BebauteFlaecheMaxNebengebaeude,
+            PSETAttributes.BebauteFlaecheMin,
             PSETAttributes.Widmung,
             PSETAttributes.Nutzungsart,
+            PSETAttributes.BBAllgemein,
             PSETAttributes.GesamtePlangebiet,
             PSETAttributes.GebaeudeHoeheMaxAbsolut,
             PSETAttributes.GebaeudeHoeheMaxWN,
@@ -260,12 +275,11 @@ PSETS = {
         ],
         PSETJson.OPTIONAL: [
             PSETAttributes.Planzeichen,
-            PSETAttributes.BebauteFlaecheMin,
             PSETAttributes.BebauteFlaecheMax,
-            PSETAttributes.BebauteFlaecheMaxProzentual,
-            PSETAttributes.BebauteFlaecheMaxNebengebaeude,
+            PSETAttributes.BebauteFlaecheMin,
             PSETAttributes.Widmung,
             PSETAttributes.Nutzungsart,
+            PSETAttributes.BBAllgemein,
             PSETAttributes.AnFluchtlinie,
             PSETAttributes.VerkehrsflaecheID,
             PSETAttributes.GesamtePlangebiet,
@@ -281,6 +295,37 @@ PSETS = {
             PSETAttributes.AnFluchtlinie,
             PSETAttributes.VerkehrsflaecheID,
             PSETAttributes.Stockwerk,
+        ],
+    },
+    PSETNames.VorbautenAusladung: {
+        PSETJson.REQUIRED: [
+            PSETAttributes.VorstehendeBauelementeAusladungMax,
+        ],
+        PSETJson.OPTIONAL: [
+            PSETAttributes.Planzeichen,
+            PSETAttributes.BebauteFlaecheMax,
+            PSETAttributes.BebauteFlaecheMin,
+            PSETAttributes.Widmung,
+            PSETAttributes.Nutzungsart,
+            PSETAttributes.BBAllgemein,
+            PSETAttributes.AnFluchtlinie,
+            PSETAttributes.VerkehrsflaecheID,
+            PSETAttributes.GesamtePlangebiet,
+            PSETAttributes.AnOeffentlichenVerkehrsflaechen,
+        ],
+    },
+    PSETNames.Bebauungfreizuhalten: {
+        PSETJson.REQUIRED: [
+            PSETAttributes.VonBebauungFreizuhalten,
+        ],
+        PSETJson.OPTIONAL: [
+            PSETAttributes.Planzeichen,
+            PSETAttributes.Widmung,
+            PSETAttributes.Nutzungsart,
+            PSETAttributes.BBAllgemein,
+            PSETAttributes.AnFluchtlinie,
+            PSETAttributes.VerkehrsflaecheID,
+            PSETAttributes.GesamtePlangebiet,
         ],
     },
 }

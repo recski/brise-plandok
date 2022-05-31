@@ -1,9 +1,6 @@
-import json
 import os
 
 import pandas as pd
-from xpotato.dataset.dataset import Dataset
-
 from brise_plandok.full_attribute_extraction.attribute.potato.constants import (
     NOT,
 )
@@ -11,6 +8,8 @@ from brise_plandok.full_attribute_extraction.attribute.utils.get_vocab import (
     get_vocab_for_all_attributes,
 )
 from brise_plandok.full_attribute_extraction.attribute.utils.load_data import append_doc_to_data
+from xpotato.dataset.dataset import Dataset
+from xpotato.features.utils import get_features
 
 
 def create_potato_dataset_for_doc(doc, graph_format="fourlang"):
@@ -53,18 +52,22 @@ def get_data_folder_path():
 
 def load_features(attributes=None):
     features = []
-    features_path = _get_manual_feature_folder_path()
-    for filename in os.listdir(features_path):
-        if not filename.endswith(".json"):
+    for feature_path in _get_feature_filepaths(["manual", "additional"]):
+        if not (feature_path.endswith(".json") or feature_path.endswith(".tsv")):
             continue
-        if attributes is None or filename.split(".")[0] in attributes:
-            with open(os.path.join(features_path, filename)) as f:
-                rules = json.load(f)
-                for attr_name in rules:
-                    for rule in rules[attr_name]:
-                        features.append(rule)
+        if attributes is None or os.path.basename(feature_path).split(".")[0] in attributes:
+            features_for_attr, _ = get_features(feature_path)
+            features += features_for_attr
     return features
 
 
-def _get_manual_feature_folder_path():
-    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "features", "manual")
+def _get_feature_filepaths(dirs):
+    subfolders = [
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "features", dir) for dir in dirs
+    ]
+    feature_paths = []
+    for subfolder in subfolders:
+        feature_paths += [
+            os.path.join(subfolder, feature_fn) for feature_fn in os.listdir(subfolder)
+        ]
+    return feature_paths

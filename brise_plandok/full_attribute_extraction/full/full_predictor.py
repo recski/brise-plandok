@@ -12,8 +12,7 @@ class FullPredictor:
 
     def get_prediction_for_sen(self, sen):
         attributes = self.potato_predictor.get_prediction_for_sen(sen)
-        if SenFields.PREDICTED_ATTRIBUTES not in sen:
-            sen[SenFields.PREDICTED_ATTRIBUTES] = {}
+        sen[SenFields.PREDICTED_ATTRIBUTES] = {}
         for attribute in attributes:
             extract_type(
                 sen,

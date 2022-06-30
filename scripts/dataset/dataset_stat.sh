@@ -8,13 +8,13 @@ cat data/*/*.json | jq '.id' | wc -l
 echo "Number of sentences"
 cat data/*/*.json | jq '.sens[].id' | wc -l
 
-echo "Number of sentences with gold attributes"
+echo "Number of sentences with gold attributes (w/o segmentation_error)"
 cat data/*/*.json | jq ".sens[] | select(.segmentation_error == false) | select(.gold_attributes != {}) | .id" | wc -l
 
-echo "Sum of all gold attributes"
+echo "Sum of all gold attributes (w/o segmentation_error)"
 cat data/*/*.json | jq '.sens[] | select(.segmentation_error == false) | .gold_attributes | keys[]' | wc -l
 
-echo "Gold attribute distribution"
+echo "Gold attribute distribution (w/o segmentation_error)"
 cat data/*/*.json | jq '.sens[] | select(.segmentation_error == false) | .gold_attributes | keys[]' | sort | uniq -c | sort -nr
 
 echo ""
@@ -31,13 +31,13 @@ for dataset_name in "${datasets[@]}"; do
     echo "Number of sentences"
     cat data/"$dataset_name"/*.json | jq '.sens[].id' | wc -l
     
-    echo "Number of sentences with gold attributes"
+    echo "Number of sentences with gold attributes (w/o segmentation_error)"
     cat data/"$dataset_name"/*.json | jq ".sens[] | select(.segmentation_error == false) | select(.gold_attributes != {}) | .id" | wc -l
     
-    echo "Sum of all gold attributes"
+    echo "Sum of all gold attributes (w/o segmentation_error)"
     cat data/"$dataset_name"/*.json | jq '.sens[] | select(.segmentation_error == false) | .gold_attributes | keys[]' | wc -l
     
-    echo "Gold attribute distribution"
+    echo "Gold attribute distribution (w/o segmentation_error)"
     cat data/"$dataset_name"/*.json | jq '.sens[] | select(.segmentation_error == false) | .gold_attributes | keys[]' | sort | uniq -c | sort -nr
     
     echo ""

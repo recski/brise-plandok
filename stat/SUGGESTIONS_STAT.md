@@ -1,9 +1,9 @@
-# Suggestion statistics
+# Pre-filled suggestion statistics
 
 ## All sentences
 
 ```bash
-python scripts/dataset_creation/suggestions_stat.py
+python stat/suggestions_stat.py
 
 Number of all sentences: 7049
 Number of sentences with suggestions: 4706
@@ -21,8 +21,8 @@ Ratio of wrong suggestions: 30.04%
 ## Only sentences that contain a rule
 
 ```bash
-python scripts/dataset_creation/suggestions_stat.py -r        
-      
+python stat/suggestions_stat.py -r
+
 Number of all sentences: 3994
 Number of sentences with suggestions: 3925
 Ratio of sentences with suggestions: 98.27%
@@ -39,7 +39,7 @@ Ratio of wrong suggestions: 25.85%
 ## Only sentences that contain a rule with reverted post-processed attributes
 
 ```bash
-python scripts/dataset_creation/suggestions_stat.py -r -o
+python stat/suggestions_stat.py -r -o
 
 Number of all sentences: 3994
 Number of sentences with suggestions: 3925

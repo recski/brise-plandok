@@ -291,3 +291,9 @@ You can recreate this file by calling:
 ### Pre-filled suggestions statistics
 
 For statistics about the pre-filled suggestions during annotation see the [SUGGESTIONS_STAT.md](stat/SUGGESTIONS_STAT.md) file.
+
+You can recreate this file by calling:
+
+```bash
+./stat/suggestion_stat.sh > stat/SUGGESTIONS_STAT.md
+```

@@ -114,3 +114,60 @@ Number of all suggested attributes: 9604
 Number of wrong suggestions: 1456
 Ratio of wrong suggestions: 15.16%
 ```
+## Combined
+
+For the 46 documents already gold after the first stage, the first stage statistics is taken, whereas for 
+all other documents the second stage statistics is taken.
+### All sentences
+
+```bash
+python stat/suggestions_stat.py -c
+
+Number of all sentences: 7049
+Number of sentences with suggestions: 4528
+Ratio of sentences with suggestions: 64.24%
+
+Number of all gold attributes: 9673
+Number of correct suggestions: 6657
+Ratio of correctly suggested gold attributes: 68.82%
+
+Number of all suggested attributes: 9643
+Number of wrong suggestions: 2986
+Ratio of wrong suggestions: 30.97%
+```
+
+### Only sentences that contain a rule
+
+```bash
+python stat/suggestions_stat.py -r -c
+
+Number of all sentences: 3994
+Number of sentences with suggestions: 3719
+Ratio of sentences with suggestions: 93.11%
+
+Number of all gold attributes: 9221
+Number of correct suggestions: 6395
+Ratio of correctly suggested gold attributes: 69.35%
+
+Number of all suggested attributes: 8664
+Number of wrong suggestions: 2269
+Ratio of wrong suggestions: 26.19%
+```
+
+### Only sentences that contain a rule with reverted post-processed attributes
+
+```bash
+python stat/suggestions_stat.py -r -o -c
+
+Number of all sentences: 3994
+Number of sentences with suggestions: 3719
+Ratio of sentences with suggestions: 93.11%
+
+Number of all gold attributes: 9221
+Number of correct suggestions: 7276
+Ratio of correctly suggested gold attributes: 78.91%
+
+Number of all suggested attributes: 8664
+Number of wrong suggestions: 1388
+Ratio of wrong suggestions: 16.02%
+```

@@ -68,3 +68,36 @@ echo "python stat/suggestions_stat.py -r -o"
 echo ""
 python stat/suggestions_stat.py -r -o
 echo "\`\`\`"
+
+##########################################################
+
+echo "## Combined"
+echo ""
+echo "For the 46 documents already gold after the first stage, the first stage statistics is taken, whereas for 
+all other documents the second stage statistics is taken."
+
+echo "### All sentences"
+echo ""
+echo "\`\`\`bash"
+echo "python stat/suggestions_stat.py -c"
+echo ""
+python stat/suggestions_stat.py -c
+echo "\`\`\`"
+echo ""
+
+echo "### Only sentences that contain a rule"
+echo ""
+echo "\`\`\`bash"
+echo "python stat/suggestions_stat.py -r -c"
+echo ""
+python stat/suggestions_stat.py -r -c
+echo "\`\`\`"
+echo ""
+
+echo "### Only sentences that contain a rule with reverted post-processed attributes"
+echo ""
+echo "\`\`\`bash"
+echo "python stat/suggestions_stat.py -r -o -c"
+echo ""
+python stat/suggestions_stat.py -r -o -c
+echo "\`\`\`"

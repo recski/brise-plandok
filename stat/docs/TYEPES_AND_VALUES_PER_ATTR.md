@@ -916,8 +916,8 @@ gemischtes Baugebiet: 19
 Betriebsbaugebiet: 15
 L: 15
 Eklw: 13
+Sport- und Spielplätze: 13
 Schutzgebiet: 12
-Sport- und Spielplätze: 12
 Gartensiedlungsgebiet: 11
 W: 11
 GBGV: 9
@@ -945,9 +945,6 @@ GS: 2
 Grünland - Erholungsgebiet - Kleingartengebiet: 2
 WGV: 2
 Wohn- oder gemischtem Baugebiet: 2
- Kleingartengebiet für ganzjähriges Wohnen: 1
- Ländliches Gebiet: 1
- Sport- und Spielplätze: 1
 Betriebsbaugebiet bzw. Industriegebiet: 1
 Ekl: 1
 Erholungsgebiet – Kleingartengebiet: 1
@@ -962,6 +959,8 @@ Gemischtes Baugebiet – Geschäftsviertel: 1
 Grünland - Erholungsgebiet: 1
 Grünlands: 1
 IG: 1
+Kleingartengebiet für ganzjähriges Wohnen: 1
+Ländliches Gebiet: 1
 SN: 1
 Schutzgebiete: 1
 Sondergebiet, Marktplatz, Grundfläche für öffentliche Zwecke: 1

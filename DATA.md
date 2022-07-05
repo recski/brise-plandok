@@ -298,6 +298,17 @@ You can recreate this file by calling:
 ./stat/type_distribution.sh > stat/TYPE_DISTRIBUTION.md
 ```
 
+
+### Types and values per attribute
+
+For the distribution of the attributes see the [TYEPES_AND_VALUES_PER_ATTR.md](stat/TYEPES_AND_VALUES_PER_ATTR.md) file.
+
+You can recreate this file by calling:
+
+```bash
+python stat/types_and_values_per_attr.py > stat/TYEPES_AND_VALUES_PER_ATTR.md
+```
+
 ### Modality distribution
 
 For the distribution of the attributes see the [MODALITY_DISTRIBUTION.md](stat/MODALITY_DISTRIBUTION.md) file.

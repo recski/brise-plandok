@@ -6,11 +6,11 @@ Number of docs
 250
 Number of sentences
 7049
-Number of sentences with gold attributes (w/o segmentation_error)
+Number of sentences with gold attributes (w/o segmentation_error, counted once per sentence)
 4238
-Sum of all gold attributes (w/o segmentation_error)
+Sum of all gold attributes (w/o segmentation_error, counted once per sentence)
 9665
-Gold attribute distribution (w/o segmentation_error)
+Gold attribute distribution (w/o segmentation_error, counted once per sentence)
    1844 "Planzeichen"
     641 "Widmung"
     400 "VerkehrsflaecheID"
@@ -110,11 +110,11 @@ Number of docs
 200
 Number of sentences
 5491
-Number of sentences with gold attributes (w/o segmentation_error)
+Number of sentences with gold attributes (w/o segmentation_error, counted once per sentence)
 3318
-Sum of all gold attributes (w/o segmentation_error)
+Sum of all gold attributes (w/o segmentation_error, counted once per sentence)
 7714
-Gold attribute distribution (w/o segmentation_error)
+Gold attribute distribution (w/o segmentation_error, counted once per sentence)
    1441 "Planzeichen"
     542 "Widmung"
     337 "VerkehrsflaecheID"
@@ -213,11 +213,11 @@ Number of docs
 25
 Number of sentences
 875
-Number of sentences with gold attributes (w/o segmentation_error)
+Number of sentences with gold attributes (w/o segmentation_error, counted once per sentence)
 515
-Sum of all gold attributes (w/o segmentation_error)
+Sum of all gold attributes (w/o segmentation_error, counted once per sentence)
 1064
-Gold attribute distribution (w/o segmentation_error)
+Gold attribute distribution (w/o segmentation_error, counted once per sentence)
     228 "Planzeichen"
      59 "Widmung"
      42 "AnordnungGaertnerischeAusgestaltung"
@@ -303,11 +303,11 @@ Number of docs
 25
 Number of sentences
 683
-Number of sentences with gold attributes (w/o segmentation_error)
+Number of sentences with gold attributes (w/o segmentation_error, counted once per sentence)
 405
-Sum of all gold attributes (w/o segmentation_error)
+Sum of all gold attributes (w/o segmentation_error, counted once per sentence)
 887
-Gold attribute distribution (w/o segmentation_error)
+Gold attribute distribution (w/o segmentation_error, counted once per sentence)
     175 "Planzeichen"
      40 "Widmung"
      37 "AnordnungGaertnerischeAusgestaltung"

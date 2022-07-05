@@ -278,63 +278,71 @@ Dataset was split by calling the following script:
 ./scripts/dataset_creation/split_data.sh 
 ```
 
+## Dataset stats
+
+You can re-run all stats by calling:
+
+```bash
+./stat/run_all_stats.shy
+```
+
 ### Attribute distribution
 
-For the distribution of the attributes see the [ATTRIBUTE_DISTRIBUTION.md](stat/ATTRIBUTE_DISTRIBUTION.md) file.
+For the distribution of the attributes see the [ATTRIBUTE_DISTRIBUTION.md](stat/docs/ATTRIBUTE_DISTRIBUTION.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-./stat/attribute_distribution.sh > stat/ATTRIBUTE_DISTRIBUTION.md
+./stat/attribute_distribution.sh > stat/docs/ATTRIBUTE_DISTRIBUTION.md
 ```
 
 ### Types distribution
 
-For the distribution of the attributes see the [TYPE_DISTRIBUTION.md](stat/TYPE_DISTRIBUTION.md) file.
+For the distribution of the attributes see the [TYPE_DISTRIBUTION.md](stat/docs/TYPE_DISTRIBUTION.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-./stat/type_distribution.sh > stat/TYPE_DISTRIBUTION.md
+./stat/type_distribution.sh > stat/docs/TYPE_DISTRIBUTION.md
 ```
 
 
 ### Types and values per attribute
 
-For the distribution of the attributes see the [TYEPES_AND_VALUES_PER_ATTR.md](stat/TYEPES_AND_VALUES_PER_ATTR.md) file.
+For the distribution of the attributes see the [TYEPES_AND_VALUES_PER_ATTR.md](stat/docs/TYEPES_AND_VALUES_PER_ATTR.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-python stat/types_and_values_per_attr.py > stat/TYEPES_AND_VALUES_PER_ATTR.md
+python stat/types_and_values_per_attr.py > stat/docs/TYEPES_AND_VALUES_PER_ATTR.md
 ```
 
 ### Modality distribution
 
-For the distribution of the attributes see the [MODALITY_DISTRIBUTION.md](stat/MODALITY_DISTRIBUTION.md) file.
+For the distribution of the attributes see the [MODALITY_DISTRIBUTION.md](stat/docs/MODALITY_DISTRIBUTION.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-./stat/modality_distribution.sh > stat/MODALITY_DISTRIBUTION.md
+./stat/modality_distribution.sh > stat/docs/MODALITY_DISTRIBUTION.md
 ```
 
 ### Rule statistics
 
-For rule statistics see the [RULE_STAT.md](stat/RULE_STAT.md) file.
+For rule statistics see the [RULE_STAT.md](stat/docs/RULE_STAT.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-./stat/rule_stat.sh > stat/RULE_STAT.md
+./stat/rule_stat.sh > stat/docs/RULE_STAT.md
 ```
 
 ### Pre-filled suggestions statistics
 
-For statistics about the pre-filled suggestions during annotation see the [SUGGESTIONS_STAT.md](stat/SUGGESTIONS_STAT.md) file.
+For statistics about the pre-filled suggestions during annotation see the [SUGGESTIONS_STAT.md](stat/docs/SUGGESTIONS_STAT.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-./stat/suggestion_stat.sh > stat/SUGGESTIONS_STAT.md
+./stat/suggestion_stat.sh > stat/docs/SUGGESTIONS_STAT.md
 ```

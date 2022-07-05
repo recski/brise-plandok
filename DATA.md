@@ -285,7 +285,17 @@ For the distribution of the attributes see the [ATTRIBUTE_DISTRIBUTION.md](stat/
 You can recreate this file by calling:
 
 ```bash
-./stat/dataset_stat.sh > stat/ATTRIBUTE_DISTRIBUTION.md
+./stat/attribute_distribution.sh > stat/ATTRIBUTE_DISTRIBUTION.md
+```
+
+### Types distribution
+
+For the distribution of the attributes see the [TYPE_DISTRIBUTION.md](stat/TYPE_DISTRIBUTION.md) file.
+
+You can recreate this file by calling:
+
+```bash
+./stat/type_distribution.sh > stat/TYPE_DISTRIBUTION.md
 ```
 
 ### Pre-filled suggestions statistics

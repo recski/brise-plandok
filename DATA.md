@@ -298,7 +298,6 @@ You can recreate this file by calling:
 ./stat/type_distribution.sh > stat/TYPE_DISTRIBUTION.md
 ```
 
-
 ### Modality distribution
 
 For the distribution of the attributes see the [MODALITY_DISTRIBUTION.md](stat/MODALITY_DISTRIBUTION.md) file.
@@ -307,6 +306,16 @@ You can recreate this file by calling:
 
 ```bash
 ./stat/modality_distribution.sh > stat/MODALITY_DISTRIBUTION.md
+```
+
+### Rule statistics
+
+For rule statistics see the [RULE_STAT.md](stat/RULE_STAT.md) file.
+
+You can recreate this file by calling:
+
+```bash
+./stat/rule_stat.sh > stat/RULE_STAT.md
 ```
 
 ### Pre-filled suggestions statistics

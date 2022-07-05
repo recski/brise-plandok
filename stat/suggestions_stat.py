@@ -9,6 +9,7 @@ FIRST_STAGE_IDS = "stat/first_stage_gold_ids.txt"
 
 
 def print_suggestions_stat(only_rules, original_attributes, first_stage, combined):
+    all_docs = 0
     all_sentences = 0
     all_gold_attributes = 0
     all_suggested_attributes = 0
@@ -27,6 +28,7 @@ def print_suggestions_stat(only_rules, original_attributes, first_stage, combine
                 if not filename.split(".")[0] in first_stage_gold_ids:
                     continue
             doc = load_json(fn)
+            all_docs += 1
             for sen in doc[DocumentFields.SENS].values():
                 if not only_rules or (
                     SenFields.GOLD_MODALITY in sen and sen[SenFields.GOLD_MODALITY] is not None
@@ -45,6 +47,7 @@ def print_suggestions_stat(only_rules, original_attributes, first_stage, combine
                             gold_attrs = convert_back_post_processed(gold_attrs)
                         correct_suggestions += len(gold_attrs & suggested_attrs)
     print_stat(
+        all_docs,
         all_gold_attributes,
         all_sentences,
         all_suggested_attributes,
@@ -62,12 +65,14 @@ def get_gen_attr_field(first_stage, combined, doc_id, first_stage_gold_ids):
 
 
 def print_stat(
+    all_docs,
     all_gold_attributes,
     all_sentences,
     all_suggested_attributes,
     correct_suggestions,
     sentences_with_suggestions,
 ):
+    print(f"Number of all docs: {all_docs}")
     print(f"Number of all sentences: {all_sentences}")
     print(f"Number of sentences with suggestions: {sentences_with_suggestions}")
     print(

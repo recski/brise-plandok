@@ -8,6 +8,7 @@ Only 46 documents were reviewed at this stage.
 ```bash
 python stat/suggestions_stat.py -f
 
+Number of all docs: 46
 Number of all sentences: 1372
 Number of sentences with suggestions: 676
 Ratio of sentences with suggestions: 49.27%
@@ -26,6 +27,7 @@ Ratio of wrong suggestions: 16.90%
 ```bash
 python stat/suggestions_stat.py -r -f
 
+Number of all docs: 46
 Number of all sentences: 813
 Number of sentences with suggestions: 588
 Ratio of sentences with suggestions: 72.32%
@@ -44,6 +46,7 @@ Ratio of wrong suggestions: 12.89%
 ```bash
 python stat/suggestions_stat.py -r -o -f
 
+Number of all docs: 46
 Number of all sentences: 813
 Number of sentences with suggestions: 588
 Ratio of sentences with suggestions: 72.32%
@@ -66,6 +69,7 @@ which is included in the statistics below.
 ```bash
 python stat/suggestions_stat.py
 
+Number of all docs: 250
 Number of all sentences: 7049
 Number of sentences with suggestions: 4706
 Ratio of sentences with suggestions: 66.76%
@@ -84,6 +88,7 @@ Ratio of wrong suggestions: 30.04%
 ```bash
 python stat/suggestions_stat.py -r
 
+Number of all docs: 250
 Number of all sentences: 3994
 Number of sentences with suggestions: 3925
 Ratio of sentences with suggestions: 98.27%
@@ -102,6 +107,7 @@ Ratio of wrong suggestions: 25.85%
 ```bash
 python stat/suggestions_stat.py -r -o
 
+Number of all docs: 250
 Number of all sentences: 3994
 Number of sentences with suggestions: 3925
 Ratio of sentences with suggestions: 98.27%
@@ -123,6 +129,7 @@ all other documents the second stage statistics is taken.
 ```bash
 python stat/suggestions_stat.py -c
 
+Number of all docs: 250
 Number of all sentences: 7049
 Number of sentences with suggestions: 4528
 Ratio of sentences with suggestions: 64.24%
@@ -141,6 +148,7 @@ Ratio of wrong suggestions: 30.97%
 ```bash
 python stat/suggestions_stat.py -r -c
 
+Number of all docs: 250
 Number of all sentences: 3994
 Number of sentences with suggestions: 3719
 Ratio of sentences with suggestions: 93.11%
@@ -159,6 +167,7 @@ Ratio of wrong suggestions: 26.19%
 ```bash
 python stat/suggestions_stat.py -r -o -c
 
+Number of all docs: 250
 Number of all sentences: 3994
 Number of sentences with suggestions: 3719
 Ratio of sentences with suggestions: 93.11%

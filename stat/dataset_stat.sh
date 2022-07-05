@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "# Attribute distribution"
+echo ""
+echo "\`\`\`bash"
+
 echo "total"
 
 echo "Number of docs"
@@ -43,3 +47,5 @@ for dataset_name in "${datasets[@]}"; do
     echo ""
 done
 
+echo "\`\`\`"
+echo ""

@@ -1,19 +1,16 @@
-# Run dataset statistics
+# Attribute distribution
 
 ```bash
-./scripts/dataset_creation/dataset_stat.sh
-
-# Answer
 total
 Number of docs
 250
 Number of sentences
 7049
-Number of sentences with gold attributes
+Number of sentences with gold attributes (w/o segmentation_error)
 4238
-Sum of all gold attributes
+Sum of all gold attributes (w/o segmentation_error)
 9665
-Gold attribute distribution
+Gold attribute distribution (w/o segmentation_error)
    1844 "Planzeichen"
     641 "Widmung"
     400 "VerkehrsflaecheID"
@@ -113,11 +110,11 @@ Number of docs
 200
 Number of sentences
 5491
-Number of sentences with gold attributes
+Number of sentences with gold attributes (w/o segmentation_error)
 3318
-Sum of all gold attributes
+Sum of all gold attributes (w/o segmentation_error)
 7714
-Gold attribute distribution
+Gold attribute distribution (w/o segmentation_error)
    1441 "Planzeichen"
     542 "Widmung"
     337 "VerkehrsflaecheID"
@@ -216,11 +213,11 @@ Number of docs
 25
 Number of sentences
 875
-Number of sentences with gold attributes
+Number of sentences with gold attributes (w/o segmentation_error)
 515
-Sum of all gold attributes
+Sum of all gold attributes (w/o segmentation_error)
 1064
-Gold attribute distribution
+Gold attribute distribution (w/o segmentation_error)
     228 "Planzeichen"
      59 "Widmung"
      42 "AnordnungGaertnerischeAusgestaltung"
@@ -306,11 +303,11 @@ Number of docs
 25
 Number of sentences
 683
-Number of sentences with gold attributes
+Number of sentences with gold attributes (w/o segmentation_error)
 405
-Sum of all gold attributes
+Sum of all gold attributes (w/o segmentation_error)
 887
-Gold attribute distribution
+Gold attribute distribution (w/o segmentation_error)
     175 "Planzeichen"
      40 "Widmung"
      37 "AnordnungGaertnerischeAusgestaltung"
@@ -383,4 +380,6 @@ Gold attribute distribution
       1 "BestimmmungenFuerHochhausUndGrossbauvorhaben"
       1 "AnOeffentlichenVerkehrsflaechen"
       1 "AbschlussDachMaxBezugGelaende"
+
 ```
+

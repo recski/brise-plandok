@@ -278,6 +278,16 @@ Dataset was split by calling the following script:
 ./scripts/dataset_creation/split_data.sh 
 ```
 
+### Attribute distribution
+
 For the distribution of the attributes see the [ATTRIBUTE_DISTRIBUTION.md](stat/ATTRIBUTE_DISTRIBUTION.md) file.
+
+You can recreate this file by calling:
+
+```bash
+./stat/dataset_stat.sh > stat/ATTRIBUTE_DISTRIBUTION.md
+```
+
+### Pre-filled suggestions statistics
 
 For statistics about the pre-filled suggestions during annotation see the [SUGGESTIONS_STAT.md](stat/SUGGESTIONS_STAT.md) file.

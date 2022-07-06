@@ -346,3 +346,13 @@ You can recreate this file by calling:
 ```bash
 ./stat/suggestion_stat.sh > stat/docs/SUGGESTIONS_STAT.md
 ```
+
+### Annotator statistics
+
+For statistics about the pre-filled suggestions during annotation see the [ANNOTATOR_STAT.md](stat/docs/ANNOTATOR_STAT.md) file.
+
+You can recreate this file by calling:
+
+```bash
+python stat/annotator_stat.py > stat/docs/ANNOTATOR_STAT.md
+```

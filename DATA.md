@@ -349,10 +349,10 @@ You can recreate this file by calling:
 
 ### Annotator statistics
 
-For statistics about the pre-filled suggestions during annotation see the [ANNOTATOR_STAT.md](stat/docs/ANNOTATOR_STAT.md) file.
+For statistics about the pre-filled suggestions during annotation see the [ANNOTATOR_MOD_STAT.md](stat/docs/ANNOTATOR_MOD_STAT.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-python stat/annotator_stat.py > stat/docs/ANNOTATOR_STAT.md
+python stat/annotator_mod_stat.py > stat/docs/ANNOTATOR_MOD_STAT.md
 ```

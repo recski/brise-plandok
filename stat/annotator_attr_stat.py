@@ -23,7 +23,6 @@ FP = "FP"
 FN = "FN"
 
 CNT = "cnt"
-CNT_CORR = "cnt_correct"
 CORRECT_RATIO = "correct_ratio"
 
 EMPTY = "_empty"
@@ -64,7 +63,9 @@ def annotator_stat():
 def sort_map(attr_stat):
     attr_stat = {k: v for k, v in sorted(attr_stat.items(), key=lambda item: item[0])}
     for ann, stat in attr_stat.items():
-        attr_stat[ann] = {k: v for k, v in sorted(stat.items(), key=lambda item: item[0])}
+        attr_stat[ann] = {
+            k: v for k, v in sorted(stat.items(), key=lambda item: item[1][CNT], reverse=True)
+        }
     return attr_stat
 
 
@@ -112,6 +113,8 @@ def add_attr_stat(gold_attrs, ann, ann_attrs, attr_stat):
         attr_stat[ann][attr][FN] += 1
     for attr in ann_attrs.difference(gold_attrs):
         attr_stat[ann][attr][FP] += 1
+    for attr in gold_attrs:
+        attr_stat[ann][attr][CNT] += 1
 
 
 def print_stat(attr_stat):
@@ -132,12 +135,13 @@ def print_attribute_stat_for_ann(ann_stat):
             REC: [],
         },
     }
-    values = [["Name", "TP", "FP", "FN", "Precision", "Recall"]]
+    values = [["Name", "CNT", "TP", "FP", "FN", "Precision", "Recall"]]
     p_r_f = count_p_r_f(ann_stat)
     for attr, stat_per_attr in ann_stat.items():
         values.append(
             [
                 attr,
+                stat_per_attr[CNT],
                 stat_per_attr[TP],
                 stat_per_attr[FP],
                 stat_per_attr[FN],
@@ -145,6 +149,7 @@ def print_attribute_stat_for_ann(ann_stat):
                 p_r_f[attr]["R"],
             ]
         )
+        agg[MICRO][CNT] += stat_per_attr[CNT]
         agg[MICRO][TP] += stat_per_attr[TP]
         agg[MICRO][FP] += stat_per_attr[FP]
         agg[MICRO][FN] += stat_per_attr[FN]
@@ -154,6 +159,7 @@ def print_attribute_stat_for_ann(ann_stat):
     values.append(
         [
             MICRO,
+            agg[MICRO][CNT],
             agg[MICRO][TP],
             agg[MICRO][FP],
             agg[MICRO][FN],
@@ -162,7 +168,15 @@ def print_attribute_stat_for_ann(ann_stat):
         ]
     )
     values.append(
-        [MACRO, "-", "-", "-", statistics.mean(agg[MACRO][PREC]), statistics.mean(agg[MACRO][REC])]
+        [
+            MACRO,
+            "-",
+            "-",
+            "-",
+            "-",
+            statistics.mean(agg[MACRO][PREC]),
+            statistics.mean(agg[MACRO][REC]),
+        ]
     )
     print(make_markdown_table(values))
 

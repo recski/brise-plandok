@@ -119,8 +119,8 @@ This statistics is calculated without the sentences with a segmentation error.
 | GebaeudeHoeheArt | 77 | 72 | 7 | 5 | 0.911 | 0.935 | 
 | BegruenungDach | 76 | 75 | 3 | 1 | 0.962 | 0.987 | 
 | ErrichtungGebaeude | 70 | 44 | 18 | 26 | 0.710 | 0.629 | 
-| AbschlussDachMaxBezugGebaeude | 67 | 67 | 3 | 0 | 0.957 | 1.000 | 
 | GesamtePlangebiet | 67 | 0 | 0 | 67 | 1.000 | 0.000 | 
+| AbschlussDachMaxBezugGebaeude | 67 | 67 | 3 | 0 | 0.957 | 1.000 | 
 | WidmungInMehrerenEbenen | 67 | 63 | 8 | 4 | 0.887 | 0.940 | 
 | GehsteigbreiteMin | 65 | 64 | 0 | 1 | 1.000 | 0.985 | 
 | GebaeudeBautyp | 63 | 62 | 5 | 1 | 0.925 | 0.984 | 
@@ -204,8 +204,8 @@ This statistics is calculated without the sentences with a segmentation error.
 | WidmungUndZweckbestimmung | 0 | 0 | 212 | 0 | 0.000 | 1.000 | 
 | Flaechen | 0 | 0 | 211 | 0 | 0.000 | 1.000 | 
 | GebaeudeHoeheMax | 0 | 0 | 97 | 0 | 0.000 | 1.000 | 
-| StellplatzverpflichtungArt | 0 | 0 | 4 | 0 | 0.000 | 1.000 | 
 | StellplatzregulativVorhanden | 0 | 0 | 4 | 0 | 0.000 | 1.000 | 
+| StellplatzverpflichtungArt | 0 | 0 | 4 | 0 | 0.000 | 1.000 | 
 | GebaeudeHoeheMin | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
 | MaxHoeheWohngebaeude | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | VerbotUnterirdischeBauwerkeUeberBaufluchtlinie | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
@@ -312,8 +312,8 @@ This statistics is calculated without the sentences with a segmentation error.
 | GebaeudeHoeheMin | 0 | 0 | 7 | 0 | 0.000 | 1.000 | 
 | VerbotStellplaetzeUndParkgebaeude | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | GaragengebaeudeAusfuehrung | 0 | 0 | 3 | 0 | 0.000 | 1.000 | 
-| StellplatzverpflichtungArt | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | StellplatzregulativVorhanden | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
+| StellplatzverpflichtungArt | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | VerbotUnterirdischeBauwerkeUeberBaufluchtlinie | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
 | AusnuetzbarkeitWidmungskategorieGefoerderterWohnbau | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | micro | 3045 | 2340 | 795 | 705 | 0.746 | 0.768 | 
@@ -418,8 +418,8 @@ This statistics is calculated without the sentences with a segmentation error.
 | Flaechen | 0 | 0 | 264 | 0 | 0.000 | 1.000 | 
 | GebaeudeHoeheMax | 0 | 0 | 99 | 0 | 0.000 | 1.000 | 
 | DON'T ANNOTATE THIS SENTENCE | 0 | 0 | 42 | 0 | 0.000 | 1.000 | 
-| StellplatzverpflichtungArt | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | StellplatzregulativVorhanden | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
+| StellplatzverpflichtungArt | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | VerbotAufenthaltsraum | 0 | 0 | 3 | 0 | 0.000 | 1.000 | 
 | VerbotUnterirdischeBauwerkeUeberBaufluchtlinie | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
 | ArkadeLaenge | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
@@ -508,8 +508,8 @@ This statistics is calculated without the sentences with a segmentation error.
 | BestimmmungenFuerHochhausUndGrossbauvorhaben | 3 | 3 | 10 | 0 | 0.231 | 1.000 | 
 | TechnischeAufbautenHoeheMax | 3 | 3 | 2 | 0 | 0.600 | 1.000 | 
 | BauklasseVIHoeheMin | 3 | 1 | 0 | 2 | 1.000 | 0.333 | 
-| GaragengebaeudeAusfuehrung | 3 | 2 | 9 | 1 | 0.182 | 0.667 | 
 | OberflaecheBestimmungP | 3 | 2 | 4 | 1 | 0.333 | 0.667 | 
+| GaragengebaeudeAusfuehrung | 3 | 2 | 9 | 1 | 0.182 | 0.667 | 
 | VorbautenBeschraenkung | 3 | 3 | 5 | 0 | 0.375 | 1.000 | 
 | StellplatzregulativUmfangMaximumRelativ | 3 | 3 | 3 | 0 | 0.500 | 1.000 | 
 | GebaeudeEinschraenkungP | 2 | 1 | 2 | 1 | 0.333 | 0.500 | 
@@ -640,5 +640,229 @@ This statistics is calculated without the sentences with a segmentation error.
 | StellplatzregulativVorhanden | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | micro | 3171 | 2371 | 802 | 800 | 0.747 | 0.748 | 
 | macro | - | - | - | - | 0.784 | 0.780 | 
+
+
+## Average
+
+|  Name | Precision | Recall |
+|-------------- | -------------- | -------------- | 
+| Planzeichen | 0.976 | 0.975 | 
+| Widmung | 1.000 | 0.000 | 
+| VerkehrsflaecheID | 0.909 | 0.837 | 
+| AnordnungGaertnerischeAusgestaltung | 0.867 | 0.969 | 
+| VorkehrungBepflanzung | 0.985 | 0.957 | 
+| AnFluchtlinie | 0.747 | 0.911 | 
+| Dachart | 0.984 | 0.967 | 
+| BegruenungDach | 0.966 | 0.986 | 
+| GebaeudeHoeheArt | 0.921 | 0.937 | 
+| WidmungInMehrerenEbenen | 0.790 | 0.919 | 
+| GehsteigbreiteMin | 1.000 | 0.990 | 
+| GesamtePlangebiet | 1.000 | 0.000 | 
+| BBAllgemein | 1.000 | 0.000 | 
+| ErrichtungGebaeude | 0.786 | 0.610 | 
+| AbschlussDachMaxBezugGebaeude | 0.957 | 0.993 | 
+| GebaeudeBautyp | 0.900 | 0.986 | 
+| AufbautenZulaessig | 0.910 | 0.975 | 
+| GebaeudeHoeheMaxAbsolut | 1.000 | 0.000 | 
+| StrassenbreiteMin | 0.926 | 0.964 | 
+| UnterbrechungGeschlosseneBauweise | 0.983 | 1.000 | 
+| AusnahmeGaertnerischAuszugestaltende | 0.932 | 0.575 | 
+| DachneigungMax | 0.984 | 0.977 | 
+| VonBebauungFreizuhalten | 0.611 | 0.921 | 
+| Nutzungsart | 1.000 | 0.000 | 
+| EinfriedungAusgestaltung | 0.996 | 0.789 | 
+| UnterirdischeBaulichkeiten | 0.913 | 0.732 | 
+| StrassenbreiteMax | 0.957 | 0.939 | 
+| Bauklasse | 1.000 | 0.642 | 
+| EinfriedungHoeheGesamt | 0.949 | 0.959 | 
+| DurchgangHoehe | 0.958 | 0.948 | 
+| DurchgangBreite | 0.994 | 0.925 | 
+| BebauteFlaecheMaxProzentual | 1.000 | 0.000 | 
+| VolumenUndUmbaubarerRaum | 0.978 | 0.985 | 
+| Stockwerk | 0.936 | 0.800 | 
+| BauweiseID | 0.879 | 0.488 | 
+| BebauteFlaecheMaxNebengebaeude | 1.000 | 0.000 | 
+| BebauteFlaecheMax | 1.000 | 0.000 | 
+| VorstehendeBauelementeAusladungMax | 0.936 | 0.974 | 
+| BebauteFlaecheMin | 1.000 | 0.000 | 
+| EinfriedungLage | 0.864 | 0.917 | 
+| AnlageZumEinstellenVorhanden | 0.547 | 0.726 | 
+| AnordnungGaertnerischeAusgestaltungProzentual | 0.968 | 0.855 | 
+| DachflaecheMin | 0.964 | 0.890 | 
+| VerbotFensterZuOeffentlichenVerkehrsflaechen | 1.000 | 0.930 | 
+| OeffentlicheVerkehrsflaecheBreiteMin | 0.976 | 0.774 | 
+| AnOeffentlichenVerkehrsflaechen | 0.458 | 0.884 | 
+| Struktureinheit | 0.857 | 0.829 | 
+| VerbotWohnung | 1.000 | 0.905 | 
+| VorbautenVerbot | 0.968 | 0.942 | 
+| EinfriedungZulaessig | 0.768 | 0.729 | 
+| StrassenbreiteVonBis | 0.903 | 0.889 | 
+| EinleitungNiederschlagswaesser | 0.949 | 1.000 | 
+| GebaeudeHoeheMaxWN | 1.000 | 0.000 | 
+| ArkadeHoehe | 0.937 | 0.925 | 
+| VerbotStaffelung | 0.971 | 0.895 | 
+| VorbautenBeschraenkung | 0.351 | 0.944 | 
+| AnzahlGebaeudeMax | 0.911 | 0.938 | 
+| InSchutzzone | 0.812 | 0.593 | 
+| TechnischeAufbautenHoeheMax | 0.608 | 0.629 | 
+| StellplatzregulativUmfangMinimumRelativ | 1.000 | 0.714 | 
+| StellplatzImNiveauZulaessig | 0.819 | 0.681 | 
+| AbschlussDachMaxBezugGelaende | 0.269 | 0.319 | 
+| MaxAnzahlGeschosseOberirdisch | 0.710 | 1.000 | 
+| DurchfahrtHoehe | 0.714 | 0.958 | 
+| Kleinhaeuser | 0.860 | 0.883 | 
+| AnteilDachbegruenung | 0.980 | 0.959 | 
+| VerbotBueroGeschaeftsgebaeude | 0.958 | 0.931 | 
+| StellplatzregulativUmfangMaximumAbsolut | 0.268 | 0.639 | 
+| BestimmmungenFuerHochhausUndGrossbauvorhaben | 0.347 | 0.910 | 
+| FBOKMinimumWohnungen | 1.000 | 0.912 | 
+| BauklasseVIHoeheMax | 1.000 | 0.648 | 
+| MaxAnzahlDachgeschosse | 0.879 | 1.000 | 
+| DachneigungMin | 0.794 | 1.000 | 
+| StellplatzregulativUmfangMaximumRelativ | 0.681 | 0.967 | 
+| StellplatzMax | 0.701 | 1.000 | 
+| OberflaecheBestimmungP | 0.460 | 0.569 | 
+| GaragengebaeudeAusfuehrung | 0.358 | 0.722 | 
+| HoehenlageGrundflaeche | 0.147 | 0.694 | 
+| BauklasseVIHoeheMin | 1.000 | 0.520 | 
+| DurchfahrtBreite | 0.933 | 0.958 | 
+| Massengliederung | 0.839 | 0.585 | 
+| GebaeudeHoeheMin | 0.275 | 0.976 | 
+| AusnahmeVonWohnungenUnzulaessig | 0.450 | 0.717 | 
+| Einbautrasse | 0.556 | 1.000 | 
+| GebaeudeEinschraenkungP | 0.467 | 0.667 | 
+| VerbotAufenthaltsraum | 0.667 | 1.000 | 
+| Geschaeftsstrassen | 0.833 | 0.833 | 
+| ZulaessigeGeschossanzahlEinkaufszentrum | 1.000 | 1.000 | 
+| Flaechen | 0.000 | 1.000 | 
+| WidmungUndZweckbestimmung | 0.000 | 1.000 | 
+| GebaeudeHoeheMax | 0.000 | 1.000 | 
+| PlangebietAllgemein | 0.000 | 1.000 | 
+| DON'T ANNOTATE THIS SENTENCE | 0.000 | 1.000 | 
+| AnteilBaumbepflanzung | 0.500 | 0.750 | 
+| StellplatzregulativVorhanden | 0.000 | 1.000 | 
+| StellplatzverpflichtungArt | 0.000 | 1.000 | 
+| HochhausZulaessigGemaessBB | 0.550 | 0.733 | 
+| MindestraumhoeheEG | 1.000 | 0.680 | 
+| MaxAnzahlGeschosseOberirdischOhneDachgeschoss | 0.312 | 0.458 | 
+| VerbotStellplaetzeUndParkgebaeude | 0.500 | 1.000 | 
+| MaxHoeheWohngebaeude | 0.000 | 1.000 | 
+| VerbotUnterirdischeBauwerkeUeberBaufluchtlinie | 0.000 | 1.000 | 
+| AusnuetzbarkeitWidmungskategorieGefoerderterWohnbau | 0.000 | 1.000 | 
+| ArkadeLaenge | 0.000 | 1.000 | 
+| EinfriedungHoeheSockel | 0.000 | 1.000 | 
+| LaubengangHoehe | 0.000 | 1.000 | 
+
+
+## STD
+
+|  Name | Precision | Recall |
+|-------------- | -------------- | -------------- | 
+| Planzeichen | 0.017 | 0.011 | 
+| Widmung | 0.000 | 0.000 | 
+| VerkehrsflaecheID | 0.028 | 0.016 | 
+| AnordnungGaertnerischeAusgestaltung | 0.033 | 0.032 | 
+| VorkehrungBepflanzung | 0.017 | 0.031 | 
+| AnFluchtlinie | 0.086 | 0.053 | 
+| Dachart | 0.018 | 0.014 | 
+| BegruenungDach | 0.030 | 0.013 | 
+| GebaeudeHoeheArt | 0.049 | 0.019 | 
+| WidmungInMehrerenEbenen | 0.057 | 0.041 | 
+| GehsteigbreiteMin | 0.000 | 0.017 | 
+| GesamtePlangebiet | 0.000 | 0.000 | 
+| BBAllgemein | 0.000 | 0.000 | 
+| ErrichtungGebaeude | 0.072 | 0.121 | 
+| AbschlussDachMaxBezugGebaeude | 0.027 | 0.012 | 
+| GebaeudeBautyp | 0.049 | 0.013 | 
+| AufbautenZulaessig | 0.046 | 0.027 | 
+| GebaeudeHoeheMaxAbsolut | 0.000 | 0.000 | 
+| StrassenbreiteMin | 0.065 | 0.031 | 
+| UnterbrechungGeschlosseneBauweise | 0.021 | 0.000 | 
+| AusnahmeGaertnerischAuszugestaltende | 0.058 | 0.323 | 
+| DachneigungMax | 0.028 | 0.015 | 
+| VonBebauungFreizuhalten | 0.091 | 0.040 | 
+| Nutzungsart | 0.000 | 0.000 | 
+| EinfriedungAusgestaltung | 0.010 | 0.108 | 
+| UnterirdischeBaulichkeiten | 0.099 | 0.133 | 
+| StrassenbreiteMax | 0.028 | 0.072 | 
+| Bauklasse | 0.000 | 0.127 | 
+| EinfriedungHoeheGesamt | 0.047 | 0.046 | 
+| DurchgangHoehe | 0.052 | 0.046 | 
+| DurchgangBreite | 0.015 | 0.065 | 
+| BebauteFlaecheMaxProzentual | 0.000 | 0.000 | 
+| VolumenUndUmbaubarerRaum | 0.034 | 0.025 | 
+| Stockwerk | 0.060 | 0.174 | 
+| BauweiseID | 0.139 | 0.184 | 
+| BebauteFlaecheMaxNebengebaeude | 0.000 | 0.000 | 
+| BebauteFlaecheMax | 0.000 | 0.000 | 
+| VorstehendeBauelementeAusladungMax | 0.102 | 0.045 | 
+| BebauteFlaecheMin | 0.000 | 0.000 | 
+| EinfriedungLage | 0.130 | 0.072 | 
+| AnlageZumEinstellenVorhanden | 0.183 | 0.221 | 
+| AnordnungGaertnerischeAusgestaltungProzentual | 0.037 | 0.143 | 
+| DachflaecheMin | 0.049 | 0.061 | 
+| VerbotFensterZuOeffentlichenVerkehrsflaechen | 0.000 | 0.050 | 
+| OeffentlicheVerkehrsflaecheBreiteMin | 0.039 | 0.236 | 
+| AnOeffentlichenVerkehrsflaechen | 0.110 | 0.043 | 
+| Struktureinheit | 0.121 | 0.131 | 
+| VerbotWohnung | 0.000 | 0.089 | 
+| VorbautenVerbot | 0.036 | 0.071 | 
+| EinfriedungZulaessig | 0.182 | 0.111 | 
+| StrassenbreiteVonBis | 0.072 | 0.149 | 
+| EinleitungNiederschlagswaesser | 0.040 | 0.000 | 
+| GebaeudeHoeheMaxWN | 0.000 | 0.000 | 
+| ArkadeHoehe | 0.070 | 0.091 | 
+| VerbotStaffelung | 0.045 | 0.091 | 
+| VorbautenBeschraenkung | 0.202 | 0.136 | 
+| AnzahlGebaeudeMax | 0.100 | 0.105 | 
+| InSchutzzone | 0.314 | 0.202 | 
+| TechnischeAufbautenHoeheMax | 0.262 | 0.315 | 
+| StellplatzregulativUmfangMinimumRelativ | 0.000 | 0.362 | 
+| StellplatzImNiveauZulaessig | 0.117 | 0.318 | 
+| AbschlussDachMaxBezugGelaende | 0.137 | 0.186 | 
+| MaxAnzahlGeschosseOberirdisch | 0.099 | 0.000 | 
+| DurchfahrtHoehe | 0.414 | 0.102 | 
+| Kleinhaeuser | 0.196 | 0.204 | 
+| AnteilDachbegruenung | 0.031 | 0.068 | 
+| VerbotBueroGeschaeftsgebaeude | 0.102 | 0.111 | 
+| StellplatzregulativUmfangMaximumAbsolut | 0.209 | 0.427 | 
+| BestimmmungenFuerHochhausUndGrossbauvorhaben | 0.160 | 0.124 | 
+| FBOKMinimumWohnungen | 0.000 | 0.111 | 
+| BauklasseVIHoeheMax | 0.000 | 0.392 | 
+| MaxAnzahlDachgeschosse | 0.146 | 0.000 | 
+| DachneigungMin | 0.149 | 0.000 | 
+| StellplatzregulativUmfangMaximumRelativ | 0.266 | 0.082 | 
+| StellplatzMax | 0.225 | 0.000 | 
+| OberflaecheBestimmungP | 0.324 | 0.351 | 
+| GaragengebaeudeAusfuehrung | 0.301 | 0.228 | 
+| HoehenlageGrundflaeche | 0.181 | 0.400 | 
+| BauklasseVIHoeheMin | 0.000 | 0.466 | 
+| DurchfahrtBreite | 0.163 | 0.102 | 
+| Massengliederung | 0.190 | 0.385 | 
+| GebaeudeHoeheMin | 0.227 | 0.058 | 
+| AusnahmeVonWohnungenUnzulaessig | 0.371 | 0.389 | 
+| Einbautrasse | 0.096 | 0.000 | 
+| GebaeudeEinschraenkungP | 0.420 | 0.408 | 
+| VerbotAufenthaltsraum | 0.577 | 0.000 | 
+| Geschaeftsstrassen | 0.408 | 0.258 | 
+| ZulaessigeGeschossanzahlEinkaufszentrum | 0.000 | 0.000 | 
+| Flaechen | 0.000 | 0.000 | 
+| WidmungUndZweckbestimmung | 0.000 | 0.000 | 
+| GebaeudeHoeheMax | 0.000 | 0.000 | 
+| PlangebietAllgemein | 0.000 | 0.000 | 
+| DON'T ANNOTATE THIS SENTENCE | 0.000 | 0.000 | 
+| AnteilBaumbepflanzung | 0.577 | 0.500 | 
+| StellplatzregulativVorhanden | 0.000 | 0.000 | 
+| StellplatzverpflichtungArt | 0.000 | 0.000 | 
+| HochhausZulaessigGemaessBB | 0.447 | 0.253 | 
+| MindestraumhoeheEG | 0.000 | 0.438 | 
+| MaxAnzahlGeschosseOberirdischOhneDachgeschoss | 0.473 | 0.417 | 
+| VerbotStellplaetzeUndParkgebaeude | 0.577 | 0.000 | 
+| MaxHoeheWohngebaeude | NA | NA | 
+| VerbotUnterirdischeBauwerkeUeberBaufluchtlinie | 0.000 | 0.000 | 
+| AusnuetzbarkeitWidmungskategorieGefoerderterWohnbau | 0.000 | 0.000 | 
+| ArkadeLaenge | NA | NA | 
+| EinfriedungHoeheSockel | 0.000 | 0.000 | 
+| LaubengangHoehe | 0.000 | 0.000 | 
 
 

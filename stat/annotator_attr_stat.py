@@ -118,17 +118,18 @@ def add_attr_stat(gold_attrs, ann, ann_attrs, attr_stat):
 
 
 def print_stat(attr_stat):
+    agg = {}
     print("# Annotator statistics - Attributes")
     print("This statistics is calculated without the sentences with a segmentation error.")
     for ann, ann_stat in attr_stat.items():
         print(f"## Annotator {ann}")
-        print_attribute_stat_for_ann(ann_stat)
-    # print_agg(agg, AVG)
-    # print_agg(agg, STD)
+        print_attribute_stat_for_ann(ann_stat, agg)
+    print_agg(agg, AVG)
+    print_agg(agg, STD)
 
 
-def print_attribute_stat_for_ann(ann_stat):
-    agg = {
+def print_attribute_stat_for_ann(ann_stat, agg):
+    agg_per_ann = {
         MICRO: Counter(),
         MACRO: {
             PREC: [],
@@ -138,35 +139,65 @@ def print_attribute_stat_for_ann(ann_stat):
     values = [["Name", "CNT", "TP", "FP", "FN", "Precision", "Recall"]]
     p_r_f = count_p_r_f(ann_stat)
     for attr, stat_per_attr in ann_stat.items():
-        values.append(
-            [
-                attr,
-                stat_per_attr[CNT],
-                stat_per_attr[TP],
-                stat_per_attr[FP],
-                stat_per_attr[FN],
-                p_r_f[attr]["P"],
-                p_r_f[attr]["R"],
-            ]
-        )
-        agg[MICRO][CNT] += stat_per_attr[CNT]
-        agg[MICRO][TP] += stat_per_attr[TP]
-        agg[MICRO][FP] += stat_per_attr[FP]
-        agg[MICRO][FN] += stat_per_attr[FN]
-        agg[MACRO][PREC].append(p_r_f[attr]["P"])
-        agg[MACRO][REC].append(p_r_f[attr]["R"])
-    micro_p_r_f = count_p_r_f({MICRO: agg[MICRO]})
+        prec = p_r_f[attr]["P"]
+        rec = p_r_f[attr]["R"]
+        append_row_for_attr(attr, prec, rec, stat_per_attr, values)
+        add_aggregated_stat_for_ann(agg_per_ann, prec, rec, stat_per_attr)
+        add_global_aggregated_stat(agg, attr, prec, rec)
+    micro_p_r_f = count_p_r_f({MICRO: agg_per_ann[MICRO]})
+    append_row_for_micro(agg_per_ann, micro_p_r_f, values)
+    append_row_for_macro(agg_per_ann, values)
+    print(make_markdown_table(values))
+
+
+def add_aggregated_stat_for_ann(agg_per_ann, prec, rec, stat_per_attr):
+    agg_per_ann[MICRO][CNT] += stat_per_attr[CNT]
+    agg_per_ann[MICRO][TP] += stat_per_attr[TP]
+    agg_per_ann[MICRO][FP] += stat_per_attr[FP]
+    agg_per_ann[MICRO][FN] += stat_per_attr[FN]
+    agg_per_ann[MACRO][PREC].append(prec)
+    agg_per_ann[MACRO][REC].append(rec)
+
+
+def add_global_aggregated_stat(agg, attr, prec, rec):
+    if attr not in agg:
+        agg[attr] = {
+            PREC: [],
+            REC: [],
+        }
+    agg[attr][PREC].append(prec)
+    agg[attr][REC].append(rec)
+
+
+def append_row_for_attr(attr, prec, rec, stat_per_attr, values):
+    values.append(
+        [
+            attr,
+            stat_per_attr[CNT],
+            stat_per_attr[TP],
+            stat_per_attr[FP],
+            stat_per_attr[FN],
+            prec,
+            rec,
+        ]
+    )
+
+
+def append_row_for_micro(agg_per_ann, micro_p_r_f, values):
     values.append(
         [
             MICRO,
-            agg[MICRO][CNT],
-            agg[MICRO][TP],
-            agg[MICRO][FP],
-            agg[MICRO][FN],
+            agg_per_ann[MICRO][CNT],
+            agg_per_ann[MICRO][TP],
+            agg_per_ann[MICRO][FP],
+            agg_per_ann[MICRO][FN],
             micro_p_r_f[MICRO]["P"],
             micro_p_r_f[MICRO]["R"],
         ]
     )
+
+
+def append_row_for_macro(agg_per_ann, values):
     values.append(
         [
             MACRO,
@@ -174,11 +205,10 @@ def print_attribute_stat_for_ann(ann_stat):
             "-",
             "-",
             "-",
-            statistics.mean(agg[MACRO][PREC]),
-            statistics.mean(agg[MACRO][REC]),
+            statistics.mean(agg_per_ann[MACRO][PREC]),
+            statistics.mean(agg_per_ann[MACRO][REC]),
         ]
     )
-    print(make_markdown_table(values))
 
 
 def print_agg(agg, name):
@@ -186,28 +216,22 @@ def print_agg(agg, name):
         print("## Average")
     elif name == STD:
         print("## STD")
-    for stat_type, agg_stat in agg.items():
-        print(f"### {stat_type}")
-        agg_corr_ratio = 0
+    values = [["Name", "Precision", "Recall"]]
+    for attr, attr_stat in agg.items():
+        agg_prec = 0
+        agg_rec = 0
         if name == AVG:
-            agg_corr_ratio = st.mean(agg_stat[CORRECT_RATIO])
+            agg_prec = st.mean(attr_stat[PREC])
+            agg_rec = st.mean(attr_stat[REC])
         elif name == STD:
-            agg_corr_ratio = st.stdev(agg_stat[CORRECT_RATIO])
-        print(f"Correct / All: {agg_corr_ratio:.3f}")
-        values = [["Name", "Precision", "Recall"]]
-        for mod, mod_stat in agg_stat.items():
-            if mod == CORRECT_RATIO:
-                continue
-            agg_prec = 0
-            agg_rec = 0
-            if name == AVG:
-                agg_prec = st.mean(mod_stat[PREC])
-                agg_rec = st.mean(mod_stat[REC])
-            elif name == STD:
-                agg_prec = st.stdev(mod_stat[PREC])
-                agg_rec = st.stdev(mod_stat[REC])
-            values.append([mod, agg_prec, agg_rec])
-        print(make_markdown_table(values))
+            agg_prec = "NA"
+            agg_rec = "NA"
+            if len(attr_stat[PREC]) > 1:
+                agg_prec = st.stdev(attr_stat[PREC])
+            if len(attr_stat[REC]) > 1:
+                agg_rec = st.stdev(attr_stat[REC])
+        values.append([attr, agg_prec, agg_rec])
+    print(make_markdown_table(values))
 
 
 def get_args():

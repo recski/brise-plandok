@@ -13,7 +13,8 @@ from brise_plandok.constants import (
     AnnotatedAttributeFields,
     AttributeFields,
 )
-from brise_plandok.utils import load_json, make_markdown_table
+from brise_plandok.stat.utils import make_markdown_table, convert_back_post_processed
+from brise_plandok.utils import load_json
 
 DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
 FIRST_STAGE_IDS = "brise_plandok/stat/first_stage_gold_ids.txt"
@@ -80,7 +81,7 @@ def add_ann_to_map_if_not_present(attr_stat, doc):
 
 
 def add_attribute_stat(ann_1, ann_2, attr_stat, sen, doc_id, first_stage_gold_ids):
-    gold_attrs = set(sen[SenFields.GOLD_ATTRIBUTES].keys())
+    gold_attrs = set(convert_back_post_processed(sen[SenFields.GOLD_ATTRIBUTES].keys()))
     ann_attrs = {
         ann_1: set(),
         ann_2: set(),
@@ -123,7 +124,10 @@ def add_attr_stat(gold_attrs, ann, ann_attrs, attr_stat):
 def print_stat(attr_stat):
     agg = {}
     print("# Annotator statistics - Attributes")
-    print("This statistics is calculated without the sentences with a segmentation error.")
+    print("This statistics is calculated without the sentences with a segmentation error.  ")
+    print(
+        "Post-processed attributes were converted back to their version at the time of annotation."
+    )
     for ann, ann_stat in attr_stat.items():
         print(f"## Annotator {ann}")
         print_attribute_stat_for_ann(ann_stat, agg)

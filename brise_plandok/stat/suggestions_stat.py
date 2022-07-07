@@ -1,7 +1,8 @@
 import argparse
 import os
 
-from brise_plandok.constants import DocumentFields, SenFields, AttributesNames
+from brise_plandok.constants import DocumentFields, SenFields
+from brise_plandok.stat.utils import convert_back_post_processed
 from brise_plandok.utils import load_json
 
 DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
@@ -90,30 +91,6 @@ def print_stat(
     print(
         f"Ratio of wrong suggestions: {((all_suggested_attributes - correct_suggestions) / all_suggested_attributes) * 100:.2f}%"
     )
-
-
-def convert_back_post_processed(gold_attrs):
-    if AttributesNames.Widmung in gold_attrs:
-        gold_attrs = (gold_attrs - {AttributesNames.Widmung}) | {"WidmungUndZweckbestimmung"}
-    if AttributesNames.Nutzungsart in gold_attrs:
-        gold_attrs = (gold_attrs - {AttributesNames.Nutzungsart}) | {"WidmungUndZweckbestimmung"}
-    if AttributesNames.BebauteFlaecheMax in gold_attrs:
-        gold_attrs = (gold_attrs - {AttributesNames.BebauteFlaecheMax}) | {"Flaechen"}
-    if AttributesNames.BebauteFlaecheMin in gold_attrs:
-        gold_attrs = (gold_attrs - {AttributesNames.BebauteFlaecheMin}) | {"Flaechen"}
-    if AttributesNames.BebauteFlaecheMaxProzentual in gold_attrs:
-        gold_attrs = (gold_attrs - {AttributesNames.BebauteFlaecheMaxProzentual}) | {"Flaechen"}
-    if AttributesNames.BebauteFlaecheMaxNebengebaeude in gold_attrs:
-        gold_attrs = (gold_attrs - {AttributesNames.BebauteFlaecheMaxNebengebaeude}) | {"Flaechen"}
-    if AttributesNames.GesamtePlangebiet in gold_attrs:
-        gold_attrs = (gold_attrs - {AttributesNames.GesamtePlangebiet}) | {"PlangebietAllgemein"}
-    if AttributesNames.GebaeudeHoeheMaxWN in gold_attrs:
-        gold_attrs = (gold_attrs - {AttributesNames.GebaeudeHoeheMaxWN}) | {"GebaeudeHoeheMax"}
-    if AttributesNames.GebaeudeHoeheMaxAbsolut in gold_attrs:
-        gold_attrs = (gold_attrs - {AttributesNames.GebaeudeHoeheMaxAbsolut}) | {
-            "GebaeudeHoeheMax"
-        }
-    return gold_attrs
 
 
 def get_args():

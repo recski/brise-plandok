@@ -9,7 +9,8 @@ from brise_plandok.constants import (
     FullAnnotatedAttributeFields,
     AnnotatedAttributeFields,
 )
-from brise_plandok.utils import load_json, make_markdown_table
+from brise_plandok.stat.utils import make_markdown_table
+from brise_plandok.utils import load_json
 
 DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
 FIRST_STAGE_IDS = "brise_plandok/stat/first_stage_gold_ids.txt"

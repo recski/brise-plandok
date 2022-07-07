@@ -1,6 +1,7 @@
 import argparse
 import os
 import statistics as st
+from collections import Counter
 
 from brise_plandok.constants import (
     DocumentFields,
@@ -13,9 +14,7 @@ from brise_plandok.utils import load_json, make_markdown_table
 DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
 FIRST_STAGE_IDS = "stat/first_stage_gold_ids.txt"
 
-TYPES = "types"
 MOD = "modality"
-ATTR = "attributes"
 TP = "TP"
 FP = "FP"
 FN = "FN"
@@ -77,8 +76,6 @@ def add_ann_to_map_if_not_present(ann_map, doc):
                         CNT_CORR: 0,
                     },
                 },
-                ATTR: {},
-                TYPES: {},
             }
 
 
@@ -113,17 +110,9 @@ def add_modality_stat(ann_1, ann_2, ann_map, sen):
 
 def add_mod_stat_for_rule_sens(gold_mod, mod, mod_stat_rules):
     if gold_mod not in mod_stat_rules:
-        mod_stat_rules[gold_mod] = {
-            TP: 0,
-            FP: 0,
-            FN: 0,
-        }
+        mod_stat_rules[gold_mod] = Counter()
     if mod != EMPTY and mod not in mod_stat_rules:
-        mod_stat_rules[mod] = {
-            TP: 0,
-            FP: 0,
-            FN: 0,
-        }
+        mod_stat_rules[mod] = Counter()
     if gold_mod == mod:
         mod_stat_rules[gold_mod][TP] += 1
         mod_stat_rules[CNT_CORR] += 1
@@ -135,17 +124,9 @@ def add_mod_stat_for_rule_sens(gold_mod, mod, mod_stat_rules):
 
 def add_mod_stat_for_all_sens(gold_mod, mod, mod_stat_all):
     if gold_mod not in mod_stat_all:
-        mod_stat_all[gold_mod] = {
-            TP: 0,
-            FP: 0,
-            FN: 0,
-        }
+        mod_stat_all[gold_mod] = Counter()
     if mod not in mod_stat_all:
-        mod_stat_all[mod] = {
-            TP: 0,
-            FP: 0,
-            FN: 0,
-        }
+        mod_stat_all[mod] = Counter()
     if gold_mod == mod:
         mod_stat_all[gold_mod][TP] += 1
         mod_stat_all[CNT_CORR] += 1

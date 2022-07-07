@@ -14,18 +14,22 @@ from brise_plandok.utils import load_json, make_markdown_table
 DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
 FIRST_STAGE_IDS = "stat/first_stage_gold_ids.txt"
 
-MOD = "modality"
 TP = "TP"
 FP = "FP"
 FN = "FN"
+
 CNT = "cnt"
 CNT_CORR = "cnt_correct"
+CORRECT_RATIO = "correct_ratio"
+
 EMPTY = "_empty"
+
 PREC = "prec"
 REC = "rec"
+
 ALL = "All sentences"
 RULES = "Only sentences with rules"
-CORRECT_RATIO = "correct_ratio"
+
 AVG = "avg"
 STD = "std"
 
@@ -50,13 +54,11 @@ def annotator_stat():
 def sort_map(ann_map):
     ann_map = {k: v for k, v in sorted(ann_map.items(), key=lambda item: item[0])}
     for ann, stat in ann_map.items():
-        stat[MOD] = {k: v for k, v in sorted(stat[MOD].items(), key=lambda item: item[0])}
-        stat[MOD][ALL] = {
-            k: v for k, v in sorted(stat[MOD][ALL].items(), key=lambda item: item[0], reverse=True)
+        stat[ALL] = {
+            k: v for k, v in sorted(stat[ALL].items(), key=lambda item: item[0], reverse=True)
         }
-        stat[MOD][RULES] = {
-            k: v
-            for k, v in sorted(stat[MOD][RULES].items(), key=lambda item: item[0], reverse=True)
+        stat[RULES] = {
+            k: v for k, v in sorted(stat[RULES].items(), key=lambda item: item[0], reverse=True)
         }
     return ann_map
 
@@ -66,22 +68,20 @@ def add_ann_to_map_if_not_present(ann_map, doc):
     for ann in doc[DocumentFields.FULL_ANNOTATORS]:
         if ann not in ann_map:
             ann_map[ann] = {
-                MOD: {
-                    ALL: {
-                        CNT: 0,
-                        CNT_CORR: 0,
-                    },
-                    RULES: {
-                        CNT: 0,
-                        CNT_CORR: 0,
-                    },
+                ALL: {
+                    CNT: 0,
+                    CNT_CORR: 0,
+                },
+                RULES: {
+                    CNT: 0,
+                    CNT_CORR: 0,
                 },
             }
 
 
 def add_modality_stat(ann_1, ann_2, ann_map, sen):
-    ann_map[ann_1][MOD][ALL][CNT] += 1
-    ann_map[ann_2][MOD][ALL][CNT] += 1
+    ann_map[ann_1][ALL][CNT] += 1
+    ann_map[ann_2][ALL][CNT] += 1
     ann_modalities = {
         ann_1: EMPTY,
         ann_2: EMPTY,
@@ -90,8 +90,8 @@ def add_modality_stat(ann_1, ann_2, ann_map, sen):
     if gold_mod is None:
         gold_mod = EMPTY
     else:
-        ann_map[ann_1][MOD][RULES][CNT] += 1
-        ann_map[ann_2][MOD][RULES][CNT] += 1
+        ann_map[ann_1][RULES][CNT] += 1
+        ann_map[ann_2][RULES][CNT] += 1
     if FullAnnotatedAttributeFields.MODALITY in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]:
         for mod, annotators in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES][
             FullAnnotatedAttributeFields.MODALITY
@@ -101,8 +101,8 @@ def add_modality_stat(ann_1, ann_2, ann_map, sen):
                 ann_modalities[ann] = mod
     for ann, mod in ann_modalities.items():
         assert mod is not None
-        mod_stat_all = ann_map[ann][MOD][ALL]
-        mod_stat_rules = ann_map[ann][MOD][RULES]
+        mod_stat_all = ann_map[ann][ALL]
+        mod_stat_rules = ann_map[ann][RULES]
         if gold_mod != EMPTY:
             add_mod_stat_for_rule_sens(gold_mod, mod, mod_stat_rules)
         add_mod_stat_for_all_sens(gold_mod, mod, mod_stat_all)
@@ -139,14 +139,12 @@ def print_stat(ann_map):
     print("# Annotator statistics - Modality")
     print("This statistics is calculated without the sentences with a segmentation error.")
     agg = {
-        MOD: {
-            ALL: {
-                CORRECT_RATIO: [],
-            },
-            RULES: {
-                CORRECT_RATIO: [],
-            },
-        }
+        ALL: {
+            CORRECT_RATIO: [],
+        },
+        RULES: {
+            CORRECT_RATIO: [],
+        },
     }
     for ann, ann_stat in ann_map.items():
         print(f"## Annotator {ann}")
@@ -156,9 +154,9 @@ def print_stat(ann_map):
 
 
 def print_modality(ann_stat, agg):
-    for stat_type, ann_stat_mod in ann_stat[MOD].items():
+    for stat_type, ann_stat_mod in ann_stat.items():
         values = [["Name", "TP", "FP", "FN", "Precision", "Recall"]]
-        agg_for_stat_type = agg[MOD][stat_type]
+        agg_for_stat_type = agg[stat_type]
         print(f"### {stat_type}")
         for mod, mod_stat in ann_stat_mod.items():
             if mod == CNT or mod == CNT_CORR:
@@ -186,7 +184,7 @@ def print_agg(agg, name):
         print("## Average")
     elif name == STD:
         print("## STD")
-    for stat_type, agg_stat in agg[MOD].items():
+    for stat_type, agg_stat in agg.items():
         print(f"### {stat_type}")
         agg_corr_ratio = 0
         if name == AVG:

@@ -16,7 +16,7 @@ from brise_plandok.constants import (
 from brise_plandok.utils import load_json, make_markdown_table
 
 DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
-FIRST_STAGE_IDS = "stat/first_stage_gold_ids.txt"
+FIRST_STAGE_IDS = "brise_plandok/stat/first_stage_gold_ids.txt"
 
 TP = "TP"
 FP = "FP"
@@ -64,7 +64,10 @@ def sort_map(attr_stat):
     attr_stat = {k: v for k, v in sorted(attr_stat.items(), key=lambda item: item[0])}
     for ann, stat in attr_stat.items():
         attr_stat[ann] = {
-            k: v for k, v in sorted(stat.items(), key=lambda item: item[1][CNT], reverse=True)
+            k: v
+            for k, v in sorted(
+                stat.items(), key=lambda item: (item[1][CNT], item[0]), reverse=True
+            )
         }
     return attr_stat
 

@@ -5,7 +5,7 @@ from brise_plandok.constants import DocumentFields, SenFields, AttributesNames
 from brise_plandok.utils import load_json
 
 DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
-FIRST_STAGE_IDS = "stat/first_stage_gold_ids.txt"
+FIRST_STAGE_IDS = "brise_plandok/stat/first_stage_gold_ids.txt"
 
 
 def print_suggestions_stat(only_rules, original_attributes, first_stage, combined):

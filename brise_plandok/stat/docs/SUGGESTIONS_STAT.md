@@ -6,7 +6,7 @@ Only 46 documents were reviewed at this stage.
 ### All sentences
 
 ```bash
-python stat/suggestions_stat.py -f
+python brise_plandok/stat/suggestions_stat.py -f
 
 Number of all docs: 46
 Number of all sentences: 1372
@@ -25,7 +25,7 @@ Ratio of wrong suggestions: 16.90%
 ### Only sentences that contain a rule
 
 ```bash
-python stat/suggestions_stat.py -r -f
+python brise_plandok/stat/suggestions_stat.py -r -f
 
 Number of all docs: 46
 Number of all sentences: 813
@@ -44,7 +44,7 @@ Ratio of wrong suggestions: 12.89%
 ### Only sentences that contain a rule with reverted post-processed attributes
 
 ```bash
-python stat/suggestions_stat.py -r -o -f
+python brise_plandok/stat/suggestions_stat.py -r -o -f
 
 Number of all docs: 46
 Number of all sentences: 813
@@ -67,7 +67,7 @@ which is included in the statistics below.
 ### All sentences
 
 ```bash
-python stat/suggestions_stat.py
+python brise_plandok/stat/suggestions_stat.py
 
 Number of all docs: 250
 Number of all sentences: 7049
@@ -86,7 +86,7 @@ Ratio of wrong suggestions: 30.04%
 ### Only sentences that contain a rule
 
 ```bash
-python stat/suggestions_stat.py -r
+python brise_plandok/stat/suggestions_stat.py -r
 
 Number of all docs: 250
 Number of all sentences: 3994
@@ -105,7 +105,7 @@ Ratio of wrong suggestions: 25.85%
 ### Only sentences that contain a rule with reverted post-processed attributes
 
 ```bash
-python stat/suggestions_stat.py -r -o
+python brise_plandok/stat/suggestions_stat.py -r -o
 
 Number of all docs: 250
 Number of all sentences: 3994
@@ -127,7 +127,7 @@ all other documents the second stage statistics is taken.
 ### All sentences
 
 ```bash
-python stat/suggestions_stat.py -c
+python brise_plandok/stat/suggestions_stat.py -c
 
 Number of all docs: 250
 Number of all sentences: 7049
@@ -146,7 +146,7 @@ Ratio of wrong suggestions: 30.97%
 ### Only sentences that contain a rule
 
 ```bash
-python stat/suggestions_stat.py -r -c
+python brise_plandok/stat/suggestions_stat.py -r -c
 
 Number of all docs: 250
 Number of all sentences: 3994
@@ -165,7 +165,7 @@ Ratio of wrong suggestions: 26.19%
 ### Only sentences that contain a rule with reverted post-processed attributes
 
 ```bash
-python stat/suggestions_stat.py -r -o -c
+python brise_plandok/stat/suggestions_stat.py -r -o -c
 
 Number of all docs: 250
 Number of all sentences: 3994

@@ -3,7 +3,7 @@
 ## Total
 
 ```bash
-python stat/rule_stat.py -d data/train data/valid data/test
+python brise_plandok/stat/rule_stat.py -d data/train data/valid data/test
 
 Number of all rules: 3994
 Number of all attributes: 9221
@@ -14,7 +14,7 @@ Median of number of attributes per rule: 2
 ## Train
 
 ```bash
-python stat/rule_stat.py -d data/train
+python brise_plandok/stat/rule_stat.py -d data/train
 
 Number of all rules: 3154
 Number of all attributes: 7397
@@ -25,7 +25,7 @@ Median of number of attributes per rule: 2
 ## Valid
 
 ```bash
-python stat/rule_stat.py -d data/valid
+python brise_plandok/stat/rule_stat.py -d data/valid
 
 Number of all rules: 465
 Number of all attributes: 981
@@ -36,7 +36,7 @@ Median of number of attributes per rule: 2
 ## Test
 
 ```bash
-python stat/rule_stat.py -d data/test
+python brise_plandok/stat/rule_stat.py -d data/test
 
 Number of all rules: 375
 Number of all attributes: 843

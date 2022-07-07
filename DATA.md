@@ -283,86 +283,86 @@ Dataset was split by calling the following script:
 You can re-run all stats by calling:
 
 ```bash
-./stat/run_all_stats.shy
+./brise_plandok/stat/run_all_stats.shy
 ```
 
 ### Attribute distribution
 
-For the distribution of the attributes see the [ATTRIBUTE_DISTRIBUTION.md](stat/docs/ATTRIBUTE_DISTRIBUTION.md) file.
+For the distribution of the attributes see the [ATTRIBUTE_DISTRIBUTION.md](brise_plandok/stat/docs/ATTRIBUTE_DISTRIBUTION.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-./stat/attribute_distribution.sh > stat/docs/ATTRIBUTE_DISTRIBUTION.md
+./brise_plandok/stat/attribute_distribution.sh > brise_plandok/stat/docs/ATTRIBUTE_DISTRIBUTION.md
 ```
 
 ### Types distribution
 
-For the distribution of the attributes see the [TYPE_DISTRIBUTION.md](stat/docs/TYPE_DISTRIBUTION.md) file.
+For the distribution of the attributes see the [TYPE_DISTRIBUTION.md](brise_plandok/stat/docs/TYPE_DISTRIBUTION.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-./stat/type_distribution.sh > stat/docs/TYPE_DISTRIBUTION.md
+./brise_plandok/stat/type_distribution.sh > brise_plandok/stat/docs/TYPE_DISTRIBUTION.md
 ```
 
 
 ### Types and values per attribute
 
-For the distribution of the attributes see the [TYEPES_AND_VALUES_PER_ATTR.md](stat/docs/TYEPES_AND_VALUES_PER_ATTR.md) file.
+For the distribution of the attributes see the [TYEPES_AND_VALUES_PER_ATTR.md](brise_plandok/stat/docs/TYEPES_AND_VALUES_PER_ATTR.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-python stat/types_and_values_per_attr.py > stat/docs/TYEPES_AND_VALUES_PER_ATTR.md
+python brise_plandok/stat/types_and_values_per_attr.py > brise_plandok/stat/docs/TYEPES_AND_VALUES_PER_ATTR.md
 ```
 
 ### Modality distribution
 
-For the distribution of the attributes see the [MODALITY_DISTRIBUTION.md](stat/docs/MODALITY_DISTRIBUTION.md) file.
+For the distribution of the attributes see the [MODALITY_DISTRIBUTION.md](brise_plandok/stat/docs/MODALITY_DISTRIBUTION.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-./stat/modality_distribution.sh > stat/docs/MODALITY_DISTRIBUTION.md
+./brise_plandok/stat/modality_distribution.sh > brise_plandok/stat/docs/MODALITY_DISTRIBUTION.md
 ```
 
 ### Rule statistics
 
-For rule statistics see the [RULE_STAT.md](stat/docs/RULE_STAT.md) file.
+For rule statistics see the [RULE_STAT.md](brise_plandok/stat/docs/RULE_STAT.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-./stat/rule_stat.sh > stat/docs/RULE_STAT.md
+./brise_plandok/stat/rule_stat.sh > brise_plandok/stat/docs/RULE_STAT.md
 ```
 
 ### Pre-filled suggestions statistics
 
-For statistics about the pre-filled suggestions during annotation see the [SUGGESTIONS_STAT.md](stat/docs/SUGGESTIONS_STAT.md) file.
+For statistics about the pre-filled suggestions during annotation see the [SUGGESTIONS_STAT.md](brise_plandok/stat/docs/SUGGESTIONS_STAT.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-./stat/suggestion_stat.sh > stat/docs/SUGGESTIONS_STAT.md
+./brise_plandok/stat/suggestion_stat.sh > brise_plandok/stat/docs/SUGGESTIONS_STAT.md
 ```
 
 ### Annotator statistics - Modality
 
-For statistics about the annotators' performance on modality see the [ANNOTATOR_MOD_STAT.md](stat/docs/ANNOTATOR_MOD_STAT.md) file.
+For statistics about the annotators' performance on modality see the [ANNOTATOR_MOD_STAT.md](brise_plandok/stat/docs/ANNOTATOR_MOD_STAT.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-python stat/annotator_mod_stat.py > stat/docs/ANNOTATOR_MOD_STAT.md
+python brise_plandok/stat/annotator_mod_stat.py > brise_plandok/stat/docs/ANNOTATOR_MOD_STAT.md
 ```
 
 ### Annotator statistics - Attributes
 
-For statistics about the annotators' performance on the attribute labeling task see the [ANNOTATOR_ATTR_STAT.md](stat/docs/ANNOTATOR_ATTR_STAT.md) file.
+For statistics about the annotators' performance on the attribute labeling task see the [ANNOTATOR_ATTR_STAT.md](brise_plandok/stat/docs/ANNOTATOR_ATTR_STAT.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-python stat/annotator_attr_stat.py > stat/docs/ANNOTATOR_ATTR_STAT.md
+python brise_plandok/stat/annotator_attr_stat.py > brise_plandok/stat/docs/ANNOTATOR_ATTR_STAT.md
 ```

@@ -12,27 +12,27 @@ echo "Only 46 documents were reviewed at this stage."
 echo "### All sentences"
 echo ""
 echo "\`\`\`bash"
-echo "python stat/suggestions_stat.py -f"
+echo "python brise_plandok/stat/suggestions_stat.py -f"
 echo ""
-python stat/suggestions_stat.py -f
+python brise_plandok/stat/suggestions_stat.py -f
 echo "\`\`\`"
 echo ""
 
 echo "### Only sentences that contain a rule"
 echo ""
 echo "\`\`\`bash"
-echo "python stat/suggestions_stat.py -r -f"
+echo "python brise_plandok/stat/suggestions_stat.py -r -f"
 echo ""
-python stat/suggestions_stat.py -r -f
+python brise_plandok/stat/suggestions_stat.py -r -f
 echo "\`\`\`"
 echo ""
 
 echo "### Only sentences that contain a rule with reverted post-processed attributes"
 echo ""
 echo "\`\`\`bash"
-echo "python stat/suggestions_stat.py -r -o -f"
+echo "python brise_plandok/stat/suggestions_stat.py -r -o -f"
 echo ""
-python stat/suggestions_stat.py -r -o -f
+python brise_plandok/stat/suggestions_stat.py -r -o -f
 echo "\`\`\`"
 
 ##########################################################
@@ -46,27 +46,27 @@ which is included in the statistics below."
 echo "### All sentences"
 echo ""
 echo "\`\`\`bash"
-echo "python stat/suggestions_stat.py"
+echo "python brise_plandok/stat/suggestions_stat.py"
 echo ""
-python stat/suggestions_stat.py
+python brise_plandok/stat/suggestions_stat.py
 echo "\`\`\`"
 echo ""
 
 echo "### Only sentences that contain a rule"
 echo ""
 echo "\`\`\`bash"
-echo "python stat/suggestions_stat.py -r"
+echo "python brise_plandok/stat/suggestions_stat.py -r"
 echo ""
-python stat/suggestions_stat.py -r
+python brise_plandok/stat/suggestions_stat.py -r
 echo "\`\`\`"
 echo ""
 
 echo "### Only sentences that contain a rule with reverted post-processed attributes"
 echo ""
 echo "\`\`\`bash"
-echo "python stat/suggestions_stat.py -r -o"
+echo "python brise_plandok/stat/suggestions_stat.py -r -o"
 echo ""
-python stat/suggestions_stat.py -r -o
+python brise_plandok/stat/suggestions_stat.py -r -o
 echo "\`\`\`"
 
 ##########################################################
@@ -79,25 +79,25 @@ all other documents the second stage statistics is taken."
 echo "### All sentences"
 echo ""
 echo "\`\`\`bash"
-echo "python stat/suggestions_stat.py -c"
+echo "python brise_plandok/stat/suggestions_stat.py -c"
 echo ""
-python stat/suggestions_stat.py -c
+python brise_plandok/stat/suggestions_stat.py -c
 echo "\`\`\`"
 echo ""
 
 echo "### Only sentences that contain a rule"
 echo ""
 echo "\`\`\`bash"
-echo "python stat/suggestions_stat.py -r -c"
+echo "python brise_plandok/stat/suggestions_stat.py -r -c"
 echo ""
-python stat/suggestions_stat.py -r -c
+python brise_plandok/stat/suggestions_stat.py -r -c
 echo "\`\`\`"
 echo ""
 
 echo "### Only sentences that contain a rule with reverted post-processed attributes"
 echo ""
 echo "\`\`\`bash"
-echo "python stat/suggestions_stat.py -r -o -c"
+echo "python brise_plandok/stat/suggestions_stat.py -r -o -c"
 echo ""
-python stat/suggestions_stat.py -r -o -c
+python brise_plandok/stat/suggestions_stat.py -r -o -c
 echo "\`\`\`"

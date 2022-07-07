@@ -19,6 +19,8 @@ from brise_plandok.utils import load_json
 DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
 FIRST_STAGE_IDS = "brise_plandok/stat/first_stage_gold_ids.txt"
 
+PLACEHOLDER = "DON'T ANNOTATE THIS SENTENCE"
+
 TP = "TP"
 FP = "FP"
 FN = "FN"
@@ -94,6 +96,8 @@ def add_attribute_stat(ann_1, ann_2, attr_stat, sen, doc_id, first_stage_gold_id
 def fill_annotated_attributes(attr_stat, doc_id, first_stage_gold_ids, sen):
     if doc_id in first_stage_gold_ids:
         for attr, annotation in sen[SenFields.ANNOTATED_ATTRIBUTES].items():
+            if attr == PLACEHOLDER:
+                continue
             for ann in annotation[AnnotatedAttributeFields.ANNOTATORS]:
                 attr_stat[ann].add(attr)
     else:

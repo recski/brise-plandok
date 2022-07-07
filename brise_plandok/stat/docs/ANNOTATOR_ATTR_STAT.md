@@ -91,10 +91,9 @@ Post-processed attributes were converted back to their version at the time of an
 | StellplatzverpflichtungArt | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
 | StellplatzregulativVorhanden | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
 | HochhausZulaessigGemaessBB | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
-| DON'T ANNOTATE THIS SENTENCE | 0 | 0 | 44 | 0 | 0.000 | 1.000 | 
 | AnteilBaumbepflanzung | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
-| micro | 3206 | 2800 | 475 | 406 | 0.855 | 0.873 | 
-| macro | - | - | - | - | 0.802 | 0.886 | 
+| micro | 3206 | 2800 | 431 | 406 | 0.867 | 0.873 | 
+| macro | - | - | - | - | 0.811 | 0.885 | 
 
 
 ## Annotator 02
@@ -191,9 +190,8 @@ Post-processed attributes were converted back to their version at the time of an
 | StellplatzregulativVorhanden | 0 | 0 | 4 | 0 | 0.000 | 1.000 | 
 | MaxHoeheWohngebaeude | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | GebaeudeHoeheMin | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
-| DON'T ANNOTATE THIS SENTENCE | 0 | 0 | 40 | 0 | 0.000 | 1.000 | 
-| micro | 3168 | 2737 | 562 | 431 | 0.830 | 0.864 | 
-| macro | - | - | - | - | 0.776 | 0.825 | 
+| micro | 3168 | 2737 | 522 | 431 | 0.840 | 0.864 | 
+| macro | - | - | - | - | 0.785 | 0.823 | 
 
 
 ## Annotator 03
@@ -287,11 +285,10 @@ Post-processed attributes were converted back to their version at the time of an
 | MaxAnzahlGeschosseOberirdischOhneDachgeschoss | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | GebaeudeHoeheMin | 0 | 0 | 7 | 0 | 0.000 | 1.000 | 
 | GaragengebaeudeAusfuehrung | 0 | 0 | 3 | 0 | 0.000 | 1.000 | 
-| DON'T ANNOTATE THIS SENTENCE | 0 | 0 | 40 | 0 | 0.000 | 1.000 | 
 | AusnuetzbarkeitWidmungskategorieGefoerderterWohnbau | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | AusnahmeVonWohnungenUnzulaessig | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
-| micro | 3020 | 2655 | 480 | 365 | 0.847 | 0.879 | 
-| macro | - | - | - | - | 0.740 | 0.898 | 
+| micro | 3020 | 2655 | 440 | 365 | 0.858 | 0.879 | 
+| macro | - | - | - | - | 0.749 | 0.897 | 
 
 
 ## Annotator 04
@@ -388,12 +385,11 @@ Post-processed attributes were converted back to their version at the time of an
 | StellplatzregulativVorhanden | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | LaubengangHoehe | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | EinfriedungHoeheSockel | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
-| DON'T ANNOTATE THIS SENTENCE | 0 | 0 | 42 | 0 | 0.000 | 1.000 | 
 | AusnuetzbarkeitWidmungskategorieGefoerderterWohnbau | 0 | 0 | 9 | 0 | 0.000 | 1.000 | 
 | ArkadeLaenge | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
 | AnteilBaumbepflanzung | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
-| micro | 3355 | 2778 | 841 | 577 | 0.768 | 0.828 | 
-| macro | - | - | - | - | 0.681 | 0.787 | 
+| micro | 3355 | 2778 | 799 | 577 | 0.777 | 0.828 | 
+| macro | - | - | - | - | 0.688 | 0.785 | 
 
 
 ## Annotator 05
@@ -490,9 +486,8 @@ Post-processed attributes were converted back to their version at the time of an
 | LaubengangHoehe | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | EinfriedungHoeheSockel | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | DurchfahrtHoehe | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
-| DON'T ANNOTATE THIS SENTENCE | 0 | 0 | 38 | 0 | 0.000 | 1.000 | 
-| micro | 3315 | 2795 | 613 | 520 | 0.820 | 0.843 | 
-| macro | - | - | - | - | 0.747 | 0.812 | 
+| micro | 3315 | 2795 | 575 | 520 | 0.829 | 0.843 | 
+| macro | - | - | - | - | 0.755 | 0.810 | 
 
 
 ## Annotator 06
@@ -584,9 +579,8 @@ Post-processed attributes were converted back to their version at the time of an
 | StellplatzverpflichtungArt | 0 | 0 | 3 | 0 | 0.000 | 1.000 | 
 | StellplatzregulativVorhanden | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | Geschaeftsstrassen | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
-| DON'T ANNOTATE THIS SENTENCE | 0 | 0 | 42 | 0 | 0.000 | 1.000 | 
-| micro | 3154 | 2687 | 486 | 467 | 0.847 | 0.852 | 
-| macro | - | - | - | - | 0.795 | 0.848 | 
+| micro | 3154 | 2687 | 444 | 467 | 0.858 | 0.852 | 
+| macro | - | - | - | - | 0.804 | 0.846 | 
 
 
 ## Average
@@ -679,7 +673,6 @@ Post-processed attributes were converted back to their version at the time of an
 | StellplatzverpflichtungArt | 0.000 | 1.000 | 
 | StellplatzregulativVorhanden | 0.000 | 1.000 | 
 | HochhausZulaessigGemaessBB | 0.550 | 0.733 | 
-| DON'T ANNOTATE THIS SENTENCE | 0.000 | 1.000 | 
 | AnteilBaumbepflanzung | 0.500 | 0.750 | 
 | MindestraumhoeheEG | 1.000 | 0.680 | 
 | VerbotStellplaetzeUndParkgebaeude | 0.500 | 1.000 | 
@@ -782,7 +775,6 @@ Post-processed attributes were converted back to their version at the time of an
 | StellplatzverpflichtungArt | 0.000 | 0.000 | 
 | StellplatzregulativVorhanden | 0.000 | 0.000 | 
 | HochhausZulaessigGemaessBB | 0.447 | 0.253 | 
-| DON'T ANNOTATE THIS SENTENCE | 0.000 | 0.000 | 
 | AnteilBaumbepflanzung | 0.577 | 0.500 | 
 | MindestraumhoeheEG | 0.000 | 0.438 | 
 | VerbotStellplaetzeUndParkgebaeude | 0.577 | 0.000 | 

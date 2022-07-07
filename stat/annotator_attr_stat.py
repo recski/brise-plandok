@@ -1,0 +1,206 @@
+import argparse
+import os
+import statistics
+import statistics as st
+from collections import Counter
+
+from tuw_nlp.common.eval import count_p_r_f
+
+from brise_plandok.constants import (
+    DocumentFields,
+    SenFields,
+    FullAnnotatedAttributeFields,
+    AnnotatedAttributeFields,
+    AttributeFields,
+)
+from brise_plandok.utils import load_json, make_markdown_table
+
+DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
+FIRST_STAGE_IDS = "stat/first_stage_gold_ids.txt"
+
+TP = "TP"
+FP = "FP"
+FN = "FN"
+
+CNT = "cnt"
+CNT_CORR = "cnt_correct"
+CORRECT_RATIO = "correct_ratio"
+
+EMPTY = "_empty"
+
+PREC = "prec"
+REC = "rec"
+
+MICRO = "micro"
+MACRO = "macro"
+
+AVG = "avg"
+STD = "std"
+
+
+def annotator_stat():
+    attr_stat = {}
+
+    with open(FIRST_STAGE_IDS) as f:
+        first_stage_gold_ids = f.read().splitlines()
+
+    for folder in DATASET_FOLDERS:
+        for filename in os.listdir(folder):
+            fn = os.path.join(folder, filename)
+            doc = load_json(fn)
+            add_ann_to_map_if_not_present(attr_stat, doc)
+            ann_1 = doc[DocumentFields.FULL_ANNOTATORS][0]
+            ann_2 = doc[DocumentFields.FULL_ANNOTATORS][1]
+
+            for sen in doc[DocumentFields.SENS].values():
+                if not sen[SenFields.SEGMENTATION_ERROR]:
+                    add_attribute_stat(
+                        ann_1, ann_2, attr_stat, sen, doc[DocumentFields.ID], first_stage_gold_ids
+                    )
+    attr_stat = sort_map(attr_stat)
+    print_stat(attr_stat)
+
+
+def sort_map(attr_stat):
+    attr_stat = {k: v for k, v in sorted(attr_stat.items(), key=lambda item: item[0])}
+    for ann, stat in attr_stat.items():
+        attr_stat[ann] = {k: v for k, v in sorted(stat.items(), key=lambda item: item[0])}
+    return attr_stat
+
+
+def add_ann_to_map_if_not_present(attr_stat, doc):
+    assert len(doc[DocumentFields.FULL_ANNOTATORS]) == 2
+    for ann in doc[DocumentFields.FULL_ANNOTATORS]:
+        if ann not in attr_stat:
+            attr_stat[ann] = {}
+
+
+def add_attribute_stat(ann_1, ann_2, attr_stat, sen, doc_id, first_stage_gold_ids):
+    gold_attrs = set(sen[SenFields.GOLD_ATTRIBUTES].keys())
+    ann_attrs = {
+        ann_1: set(),
+        ann_2: set(),
+    }
+    fill_annotated_attributes(ann_attrs, doc_id, first_stage_gold_ids, sen)
+    add_attr_stat(gold_attrs, ann_1, ann_attrs[ann_1], attr_stat)
+    add_attr_stat(gold_attrs, ann_2, ann_attrs[ann_2], attr_stat)
+
+
+def fill_annotated_attributes(attr_stat, doc_id, first_stage_gold_ids, sen):
+    if doc_id in first_stage_gold_ids:
+        for attr, annotation in sen[SenFields.ANNOTATED_ATTRIBUTES].items():
+            for ann in annotation[AnnotatedAttributeFields.ANNOTATORS]:
+                attr_stat[ann].add(attr)
+    else:
+        if FullAnnotatedAttributeFields.ATTRIBUTES in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]:
+            for attr, annotation in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES][
+                FullAnnotatedAttributeFields.ATTRIBUTES
+            ].items():
+                for ann_per_value in annotation[AttributeFields.VALUE].values():
+                    for ann_per_type in ann_per_value[AttributeFields.TYPE].values():
+                        for ann in ann_per_type[AnnotatedAttributeFields.ANNOTATORS]:
+                            attr_stat[ann].add(attr)
+
+
+def add_attr_stat(gold_attrs, ann, ann_attrs, attr_stat):
+    for attr in gold_attrs | ann_attrs:
+        if attr not in attr_stat[ann]:
+            attr_stat[ann][attr] = Counter()
+    for attr in gold_attrs & ann_attrs:
+        attr_stat[ann][attr][TP] += 1
+    for attr in gold_attrs.difference(ann_attrs):
+        attr_stat[ann][attr][FN] += 1
+    for attr in ann_attrs.difference(gold_attrs):
+        attr_stat[ann][attr][FP] += 1
+
+
+def print_stat(attr_stat):
+    print("# Annotator statistics - Attributes")
+    print("This statistics is calculated without the sentences with a segmentation error.")
+    for ann, ann_stat in attr_stat.items():
+        print(f"## Annotator {ann}")
+        print_attribute_stat_for_ann(ann_stat)
+    # print_agg(agg, AVG)
+    # print_agg(agg, STD)
+
+
+def print_attribute_stat_for_ann(ann_stat):
+    agg = {
+        MICRO: Counter(),
+        MACRO: {
+            PREC: [],
+            REC: [],
+        },
+    }
+    values = [["Name", "TP", "FP", "FN", "Precision", "Recall"]]
+    p_r_f = count_p_r_f(ann_stat)
+    for attr, stat_per_attr in ann_stat.items():
+        values.append(
+            [
+                attr,
+                stat_per_attr[TP],
+                stat_per_attr[FP],
+                stat_per_attr[FN],
+                p_r_f[attr]["P"],
+                p_r_f[attr]["R"],
+            ]
+        )
+        agg[MICRO][TP] += stat_per_attr[TP]
+        agg[MICRO][FP] += stat_per_attr[FP]
+        agg[MICRO][FN] += stat_per_attr[FN]
+        agg[MACRO][PREC].append(p_r_f[attr]["P"])
+        agg[MACRO][REC].append(p_r_f[attr]["R"])
+    micro_p_r_f = count_p_r_f({MICRO: agg[MICRO]})
+    values.append(
+        [
+            MICRO,
+            agg[MICRO][TP],
+            agg[MICRO][FP],
+            agg[MICRO][FN],
+            micro_p_r_f[MICRO]["P"],
+            micro_p_r_f[MICRO]["R"],
+        ]
+    )
+    values.append(
+        [MACRO, "-", "-", "-", statistics.mean(agg[MACRO][PREC]), statistics.mean(agg[MACRO][REC])]
+    )
+    print(make_markdown_table(values))
+
+
+def print_agg(agg, name):
+    if name == AVG:
+        print("## Average")
+    elif name == STD:
+        print("## STD")
+    for stat_type, agg_stat in agg.items():
+        print(f"### {stat_type}")
+        agg_corr_ratio = 0
+        if name == AVG:
+            agg_corr_ratio = st.mean(agg_stat[CORRECT_RATIO])
+        elif name == STD:
+            agg_corr_ratio = st.stdev(agg_stat[CORRECT_RATIO])
+        print(f"Correct / All: {agg_corr_ratio:.3f}")
+        values = [["Name", "Precision", "Recall"]]
+        for mod, mod_stat in agg_stat.items():
+            if mod == CORRECT_RATIO:
+                continue
+            agg_prec = 0
+            agg_rec = 0
+            if name == AVG:
+                agg_prec = st.mean(mod_stat[PREC])
+                agg_rec = st.mean(mod_stat[REC])
+            elif name == STD:
+                agg_prec = st.stdev(mod_stat[PREC])
+                agg_rec = st.stdev(mod_stat[REC])
+            values.append([mod, agg_prec, agg_rec])
+        print(make_markdown_table(values))
+
+
+def get_args():
+    parser = argparse.ArgumentParser(description="")
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    args = get_args()
+    annotator_stat()

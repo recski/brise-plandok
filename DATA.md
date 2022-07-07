@@ -347,12 +347,22 @@ You can recreate this file by calling:
 ./stat/suggestion_stat.sh > stat/docs/SUGGESTIONS_STAT.md
 ```
 
-### Annotator statistics
+### Annotator statistics - Modality
 
-For statistics about the pre-filled suggestions during annotation see the [ANNOTATOR_MOD_STAT.md](stat/docs/ANNOTATOR_MOD_STAT.md) file.
+For statistics about the annotators' performance on modality see the [ANNOTATOR_MOD_STAT.md](stat/docs/ANNOTATOR_MOD_STAT.md) file.
 
 You can recreate this file by calling:
 
 ```bash
 python stat/annotator_mod_stat.py > stat/docs/ANNOTATOR_MOD_STAT.md
+```
+
+### Annotator statistics - Attributes
+
+For statistics about the annotators' performance on the attribute labeling task see the [ANNOTATOR_ATTR_STAT.md](stat/docs/ANNOTATOR_ATTR_STAT.md) file.
+
+You can recreate this file by calling:
+
+```bash
+python stat/annotator_attr_stat.py > stat/docs/ANNOTATOR_ATTR_STAT.md
 ```

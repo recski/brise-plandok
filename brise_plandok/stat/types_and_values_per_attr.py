@@ -2,7 +2,7 @@ import argparse
 import os
 
 from brise_plandok.constants import DocumentFields, SenFields, AttributeFields
-from brise_plandok.stat.constants import DATASET_FOLDERS, TYPES, VALUES, CNT
+from brise_plandok.stat.constants import DATASET_FOLDERS, TYPES, VALUES, FREQ
 from brise_plandok.utils import load_json
 
 
@@ -19,9 +19,9 @@ def types_and_values_per_attr():
                         attr_value = attr[AttributeFields.VALUE]
                         attr_type = attr[AttributeFields.TYPE]
                         if attr_name not in attr_map:
-                            attr_map[attr_name] = {TYPES: {}, VALUES: {}, CNT: 1}
+                            attr_map[attr_name] = {TYPES: {}, VALUES: {}, FREQ: 1}
                         else:
-                            attr_map[attr_name][CNT] += 1
+                            attr_map[attr_name][FREQ] += 1
                         if attr_type not in attr_map[attr_name][TYPES]:
                             attr_map[attr_name][TYPES][attr_type] = 1
                         else:
@@ -31,7 +31,7 @@ def types_and_values_per_attr():
                         else:
                             attr_map[attr_name][VALUES][attr_value] += 1
     attr_map = {
-        k: v for k, v in sorted(attr_map.items(), key=lambda item: item[1][CNT], reverse=True)
+        k: v for k, v in sorted(attr_map.items(), key=lambda item: item[1][FREQ], reverse=True)
     }
     for attr_name, stat in attr_map.items():
         stat[TYPES] = {
@@ -48,7 +48,7 @@ def print_stat(attr_map):
     print()
     for attr_name, types_and_values in attr_map.items():
         print(f"## {attr_name}")
-        print(f"Count: {types_and_values[CNT]}")
+        print(f"Count: {types_and_values[FREQ]}")
         print(f"### Types")
         print("```bash")
         for attr_type, cnt in types_and_values[TYPES].items():

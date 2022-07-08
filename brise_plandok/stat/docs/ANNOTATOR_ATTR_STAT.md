@@ -3,7 +3,7 @@ This statistics is calculated without the sentences with a segmentation error.
 Post-processed attributes were converted back to their version at the time of annotation.
 ## Annotator 01
 
-|  Name | CNT | TP | FP | FN | Precision | Recall |
+|  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
 | Planzeichen | 611 | 588 | 8 | 23 | 0.987 | 0.962 | 
 | WidmungUndZweckbestimmung | 240 | 111 | 59 | 129 | 0.653 | 0.463 | 
@@ -98,7 +98,7 @@ Post-processed attributes were converted back to their version at the time of an
 
 ## Annotator 02
 
-|  Name | CNT | TP | FP | FN | Precision | Recall |
+|  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
 | Planzeichen | 555 | 533 | 30 | 22 | 0.947 | 0.960 | 
 | WidmungUndZweckbestimmung | 234 | 142 | 70 | 92 | 0.670 | 0.607 | 
@@ -196,7 +196,7 @@ Post-processed attributes were converted back to their version at the time of an
 
 ## Annotator 03
 
-|  Name | CNT | TP | FP | FN | Precision | Recall |
+|  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
 | Planzeichen | 564 | 555 | 6 | 9 | 0.989 | 0.984 | 
 | WidmungUndZweckbestimmung | 257 | 132 | 75 | 125 | 0.638 | 0.514 | 
@@ -293,7 +293,7 @@ Post-processed attributes were converted back to their version at the time of an
 
 ## Annotator 04
 
-|  Name | CNT | TP | FP | FN | Precision | Recall |
+|  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
 | Planzeichen | 669 | 656 | 25 | 13 | 0.963 | 0.981 | 
 | WidmungUndZweckbestimmung | 240 | 130 | 121 | 110 | 0.518 | 0.542 | 
@@ -394,7 +394,7 @@ Post-processed attributes were converted back to their version at the time of an
 
 ## Annotator 05
 
-|  Name | CNT | TP | FP | FN | Precision | Recall |
+|  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
 | Planzeichen | 658 | 644 | 14 | 14 | 0.979 | 0.979 | 
 | WidmungUndZweckbestimmung | 265 | 126 | 86 | 139 | 0.594 | 0.475 | 
@@ -492,7 +492,7 @@ Post-processed attributes were converted back to their version at the time of an
 
 ## Annotator 06
 
-|  Name | CNT | TP | FP | FN | Precision | Recall |
+|  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
 | Planzeichen | 631 | 621 | 7 | 10 | 0.989 | 0.984 | 
 | WidmungUndZweckbestimmung | 264 | 104 | 47 | 160 | 0.689 | 0.394 | 

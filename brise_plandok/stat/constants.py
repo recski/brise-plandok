@@ -7,12 +7,12 @@ TP = "TP"
 FP = "FP"
 FN = "FN"
 
-CNT = "cnt"
-CNT_CORR = "cnt_correct"
+FREQ = "Freq"
+FREQ_CORR = "freq_correct"
 CORRECT_RATIO = "correct_ratio"
 
-PREC = "prec"
-REC = "rec"
+PREC = "Precision"
+REC = "Recall"
 
 MICRO = "micro"
 MACRO = "macro"

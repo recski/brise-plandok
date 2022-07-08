@@ -14,8 +14,8 @@ from brise_plandok.stat.constants import (
     DATASET_FOLDERS,
     ALL,
     RULES,
-    CNT,
-    CNT_CORR,
+    FREQ,
+    FREQ_CORR,
     TP,
     FN,
     FP,
@@ -64,19 +64,19 @@ def add_ann_to_map_if_not_present(ann_map, doc):
         if ann not in ann_map:
             ann_map[ann] = {
                 ALL: {
-                    CNT: 0,
-                    CNT_CORR: 0,
+                    FREQ: 0,
+                    FREQ_CORR: 0,
                 },
                 RULES: {
-                    CNT: 0,
-                    CNT_CORR: 0,
+                    FREQ: 0,
+                    FREQ_CORR: 0,
                 },
             }
 
 
 def add_modality_stat(ann_1, ann_2, ann_map, sen):
-    ann_map[ann_1][ALL][CNT] += 1
-    ann_map[ann_2][ALL][CNT] += 1
+    ann_map[ann_1][ALL][FREQ] += 1
+    ann_map[ann_2][ALL][FREQ] += 1
     ann_modalities = {
         ann_1: EMPTY,
         ann_2: EMPTY,
@@ -85,8 +85,8 @@ def add_modality_stat(ann_1, ann_2, ann_map, sen):
     if gold_mod is None:
         gold_mod = EMPTY
     else:
-        ann_map[ann_1][RULES][CNT] += 1
-        ann_map[ann_2][RULES][CNT] += 1
+        ann_map[ann_1][RULES][FREQ] += 1
+        ann_map[ann_2][RULES][FREQ] += 1
     if FullAnnotatedAttributeFields.MODALITY in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]:
         for mod, annotators in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES][
             FullAnnotatedAttributeFields.MODALITY
@@ -110,7 +110,7 @@ def add_mod_stat_for_rule_sens(gold_mod, mod, mod_stat_rules):
         mod_stat_rules[mod] = Counter()
     if gold_mod == mod:
         mod_stat_rules[gold_mod][TP] += 1
-        mod_stat_rules[CNT_CORR] += 1
+        mod_stat_rules[FREQ_CORR] += 1
     else:
         mod_stat_rules[gold_mod][FN] += 1
         if mod != EMPTY:
@@ -124,7 +124,7 @@ def add_mod_stat_for_all_sens(gold_mod, mod, mod_stat_all):
         mod_stat_all[mod] = Counter()
     if gold_mod == mod:
         mod_stat_all[gold_mod][TP] += 1
-        mod_stat_all[CNT_CORR] += 1
+        mod_stat_all[FREQ_CORR] += 1
     else:
         mod_stat_all[gold_mod][FN] += 1
         mod_stat_all[mod][FP] += 1
@@ -150,11 +150,11 @@ def print_stat(ann_map):
 
 def print_modality(ann_stat, agg):
     for stat_type, ann_stat_mod in ann_stat.items():
-        values = [["Name", "TP", "FP", "FN", "Precision", "Recall"]]
+        values = [["Name", TP, FP, FN, PREC, REC]]
         agg_for_stat_type = agg[stat_type]
         print(f"### {stat_type}")
         for mod, mod_stat in ann_stat_mod.items():
-            if mod == CNT or mod == CNT_CORR:
+            if mod == FREQ or mod == FREQ_CORR:
                 continue
             prec = mod_stat[TP] / (mod_stat[TP] + mod_stat[FP])
             rec = mod_stat[TP] / (mod_stat[TP] + mod_stat[FN])
@@ -166,9 +166,9 @@ def print_modality(ann_stat, agg):
                 }
             agg_for_stat_type[mod][PREC].append(prec)
             agg_for_stat_type[mod][REC].append(rec)
-        correct_ratio = ann_stat_mod[CNT_CORR] / ann_stat_mod[CNT]
+        correct_ratio = ann_stat_mod[FREQ_CORR] / ann_stat_mod[FREQ]
         print(
-            f"Correct / All: {ann_stat_mod[CNT_CORR]} / {ann_stat_mod[CNT]} = {correct_ratio:.3f}"
+            f"Correct / All: {ann_stat_mod[FREQ_CORR]} / {ann_stat_mod[FREQ]} = {correct_ratio:.3f}"
         )
         agg_for_stat_type[CORRECT_RATIO].append(correct_ratio)
         print(make_markdown_table(values))
@@ -187,7 +187,7 @@ def print_agg(agg, name):
         elif name == STD:
             agg_corr_ratio = st.stdev(agg_stat[CORRECT_RATIO])
         print(f"Correct / All: {agg_corr_ratio:.3f}")
-        values = [["Name", "Precision", "Recall"]]
+        values = [["Name", PREC, REC]]
         for mod, mod_stat in agg_stat.items():
             if mod == CORRECT_RATIO:
                 continue

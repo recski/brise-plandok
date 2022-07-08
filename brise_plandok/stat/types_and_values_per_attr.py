@@ -2,13 +2,8 @@ import argparse
 import os
 
 from brise_plandok.constants import DocumentFields, SenFields, AttributeFields
+from brise_plandok.stat.constants import DATASET_FOLDERS, TYPES, VALUES, CNT
 from brise_plandok.utils import load_json
-
-DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
-
-TYPES = "types"
-VALUES = "values"
-CNT = "count"
 
 
 def types_and_values_per_attr():

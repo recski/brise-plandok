@@ -8,31 +8,25 @@ from brise_plandok.constants import (
     SenFields,
     FullAnnotatedAttributeFields,
     AnnotatedAttributeFields,
+    EMPTY,
+)
+from brise_plandok.stat.constants import (
+    DATASET_FOLDERS,
+    ALL,
+    RULES,
+    CNT,
+    CNT_CORR,
+    TP,
+    FN,
+    FP,
+    CORRECT_RATIO,
+    AVG,
+    STD,
+    PREC,
+    REC,
 )
 from brise_plandok.stat.utils import make_markdown_table
 from brise_plandok.utils import load_json
-
-DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
-FIRST_STAGE_IDS = "brise_plandok/stat/first_stage_gold_ids.txt"
-
-TP = "TP"
-FP = "FP"
-FN = "FN"
-
-CNT = "cnt"
-CNT_CORR = "cnt_correct"
-CORRECT_RATIO = "correct_ratio"
-
-EMPTY = "_empty"
-
-PREC = "prec"
-REC = "rec"
-
-ALL = "All sentences"
-RULES = "Only sentences with rules"
-
-AVG = "avg"
-STD = "std"
 
 
 def annotator_stat():

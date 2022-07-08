@@ -5,8 +5,6 @@ from statistics import median
 from brise_plandok.constants import DocumentFields, SenFields
 from brise_plandok.utils import load_json
 
-DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
-
 
 def rule_stat(dataset_folders):
     all_sentences_with_rules = 0

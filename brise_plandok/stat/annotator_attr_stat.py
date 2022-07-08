@@ -13,31 +13,23 @@ from brise_plandok.constants import (
     AnnotatedAttributeFields,
     AttributeFields,
 )
+from brise_plandok.stat.constants import (
+    FIRST_STAGE_IDS,
+    DATASET_FOLDERS,
+    CNT,
+    PLACEHOLDER,
+    TP,
+    FN,
+    FP,
+    AVG,
+    STD,
+    MICRO,
+    MACRO,
+    PREC,
+    REC,
+)
 from brise_plandok.stat.utils import make_markdown_table, convert_back_post_processed
 from brise_plandok.utils import load_json
-
-DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
-FIRST_STAGE_IDS = "brise_plandok/stat/first_stage_gold_ids.txt"
-
-PLACEHOLDER = "DON'T ANNOTATE THIS SENTENCE"
-
-TP = "TP"
-FP = "FP"
-FN = "FN"
-
-CNT = "cnt"
-CORRECT_RATIO = "correct_ratio"
-
-EMPTY = "_empty"
-
-PREC = "prec"
-REC = "rec"
-
-MICRO = "micro"
-MACRO = "macro"
-
-AVG = "avg"
-STD = "std"
 
 
 def annotator_stat():

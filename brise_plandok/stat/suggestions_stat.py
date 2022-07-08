@@ -2,11 +2,9 @@ import argparse
 import os
 
 from brise_plandok.constants import DocumentFields, SenFields
+from brise_plandok.stat.constants import FIRST_STAGE_IDS, DATASET_FOLDERS
 from brise_plandok.stat.utils import convert_back_post_processed
 from brise_plandok.utils import load_json
-
-DATASET_FOLDERS = ["data/train", "data/valid", "data/test"]
-FIRST_STAGE_IDS = "brise_plandok/stat/first_stage_gold_ids.txt"
 
 
 def print_suggestions_stat(only_rules, original_attributes, first_stage, combined):

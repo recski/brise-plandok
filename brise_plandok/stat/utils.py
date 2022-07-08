@@ -55,6 +55,8 @@ def convert_back_post_processed(gold_attrs):
         gold_attrs = (gold_attrs - {AttributesNames.Widmung}) | {"WidmungUndZweckbestimmung"}
     if AttributesNames.Nutzungsart in gold_attrs:
         gold_attrs = (gold_attrs - {AttributesNames.Nutzungsart}) | {"WidmungUndZweckbestimmung"}
+    if AttributesNames.BBAllgemein in gold_attrs:
+        gold_attrs = (gold_attrs - {AttributesNames.BBAllgemein}) | {"WidmungUndZweckbestimmung"}
     if AttributesNames.BebauteFlaecheMax in gold_attrs:
         gold_attrs = (gold_attrs - {AttributesNames.BebauteFlaecheMax}) | {"Flaechen"}
     if AttributesNames.BebauteFlaecheMin in gold_attrs:

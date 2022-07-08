@@ -6,7 +6,7 @@ Post-processed attributes were converted back to their version at the time of an
 |  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
 | Planzeichen | 611 | 588 | 8 | 23 | 0.987 | 0.962 | 
-| WidmungUndZweckbestimmung | 240 | 111 | 59 | 129 | 0.653 | 0.463 | 
+| WidmungUndZweckbestimmung | 284 | 123 | 47 | 161 | 0.724 | 0.433 | 
 | VerkehrsflaecheID | 130 | 110 | 11 | 20 | 0.909 | 0.846 | 
 | AnordnungGaertnerischeAusgestaltung | 113 | 104 | 16 | 9 | 0.867 | 0.920 | 
 | VorkehrungBepflanzung | 101 | 99 | 0 | 2 | 1.000 | 0.980 | 
@@ -20,7 +20,6 @@ Post-processed attributes were converted back to their version at the time of an
 | PlangebietAllgemein | 67 | 43 | 5 | 24 | 0.896 | 0.642 | 
 | GebaeudeHoeheMax | 67 | 66 | 17 | 1 | 0.795 | 0.985 | 
 | ErrichtungGebaeude | 65 | 45 | 11 | 20 | 0.804 | 0.692 | 
-| BBAllgemein | 65 | 0 | 0 | 65 | 1.000 | 0.000 | 
 | GebaeudeBautyp | 63 | 62 | 7 | 1 | 0.899 | 0.984 | 
 | AbschlussDachMaxBezugGebaeude | 63 | 62 | 1 | 1 | 0.984 | 0.984 | 
 | AufbautenZulaessig | 57 | 56 | 4 | 1 | 0.933 | 0.982 | 
@@ -92,8 +91,8 @@ Post-processed attributes were converted back to their version at the time of an
 | StellplatzregulativVorhanden | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
 | HochhausZulaessigGemaessBB | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | AnteilBaumbepflanzung | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
-| micro | 3206 | 2800 | 431 | 406 | 0.867 | 0.873 | 
-| macro | - | - | - | - | 0.811 | 0.885 | 
+| micro | 3185 | 2812 | 419 | 373 | 0.870 | 0.883 | 
+| macro | - | - | - | - | 0.810 | 0.895 | 
 
 
 ## Annotator 02
@@ -101,7 +100,7 @@ Post-processed attributes were converted back to their version at the time of an
 |  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
 | Planzeichen | 555 | 533 | 30 | 22 | 0.947 | 0.960 | 
-| WidmungUndZweckbestimmung | 234 | 142 | 70 | 92 | 0.670 | 0.607 | 
+| WidmungUndZweckbestimmung | 285 | 152 | 60 | 133 | 0.717 | 0.533 | 
 | VerkehrsflaecheID | 152 | 127 | 5 | 25 | 0.962 | 0.836 | 
 | AnFluchtlinie | 103 | 101 | 27 | 2 | 0.789 | 0.981 | 
 | VorkehrungBepflanzung | 102 | 95 | 2 | 7 | 0.979 | 0.931 | 
@@ -117,7 +116,6 @@ Post-processed attributes were converted back to their version at the time of an
 | AbschlussDachMaxBezugGebaeude | 67 | 67 | 3 | 0 | 0.957 | 1.000 | 
 | GehsteigbreiteMin | 65 | 64 | 0 | 1 | 1.000 | 0.985 | 
 | GebaeudeBautyp | 63 | 62 | 5 | 1 | 0.925 | 0.984 | 
-| BBAllgemein | 63 | 0 | 0 | 63 | 1.000 | 0.000 | 
 | StrassenbreiteMin | 54 | 53 | 12 | 1 | 0.815 | 0.981 | 
 | VonBebauungFreizuhalten | 50 | 44 | 21 | 6 | 0.677 | 0.880 | 
 | UnterbrechungGeschlosseneBauweise | 50 | 50 | 0 | 0 | 1.000 | 1.000 | 
@@ -190,8 +188,8 @@ Post-processed attributes were converted back to their version at the time of an
 | StellplatzregulativVorhanden | 0 | 0 | 4 | 0 | 0.000 | 1.000 | 
 | MaxHoeheWohngebaeude | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | GebaeudeHoeheMin | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
-| micro | 3168 | 2737 | 522 | 431 | 0.840 | 0.864 | 
-| macro | - | - | - | - | 0.785 | 0.823 | 
+| micro | 3156 | 2747 | 512 | 409 | 0.843 | 0.870 | 
+| macro | - | - | - | - | 0.783 | 0.831 | 
 
 
 ## Annotator 03
@@ -199,7 +197,7 @@ Post-processed attributes were converted back to their version at the time of an
 |  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
 | Planzeichen | 564 | 555 | 6 | 9 | 0.989 | 0.984 | 
-| WidmungUndZweckbestimmung | 257 | 132 | 75 | 125 | 0.638 | 0.514 | 
+| WidmungUndZweckbestimmung | 297 | 142 | 65 | 155 | 0.686 | 0.478 | 
 | VerkehrsflaecheID | 119 | 98 | 11 | 21 | 0.899 | 0.824 | 
 | AnordnungGaertnerischeAusgestaltung | 91 | 90 | 8 | 1 | 0.918 | 0.989 | 
 | AnFluchtlinie | 91 | 89 | 17 | 2 | 0.840 | 0.978 | 
@@ -214,7 +212,6 @@ Post-processed attributes were converted back to their version at the time of an
 | GebaeudeBautyp | 64 | 64 | 12 | 0 | 0.842 | 1.000 | 
 | StrassenbreiteMin | 62 | 61 | 5 | 1 | 0.924 | 0.984 | 
 | GebaeudeHoeheMax | 62 | 62 | 12 | 0 | 0.838 | 1.000 | 
-| BBAllgemein | 62 | 0 | 0 | 62 | 1.000 | 0.000 | 
 | UnterbrechungGeschlosseneBauweise | 59 | 59 | 2 | 0 | 0.967 | 1.000 | 
 | PlangebietAllgemein | 56 | 39 | 5 | 17 | 0.886 | 0.696 | 
 | ErrichtungGebaeude | 56 | 37 | 4 | 19 | 0.902 | 0.661 | 
@@ -287,8 +284,8 @@ Post-processed attributes were converted back to their version at the time of an
 | GaragengebaeudeAusfuehrung | 0 | 0 | 3 | 0 | 0.000 | 1.000 | 
 | AusnuetzbarkeitWidmungskategorieGefoerderterWohnbau | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | AusnahmeVonWohnungenUnzulaessig | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
-| micro | 3020 | 2655 | 440 | 365 | 0.858 | 0.879 | 
-| macro | - | - | - | - | 0.749 | 0.897 | 
+| micro | 2998 | 2665 | 430 | 333 | 0.861 | 0.889 | 
+| macro | - | - | - | - | 0.746 | 0.907 | 
 
 
 ## Annotator 04
@@ -296,7 +293,7 @@ Post-processed attributes were converted back to their version at the time of an
 |  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
 | Planzeichen | 669 | 656 | 25 | 13 | 0.963 | 0.981 | 
-| WidmungUndZweckbestimmung | 240 | 130 | 121 | 110 | 0.518 | 0.542 | 
+| WidmungUndZweckbestimmung | 305 | 145 | 106 | 160 | 0.578 | 0.475 | 
 | VerkehrsflaecheID | 143 | 117 | 15 | 26 | 0.886 | 0.818 | 
 | Flaechen | 104 | 101 | 163 | 3 | 0.383 | 0.971 | 
 | Dachart | 102 | 97 | 2 | 5 | 0.980 | 0.951 | 
@@ -306,7 +303,6 @@ Post-processed attributes were converted back to their version at the time of an
 | WidmungInMehrerenEbenen | 88 | 82 | 22 | 6 | 0.788 | 0.932 | 
 | GebaeudeHoeheMax | 85 | 81 | 18 | 4 | 0.818 | 0.953 | 
 | VorkehrungBepflanzung | 84 | 77 | 0 | 7 | 1.000 | 0.917 | 
-| BBAllgemein | 82 | 0 | 0 | 82 | 1.000 | 0.000 | 
 | GebaeudeHoeheArt | 73 | 66 | 12 | 7 | 0.846 | 0.904 | 
 | GehsteigbreiteMin | 72 | 69 | 0 | 3 | 1.000 | 0.958 | 
 | PlangebietAllgemein | 71 | 51 | 28 | 20 | 0.646 | 0.718 | 
@@ -388,8 +384,8 @@ Post-processed attributes were converted back to their version at the time of an
 | AusnuetzbarkeitWidmungskategorieGefoerderterWohnbau | 0 | 0 | 9 | 0 | 0.000 | 1.000 | 
 | ArkadeLaenge | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
 | AnteilBaumbepflanzung | 0 | 0 | 2 | 0 | 0.000 | 1.000 | 
-| micro | 3355 | 2778 | 799 | 577 | 0.777 | 0.828 | 
-| macro | - | - | - | - | 0.688 | 0.785 | 
+| micro | 3338 | 2793 | 784 | 545 | 0.781 | 0.837 | 
+| macro | - | - | - | - | 0.685 | 0.792 | 
 
 
 ## Annotator 05
@@ -397,7 +393,7 @@ Post-processed attributes were converted back to their version at the time of an
 |  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
 | Planzeichen | 658 | 644 | 14 | 14 | 0.979 | 0.979 | 
-| WidmungUndZweckbestimmung | 265 | 126 | 86 | 139 | 0.594 | 0.475 | 
+| WidmungUndZweckbestimmung | 332 | 147 | 65 | 185 | 0.693 | 0.443 | 
 | VerkehrsflaecheID | 140 | 117 | 15 | 23 | 0.886 | 0.836 | 
 | Flaechen | 103 | 102 | 173 | 1 | 0.371 | 0.990 | 
 | AnordnungGaertnerischeAusgestaltung | 96 | 90 | 13 | 6 | 0.874 | 0.938 | 
@@ -407,7 +403,6 @@ Post-processed attributes were converted back to their version at the time of an
 | AnFluchtlinie | 86 | 75 | 25 | 11 | 0.750 | 0.872 | 
 | AbschlussDachMaxBezugGebaeude | 85 | 85 | 4 | 0 | 0.955 | 1.000 | 
 | ErrichtungGebaeude | 79 | 51 | 21 | 28 | 0.708 | 0.646 | 
-| BBAllgemein | 77 | 0 | 0 | 77 | 1.000 | 0.000 | 
 | WidmungInMehrerenEbenen | 75 | 72 | 19 | 3 | 0.791 | 0.960 | 
 | GebaeudeHoeheMax | 73 | 72 | 21 | 1 | 0.774 | 0.986 | 
 | GehsteigbreiteMin | 72 | 72 | 0 | 0 | 1.000 | 1.000 | 
@@ -486,8 +481,8 @@ Post-processed attributes were converted back to their version at the time of an
 | LaubengangHoehe | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | EinfriedungHoeheSockel | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | DurchfahrtHoehe | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
-| micro | 3315 | 2795 | 575 | 520 | 0.829 | 0.843 | 
-| macro | - | - | - | - | 0.755 | 0.810 | 
+| micro | 3305 | 2816 | 554 | 489 | 0.836 | 0.852 | 
+| macro | - | - | - | - | 0.753 | 0.819 | 
 
 
 ## Annotator 06
@@ -495,14 +490,13 @@ Post-processed attributes were converted back to their version at the time of an
 |  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
 | Planzeichen | 631 | 621 | 7 | 10 | 0.989 | 0.984 | 
-| WidmungUndZweckbestimmung | 264 | 104 | 47 | 160 | 0.689 | 0.394 | 
+| WidmungUndZweckbestimmung | 329 | 120 | 31 | 209 | 0.795 | 0.365 | 
 | VerkehrsflaecheID | 116 | 100 | 10 | 16 | 0.909 | 0.862 | 
 | GebaeudeHoeheMax | 101 | 100 | 21 | 1 | 0.826 | 0.990 | 
 | Dachart | 99 | 95 | 2 | 4 | 0.979 | 0.960 | 
 | AnordnungGaertnerischeAusgestaltung | 93 | 92 | 16 | 1 | 0.852 | 0.989 | 
 | GebaeudeHoeheArt | 85 | 80 | 8 | 5 | 0.909 | 0.941 | 
 | Flaechen | 85 | 77 | 114 | 8 | 0.403 | 0.906 | 
-| BBAllgemein | 85 | 0 | 0 | 85 | 1.000 | 0.000 | 
 | VorkehrungBepflanzung | 84 | 81 | 1 | 3 | 0.988 | 0.964 | 
 | AnFluchtlinie | 83 | 72 | 34 | 11 | 0.679 | 0.867 | 
 | BegruenungDach | 80 | 79 | 2 | 1 | 0.975 | 0.988 | 
@@ -579,8 +573,8 @@ Post-processed attributes were converted back to their version at the time of an
 | StellplatzverpflichtungArt | 0 | 0 | 3 | 0 | 0.000 | 1.000 | 
 | StellplatzregulativVorhanden | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
 | Geschaeftsstrassen | 0 | 0 | 1 | 0 | 0.000 | 1.000 | 
-| micro | 3154 | 2687 | 444 | 467 | 0.858 | 0.852 | 
-| macro | - | - | - | - | 0.804 | 0.846 | 
+| micro | 3134 | 2703 | 428 | 431 | 0.863 | 0.862 | 
+| macro | - | - | - | - | 0.803 | 0.856 | 
 
 
 ## Average
@@ -588,7 +582,7 @@ Post-processed attributes were converted back to their version at the time of an
 |  Name | Precision | Recall |
 |-------------- | -------------- | -------------- | 
 | Planzeichen | 0.976 | 0.975 | 
-| WidmungUndZweckbestimmung | 0.627 | 0.499 | 
+| WidmungUndZweckbestimmung | 0.699 | 0.455 | 
 | VerkehrsflaecheID | 0.909 | 0.837 | 
 | AnordnungGaertnerischeAusgestaltung | 0.867 | 0.969 | 
 | VorkehrungBepflanzung | 0.985 | 0.957 | 
@@ -602,7 +596,6 @@ Post-processed attributes were converted back to their version at the time of an
 | PlangebietAllgemein | 0.832 | 0.690 | 
 | GebaeudeHoeheMax | 0.806 | 0.986 | 
 | ErrichtungGebaeude | 0.786 | 0.610 | 
-| BBAllgemein | 1.000 | 0.000 | 
 | GebaeudeBautyp | 0.900 | 0.986 | 
 | AbschlussDachMaxBezugGebaeude | 0.957 | 0.993 | 
 | AufbautenZulaessig | 0.910 | 0.975 | 
@@ -690,7 +683,7 @@ Post-processed attributes were converted back to their version at the time of an
 |  Name | Precision | Recall |
 |-------------- | -------------- | -------------- | 
 | Planzeichen | 0.017 | 0.011 | 
-| WidmungUndZweckbestimmung | 0.062 | 0.073 | 
+| WidmungUndZweckbestimmung | 0.071 | 0.056 | 
 | VerkehrsflaecheID | 0.028 | 0.016 | 
 | AnordnungGaertnerischeAusgestaltung | 0.033 | 0.032 | 
 | VorkehrungBepflanzung | 0.017 | 0.031 | 
@@ -704,7 +697,6 @@ Post-processed attributes were converted back to their version at the time of an
 | PlangebietAllgemein | 0.125 | 0.061 | 
 | GebaeudeHoeheMax | 0.025 | 0.017 | 
 | ErrichtungGebaeude | 0.072 | 0.121 | 
-| BBAllgemein | 0.000 | 0.000 | 
 | GebaeudeBautyp | 0.049 | 0.013 | 
 | AbschlussDachMaxBezugGebaeude | 0.027 | 0.012 | 
 | AufbautenZulaessig | 0.046 | 0.027 | 

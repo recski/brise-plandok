@@ -113,12 +113,12 @@ Number of sentences with suggestions: 3925
 Ratio of sentences with suggestions: 98.27%
 
 Number of all gold attributes: 9221
-Number of correct suggestions: 8148
-Ratio of correctly suggested gold attributes: 88.36%
+Number of correct suggestions: 8193
+Ratio of correctly suggested gold attributes: 88.85%
 
 Number of all suggested attributes: 9604
-Number of wrong suggestions: 1456
-Ratio of wrong suggestions: 15.16%
+Number of wrong suggestions: 1411
+Ratio of wrong suggestions: 14.69%
 ```
 ## Combined
 
@@ -173,10 +173,10 @@ Number of sentences with suggestions: 3719
 Ratio of sentences with suggestions: 93.11%
 
 Number of all gold attributes: 9221
-Number of correct suggestions: 7276
-Ratio of correctly suggested gold attributes: 78.91%
+Number of correct suggestions: 7316
+Ratio of correctly suggested gold attributes: 79.34%
 
 Number of all suggested attributes: 8664
-Number of wrong suggestions: 1388
-Ratio of wrong suggestions: 16.02%
+Number of wrong suggestions: 1348
+Ratio of wrong suggestions: 15.56%
 ```

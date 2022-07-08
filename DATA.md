@@ -347,7 +347,7 @@ You can recreate this file by calling:
 ./brise_plandok/stat/suggestion_stat.sh > brise_plandok/stat/docs/SUGGESTIONS_STAT.md
 ```
 
-### Annotator statistics - Modality
+### Annotator performance - Modality
 
 For statistics about the annotators' performance on modality see the [ANNOTATOR_MOD_STAT.md](brise_plandok/stat/docs/ANNOTATOR_MOD_STAT.md) file.
 
@@ -357,7 +357,7 @@ You can recreate this file by calling:
 python brise_plandok/stat/annotator_mod_stat.py > brise_plandok/stat/docs/ANNOTATOR_MOD_STAT.md
 ```
 
-### Annotator statistics - Attributes
+### Annotator performance - Attributes
 
 For statistics about the annotators' performance on the attribute labeling task see the [ANNOTATOR_ATTR_STAT.md](brise_plandok/stat/docs/ANNOTATOR_ATTR_STAT.md) file.
 
@@ -375,4 +375,15 @@ You can recreate this file by calling:
 
 ```bash
 python brise_plandok/stat/agreement_mod.py > brise_plandok/stat/docs/AGREEMENT_MOD.md
+```
+
+
+### Annotator agreement - Attributes
+
+For statistics about annotator agreement on attributes see the [AGREEMENT_ATTR.md](brise_plandok/stat/docs/AGREEMENT_ATTR.md) file.
+
+You can recreate this file by calling:
+
+```bash
+python brise_plandok/stat/agreement_attr.py > brise_plandok/stat/docs/AGREEMENT_ATTR.md
 ```

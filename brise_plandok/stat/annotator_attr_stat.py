@@ -9,15 +9,11 @@ from tuw_nlp.common.eval import count_p_r_f
 from brise_plandok.constants import (
     DocumentFields,
     SenFields,
-    FullAnnotatedAttributeFields,
-    AnnotatedAttributeFields,
-    AttributeFields,
 )
 from brise_plandok.stat.constants import (
     FIRST_STAGE_IDS,
     DATASET_FOLDERS,
     FREQ,
-    PLACEHOLDER,
     TP,
     FN,
     FP,
@@ -28,7 +24,11 @@ from brise_plandok.stat.constants import (
     PREC,
     REC,
 )
-from brise_plandok.stat.utils import make_markdown_table, convert_back_post_processed
+from brise_plandok.stat.utils import (
+    make_markdown_table,
+    convert_back_post_processed,
+    fill_annotated_attributes,
+)
 from brise_plandok.utils import load_json
 
 
@@ -83,24 +83,6 @@ def add_attribute_stat(ann_1, ann_2, attr_stat, sen, doc_id, first_stage_gold_id
     fill_annotated_attributes(ann_attrs, doc_id, first_stage_gold_ids, sen)
     add_attr_stat(gold_attrs, ann_1, ann_attrs[ann_1], attr_stat)
     add_attr_stat(gold_attrs, ann_2, ann_attrs[ann_2], attr_stat)
-
-
-def fill_annotated_attributes(attr_stat, doc_id, first_stage_gold_ids, sen):
-    if doc_id in first_stage_gold_ids:
-        for attr, annotation in sen[SenFields.ANNOTATED_ATTRIBUTES].items():
-            if attr == PLACEHOLDER:
-                continue
-            for ann in annotation[AnnotatedAttributeFields.ANNOTATORS]:
-                attr_stat[ann].add(attr)
-    else:
-        if FullAnnotatedAttributeFields.ATTRIBUTES in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]:
-            for attr, annotation in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES][
-                FullAnnotatedAttributeFields.ATTRIBUTES
-            ].items():
-                for ann_per_value in annotation[AttributeFields.VALUE].values():
-                    for ann_per_type in ann_per_value[AttributeFields.TYPE].values():
-                        for ann in ann_per_type[AnnotatedAttributeFields.ANNOTATORS]:
-                            attr_stat[ann].add(attr)
 
 
 def add_attr_stat(gold_attrs, ann, ann_attrs, attr_stat):

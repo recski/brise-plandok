@@ -16,7 +16,7 @@ from brise_plandok.stat.constants import (
     DATASET_FOLDERS,
     MACRO,
 )
-from brise_plandok.stat.utils import make_markdown_table
+from brise_plandok.stat.utils import make_markdown_table, get_ann_pair
 from brise_plandok.utils import load_json
 
 
@@ -26,14 +26,7 @@ def calculate_mod_kappa():
         for filename in os.listdir(folder):
             fn = os.path.join(folder, filename)
             doc = load_json(fn)
-            ann_pair = tuple(
-                sorted(
-                    [
-                        (doc[DocumentFields.FULL_ANNOTATORS][0]),
-                        (doc[DocumentFields.FULL_ANNOTATORS][1]),
-                    ]
-                )
-            )
+            ann_pair = get_ann_pair(doc)
             add_ann_pair_if_not_present(kappa_stat, ann_pair)
             for sen in doc[DocumentFields.SENS].values():
                 if not sen[SenFields.SEGMENTATION_ERROR]:
@@ -93,7 +86,7 @@ def print_stat(kappa_stat):
         ann_2_labels = ann_pair_stat[ann_pair[1]]
         assert len(ann_1_labels) == len(ann_2_labels)
         number_of_sens = len(ann_1_labels)
-        kappa = cohen_kappa_score(ann_1_labels, ann_pair_stat[ann_pair[1]])
+        kappa = cohen_kappa_score(ann_1_labels, ann_2_labels)
         kappas.append(kappa)
         weights.append(number_of_sens)
         values.append([ann_pair, kappa, number_of_sens])

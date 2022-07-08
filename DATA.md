@@ -366,3 +366,13 @@ You can recreate this file by calling:
 ```bash
 python brise_plandok/stat/annotator_attr_stat.py > brise_plandok/stat/docs/ANNOTATOR_ATTR_STAT.md
 ```
+
+### Annotator agreement - Modality
+
+For statistics about annotator agreement on modality see the [AGREEMENT_MOD.md](brise_plandok/stat/docs/AGREEMENT_MOD.md) file.
+
+You can recreate this file by calling:
+
+```bash
+python brise_plandok/stat/agreement_mod.py > brise_plandok/stat/docs/AGREEMENT_MOD.md
+```

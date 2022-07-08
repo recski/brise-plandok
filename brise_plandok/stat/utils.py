@@ -1,3 +1,5 @@
+from numpy import dtype
+
 from brise_plandok.constants import AttributesNames
 
 
@@ -29,9 +31,9 @@ def make_markdown_table(array):
     for entry in array[1:]:
         markdown += str("| ")
         for e in entry:
-            if type(e) == int:
+            if type(e) == int or type(e) == tuple:
                 e = str(e)
-            elif type(e) == float:
+            elif type(e) == float or type(e) == dtype("float64"):
                 e = f"{e:.3f}"
             to_add = e + str(" | ")
             markdown += to_add

@@ -8,3 +8,4 @@ python brise_plandok/stat/types_and_values_per_attr.py > brise_plandok/stat/docs
 ./brise_plandok/stat/suggestion_stat.sh > brise_plandok/stat/docs/SUGGESTIONS_STAT.md
 python brise_plandok/stat/annotator_mod_stat.py > brise_plandok/stat/docs/ANNOTATOR_MOD_STAT.md
 python brise_plandok/stat/annotator_attr_stat.py > brise_plandok/stat/docs/ANNOTATOR_ATTR_STAT.md
+python brise_plandok/stat/agreement_mod.py > brise_plandok/stat/docs/AGREEMENT_MOD.md

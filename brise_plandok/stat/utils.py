@@ -108,7 +108,7 @@ def get_ann_pair(doc):
     )
 
 
-def collect_all_attributes(attr_stat, annotator_pairs):
+def collect_all_attributes(attr_stat, annotator_pairs, annotators):
     for folder in DATASET_FOLDERS:
         for filename in os.listdir(folder):
             fn = os.path.join(folder, filename)
@@ -116,6 +116,8 @@ def collect_all_attributes(attr_stat, annotator_pairs):
             ann_pair = doc[DocumentFields.FULL_ANNOTATORS]
             assert len(ann_pair) == 2
             annotator_pairs.add(tuple(sorted(ann_pair)))
+            annotators.add(ann_pair[0])
+            annotators.add(ann_pair[1])
             for sen in doc[DocumentFields.SENS].values():
                 full_annotated_attrs = (
                     set(
@@ -134,10 +136,16 @@ def collect_all_attributes(attr_stat, annotator_pairs):
                 ).difference({PLACEHOLDER})
                 for attr in all_occurring_attributes:
                     attr_stat[attr] += 1
-    return {
-        k: v
-        for k, v in sorted(attr_stat.items(), key=lambda item: (item[1], item[0]), reverse=True)
-    }, sorted(annotator_pairs)
+    return (
+        {
+            k: v
+            for k, v in sorted(
+                attr_stat.items(), key=lambda item: (item[1], item[0]), reverse=True
+            )
+        },
+        sorted(annotator_pairs),
+        sorted(annotators),
+    )
 
 
 def fill_up_kappa_stat(kappa_stat, attr_stat, annotator_pairs):

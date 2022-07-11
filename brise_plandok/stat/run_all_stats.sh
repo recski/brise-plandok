@@ -11,3 +11,4 @@ python brise_plandok/stat/annotator_attr_stat.py > brise_plandok/stat/docs/ANNOT
 python brise_plandok/stat/agreement_mod.py > brise_plandok/stat/docs/AGREEMENT_MOD.md
 python brise_plandok/stat/agreement_attr.py > brise_plandok/stat/docs/AGREEMENT_ATTR.md
 python brise_plandok/stat/agreement_type.py > brise_plandok/stat/docs/AGREEMENT_TYPE.md
+python brise_plandok/stat/annotator_type_stat.py > brise_plandok/stat/docs/ANNOTATOR_TYPE_STAT.md

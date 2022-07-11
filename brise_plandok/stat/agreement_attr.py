@@ -31,7 +31,7 @@ def calculate_attr_kappa():
     with open(FIRST_STAGE_IDS) as f:
         first_stage_gold_ids = f.read().splitlines()
 
-    attr_stat, annotator_pairs = collect_all_attributes(attr_stat, annotator_pairs)
+    attr_stat, annotator_pairs, _ = collect_all_attributes(attr_stat, annotator_pairs, set())
     fill_up_kappa_stat(kappa_stat, attr_stat, annotator_pairs)
 
     for folder in DATASET_FOLDERS:

@@ -32,7 +32,7 @@ def calculate_attr_kappa():
     attr_stat = Counter()
     annotator_pairs = set()
 
-    attr_stat, annotator_pairs = collect_all_attributes(attr_stat, annotator_pairs)
+    attr_stat, annotator_pairs, _ = collect_all_attributes(attr_stat, annotator_pairs, set())
     fill_up_kappa_stat(kappa_stat, attr_stat, annotator_pairs)
 
     for folder in DATASET_FOLDERS:

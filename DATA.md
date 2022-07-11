@@ -367,6 +367,16 @@ You can recreate this file by calling:
 python brise_plandok/stat/annotator_attr_stat.py > brise_plandok/stat/docs/ANNOTATOR_ATTR_STAT.md
 ```
 
+### Annotator performance - Types
+
+For statistics about the annotators' performance on the attribute labeling task see the [ANNOTATOR_TYPE_STAT.md](brise_plandok/stat/docs/ANNOTATOR_TYPE_STAT.md) file.
+
+You can recreate this file by calling:
+
+```bash
+python brise_plandok/stat/annotator_type_stat.py > brise_plandok/stat/docs/ANNOTATOR_TYPE_STAT.md
+```
+
 ### Annotator agreement - Modality
 
 For statistics about annotator agreement on modality see the [AGREEMENT_MOD.md](brise_plandok/stat/docs/AGREEMENT_MOD.md) file.

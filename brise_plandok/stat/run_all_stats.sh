@@ -10,3 +10,4 @@ python brise_plandok/stat/annotator_mod_stat.py > brise_plandok/stat/docs/ANNOTA
 python brise_plandok/stat/annotator_attr_stat.py > brise_plandok/stat/docs/ANNOTATOR_ATTR_STAT.md
 python brise_plandok/stat/agreement_mod.py > brise_plandok/stat/docs/AGREEMENT_MOD.md
 python brise_plandok/stat/agreement_attr.py > brise_plandok/stat/docs/AGREEMENT_ATTR.md
+python brise_plandok/stat/agreement_type.py > brise_plandok/stat/docs/AGREEMENT_TYPE.md

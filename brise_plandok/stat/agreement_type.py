@@ -8,18 +8,21 @@ from sklearn.metrics import cohen_kappa_score
 from brise_plandok.constants import (
     DocumentFields,
     SenFields,
+    FullAnnotatedAttributeFields,
+    AttributeFields,
+    AnnotatedAttributeFields,
+    EMPTY,
 )
 from brise_plandok.stat.constants import (
     DATASET_FOLDERS,
-    FIRST_STAGE_IDS,
 )
 from brise_plandok.stat.utils import (
     make_markdown_table,
-    fill_annotated_attributes,
     get_ann_pair,
     collect_all_attributes,
     fill_up_kappa_stat,
     append_header_for_attr_wise_kappa,
+    convert_back_post_processed,
 )
 from brise_plandok.utils import load_json
 
@@ -28,8 +31,6 @@ def calculate_attr_kappa():
     kappa_stat = {}
     attr_stat = Counter()
     annotator_pairs = set()
-    with open(FIRST_STAGE_IDS) as f:
-        first_stage_gold_ids = f.read().splitlines()
 
     attr_stat, annotator_pairs = collect_all_attributes(attr_stat, annotator_pairs)
     fill_up_kappa_stat(kappa_stat, attr_stat, annotator_pairs)
@@ -47,34 +48,54 @@ def calculate_attr_kappa():
                     add_kappa_stat(
                         ann_pair,
                         kappa_stat,
-                        attr_stat,
-                        doc[DocumentFields.ID],
                         sen,
-                        first_stage_gold_ids,
                     )
     print_stat(kappa_stat, annotator_pairs, attr_stat)
 
 
-def add_kappa_stat(ann_pair, kappa_stat, attr_stat, doc_id, sen, first_stage_gold_ids):
-    ann_attrs = {
-        ann_pair[0]: set(),
-        ann_pair[1]: set(),
-    }
-    fill_annotated_attributes(ann_attrs, doc_id, first_stage_gold_ids, sen)
-    for attr in attr_stat.keys():
-        kappa_stat[attr][ann_pair][ann_pair[0]].append(attr in ann_attrs[ann_pair[0]])
-        kappa_stat[attr][ann_pair][ann_pair[1]].append(attr in ann_attrs[ann_pair[1]])
+def add_kappa_stat(ann_pair, kappa_stat, sen):
+    for attr_name, attr in sen[SenFields.GOLD_ATTRIBUTES].items():
+        if len(attr) != 1:
+            continue
+        ann_types = {
+            ann_pair[0]: EMPTY,
+            ann_pair[1]: EMPTY,
+        }
+        gold_attr = list(convert_back_post_processed({attr_name}))[0]
+        gold_type = attr[0][AttributeFields.TYPE]
+        if (
+            FullAnnotatedAttributeFields.ATTRIBUTES in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES]
+            and gold_attr
+            in sen[SenFields.FULL_ANNOTATED_ATTRIBUTES][FullAnnotatedAttributeFields.ATTRIBUTES]
+        ):
+            annotation = sen[SenFields.FULL_ANNOTATED_ATTRIBUTES][
+                FullAnnotatedAttributeFields.ATTRIBUTES
+            ][gold_attr]
+            for ann_per_value in annotation[AttributeFields.VALUE].values():
+                for ann_type, ann_per_type in ann_per_value[AttributeFields.TYPE].items():
+                    for ann in ann_per_type[AnnotatedAttributeFields.ANNOTATORS]:
+                        if ann_types[ann] == EMPTY or ann_type == gold_type:
+                            ann_types[ann] = ann_type
+            if ann_types[ann_pair[0]] != EMPTY and ann_types[ann_pair[1]] != EMPTY:
+                kappa_stat[gold_attr][ann_pair][ann_pair[0]].append(ann_types[ann_pair[0]])
+                kappa_stat[gold_attr][ann_pair][ann_pair[1]].append(ann_types[ann_pair[1]])
 
 
 def print_stat(kappa_stat, annotator_pairs, attr_stat):
-    print("# Annotator agreement - Attributes")
+    print("# Annotator agreement - Types")
     print(
         "This statistics is calculated without the sentences with a segmentation error.  \n"
         "Only sentences containing a rule (a.k.a. gold_modality != None) are taken into account.  \n"
         "We use Cohen's kappa for calculating the inter-annotator agreement: "
-        "[cohen_kappa_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.cohen_kappa_score.html).  \n"
-        "Frequencies are calculated as the number of sentences where the attribute appears as either gold or annotated "
-        "either in the first or in the second phase."
+        "[cohen_kappa_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.cohen_kappa_score.html)."
+        "  \n"
+        "Frequencies of attributes are calculated as the number of sentences where the attribute appears as either "
+        "gold or annotated either in the first or in the second phase.  \n"
+        "For complexity reasons, agreement is only calculated for cases, where the attribute occurs in gold exactly "
+        "once, and where both annotators gave at least one annotation for the attribute. "
+        "In case an annotator labeled the attribute within the same sentence multiple times, "
+        "the most beneficial type annotation is taken into account, i.e. if the annotator labeled both gold and "
+        "non-gold types, we regard the gold one."
     )
     print("## Without kappa correction")
     calculate_table(annotator_pairs, kappa_stat, attr_stat)
@@ -92,51 +113,38 @@ def print_stat(kappa_stat, annotator_pairs, attr_stat):
 def calculate_table(annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=False):
     values = []
     append_header_for_attr_wise_kappa(annotator_pairs, values)
-    num_of_sentences = check_and_append_weights(kappa_stat, values, annotator_pairs)
     for attr, stat in kappa_stat.items():
-        row = [attr, attr_stat[attr], "-", "-"]
+        num_sens_row = ["Number of sentences ", "-", "-", "-"]
+        kappa_row = [attr, attr_stat[attr], "-", "-"]
         non_nan_kappas = []
         non_nan_weights = []
         for ann_pair, labels in stat.items():
             ann_1_labels = labels[ann_pair[0]]
             ann_2_labels = labels[ann_pair[1]]
+            assert len(ann_1_labels) == len(ann_2_labels)
+            num_sens_row.append(len(ann_1_labels))
             if correct_uniform_agreement:
                 if ann_1_labels == ann_2_labels:
                     kappa = 1.0
                 else:
-                    kappa = cohen_kappa_score(ann_1_labels, ann_2_labels, labels=[True, False])
+                    kappa = cohen_kappa_score(ann_1_labels, ann_2_labels)
             else:
-                kappa = cohen_kappa_score(ann_1_labels, ann_2_labels, labels=[True, False])
+                kappa = cohen_kappa_score(ann_1_labels, ann_2_labels)
             if not numpy.isnan(kappa):
                 non_nan_kappas.append(kappa)
-                non_nan_weights.append(num_of_sentences[ann_pair])
-            row.append(kappa)
+                non_nan_weights.append(len(ann_1_labels))
+            kappa_row.append(kappa)
         if len(non_nan_kappas) > 0:
-            row[2] = numpy.average(non_nan_kappas)
+            kappa_row[2] = numpy.average(non_nan_kappas)
         else:
-            row[2] = numpy.nan
-        if len(non_nan_kappas) > 1:
-            row[3] = numpy.average(non_nan_kappas, weights=non_nan_weights)
+            kappa_row[2] = numpy.nan
+        if len(non_nan_kappas) > 1 and sum(non_nan_weights) > 0.0:
+            kappa_row[3] = numpy.average(non_nan_kappas, weights=non_nan_weights)
         else:
-            row[3] = numpy.nan
-        values.append(row)
+            kappa_row[3] = numpy.nan
+        values.append(num_sens_row)
+        values.append(kappa_row)
     print(make_markdown_table(values))
-
-
-def check_and_append_weights(kappa_stat, values, annotator_pairs):
-    num_of_sentences = {}
-    for attr, stat in kappa_stat.items():
-        for ann_pair, labels in stat.items():
-            assert len(labels[ann_pair[0]]) == len(labels[ann_pair[1]])
-            if ann_pair not in num_of_sentences:
-                num_of_sentences[ann_pair] = len(labels[ann_pair[0]])
-            else:
-                assert num_of_sentences[ann_pair] == len(labels[ann_pair[0]])
-    row = ["Number of sentences", "-", "-", "-"]
-    for ann_pair in annotator_pairs:
-        row.append(num_of_sentences[ann_pair])
-    values.append(row)
-    return num_of_sentences
 
 
 def get_args():

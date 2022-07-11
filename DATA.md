@@ -377,7 +377,6 @@ You can recreate this file by calling:
 python brise_plandok/stat/agreement_mod.py > brise_plandok/stat/docs/AGREEMENT_MOD.md
 ```
 
-
 ### Annotator agreement - Attributes
 
 For statistics about annotator agreement on attributes see the [AGREEMENT_ATTR.md](brise_plandok/stat/docs/AGREEMENT_ATTR.md) file.
@@ -386,4 +385,14 @@ You can recreate this file by calling:
 
 ```bash
 python brise_plandok/stat/agreement_attr.py > brise_plandok/stat/docs/AGREEMENT_ATTR.md
+```
+
+### Annotator agreement - Types
+
+For statistics about annotator agreement on attributes see the [AGREEMENT_TYPE.md](brise_plandok/stat/docs/AGREEMENT_TYPE.md) file.
+
+You can recreate this file by calling:
+
+```bash
+python brise_plandok/stat/agreement_type.py > brise_plandok/stat/docs/AGREEMENT_TYPE.md
 ```

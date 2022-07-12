@@ -347,16 +347,6 @@ You can recreate this file by calling:
 ./brise_plandok/stat/suggestion_stat.sh > brise_plandok/stat/docs/SUGGESTIONS_STAT.md
 ```
 
-### Annotator performance - Modality
-
-For statistics about the annotators' performance on modality see the [ANNOTATOR_PERFORMANCE_MOD.md](brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_MOD.md) file.
-
-You can recreate this file by calling:
-
-```bash
-python brise_plandok/stat/annotator_performance_mod.py > brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_MOD.md
-```
-
 ### Annotator performance - Attributes
 
 For statistics about the annotators' performance on the attribute labeling task see the [ANNOTATOR_PERFORMANCE_ATTR.md](brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_ATTR.md) file.
@@ -365,6 +355,16 @@ You can recreate this file by calling:
 
 ```bash
 python brise_plandok/stat/annotator_performance_attr.py > brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_ATTR.md
+```
+
+### Annotator performance - Modality
+
+For statistics about the annotators' performance on modality see the [ANNOTATOR_PERFORMANCE_MOD.md](brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_MOD.md) file.
+
+You can recreate this file by calling:
+
+```bash
+python brise_plandok/stat/annotator_performance_mod.py > brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_MOD.md
 ```
 
 ### Annotator performance - Types
@@ -377,16 +377,6 @@ You can recreate this file by calling:
 python brise_plandok/stat/annotator_performance_type.py > brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_TYPE.md
 ```
 
-### Annotator agreement - Modality
-
-For statistics about annotator agreement on modality see the [AGREEMENT_MOD.md](brise_plandok/stat/docs/AGREEMENT_MOD.md) file.
-
-You can recreate this file by calling:
-
-```bash
-python brise_plandok/stat/agreement_mod.py > brise_plandok/stat/docs/AGREEMENT_MOD.md
-```
-
 ### Annotator agreement - Attributes
 
 For statistics about annotator agreement on attributes see the [AGREEMENT_ATTR.md](brise_plandok/stat/docs/AGREEMENT_ATTR.md) file.
@@ -395,6 +385,16 @@ You can recreate this file by calling:
 
 ```bash
 python brise_plandok/stat/agreement_attr.py > brise_plandok/stat/docs/AGREEMENT_ATTR.md
+```
+
+### Annotator agreement - Modality
+
+For statistics about annotator agreement on modality see the [AGREEMENT_MOD.md](brise_plandok/stat/docs/AGREEMENT_MOD.md) file.
+
+You can recreate this file by calling:
+
+```bash
+python brise_plandok/stat/agreement_mod.py > brise_plandok/stat/docs/AGREEMENT_MOD.md
 ```
 
 ### Annotator agreement - Types

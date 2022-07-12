@@ -437,9 +437,9 @@ def print_category_details(agg_per_ann, title, category, agg_mic_mac):
 
 
 def print_full_details(global_stat, agg_per_ann, title):
+    print()
+    print("## " + title)
     for ann, ann_stat in global_stat.items():
-        print()
-        print("## " + title)
         print(f"### Annotator {ann}")
         values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
         for attr, stat_per_attr in ann_stat.items():

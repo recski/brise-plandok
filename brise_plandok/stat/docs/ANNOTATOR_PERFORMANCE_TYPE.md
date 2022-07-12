@@ -2316,8 +2316,6 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 
 
-
-## Per annotator / attribute / type details
 ### Annotator 02
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
@@ -2900,8 +2898,6 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 
 
-
-## Per annotator / attribute / type details
 ### Annotator 03
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
@@ -3484,8 +3480,6 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 
 
-
-## Per annotator / attribute / type details
 ### Annotator 04
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
@@ -4068,8 +4062,6 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 
 
-
-## Per annotator / attribute / type details
 ### Annotator 05
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
@@ -4652,8 +4644,6 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 
 
-
-## Per annotator / attribute / type details
 ### Annotator 06
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |

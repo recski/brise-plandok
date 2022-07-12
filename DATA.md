@@ -293,7 +293,7 @@ For the distribution of the attributes see the [DISTRIBUTION_ATTR.md](brise_plan
 You can recreate this file by calling:
 
 ```bash
-./brise_plandok/stat/attribute_distribution.sh > brise_plandok/stat/docs/DISTRIBUTION_ATTR.md
+./brise_plandok/stat/distribution_attr.sh > brise_plandok/stat/docs/DISTRIBUTION_ATTR.md
 ```
 
 ### Types distribution
@@ -303,7 +303,7 @@ For the distribution of the attributes see the [DISTRIBUTION_TYPE.md](brise_plan
 You can recreate this file by calling:
 
 ```bash
-./brise_plandok/stat/type_distribution.sh > brise_plandok/stat/docs/DISTRIBUTION_TYPE.md
+./brise_plandok/stat/distribution_type.sh > brise_plandok/stat/docs/DISTRIBUTION_TYPE.md
 ```
 
 
@@ -324,7 +324,7 @@ For the distribution of the attributes see the [DISTRIBUTION_MOD.md](brise_pland
 You can recreate this file by calling:
 
 ```bash
-./brise_plandok/stat/modality_distribution.sh > brise_plandok/stat/docs/DISTRIBUTION_MOD.md
+./brise_plandok/stat/distribution_mod.sh > brise_plandok/stat/docs/DISTRIBUTION_MOD.md
 ```
 
 ### Rule statistics
@@ -354,7 +354,7 @@ For statistics about the annotators' performance on modality see the [ANNOTATOR_
 You can recreate this file by calling:
 
 ```bash
-python brise_plandok/stat/annotator_mod_stat.py > brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_MOD.md
+python brise_plandok/stat/annotator_performance_mod.py > brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_MOD.md
 ```
 
 ### Annotator performance - Attributes
@@ -364,7 +364,7 @@ For statistics about the annotators' performance on the attribute labeling task 
 You can recreate this file by calling:
 
 ```bash
-python brise_plandok/stat/annotator_attr_stat.py > brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_ATTR.md
+python brise_plandok/stat/annotator_performance_attr.py > brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_ATTR.md
 ```
 
 ### Annotator performance - Types
@@ -374,7 +374,7 @@ For statistics about the annotators' performance on the attribute labeling task 
 You can recreate this file by calling:
 
 ```bash
-python brise_plandok/stat/annotator_type_stat.py > brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_TYPE.md
+python brise_plandok/stat/annotator_performance_type.py > brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_TYPE.md
 ```
 
 ### Annotator agreement - Modality

@@ -218,6 +218,56 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 
 
 
+## Average details
+### Micro avg per type
+
+|  Name | Freq | TP | FP | FN | Precision | Recall |
+|-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
+| 01 - micro per type | 2795 | 2320 | 105 | 475 | 0.957 | 0.830 | 
+| 02 - micro per type | 2784 | 2282 | 189 | 502 | 0.924 | 0.820 | 
+| 03 - micro per type | 2634 | 2198 | 175 | 436 | 0.926 | 0.834 | 
+| 04 - micro per type | 2934 | 2221 | 265 | 713 | 0.893 | 0.757 | 
+| 05 - micro per type | 2855 | 2304 | 192 | 551 | 0.923 | 0.807 | 
+| 06 - micro per type | 2732 | 2216 | 175 | 516 | 0.927 | 0.811 | 
+
+
+### Micro avg per attributes
+
+|  Name | Freq | TP | FP | FN | Precision | Recall |
+|-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
+| 01 - micro per type | 2795 | 2320 | 105 | 475 | 0.957 | 0.830 | 
+| 02 - micro per type | 2784 | 2282 | 189 | 502 | 0.924 | 0.820 | 
+| 03 - micro per type | 2634 | 2198 | 175 | 436 | 0.926 | 0.834 | 
+| 04 - micro per type | 2934 | 2221 | 265 | 713 | 0.893 | 0.757 | 
+| 05 - micro per type | 2855 | 2304 | 192 | 551 | 0.923 | 0.807 | 
+| 06 - micro per type | 2732 | 2216 | 175 | 516 | 0.927 | 0.811 | 
+
+
+### Macro avg per type
+
+|  Name | Freq | TP | FP | FN | Precision | Recall |
+|-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
+| 01 - macro per type |  |  |  |  | 0.730 | 0.444 | 
+| 02 - macro per type |  |  |  |  | 0.650 | 0.514 | 
+| 03 - macro per type |  |  |  |  | 0.669 | 0.694 | 
+| 04 - macro per type |  |  |  |  | 0.716 | 0.489 | 
+| 05 - macro per type |  |  |  |  | 0.729 | 0.695 | 
+| 06 - macro per type |  |  |  |  | 0.964 | 0.816 | 
+
+
+### Macro avg per attributes
+
+|  Name | Freq | TP | FP | FN | Precision | Recall |
+|-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
+| 01 - macro per type |  |  |  |  | 0.933 | 0.844 | 
+| 02 - macro per type |  |  |  |  | 0.900 | 0.799 | 
+| 03 - macro per type |  |  |  |  | 0.932 | 0.872 | 
+| 04 - macro per type |  |  |  |  | 0.881 | 0.745 | 
+| 05 - macro per type |  |  |  |  | 0.925 | 0.803 | 
+| 06 - macro per type |  |  |  |  | 0.922 | 0.828 | 
+
+
+
 ## Per type details
 ### Annotator 01
 

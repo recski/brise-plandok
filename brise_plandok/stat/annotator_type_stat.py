@@ -124,6 +124,7 @@ def print_stat(global_stat):
     agg_per_attr = {}
     agg_per_type = {}
     agg_per_ann = {}
+    agg_mic_mac = {}
     print("# Annotator statistics - Types")
     print(
         "This statistics is calculated without the sentences with a segmentation error.  \n"
@@ -135,10 +136,13 @@ def print_stat(global_stat):
         "non-gold types, then we regard the gold one."
     )
     collect_aggregation(global_stat, agg_per_attr, agg_per_type, agg_per_ann)
+    collect_micro_and_macro_averages_per_ann(agg_per_ann, TYPES, agg_mic_mac)
+    collect_micro_and_macro_averages_per_ann(agg_per_ann, ATTRIBUTES, agg_mic_mac)
     print_category_aggregation(agg_per_type, "Per type summary")
     print_category_aggregation(agg_per_attr, "Per attribute summary")
-    print_category_details(agg_per_ann, "Per type details", TYPES)
-    print_category_details(agg_per_ann, "Per attribute details", ATTRIBUTES)
+    print_average_details(agg_mic_mac)
+    print_category_details(agg_per_ann, "Per type details", TYPES, agg_mic_mac)
+    print_category_details(agg_per_ann, "Per attribute details", ATTRIBUTES, agg_mic_mac)
     print_full_details(global_stat, agg_per_ann)
 
 
@@ -228,13 +232,82 @@ def print_category_aggregation(agg, title):
     print(make_markdown_table(values))
 
 
-def print_category_details(agg_per_ann, title, category):
+def collect_micro_and_macro_averages_per_ann(agg_per_ann, category, agg_mic_mac):
+    for ann, ann_stat in agg_per_ann.items():
+        if ann not in agg_mic_mac:
+            agg_mic_mac[ann] = {}
+        if category not in agg_mic_mac[ann]:
+            agg_mic_mac[ann][category] = {
+                MICRO: Counter(),
+                MACRO: {
+                    PREC: [],
+                    REC: [],
+                },
+            }
+        micro = agg_mic_mac[ann][category][MICRO]
+        macro = agg_mic_mac[ann][category][MACRO]
+        for cat in ann_stat[category].keys():
+            micro_avg_per_cat = ann_stat[category][cat]
+            micro[FREQ] += micro_avg_per_cat[FREQ]
+            micro[TP] += micro_avg_per_cat[TP]
+            micro[FP] += micro_avg_per_cat[FP]
+            micro[FN] += micro_avg_per_cat[FN]
+            macro[PREC].append(micro_avg_per_cat[PREC])
+            macro[REC].append(micro_avg_per_cat[REC])
+        add_p_r(micro)
+
+
+def print_average_details(agg_mic_mac):
+    print()
+    print("## Average details")
+    print_micro_average_details(agg_mic_mac, "Micro avg per type", TYPES)
+    print_micro_average_details(agg_mic_mac, "Micro avg per attributes", ATTRIBUTES)
+    print_macro_average_details(agg_mic_mac, "Macro avg per type", TYPES)
+    print_macro_average_details(agg_mic_mac, "Macro avg per attributes", ATTRIBUTES)
+
+
+def print_micro_average_details(agg_mic_mac, title, category):
+    print(f"### " + title)
+    values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
+    for ann, ann_averages in agg_mic_mac.items():
+        micro = ann_averages[category][MICRO]
+        values.append(
+            [
+                f"{ann} - micro per type",
+                micro[FREQ],
+                micro[TP],
+                micro[FP],
+                micro[FN],
+                micro[PREC],
+                micro[REC],
+            ]
+        )
+    print(make_markdown_table(values))
+
+
+def print_macro_average_details(agg_mic_mac, title, category):
+    print(f"### " + title)
+    values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
+    for ann, ann_averages in agg_mic_mac.items():
+        macro = ann_averages[category][MACRO]
+        values.append(
+            [
+                f"{ann} - macro per type",
+                "",
+                "",
+                "",
+                "",
+                numpy.average(macro[PREC]),
+                numpy.average(macro[REC]),
+            ]
+        )
+    print(make_markdown_table(values))
+
+
+def print_category_details(agg_per_ann, title, category, agg_mic_mac):
     print()
     print("## " + title)
     for ann, ann_stat in agg_per_ann.items():
-        micro = Counter()
-        macro_prec = []
-        macro_rec = []
         print(f"### Annotator {ann}")
         values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
         for cat in ann_stat[category].keys():
@@ -250,13 +323,7 @@ def print_category_details(agg_per_ann, title, category):
                     micro_avg_per_cat[REC],
                 ]
             )
-            macro_prec.append(micro_avg_per_cat[PREC])
-            macro_rec.append(micro_avg_per_cat[REC])
-            micro[FREQ] += micro_avg_per_cat[FREQ]
-            micro[TP] += micro_avg_per_cat[TP]
-            micro[FP] += micro_avg_per_cat[FP]
-            micro[FN] += micro_avg_per_cat[FN]
-        add_p_r(micro)
+        micro = agg_mic_mac[ann][category][MICRO]
         values.append(
             [
                 MICRO,
@@ -268,6 +335,7 @@ def print_category_details(agg_per_ann, title, category):
                 micro[REC],
             ]
         )
+        macro = agg_mic_mac[ann][category][MACRO]
         values.append(
             [
                 MACRO,
@@ -275,8 +343,8 @@ def print_category_details(agg_per_ann, title, category):
                 "",
                 "",
                 "",
-                numpy.average(macro_prec),
-                numpy.average(macro_rec),
+                numpy.average(macro[PREC]),
+                numpy.average(macro[REC]),
             ]
         )
         print(make_markdown_table(values))

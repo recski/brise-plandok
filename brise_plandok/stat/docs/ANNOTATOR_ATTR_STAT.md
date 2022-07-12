@@ -577,7 +577,7 @@ Post-processed attributes were converted back to their version at the time of an
 | macro | - | - | - | - | 0.803 | 0.856 | 
 
 
-## Average
+## Average over annotators
 
 |  Name | Precision | Recall |
 |-------------- | -------------- | -------------- | 
@@ -678,7 +678,7 @@ Post-processed attributes were converted back to their version at the time of an
 | ArkadeLaenge | 0.000 | 1.000 | 
 
 
-## STD
+## STD over annotators
 
 |  Name | Precision | Recall |
 |-------------- | -------------- | -------------- | 

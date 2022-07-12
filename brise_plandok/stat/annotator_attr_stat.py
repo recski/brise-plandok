@@ -198,9 +198,9 @@ def append_row_for_macro(agg_per_ann, values):
 
 def print_agg(agg, name):
     if name == AVG:
-        print("## Average")
+        print("## Average over annotators")
     elif name == STD:
-        print("## STD")
+        print("## STD over annotators")
     values = [["Name", PREC, REC]]
     for attr, attr_stat in agg.items():
         agg_prec = 0

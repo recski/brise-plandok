@@ -227,6 +227,8 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | content | 1325 | 1223 | 86 | 102 | 0.934 | 0.923 | 
 | conditionException | 69 | 5 | 0 | 64 | 1.000 | 0.072 | 
 | contentException | 1 | 0 | 3 | 1 | 0.000 | 0.000 | 
+| micro | 2795 | 2320 | 105 | 475 | 0.957 | 0.830 | 
+| macro |  |  |  |  | 0.730 | 0.444 | 
 
 
 ### Annotator 02
@@ -237,6 +239,8 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | content | 1353 | 1148 | 75 | 205 | 0.939 | 0.848 | 
 | conditionException | 50 | 20 | 7 | 30 | 0.741 | 0.400 | 
 | contentException | 2 | 0 | 11 | 2 | 0.000 | 0.000 | 
+| micro | 2784 | 2282 | 189 | 502 | 0.924 | 0.820 | 
+| macro |  |  |  |  | 0.650 | 0.514 | 
 
 
 ### Annotator 03
@@ -247,6 +251,8 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | content | 1295 | 1126 | 48 | 169 | 0.959 | 0.869 | 
 | conditionException | 35 | 3 | 1 | 32 | 0.750 | 0.086 | 
 | contentException | 1 | 1 | 15 | 0 | 0.062 | 1.000 | 
+| micro | 2634 | 2198 | 175 | 436 | 0.926 | 0.834 | 
+| macro |  |  |  |  | 0.669 | 0.694 | 
 
 
 ### Annotator 04
@@ -257,6 +263,8 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | content | 1424 | 1155 | 173 | 269 | 0.870 | 0.811 | 
 | conditionException | 48 | 4 | 0 | 44 | 1.000 | 0.083 | 
 | contentException | 3 | 1 | 15 | 2 | 0.062 | 0.333 | 
+| micro | 2934 | 2221 | 265 | 713 | 0.893 | 0.757 | 
+| macro |  |  |  |  | 0.716 | 0.489 | 
 
 
 ### Annotator 05
@@ -267,6 +275,8 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | content | 1414 | 1188 | 70 | 226 | 0.944 | 0.840 | 
 | conditionException | 56 | 37 | 14 | 19 | 0.725 | 0.661 | 
 | contentException | 4 | 2 | 4 | 2 | 0.333 | 0.500 | 
+| micro | 2855 | 2304 | 192 | 551 | 0.923 | 0.807 | 
+| macro |  |  |  |  | 0.729 | 0.695 | 
 
 
 ### Annotator 06
@@ -277,6 +287,8 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | content | 1329 | 1185 | 125 | 144 | 0.905 | 0.892 | 
 | conditionException | 52 | 33 | 0 | 19 | 1.000 | 0.635 | 
 | contentException | 1 | 1 | 0 | 0 | 1.000 | 1.000 | 
+| micro | 2732 | 2216 | 175 | 516 | 0.927 | 0.811 | 
+| macro |  |  |  |  | 0.964 | 0.816 | 
 
 
 
@@ -381,6 +393,8 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | ArkadeLaenge | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | MaxHoeheWohngebaeude | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | LaubengangHoehe | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| micro | 2795 | 2320 | 105 | 475 | 0.957 | 0.830 | 
+| macro |  |  |  |  | 0.933 | 0.844 | 
 
 
 ### Annotator 02
@@ -483,6 +497,8 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | ArkadeLaenge | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | MaxHoeheWohngebaeude | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | LaubengangHoehe | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| micro | 2784 | 2282 | 189 | 502 | 0.924 | 0.820 | 
+| macro |  |  |  |  | 0.900 | 0.799 | 
 
 
 ### Annotator 03
@@ -585,6 +601,8 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | ArkadeLaenge | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | MaxHoeheWohngebaeude | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | LaubengangHoehe | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| micro | 2634 | 2198 | 175 | 436 | 0.926 | 0.834 | 
+| macro |  |  |  |  | 0.932 | 0.872 | 
 
 
 ### Annotator 04
@@ -687,6 +705,8 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | ArkadeLaenge | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | MaxHoeheWohngebaeude | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | LaubengangHoehe | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| micro | 2934 | 2221 | 265 | 713 | 0.893 | 0.757 | 
+| macro |  |  |  |  | 0.881 | 0.745 | 
 
 
 ### Annotator 05
@@ -789,6 +809,8 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | ArkadeLaenge | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | MaxHoeheWohngebaeude | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | LaubengangHoehe | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| micro | 2855 | 2304 | 192 | 551 | 0.923 | 0.807 | 
+| macro |  |  |  |  | 0.925 | 0.803 | 
 
 
 ### Annotator 06
@@ -891,6 +913,8 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | ArkadeLaenge | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | MaxHoeheWohngebaeude | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | LaubengangHoehe | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| micro | 2732 | 2216 | 175 | 516 | 0.927 | 0.811 | 
+| macro |  |  |  |  | 0.922 | 0.828 | 
 
 
 

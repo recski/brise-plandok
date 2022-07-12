@@ -3,6 +3,7 @@ import os
 import statistics as st
 from collections import Counter
 
+import numpy
 from tuw_nlp.common.eval import count_p_r_f
 
 from brise_plandok.constants import (
@@ -231,21 +232,53 @@ def print_category_details(agg_per_ann, title, category):
     print()
     print("## " + title)
     for ann, ann_stat in agg_per_ann.items():
+        micro = Counter()
+        macro_prec = []
+        macro_rec = []
         print(f"### Annotator {ann}")
         values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
         for cat in ann_stat[category].keys():
-            micro_avg = ann_stat[category][cat]
+            micro_avg_per_cat = ann_stat[category][cat]
             values.append(
                 [
                     cat,
-                    micro_avg[FREQ],
-                    micro_avg[TP],
-                    micro_avg[FP],
-                    micro_avg[FN],
-                    micro_avg[PREC],
-                    micro_avg[REC],
+                    micro_avg_per_cat[FREQ],
+                    micro_avg_per_cat[TP],
+                    micro_avg_per_cat[FP],
+                    micro_avg_per_cat[FN],
+                    micro_avg_per_cat[PREC],
+                    micro_avg_per_cat[REC],
                 ]
             )
+            macro_prec.append(micro_avg_per_cat[PREC])
+            macro_rec.append(micro_avg_per_cat[REC])
+            micro[FREQ] += micro_avg_per_cat[FREQ]
+            micro[TP] += micro_avg_per_cat[TP]
+            micro[FP] += micro_avg_per_cat[FP]
+            micro[FN] += micro_avg_per_cat[FN]
+        add_p_r(micro)
+        values.append(
+            [
+                MICRO,
+                micro[FREQ],
+                micro[TP],
+                micro[FP],
+                micro[FN],
+                micro[PREC],
+                micro[REC],
+            ]
+        )
+        values.append(
+            [
+                MACRO,
+                "",
+                "",
+                "",
+                "",
+                numpy.average(macro_prec),
+                numpy.average(macro_rec),
+            ]
+        )
         print(make_markdown_table(values))
 
 

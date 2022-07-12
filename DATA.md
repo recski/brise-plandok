@@ -288,22 +288,22 @@ You can re-run all stats by calling:
 
 ### Attribute distribution
 
-For the distribution of the attributes see the [ATTRIBUTE_DISTRIBUTION.md](brise_plandok/stat/docs/ATTRIBUTE_DISTRIBUTION.md) file.
+For the distribution of the attributes see the [DISTRIBUTION_ATTR.md](brise_plandok/stat/docs/DISTRIBUTION_ATTR.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-./brise_plandok/stat/attribute_distribution.sh > brise_plandok/stat/docs/ATTRIBUTE_DISTRIBUTION.md
+./brise_plandok/stat/attribute_distribution.sh > brise_plandok/stat/docs/DISTRIBUTION_ATTR.md
 ```
 
 ### Types distribution
 
-For the distribution of the attributes see the [TYPE_DISTRIBUTION.md](brise_plandok/stat/docs/TYPE_DISTRIBUTION.md) file.
+For the distribution of the attributes see the [DISTRIBUTION_TYPE.md](brise_plandok/stat/docs/DISTRIBUTION_TYPE.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-./brise_plandok/stat/type_distribution.sh > brise_plandok/stat/docs/TYPE_DISTRIBUTION.md
+./brise_plandok/stat/type_distribution.sh > brise_plandok/stat/docs/DISTRIBUTION_TYPE.md
 ```
 
 
@@ -319,12 +319,12 @@ python brise_plandok/stat/types_and_values_per_attr.py > brise_plandok/stat/docs
 
 ### Modality distribution
 
-For the distribution of the attributes see the [MODALITY_DISTRIBUTION.md](brise_plandok/stat/docs/MODALITY_DISTRIBUTION.md) file.
+For the distribution of the attributes see the [DISTRIBUTION_MOD.md](brise_plandok/stat/docs/DISTRIBUTION_MOD.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-./brise_plandok/stat/modality_distribution.sh > brise_plandok/stat/docs/MODALITY_DISTRIBUTION.md
+./brise_plandok/stat/modality_distribution.sh > brise_plandok/stat/docs/DISTRIBUTION_MOD.md
 ```
 
 ### Rule statistics
@@ -349,32 +349,32 @@ You can recreate this file by calling:
 
 ### Annotator performance - Modality
 
-For statistics about the annotators' performance on modality see the [ANNOTATOR_MOD_STAT.md](brise_plandok/stat/docs/ANNOTATOR_MOD_STAT.md) file.
+For statistics about the annotators' performance on modality see the [ANNOTATOR_PERFORMANCE_MOD.md](brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_MOD.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-python brise_plandok/stat/annotator_mod_stat.py > brise_plandok/stat/docs/ANNOTATOR_MOD_STAT.md
+python brise_plandok/stat/annotator_mod_stat.py > brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_MOD.md
 ```
 
 ### Annotator performance - Attributes
 
-For statistics about the annotators' performance on the attribute labeling task see the [ANNOTATOR_ATTR_STAT.md](brise_plandok/stat/docs/ANNOTATOR_ATTR_STAT.md) file.
+For statistics about the annotators' performance on the attribute labeling task see the [ANNOTATOR_PERFORMANCE_ATTR.md](brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_ATTR.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-python brise_plandok/stat/annotator_attr_stat.py > brise_plandok/stat/docs/ANNOTATOR_ATTR_STAT.md
+python brise_plandok/stat/annotator_attr_stat.py > brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_ATTR.md
 ```
 
 ### Annotator performance - Types
 
-For statistics about the annotators' performance on the attribute labeling task see the [ANNOTATOR_TYPE_STAT.md](brise_plandok/stat/docs/ANNOTATOR_TYPE_STAT.md) file.
+For statistics about the annotators' performance on the attribute labeling task see the [ANNOTATOR_PERFORMANCE_TYPE.md](brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_TYPE.md) file.
 
 You can recreate this file by calling:
 
 ```bash
-python brise_plandok/stat/annotator_type_stat.py > brise_plandok/stat/docs/ANNOTATOR_TYPE_STAT.md
+python brise_plandok/stat/annotator_type_stat.py > brise_plandok/stat/docs/ANNOTATOR_PERFORMANCE_TYPE.md
 ```
 
 ### Annotator agreement - Modality

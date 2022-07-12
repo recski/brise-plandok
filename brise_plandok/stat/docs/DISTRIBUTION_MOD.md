@@ -1,4 +1,4 @@
-# Type distribution
+# Modality distribution
 
 ```bash
 total

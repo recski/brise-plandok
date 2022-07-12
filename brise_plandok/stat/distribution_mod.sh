@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "# Type distribution"
+echo "# Modality distribution"
 echo ""
 echo "\`\`\`bash"
 

@@ -4,6 +4,21 @@ Post-processed attributes were converted back to their version at the time of an
 
 For complexity reasons, agreement is only calculated for cases, where the attribute occurs in gold exactly once, and where the annotator gave at least one annotation for the attribute. In case the annotator labeled the attribute within the same sentence multiple times, the most beneficial type annotation is taken into account, i.e. if the annotator labeled both gold and non-gold types, then we regard the gold one.
 
+## Average summary
+
+|  Annotator | Freq | TP | FP | FN | Precision (micro) | Recall (micro) | Precision (macro - type) | Recall (macro - type) | Precision (macro - attribute) | Recall (macro - attribute) |
+|-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
+| 01 | 2795 | 2320 | 105 | 475 | 0.957 | 0.830 | 0.730 | 0.444 | 0.933 | 0.844 | 
+| 02 | 2784 | 2282 | 189 | 502 | 0.924 | 0.820 | 0.650 | 0.514 | 0.900 | 0.799 | 
+| 03 | 2634 | 2198 | 175 | 436 | 0.926 | 0.834 | 0.669 | 0.694 | 0.932 | 0.872 | 
+| 04 | 2934 | 2221 | 265 | 713 | 0.893 | 0.757 | 0.716 | 0.489 | 0.881 | 0.745 | 
+| 05 | 2855 | 2304 | 192 | 551 | 0.923 | 0.807 | 0.729 | 0.695 | 0.925 | 0.803 | 
+| 06 | 2732 | 2216 | 175 | 516 | 0.927 | 0.811 | 0.964 | 0.816 | 0.922 | 0.828 | 
+| avg |  |  |  |  | 0.925 | 0.810 | 0.743 | 0.609 | 0.916 | 0.815 | 
+| std |  |  |  |  | 0.018 | 0.026 | 0.103 | 0.134 | 0.019 | 0.040 | 
+
+
+
 ## Per type summary
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
@@ -215,56 +230,6 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | LaubengangHoehe |  |  |  |  |  |  | 
 | micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
-
-
-
-## Average details
-### Micro avg per type
-
-|  Name | Freq | TP | FP | FN | Precision | Recall |
-|-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
-| 01 - micro per type | 2795 | 2320 | 105 | 475 | 0.957 | 0.830 | 
-| 02 - micro per type | 2784 | 2282 | 189 | 502 | 0.924 | 0.820 | 
-| 03 - micro per type | 2634 | 2198 | 175 | 436 | 0.926 | 0.834 | 
-| 04 - micro per type | 2934 | 2221 | 265 | 713 | 0.893 | 0.757 | 
-| 05 - micro per type | 2855 | 2304 | 192 | 551 | 0.923 | 0.807 | 
-| 06 - micro per type | 2732 | 2216 | 175 | 516 | 0.927 | 0.811 | 
-
-
-### Micro avg per attributes
-
-|  Name | Freq | TP | FP | FN | Precision | Recall |
-|-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
-| 01 - micro per type | 2795 | 2320 | 105 | 475 | 0.957 | 0.830 | 
-| 02 - micro per type | 2784 | 2282 | 189 | 502 | 0.924 | 0.820 | 
-| 03 - micro per type | 2634 | 2198 | 175 | 436 | 0.926 | 0.834 | 
-| 04 - micro per type | 2934 | 2221 | 265 | 713 | 0.893 | 0.757 | 
-| 05 - micro per type | 2855 | 2304 | 192 | 551 | 0.923 | 0.807 | 
-| 06 - micro per type | 2732 | 2216 | 175 | 516 | 0.927 | 0.811 | 
-
-
-### Macro avg per type
-
-|  Name | Freq | TP | FP | FN | Precision | Recall |
-|-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
-| 01 - macro per type |  |  |  |  | 0.730 | 0.444 | 
-| 02 - macro per type |  |  |  |  | 0.650 | 0.514 | 
-| 03 - macro per type |  |  |  |  | 0.669 | 0.694 | 
-| 04 - macro per type |  |  |  |  | 0.716 | 0.489 | 
-| 05 - macro per type |  |  |  |  | 0.729 | 0.695 | 
-| 06 - macro per type |  |  |  |  | 0.964 | 0.816 | 
-
-
-### Macro avg per attributes
-
-|  Name | Freq | TP | FP | FN | Precision | Recall |
-|-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
-| 01 - macro per type |  |  |  |  | 0.933 | 0.844 | 
-| 02 - macro per type |  |  |  |  | 0.900 | 0.799 | 
-| 03 - macro per type |  |  |  |  | 0.932 | 0.872 | 
-| 04 - macro per type |  |  |  |  | 0.881 | 0.745 | 
-| 05 - macro per type |  |  |  |  | 0.925 | 0.803 | 
-| 06 - macro per type |  |  |  |  | 0.922 | 0.828 | 
 
 
 

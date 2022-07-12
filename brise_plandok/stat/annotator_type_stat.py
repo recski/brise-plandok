@@ -1,9 +1,9 @@
 import argparse
 import os
-import statistics as st
 from collections import Counter
 
 import numpy
+import numpy as np
 from tuw_nlp.common.eval import count_p_r_f
 
 from brise_plandok.constants import (
@@ -138,9 +138,9 @@ def print_stat(global_stat):
     collect_aggregation(global_stat, agg_per_attr, agg_per_type, agg_per_ann)
     collect_micro_and_macro_averages_per_ann(agg_per_ann, TYPES, agg_mic_mac)
     collect_micro_and_macro_averages_per_ann(agg_per_ann, ATTRIBUTES, agg_mic_mac)
+    print_average_details(agg_mic_mac)
     print_category_aggregation(agg_per_type, "Per type summary")
     print_category_aggregation(agg_per_attr, "Per attribute summary")
-    print_average_details(agg_mic_mac)
     print_category_details(agg_per_ann, "Per type details", TYPES, agg_mic_mac)
     print_category_details(agg_per_ann, "Per attribute details", ATTRIBUTES, agg_mic_mac)
     print_full_details(global_stat, agg_per_ann)
@@ -259,48 +259,86 @@ def collect_micro_and_macro_averages_per_ann(agg_per_ann, category, agg_mic_mac)
 
 def print_average_details(agg_mic_mac):
     print()
-    print("## Average details")
-    print_micro_average_details(agg_mic_mac, "Micro avg per type", TYPES)
-    print_micro_average_details(agg_mic_mac, "Micro avg per attributes", ATTRIBUTES)
-    print_macro_average_details(agg_mic_mac, "Macro avg per type", TYPES)
-    print_macro_average_details(agg_mic_mac, "Macro avg per attributes", ATTRIBUTES)
-
-
-def print_micro_average_details(agg_mic_mac, title, category):
-    print(f"### " + title)
-    values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
+    print("## Average summary")
+    values = [
+        [
+            "Annotator",
+            FREQ,
+            TP,
+            FP,
+            FN,
+            PREC + " (micro)",
+            REC + " (micro)",
+            PREC + " (macro - type)",
+            REC + " (macro - type)",
+            PREC + " (macro - attribute)",
+            REC + " (macro - attribute)",
+        ]
+    ]
+    global_averages_collector = numpy.zeros(shape=(len(agg_mic_mac.keys()), 6))
+    row = 0
     for ann, ann_averages in agg_mic_mac.items():
-        micro = ann_averages[category][MICRO]
+        micro = ann_averages[TYPES][MICRO]
+        macro_type = ann_averages[TYPES][MACRO]
+        macro_attributes = ann_averages[ATTRIBUTES][MACRO]
+        macro_type_prec = numpy.average(macro_type[PREC])
+        macro_type_rec = numpy.average(macro_type[REC])
+        macro_attr_prec = numpy.average(macro_attributes[PREC])
+        macro_attr_rec = numpy.average(macro_attributes[REC])
         values.append(
             [
-                f"{ann} - micro per type",
+                ann,
                 micro[FREQ],
                 micro[TP],
                 micro[FP],
                 micro[FN],
                 micro[PREC],
                 micro[REC],
+                macro_type_prec,
+                macro_type_rec,
+                macro_attr_prec,
+                macro_attr_rec,
             ]
         )
-    print(make_markdown_table(values))
-
-
-def print_macro_average_details(agg_mic_mac, title, category):
-    print(f"### " + title)
-    values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
-    for ann, ann_averages in agg_mic_mac.items():
-        macro = ann_averages[category][MACRO]
-        values.append(
-            [
-                f"{ann} - macro per type",
-                "",
-                "",
-                "",
-                "",
-                numpy.average(macro[PREC]),
-                numpy.average(macro[REC]),
-            ]
-        )
+        global_averages_collector[row][0] = micro[PREC]
+        global_averages_collector[row][1] = micro[REC]
+        global_averages_collector[row][2] = macro_type_prec
+        global_averages_collector[row][3] = macro_type_rec
+        global_averages_collector[row][4] = macro_attr_prec
+        global_averages_collector[row][5] = macro_attr_rec
+        row += 1
+    global_averages = np.average(global_averages_collector, axis=0)
+    values.append(
+        [
+            AVG,
+            "",
+            "",
+            "",
+            "",
+            global_averages[0],
+            global_averages[1],
+            global_averages[2],
+            global_averages[3],
+            global_averages[4],
+            global_averages[5],
+        ]
+    )
+    global_deviations = np.std(global_averages_collector, axis=0)
+    values.append(
+        [
+            STD,
+            "",
+            "",
+            "",
+            "",
+            global_deviations[0],
+            global_deviations[1],
+            global_deviations[2],
+            global_deviations[3],
+            global_deviations[4],
+            global_deviations[5],
+        ]
+    )
     print(make_markdown_table(values))
 
 
@@ -384,29 +422,6 @@ def print_full_details(global_stat, agg_per_ann):
                 ]
             )
         print(make_markdown_table(values))
-
-
-def print_agg(agg, name):
-    if name == AVG:
-        print("## Average")
-    elif name == STD:
-        print("## STD")
-    values = [["Name", PREC, REC]]
-    for attr, attr_stat in agg.items():
-        agg_prec = 0
-        agg_rec = 0
-        if name == AVG:
-            agg_prec = st.mean(attr_stat[PREC])
-            agg_rec = st.mean(attr_stat[REC])
-        elif name == STD:
-            agg_prec = "NA"
-            agg_rec = "NA"
-            if len(attr_stat[PREC]) > 1:
-                agg_prec = st.stdev(attr_stat[PREC])
-            if len(attr_stat[REC]) > 1:
-                agg_rec = st.stdev(attr_stat[REC])
-        values.append([attr, agg_prec, agg_rec])
-    print(make_markdown_table(values))
 
 
 def get_args():

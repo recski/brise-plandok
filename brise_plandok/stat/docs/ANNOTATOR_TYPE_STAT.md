@@ -19,7 +19,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 
 
 
-## Per type summary
+## Per type / annotator aggregation
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
@@ -66,7 +66,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 
 
 
-## Per attribute summary
+## Per attribute / annotator aggregation
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
@@ -1033,7 +1033,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 
 
 
-## Per type details
+## Per type / annotator details
 ### Annotator 01
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
@@ -1107,7 +1107,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 
 
 
-## Per attribute details
+## Per attribute / annotator details
 ### Annotator 01
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
@@ -1733,7 +1733,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 
 
 
-## Full details
+## Per annotator / attribute / type details
 ### Annotator 01
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
@@ -2317,7 +2317,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 
 
 
-## Full details
+## Per annotator / attribute / type details
 ### Annotator 02
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
@@ -2901,7 +2901,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 
 
 
-## Full details
+## Per annotator / attribute / type details
 ### Annotator 03
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
@@ -3485,7 +3485,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 
 
 
-## Full details
+## Per annotator / attribute / type details
 ### Annotator 04
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
@@ -4069,7 +4069,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 
 
 
-## Full details
+## Per annotator / attribute / type details
 ### Annotator 05
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |
@@ -4653,7 +4653,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 
 
 
-## Full details
+## Per annotator / attribute / type details
 ### Annotator 06
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |

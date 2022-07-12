@@ -139,11 +139,17 @@ def print_stat(global_stat):
     collect_micro_and_macro_averages_per_ann(agg_per_ann, TYPES, agg_mic_mac)
     collect_micro_and_macro_averages_per_ann(agg_per_ann, ATTRIBUTES, agg_mic_mac)
     print_average_details(agg_mic_mac)
-    print_category_aggregation(agg_per_type, "Per type summary", agg_per_ann, TYPES)
-    print_category_aggregation(agg_per_attr, "Per attribute summary", agg_per_ann, ATTRIBUTES)
-    print_category_details(agg_per_ann, "Per type details", TYPES, agg_mic_mac)
-    print_category_details(agg_per_ann, "Per attribute details", ATTRIBUTES, agg_mic_mac)
-    print_full_details(global_stat, agg_per_ann)
+    print_category_aggregation(
+        agg_per_type, "Per type / annotator aggregation", agg_per_ann, TYPES
+    )
+    print_category_aggregation(
+        agg_per_attr, "Per attribute / annotator aggregation", agg_per_ann, ATTRIBUTES
+    )
+    print_category_details(agg_per_ann, "Per type / annotator details", TYPES, agg_mic_mac)
+    print_category_details(
+        agg_per_ann, "Per attribute / annotator details", ATTRIBUTES, agg_mic_mac
+    )
+    print_full_details(global_stat, agg_per_ann, "Per annotator / attribute / type details")
 
 
 def collect_aggregation(global_stat, agg_per_attr, agg_per_type, agg_per_ann):
@@ -430,10 +436,10 @@ def print_category_details(agg_per_ann, title, category, agg_mic_mac):
         print(make_markdown_table(values))
 
 
-def print_full_details(global_stat, agg_per_ann):
+def print_full_details(global_stat, agg_per_ann, title):
     for ann, ann_stat in global_stat.items():
         print()
-        print("## Full details")
+        print("## " + title)
         print(f"### Annotator {ann}")
         values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
         for attr, stat_per_attr in ann_stat.items():

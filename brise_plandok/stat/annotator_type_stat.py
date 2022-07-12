@@ -134,8 +134,10 @@ def print_stat(global_stat):
         "non-gold types, then we regard the gold one."
     )
     collect_aggregation(global_stat, agg_per_attr, agg_per_type, agg_per_ann)
-    print_category_aggregation(agg_per_type, "Type details")
-    print_category_aggregation(agg_per_attr, "Attribute details")
+    print_category_aggregation(agg_per_type, "Per type summary")
+    print_category_aggregation(agg_per_attr, "Per attribute summary")
+    print_category_details(agg_per_ann, "Per type details", TYPES)
+    print_category_details(agg_per_ann, "Per attribute details", ATTRIBUTES)
     print_full_details(global_stat, agg_per_ann)
 
 
@@ -174,15 +176,28 @@ def collect_aggregation(global_stat, agg_per_attr, agg_per_type, agg_per_ann):
                 aggregate(agg_per_type[attr_type][MICRO], type_stat)
                 aggregate(agg_attr_per_ann[attr], type_stat)
                 aggregate(agg_per_attr[attr][MICRO], type_stat)
-    calculate_micro_avg(agg_per_attr)
+        append_p_r_to_macro(agg_attr_per_ann, agg_per_attr)
+        append_p_r_to_macro(agg_types_per_ann, agg_per_type)
     calculate_micro_avg(agg_per_type)
+    calculate_micro_avg(agg_per_attr)
+
+
+def append_p_r_to_macro(agg_cat_per_ann, agg_per_cat):
+    for cat in agg_cat_per_ann.keys():
+        add_p_r(agg_cat_per_ann[cat])
+        agg_per_cat[cat][MACRO][PREC].append(agg_cat_per_ann[cat][PREC])
+        agg_per_cat[cat][MACRO][REC].append(agg_cat_per_ann[cat][REC])
 
 
 def calculate_micro_avg(collector):
     for category in collector.keys():
-        p_r_f_micro = count_p_r_f({MICRO: collector[category][MICRO]})
-        collector[category][MICRO][PREC] = p_r_f_micro[MICRO]["P"]
-        collector[category][MICRO][REC] = p_r_f_micro[MICRO]["R"]
+        add_p_r(collector[category][MICRO])
+
+
+def add_p_r(collector):
+    p_r_f_micro = count_p_r_f({"dummy": collector})
+    collector[PREC] = p_r_f_micro["dummy"]["P"]
+    collector[REC] = p_r_f_micro["dummy"]["R"]
 
 
 def aggregate(counter, type_stat):
@@ -212,6 +227,28 @@ def print_category_aggregation(agg, title):
     print(make_markdown_table(values))
 
 
+def print_category_details(agg_per_ann, title, category):
+    print()
+    print("## " + title)
+    for ann, ann_stat in agg_per_ann.items():
+        print(f"### Annotator {ann}")
+        values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
+        for cat in ann_stat[category].keys():
+            micro_avg = ann_stat[category][cat]
+            values.append(
+                [
+                    cat,
+                    micro_avg[FREQ],
+                    micro_avg[TP],
+                    micro_avg[FP],
+                    micro_avg[FN],
+                    micro_avg[PREC],
+                    micro_avg[REC],
+                ]
+            )
+        print(make_markdown_table(values))
+
+
 def print_full_details(global_stat, agg_per_ann):
     for ann, ann_stat in global_stat.items():
         print()
@@ -233,7 +270,6 @@ def print_full_details(global_stat, agg_per_ann):
                         (p_r_f[attr_type]["R"]),
                     ]
                 )
-            p_r_f_micro = count_p_r_f({MICRO: agg_per_ann[ann][ATTRIBUTES][attr]})
             micro_stat_attr = agg_per_ann[ann][ATTRIBUTES][attr]
             values.append(
                 [
@@ -242,21 +278,11 @@ def print_full_details(global_stat, agg_per_ann):
                     micro_stat_attr[TP],
                     micro_stat_attr[FP],
                     micro_stat_attr[FN],
-                    (p_r_f_micro[MICRO]["P"]),
-                    (p_r_f_micro[MICRO]["R"]),
+                    micro_stat_attr[PREC],
+                    micro_stat_attr[REC],
                 ]
             )
         print(make_markdown_table(values))
-
-
-def add_global_aggregated_stat(agg, attr, prec, rec):
-    if attr not in agg:
-        agg[attr] = {
-            PREC: [],
-            REC: [],
-        }
-    agg[attr][PREC].append(prec)
-    agg[attr][REC].append(rec)
 
 
 def print_agg(agg, name):

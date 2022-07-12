@@ -101,7 +101,7 @@ def add_attr_stat(gold_attrs, ann, ann_attrs, attr_stat):
 
 def print_stat(attr_stat):
     agg = {}
-    print("# Annotator statistics - Attributes")
+    print("# Annotator performance - Attributes")
     print("This statistics is calculated without the sentences with a segmentation error.  ")
     print(
         "Post-processed attributes were converted back to their version at the time of annotation."

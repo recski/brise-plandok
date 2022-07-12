@@ -1,4 +1,4 @@
-# Annotator statistics - Modality
+# Annotator performance - Modality
 This statistics is calculated without the sentences with a segmentation error.
 ## Annotator 01
 ### All sentences

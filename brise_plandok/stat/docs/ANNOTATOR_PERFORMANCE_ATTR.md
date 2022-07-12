@@ -1,4 +1,4 @@
-# Annotator statistics - Attributes
+# Annotator performance - Attributes
 This statistics is calculated without the sentences with a segmentation error.  
 Post-processed attributes were converted back to their version at the time of annotation.
 ## Annotator 01

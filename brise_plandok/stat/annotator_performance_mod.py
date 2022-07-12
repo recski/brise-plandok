@@ -131,7 +131,7 @@ def add_mod_stat_for_all_sens(gold_mod, mod, mod_stat_all):
 
 
 def print_stat(ann_map):
-    print("# Annotator statistics - Modality")
+    print("# Annotator performance - Modality")
     print("This statistics is calculated without the sentences with a segmentation error.")
     agg = {
         ALL: {

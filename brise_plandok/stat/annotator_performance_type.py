@@ -125,7 +125,7 @@ def print_stat(global_stat):
     agg_per_type = {}
     agg_per_ann = {}
     agg_mic_mac = {}
-    print("# Annotator statistics - Types")
+    print("# Annotator performance - Types")
     print(
         "This statistics is calculated without the sentences with a segmentation error.  \n"
         "Post-processed attributes were converted back to their version at the time of annotation.  \n\n"

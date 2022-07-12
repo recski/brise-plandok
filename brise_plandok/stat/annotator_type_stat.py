@@ -134,9 +134,8 @@ def print_stat(global_stat):
         "non-gold types, then we regard the gold one."
     )
     collect_aggregation(global_stat, agg_per_attr, agg_per_type, agg_per_ann)
+    print_attr_details(agg_per_attr)
     print_full_details(global_stat, agg_per_ann)
-    # print_agg(agg, AVG)
-    # print_agg(agg, STD)
 
 
 def collect_aggregation(global_stat, agg_per_attr, agg_per_type, agg_per_ann):
@@ -183,12 +182,30 @@ def aggregate(counter, type_stat):
     counter[FN] += type_stat[FN]
 
 
-def print_attr_details(global_stat, agg_per_ann):
-    pass
+def print_attr_details(agg_per_attr):
+    print()
+    print("## Attribute details")
+    values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
+    for attr, stat_per_attr in agg_per_attr.items():
+        values.append([attr, "", "", "", "", "", ""])
+        p_r_f = count_p_r_f({MICRO: stat_per_attr[MICRO]})
+        values.append(
+            [
+                MICRO,
+                stat_per_attr[MICRO][FREQ],
+                stat_per_attr[MICRO][TP],
+                stat_per_attr[MICRO][FP],
+                stat_per_attr[MICRO][FN],
+                (p_r_f[MICRO]["P"]),
+                (p_r_f[MICRO]["R"]),
+            ]
+        )
+    print(make_markdown_table(values))
 
 
 def print_full_details(global_stat, agg_per_ann):
     for ann, ann_stat in global_stat.items():
+        print()
         print("## Full details")
         print(f"### Annotator {ann}")
         values = [["Name", FREQ, TP, FP, FN, PREC, REC]]

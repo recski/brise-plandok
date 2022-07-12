@@ -3,6 +3,206 @@ This statistics is calculated without the sentences with a segmentation error.
 Post-processed attributes were converted back to their version at the time of annotation.  
 
 For complexity reasons, agreement is only calculated for cases, where the attribute occurs in gold exactly once, and where the annotator gave at least one annotation for the attribute. In case the annotator labeled the attribute within the same sentence multiple times, the most beneficial type annotation is taken into account, i.e. if the annotator labeled both gold and non-gold types, then we regard the gold one.
+
+## Attribute details
+
+|  Name | Freq | TP | FP | FN | Precision | Recall |
+|-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
+| Planzeichen |  |  |  |  |  |  | 
+| micro | 2932 | 2876 | 14 | 56 | 0.995 | 0.981 | 
+| WidmungUndZweckbestimmung |  |  |  |  |  |  | 
+| micro | 1520 | 457 | 155 | 1063 | 0.747 | 0.301 | 
+| Flaechen |  |  |  |  |  |  | 
+| micro | 570 | 522 | 42 | 48 | 0.926 | 0.916 | 
+| VerkehrsflaecheID |  |  |  |  |  |  | 
+| micro | 322 | 298 | 12 | 24 | 0.961 | 0.925 | 
+| AnFluchtlinie |  |  |  |  |  |  | 
+| micro | 548 | 521 | 2 | 27 | 0.996 | 0.951 | 
+| AnordnungGaertnerischeAusgestaltung |  |  |  |  |  |  | 
+| micro | 584 | 536 | 27 | 48 | 0.952 | 0.918 | 
+| GebaeudeHoeheMax |  |  |  |  |  |  | 
+| micro | 430 | 365 | 56 | 65 | 0.867 | 0.849 | 
+| Dachart |  |  |  |  |  |  | 
+| micro | 454 | 408 | 29 | 46 | 0.934 | 0.899 | 
+| WidmungInMehrerenEbenen |  |  |  |  |  |  | 
+| micro | 116 | 82 | 13 | 34 | 0.863 | 0.707 | 
+| GebaeudeHoeheArt |  |  |  |  |  |  | 
+| micro | 484 | 220 | 250 | 264 | 0.468 | 0.455 | 
+| VorkehrungBepflanzung |  |  |  |  |  |  | 
+| micro | 534 | 504 | 1 | 30 | 0.998 | 0.944 | 
+| ErrichtungGebaeude |  |  |  |  |  |  | 
+| micro | 426 | 270 | 1 | 156 | 0.996 | 0.634 | 
+| PlangebietAllgemein |  |  |  |  |  |  | 
+| micro | 376 | 305 | 0 | 71 | 1.000 | 0.811 | 
+| VonBebauungFreizuhalten |  |  |  |  |  |  | 
+| micro | 288 | 265 | 3 | 23 | 0.989 | 0.920 | 
+| BegruenungDach |  |  |  |  |  |  | 
+| micro | 440 | 434 | 0 | 6 | 1.000 | 0.986 | 
+| AbschlussDachMaxBezugGebaeude |  |  |  |  |  |  | 
+| micro | 438 | 423 | 11 | 15 | 0.975 | 0.966 | 
+| GehsteigbreiteMin |  |  |  |  |  |  | 
+| micro | 310 | 299 | 2 | 11 | 0.993 | 0.965 | 
+| StrassenbreiteMin |  |  |  |  |  |  | 
+| micro | 354 | 341 | 3 | 13 | 0.991 | 0.963 | 
+| GebaeudeBautyp |  |  |  |  |  |  | 
+| micro | 344 | 242 | 92 | 102 | 0.725 | 0.703 | 
+| AufbautenZulaessig |  |  |  |  |  |  | 
+| micro | 304 | 287 | 4 | 17 | 0.986 | 0.944 | 
+| UnterbrechungGeschlosseneBauweise |  |  |  |  |  |  | 
+| micro | 308 | 304 | 0 | 4 | 1.000 | 0.987 | 
+| DachneigungMax |  |  |  |  |  |  | 
+| micro | 264 | 240 | 18 | 24 | 0.930 | 0.909 | 
+| AnOeffentlichenVerkehrsflaechen |  |  |  |  |  |  | 
+| micro | 108 | 93 | 5 | 15 | 0.949 | 0.861 | 
+| BauweiseID |  |  |  |  |  |  | 
+| micro | 184 | 91 | 10 | 93 | 0.901 | 0.495 | 
+| Bauklasse |  |  |  |  |  |  | 
+| micro | 222 | 134 | 19 | 88 | 0.876 | 0.604 | 
+| EinfriedungAusgestaltung |  |  |  |  |  |  | 
+| micro | 230 | 158 | 29 | 72 | 0.845 | 0.687 | 
+| DurchgangBreite |  |  |  |  |  |  | 
+| micro | 216 | 207 | 4 | 9 | 0.981 | 0.958 | 
+| AusnahmeGaertnerischAuszugestaltende |  |  |  |  |  |  | 
+| micro | 204 | 72 | 33 | 132 | 0.686 | 0.353 | 
+| StrassenbreiteMax |  |  |  |  |  |  | 
+| micro | 196 | 186 | 5 | 10 | 0.974 | 0.949 | 
+| DurchgangHoehe |  |  |  |  |  |  | 
+| micro | 160 | 155 | 3 | 5 | 0.981 | 0.969 | 
+| UnterirdischeBaulichkeiten |  |  |  |  |  |  | 
+| micro | 170 | 89 | 44 | 81 | 0.669 | 0.524 | 
+| Struktureinheit |  |  |  |  |  |  | 
+| micro | 162 | 114 | 20 | 48 | 0.851 | 0.704 | 
+| VolumenUndUmbaubarerRaum |  |  |  |  |  |  | 
+| micro | 176 | 171 | 3 | 5 | 0.983 | 0.972 | 
+| EinfriedungHoeheGesamt |  |  |  |  |  |  | 
+| micro | 96 | 65 | 25 | 31 | 0.722 | 0.677 | 
+| Stockwerk |  |  |  |  |  |  | 
+| micro | 130 | 75 | 42 | 55 | 0.641 | 0.577 | 
+| DachflaecheMin |  |  |  |  |  |  | 
+| micro | 142 | 119 | 6 | 23 | 0.952 | 0.838 | 
+| EinfriedungLage |  |  |  |  |  |  | 
+| micro | 110 | 97 | 6 | 13 | 0.942 | 0.882 | 
+| AnlageZumEinstellenVorhanden |  |  |  |  |  |  | 
+| micro | 88 | 48 | 16 | 40 | 0.750 | 0.545 | 
+| VorstehendeBauelementeAusladungMax |  |  |  |  |  |  | 
+| micro | 36 | 35 | 0 | 1 | 1.000 | 0.972 | 
+| VerbotFensterZuOeffentlichenVerkehrsflaechen |  |  |  |  |  |  | 
+| micro | 132 | 124 | 4 | 8 | 0.969 | 0.939 | 
+| EinfriedungZulaessig |  |  |  |  |  |  | 
+| micro | 96 | 71 | 0 | 25 | 1.000 | 0.740 | 
+| VerbotWohnung |  |  |  |  |  |  | 
+| micro | 122 | 108 | 1 | 14 | 0.991 | 0.885 | 
+| StrassenbreiteVonBis |  |  |  |  |  |  | 
+| micro | 98 | 86 | 1 | 12 | 0.989 | 0.878 | 
+| AnordnungGaertnerischeAusgestaltungProzentual |  |  |  |  |  |  | 
+| micro | 100 | 82 | 4 | 18 | 0.953 | 0.820 | 
+| OeffentlicheVerkehrsflaecheBreiteMin |  |  |  |  |  |  | 
+| micro | 102 | 79 | 5 | 23 | 0.940 | 0.775 | 
+| VorbautenVerbot |  |  |  |  |  |  | 
+| micro | 92 | 88 | 1 | 4 | 0.989 | 0.957 | 
+| HoehenlageGrundflaeche |  |  |  |  |  |  | 
+| micro | 12 | 9 | 1 | 3 | 0.900 | 0.750 | 
+| VorbautenBeschraenkung |  |  |  |  |  |  | 
+| micro | 20 | 18 | 2 | 2 | 0.900 | 0.900 | 
+| AnteilDachbegruenung |  |  |  |  |  |  | 
+| micro | 70 | 64 | 5 | 6 | 0.928 | 0.914 | 
+| EinleitungNiederschlagswaesser |  |  |  |  |  |  | 
+| micro | 72 | 69 | 1 | 3 | 0.986 | 0.958 | 
+| AbschlussDachMaxBezugGelaende |  |  |  |  |  |  | 
+| micro | 28 | 8 | 0 | 20 | 1.000 | 0.286 | 
+| VerbotStaffelung |  |  |  |  |  |  | 
+| micro | 64 | 63 | 0 | 1 | 1.000 | 0.984 | 
+| ArkadeHoehe |  |  |  |  |  |  | 
+| micro | 54 | 52 | 0 | 2 | 1.000 | 0.963 | 
+| StellplatzImNiveauZulaessig |  |  |  |  |  |  | 
+| micro | 54 | 37 | 3 | 17 | 0.925 | 0.685 | 
+| MaxAnzahlGeschosseOberirdisch |  |  |  |  |  |  | 
+| micro | 38 | 30 | 8 | 8 | 0.789 | 0.789 | 
+| GebaeudeHoeheMin |  |  |  |  |  |  | 
+| micro | 16 | 12 | 3 | 4 | 0.800 | 0.750 | 
+| GaragengebaeudeAusfuehrung |  |  |  |  |  |  | 
+| micro | 18 | 8 | 4 | 10 | 0.667 | 0.444 | 
+| BestimmmungenFuerHochhausUndGrossbauvorhaben |  |  |  |  |  |  | 
+| micro | 14 | 10 | 2 | 4 | 0.833 | 0.714 | 
+| StellplatzregulativUmfangMaximumRelativ |  |  |  |  |  |  | 
+| micro | 22 | 22 | 0 | 0 | 1.000 | 1.000 | 
+| Massengliederung |  |  |  |  |  |  | 
+| micro | 34 | 18 | 6 | 16 | 0.750 | 0.529 | 
+| StellplatzregulativUmfangMaximumAbsolut |  |  |  |  |  |  | 
+| micro | 16 | 12 | 0 | 4 | 1.000 | 0.750 | 
+| StellplatzMax |  |  |  |  |  |  | 
+| micro | 30 | 25 | 5 | 5 | 0.833 | 0.833 | 
+| OberflaecheBestimmungP |  |  |  |  |  |  | 
+| micro | 22 | 13 | 0 | 9 | 1.000 | 0.591 | 
+| InSchutzzone |  |  |  |  |  |  | 
+| micro | 36 | 21 | 2 | 15 | 0.913 | 0.583 | 
+| AnzahlGebaeudeMax |  |  |  |  |  |  | 
+| micro | 38 | 35 | 1 | 3 | 0.972 | 0.921 | 
+| FBOKMinimumWohnungen |  |  |  |  |  |  | 
+| micro | 40 | 30 | 7 | 10 | 0.811 | 0.750 | 
+| TechnischeAufbautenHoeheMax |  |  |  |  |  |  | 
+| micro | 22 | 17 | 0 | 5 | 1.000 | 0.773 | 
+| StellplatzregulativUmfangMinimumRelativ |  |  |  |  |  |  | 
+| micro | 34 | 29 | 0 | 5 | 1.000 | 0.853 | 
+| GebaeudeEinschraenkungP |  |  |  |  |  |  | 
+| micro | 10 | 5 | 1 | 5 | 0.833 | 0.500 | 
+| DurchfahrtHoehe |  |  |  |  |  |  | 
+| micro | 22 | 22 | 0 | 0 | 1.000 | 1.000 | 
+| DachneigungMin |  |  |  |  |  |  | 
+| micro | 26 | 24 | 1 | 2 | 0.960 | 0.923 | 
+| Kleinhaeuser |  |  |  |  |  |  | 
+| micro | 26 | 9 | 15 | 17 | 0.375 | 0.346 | 
+| BauklasseVIHoeheMax |  |  |  |  |  |  | 
+| micro | 32 | 22 | 6 | 10 | 0.786 | 0.688 | 
+| MaxAnzahlDachgeschosse |  |  |  |  |  |  | 
+| micro | 22 | 21 | 0 | 1 | 1.000 | 0.955 | 
+| BauklasseVIHoeheMin |  |  |  |  |  |  | 
+| micro | 28 | 18 | 4 | 10 | 0.818 | 0.643 | 
+| StellplatzverpflichtungArt |  |  |  |  |  |  | 
+| micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| VerbotBueroGeschaeftsgebaeude |  |  |  |  |  |  | 
+| micro | 20 | 19 | 0 | 1 | 1.000 | 0.950 | 
+| AusnuetzbarkeitWidmungskategorieGefoerderterWohnbau |  |  |  |  |  |  | 
+| micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| AusnahmeVonWohnungenUnzulaessig |  |  |  |  |  |  | 
+| micro | 10 | 4 | 1 | 6 | 0.800 | 0.400 | 
+| DurchfahrtBreite |  |  |  |  |  |  | 
+| micro | 12 | 11 | 1 | 1 | 0.917 | 0.917 | 
+| Geschaeftsstrassen |  |  |  |  |  |  | 
+| micro | 12 | 10 | 0 | 2 | 1.000 | 0.833 | 
+| VerbotUnterirdischeBauwerkeUeberBaufluchtlinie |  |  |  |  |  |  | 
+| micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| MindestraumhoeheEG |  |  |  |  |  |  | 
+| micro | 14 | 6 | 0 | 8 | 1.000 | 0.429 | 
+| HochhausZulaessigGemaessBB |  |  |  |  |  |  | 
+| micro | 8 | 7 | 0 | 1 | 1.000 | 0.875 | 
+| StellplatzregulativVorhanden |  |  |  |  |  |  | 
+| micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| MaxAnzahlGeschosseOberirdischOhneDachgeschoss |  |  |  |  |  |  | 
+| micro | 6 | 2 | 0 | 4 | 1.000 | 0.333 | 
+| VerbotAufenthaltsraum |  |  |  |  |  |  | 
+| micro | 2 | 2 | 0 | 0 | 1.000 | 1.000 | 
+| EinfriedungHoeheSockel |  |  |  |  |  |  | 
+| micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| Einbautrasse |  |  |  |  |  |  | 
+| micro | 4 | 4 | 0 | 0 | 1.000 | 1.000 | 
+| GelaendeneigungMin |  |  |  |  |  |  | 
+| micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| AnteilBaumbepflanzung |  |  |  |  |  |  | 
+| micro | 2 | 1 | 1 | 1 | 0.500 | 0.500 | 
+| ZulaessigeGeschossanzahlEinkaufszentrum |  |  |  |  |  |  | 
+| micro | 4 | 4 | 0 | 0 | 1.000 | 1.000 | 
+| VerbotStellplaetzeUndParkgebaeude |  |  |  |  |  |  | 
+| micro | 2 | 2 | 0 | 0 | 1.000 | 1.000 | 
+| ArkadeLaenge |  |  |  |  |  |  | 
+| micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| MaxHoeheWohngebaeude |  |  |  |  |  |  | 
+| micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+| LaubengangHoehe |  |  |  |  |  |  | 
+| micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+
+
+
 ## Full details
 ### Annotator 01
 
@@ -584,6 +784,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | conditionException | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | contentException | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+
 
 
 ## Full details
@@ -1169,6 +1370,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 
 
+
 ## Full details
 ### Annotator 03
 
@@ -1750,6 +1952,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | conditionException | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | contentException | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+
 
 
 ## Full details
@@ -2335,6 +2538,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 
 
+
 ## Full details
 ### Annotator 05
 
@@ -2916,6 +3120,7 @@ For complexity reasons, agreement is only calculated for cases, where the attrib
 | conditionException | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | contentException | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
 | micro | 0 | 0 | 0 | 0 | 1.000 | 1.000 | 
+
 
 
 ## Full details

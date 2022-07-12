@@ -27,3 +27,4 @@ RULES = "Only sentences with rules"
 
 TYPES = "types"
 VALUES = "values"
+ATTRIBUTES = "attributes"

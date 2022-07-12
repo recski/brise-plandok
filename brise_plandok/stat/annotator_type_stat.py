@@ -1,6 +1,5 @@
 import argparse
 import os
-import statistics
 import statistics as st
 from collections import Counter
 
@@ -27,6 +26,8 @@ from brise_plandok.stat.constants import (
     MACRO,
     PREC,
     REC,
+    ATTRIBUTES,
+    TYPES,
 )
 from brise_plandok.stat.utils import (
     make_markdown_table,
@@ -118,9 +119,10 @@ def fill_type_stat(attr, gold_type, ann, ann_type, type_stat):
     type_stat[ann][attr][gold_type][FREQ] += 1
 
 
-def print_stat(type_stat):
+def print_stat(global_stat):
     agg_per_attr = {}
     agg_per_type = {}
+    agg_per_ann = {}
     print("# Annotator statistics - Types")
     print(
         "This statistics is calculated without the sentences with a segmentation error.  \n"
@@ -131,65 +133,94 @@ def print_stat(type_stat):
         "the most beneficial type annotation is taken into account, i.e. if the annotator labeled both gold and "
         "non-gold types, then we regard the gold one."
     )
-    for ann, ann_stat in type_stat.items():
-        print(f"## Annotator {ann}")
-        print_attribute_stat_for_ann(ann_stat, agg_per_attr, agg_per_type)
+    collect_aggregation(global_stat, agg_per_attr, agg_per_type, agg_per_ann)
+    print_full_details(global_stat, agg_per_ann)
     # print_agg(agg, AVG)
     # print_agg(agg, STD)
 
 
-def print_attribute_stat_for_ann(ann_stat, agg_per_attr, agg_per_tpe):
-    # agg_per_ann = {}
-    values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
-    for attr, stat_per_attr in ann_stat.items():
-        if attr not in agg_per_attr:
-            agg_per_attr[attr] = {
-                MICRO: Counter(),
-                MACRO: {
-                    PREC: [],
-                    REC: [],
-                },
+def collect_aggregation(global_stat, agg_per_attr, agg_per_type, agg_per_ann):
+    for ann, ann_stat in global_stat.items():
+        if ann not in agg_per_ann:
+            agg_per_ann[ann] = {
+                ATTRIBUTES: {},
+                TYPES: {},
             }
-        attr_cnt = get_attr_cnt(stat_per_attr)
-        values.append([attr, attr_cnt, "", "", "", "", ""])
-        p_r_f = count_p_r_f(stat_per_attr)
-        for attr_type, type_stat in stat_per_attr.items():
-            if attr_type not in agg_per_tpe:
-                agg_per_tpe[attr_type] = {
+        agg_attr_per_ann = agg_per_ann[ann][ATTRIBUTES]
+        agg_types_per_ann = agg_per_ann[ann][TYPES]
+        for attr, stat_per_attr in ann_stat.items():
+            if attr not in agg_per_attr:
+                agg_per_attr[attr] = {
                     MICRO: Counter(),
                     MACRO: {
                         PREC: [],
                         REC: [],
                     },
                 }
-            prec = p_r_f[attr_type]["P"]
-            rec = p_r_f[attr_type]["R"]
-            append_row_for_attr(attr_type, prec, rec, type_stat, values)
-            # add_aggregated_stat_for_ann(agg_per_ann, prec, rec, stat_per_attr)
-            # add_global_aggregated_stat(agg, attr, prec, rec)
-    # micro_p_r_f = count_p_r_f({MICRO: agg_per_ann[MICRO]})
-    # append_row_for_micro(agg_per_ann, micro_p_r_f, values)
-    # append_row_for_macro(agg_per_ann, values)
-    print(make_markdown_table(values))
+            if attr not in agg_attr_per_ann:
+                agg_attr_per_ann[attr] = Counter()
+            for attr_type, type_stat in stat_per_attr.items():
+                if attr_type not in agg_per_type:
+                    agg_per_type[attr_type] = {
+                        MICRO: Counter(),
+                        MACRO: {
+                            PREC: [],
+                            REC: [],
+                        },
+                    }
+                if attr_type not in agg_types_per_ann:
+                    agg_types_per_ann[attr_type] = Counter()
+                aggregate(agg_types_per_ann[attr_type], type_stat)
+                aggregate(agg_per_type[attr_type][MICRO], type_stat)
+                aggregate(agg_attr_per_ann[attr], type_stat)
+                aggregate(agg_per_attr[attr][MICRO], type_stat)
 
 
-def get_attr_cnt(stat_per_attr):
-    attr_cnt = (
-        stat_per_attr[AttributeTypes.CONDITION][FREQ]
-        + stat_per_attr[AttributeTypes.CONTENT][FREQ]
-        + stat_per_attr[AttributeTypes.CONDITION_EXCEPTION][FREQ]
-        + stat_per_attr[AttributeTypes.CONTENT_EXCEPTION][FREQ]
-    )
-    return attr_cnt
+def aggregate(counter, type_stat):
+    counter[FREQ] += type_stat[FREQ]
+    counter[TP] += type_stat[TP]
+    counter[FP] += type_stat[FP]
+    counter[FN] += type_stat[FN]
 
 
-def add_aggregated_stat_for_ann(agg_per_ann, prec, rec, stat_per_attr):
-    agg_per_ann[MICRO][FREQ] += stat_per_attr[FREQ]
-    agg_per_ann[MICRO][TP] += stat_per_attr[TP]
-    agg_per_ann[MICRO][FP] += stat_per_attr[FP]
-    agg_per_ann[MICRO][FN] += stat_per_attr[FN]
-    agg_per_ann[MACRO][PREC].append(prec)
-    agg_per_ann[MACRO][REC].append(rec)
+def print_attr_details(global_stat, agg_per_ann):
+    pass
+
+
+def print_full_details(global_stat, agg_per_ann):
+    for ann, ann_stat in global_stat.items():
+        print("## Full details")
+        print(f"### Annotator {ann}")
+        values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
+        for attr, stat_per_attr in ann_stat.items():
+            values.append([attr, agg_per_ann[ann][ATTRIBUTES][attr][FREQ], "", "", "", "", ""])
+            p_r_f = count_p_r_f(stat_per_attr)
+            for attr_type, type_stat in stat_per_attr.items():
+                values.append(
+                    [
+                        attr_type,
+                        type_stat[FREQ],
+                        type_stat[TP],
+                        type_stat[FP],
+                        type_stat[FN],
+                        (p_r_f[attr_type]["P"]),
+                        (p_r_f[attr_type]["R"]),
+                    ]
+                )
+            p_r_f_micro = count_p_r_f({MICRO: agg_per_ann[ann][ATTRIBUTES][attr]})
+            micro_stat_attr = agg_per_ann[ann][ATTRIBUTES][attr]
+            values.append(
+                [
+                    MICRO,
+                    micro_stat_attr[FREQ],
+                    micro_stat_attr[TP],
+                    micro_stat_attr[FP],
+                    micro_stat_attr[FN],
+                    (p_r_f_micro[MICRO]["P"]),
+                    (p_r_f_micro[MICRO]["R"]),
+                ]
+            )
+        print(make_markdown_table(values))
 
 
 def add_global_aggregated_stat(agg, attr, prec, rec):
@@ -200,48 +231,6 @@ def add_global_aggregated_stat(agg, attr, prec, rec):
         }
     agg[attr][PREC].append(prec)
     agg[attr][REC].append(rec)
-
-
-def append_row_for_attr(attr_type, prec, rec, stat_per_type, values):
-    values.append(
-        [
-            attr_type,
-            stat_per_type[FREQ],
-            stat_per_type[TP],
-            stat_per_type[FP],
-            stat_per_type[FN],
-            prec,
-            rec,
-        ]
-    )
-
-
-def append_row_for_micro(agg_per_ann, micro_p_r_f, values):
-    values.append(
-        [
-            MICRO,
-            agg_per_ann[MICRO][FREQ],
-            agg_per_ann[MICRO][TP],
-            agg_per_ann[MICRO][FP],
-            agg_per_ann[MICRO][FN],
-            micro_p_r_f[MICRO]["P"],
-            micro_p_r_f[MICRO]["R"],
-        ]
-    )
-
-
-def append_row_for_macro(agg_per_ann, values):
-    values.append(
-        [
-            MACRO,
-            "-",
-            "-",
-            "-",
-            "-",
-            statistics.mean(agg_per_ann[MACRO][PREC]),
-            statistics.mean(agg_per_ann[MACRO][REC]),
-        ]
-    )
 
 
 def print_agg(agg, name):

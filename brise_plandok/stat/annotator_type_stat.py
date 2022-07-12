@@ -134,7 +134,8 @@ def print_stat(global_stat):
         "non-gold types, then we regard the gold one."
     )
     collect_aggregation(global_stat, agg_per_attr, agg_per_type, agg_per_ann)
-    print_attr_details(agg_per_attr)
+    print_category_aggregation(agg_per_type, "Type details")
+    print_category_aggregation(agg_per_attr, "Attribute details")
     print_full_details(global_stat, agg_per_ann)
 
 
@@ -173,6 +174,15 @@ def collect_aggregation(global_stat, agg_per_attr, agg_per_type, agg_per_ann):
                 aggregate(agg_per_type[attr_type][MICRO], type_stat)
                 aggregate(agg_attr_per_ann[attr], type_stat)
                 aggregate(agg_per_attr[attr][MICRO], type_stat)
+    calculate_micro_avg(agg_per_attr)
+    calculate_micro_avg(agg_per_type)
+
+
+def calculate_micro_avg(collector):
+    for category in collector.keys():
+        p_r_f_micro = count_p_r_f({MICRO: collector[category][MICRO]})
+        collector[category][MICRO][PREC] = p_r_f_micro[MICRO]["P"]
+        collector[category][MICRO][REC] = p_r_f_micro[MICRO]["R"]
 
 
 def aggregate(counter, type_stat):
@@ -182,22 +192,21 @@ def aggregate(counter, type_stat):
     counter[FN] += type_stat[FN]
 
 
-def print_attr_details(agg_per_attr):
+def print_category_aggregation(agg, title):
     print()
-    print("## Attribute details")
+    print("## " + title)
     values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
-    for attr, stat_per_attr in agg_per_attr.items():
-        values.append([attr, "", "", "", "", "", ""])
-        p_r_f = count_p_r_f({MICRO: stat_per_attr[MICRO]})
+    for cat, stat in agg.items():
+        values.append([cat, "", "", "", "", "", ""])
         values.append(
             [
                 MICRO,
-                stat_per_attr[MICRO][FREQ],
-                stat_per_attr[MICRO][TP],
-                stat_per_attr[MICRO][FP],
-                stat_per_attr[MICRO][FN],
-                (p_r_f[MICRO]["P"]),
-                (p_r_f[MICRO]["R"]),
+                stat[MICRO][FREQ],
+                stat[MICRO][TP],
+                stat[MICRO][FP],
+                stat[MICRO][FN],
+                stat[MICRO][PREC],
+                stat[MICRO][REC],
             ]
         )
     print(make_markdown_table(values))

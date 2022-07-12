@@ -4,6 +4,21 @@ Post-processed attributes were converted back to their version at the time of an
 
 For complexity reasons, agreement is only calculated for cases, where the attribute occurs in gold exactly once, and where the annotator gave at least one annotation for the attribute. In case the annotator labeled the attribute within the same sentence multiple times, the most beneficial type annotation is taken into account, i.e. if the annotator labeled both gold and non-gold types, then we regard the gold one.
 
+## Type details
+
+|  Name | Freq | TP | FP | FN | Precision | Recall |
+|-------------- | -------------- | -------------- | -------------- | -------------- | -------------- | -------------- | 
+| condition |  |  |  |  |  |  | 
+| micro | 8272 | 6409 | 454 | 1863 | 0.934 | 0.775 | 
+| content |  |  |  |  |  |  | 
+| micro | 8140 | 7025 | 577 | 1115 | 0.924 | 0.863 | 
+| conditionException |  |  |  |  |  |  | 
+| micro | 310 | 102 | 22 | 208 | 0.823 | 0.329 | 
+| contentException |  |  |  |  |  |  | 
+| micro | 12 | 5 | 48 | 7 | 0.094 | 0.417 | 
+
+
+
 ## Attribute details
 
 |  Name | Freq | TP | FP | FN | Precision | Recall |

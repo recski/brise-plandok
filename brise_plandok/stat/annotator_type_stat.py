@@ -139,8 +139,8 @@ def print_stat(global_stat):
     collect_micro_and_macro_averages_per_ann(agg_per_ann, TYPES, agg_mic_mac)
     collect_micro_and_macro_averages_per_ann(agg_per_ann, ATTRIBUTES, agg_mic_mac)
     print_average_details(agg_mic_mac)
-    print_category_aggregation(agg_per_type, "Per type summary")
-    print_category_aggregation(agg_per_attr, "Per attribute summary")
+    print_category_aggregation(agg_per_type, "Per type summary", agg_per_ann, TYPES)
+    print_category_aggregation(agg_per_attr, "Per attribute summary", agg_per_ann, ATTRIBUTES)
     print_category_details(agg_per_ann, "Per type details", TYPES, agg_mic_mac)
     print_category_details(agg_per_ann, "Per attribute details", ATTRIBUTES, agg_mic_mac)
     print_full_details(global_stat, agg_per_ann)
@@ -212,7 +212,7 @@ def aggregate(counter, type_stat):
     counter[FN] += type_stat[FN]
 
 
-def print_category_aggregation(agg, title):
+def print_category_aggregation(agg, title, agg_per_ann, category):
     print()
     print("## " + title)
     values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
@@ -227,6 +227,48 @@ def print_category_aggregation(agg, title):
                 stat[MICRO][FN],
                 stat[MICRO][PREC],
                 stat[MICRO][REC],
+            ]
+        )
+        avg_collector = numpy.zeros(shape=(6, 2))
+        row = 0
+        for ann, ann_stat in agg_per_ann.items():
+            micro_avg_per_cat = ann_stat[category][cat]
+            values.append(
+                [
+                    ann,
+                    micro_avg_per_cat[FREQ],
+                    micro_avg_per_cat[TP],
+                    micro_avg_per_cat[FP],
+                    micro_avg_per_cat[FN],
+                    micro_avg_per_cat[PREC],
+                    micro_avg_per_cat[REC],
+                ]
+            )
+            avg_collector[row][0] = micro_avg_per_cat[PREC]
+            avg_collector[row][1] = micro_avg_per_cat[REC]
+            row += 1
+        avg = numpy.average(avg_collector, axis=0)
+        values.append(
+            [
+                AVG,
+                "",
+                "",
+                "",
+                "",
+                avg[0],
+                avg[1],
+            ]
+        )
+        std = numpy.std(avg_collector, axis=0)
+        values.append(
+            [
+                STD,
+                "",
+                "",
+                "",
+                "",
+                std[0],
+                std[1],
             ]
         )
     print(make_markdown_table(values))

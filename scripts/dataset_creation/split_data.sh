@@ -20,5 +20,5 @@ do
         cp "$INPUT_DIR/$line.json" $OUTPUT_DIR/test/
     fi
     ((cnt=cnt+1))
-done < <(shuf --random-source=<(yes 42) scripts/dataset/gold_ids.txt)
+done < <(shuf --random-source=<(yes 42) scripts/dataset_creation/gold_ids.txt)
 

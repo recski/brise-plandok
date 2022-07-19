@@ -58,7 +58,7 @@ edge [fontname="helvetica"] ;
 23 -> 27 ;
 28 [label="bebauen <= 0.5\ngini = 0.282\nsamples = 53\nvalue = [9, 44]\nclass = ErrichtungGebaeude"] ;
 0 -> 28 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
-29 [label="auszugestaltend <= 0.5\ngini = 0.18\nsamples = 10\nvalue = [9, 1]\nclass = NOT"] ;
+29 [label="mit <= 1.0\ngini = 0.18\nsamples = 10\nvalue = [9, 1]\nclass = NOT"] ;
 28 -> 29 ;
 30 [label="gini = 0.0\nsamples = 9\nvalue = [9, 0]\nclass = NOT"] ;
 29 -> 30 ;

@@ -65,11 +65,11 @@ weighted avg       0.99      1.00      0.99       801
                precision    recall  f1-score   support
 
           NOT       1.00      1.00      1.00       775
-AnFluchtlinie       0.92      0.92      0.92        26
+AnFluchtlinie       0.88      0.88      0.88        26
 
-     accuracy                           1.00       801
-    macro avg       0.96      0.96      0.96       801
- weighted avg       1.00      1.00      1.00       801
+     accuracy                           0.99       801
+    macro avg       0.94      0.94      0.94       801
+ weighted avg       0.99      0.99      0.99       801
 
 ```
 ## VorkehrungBepflanzung
@@ -100,11 +100,11 @@ GebaeudeHoeheArt       1.00      0.88      0.94        34
 ```bash
                 precision    recall  f1-score   support
 
-           NOT       1.00      0.99      1.00       778
-BegruenungDach       0.85      1.00      0.92        23
+           NOT       1.00      1.00      1.00       778
+BegruenungDach       0.88      0.96      0.92        23
 
       accuracy                           1.00       801
-     macro avg       0.93      1.00      0.96       801
+     macro avg       0.94      0.98      0.96       801
   weighted avg       1.00      1.00      1.00       801
 
 ```
@@ -185,10 +185,10 @@ GebaeudeHoeheMaxAbsolut       0.94      0.89      0.92        19
                    precision    recall  f1-score   support
 
               NOT       0.99      0.99      0.99       783
-GesamtePlangebiet       0.76      0.72      0.74        18
+GesamtePlangebiet       0.71      0.67      0.69        18
 
          accuracy                           0.99       801
-        macro avg       0.88      0.86      0.87       801
+        macro avg       0.85      0.83      0.84       801
      weighted avg       0.99      0.99      0.99       801
 
 ```
@@ -209,10 +209,10 @@ StrassenbreiteMin       1.00      1.00      1.00        10
                 precision    recall  f1-score   support
 
            NOT       0.99      1.00      1.00       778
-GebaeudeBautyp       0.86      0.83      0.84        23
+GebaeudeBautyp       0.94      0.74      0.83        23
 
       accuracy                           0.99       801
-     macro avg       0.93      0.91      0.92       801
+     macro avg       0.97      0.87      0.91       801
   weighted avg       0.99      0.99      0.99       801
 
 ```
@@ -256,11 +256,11 @@ AufbautenZulaessig       1.00      1.00      1.00         8
 ```bash
                          precision    recall  f1-score   support
 
-                    NOT       0.99      0.99      0.99       782
-VonBebauungFreizuhalten       0.71      0.79      0.75        19
+                    NOT       1.00      0.99      0.99       782
+VonBebauungFreizuhalten       0.73      0.84      0.78        19
 
                accuracy                           0.99       801
-              macro avg       0.85      0.89      0.87       801
+              macro avg       0.86      0.92      0.89       801
            weighted avg       0.99      0.99      0.99       801
 
 ```
@@ -269,10 +269,10 @@ VonBebauungFreizuhalten       0.71      0.79      0.75        19
                 precision    recall  f1-score   support
 
            NOT       1.00      1.00      1.00       788
-DachneigungMax       0.93      1.00      0.96        13
+DachneigungMax       0.92      0.92      0.92        13
 
       accuracy                           1.00       801
-     macro avg       0.96      1.00      0.98       801
+     macro avg       0.96      0.96      0.96       801
   weighted avg       1.00      1.00      1.00       801
 
 ```
@@ -305,10 +305,10 @@ EinfriedungAusgestaltung       1.00      1.00      1.00         9
                  precision    recall  f1-score   support
 
             NOT       1.00      1.00      1.00       787
-DurchgangBreite       1.00      1.00      1.00        14
+DurchgangBreite       1.00      0.93      0.96        14
 
        accuracy                           1.00       801
-      macro avg       1.00      1.00      1.00       801
+      macro avg       1.00      0.96      0.98       801
    weighted avg       1.00      1.00      1.00       801
 
 ```
@@ -329,11 +329,11 @@ BebauteFlaecheMaxProzentual       0.62      0.80      0.70        10
                                       precision    recall  f1-score   support
 
                                  NOT       1.00      1.00      1.00       791
-AusnahmeGaertnerischAuszugestaltende       0.88      0.70      0.78        10
+AusnahmeGaertnerischAuszugestaltende       0.89      0.80      0.84        10
 
                             accuracy                           1.00       801
-                           macro avg       0.94      0.85      0.89       801
-                        weighted avg       0.99      1.00      0.99       801
+                           macro avg       0.94      0.90      0.92       801
+                        weighted avg       1.00      1.00      1.00       801
 
 ```
 ## StrassenbreiteMax
@@ -341,10 +341,10 @@ AusnahmeGaertnerischAuszugestaltende       0.88      0.70      0.78        10
                    precision    recall  f1-score   support
 
               NOT       1.00      1.00      1.00       794
-StrassenbreiteMax       1.00      0.86      0.92         7
+StrassenbreiteMax       1.00      0.71      0.83         7
 
          accuracy                           1.00       801
-        macro avg       1.00      0.93      0.96       801
+        macro avg       1.00      0.86      0.92       801
      weighted avg       1.00      1.00      1.00       801
 
 ```
@@ -353,10 +353,10 @@ StrassenbreiteMax       1.00      0.86      0.92         7
               precision    recall  f1-score   support
 
          NOT       1.00      1.00      1.00       790
-  BauweiseID       1.00      0.82      0.90        11
+  BauweiseID       0.90      0.82      0.86        11
 
     accuracy                           1.00       801
-   macro avg       1.00      0.91      0.95       801
+   macro avg       0.95      0.91      0.93       801
 weighted avg       1.00      1.00      1.00       801
 
 ```
@@ -413,11 +413,11 @@ Struktureinheit       0.77      0.71      0.74        14
               precision    recall  f1-score   support
 
          NOT       1.00      1.00      1.00       793
-   Stockwerk       0.67      0.75      0.71         8
+   Stockwerk       0.70      0.88      0.78         8
 
-    accuracy                           0.99       801
-   macro avg       0.83      0.87      0.85       801
-weighted avg       0.99      0.99      0.99       801
+    accuracy                           1.00       801
+   macro avg       0.85      0.94      0.89       801
+weighted avg       1.00      1.00      1.00       801
 
 ```
 ## EinfriedungHoeheGesamt
@@ -483,7 +483,7 @@ BebauteFlaecheMaxNebengebaeude       1.00      0.75      0.86         8
 ## Summary
 | label                                        |   gold |   predicted |   precision |   recall |      F1 |
 |----------------------------------------------|--------|-------------|-------------|----------|---------|
-| total                                        |    940 |         849 |      93.05% |   84.04% |  88.32% |
+| total                                        |    940 |         844 |      93.01% |   83.51% |  88.00% |
 | Planzeichen                                  |    228 |         216 |      98.61% |   93.42% |  95.95% |
 | Widmung                                      |     59 |          41 |      85.37% |   59.32% |  70.00% |
 | AnordnungGaertnerischeAusgestaltung          |     42 |          40 |     100.00% |   95.24% |  97.56% |
@@ -491,36 +491,36 @@ BebauteFlaecheMaxNebengebaeude       1.00      0.75      0.86         8
 | VorkehrungBepflanzung                        |     33 |          31 |      96.77% |   90.91% |  93.75% |
 | VerkehrsflaecheID                            |     32 |          16 |      93.75% |   46.88% |  62.50% |
 | AbschlussDachMaxBezugGebaeude                |     28 |          28 |      96.43% |   96.43% |  96.43% |
-| AnFluchtlinie                                |     26 |          26 |      92.31% |   92.31% |  92.31% |
+| AnFluchtlinie                                |     26 |          26 |      88.46% |   88.46% |  88.46% |
 | Dachart                                      |     25 |          23 |      95.65% |   88.00% |  91.67% |
 | ErrichtungGebaeude                           |     24 |          12 |     100.00% |   50.00% |  66.67% |
-| GebaeudeBautyp                               |     23 |          22 |      86.36% |   82.61% |  84.44% |
-| BegruenungDach                               |     23 |          27 |      85.19% |  100.00% |  92.00% |
+| GebaeudeBautyp                               |     23 |          18 |      94.44% |   73.91% |  82.93% |
+| BegruenungDach                               |     23 |          25 |      88.00% |   95.65% |  91.67% |
 | VolumenUndUmbaubarerRaum                     |     23 |          23 |     100.00% |  100.00% | 100.00% |
 | GehsteigbreiteMin                            |     21 |          21 |     100.00% |  100.00% | 100.00% |
 | Nutzungsart                                  |     21 |           3 |     100.00% |   14.29% |  25.00% |
 | WidmungInMehrerenEbenen                      |     20 |          17 |      94.12% |   80.00% |  86.49% |
-| VonBebauungFreizuhalten                      |     19 |          21 |      71.43% |   78.95% |  75.00% |
+| VonBebauungFreizuhalten                      |     19 |          22 |      72.73% |   84.21% |  78.05% |
 | GebaeudeHoeheMaxAbsolut                      |     19 |          18 |      94.44% |   89.47% |  91.89% |
 | BBAllgemein                                  |     19 |          27 |      66.67% |   94.74% |  78.26% |
-| GesamtePlangebiet                            |     18 |          17 |      76.47% |   72.22% |  74.29% |
+| GesamtePlangebiet                            |     18 |          17 |      70.59% |   66.67% |  68.57% |
 | UnterirdischeBaulichkeiten                   |     16 |          13 |     100.00% |   81.25% |  89.66% |
 | Struktureinheit                              |     14 |          13 |      76.92% |   71.43% |  74.07% |
-| DurchgangBreite                              |     14 |          14 |     100.00% |  100.00% | 100.00% |
-| DachneigungMax                               |     13 |          14 |      92.86% |  100.00% |  96.30% |
+| DurchgangBreite                              |     14 |          13 |     100.00% |   92.86% |  96.30% |
+| DachneigungMax                               |     13 |          13 |      92.31% |   92.31% |  92.31% |
 | UnterbrechungGeschlosseneBauweise            |     12 |          12 |     100.00% |  100.00% | 100.00% |
 | DurchgangHoehe                               |     12 |          13 |      84.62% |   91.67% |  88.00% |
 | Bauklasse                                    |     12 |          13 |      92.31% |  100.00% |  96.00% |
-| BauweiseID                                   |     11 |           9 |     100.00% |   81.82% |  90.00% |
+| BauweiseID                                   |     11 |          10 |      90.00% |   81.82% |  85.71% |
 | BebauteFlaecheMax                            |     11 |           4 |     100.00% |   36.36% |  53.33% |
 | StrassenbreiteMin                            |     10 |          10 |     100.00% |  100.00% | 100.00% |
 | BebauteFlaecheMaxProzentual                  |     10 |          13 |      61.54% |   80.00% |  69.57% |
-| AusnahmeGaertnerischAuszugestaltende         |     10 |           8 |      87.50% |   70.00% |  77.78% |
+| AusnahmeGaertnerischAuszugestaltende         |     10 |           9 |      88.89% |   80.00% |  84.21% |
 | EinfriedungAusgestaltung                     |      9 |           9 |     100.00% |  100.00% | 100.00% |
 | BebauteFlaecheMaxNebengebaeude               |      8 |           6 |     100.00% |   75.00% |  85.71% |
 | AufbautenZulaessig                           |      8 |           8 |     100.00% |  100.00% | 100.00% |
-| Stockwerk                                    |      8 |           9 |      66.67% |   75.00% |  70.59% |
-| StrassenbreiteMax                            |      7 |           6 |     100.00% |   85.71% |  92.31% |
+| Stockwerk                                    |      8 |          10 |      70.00% |   87.50% |  77.78% |
+| StrassenbreiteMax                            |      7 |           5 |     100.00% |   71.43% |  83.33% |
 | VerbotFensterZuOeffentlichenVerkehrsflaechen |      7 |           7 |     100.00% |  100.00% | 100.00% |
 | DachflaecheMin                               |      6 |           4 |     100.00% |   66.67% |  80.00% |
 | EinfriedungHoeheGesamt                       |      5 |           5 |     100.00% |  100.00% | 100.00% |

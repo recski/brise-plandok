@@ -8,7 +8,7 @@ edge [fontname="helvetica"] ;
 1 -> 2 ;
 3 [label="flugdäch <= 0.5\ngini = 0.009\nsamples = 5161\nvalue = [5137, 24]\nclass = NOT"] ;
 2 -> 3 ;
-4 [label="grundgrenzen <= 2.5\ngini = 0.007\nsamples = 5155\nvalue = [5137, 18]\nclass = NOT"] ;
+4 [label="gebäudes <= 2.0\ngini = 0.007\nsamples = 5155\nvalue = [5137, 18]\nclass = NOT"] ;
 3 -> 4 ;
 5 [label="gini = 0.007\nsamples = 5154\nvalue = [5137, 17]\nclass = NOT"] ;
 4 -> 5 ;

@@ -29,7 +29,9 @@ def run():
         print("```bash")
         y_train = y_train_df.loc[:, [label]]
         y_valid = y_valid_df.loc[:, [label]]
-        clf = tree.DecisionTreeClassifier(max_depth=MAX_DEPTH).fit(x_train, y_train)
+        clf = tree.DecisionTreeClassifier(max_depth=MAX_DEPTH, random_state=42).fit(
+            x_train, y_train
+        )
         y_pred = clf.predict(x_valid)
         for i, pred in enumerate(y_pred):
             if pred > 0.5:

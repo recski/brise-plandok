@@ -10,7 +10,7 @@ edge [fontname="helvetica"] ;
 2 -> 3 ;
 4 [label="gini = 0.0\nsamples = 5301\nvalue = [5301, 0]\nclass = NOT"] ;
 3 -> 4 ;
-5 [label="mindestens <= 0.5\ngini = 0.444\nsamples = 3\nvalue = [2, 1]\nclass = NOT"] ;
+5 [label="innerhalb <= 0.5\ngini = 0.444\nsamples = 3\nvalue = [2, 1]\nclass = NOT"] ;
 3 -> 5 ;
 6 [label="gini = 0.0\nsamples = 2\nvalue = [2, 0]\nclass = NOT"] ;
 5 -> 6 ;

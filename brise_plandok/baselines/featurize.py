@@ -8,6 +8,11 @@ from sklearn.preprocessing import MultiLabelBinarizer
 from tuw_nlp.text.pipeline import CachedStanzaPipeline, CustomStanzaPipeline
 
 from brise_plandok.baselines.constants import ALL_LABELS_SORTED
+from brise_plandok.baselines.utils import (
+    get_labels_df_path,
+    get_features_df_path,
+    get_data_df_path,
+)
 from brise_plandok.constants import TRAIN, DATA_FOLDER, VALID, TEST
 from brise_plandok.utils import create_input
 
@@ -35,9 +40,9 @@ def featurize(sub_dir, vocab=None):
     data_df = create_input(os.path.join(DATA_FOLDER, sub_dir))
     features_df = get_bow_features(data_df, vocab)
     labels_df = binarize_labels(data_df)
-    data_df.to_csv(os.path.join(os.path.dirname(__file__), "input", f"{sub_dir}_data.csv"))
-    features_df.to_csv(os.path.join(os.path.dirname(__file__), "input", f"{sub_dir}_features.csv"))
-    labels_df.to_csv(os.path.join(os.path.dirname(__file__), "input", f"{sub_dir}_labels.csv"))
+    data_df.to_csv(get_data_df_path(sub_dir), index=False)
+    features_df.to_csv(get_features_df_path(sub_dir), index=False)
+    labels_df.to_csv(get_labels_df_path(sub_dir), index=False)
     return features_df.columns[2:].tolist()
 
 

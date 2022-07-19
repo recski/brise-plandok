@@ -11,6 +11,7 @@ setup(
     install_requires=[
         "flask",
         "graphviz",
+        "imodels",
         "logging_json",
         "networkx",
         "nltk",

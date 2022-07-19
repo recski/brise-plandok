@@ -26,16 +26,21 @@ class BaselineClassifier:
             print("```bash")
             y_train = y_train_df.loc[:, [label]]
             y_valid = y_valid_df.loc[:, [label]]
-            clf = self.classifier.fit(x_train, y_train[label])
-            y_pred = clf.predict(x_valid)
+            self._fit(x_train, y_train[label], x_train.columns.tolist())
+            y_pred = self.classifier.predict(x_valid)
             for i, pred in enumerate(y_pred):
                 if pred > 0.5:
                     preds[i].add(label)
             print(classification_report(y_valid[label], y_pred, target_names=[NOT, label]))
+            self._additional_output_for_label(
+                self.classifier, x_train.columns.tolist(), [NOT, label], label
+            )
             print("```")
-            self._additional_output_for_label(clf, x_train.columns.tolist(), [NOT, label], label)
         print("## Summary")
         print_cat_stats(get_cat_stats(preds, golds))
+
+    def _fit(self, x, y, feature_names=None):
+        self.classifier = self.classifier.fit(x, y)
 
     def _additional_output_for_label(self, clf, feature_names, class_names, label):
         pass

@@ -1,0 +1,32 @@
+import argparse
+
+from imodels import GreedyRuleListClassifier
+
+from brise_plandok.baselines.classifiers.baseline_classifier import BaselineClassifier
+
+MAX_DEPTH = 5
+
+
+class GRLClassifier(BaselineClassifier):
+    def __init__(self):
+        super().__init__(
+            "Greedy rule list",
+            GreedyRuleListClassifier(max_depth=MAX_DEPTH),
+        )
+
+    def _fit(self, x, y, feature_names=None):
+        self.classifier.fit(x, y, feature_names=feature_names)
+
+    def _additional_output_for_label(self, clf, feature_names, class_names, label):
+        print()
+        print(self.classifier)
+
+
+def get_args():
+    parser = argparse.ArgumentParser(description="")
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    args = get_args()
+    GRLClassifier().run({"max depth": MAX_DEPTH})

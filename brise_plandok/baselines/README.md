@@ -11,3 +11,15 @@ You can recreate these dataframes by calling the [featurize](featurize.py) scrip
 ```bash
 python featureize.py
 ```
+
+## Classifiers
+
+### Decision Tree
+
+For the results see [this report file](output/decision_tree/REPORT.md).
+
+You can recreate the results by calling:
+
+```bash
+python classifiers/decistion_tree.py > output/decision_tree/REPORT.md
+```

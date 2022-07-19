@@ -1,0 +1,29 @@
+digraph Tree {
+node [shape=box, fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="aufenthaltsräumen <= 0.5\ngini = 0.02\nsamples = 5368\nvalue = [5314, 54]\nclass = NOT"] ;
+1 [label="richten <= 0.5\ngini = 0.006\nsamples = 5330\nvalue = [5314, 16]\nclass = NOT"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="hauptfenster <= 0.5\ngini = 0.003\nsamples = 5321\nvalue = [5314, 7]\nclass = NOT"] ;
+1 -> 2 ;
+3 [label="errichtung <= 1.5\ngini = 0.001\nsamples = 5316\nvalue = [5314, 2]\nclass = NOT"] ;
+2 -> 3 ;
+4 [label="hütteldorfer <= 0.5\ngini = 0.0\nsamples = 5311\nvalue = [5310, 1]\nclass = NOT"] ;
+3 -> 4 ;
+5 [label="gini = 0.0\nsamples = 5302\nvalue = [5302, 0]\nclass = NOT"] ;
+4 -> 5 ;
+6 [label="gini = 0.198\nsamples = 9\nvalue = [8, 1]\nclass = NOT"] ;
+4 -> 6 ;
+7 [label="auf <= 0.5\ngini = 0.32\nsamples = 5\nvalue = [4, 1]\nclass = NOT"] ;
+3 -> 7 ;
+8 [label="gini = 0.0\nsamples = 1\nvalue = [0, 1]\nclass = VerbotFensterZuOeffentlichenVerkehrsflaechen"] ;
+7 -> 8 ;
+9 [label="gini = 0.0\nsamples = 4\nvalue = [4, 0]\nclass = NOT"] ;
+7 -> 9 ;
+10 [label="gini = 0.0\nsamples = 5\nvalue = [0, 5]\nclass = VerbotFensterZuOeffentlichenVerkehrsflaechen"] ;
+2 -> 10 ;
+11 [label="gini = 0.0\nsamples = 9\nvalue = [0, 9]\nclass = VerbotFensterZuOeffentlichenVerkehrsflaechen"] ;
+1 -> 11 ;
+12 [label="gini = 0.0\nsamples = 38\nvalue = [0, 38]\nclass = VerbotFensterZuOeffentlichenVerkehrsflaechen"] ;
+0 -> 12 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}

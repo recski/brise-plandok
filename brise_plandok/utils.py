@@ -51,7 +51,8 @@ def create_input(directory):
         with open(os.path.join(directory, filename), "rt") as f:
             doc = json.load(f)
             for sen in doc[DocumentFields.SENS].values():
-                ids.append(sen[SenFields.ID])
-                sentences.append(sen[SenFields.TEXT])
-                labels.append(set(sen[SenFields.GOLD_ATTRIBUTES].keys()))
+                if not sen[SenFields.SEGMENTATION_ERROR]:
+                    ids.append(sen[SenFields.ID])
+                    sentences.append(sen[SenFields.TEXT])
+                    labels.append(set(sen[SenFields.GOLD_ATTRIBUTES].keys()))
     return pd.DataFrame(data=list(zip(ids, sentences, labels)), columns=["ID", "Text", "Labels"])

@@ -9,7 +9,7 @@ from sklearn.preprocessing import MultiLabelBinarizer
 from tuw_nlp.text.pipeline import CachedStanzaPipeline, CustomStanzaPipeline
 
 from brise_plandok.baselines.constants import ALL_LABELS_SORTED
-from brise_plandok.constants import TRAIN, DATA_FOLDER
+from brise_plandok.constants import TRAIN, DATA_FOLDER, VALID, TEST
 from brise_plandok.utils import create_input
 
 
@@ -32,13 +32,14 @@ class LemmaTokenizer:
         ]
 
 
-def featurize(sub_dir):
+def featurize(sub_dir, vocab=None):
     data_df = create_input(os.path.join(DATA_FOLDER, sub_dir))
-    features_df = get_bow_features(data_df)
+    features_df = get_bow_features(data_df, vocab)
     labels_df = binarize_labels(data_df)
     data_df.to_csv(os.path.join(os.path.dirname(__file__), "input", f"{sub_dir}_data.csv"))
     features_df.to_csv(os.path.join(os.path.dirname(__file__), "input", f"{sub_dir}_features.csv"))
     labels_df.to_csv(os.path.join(os.path.dirname(__file__), "input", f"{sub_dir}_labels.csv"))
+    return features_df.columns[2:].tolist()
 
 
 def binarize_labels(data_df):
@@ -47,7 +48,7 @@ def binarize_labels(data_df):
     return data_df[["ID", "Labels"]].join(labels)
 
 
-def get_bow_features(data_df):
+def get_bow_features(data_df, vocab=None):
     de_stopwords = set(stopwords.words("german"))
     nlp_pipeline = CustomStanzaPipeline(processors="tokenize,mwt,lemma", lang="de")
     with CachedStanzaPipeline(nlp_pipeline, "cache/preproc.json") as nlp:
@@ -57,6 +58,7 @@ def get_bow_features(data_df):
             stop_words=de_stopwords,
             max_df=0.8,
             min_df=0.001,
+            vocabulary=vocab,
         )
 
         X = vectorizer.fit_transform(data_df.Text).toarray()
@@ -72,4 +74,7 @@ def get_args():
 
 if __name__ == "__main__":
     args = get_args()
-    featurize(TRAIN)
+    vocab_train = featurize(TRAIN)
+    vocab_valid = featurize(VALID, vocab_train)
+    vocab_test = featurize(TEST, vocab_train)
+    assert vocab_train == vocab_valid and vocab_train == vocab_test

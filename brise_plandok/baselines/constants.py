@@ -95,3 +95,5 @@ ALL_LABELS_SORTED = [
     "VerbotAufenthaltsraum",
     "AnteilBaumbepflanzung",
 ]
+RANDOM_STATE = 42
+TOP = 40

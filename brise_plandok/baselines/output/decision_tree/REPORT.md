@@ -1,5 +1,5 @@
 # Decision tree classifier - report
-Run for the top 40 attributes with max depth: 5.
+Run for the top 40 attributes with hyperparams: {'max depth': 5}.
 ## Planzeichen
 ```bash
               precision    recall  f1-score   support

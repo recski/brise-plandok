@@ -1,3 +1,5 @@
+NOT = "NOT"
+
 ALL_LABELS_SORTED = [
     "Planzeichen",
     "Widmung",

@@ -11,7 +11,9 @@ class BaselineClassifier:
         self.name = name
         self.classifier = classifier
 
-    def run(self, hyperparams):
+    def run(self, hyperparams=None):
+        if hyperparams is None:
+            hyperparams = {}
         print(f"# {self.name} classifier - report")
         print(f"Run for the top {TOP} attributes with hyperparams: {hyperparams}.")
         x_train_df, y_train_df, x_train = get_x_y_dataframes(TRAIN)
@@ -24,7 +26,7 @@ class BaselineClassifier:
             print("```bash")
             y_train = y_train_df.loc[:, [label]]
             y_valid = y_valid_df.loc[:, [label]]
-            clf = self.classifier.fit(x_train, y_train)
+            clf = self.classifier.fit(x_train, y_train[label])
             y_pred = clf.predict(x_valid)
             for i, pred in enumerate(y_pred):
                 if pred > 0.5:

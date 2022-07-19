@@ -3,7 +3,6 @@ import os.path
 import re
 
 import pandas as pd
-from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.preprocessing import MultiLabelBinarizer
 from tuw_nlp.text.pipeline import CachedStanzaPipeline, CustomStanzaPipeline
@@ -49,18 +48,16 @@ def binarize_labels(data_df):
 
 
 def get_bow_features(data_df, vocab=None):
-    de_stopwords = set(stopwords.words("german"))
     nlp_pipeline = CustomStanzaPipeline(processors="tokenize,mwt,lemma", lang="de")
     with CachedStanzaPipeline(nlp_pipeline, "cache/preproc.json") as nlp:
         vectorizer = CountVectorizer(
             max_features=3000,
             tokenizer=LemmaTokenizer(nlp),
-            stop_words=de_stopwords,
             max_df=0.8,
             min_df=0.001,
             vocabulary=vocab,
+            stop_words=["B", "Kalter"],  # filter nlp pipeline errors
         )
-
         X = vectorizer.fit_transform(data_df.Text).toarray()
         headers = vectorizer.get_feature_names_out()
         features = pd.DataFrame(X, columns=headers)

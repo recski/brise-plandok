@@ -53,6 +53,6 @@ def create_input(directory):
             for sen in doc[DocumentFields.SENS].values():
                 if not sen[SenFields.SEGMENTATION_ERROR]:
                     ids.append(sen[SenFields.ID])
-                    sentences.append(sen[SenFields.TEXT])
-                    labels.append(set(sen[SenFields.GOLD_ATTRIBUTES].keys()))
+                    sentences.append(sen[SenFields.TEXT].lower())
+                    labels.append(sorted(set(sen[SenFields.GOLD_ATTRIBUTES].keys())))
     return pd.DataFrame(data=list(zip(ids, sentences, labels)), columns=["ID", "Text", "Labels"])

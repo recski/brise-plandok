@@ -5,10 +5,8 @@ from graphviz import Source
 from sklearn import tree
 
 from brise_plandok.baselines.classifiers.baseline_classifier import BaselineClassifier
-from brise_plandok.baselines.constants import RANDOM_STATE
+from brise_plandok.baselines.constants import RANDOM_STATE, MAX_DEPTH
 from brise_plandok.baselines.utils import get_output_dir
-
-MAX_DEPTH = 5
 
 
 class DTClassifier(BaselineClassifier):

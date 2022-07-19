@@ -43,3 +43,13 @@ You can recreate the results by calling:
 ```bash
 python classifiers/greedy_rule_list.py > output/greedy_rule_list/REPORT.md
 ```
+
+### One Rule 
+
+For the results see [this report file](output/one_rule/REPORT.md).
+
+You can recreate the results by calling:
+
+```bash
+python classifiers/one_rule.py > output/one_rule/REPORT.md
+```

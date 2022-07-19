@@ -1,16 +1,16 @@
 import argparse
 
-from imodels import GreedyRuleListClassifier
+from imodels import OneRClassifier
 
 from brise_plandok.baselines.classifiers.baseline_classifier import BaselineClassifier
 from brise_plandok.baselines.constants import MAX_DEPTH
 
 
-class GRLClassifier(BaselineClassifier):
+class OneRule(BaselineClassifier):
     def __init__(self):
         super().__init__(
-            "Greedy rule list",
-            GreedyRuleListClassifier(max_depth=MAX_DEPTH),
+            "One rule",
+            OneRClassifier(max_depth=MAX_DEPTH),
         )
 
     def _fit(self, x, y, feature_names=None):
@@ -28,4 +28,4 @@ def get_args():
 
 if __name__ == "__main__":
     args = get_args()
-    GRLClassifier().run({"max depth": MAX_DEPTH})
+    OneRule().run({"max depth": MAX_DEPTH})

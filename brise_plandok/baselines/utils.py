@@ -2,7 +2,6 @@ import os
 from ast import literal_eval
 
 import pandas as pd
-
 from brise_plandok.baselines.constants import ALL_LABELS_SORTED
 
 
@@ -25,9 +24,9 @@ def get_output_dir(classifier):
     return output_dir
 
 
-def filter_gold(golds, top):
-    top_attrs = set(ALL_LABELS_SORTED[:top])
-    golds = [set(gold) & top_attrs for gold in golds]
+def filter_gold(golds, labels):
+    relevant_attrs = set(labels)
+    golds = [set(gold) & relevant_attrs for gold in golds]
     return golds
 
 
@@ -41,3 +40,8 @@ def get_x_y(x_df, y_df, label):
     x = x_df.iloc[:, 2:]
     y = y_df.loc[:, [label]]
     return x, y
+
+
+def get_attributes_for_experiment(top, min_freq):
+    freq_filtered = [attr for attr, freq in ALL_LABELS_SORTED.items() if freq >= min_freq]
+    return freq_filtered[:top]

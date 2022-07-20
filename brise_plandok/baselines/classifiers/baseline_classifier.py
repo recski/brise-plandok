@@ -1,3 +1,6 @@
+from sklearn.metrics import classification_report
+from tuw_nlp.common.eval import get_cat_stats, print_cat_stats
+
 from brise_plandok.baselines.constants import NOT, ALL_LABELS_SORTED, RULE_BASED_ATTRIBUTES
 from brise_plandok.baselines.utils import (
     get_x_y_dataframes,
@@ -5,8 +8,6 @@ from brise_plandok.baselines.utils import (
     get_attributes_for_experiment,
 )
 from brise_plandok.constants import TRAIN, VALID
-from sklearn.metrics import classification_report
-from tuw_nlp.common.eval import get_cat_stats, print_cat_stats
 
 
 class BaselineClassifier:
@@ -51,18 +52,7 @@ class BaselineClassifier:
         print_cat_stats(get_cat_stats(preds, golds))
         print()
         print("## Summary - only with rule based attributes")
-        print_cat_stats(
-            get_cat_stats(
-                [
-                    [attr for attr in preds_for_sen if attr in RULE_BASED_ATTRIBUTES]
-                    for preds_for_sen in preds
-                ],
-                [
-                    [attr for attr in golds_for_sen if attr in RULE_BASED_ATTRIBUTES]
-                    for golds_for_sen in golds
-                ],
-            )
-        )
+        print_cat_stats(get_cat_stats(preds, golds, RULE_BASED_ATTRIBUTES, True))
 
     def _fit(self, x, y, feature_names=None):
         self.classifier = self.classifier.fit(x, y)

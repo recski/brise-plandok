@@ -1007,3 +1007,4 @@ DurchfahrtHoehe       0.00      0.00      0.00         0
 | StellplatzregulativUmfangMaximumRelativ       |      4 |           0 |     100.00% |    0.00% |   0.00% |
 | FBOKMinimumWohnungen                          |      2 |           2 |     100.00% |  100.00% | 100.00% |
 | AnteilDachbegruenung                          |      1 |           1 |     100.00% |  100.00% | 100.00% |
+| GebaeudeHoeheMaxWN                            |      0 |           0 |     100.00% |  100.00% | 100.00% |

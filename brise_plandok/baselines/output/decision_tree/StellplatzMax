@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="dabei <= 0.5\ngini = 0.006\nsamples = 5368\nvalue = [5353, 15]\nclass = NOT"] ;
+1 [label="stellplatz <= 0.5\ngini = 0.001\nsamples = 5350\nvalue = [5347, 3]\nclass = NOT"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="stellplatzzahl <= 0.5\ngini = 0.0\nsamples = 5320\nvalue = [5319, 1]\nclass = NOT"] ;
+1 -> 2 ;
+3 [label="gini = 0.0\nsamples = 5310\nvalue = [5310, 0]\nclass = NOT"] ;
+2 -> 3 ;
+4 [label="c <= 0.5\ngini = 0.18\nsamples = 10\nvalue = [9, 1]\nclass = NOT"] ;
+2 -> 4 ;
+5 [label="gini = 0.0\nsamples = 9\nvalue = [9, 0]\nclass = NOT"] ;
+4 -> 5 ;
+6 [label="gini = 0.0\nsamples = 1\nvalue = [0, 1]\nclass = StellplatzMax"] ;
+4 -> 6 ;
+7 [label="haben <= 0.5\ngini = 0.124\nsamples = 30\nvalue = [28, 2]\nclass = NOT"] ;
+1 -> 7 ;
+8 [label="maximal <= 0.5\ngini = 0.067\nsamples = 29\nvalue = [28, 1]\nclass = NOT"] ;
+7 -> 8 ;
+9 [label="gini = 0.0\nsamples = 28\nvalue = [28, 0]\nclass = NOT"] ;
+8 -> 9 ;
+10 [label="gini = 0.0\nsamples = 1\nvalue = [0, 1]\nclass = StellplatzMax"] ;
+8 -> 10 ;
+11 [label="gini = 0.0\nsamples = 1\nvalue = [0, 1]\nclass = StellplatzMax"] ;
+7 -> 11 ;
+12 [label="wobei <= 0.5\ngini = 0.444\nsamples = 18\nvalue = [6, 12]\nclass = StellplatzMax"] ;
+0 -> 12 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+13 [label="gini = 0.0\nsamples = 6\nvalue = [6, 0]\nclass = NOT"] ;
+12 -> 13 ;
+14 [label="gini = 0.0\nsamples = 12\nvalue = [0, 12]\nclass = StellplatzMax"] ;
+12 -> 14 ;
+}

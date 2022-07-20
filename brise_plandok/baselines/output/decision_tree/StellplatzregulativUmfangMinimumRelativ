@@ -1,0 +1,17 @@
+digraph Tree {
+node [shape=box, fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="stellplatzverpflichtung <= 0.5\ngini = 0.004\nsamples = 5368\nvalue = [5357, 11]\nclass = NOT"] ;
+1 [label="gini = 0.0\nsamples = 5356\nvalue = [5356, 0]\nclass = NOT"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="dass <= 0.5\ngini = 0.153\nsamples = 12\nvalue = [1, 11]\nclass = StellplatzregulativUmfangMinimumRelativ"] ;
+0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+3 [label="gini = 0.0\nsamples = 9\nvalue = [0, 9]\nclass = StellplatzregulativUmfangMinimumRelativ"] ;
+2 -> 3 ;
+4 [label="abs <= 1.0\ngini = 0.444\nsamples = 3\nvalue = [1, 2]\nclass = StellplatzregulativUmfangMinimumRelativ"] ;
+2 -> 4 ;
+5 [label="gini = 0.0\nsamples = 2\nvalue = [0, 2]\nclass = StellplatzregulativUmfangMinimumRelativ"] ;
+4 -> 5 ;
+6 [label="gini = 0.0\nsamples = 1\nvalue = [1, 0]\nclass = NOT"] ;
+4 -> 6 ;
+}

@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="bauplatzgrenzen <= 0.5\ngini = 0.006\nsamples = 5368\nvalue = [5353, 15]\nclass = NOT"] ;
+1 [label="vermehrt <= 0.5\ngini = 0.003\nsamples = 5361\nvalue = [5353, 8]\nclass = NOT"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="gebäudefronten <= 0.5\ngini = 0.001\nsamples = 5351\nvalue = [5349, 2]\nclass = NOT"] ;
+1 -> 2 ;
+3 [label="gini = 0.0\nsamples = 5340\nvalue = [5340, 0]\nclass = NOT"] ;
+2 -> 3 ;
+4 [label="um <= 0.5\ngini = 0.298\nsamples = 11\nvalue = [9, 2]\nclass = NOT"] ;
+2 -> 4 ;
+5 [label="gini = 0.0\nsamples = 9\nvalue = [9, 0]\nclass = NOT"] ;
+4 -> 5 ;
+6 [label="gini = 0.0\nsamples = 2\nvalue = [0, 2]\nclass = Massengliederung"] ;
+4 -> 6 ;
+7 [label="bezeichnet <= 0.5\ngini = 0.48\nsamples = 10\nvalue = [4, 6]\nclass = Massengliederung"] ;
+1 -> 7 ;
+8 [label="bö <= 0.5\ngini = 0.375\nsamples = 8\nvalue = [2, 6]\nclass = Massengliederung"] ;
+7 -> 8 ;
+9 [label="für <= 1.5\ngini = 0.245\nsamples = 7\nvalue = [1, 6]\nclass = Massengliederung"] ;
+8 -> 9 ;
+10 [label="gini = 0.5\nsamples = 2\nvalue = [1, 1]\nclass = NOT"] ;
+9 -> 10 ;
+11 [label="gini = 0.0\nsamples = 5\nvalue = [0, 5]\nclass = Massengliederung"] ;
+9 -> 11 ;
+12 [label="gini = 0.0\nsamples = 1\nvalue = [1, 0]\nclass = NOT"] ;
+8 -> 12 ;
+13 [label="gini = 0.0\nsamples = 2\nvalue = [2, 0]\nclass = NOT"] ;
+7 -> 13 ;
+14 [label="gini = 0.0\nsamples = 7\nvalue = [0, 7]\nclass = Massengliederung"] ;
+0 -> 14 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}

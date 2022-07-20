@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="grad <= 1.5\ngini = 0.004\nsamples = 5368\nvalue = [5357, 11]\nclass = NOT"] ;
+1 [label="dachneigung <= 0.5\ngini = 0.003\nsamples = 5365\nvalue = [5357, 8]\nclass = NOT"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="baufluchtlinie <= 0.5\ngini = 0.0\nsamples = 5294\nvalue = [5293, 1]\nclass = NOT"] ;
+1 -> 2 ;
+3 [label="gini = 0.0\nsamples = 5281\nvalue = [5281, 0]\nclass = NOT"] ;
+2 -> 3 ;
+4 [label="bis <= 0.5\ngini = 0.142\nsamples = 13\nvalue = [12, 1]\nclass = NOT"] ;
+2 -> 4 ;
+5 [label="gini = 0.0\nsamples = 12\nvalue = [12, 0]\nclass = NOT"] ;
+4 -> 5 ;
+6 [label="gini = 0.0\nsamples = 1\nvalue = [0, 1]\nclass = DachneigungMin"] ;
+4 -> 6 ;
+7 [label="haben <= 0.5\ngini = 0.178\nsamples = 71\nvalue = [64, 7]\nclass = NOT"] ;
+1 -> 7 ;
+8 [label="ausführen <= 0.5\ngini = 0.059\nsamples = 66\nvalue = [64, 2]\nclass = NOT"] ;
+7 -> 8 ;
+9 [label="nicht <= 0.5\ngini = 0.03\nsamples = 65\nvalue = [64, 1]\nclass = NOT"] ;
+8 -> 9 ;
+10 [label="gini = 0.0\nsamples = 53\nvalue = [53, 0]\nclass = NOT"] ;
+9 -> 10 ;
+11 [label="gini = 0.153\nsamples = 12\nvalue = [11, 1]\nclass = NOT"] ;
+9 -> 11 ;
+12 [label="gini = 0.0\nsamples = 1\nvalue = [0, 1]\nclass = DachneigungMin"] ;
+8 -> 12 ;
+13 [label="gini = 0.0\nsamples = 5\nvalue = [0, 5]\nclass = DachneigungMin"] ;
+7 -> 13 ;
+14 [label="gini = 0.0\nsamples = 3\nvalue = [0, 3]\nclass = DachneigungMin"] ;
+0 -> 14 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}

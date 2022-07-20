@@ -1,0 +1,29 @@
+digraph Tree {
+node [shape=box, fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="m³ <= 0.5\ngini = 0.022\nsamples = 5368\nvalue = [5307, 61]\nclass = NOT"] ;
+1 [label="umbaut <= 0.5\ngini = 0.006\nsamples = 5323\nvalue = [5307, 16]\nclass = NOT"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="umbaubar <= 0.5\ngini = 0.002\nsamples = 5307\nvalue = [5303, 4]\nclass = NOT"] ;
+1 -> 2 ;
+3 [label="kubatur <= 0.5\ngini = 0.0\nsamples = 5304\nvalue = [5303, 1]\nclass = NOT"] ;
+2 -> 3 ;
+4 [label="gini = 0.0\nsamples = 5301\nvalue = [5301, 0]\nclass = NOT"] ;
+3 -> 4 ;
+5 [label="innerhalb <= 0.5\ngini = 0.444\nsamples = 3\nvalue = [2, 1]\nclass = NOT"] ;
+3 -> 5 ;
+6 [label="gini = 0.0\nsamples = 2\nvalue = [2, 0]\nclass = NOT"] ;
+5 -> 6 ;
+7 [label="gini = 0.0\nsamples = 1\nvalue = [0, 1]\nclass = VolumenUndUmbaubarerRaum"] ;
+5 -> 7 ;
+8 [label="gini = 0.0\nsamples = 3\nvalue = [0, 3]\nclass = VolumenUndUmbaubarerRaum"] ;
+2 -> 8 ;
+9 [label="bauwerk <= 0.5\ngini = 0.375\nsamples = 16\nvalue = [4, 12]\nclass = VolumenUndUmbaubarerRaum"] ;
+1 -> 9 ;
+10 [label="gini = 0.0\nsamples = 4\nvalue = [4, 0]\nclass = NOT"] ;
+9 -> 10 ;
+11 [label="gini = 0.0\nsamples = 12\nvalue = [0, 12]\nclass = VolumenUndUmbaubarerRaum"] ;
+9 -> 11 ;
+12 [label="gini = 0.0\nsamples = 45\nvalue = [0, 45]\nclass = VolumenUndUmbaubarerRaum"] ;
+0 -> 12 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+}

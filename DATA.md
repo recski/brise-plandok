@@ -406,3 +406,13 @@ You can recreate this file by calling:
 ```bash
 python brise_plandok/stat/agreement_type.py > brise_plandok/stat/docs/AGREEMENT_TYPE.md
 ```
+
+### Segmentation error rates
+
+For statistics about segmentation error rates see the [SEGMENTATION_ERROR_RATE.md](brise_plandok/stat/docs/SEGMENTATION_ERROR_RATE.md) file.
+
+You can recreate this file by calling:
+
+```bash
+./brise_plandok/stat/segmentation_error_rate.sh > brise_plandok/stat/docs/SEGMENTATION_ERROR_RATE.md
+```

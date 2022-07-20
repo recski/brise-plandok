@@ -12,3 +12,4 @@ python brise_plandok/stat/annotator_performance_type.py > brise_plandok/stat/doc
 python brise_plandok/stat/agreement_attr.py > brise_plandok/stat/docs/AGREEMENT_ATTR.md
 python brise_plandok/stat/agreement_mod.py > brise_plandok/stat/docs/AGREEMENT_MOD.md
 python brise_plandok/stat/agreement_type.py > brise_plandok/stat/docs/AGREEMENT_TYPE.md
+./brise_plandok/stat/segmentation_error_rate.sh > brise_plandok/stat/docs/SEGMENTATION_ERROR_RATE.md

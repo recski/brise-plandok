@@ -53,3 +53,13 @@ You can recreate the results by calling:
 ```bash
 python classifiers/one_rule.py > output/one_rule/REPORT.md
 ```
+
+### BERT
+
+For the results see [this report file](output/bert/REPORT.md).
+
+To call a test run for BERT:
+
+```bash
+python classifiers/bert/run.py -e 1 -l output/bert -lr 0.01
+```

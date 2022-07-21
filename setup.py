@@ -25,6 +25,8 @@ setup(
         "sklearn",
         "spacy>=2.3.0",
         "streamlit",
+        "torch",
+        "transformers",
         "tuw-nlp",
         "xpotato",
     ],

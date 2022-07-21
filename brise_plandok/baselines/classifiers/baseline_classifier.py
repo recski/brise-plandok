@@ -24,16 +24,16 @@ class BaselineClassifier:
         print(f"# {self.name} classifier - report")
         print(f"Run for attributes: top {self.top}, with minimum frequency of {self.min_freq}.")
         print(f"Run with hyperparams: {hyperparams}.")
-        x_train_df, y_train_df, x_train = get_x_y_dataframes(TRAIN)
-        x_valid_df, y_valid_df, x_valid = get_x_y_dataframes(VALID)
-        golds = y_valid_df.Labels.tolist()
+        _, x_train, y_train_all_labels = get_x_y_dataframes(TRAIN)
+        _, x_valid, y_valid_all_labels = get_x_y_dataframes(VALID)
+        golds = y_valid_all_labels.Labels.tolist()
         golds = filter_gold(golds, self.labels)
         preds = [set() for _ in range(len(golds))]
         for label in self.labels:
             print(f"## {label}")
             print("```bash")
-            y_train = y_train_df.loc[:, [label]]
-            y_valid = y_valid_df.loc[:, [label]]
+            y_train = y_train_all_labels.loc[:, [label]]
+            y_valid = y_valid_all_labels.loc[:, [label]]
             self._fit(x_train, y_train[label], x_train.columns.tolist())
             y_pred = self.classifier.predict(x_valid)
             for i, pred in enumerate(y_pred):

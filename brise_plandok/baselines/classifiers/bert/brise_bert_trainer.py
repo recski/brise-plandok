@@ -20,10 +20,10 @@ from brise_plandok.baselines.utils import (
 
 
 class BriseBertTrainer:
-    def __init__(self, gpu, epochs, model_checkpoint, output_folder, use_weights, lr):
+    def __init__(self, epochs, model_checkpoint, output_folder, use_weights, lr):
         self.epochs = epochs
         self.device = torch.device("cpu")
-        self.set_gpu(gpu)
+        self.set_gpu()
         fix_random()
         self.output_folder = output_folder
 
@@ -47,11 +47,10 @@ class BriseBertTrainer:
             num_training_steps=len(self.dataloader_train) * self.epochs,
         )
 
-    def set_gpu(self, gpu_nr):
+    def set_gpu(self):
         cuda_available = torch.cuda.is_available()
         logging.info(f"Cuda available: {cuda_available}")
-        if cuda_available and gpu_nr is not None:
-            os.environ["CUDA_VISIBLE_DEVICES"] = gpu_nr
+        if cuda_available:
             logging.info(f'GPU is set to {os.environ["CUDA_VISIBLE_DEVICES"]}')
             self.device = torch.device("cuda")
 

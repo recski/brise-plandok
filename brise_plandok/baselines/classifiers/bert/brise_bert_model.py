@@ -7,6 +7,7 @@ from transformers.modeling_outputs import SequenceClassifierOutput
 class BriseBertClassification(BertPreTrainedModel):
     def __init__(self, config):
         super().__init__(config)
+        self.loss_weights = None
         self.num_labels = config.num_labels
         self.config = config
 

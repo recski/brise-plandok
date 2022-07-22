@@ -13,16 +13,16 @@ def set_logging(log_root):
     timestamp_folder = os.path.join(log_root, timestamp)
     os.mkdir(timestamp_folder)
 
-    log_formatter = logging.Formatter(
-        "%(asctime)s - %(levelname)s - %(name)s -   %(message)s",
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s : %(module)s (%(lineno)s) - %(levelname)s - %(message)s",
         datefmt="%m/%d/%Y %H:%M:%S",
+        handlers=[
+            logging.FileHandler(f"{timestamp_folder}/{timestamp}.log"),
+            logging.StreamHandler(),
+        ],
     )
-    logging.basicConfig(level=logging.INFO)
-    root_logger = logging.getLogger()
 
-    file_handler = logging.FileHandler(f"{timestamp_folder}/{timestamp}.log")
-    file_handler.setFormatter(log_formatter)
-    root_logger.addHandler(file_handler)
     return timestamp_folder
 
 
@@ -40,9 +40,11 @@ def get_args():
         help="To set on which GPU of the machine the code should run. If None, it falls back to CPU.",
     )
     parser.add_argument("-e", "--epochs", default=None, type=int, help="Number of epochs to run.")
-    parser.add_argument("-m", "--model", default=None, help="?")
+    parser.add_argument("-m", "--model", default=None, help="Path to model to continue from.")
     parser.add_argument("-l", "--log-folder", help="The name of the folder to save the logs.")
-    parser.add_argument("-w", "--weights", action="store_true", help="?")
+    parser.add_argument(
+        "-w", "--weights", action="store_true", help="Set weights for BCEWithLogitsLoss."
+    )
     parser.add_argument("-lr", "--learning-rate", type=float, help="The learning rate to use.")
     return parser.parse_args()
 
@@ -50,8 +52,10 @@ def get_args():
 def main():
     args = get_args()
     log_folder = set_logging(args.log_folder)
+    logging.info(f"Epochs: {args.epochs}")
+    logging.info(f"Learning rate: {args.learning_rate}")
     trainer = BriseBertTrainer(
-        args.gpu, args.epochs, args.model, log_folder, args.weights, args.learning_rate
+        args.epochs, args.model, log_folder, args.weights, args.learning_rate
     )
     trainer.train()
     remove_write_access_from_log_folder(log_folder)

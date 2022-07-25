@@ -63,3 +63,9 @@ To call a test run for BERT:
 ```bash
 python classifiers/bert/run.py -e 1 -l output/bert -lr 0.01
 ```
+
+To run BERT for all rule based attributes separately:
+
+```bash
+python classifiers/bert/run_all_rule_based.py -l output/bert/ -lr 0.001 -e 200
+```

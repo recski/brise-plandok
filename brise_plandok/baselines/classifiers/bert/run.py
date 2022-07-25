@@ -60,17 +60,19 @@ def get_args():
     return parser.parse_args()
 
 
-def main():
-    args = get_args()
-    log_folder = set_logging(args.log_folder, args.attribute)
-    logging.info(f"Epochs: {args.epochs}")
-    logging.info(f"Learning rate: {args.learning_rate}")
+def run_bert(log_folder, epochs, learning_rate, model, weights, attribute):
+    timestamped_log_folder = set_logging(log_folder, attribute)
+    logging.info(f"Epochs: {epochs}")
+    logging.info(f"Learning rate: {learning_rate}")
     trainer = BriseBertTrainer(
-        args.epochs, args.model, log_folder, args.weights, args.learning_rate, args.attribute
+        epochs, model, timestamped_log_folder, weights, learning_rate, attribute
     )
     trainer.train()
-    remove_write_access_from_log_folder(log_folder)
+    remove_write_access_from_log_folder(timestamped_log_folder)
 
 
 if __name__ == "__main__":
-    main()
+    args = get_args()
+    run_bert(
+        args.log_foler, args.epochs, args.learning_rate, args.model, args.weights, args.attribute
+    )

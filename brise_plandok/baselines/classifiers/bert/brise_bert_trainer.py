@@ -20,21 +20,23 @@ from brise_plandok.baselines.utils import (
 
 
 class BriseBertTrainer:
-    def __init__(self, epochs, model_checkpoint, output_folder, use_weights, lr):
+    def __init__(self, epochs, model_checkpoint, output_folder, use_weights, lr, attribute):
         self.epochs = epochs
         self.device = torch.device("cpu")
         self.set_gpu()
         fix_random()
         self.output_folder = output_folder
+        self.attributes = RULE_BASED_ATTRIBUTES if attribute is None else [attribute]
+        logging.info(f"attributes to train: {self.attributes}")
 
-        dataset_train, dataset_val = get_datasets()
+        dataset_train, dataset_val = get_datasets(self.attributes)
         self.dataloader_train, self.dataloader_val = create_data_loaders(
             dataset_train, dataset_val
         )
 
         self.model = BriseBertClassification.from_pretrained(
             BERT_NAME,
-            num_labels=len(RULE_BASED_ATTRIBUTES),
+            num_labels=len(self.attributes),
         )
         self.set_model(model_checkpoint, use_weights, dataset_train)
 
@@ -167,7 +169,7 @@ class BriseBertTrainer:
                     os.remove(old_checkpoint_file)
                 best_val = (val_loss, epoch)
 
-            calculate_performance(logits, true_vals)
+            calculate_performance(logits, true_vals, self.attributes)
 
             end_time = time.time()
 

@@ -8,7 +8,6 @@ from brise_plandok.baselines.classifiers.bert.bert_constants import (
     TEXT_COLUMN,
 )
 from brise_plandok.baselines.classifiers.bert.brise_dataset import BriseDataset
-from brise_plandok.baselines.constants import RULE_BASED_ATTRIBUTES
 from brise_plandok.baselines.utils import get_x_y_dataframes
 from brise_plandok.constants import TRAIN, VALID
 
@@ -47,14 +46,14 @@ def create_data_loaders(dataset_train, dataset_val):
     return dataloader_train, dataloader_validation
 
 
-def get_datasets():
+def get_datasets(attributes):
     train_data, _, y_train_all_labels = get_x_y_dataframes(TRAIN)
     valid_data, _, y_valid_all_labels = get_x_y_dataframes(VALID)
     tokenizer = BertTokenizer.from_pretrained(BERT_NAME, do_lower_case=True)
     return create_brise_dataset(
         train_data.iloc[:, :2],
         valid_data.iloc[:, :2],
-        y_train_all_labels.filter(RULE_BASED_ATTRIBUTES),
-        y_valid_all_labels.filter(RULE_BASED_ATTRIBUTES),
+        y_train_all_labels.filter(attributes),
+        y_valid_all_labels.filter(attributes),
         tokenizer,
     )

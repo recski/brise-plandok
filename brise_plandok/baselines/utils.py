@@ -13,7 +13,7 @@ from brise_plandok.baselines.constants import (
     THRESHOLD,
     LOWER,
     UPPER,
-    RULE_BASED_ATTRIBUTES,
+    NOT,
 )
 
 
@@ -67,10 +67,11 @@ def sigmoid(X):
     return 1 / (1 + np.exp(-X))
 
 
-def calculate_performance(logits, y_true):
+def calculate_performance(logits, y_true, attributes):
+    target_names = [NOT] + attributes if len(attributes) == 1 else attributes
     probs = sigmoid(logits)
     y_pred = np.where(probs < THRESHOLD, LOWER, UPPER)
-    logging.info(classification_report(y_true, y_pred, target_names=RULE_BASED_ATTRIBUTES))
+    logging.info(classification_report(y_true, y_pred, target_names=target_names))
 
 
 def epoch_time(start_time, end_time):

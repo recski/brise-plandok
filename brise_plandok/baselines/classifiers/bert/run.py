@@ -7,9 +7,15 @@ import stat
 from brise_plandok.baselines.classifiers.bert.brise_bert_trainer import BriseBertTrainer
 
 
-def set_logging(log_root):
+def set_logging(log_root, attribute):
+    if attribute is None:
+        attribute = "all"
     now = datetime.datetime.now()
-    timestamp = f"brise_bert_{now.year}{now.month:02d}{now.day:02d}_{now.hour:02d}{now.minute:02d}_{now.second:02d}"
+    timestamp = (
+        f"brise_bert_"
+        f"{now.year}{now.month:02d}{now.day:02d}_{now.hour:02d}{now.minute:02d}_{now.second:02d}_"
+        f"{attribute}"
+    )
     timestamp_folder = os.path.join(log_root, timestamp)
     os.mkdir(timestamp_folder)
 
@@ -46,16 +52,21 @@ def get_args():
         "-w", "--weights", action="store_true", help="Set weights for BCEWithLogitsLoss."
     )
     parser.add_argument("-lr", "--learning-rate", type=float, help="The learning rate to use.")
+    parser.add_argument(
+        "-a",
+        "--attribute",
+        help="Specific attribute to learn. If left empty, all attributes will be trained simultaneously.",
+    )
     return parser.parse_args()
 
 
 def main():
     args = get_args()
-    log_folder = set_logging(args.log_folder)
+    log_folder = set_logging(args.log_folder, args.attribute)
     logging.info(f"Epochs: {args.epochs}")
     logging.info(f"Learning rate: {args.learning_rate}")
     trainer = BriseBertTrainer(
-        args.epochs, args.model, log_folder, args.weights, args.learning_rate
+        args.epochs, args.model, log_folder, args.weights, args.learning_rate, args.attribute
     )
     trainer.train()
     remove_write_access_from_log_folder(log_folder)

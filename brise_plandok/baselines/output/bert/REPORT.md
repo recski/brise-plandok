@@ -56,4 +56,4 @@ AnordnungGaertnerischeAusgestaltungProzentual       0.75      0.75      0.75    
 
 ## Train all rule based attributes separately 
 
-~ 4 / attribute, 40 attributes -> 160 hours (~ 1 week)
+~ 4 hours / attribute, 40 attributes -> 160 hours (~ 1 week)

@@ -64,8 +64,8 @@ To call a test run for BERT:
 python classifiers/bert/run.py -e 1 -l output/bert -lr 0.01
 ```
 
-To run BERT for all rule based attributes separately:
+To train a BERT model for multiple attributes:
 
 ```bash
-python classifiers/bert/run_all_rule_based.py -l output/bert/ -lr 0.001 -e 200
+./classifiers/bert/run_for_more_attributes.sh -g 2 -l output/bert/ -r 0.001 -e 200 -a Planzeichen -a Widmung
 ```

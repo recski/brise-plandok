@@ -73,5 +73,5 @@ To train a BERT model for multiple attributes:
 To run evaluation on trained BERT models:
 
 ```bash
-./classifiers/bert/evaluate.sh -a ATTR_LOG_FOLDER -j JOINT_LOG_FOLDER > output/bert/REPORT.md
+python classifiers/bert/evaluate.py -l ATTR_LOG_FOLDER -m PATH_TO_JOINT_MODEL > output/bert/REPORT.md
 ```

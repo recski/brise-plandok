@@ -24,6 +24,7 @@ class BriseDataset(Dataset):
         return len(self.data)
 
     def __getitem__(self, index: int):
+        sen_id = self.data.iloc[index]["ID"]
         text = self.data.iloc[index][self.text_column]
         labels = self.labels.iloc[index]
 
@@ -35,6 +36,7 @@ class BriseDataset(Dataset):
         )
 
         return dict(
+            id=sen_id,
             text=text,
             input_ids=encoding["input_ids"].flatten(),
             attention_mask=encoding["attention_mask"].flatten(),

@@ -112,7 +112,7 @@ class BriseBertTrainer(BriseBertBase):
             loss_train_avg = loss_train_total / len(self.dataloader_train)
             logging.info(f"Training loss: {loss_train_avg}")
 
-            val_loss, logits, true_vals = self.evaluate()
+            val_loss, logits, true_vals, _ = self.evaluate()
             logging.info(f"Validation loss: {val_loss}")
 
             if best_val is None or best_val[0] > val_loss:

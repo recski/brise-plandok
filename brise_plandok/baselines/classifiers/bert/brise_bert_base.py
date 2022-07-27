@@ -40,10 +40,15 @@ class BriseBertBase:
         self.model.eval()
 
         loss_val_total = 0
-        predictions, true_vals = [], []
+        predictions, true_vals, ids = [], [], []
 
         for batch in self.dataloader_test:
-            batch = tuple(b.to(self.device) for key, b in batch.items() if key != "text")
+
+            ids += batch["id"]
+
+            batch = tuple(
+                b.to(self.device) for key, b in batch.items() if key != "text" and key != "id"
+            )
 
             inputs = {
                 "input_ids": batch[0],
@@ -68,4 +73,4 @@ class BriseBertBase:
         predictions = np.concatenate(predictions, axis=0)
         true_vals = np.concatenate(true_vals, axis=0)
 
-        return loss_val_avg, predictions, true_vals
+        return loss_val_avg, predictions, true_vals, ids

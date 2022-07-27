@@ -69,3 +69,9 @@ To train a BERT model for multiple attributes:
 ```bash
 ./classifiers/bert/run_for_more_attributes.sh -g 2 -l output/bert/ -r 0.001 -e 200 -a Planzeichen -a Widmung
 ```
+
+To run evaluation on trained BERT models:
+
+```bash
+./classifiers/bert/evaluate.sh -a ATTR_LOG_FOLDER -j JOINT_LOG_FOLDER > output/bert/REPORT.md
+```

@@ -4,7 +4,7 @@ from tuw_nlp.common.eval import get_cat_stats, print_cat_stats
 from brise_plandok.baselines.constants import NOT, ALL_LABELS_SORTED, RULE_BASED_ATTRIBUTES
 from brise_plandok.baselines.utils import (
     get_x_y_dataframes,
-    filter_gold,
+    filter_gold_list,
     get_attributes_for_experiment,
 )
 from brise_plandok.constants import TRAIN, VALID
@@ -27,7 +27,7 @@ class BaselineClassifier:
         _, x_train, y_train_all_labels = get_x_y_dataframes(TRAIN)
         _, x_valid, y_valid_all_labels = get_x_y_dataframes(VALID)
         golds = y_valid_all_labels.Labels.tolist()
-        golds = filter_gold(golds, self.labels)
+        golds = filter_gold_list(golds, self.labels)
         preds = [set() for _ in range(len(golds))]
         for label in self.labels:
             print(f"## {label}")

@@ -36,10 +36,14 @@ def get_output_dir(classifier):
     return output_dir
 
 
-def filter_gold(golds, labels):
+def filter_gold_list(golds, labels):
     relevant_attrs = set(labels)
-    golds = [set(gold) & relevant_attrs for gold in golds]
-    return golds
+    return [set(gold) & relevant_attrs for gold in golds]
+
+
+def filter_gold_dict(golds, labels):
+    relevant_attrs = set(labels)
+    return {k: set(v) & relevant_attrs for k, v in golds.items()}
 
 
 def get_x_y_dataframes(sub_dir):
@@ -68,10 +72,16 @@ def sigmoid(X):
 
 
 def calculate_performance(logits, y_true, attributes):
+    target_names, y_pred = get_y_pred(attributes, logits)
+    logging.info(classification_report(y_true, y_pred, target_names=target_names))
+    print(classification_report(y_true, y_pred, target_names=target_names))
+
+
+def get_y_pred(attributes, logits):
     target_names = [NOT] + attributes if len(attributes) == 1 else attributes
     probs = sigmoid(logits)
     y_pred = np.where(probs < THRESHOLD, LOWER, UPPER)
-    logging.info(classification_report(y_true, y_pred, target_names=target_names))
+    return target_names, y_pred
 
 
 def epoch_time(start_time, end_time):

@@ -2,43 +2,38 @@ import logging
 import os
 import time
 
-import numpy as np
 import torch
 from tqdm import tqdm
 from transformers import AdamW, get_linear_schedule_with_warmup
 
-from brise_plandok.baselines.classifiers.bert.bert_constants import BERT_NAME
-from brise_plandok.baselines.classifiers.bert.brise_bert_model import BriseBertClassification
-from brise_plandok.baselines.classifiers.bert.prepare_data import get_datasets, create_data_loaders
-from brise_plandok.baselines.constants import RULE_BASED_ATTRIBUTES
+from brise_plandok.baselines.classifiers.bert.brise_bert_base import BriseBertBase
+from brise_plandok.baselines.classifiers.bert.prepare_data import create_data_loader
 from brise_plandok.baselines.utils import (
     epoch_time,
     calculate_performance,
-    fix_random,
     calculate_loss_weights,
 )
 
 
-class BriseBertTrainer:
-    def __init__(self, epochs, model_checkpoint, output_folder, use_weights, lr, attribute):
+class BriseBertTrainer(BriseBertBase):
+    def __init__(
+        self,
+        epochs,
+        model_checkpoint,
+        output_folder,
+        use_weights,
+        lr,
+        attribute,
+        train_dataset,
+        test_dataset,
+    ):
+        super().__init__(attribute, test_dataset)
         self.epochs = epochs
-        self.device = torch.device("cpu")
-        self.set_gpu()
-        fix_random()
         self.output_folder = output_folder
-        self.attributes = RULE_BASED_ATTRIBUTES if attribute is None else [attribute]
-        logging.info(f"attributes to train: {self.attributes}")
 
-        dataset_train, dataset_val = get_datasets(self.attributes)
-        self.dataloader_train, self.dataloader_val = create_data_loaders(
-            dataset_train, dataset_val
-        )
+        self.dataloader_train = create_data_loader(train_dataset, self.attributes)
 
-        self.model = BriseBertClassification.from_pretrained(
-            BERT_NAME,
-            num_labels=len(self.attributes),
-        )
-        self.set_model(model_checkpoint, use_weights, dataset_train)
+        self.set_model(model_checkpoint, use_weights, self.dataloader_train.dataset.labels)
 
         self.optimizer = AdamW(self.model.parameters(), lr=lr, eps=1e-8)
         logging.info(f"Learning rate is set to {lr}")
@@ -56,56 +51,22 @@ class BriseBertTrainer:
             logging.info(f'GPU is set to {os.environ["CUDA_VISIBLE_DEVICES"]}')
             self.device = torch.device("cuda")
 
-    def set_model(self, model_checkpoint, use_weights, dataset_train):
+    def set_model(self, model_checkpoint, use_weights, train_labels):
         if model_checkpoint is not None:
             self.model.load_state_dict(torch.load(model_checkpoint, map_location=self.device))
         _ = self.model.to(self.device)
         for p in self.model.base_model.parameters():
             p.requires_grad = False
-        self.set_loss_weights(use_weights, dataset_train)
+        self.set_loss_weights(use_weights, train_labels)
 
-    def set_loss_weights(self, use_weights, dataset_train):
-        loss_weights = calculate_loss_weights(dataset_train.labels)
+    def set_loss_weights(self, use_weights, train_labels):
+        loss_weights = calculate_loss_weights(train_labels)
         loss_weights_tensor = (
             torch.Tensor(loss_weights.to_list()).to(self.device) if use_weights else None
         )
         self.model.set_loss_weights(loss_weights_tensor)
         if use_weights:
             logging.info(f"Loss weights are set to\n{loss_weights}")
-
-    def evaluate(self):
-        self.model.eval()
-
-        loss_val_total = 0
-        predictions, true_vals = [], []
-
-        for batch in self.dataloader_val:
-            batch = tuple(b.to(self.device) for key, b in batch.items() if key != "text")
-
-            inputs = {
-                "input_ids": batch[0],
-                "attention_mask": batch[1],
-                "labels": batch[2],
-            }
-
-            with torch.no_grad():
-                outputs = self.model(**inputs)
-
-            loss = outputs[0]
-            logits = outputs[1]
-            loss_val_total += loss.item()
-
-            logits = logits.detach().cpu().numpy()
-            label_ids = inputs["labels"].cpu().numpy()
-            predictions.append(logits)
-            true_vals.append(label_ids)
-
-        loss_val_avg = loss_val_total / len(self.dataloader_val)
-
-        predictions = np.concatenate(predictions, axis=0)
-        true_vals = np.concatenate(true_vals, axis=0)
-
-        return loss_val_avg, predictions, true_vals
 
     def train(self):
         best_val = None

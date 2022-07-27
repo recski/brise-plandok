@@ -47,6 +47,12 @@ def get_args():
     )
     parser.add_argument("-lr", "--learning-rate", type=float, help="The learning rate to use.")
     parser.add_argument(
+        "-t", "--train-dataset", default="train", help="Name of the train dataset."
+    )
+    parser.add_argument(
+        "-v", "--valid-dataset", default="valid", help="Name of the valid dataset."
+    )
+    parser.add_argument(
         "-a",
         "--attribute",
         help="Specific attribute to learn. If left empty, all attributes will be trained simultaneously.",
@@ -54,12 +60,21 @@ def get_args():
     return parser.parse_args()
 
 
-def run_bert(log_folder, epochs, learning_rate, model, weights, attribute):
+def run_bert(
+    log_folder, epochs, learning_rate, model, weights, attribute, train_dataset, valid_dataset
+):
     timestamped_log_folder = set_logging(log_folder, attribute)
     logging.info(f"Epochs: {epochs}")
     logging.info(f"Learning rate: {learning_rate}")
     trainer = BriseBertTrainer(
-        epochs, model, timestamped_log_folder, weights, learning_rate, attribute
+        epochs,
+        model,
+        timestamped_log_folder,
+        weights,
+        learning_rate,
+        attribute,
+        train_dataset,
+        valid_dataset,
     )
     trainer.train()
     remove_write_access_from_log_folder(timestamped_log_folder)
@@ -68,5 +83,12 @@ def run_bert(log_folder, epochs, learning_rate, model, weights, attribute):
 if __name__ == "__main__":
     args = get_args()
     run_bert(
-        args.log_folder, args.epochs, args.learning_rate, args.model, args.weights, args.attribute
+        args.log_folder,
+        args.epochs,
+        args.learning_rate,
+        args.model,
+        args.weights,
+        args.attribute,
+        args.train_dataset,
+        args.valid_dataset,
     )

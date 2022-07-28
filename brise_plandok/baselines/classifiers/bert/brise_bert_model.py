@@ -1,7 +1,7 @@
 from torch import nn
 from torch.nn import BCEWithLogitsLoss
 from transformers import BertPreTrainedModel, BertModel
-from transformers.modeling_outputs import SequenceClassifierOutput
+from transformers.modeling_outputs import MultipleChoiceModelOutput
 
 
 class BriseBertClassification(BertPreTrainedModel):
@@ -65,7 +65,7 @@ class BriseBertClassification(BertPreTrainedModel):
             output = (logits,) + outputs[2:]
             return ((loss,) + output) if loss is not None else output
 
-        return SequenceClassifierOutput(
+        return MultipleChoiceModelOutput(
             loss=loss,
             logits=logits,
             hidden_states=outputs.hidden_states,

@@ -84,7 +84,9 @@ class BriseBertTrainer(BriseBertBase):
             for batch in progress_bar:
                 self.model.zero_grad()
 
-                batch = tuple(b.to(self.device) for key, b in batch.items() if key != "text")
+                batch = tuple(
+                    b.to(self.device) for key, b in batch.items() if key != "text" and key != "id"
+                )
 
                 inputs = {
                     "input_ids": batch[0],

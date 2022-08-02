@@ -195,7 +195,7 @@ def attrs_from_gold_sen(sen, sen_to_attr, overwrite):
             del sen[SenFields.GOLD_ATTRIBUTES]
             sen[SenFields.LABELS_GOLD_EXISTS] = False
         else:
-            if sen[SenFields.GOLD_ATTRIBUTES] != attrs:
+            if attrs is not None and sen[SenFields.GOLD_ATTRIBUTES] != attrs:
                 sen_to_attr.log_conflict(sen)
                 raise ValueError(
                     'field "labels_gold_exists" already present in input and' "--overwrite not set"

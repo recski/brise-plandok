@@ -48,8 +48,8 @@ Annotator 02:
 # sens: 3826
 
 Annotator 03:
-# docs: 112
-# sens: 3220
+# docs: 133
+# sens: 3839
 
 Annotator 04:
 # docs: 134
@@ -64,11 +64,11 @@ Annotator 06:
 # sens: 3841
 
 Docs agg
-avg: 129.83
-std: 8.07
+avg: 133.33
+std: 1.25
 
 Sens agg
-avg: 3734.50
-std: 230.16
+avg: 3837.67
+std: 5.62
 
 ```

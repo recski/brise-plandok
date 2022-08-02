@@ -9,6 +9,14 @@ from brise_plandok.utils import load_json
 DOCS = "docs"
 SENS = "sens"
 
+PRACTICE_DOCS = [
+    "7374",
+    "7857",
+    "7990",
+    "8065",
+    "8250",
+]
+
 
 def calc_annotated_sentences(data_dir):
     stat = {
@@ -22,6 +30,8 @@ def calc_annotated_sentences(data_dir):
         },
     }
     for doc_fn in os.listdir(data_dir):
+        if doc_fn.split(".")[0] in PRACTICE_DOCS:
+            continue
         doc_path = os.path.join(data_dir, doc_fn)
         doc = load_json(doc_path)
         nr_sens = len(doc[DocumentFields.SENS])

@@ -416,3 +416,13 @@ You can recreate this file by calling:
 ```bash
 ./brise_plandok/stat/segmentation_error_rate.sh > brise_plandok/stat/docs/SEGMENTATION_ERROR_RATE.md
 ```
+
+### Number of annotated sentences stat
+
+For statistics about segmentation error rates see the [ANNOTATED_SENS_STAT.md](brise_plandok/stat/docs/ANNOTATED_SENS_STAT.md) file.
+
+You can recreate this file by calling:
+
+```bash
+python brise_plandok/stat/annotated_sentences.py -d $BRISE_NLP/annotation/2021_09/full_data > brise_plandok/stat/docs/ANNOTATED_SENS_STAT.md
+```

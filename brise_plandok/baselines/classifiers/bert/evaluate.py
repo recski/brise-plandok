@@ -44,7 +44,14 @@ def evaluate_for_all(model, dataset_name):
             if pred > 0.5:
                 preds[ids[i]].add(target_names[j])
 
-    print_cat_stats(get_cat_stats(preds.values(), golds.values()))
+    print_cat_stats(
+        get_cat_stats(
+            preds.values(),
+            golds.values(),
+            labels_to_keep=RULE_BASED_ATTRIBUTES,
+            add_missing_labels=True,
+        )
+    )
 
 
 def get_golds_and_preds(attributes):

@@ -1,0 +1,33 @@
+digraph Tree {
+node [shape=box, fontname="helvetica"] ;
+edge [fontname="helvetica"] ;
+0 [label="ak <= 0.5\ngini = 0.006\nsamples = 5368\nvalue = [5351, 17]\nclass = NOT"] ;
+1 [label="arkade <= 0.5\ngini = 0.001\nsamples = 5347\nvalue = [5345, 2]\nclass = NOT"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="arkaden <= 0.5\ngini = 0.0\nsamples = 5345\nvalue = [5344, 1]\nclass = NOT"] ;
+1 -> 2 ;
+3 [label="gini = 0.0\nsamples = 5338\nvalue = [5338, 0]\nclass = NOT"] ;
+2 -> 3 ;
+4 [label="auf <= 0.5\ngini = 0.245\nsamples = 7\nvalue = [6, 1]\nclass = NOT"] ;
+2 -> 4 ;
+5 [label="gini = 0.0\nsamples = 6\nvalue = [6, 0]\nclass = NOT"] ;
+4 -> 5 ;
+6 [label="gini = 0.0\nsamples = 1\nvalue = [0, 1]\nclass = ArkadeHoehe"] ;
+4 -> 6 ;
+7 [label="sein <= 0.5\ngini = 0.5\nsamples = 2\nvalue = [1, 1]\nclass = NOT"] ;
+1 -> 7 ;
+8 [label="gini = 0.0\nsamples = 1\nvalue = [0, 1]\nclass = ArkadeHoehe"] ;
+7 -> 8 ;
+9 [label="gini = 0.0\nsamples = 1\nvalue = [1, 0]\nclass = NOT"] ;
+7 -> 9 ;
+10 [label="duldung <= 0.5\ngini = 0.408\nsamples = 21\nvalue = [6, 15]\nclass = ArkadeHoehe"] ;
+0 -> 10 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+11 [label="durchgang <= 0.5\ngini = 0.117\nsamples = 16\nvalue = [1, 15]\nclass = ArkadeHoehe"] ;
+10 -> 11 ;
+12 [label="gini = 0.0\nsamples = 15\nvalue = [0, 15]\nclass = ArkadeHoehe"] ;
+11 -> 12 ;
+13 [label="gini = 0.0\nsamples = 1\nvalue = [1, 0]\nclass = NOT"] ;
+11 -> 13 ;
+14 [label="gini = 0.0\nsamples = 5\nvalue = [5, 0]\nclass = NOT"] ;
+10 -> 14 ;
+}

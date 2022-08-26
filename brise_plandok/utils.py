@@ -2,6 +2,8 @@ import json
 import logging
 import os
 
+import pandas as pd
+
 from brise_plandok.constants import SenFields, DocumentFields
 
 
@@ -39,3 +41,18 @@ def update_gold_docs(gold_attr_candidate, gold_mod_candidate, current_gold_sens,
             doc[DocumentFields.SENS][sen_id][SenFields.GOLD_ATTRIBUTES] = gold_attr_candidate
             doc[DocumentFields.SENS][sen_id][SenFields.GOLD_MODALITY] = gold_mod_candidate
         dump_json(doc, fn)
+
+
+def create_input(directory):
+    ids = []
+    sentences = []
+    labels = []
+    for filename in os.listdir(directory):
+        with open(os.path.join(directory, filename), "rt") as f:
+            doc = json.load(f)
+            for sen in doc[DocumentFields.SENS].values():
+                if not sen[SenFields.SEGMENTATION_ERROR]:
+                    ids.append(sen[SenFields.ID])
+                    sentences.append(sen[SenFields.TEXT].lower())
+                    labels.append(sorted(set(sen[SenFields.GOLD_ATTRIBUTES].keys())))
+    return pd.DataFrame(data=list(zip(ids, sentences, labels)), columns=["ID", "Text", "Labels"])

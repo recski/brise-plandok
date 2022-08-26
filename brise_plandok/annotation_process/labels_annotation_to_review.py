@@ -26,7 +26,7 @@ from brise_plandok.utils import dump_json, load_json
 class LabelAnnotationConverter(AnnotationConverter):
     def __init__(self, args):
         super().__init__(args)
-        self.sen_to_attr = SenToAttrMap(args.gold_folder, fuzzy=True)
+        self.sen_to_attr = SenToAttrMap(args.gold_folder, fuzzy=False)
         self.review = args.review
 
     def convert(self, annotated_xlsx_files, output_file, data_file):
@@ -86,8 +86,8 @@ class LabelAnnotationConverter(AnnotationConverter):
                 f"Review = false for {data[DocumentFields.ID]}, no review excel will be generated."
             )
             return
-        generator = LabelReviewExcelGenerator(output_file, LabelReviewExcelConstants())
-        generator.generate_excel(data)
+        generator = LabelReviewExcelGenerator(output_file, LabelReviewExcelConstants(), data)
+        generator.generate_excel()
 
 
 def get_args():

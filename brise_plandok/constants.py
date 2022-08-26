@@ -17,6 +17,11 @@ ROW_HEIGHT = 75
 ANNOTATOR_NAME_INDEX = -4
 DO_NOT_ANNOTATE = "DON'T ANNOTATE THIS SENTENCE"
 
+DATA_FOLDER = "data"
+TRAIN = "train"
+VALID = "valid"
+TEST = "test"
+
 
 class Review:
     OK = "OK"

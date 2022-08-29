@@ -35,13 +35,13 @@ This creates the `.git/hooks/pre-commit` file, which automatically reformats all
 
 ```bash
 pip install black
-`black .`
+black .
 ```
 
 ### Run `flake8` separately
 ```bash
 pip install flake8
-`flake8 .`
+flake8 .
 ```
 
 ## Annotated Data Description

@@ -211,7 +211,7 @@ def main():
         "<h3 style='text-align: center;'>Visit our <a href='https://github.com/recski/brise-plandok'>GitHub</a> page for more information and to access the code</h3><p></p>"
     )
     st.markdown(html_string, unsafe_allow_html=True)
-    col1, col2 = st.beta_columns(2)
+    col1, col2 = st.columns(2)
 
     col1.header("Deontic Assumptions")
 
@@ -264,7 +264,7 @@ def main():
             if st.button("Clear assumptions"):
                 assumptions_set.assumptions.clear()
 
-            assumptions_set_expander = st.beta_expander("Show the assumption set:", expanded=False)
+            assumptions_set_expander = st.expander("Show the assumption set:", expanded=False)
 
             with assumptions_set_expander:
                 assumpts = ", ".join(assumptions_set.assumptions)
@@ -273,7 +273,7 @@ def main():
                     unsafe_allow_html=True,
                 )
 
-            my_expander = st.beta_expander("Show the generated graphs:", expanded=False)
+            my_expander = st.expander("Show the generated graphs:", expanded=False)
 
             with my_expander:
                 st.graphviz_chart(ud_graph_col1, use_container_width=True)

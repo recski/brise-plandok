@@ -157,7 +157,12 @@ class FullReviewExcelGenerator(ExcelGenerator):
                 yield {
                     AttributeFields.NAME: attribute_name,
                     AttributeFields.VALUE: "\n".join(
-                        extract_value(sen, attribute_name, field_to_add=None, only_gold=False)
+                        [
+                            str(value)
+                            for value in extract_value(
+                                sen, attribute_name, field_to_add=None, only_gold=False
+                            )
+                        ]
                     ),
                     AttributeFields.TYPE: ann_types,
                     LABELS_GOLD: sen[SenFields.LABELS_GOLD_EXISTS],
@@ -175,7 +180,12 @@ class FullReviewExcelGenerator(ExcelGenerator):
                 yield {
                     AttributeFields.NAME: attribute_name,
                     AttributeFields.VALUE: "\n".join(
-                        extract_value(sen, attribute_name, field_to_add=None, only_gold=False)
+                        [
+                            str(value)
+                            for value in extract_value(
+                                sen, attribute_name, field_to_add=None, only_gold=False
+                            )
+                        ]
                     ),
                     AttributeFields.TYPE: ann_types,
                     LABELS_GOLD: False,

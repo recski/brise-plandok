@@ -1,8 +1,8 @@
 import os
 
 from brise_plandok import logger
+from brise_plandok.annotation_process.utils.convert import Converter
 from brise_plandok.constants import DocumentFields
-from brise_plandok.convert import Converter
 
 
 class AnnotationConverter(Converter):

@@ -11,11 +11,11 @@ from brise_plandok.annotation_process.utils.constants import (
     ASSIGNMENT_DF_HEADER_BASE,
     FullAnnotationExcelConstants,
 )
+from brise_plandok.annotation_process.utils.convert import Converter
 from brise_plandok.annotation_process.utils.full_annotation_excel_generator import (
     FullAnnotationExcelGenerator,
 )
 from brise_plandok.constants import DocumentFields
-from brise_plandok.convert import Converter
 
 
 class ConverterArgs:
@@ -26,7 +26,7 @@ class ConverterArgs:
         self.gen_attributes = True
 
 
-def genereate_xlsx_files(docs, xlsx_folder, overwrite, phase):
+def generate_xlsx_files(docs, xlsx_folder, overwrite, phase):
     for doc in docs:
         doc_id = doc[DocumentFields.ID]
         xlsx_file = os.path.join(xlsx_folder, doc_id + ".xlsx")

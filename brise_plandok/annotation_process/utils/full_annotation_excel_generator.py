@@ -8,13 +8,13 @@ from brise_plandok.annotation.attributes import ATTR_TO_CAT
 from brise_plandok.annotation_process.utils.constants import (
     FullAnnotationExcelConstants,
 )
+from brise_plandok.annotation_process.utils.excel_generator import ExcelGenerator
 from brise_plandok.annotation_process.utils.full_annotation_pre_filler import (
     FullAnnotationPreFiller,
 )
 from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, SenFields
 from brise_plandok.utils import load_json
-from brise_plandok.xlsx.excel_generator import ExcelGenerator
 
 LABELS_GOLD = "lables_gold"
 FULL_GOLD = "full_gold"

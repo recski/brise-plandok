@@ -1,13 +1,15 @@
-from brise_plandok.constants import GOLD_COLOR, GRAY_COLOR, ROW_HEIGHT, AttributeFields
-from brise_plandok.annotation.attributes import ATTR_TO_CAT
-from brise_plandok.constants import SenFields as SF
-from brise_plandok.constants import DocumentFields as DF
-from openpyxl.styles.fills import PatternFill
 import logging
+
 import openpyxl
-from openpyxl.utils.cell import get_column_letter
 from openpyxl.styles import Alignment, Font
+from openpyxl.styles.fills import PatternFill
+from openpyxl.utils.cell import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
+
+from brise_plandok.annotation.attributes import ATTR_TO_CAT
+from brise_plandok.constants import DocumentFields as DF
+from brise_plandok.constants import GOLD_COLOR, GRAY_COLOR, ROW_HEIGHT, AttributeFields
+from brise_plandok.constants import SenFields as SF
 from brise_plandok.data_utils import normalize_attribute_name
 
 

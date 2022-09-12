@@ -7,8 +7,8 @@ from collections import Counter, defaultdict
 from tuw_nlp.common.eval import print_cat_stats
 
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
+from brise_plandok.asail.extractor import get_extractor
 from brise_plandok.constants import ATTRIBUTE_NORM_MAP, SenFields, DocumentFields
-from brise_plandok.extractor import get_extractor
 
 ATTR_IGNORE = {
     "?",

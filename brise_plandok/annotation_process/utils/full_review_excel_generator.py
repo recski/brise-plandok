@@ -11,6 +11,7 @@ from brise_plandok.annotation_process.utils.constants import (
     FullReviewExcelConstants,
     REVIEW_DONE_FLAG,
 )
+from brise_plandok.annotation_process.utils.excel_generator import ExcelGenerator
 from brise_plandok.constants import (
     AnnotatedAttributeFields,
     AttributeFields,
@@ -24,7 +25,6 @@ from brise_plandok.full_attribute_extraction.attribute.potato.potato_predictor i
 from brise_plandok.full_attribute_extraction.type.extract_types import extract_type
 from brise_plandok.full_attribute_extraction.value.extract_values import extract_value
 from brise_plandok.utils import load_json
-from brise_plandok.xlsx.excel_generator import ExcelGenerator
 
 LABELS_GOLD = "lables_gold"
 FULL_GOLD = "full_gold"

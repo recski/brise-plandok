@@ -4,10 +4,10 @@ from openpyxl.worksheet.datavalidation import DataValidation
 
 from brise_plandok import logger
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
+from brise_plandok.annotation_process.utils.excel_generator import ExcelGenerator
 from brise_plandok.constants import AnnotatedAttributeFields as AAF
 from brise_plandok.constants import AttributeFields, Review, SenFields
 from brise_plandok.constants import SenFields as SF
-from brise_plandok.xlsx.excel_generator import ExcelGenerator
 
 IS_GOLD = "gold_attr"
 

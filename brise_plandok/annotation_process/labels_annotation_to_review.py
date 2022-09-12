@@ -2,6 +2,7 @@ import argparse
 import os
 
 from brise_plandok import logger
+from brise_plandok.annotation_process.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.annotation_process.utils.annotation_converter import (
     AnnotationConverter,
 )
@@ -9,7 +10,6 @@ from brise_plandok.annotation_process.utils.constants import LabelReviewExcelCon
 from brise_plandok.annotation_process.utils.label_review_excel_generator import (
     LabelReviewExcelGenerator,
 )
-from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.constants import (
     ANNOTATOR_NAME_INDEX,
     AnnotatedAttributeFields,

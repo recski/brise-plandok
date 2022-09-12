@@ -4,7 +4,7 @@ import logging
 from xpotato.dataset.dataset import Dataset
 from xpotato.graph_extractor.extract import FeatureEvaluator
 
-from brise_plandok.attrs_from_gold import SenToAttrMap
+from brise_plandok.annotation_process.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, AttributeTypes, SenToAttrFields
 from brise_plandok.full_attribute_extraction.attribute.potato.utils import load_features
 from brise_plandok.full_attribute_extraction.type.extract_types import match_types
@@ -31,7 +31,7 @@ def migrate_attribute(
     print(f"Number of different texts to update: {sens_to_update}")
     predicted = _predict_output_attributes(evaluator, output_attributes, sen_to_gold_attrs)
     for text, entry in sen_to_gold_attrs.sen_to_attr.items():
-        print(f"================================================")
+        print("================================================")
         print(f"{sens_to_update} to go")
         old_attributes = entry[SenToAttrFields.ATTR]
 
@@ -84,10 +84,10 @@ def _check_suggestions(
     else:
         attributes = []
         while True:
-            name_input = input(f"Name: ")
+            name_input = input("Name: ")
             if name_input == "-":
                 break
-            value_input = input(f"Value: ")
+            value_input = input("Value: ")
             type_input = _read_type()
             attr_input = {
                 AttributeFields.NAME: name_input,
@@ -123,7 +123,7 @@ def __update_attributes_after_user_input(attributes, old_attributes):
 def _read_type():
     while True:
         type_input_from_console = input(
-            f"Type: - ( 0 : condition, 1 : content, 2 : conditionException, 3 : contentException )"
+            "Type: - ( 0 : condition, 1 : content, 2 : conditionException, 3 : contentException )"
         )
         if type_input_from_console == "0":
             type_input = AttributeTypes.CONDITION

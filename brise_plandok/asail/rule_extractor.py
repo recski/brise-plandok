@@ -6,10 +6,10 @@ from stanza.models.common.doc import Document
 from tuw_nlp.grammar.ud_fl import UD_FL
 from tuw_nlp.graph.utils import graph_to_isi, read_alto_output
 
-from brise_plandok.attr_tree import AttrTree
-from brise_plandok.extractor import Extractor
-from brise_plandok.fl_attr import FL_Attr
-from brise_plandok.regex_decompounder import regex_decompounder
+from brise_plandok.asail.attr_tree import AttrTree
+from brise_plandok.asail.extractor import Extractor
+from brise_plandok.asail.fl_attr import FL_Attr
+from brise_plandok.asail.regex_decompounder import regex_decompounder
 
 BOOLEANS = {
     "AnFluchtlinie",

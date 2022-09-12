@@ -1,12 +1,7 @@
 import logging
 
-from brise_plandok.attrs_from_gold import attrs_from_gold_sen, full_attrs_from_gold_sen
 from brise_plandok.constants import (
     SenFields,
-    DocumentFields,
-    OldDocumentFields,
-    OldSectionFields,
-    OldSenFields,
     ATTRIBUTE_NORM_MAP,
     AttributeFields,
 )
@@ -52,46 +47,10 @@ def create_sen(
     }
 
 
-def fill_json(doc, sen_to_gold_attrs, sen_to_full_gold_attrs, old_doc=False):
-    filled_doc = {
-        DocumentFields.ID: doc[DocumentFields.ID],
-        DocumentFields.SENS: {},
-        DocumentFields.ANNOTATORS: {},
-        DocumentFields.LABELS_GOLD: False,
-        DocumentFields.FULL_GOLD: False,
-    }
-    for sen_id, text in generate_minimal_sens(doc, old_doc):
-        sen = create_sen(
-            sen_id,
-            text,
-        )
-        attrs_from_gold_sen(sen, sen_to_gold_attrs, False)
-        full_attrs_from_gold_sen(sen, sen_to_full_gold_attrs, False)
-        filled_doc[DocumentFields.SENS][sen_id] = sen
-    return filled_doc
-
-
-def generate_minimal_sens(doc, old_doc=False):
-    if old_doc:
-        for section in doc[OldDocumentFields.SECTIONS]:
-            for sen in section[OldSectionFields.SENS]:
-                yield sen[OldSenFields.ID], sen[OldSenFields.TEXT]
-    else:
-        for sen in doc[DocumentFields.SENS].values():
-            yield sen[SenFields.ID], sen[SenFields.TEXT]
-
-
 def normalize_attribute_name(attribute_name):
     if attribute_name in ATTRIBUTE_NORM_MAP:
         return ATTRIBUTE_NORM_MAP[attribute_name]
     return attribute_name
-
-
-def add_attribute_to_sen(sen, attr_name, attr_value, attr_type, field):
-    if field not in sen:
-        raise ValueError(f"Field {field} is not in sen {sen}")
-    old_attributes = sen[field]
-    add_attribute(old_attributes, attr_name, attr_value, attr_type)
 
 
 def add_attribute(

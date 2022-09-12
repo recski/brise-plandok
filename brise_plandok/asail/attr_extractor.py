@@ -6,9 +6,9 @@ from tuw_nlp.grammar.ud_fl import UD_FL
 from tuw_nlp.graph.utils import pn_to_graph, GraphMatcher
 
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
+from brise_plandok.asail.extractor import Extractor
+from brise_plandok.asail.regex_decompounder import regex_decompounder
 from brise_plandok.constants import SenFields
-from brise_plandok.extractor import Extractor
-from brise_plandok.regex_decompounder import regex_decompounder
 
 PATTERNS_BY_ATTR = {
     "AbschlussDachMaxBezugGebaeude": {

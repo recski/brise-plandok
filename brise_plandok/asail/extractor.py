@@ -80,12 +80,12 @@ def get_extractor(args):
     nlp_cache = os.path.join(args.cache_dir, "nlp_cache.json")
     with CachedStanzaPipeline(nlp_pipeline, nlp_cache) as nlp:
         if args.rule_ext:
-            from brise_plandok.rule_extractor import RuleExtractor
+            from brise_plandok.asail.rule_extractor import RuleExtractor
 
             logging.warning("initializing old rule extractor (RuleExtractor)")
             yield RuleExtractor(nlp, cache_dir=args.cache_dir)
         else:
-            from brise_plandok.attr_extractor import AttributeExtractor
+            from brise_plandok.asail.attr_extractor import AttributeExtractor
 
             logging.warning("initializing new attribute extractor (AttributeExtractor)")
             yield AttributeExtractor(nlp, cache_dir=args.cache_dir)

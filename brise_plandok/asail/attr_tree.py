@@ -1,8 +1,9 @@
 # import json
-import pyparsing
-from collections import defaultdict
-from pyparsing import nestedExpr
 import logging
+from collections import defaultdict
+
+import pyparsing
+from pyparsing import nestedExpr
 
 ALL_STRINGS = set()
 

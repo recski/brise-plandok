@@ -6,10 +6,10 @@ For baseline experiments we used Bag of Words features, vectorized by the [Count
 
 The featurized dataframes are saved in csv format in the [input](input) folder.
 
-You can recreate these dataframes by calling the [featurize](featurize.py) script:
+You can recreate these dataframes by calling the [featurize](featurize.py) script from the root:
 
 ```bash
-python featureize.py
+python brise_plandok/baselines/featurize.py
 ```
 
 ## Classifiers

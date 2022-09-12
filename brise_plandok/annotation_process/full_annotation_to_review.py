@@ -3,7 +3,9 @@ import logging
 import os
 
 import openpyxl
+
 from brise_plandok import logger
+from brise_plandok.annotation_process.attrs_from_gold import SenToAttrMap, full_attrs_from_gold_sen
 from brise_plandok.annotation_process.utils.annotation_converter import (
     AnnotationConverter,
 )
@@ -14,7 +16,6 @@ from brise_plandok.annotation_process.utils.constants import (
 from brise_plandok.annotation_process.utils.full_review_excel_generator import (
     FullReviewExcelGenerator,
 )
-from brise_plandok.attrs_from_gold import SenToAttrMap, full_attrs_from_gold_sen
 from brise_plandok.constants import (
     ANNOTATOR_NAME_INDEX,
     EMPTY,

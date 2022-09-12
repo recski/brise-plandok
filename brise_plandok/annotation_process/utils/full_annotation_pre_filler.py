@@ -1,5 +1,6 @@
 import os
-from brise_plandok.attrs_from_gold import (
+
+from brise_plandok.annotation_process.attrs_from_gold import (
     SenToAttrMap,
     attrs_from_gold_sen,
     full_attrs_from_gold_sen,

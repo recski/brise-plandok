@@ -24,7 +24,7 @@ class SenToAttrMap:
         except_for_values=None,
     ):
         if only_for_values is not None and except_for_values is not None:
-            raise ValueError(f"Either 'only_for_values' or 'except_for_values' can be given")
+            raise ValueError("Either 'only_for_values' or 'except_for_values' can be given")
         self.sen_to_attr = None
         self.fuzzy = fuzzy
         self.build_map(

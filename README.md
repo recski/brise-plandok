@@ -53,8 +53,10 @@ See [DATA.md](./DATA.md).
 ### Start service with your own data
 
 ```bash
- python brise_plandok/services/full_extractor.py -d <DATA_DIR>
+python brise_plandok/services/full_extractor.py -d <DATA_DIR>
 ```
+
+Example: ` python brise_plandok/services/full_extractor.py -d data/train`
 
 
 ### Start service from Docker
@@ -111,7 +113,7 @@ The demo can then be accessed from your web browser at [http://localhost:8501/](
 
 ### Input data
 
-All steps described below can be run on the sample documents included in this repository under `sample_data`.
+All steps described below can be run on the sample documents included in this repository under [sample_data](./sample_data).
 
 The preprocessed version of all plan documents (as of December 2020) can be
 downloaded as [a single JSON file](https://url.tuwien.at/ndnre). If you would like
@@ -125,11 +127,13 @@ Extract section structure from raw text and run NLP pipeline (sentence segmentat
 python brise_plandok/plandok.py sample_data/txt/*.txt > sample_data/json/sample.jsonl
 ```
 
-## Attribute extraction
+## Attribute extraction task
 
-To run current best extraction, see [here](brise_plandok/full_attribute_extraction/README.md).
+To run the current best rule-based extraction, see [here](brise_plandok/full_attribute_extraction/README.md).
 
-For attribution extraction experiments with [POTATO](https://github.com/adaamko/POTATO), see [here](brise_plandok/full_attribute_extraction/attribute/potato/README.md).
+To run experiments with [POTATO](https://github.com/adaamko/POTATO), see [here](brise_plandok/full_attribute_extraction/attribute/potato/README.md).
+
+To have a look at our baseline experiments, see [here](./brise_plandok/baselines/README.md).
 
 ## Annotation process
 

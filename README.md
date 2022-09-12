@@ -137,7 +137,7 @@ To have a look at our baseline experiments, see [here](./brise_plandok/baselines
 
 ## Annotation process
 
-For details about annotation process, see [here](ANNOTATION.md).
+For details about the annotation process, see [here](./brise_plandok/annotation_process/README.md).
 
 ## Development
 

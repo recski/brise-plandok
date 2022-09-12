@@ -1,4 +1,4 @@
-# Dataset creation documentation
+# Annotation process 
 
 ## Create folder structure
 
@@ -8,7 +8,7 @@ A specific folder structure is expected for the following scripts to work. Gener
 ./scripts/TEST_gen_structure_for_annotation_process.sh
 ```
 
-You can find the generated folder under [here](./example).
+You can find the generated folders [here](./example).
 
 ## Shuffle data
 
@@ -221,6 +221,70 @@ python brise_plandok/annotation_process/annotator_progress.py \
     -af brise_plandok/annotation_process/example/annotators \
     -p 2
 ```
+
+## Overview of Excel sheet generation
+
+Call these scripts from repository root.
+
+### Stage 1 - Multi-label annotation
+
+#### Excel for annotation
+
+```bash
+python brise_plandok/annotation_process/utils/label_annotation_excel_generator.py -d sample_data/annotation/full_data/8141.json -o sample_data/annotation/8141_annotation_labels.xlsx
+```
+
+The result is saved [here](../../sample_data/annotation/8141_annotation_labels.xlsx).
+
+#### Excel for review
+
+```bash
+python brise_plandok/annotation_process/labels_annotation_to_review.py -a sample_data/annotation/01/phase1/upload/8141.xlsx sample_data/annotation/02/phase1/upload/8141.xlsx -d sample_data/annotation/full_data/8141.json -g sample_data/annotation/full_data -of sample_data/annotation/8141_labels_review_XY.xlsx -r
+```
+
+The result is saved [here](../../sample_data/annotation/8141_labels_review_XY.xlsx).
+
+This time the [json file](../../sample_data/annotation/full_data/8141.json) is also updated with the name of the reviewer, which is in this case `XY`.
+
+#### Generate gold after review
+
+```bash
+python brise_plandok/annotation_process/labels_review_to_gold.py -r sample_data/annotation/8141_labels_review_XY.xlsx -d sample_data/annotation/full_data/8141.json -g sample_data/annotation/full_data -i -e
+```
+
+Gold `gold_attributes` should be filled out and `labels_gold` and all `labels_gold_exists` should be set to true
+in the [json file](../../sample_data/annotation/full_data/8141.json).
+
+### Stage 2 - Full annotation
+
+Before executing the next scripts, please revert the [json file](../../sample_data/annotation/full_data/8141.json).
+
+#### Excel for annotation
+
+```bash
+python brise_plandok/annotation_process/utils/full_annotation_excel_generator.py -d sample_data/annotation/full_data/8141.json -df sample_data/annotation/full_data -o sample_data/annotation/8141_annotation_full.xlsx
+```
+
+The result is saved [here](../../sample_data/annotation/8141_annotation_full.xlsx).
+
+#### Excel for review
+
+```bash
+python brise_plandok/annotation_process/full_annotation_to_review.py -a sample_data/annotation/01/phase2/upload/8141.xlsx sample_data/annotation/02/phase2/upload/8141.xlsx -d sample_data/annotation/full_data/8141.json -g sample_data/annotation/full_data -of sample_data/annotation/8141_full_review_XY.xlsx -r
+```
+
+The result is saved [here](../../sample_data/annotation/8141_full_review_XY.xlsx).
+
+#### Generate gold after review
+
+Before executing the following script, please revert the previously generated review sheet [file](../../sample_data/annotation/8141_full_review_XY.xlsx).
+
+```bash
+python brise_plandok/annotation_process/full_review_to_gold.py -r sample_data/annotation/8141_full_review_XY.xlsx -d sample_data/annotation/full_data/8141.json -g sample_data/annotation/full_data -i -e
+```
+
+Gold `gold_attributes` should be filled out and `Full_gold` and all `full_gold_exists` should be set to true
+in the [json file](../../sample_data/annotation/full_data/8141.json).
 
 ## Notes
 

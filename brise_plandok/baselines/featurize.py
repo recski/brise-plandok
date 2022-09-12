@@ -47,7 +47,7 @@ def featurize(sub_dir, vocab=None):
 
 
 def binarize_labels(data_df):
-    mlb = MultiLabelBinarizer(classes=ALL_LABELS_SORTED)
+    mlb = MultiLabelBinarizer(classes=list(ALL_LABELS_SORTED.keys()))
     labels = pd.DataFrame(mlb.fit_transform(data_df.Labels), columns=mlb.classes_)
     return data_df[["ID", "Labels"]].join(labels)
 

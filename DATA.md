@@ -2,6 +2,19 @@
 
 The data can be found in [data](./data) folder.
 
+## Annotation guidelines
+
+You can find the annotation guidelines in pdf format [here](guidelines/BRISE_annotation_guidelines.pdf).
+
+If you want to compile it on you own, run:
+
+```bash
+cd guidelines
+pdflatex BRISE_annotation_guidelines.tex
+makeindex BRISE_annotation_guidelines.idx
+pdflatex BRISE_annotation_guidelines.tex
+```
+
 ## Annotation stages
 
 The data is stored in json format. You can use [jq](https://stedolan.github.io/jq/manual/) to analyze it from the command line. 

@@ -154,3 +154,10 @@ tmp/
 de_nlp_cache
 UD_FL.json
 *_cache.json
+
+# latex
+*.aux
+*.idx
+*.out
+*.ilg
+*.ind

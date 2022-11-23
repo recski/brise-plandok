@@ -1,10 +1,12 @@
-import sys
-from brise_plandok.constants import SenFields
-from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 import json
 import os
-from tqdm import tqdm
+import sys
+
 import openpyxl
+from tqdm import tqdm
+
+from brise_plandok.annotation_process.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
+from brise_plandok.constants import SenFields
 
 DATASET_SHEET_NAME = "Dataset"
 FIRST_DATA_ROW = 3

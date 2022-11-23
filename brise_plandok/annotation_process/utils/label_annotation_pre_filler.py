@@ -2,7 +2,7 @@ import json
 import os
 
 from brise_plandok import logger
-from brise_plandok.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
+from brise_plandok.annotation_process.attrs_from_gold import SenToAttrMap, attrs_from_gold_sen
 from brise_plandok.constants import (
     AttributeFields,
     DocumentFields,

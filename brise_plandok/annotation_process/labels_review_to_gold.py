@@ -1,12 +1,12 @@
 import argparse
 
 from brise_plandok import logger
+from brise_plandok.annotation_process.attrs_from_gold import SenToAttrMap
 from brise_plandok.annotation_process.utils.constants import (
     ATTRIBUTES_TO_IGNORE,
     LabelReviewExcelConstants,
 )
 from brise_plandok.annotation_process.utils.review_converter import ReviewConverter
-from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, DocumentFields, SenFields
 
 
@@ -26,7 +26,7 @@ def _generate_gold_attrs(attributes):
 
 class LabelReviewConverter(ReviewConverter):
     def __init__(self, data_file, gold_folder):
-        super().__init__(data_file)
+        super().__init__(data_file, gold_folder)
         self.sen_to_gold_attrs = SenToAttrMap(gold_dir=gold_folder, fuzzy=True)
         self.SEN_GOLD = SenFields.LABELS_GOLD_EXISTS
         self.DOC_GOLD = DocumentFields.LABELS_GOLD
@@ -74,6 +74,8 @@ def get_args():
     parser.add_argument("-r", "--review", default=None)
     parser.add_argument("-d", "--data-file", default=None)
     parser.add_argument("-g", "--gold-folder", default=None)
+    parser.add_argument("-i", "--overwrite-internal", action="store_true")
+    parser.add_argument("-e", "--overwrite-external", action="store_true")
     parser.set_defaults(input_format="XLSX", output_format="JSON")
     return parser.parse_args()
 
@@ -81,7 +83,7 @@ def get_args():
 def main():
     args = get_args()
     converter = LabelReviewConverter(args.data_file, args.gold_folder)
-    converter.convert(args.review)
+    converter.convert(args.review, args.overwrite_internal, args.overwrite_external)
 
 
 if __name__ == "__main__":

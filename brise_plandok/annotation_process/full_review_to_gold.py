@@ -1,12 +1,12 @@
 import argparse
 
 from brise_plandok import logger
+from brise_plandok.annotation_process.attrs_from_gold import SenToAttrMap
 from brise_plandok.annotation_process.utils.constants import (
     ATTRIBUTES_TO_IGNORE,
     FullReviewExcelConstants,
 )
 from brise_plandok.annotation_process.utils.review_converter import ReviewConverter
-from brise_plandok.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import AttributeFields, DocumentFields, SenFields
 
 

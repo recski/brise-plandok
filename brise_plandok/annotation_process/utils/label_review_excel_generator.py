@@ -4,24 +4,22 @@ from openpyxl.worksheet.datavalidation import DataValidation
 
 from brise_plandok import logger
 from brise_plandok.annotation.attributes import ATTR_TO_CAT
+from brise_plandok.annotation_process.utils.excel_generator import ExcelGenerator
 from brise_plandok.constants import AnnotatedAttributeFields as AAF
 from brise_plandok.constants import AttributeFields, Review, SenFields
 from brise_plandok.constants import SenFields as SF
-from brise_plandok.xlsx.excel_generator import ExcelGenerator
 
 IS_GOLD = "gold_attr"
 
 
 class LabelReviewExcelGenerator(ExcelGenerator):
-    def __init__(self, output_file, CONSTANTS, sen_to_gold_attrs=None):
+    def __init__(self, output_file, constants, doc, sen_to_gold_attrs=None):
+        super().__init__(output_file, constants, doc, sen_to_gold_attrs)
         self.input_template = os.path.join(
             os.path.dirname(__file__), "../input", "labels_review_template.xlsx"
         )
-        self.output_file = output_file
-        self.sen_to_gold_attrs = sen_to_gold_attrs
-        self.CONSTANTS = CONSTANTS
 
-    def _modify_header(self, sheet, doc):
+    def _modify_header(self, sheet):
         return
 
     def _fill_modality(self, sen, sheet, row):

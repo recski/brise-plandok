@@ -1,7 +1,7 @@
 import argparse
 import logging
 
-from brise_plandok.attrs_from_gold import SenToAttrMap
+from brise_plandok.annotation_process.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import SenToAttrFields
 from brise_plandok.data_utils import add_attribute
 from brise_plandok.utils import update_gold_docs
@@ -21,7 +21,7 @@ def refine_attribute(gold_folder, attr_name, attr_value, attr_type, sentence_pat
     sens_to_update = len(sen_to_gold_attrs.sen_to_attr.keys())
     print(f"Number of different texts to update: {sens_to_update}")
     for text, entry in sen_to_gold_attrs.sen_to_attr.items():
-        print(f"================================================")
+        print("================================================")
         print(f"{sens_to_update} to go")
         print(text)
         old_attributes = entry[SenToAttrFields.ATTR]

@@ -16,7 +16,7 @@ from brise_plandok.annotation_process.utils.doc_tracking import (
 )
 from brise_plandok.annotation_process.utils.xlsx import (
     distribute_xlsx_files,
-    genereate_xlsx_files,
+    generate_xlsx_files,
 )
 
 
@@ -53,7 +53,7 @@ def generate_batch(
         return
 
     docs = generate_data(next_doc_ids, json_folder, data_folder, phase)
-    genereate_xlsx_files(docs, xlsx_folder, overwrite, phase)
+    generate_xlsx_files(docs, xlsx_folder, overwrite, phase)
     distribute_xlsx_files(xlsx_folder, assignment_df, annotators_folder, update, phase)
 
     if update:

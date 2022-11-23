@@ -1,7 +1,7 @@
 import argparse
 import json
 
-from brise_plandok.attrs_from_gold import SenToAttrMap
+from brise_plandok.annotation_process.attrs_from_gold import SenToAttrMap
 from brise_plandok.constants import SenToAttrFields
 from brise_plandok.utils import update_gold_docs
 

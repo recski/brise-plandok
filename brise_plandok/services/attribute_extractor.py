@@ -6,8 +6,8 @@ import traceback
 import graphviz
 from flask import Flask, request
 
-from brise_plandok.convert import Converter
-from brise_plandok.extractor import get_extractor
+from brise_plandok.annotation_process.utils.convert import Converter
+from brise_plandok.asail.extractor import get_extractor
 
 HOST = "localhost"
 PORT = 5005

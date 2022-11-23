@@ -1,7 +1,7 @@
 import argparse
 
+from brise_plandok.annotation_process.utils.convert import Converter
 from brise_plandok.annotation_process.utils.xlsx import ConverterArgs
-from brise_plandok.convert import Converter
 from brise_plandok.utils import load_json
 
 

@@ -5,6 +5,7 @@ import os
 import openpyxl
 
 from brise_plandok import logger
+from brise_plandok.annotation_process.attrs_from_gold import SenToAttrMap, full_attrs_from_gold_sen
 from brise_plandok.annotation_process.utils.annotation_converter import (
     AnnotationConverter,
 )
@@ -15,7 +16,6 @@ from brise_plandok.annotation_process.utils.constants import (
 from brise_plandok.annotation_process.utils.full_review_excel_generator import (
     FullReviewExcelGenerator,
 )
-from brise_plandok.attrs_from_gold import SenToAttrMap, full_attrs_from_gold_sen
 from brise_plandok.constants import (
     ANNOTATOR_NAME_INDEX,
     EMPTY,
@@ -103,8 +103,11 @@ class FullAnnotationConverter(AnnotationConverter):
             AttributeTypes.CONTENT_EXCEPTION,
             AttributeTypes.CONDITION_EXCEPTION,
         ]:
-            logger.warning(f"No such type exists: {type}. Type is set to {EMPTY}")
-            type = EMPTY
+            if type == "conditionexception":
+                type = AttributeTypes.CONDITION_EXCEPTION
+            else:
+                logger.warning(f"No such type exists: {type}. Type is set to {EMPTY}")
+                type = EMPTY
         annotated_attributes = self.__get_annotated_attributes(sen)
         annotated_values = self.__get_values_for_label(annotated_attributes, label)
         annotated_types = self.__get_types_for_value(annotated_values, value)

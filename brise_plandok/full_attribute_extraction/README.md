@@ -27,6 +27,6 @@ The extracted values and types are stored in the `predicted_attributes` field.
  python brise_plandok/full_attribute_extraction/predict_full_attributes.py -d data/train/8228.json -c |  jq '.sens[] | .id, .text, .predicted_attributes'
 ```
 
-## Migration scripts
+## [DEV] Migration scripts
 
 For migration scripts, see [here](./migration/README.md).

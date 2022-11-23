@@ -4,7 +4,7 @@ Information extraction from text documents of the zoning plan of the City of Vie
 
 Work supported by [BRISE-Vienna](https://smartcity.wien.gv.at/en/brise/) (UIA04-081), a European Union Urban Innovative Actions project.
 
-__The [asail2021](https://github.com/recski/brise-plandok/tree/asail2021) tag contains the code in the state presented in our [2021 ASAIL paper](#references)__
+__The [asail2021](https://github.com/recski/brise-plandok/tree/asail2021) tag contains the code in the state presented in our [2021 ASAIL paper](#references). Legacy code can be found in the [asail](./brise_plandok/asail) folder__.
 
 ## Requirements
 
@@ -35,13 +35,13 @@ This creates the `.git/hooks/pre-commit` file, which automatically reformats all
 
 ```bash
 pip install black
-`black .`
+black .
 ```
 
 ### Run `flake8` separately
 ```bash
 pip install flake8
-`flake8 .`
+flake8 .
 ```
 
 ## Annotated Data Description
@@ -53,8 +53,10 @@ See [DATA.md](./DATA.md).
 ### Start service with your own data
 
 ```bash
- python brise_plandok/services/full_extractor.py -d <DATA_DIR>
+python brise_plandok/services/full_extractor.py -d <DATA_DIR>
 ```
+
+Example: ` python brise_plandok/services/full_extractor.py -d data/train`
 
 
 ### Start service from Docker
@@ -111,7 +113,7 @@ The demo can then be accessed from your web browser at [http://localhost:8501/](
 
 ### Input data
 
-All steps described below can be run on the sample documents included in this repository under `sample_data`.
+All steps described below can be run on the sample documents included in this repository under [sample_data](./sample_data).
 
 The preprocessed version of all plan documents (as of December 2020) can be
 downloaded as [a single JSON file](https://url.tuwien.at/ndnre). If you would like
@@ -122,18 +124,20 @@ to customize preprocessing, you can also download the [raw text documents](https
 Extract section structure from raw text and run NLP pipeline (sentence segmentation, tokenization, dependency parsing):
 
 ```bash
-python brise_plandok/plandok.py sample_data/txt/*.txt > sample_data/json/sample.jsonl
+python brise_plandok/preproc/plandok.py sample_data/txt/*.txt > sample_data/json/sample.jsonl
 ```
 
-## Attribute extraction
+## Attribute extraction task
 
-To run current best extraction, see [here](brise_plandok/full_attribute_extraction/README.md).
+To run the current best rule-based extraction, see [here](brise_plandok/full_attribute_extraction/README.md).
 
-For attribution extraction experiments with [POTATO](https://github.com/adaamko/POTATO), see [here](brise_plandok/full_attribute_extraction/attribute/potato/README.md).
+To run experiments with [POTATO](https://github.com/adaamko/POTATO), see [here](brise_plandok/full_attribute_extraction/attribute/potato/README.md).
+
+To have a look at our baseline experiments, see [here](./brise_plandok/baselines/README.md).
 
 ## Annotation process
 
-For details about annotation process, see [here](ANNOTATION.md).
+For details about the annotation process, see [here](./brise_plandok/annotation_process/README.md).
 
 ## Development
 

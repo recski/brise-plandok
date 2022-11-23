@@ -2,25 +2,24 @@
 
 Official website of [POTATO](https://github.com/adaamko/POTATO).
 
-Only [top 15 attributes](constants.py) are considered.
-
-You can find some manually defined features [here](./features/manual).
+You can find the features [here](./features/manual).
 
 ## Create dataset for 🥔
 
 ### For the complete gold dataset
-__Temporary, until dataset is moved to its final location in brise-plandok__
-The environment variable `BRISE_NLP` should point to the location of the [brise-nlp]
-repository
+
+The output can be found in [gold.csv](data/gold.csv).
 
 ```bash
-python create_dataset.py -d $BRISE_NLP/annotation/2021_09/full_data -g fourlang -o -n gold.csv
+python create_dataset.py -d ../../../../data/train ../../../../data/valid ../../../../data/test -g fourlang -o -n gold.csv
 ```
 
 ## Start GUI for specific attribute
 
 _The environment variable `POTATO_DIR` should point to the location of the POTATO
 repository_
+
+First, you have to create `data/gold.csv` as written above (if haven't already done).
 
 ```bash
 # Start for Planzeichen
@@ -33,7 +32,9 @@ streamlit run $POTATO_DIR/frontend/app.py -- \
       -cs
 ```
 
-## Evalutate attribute extraction
+The frontend opens automatically, if not you can reach it under `http://localhost:8501/`.
+
+## Evaluate attribute extraction
 
 First, you have to create `data/gold.csv` as written above (if haven't already done).
 

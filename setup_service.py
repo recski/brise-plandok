@@ -10,6 +10,7 @@ setup(
     install_requires=[
         "flask",
         "logging_json",
+        "pandas",
     ],
     packages=find_packages(),
     include_package_data=True,

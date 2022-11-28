@@ -5,6 +5,8 @@ import sys
 from brise_plandok.constants import DocumentFields, SenFields
 from brise_plandok.full_attribute_extraction.type.extract_types import extract_type
 from brise_plandok.full_attribute_extraction.value.extract_values import extract_value
+from brise_plandok.full_attribute_extraction.type.type_patterns import TYPE_PATTERNS
+from brise_plandok.full_attribute_extraction.value.value_patterns import VALUE_PATTERNS
 
 
 def extract(doc, attributes, attribute_type, attribute_value, only_gold):
@@ -32,6 +34,8 @@ def get_args():
 
 def main():
     args = get_args()
+    if args.attributes is None:
+        args.attributes = list(TYPE_PATTERNS.keys()) + list(VALUE_PATTERNS.keys())
     for line in sys.stdin:
         doc = json.loads(line)
         extract(doc, args.attributes, args.type, args.value, args.only_gold)

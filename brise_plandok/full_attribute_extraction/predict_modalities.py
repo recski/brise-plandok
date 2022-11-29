@@ -1,3 +1,4 @@
+import argparse
 import json
 import sys
 
@@ -28,9 +29,12 @@ FOR_ATTRS = {
 }
 
 
-def predict_modality(doc):
+def predict_modality(doc, pred_only=False):
     for sen in doc[DocumentFields.SENS].values():
-        attrs = sen[SenFields.GOLD_ATTRIBUTES] or sen[SenFields.PREDICTED_ATTRIBUTES]
+        if pred_only:
+            attrs = sen[SenFields.PREDICTED_ATTRIBUTES]
+        else:
+            attrs = sen[SenFields.GOLD_ATTRIBUTES] or sen[SenFields.PREDICTED_ATTRIBUTES]
         if not attrs:
             sen["predicted_modality"] = None
         elif attrs.keys() & PER_ATTRS:
@@ -43,10 +47,18 @@ def predict_modality(doc):
     return doc
 
 
+def get_args():
+    parser = argparse.ArgumentParser(description="")
+    parser.add_argument("-p", "--pred_only", action="store_true")
+    return parser.parse_args()
+
+
+
 def main():
+    args = get_args()
     for line in sys.stdin:
         doc = json.loads(line)
-        predict_modality(doc)
+        predict_modality(doc, args.pred_only)
         sys.stdout.write(json.dumps(doc) + "\n")
 
 

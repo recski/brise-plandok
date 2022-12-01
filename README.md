@@ -6,6 +6,18 @@ Work supported by [BRISE-Vienna](https://smartcity.wien.gv.at/en/brise/) (UIA04-
 
 __The [asail2021](https://github.com/recski/brise-plandok/tree/asail2021) tag contains the code in the state presented in our [2021 ASAIL paper](#references). Legacy code can be found in the [asail](./brise_plandok/asail) folder__.
 
+## Table of Contents
+- [Requirements](#requirements)
+- [Coding guidelines](#coding-guidelines)
+- [Annotated Data Description](#annotated-data-description)
+- [Extraction service](#extraction-service)
+- [Demo for attribute names only](#demo-for-attribute-names-only)
+- [Preprocessing](#preprocessing)
+- [Attribute extraction task](#attribute-extraction-task)
+- [Annotation process](#annotation-process)
+- [Development](#development)
+- [References](#references)
+
 ## Requirements
 
 Install the brise_plandok repository:

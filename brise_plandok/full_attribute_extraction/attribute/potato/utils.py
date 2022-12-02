@@ -17,7 +17,7 @@ def create_potato_dataset_for_doc(doc, graph_format="fourlang"):
     append_doc_to_data(data, doc, labels_present=False)
     df = pd.DataFrame.from_dict(data)
     sen_ids = df.sen_id
-    dataset = create_potato_dataset(df, graph_format)
+    dataset = create_potato_dataset(df)
     add_graphs_to_dataset(dataset, graph_format)
     return dataset, sen_ids
 

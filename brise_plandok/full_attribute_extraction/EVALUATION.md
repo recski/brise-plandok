@@ -1,40 +1,42 @@
-## Evaluation of full rule extraction
-
-### type and value extraction of gold attributes
-
-```
-awk 1 ../../data/*/*.json | python extract_types_and_values.py -t -v -g > eval/brise_types_values.jsonl
-```
-
-```
-at eval/brise_types_values.jsonl | python eval_types_and_values.py -f gen_attributes -t -v
-```
-
-### type and value extraction on predicted attributes
-
-```
-awk 1 ../../data/*/*.json | python eval_types_and_values.py -f predicted_attributes -t -v
-```
+# Rule extraction evaluation
 
 
-### predict modalities
+## Run extraction
+
+### end-to-end rule extraction on full dataset (attribute extraction, detection of types, values, modality)
 
 ```
-cat eval/brise_types_values.jsonl | python predict_modalities.py > eval/types_values_modality.jsonl
+awk  1 ../../data/*/*.json | python predict_full_attributes.py > eval/pred_attrs_types_values_modality.jsonl
 ```
 
+### type and value extraction on gold attributes
 ```
-cat eval/types_values_modality.jsonl | python eval_modalities.py
+cat eval/pred_attrs_types_values_modality.jsonl | python extract_types_and_values.py -t -v -g > eval/gold_attrs_pred_types_values.jsonl
 ```
+
+### modality extraction on gold attributes
+
+```
+cat eval/gold_attrs_pred_types_values.jsonl | python modality/predict_modalities.py > eval/gold_attrs_pred_types_values_modalities.jsonl
+```
+
+## Evaluate
+
 
 ### end-to-end eval with gold attributes
 
 ```
-cat eval/types_values_modality.jsonl | python eval_rules.py
+cat eval/gold_attrs_pred_types_values_modality.jsonl | python eval_rules.py
 ```
 
-### end-to-end eval with predicted attributes
+### end-to-end eval with predicted attributes (all attrs)
 
 ```
-cat eval/types_values_modality.jsonl | python eval_rules.py -p
+cat eval/pred_attrs_types_values_modality.jsonl | python eval_rules.py -p
+```
+
+### end-to-end eval with predicted attributes (40 attrs)
+
+```
+cat eval/pred_attrs_types_values_modality.jsonl | python eval_rules.py -p -40
 ```

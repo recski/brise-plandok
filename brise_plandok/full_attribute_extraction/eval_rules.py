@@ -7,11 +7,13 @@ from tabulate import tabulate
 from tuw_nlp.common.eval import avg
 
 from brise_plandok.constants import DocumentFields, SenFields
+from brise_plandok.full_attribute_extraction.attribute.potato.constants import KEPT_40_ATTRS
 
 
 def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-p", "--pred", action="store_true")
+    parser.add_argument("-40", "--kept_40_only", action="store_true")
     return parser.parse_args()
 
 
@@ -20,22 +22,27 @@ def main():
     stats = Counter()
     errs = open("errs.txt", "w")
     attr_set_pairs = []
+    if args.kept_40_only:
+        print("filtering gold to KEPT_40_attrs!")
     for line in sys.stdin:
         doc = json.loads(line)
         for sen in doc[DocumentFields.SENS].values():
-            g_mod = sen.get(SenFields.GOLD_MODALITY)
-            if not g_mod:
+            if sen[SenFields.SEGMENTATION_ERROR]:
                 continue
-            stats["all"] += 1
-
             g_attrs = sen[SenFields.GOLD_ATTRIBUTES]
+            stats["all"] += 1
+            g_mod = sen.get(SenFields.GOLD_MODALITY)
+            if args.kept_40_only:
+                g_attrs = {key: val for key, val in g_attrs.items() if key in KEPT_40_ATTRS}
             p_attrs = (
                 sen[SenFields.PREDICTED_ATTRIBUTES] if args.pred else sen[SenFields.GEN_ATTRIBUTES]
             )
+            p_attrs = {key: val for key, val in p_attrs.items() if key in KEPT_40_ATTRS}
 
             if args.pred:
                 g_attr_set = set(g_attrs.keys())
                 p_attr_set = set(p_attrs.keys())
+                # print(f"{sen['id']}\t{g_attr_set}\t{p_attr_set}")
                 attr_set_pairs.append((g_attr_set, p_attr_set))
                 if g_attr_set != p_attr_set:
                     errs.write(f"g_attrs: {g_attr_set}, p_attrs: {p_attr_set}\n")
@@ -90,8 +97,8 @@ def get_attr_stats(attr_set_pairs):
         rs.append(r)
         fs.append(0 if p + r == 0 else (2 * p * r) / (p + r))
 
-    P = TP / (TP + FP)
-    R = TP / (TP + FN)
+    P = TP / (TP + FP) if (TP + FP) > 0 else 1.0
+    R = TP / (TP + FN) if (TP + FN) > 0 else 1.0
     F = 0 if P + R == 0 else (2 * P * R) / (P + R)
     print("attr extraction:")
     rows = [

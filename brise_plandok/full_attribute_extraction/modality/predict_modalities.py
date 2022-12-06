@@ -31,27 +31,28 @@ FOR_ATTRS = {
 
 def predict_modality(doc, pred_only=False):
     for sen in doc[DocumentFields.SENS].values():
-        if pred_only:
-            attrs = sen[SenFields.PREDICTED_ATTRIBUTES]
-        else:
-            attrs = sen[SenFields.GOLD_ATTRIBUTES] or sen[SenFields.PREDICTED_ATTRIBUTES]
-        if not attrs:
-            sen["predicted_modality"] = None
-        elif attrs.keys() & PER_ATTRS:
-            sen["predicted_modality"] = "permission"
-        elif attrs.keys() & FOR_ATTRS:
-            sen["predicted_modality"] = "prohibition"
-        else:
-            sen["predicted_modality"] = "obligation"
+        predict_modality_for_sen(sen, pred_only)
 
-    return doc
+
+def predict_modality_for_sen(sen, pred_only):
+    if pred_only:
+        attrs = sen[SenFields.PREDICTED_ATTRIBUTES]
+    else:
+        attrs = sen[SenFields.GOLD_ATTRIBUTES] or sen[SenFields.PREDICTED_ATTRIBUTES]
+    if not attrs:
+        sen["predicted_modality"] = None
+    elif attrs.keys() & PER_ATTRS:
+        sen["predicted_modality"] = "permission"
+    elif attrs.keys() & FOR_ATTRS:
+        sen["predicted_modality"] = "prohibition"
+    else:
+        sen["predicted_modality"] = "obligation"
 
 
 def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("-p", "--pred_only", action="store_true")
     return parser.parse_args()
-
 
 
 def main():

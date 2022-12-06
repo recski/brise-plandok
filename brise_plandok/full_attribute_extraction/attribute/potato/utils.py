@@ -12,9 +12,10 @@ from xpotato.dataset.dataset import Dataset
 from xpotato.features.utils import get_features
 
 
-def create_potato_dataset_for_doc(doc, graph_format="fourlang"):
+def create_potato_dataset_for_docs(docs, graph_format="fourlang"):
     data = []
-    append_doc_to_data(data, doc, labels_present=False)
+    for doc in docs:
+        append_doc_to_data(data, doc, labels_present=False)
     df = pd.DataFrame.from_dict(data)
     sen_ids = df.sen_id
     dataset = create_potato_dataset(df)

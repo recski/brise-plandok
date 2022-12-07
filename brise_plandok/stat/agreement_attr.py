@@ -4,6 +4,7 @@ from collections import Counter
 
 import numpy
 from sklearn.metrics import cohen_kappa_score
+from tabulate import tabulate
 
 from brise_plandok.constants import (
     DocumentFields,
@@ -24,7 +25,7 @@ from brise_plandok.stat.utils import (
 from brise_plandok.utils import load_json
 
 
-def calculate_attr_kappa():
+def calculate_attr_kappa(latex=False):
     kappa_stat = {}
     attr_stat = Counter()
     annotator_pairs = set()
@@ -52,7 +53,7 @@ def calculate_attr_kappa():
                         sen,
                         first_stage_gold_ids,
                     )
-    print_stat(kappa_stat, annotator_pairs, attr_stat)
+    print_stat(kappa_stat, annotator_pairs, attr_stat, latex=latex)
 
 
 def add_kappa_stat(ann_pair, kappa_stat, attr_stat, doc_id, sen, first_stage_gold_ids):
@@ -66,7 +67,7 @@ def add_kappa_stat(ann_pair, kappa_stat, attr_stat, doc_id, sen, first_stage_gol
         kappa_stat[attr][ann_pair][ann_pair[1]].append(attr in ann_attrs[ann_pair[1]])
 
 
-def print_stat(kappa_stat, annotator_pairs, attr_stat):
+def print_stat(kappa_stat, annotator_pairs, attr_stat, latex=False):
     print("# Annotator agreement - Attributes")
     print(
         "This statistics is calculated without the sentences with a segmentation error.  \n"
@@ -77,7 +78,7 @@ def print_stat(kappa_stat, annotator_pairs, attr_stat):
         "either in the first or in the second phase."
     )
     print("## Without kappa correction")
-    calculate_table(annotator_pairs, kappa_stat, attr_stat)
+    calculate_table(annotator_pairs, kappa_stat, attr_stat, latex=latex)
     print("## With kappa correction")
     print(
         "[cohen_kappa_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.cohen_kappa_score.html) "
@@ -86,10 +87,14 @@ def print_stat(kappa_stat, annotator_pairs, attr_stat):
     print(
         "In the table below, we substituted these `nan` values by the value of complete agreement (1.0)."
     )
-    calculate_table(annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=True)
+    calculate_table(
+        annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=True, latex=latex
+    )
 
 
-def calculate_table(annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=False):
+def calculate_table(
+    annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=False, latex=False
+):
     values = []
     append_header_for_attr_wise_kappa(annotator_pairs, values)
     num_of_sentences = check_and_append_weights(kappa_stat, values, annotator_pairs)
@@ -120,7 +125,20 @@ def calculate_table(annotator_pairs, kappa_stat, attr_stat, correct_uniform_agre
         else:
             row[3] = numpy.nan
         values.append(row)
-    print(make_markdown_table(values))
+    if latex:
+        # the hyphens mess up the application of floatfmt, not sure why
+        values[1] = values[1][:1] + [0, 0, 0] + values[1][4:]
+        print(
+            tabulate(
+                values[1:],
+                headers=values[0],
+                tablefmt="latex_booktabs",
+                floatfmt=["s", "d"] + 17 * [".2f"],
+            )
+        )
+        # print(tabulate(values, tablefmt="latex_booktabs", floatfmt=".2f"))
+    else:
+        print(make_markdown_table(values))
 
 
 def check_and_append_weights(kappa_stat, values, annotator_pairs):
@@ -141,10 +159,11 @@ def check_and_append_weights(kappa_stat, values, annotator_pairs):
 
 def get_args():
     parser = argparse.ArgumentParser(description="")
+    parser.add_argument("-l", "--latex", action="store_true")
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = get_args()
     numpy.seterr(divide="ignore", invalid="ignore")
-    calculate_attr_kappa()
+    calculate_attr_kappa(latex=args.latex)

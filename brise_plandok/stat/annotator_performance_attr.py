@@ -4,6 +4,7 @@ import statistics
 import statistics as st
 from collections import Counter
 
+from tabulate import tabulate
 from tuw_nlp.common.eval import count_p_r_f
 
 from brise_plandok.constants import (
@@ -128,7 +129,7 @@ def print_attribute_stat_for_ann(ann_stat, agg):
         rec = p_r_f[attr]["R"]
         append_row_for_attr(attr, prec, rec, stat_per_attr, values)
         add_aggregated_stat_for_ann(agg_per_ann, prec, rec, stat_per_attr)
-        add_global_aggregated_stat(agg, attr, prec, rec)
+        add_global_aggregated_stat(agg, attr, prec, rec, stat_per_attr[FREQ])
     micro_p_r_f = count_p_r_f({MICRO: agg_per_ann[MICRO]})
     append_row_for_micro(agg_per_ann, micro_p_r_f, values)
     append_row_for_macro(agg_per_ann, values)
@@ -144,14 +145,12 @@ def add_aggregated_stat_for_ann(agg_per_ann, prec, rec, stat_per_attr):
     agg_per_ann[MACRO][REC].append(rec)
 
 
-def add_global_aggregated_stat(agg, attr, prec, rec):
+def add_global_aggregated_stat(agg, attr, prec, rec, freq):
     if attr not in agg:
-        agg[attr] = {
-            PREC: [],
-            REC: [],
-        }
+        agg[attr] = {PREC: [], REC: [], FREQ: 0}
     agg[attr][PREC].append(prec)
     agg[attr][REC].append(rec)
+    agg[attr][FREQ] += freq
 
 
 def append_row_for_attr(attr, prec, rec, stat_per_attr, values):
@@ -201,7 +200,7 @@ def print_agg(agg, name):
         print("## Average over annotators")
     elif name == STD:
         print("## STD over annotators")
-    values = [["Name", PREC, REC]]
+    values = [["Name", FREQ, PREC, REC]]
     for attr, attr_stat in agg.items():
         agg_prec = 0
         agg_rec = 0
@@ -215,15 +214,30 @@ def print_agg(agg, name):
                 agg_prec = st.stdev(attr_stat[PREC])
             if len(attr_stat[REC]) > 1:
                 agg_rec = st.stdev(attr_stat[REC])
-        values.append([attr, agg_prec, agg_rec])
-    print(make_markdown_table(values))
+        values.append([attr, int(attr_stat[FREQ] / 2), agg_prec, agg_rec])
+
+    values = [values[0]] + sorted(values[1:], key=lambda r: r[1], reverse=True)
+    if LATEX:
+        print(
+            tabulate(
+                values[1:],
+                headers=values[0],
+                tablefmt="latex_booktabs",
+                floatfmt=("s", "d", ".2%", ".2%"),
+            )
+        )
+    else:
+        print(make_markdown_table(values))
 
 
 def get_args():
     parser = argparse.ArgumentParser(description="")
+    parser = argparse.ArgumentParser(description="")
+    parser.add_argument("-l", "--latex", action="store_true")
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = get_args()
+    LATEX = args.latex
     annotator_stat()

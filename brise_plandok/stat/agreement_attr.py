@@ -4,7 +4,6 @@ from collections import Counter
 
 import numpy
 from sklearn.metrics import cohen_kappa_score
-from tabulate import tabulate
 
 from brise_plandok.constants import (
     DocumentFields,
@@ -16,6 +15,7 @@ from brise_plandok.stat.constants import (
 )
 from brise_plandok.stat.utils import (
     make_markdown_table,
+    make_markdown_table_latex_agr,
     fill_annotated_attributes,
     get_ann_pair,
     collect_all_attributes,
@@ -126,17 +126,7 @@ def calculate_table(
             row[3] = numpy.nan
         values.append(row)
     if latex:
-        # the hyphens mess up the application of floatfmt, not sure why
-        values[1] = values[1][:1] + [0, 0, 0] + values[1][4:]
-        print(
-            tabulate(
-                values[1:],
-                headers=values[0],
-                tablefmt="latex_booktabs",
-                floatfmt=["s", "d"] + 17 * [".2f"],
-            )
-        )
-        # print(tabulate(values, tablefmt="latex_booktabs", floatfmt=".2f"))
+        print(make_markdown_table_latex_agr(values))
     else:
         print(make_markdown_table(values))
 

@@ -1,6 +1,7 @@
 import os
 
 from numpy import dtype
+from tabulate import tabulate
 
 from brise_plandok.constants import (
     AttributesNames,
@@ -12,6 +13,21 @@ from brise_plandok.constants import (
 )
 from brise_plandok.stat.constants import PLACEHOLDER, DATASET_FOLDERS
 from brise_plandok.utils import load_json
+
+
+def make_markdown_table_latex_agr(array):
+    # the hyphens mess up the application of floatfmt, not sure why
+    array[1] = array[1][:1] + [0, 0, 0] + array[1][4:]
+    # remove the per-attr rows for no. sentences
+    array[3:] = [row for row in array[3:] if row[0] != 'Number of sentences ']
+    table = tabulate(
+        array[1:],
+        headers=array[0],
+        tablefmt="latex_booktabs",
+        floatfmt=["s", "d"] + 17 * [".2f"],
+    )
+    table = table.replace("1.00", "1").replace(" 0.", " .")
+    return table
 
 
 def make_markdown_table(array):
@@ -45,7 +61,7 @@ def make_markdown_table(array):
             if type(e) == int or type(e) == tuple:
                 e = str(e)
             elif type(e) == float or type(e) == dtype("float64"):
-                e = f"{e:.3f}"
+                e = f"{e:.4f}"
             to_add = e + str(" | ")
             markdown += to_add
         markdown += "\n"

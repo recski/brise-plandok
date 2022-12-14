@@ -6,6 +6,7 @@
 python brise_plandok/stat/rule_stat.py -d data/train data/valid data/test
 
 Number of all rules: 3994
+Median number of rules per document: 14
 Number of all attributes: 9221
 Average number of attributes per rule: 2.309
 Median of number of attributes per rule: 2
@@ -17,6 +18,7 @@ Median of number of attributes per rule: 2
 python brise_plandok/stat/rule_stat.py -d data/train
 
 Number of all rules: 3154
+Median number of rules per document: 13
 Number of all attributes: 7397
 Average number of attributes per rule: 2.345
 Median of number of attributes per rule: 2
@@ -28,6 +30,7 @@ Median of number of attributes per rule: 2
 python brise_plandok/stat/rule_stat.py -d data/valid
 
 Number of all rules: 465
+Median number of rules per document: 18
 Number of all attributes: 981
 Average number of attributes per rule: 2.110
 Median of number of attributes per rule: 2
@@ -39,6 +42,7 @@ Median of number of attributes per rule: 2
 python brise_plandok/stat/rule_stat.py -d data/test
 
 Number of all rules: 375
+Median number of rules per document: 16
 Number of all attributes: 843
 Average number of attributes per rule: 2.248
 Median of number of attributes per rule: 2

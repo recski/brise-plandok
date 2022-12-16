@@ -13,6 +13,7 @@ CORRECT_RATIO = "correct_ratio"
 
 PREC = "Precision"
 REC = "Recall"
+F1 = "F1"
 
 MICRO = "micro"
 MACRO = "macro"

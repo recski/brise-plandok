@@ -4,6 +4,7 @@ from collections import Counter
 
 import numpy
 import numpy as np
+from tabulate import tabulate
 from tuw_nlp.common.eval import count_p_r_f
 
 from brise_plandok.constants import (
@@ -27,6 +28,7 @@ from brise_plandok.stat.constants import (
     MACRO,
     PREC,
     REC,
+    F1,
     ATTRIBUTES,
     TYPES,
 )
@@ -222,6 +224,7 @@ def print_category_aggregation(agg, title, agg_per_ann, category):
     print()
     print("## " + title)
     values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
+    aggr_values = [["Attr", FREQ, PREC, REC, F1]]
     for cat, stat in agg.items():
         values.append([cat, "", "", "", "", "", ""])
         values.append(
@@ -235,6 +238,20 @@ def print_category_aggregation(agg, title, agg_per_ann, category):
                 stat[MICRO][REC],
             ]
         )
+
+        p, r = stat[MICRO][PREC], stat[MICRO][REC]
+        f1 = 0.0 if p + r == 0 else (2 * p * r) / (p + r)
+
+        aggr_values.append(
+            [
+                cat,
+                stat[MICRO][FREQ],
+                stat[MICRO][PREC],
+                stat[MICRO][REC],
+                f1,
+            ]
+        )
+
         avg_collector = numpy.zeros(shape=(6, 2))
         row = 0
         for ann, ann_stat in agg_per_ann.items():
@@ -278,6 +295,14 @@ def print_category_aggregation(agg, title, agg_per_ann, category):
             ]
         )
     print(make_markdown_table(values))
+    print(
+        tabulate(
+            aggr_values[1:],
+            headers=aggr_values[0],
+            tablefmt="latex_booktabs",
+            floatfmt=["s", "d"] + 3 * [".2%"],
+        )
+    )
 
 
 def collect_micro_and_macro_averages_per_ann(agg_per_ann, category, agg_mic_mac):

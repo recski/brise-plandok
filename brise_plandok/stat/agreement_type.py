@@ -18,6 +18,7 @@ from brise_plandok.stat.constants import (
 )
 from brise_plandok.stat.utils import (
     make_markdown_table,
+    make_markdown_table_latex_agr,
     get_ann_pair,
     collect_all_attributes,
     fill_up_kappa_stat,
@@ -27,7 +28,7 @@ from brise_plandok.stat.utils import (
 from brise_plandok.utils import load_json
 
 
-def calculate_attr_kappa():
+def calculate_attr_kappa(latex=False):
     kappa_stat = {}
     attr_stat = Counter()
     annotator_pairs = set()
@@ -50,7 +51,7 @@ def calculate_attr_kappa():
                         kappa_stat,
                         sen,
                     )
-    print_stat(kappa_stat, annotator_pairs, attr_stat)
+    print_stat(kappa_stat, annotator_pairs, attr_stat, latex=latex)
 
 
 def add_kappa_stat(ann_pair, kappa_stat, sen):
@@ -81,7 +82,7 @@ def add_kappa_stat(ann_pair, kappa_stat, sen):
                 kappa_stat[gold_attr][ann_pair][ann_pair[1]].append(ann_types[ann_pair[1]])
 
 
-def print_stat(kappa_stat, annotator_pairs, attr_stat):
+def print_stat(kappa_stat, annotator_pairs, attr_stat, latex=False):
     print("# Annotator agreement - Types")
     print(
         "This statistics is calculated without the sentences with a segmentation error.  \n"
@@ -98,7 +99,7 @@ def print_stat(kappa_stat, annotator_pairs, attr_stat):
         "non-gold types, we regard the gold one."
     )
     print("## Without kappa correction")
-    calculate_table(annotator_pairs, kappa_stat, attr_stat)
+    calculate_table(annotator_pairs, kappa_stat, attr_stat, latex=latex)
     print("## With kappa correction")
     print(
         "[cohen_kappa_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.cohen_kappa_score.html) "
@@ -107,10 +108,14 @@ def print_stat(kappa_stat, annotator_pairs, attr_stat):
     print(
         "In the table below, we substituted these `nan` values by the value of complete agreement (1.0)."
     )
-    calculate_table(annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=True)
+    calculate_table(
+        annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=True, latex=latex
+    )
 
 
-def calculate_table(annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=False):
+def calculate_table(
+    annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=False, latex=False
+):
     values = []
     append_header_for_attr_wise_kappa(annotator_pairs, values)
     for attr, stat in kappa_stat.items():
@@ -144,15 +149,19 @@ def calculate_table(annotator_pairs, kappa_stat, attr_stat, correct_uniform_agre
             kappa_row[3] = numpy.nan
         values.append(num_sens_row)
         values.append(kappa_row)
-    print(make_markdown_table(values))
+    if latex:
+        print(make_markdown_table_latex_agr(values))
+    else:
+        print(make_markdown_table(values))
 
 
 def get_args():
     parser = argparse.ArgumentParser(description="")
+    parser.add_argument("-l", "--latex", action="store_true")
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = get_args()
     numpy.seterr(divide="ignore", invalid="ignore")
-    calculate_attr_kappa()
+    calculate_attr_kappa(latex=args.latex)

@@ -64,6 +64,7 @@ python  $POTATO_DIR/scripts/evaluate.py \
 |Attribute                                    | Gold  | Predicted  | Precision  | Recall  | F-score  | Rank  |
 |---------------------------------------------|-------|------------|------------|---------|----------|-------|
 |total                                        | 9665  | 6595       | 93.13%     | 63.55%  | 75.55%   |       |
+|macro avg                                    | 9665  | 6595       | 96.95%     | 32.52%  | 35.42%   |       |
 |Planzeichen                                  | 1844  | 1855       | 94.82%     | 95.39%  | 95.11%   | 1     |
 |Widmung                                      | 641   | 745        | 80.40%     | 93.45%  | 86.44%   | 2     |
 |AnordnungGaertnerischeAusgestaltung          | 292   | 273        | 97.44%     | 91.10%  | 94.16%   | 3     |

@@ -145,3 +145,5 @@ MAX_DEPTH = 5
 THRESHOLD = 0.5
 LOWER = 0.0
 UPPER = 1.0
+
+TABLE_FMT = 'github'

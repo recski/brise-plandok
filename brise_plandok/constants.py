@@ -56,6 +56,7 @@ class SenFields:
     ATTRIBUTES = "attributes"
     SEGMENTATION_ERROR = "segmentation_error"
     PREDICTED_ATTRIBUTES = "predicted_attributes"
+    PREDICTED_MODALITY = "predicted_modality"
 
 
 class AttributeFields:

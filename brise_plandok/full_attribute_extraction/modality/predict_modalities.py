@@ -40,13 +40,13 @@ def predict_modality_for_sen(sen, pred_only):
     else:
         attrs = sen[SenFields.GOLD_ATTRIBUTES] or sen[SenFields.PREDICTED_ATTRIBUTES]
     if not attrs:
-        sen["predicted_modality"] = None
+        sen[SenFields.PREDICTED_MODALITY] = None
     elif attrs.keys() & PER_ATTRS:
-        sen["predicted_modality"] = "permission"
+        sen[SenFields.PREDICTED_MODALITY] = "permission"
     elif attrs.keys() & FOR_ATTRS:
-        sen["predicted_modality"] = "prohibition"
+        sen[SenFields.PREDICTED_MODALITY] = "prohibition"
     else:
-        sen["predicted_modality"] = "obligation"
+        sen[SenFields.PREDICTED_MODALITY] = "obligation"
 
 
 def get_args():

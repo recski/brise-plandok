@@ -232,7 +232,6 @@ def print_agg(agg, name):
 
 def get_args():
     parser = argparse.ArgumentParser(description="")
-    parser = argparse.ArgumentParser(description="")
     parser.add_argument("-l", "--latex", action="store_true")
     return parser.parse_args()
 

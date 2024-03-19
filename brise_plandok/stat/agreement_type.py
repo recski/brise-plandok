@@ -168,7 +168,6 @@ def calculate_table(
         values,
         weighted_avgs,
     )
-    print(make_markdown_table(final_values))
     if latex:
         print(make_markdown_table_latex_agr(final_values))
     else:

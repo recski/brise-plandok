@@ -21,6 +21,7 @@ from brise_plandok.stat.utils import (
     collect_all_attributes,
     fill_up_kappa_stat,
     append_header_for_attr_wise_kappa,
+    add_overall_rows,
 )
 from brise_plandok.utils import load_json
 
@@ -131,23 +132,9 @@ def calculate_table(
         else:
             row[3] = numpy.nan
         values.append(row)
-    final_values = values
-    if correct_uniform_agreement:
-        overall_rows = []
-        row = ["Overall", "-", numpy.average(macro_avgs), numpy.average(weighted_avgs)]
-        for _ in annotator_pairs:
-            row.append("-")
-        overall_rows.append(row)
-        row = [
-            "Overall weighted",
-            "-",
-            numpy.average(macro_avgs, weights=freqs),
-            numpy.average(weighted_avgs, weights=freqs),
-        ]
-        for _ in annotator_pairs:
-            row.append("-")
-        overall_rows.append(row)
-        final_values = values[:1] + overall_rows + values[1:]
+    final_values = add_overall_rows(
+        annotator_pairs, correct_uniform_agreement, freqs, freqs, macro_avgs, values, weighted_avgs
+    )
     if latex:
         print(make_markdown_table_latex_agr(final_values))
     else:

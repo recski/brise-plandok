@@ -24,6 +24,7 @@ from brise_plandok.stat.utils import (
     fill_up_kappa_stat,
     append_header_for_attr_wise_kappa,
     convert_back_post_processed,
+    add_overall_rows,
 )
 from brise_plandok.utils import load_json
 
@@ -117,10 +118,16 @@ def calculate_table(
     annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=False, latex=False
 ):
     values = []
+    macro_freqs = []
+    weighted_freqs = []
+    macro_avgs = []
+    weighted_avgs = []
     append_header_for_attr_wise_kappa(annotator_pairs, values)
     for attr, stat in kappa_stat.items():
         num_sens_row = ["Number of sentences ", "-", "-", "-"]
         kappa_row = [attr, attr_stat[attr], "-", "-"]
+        macro_freqs.append(attr_stat[attr])
+        weighted_freqs.append(attr_stat[attr])
         non_nan_kappas = []
         non_nan_weights = []
         for ann_pair, labels in stat.items():
@@ -141,18 +148,31 @@ def calculate_table(
             kappa_row.append(kappa)
         if len(non_nan_kappas) > 0:
             kappa_row[2] = numpy.average(non_nan_kappas)
+            macro_avgs.append(kappa_row[2])
         else:
             kappa_row[2] = numpy.nan
         if len(non_nan_kappas) > 1 and sum(non_nan_weights) > 0.0:
             kappa_row[3] = numpy.average(non_nan_kappas, weights=non_nan_weights)
+            weighted_avgs.append(kappa_row[3])
         else:
             kappa_row[3] = numpy.nan
+            weighted_freqs.pop()
         values.append(num_sens_row)
         values.append(kappa_row)
+    final_values = add_overall_rows(
+        annotator_pairs,
+        correct_uniform_agreement,
+        macro_freqs,
+        weighted_freqs,
+        macro_avgs,
+        values,
+        weighted_avgs,
+    )
+    print(make_markdown_table(final_values))
     if latex:
-        print(make_markdown_table_latex_agr(values))
+        print(make_markdown_table_latex_agr(final_values))
     else:
-        print(make_markdown_table(values))
+        print(make_markdown_table(final_values))
 
 
 def get_args():

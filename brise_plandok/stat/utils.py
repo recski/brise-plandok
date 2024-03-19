@@ -1,5 +1,6 @@
 import os
 
+import numpy
 from numpy import dtype
 from tabulate import tabulate
 
@@ -179,3 +180,32 @@ def append_header_for_attr_wise_kappa(annotator_pairs, values):
     for ann_pair in annotator_pairs:
         header.append(ann_pair)
     values.append(header)
+
+
+def add_overall_rows(
+    annotator_pairs,
+    correct_uniform_agreement,
+    macro_freqs,
+    weighted_freqs,
+    macro_avgs,
+    values,
+    weighted_avgs,
+):
+    final_values = values
+    if correct_uniform_agreement:
+        overall_rows = []
+        row = ["Overall", "-", numpy.average(macro_avgs), numpy.average(weighted_avgs)]
+        for _ in annotator_pairs:
+            row.append("-")
+        overall_rows.append(row)
+        row = [
+            "Overall weighted",
+            "-",
+            numpy.average(macro_avgs, weights=macro_freqs),
+            numpy.average(weighted_avgs, weights=weighted_freqs),
+        ]
+        for _ in annotator_pairs:
+            row.append("-")
+        overall_rows.append(row)
+        final_values = values[:1] + overall_rows + values[1:]
+    return final_values

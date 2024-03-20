@@ -4,6 +4,7 @@ import statistics
 import statistics as st
 from collections import Counter
 
+import numpy as np
 from tabulate import tabulate
 from tuw_nlp.common.eval import count_p_r_f
 
@@ -201,12 +202,18 @@ def print_agg(agg, name):
     elif name == STD:
         print("## STD over annotators")
     values = [["Name", FREQ, PREC, REC]]
+    freqs = []
+    precs = []
+    recs = []
     for attr, attr_stat in agg.items():
         agg_prec = 0
         agg_rec = 0
         if name == AVG:
             agg_prec = st.mean(attr_stat[PREC])
             agg_rec = st.mean(attr_stat[REC])
+            freqs.append(int(attr_stat[FREQ] / 2))
+            precs.append(agg_prec)
+            recs.append(agg_rec)
         elif name == STD:
             agg_prec = "NA"
             agg_rec = "NA"
@@ -217,6 +224,17 @@ def print_agg(agg, name):
         values.append([attr, int(attr_stat[FREQ] / 2), agg_prec, agg_rec])
 
     values = [values[0]] + sorted(values[1:], key=lambda r: r[1], reverse=True)
+    if name == AVG:
+        values = [
+            values[0],
+            ["Overall", "-", np.average(precs), np.average(recs)],
+            [
+                "Overall weighted",
+                "-",
+                np.average(precs, weights=freqs),
+                np.average(recs, weights=freqs),
+            ],
+        ] + values[1:]
     if LATEX:
         print(
             tabulate(

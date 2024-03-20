@@ -581,6 +581,8 @@ Post-processed attributes were converted back to their version at the time of an
 
 |  Name | Freq | Precision | Recall |
 |-------------- | -------------- | -------------- | -------------- | 
+| Overall | - | 0.7266 | 0.8559 | 
+| Overall weighted | - | 0.8748 | 0.8647 | 
 | Planzeichen | 1844 | 0.9756 | 0.9750 | 
 | WidmungUndZweckbestimmung | 916 | 0.6987 | 0.4546 | 
 | VerkehrsflaecheID | 400 | 0.9087 | 0.8369 | 

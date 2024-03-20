@@ -143,23 +143,6 @@ Number of wrong suggestions: 2986
 Ratio of wrong suggestions: 30.97%
 ```
 
-### All sentences, with reverted post-processed attributes
-```bash
-Number of all docs: 250
-Number of all sentences: 7049
-Number of sentences with suggestions: 4528
-Ratio of sentences with suggestions: 64.24%
-
-Number of all gold attributes: 9673
-Number of correct suggestions: 7612
-Ratio of correctly suggested gold attributes: 78.69%
-
-Number of all suggested attributes: 9643
-Number of wrong suggestions: 2031
-Ratio of wrong suggestions: 21.06%
-```
-
-
 ### Only sentences that contain a rule
 
 ```bash

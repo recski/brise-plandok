@@ -21,6 +21,7 @@ from brise_plandok.stat.utils import (
     collect_all_attributes,
     fill_up_kappa_stat,
     append_header_for_attr_wise_kappa,
+    add_overall_rows,
 )
 from brise_plandok.utils import load_json
 
@@ -96,10 +97,14 @@ def calculate_table(
     annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=False, latex=False
 ):
     values = []
+    freqs = []
+    macro_avgs = []
+    weighted_avgs = []
     append_header_for_attr_wise_kappa(annotator_pairs, values)
     num_of_sentences = check_and_append_weights(kappa_stat, values, annotator_pairs)
     for attr, stat in kappa_stat.items():
         row = [attr, attr_stat[attr], "-", "-"]
+        freqs.append(attr_stat[attr])
         non_nan_kappas = []
         non_nan_weights = []
         for ann_pair, labels in stat.items():
@@ -118,17 +123,22 @@ def calculate_table(
             row.append(kappa)
         if len(non_nan_kappas) > 0:
             row[2] = numpy.average(non_nan_kappas)
+            macro_avgs.append(row[2])
         else:
             row[2] = numpy.nan
         if len(non_nan_kappas) > 1:
             row[3] = numpy.average(non_nan_kappas, weights=non_nan_weights)
+            weighted_avgs.append(row[3])
         else:
             row[3] = numpy.nan
         values.append(row)
+    final_values = add_overall_rows(
+        annotator_pairs, correct_uniform_agreement, freqs, freqs, macro_avgs, values, weighted_avgs
+    )
     if latex:
-        print(make_markdown_table_latex_agr(values))
+        print(make_markdown_table_latex_agr(final_values))
     else:
-        print(make_markdown_table(values))
+        print(make_markdown_table(final_values))
 
 
 def check_and_append_weights(kappa_stat, values, annotator_pairs):

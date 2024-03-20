@@ -350,6 +350,7 @@ def print_average_details(agg_mic_mac):
     ]
     global_averages_collector = numpy.zeros(shape=(len(agg_mic_mac.keys()), 6))
     row = 0
+    freqs = []
     for ann, ann_averages in agg_mic_mac.items():
         micro = ann_averages[TYPES][MICRO]
         macro_type = ann_averages[TYPES][MACRO]
@@ -379,6 +380,7 @@ def print_average_details(agg_mic_mac):
         global_averages_collector[row][3] = macro_type_rec
         global_averages_collector[row][4] = macro_attr_prec
         global_averages_collector[row][5] = macro_attr_rec
+        freqs.append(micro[FREQ])
         row += 1
     global_averages = np.average(global_averages_collector, axis=0)
     values.append(
@@ -394,6 +396,22 @@ def print_average_details(agg_mic_mac):
             global_averages[3],
             global_averages[4],
             global_averages[5],
+        ]
+    )
+    global_w_averages = np.average(global_averages_collector, weights=freqs, axis=0)
+    values.append(
+        [
+            AVG + " weighted",
+            "",
+            "",
+            "",
+            "",
+            global_w_averages[0],
+            global_w_averages[1],
+            global_w_averages[2],
+            global_w_averages[3],
+            global_w_averages[4],
+            global_w_averages[5],
         ]
     )
     global_deviations = np.std(global_averages_collector, axis=0)

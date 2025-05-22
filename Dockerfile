@@ -24,7 +24,7 @@ RUN pip install .
 # Donwload data
 RUN apt-get update
 RUN apt-get install -y wget unzip
-RUN wget https://owncloud.tuwien.ac.at/index.php/s/Cj7QyMrWtwSclkm/download
+RUN wget https://tucloud.tuwien.ac.at/index.php/s/ab65MsDBnknm92L/download
 RUN unzip download
 
 

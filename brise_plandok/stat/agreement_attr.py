@@ -15,16 +15,18 @@ from brise_plandok.stat.constants import (
 )
 from brise_plandok.stat.utils import (
     make_markdown_table,
+    make_markdown_table_latex_agr,
     fill_annotated_attributes,
     get_ann_pair,
     collect_all_attributes,
     fill_up_kappa_stat,
     append_header_for_attr_wise_kappa,
+    add_overall_rows,
 )
 from brise_plandok.utils import load_json
 
 
-def calculate_attr_kappa():
+def calculate_attr_kappa(latex=False):
     kappa_stat = {}
     attr_stat = Counter()
     annotator_pairs = set()
@@ -52,7 +54,7 @@ def calculate_attr_kappa():
                         sen,
                         first_stage_gold_ids,
                     )
-    print_stat(kappa_stat, annotator_pairs, attr_stat)
+    print_stat(kappa_stat, annotator_pairs, attr_stat, latex=latex)
 
 
 def add_kappa_stat(ann_pair, kappa_stat, attr_stat, doc_id, sen, first_stage_gold_ids):
@@ -66,7 +68,7 @@ def add_kappa_stat(ann_pair, kappa_stat, attr_stat, doc_id, sen, first_stage_gol
         kappa_stat[attr][ann_pair][ann_pair[1]].append(attr in ann_attrs[ann_pair[1]])
 
 
-def print_stat(kappa_stat, annotator_pairs, attr_stat):
+def print_stat(kappa_stat, annotator_pairs, attr_stat, latex=False):
     print("# Annotator agreement - Attributes")
     print(
         "This statistics is calculated without the sentences with a segmentation error.  \n"
@@ -77,7 +79,7 @@ def print_stat(kappa_stat, annotator_pairs, attr_stat):
         "either in the first or in the second phase."
     )
     print("## Without kappa correction")
-    calculate_table(annotator_pairs, kappa_stat, attr_stat)
+    calculate_table(annotator_pairs, kappa_stat, attr_stat, latex=latex)
     print("## With kappa correction")
     print(
         "[cohen_kappa_score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.cohen_kappa_score.html) "
@@ -86,15 +88,23 @@ def print_stat(kappa_stat, annotator_pairs, attr_stat):
     print(
         "In the table below, we substituted these `nan` values by the value of complete agreement (1.0)."
     )
-    calculate_table(annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=True)
+    calculate_table(
+        annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=True, latex=latex
+    )
 
 
-def calculate_table(annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=False):
+def calculate_table(
+    annotator_pairs, kappa_stat, attr_stat, correct_uniform_agreement=False, latex=False
+):
     values = []
+    freqs = []
+    macro_avgs = []
+    weighted_avgs = []
     append_header_for_attr_wise_kappa(annotator_pairs, values)
     num_of_sentences = check_and_append_weights(kappa_stat, values, annotator_pairs)
     for attr, stat in kappa_stat.items():
         row = [attr, attr_stat[attr], "-", "-"]
+        freqs.append(attr_stat[attr])
         non_nan_kappas = []
         non_nan_weights = []
         for ann_pair, labels in stat.items():
@@ -113,14 +123,22 @@ def calculate_table(annotator_pairs, kappa_stat, attr_stat, correct_uniform_agre
             row.append(kappa)
         if len(non_nan_kappas) > 0:
             row[2] = numpy.average(non_nan_kappas)
+            macro_avgs.append(row[2])
         else:
             row[2] = numpy.nan
         if len(non_nan_kappas) > 1:
             row[3] = numpy.average(non_nan_kappas, weights=non_nan_weights)
+            weighted_avgs.append(row[3])
         else:
             row[3] = numpy.nan
         values.append(row)
-    print(make_markdown_table(values))
+    final_values = add_overall_rows(
+        annotator_pairs, correct_uniform_agreement, freqs, freqs, macro_avgs, values, weighted_avgs
+    )
+    if latex:
+        print(make_markdown_table_latex_agr(final_values))
+    else:
+        print(make_markdown_table(final_values))
 
 
 def check_and_append_weights(kappa_stat, values, annotator_pairs):
@@ -141,10 +159,11 @@ def check_and_append_weights(kappa_stat, values, annotator_pairs):
 
 def get_args():
     parser = argparse.ArgumentParser(description="")
+    parser.add_argument("-l", "--latex", action="store_true")
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = get_args()
     numpy.seterr(divide="ignore", invalid="ignore")
-    calculate_attr_kappa()
+    calculate_attr_kappa(latex=args.latex)

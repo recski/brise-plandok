@@ -50,7 +50,8 @@ def evaluate_for_all(model, dataset_name):
             golds.values(),
             labels_to_keep=RULE_BASED_ATTRIBUTES,
             add_missing_labels=True,
-        )
+        ),
+        print_avgs=True
     )
 
 

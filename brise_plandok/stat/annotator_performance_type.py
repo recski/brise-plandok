@@ -4,6 +4,7 @@ from collections import Counter
 
 import numpy
 import numpy as np
+from tabulate import tabulate
 from tuw_nlp.common.eval import count_p_r_f
 
 from brise_plandok.constants import (
@@ -27,6 +28,7 @@ from brise_plandok.stat.constants import (
     MACRO,
     PREC,
     REC,
+    F1,
     ATTRIBUTES,
     TYPES,
 )
@@ -222,6 +224,7 @@ def print_category_aggregation(agg, title, agg_per_ann, category):
     print()
     print("## " + title)
     values = [["Name", FREQ, TP, FP, FN, PREC, REC]]
+    aggr_values = [["Attr", FREQ, PREC, REC, F1]]
     for cat, stat in agg.items():
         values.append([cat, "", "", "", "", "", ""])
         values.append(
@@ -235,6 +238,20 @@ def print_category_aggregation(agg, title, agg_per_ann, category):
                 stat[MICRO][REC],
             ]
         )
+
+        p, r = stat[MICRO][PREC], stat[MICRO][REC]
+        f1 = 0.0 if p + r == 0 else (2 * p * r) / (p + r)
+
+        aggr_values.append(
+            [
+                cat,
+                stat[MICRO][FREQ],
+                stat[MICRO][PREC],
+                stat[MICRO][REC],
+                f1,
+            ]
+        )
+
         avg_collector = numpy.zeros(shape=(6, 2))
         row = 0
         for ann, ann_stat in agg_per_ann.items():
@@ -278,6 +295,14 @@ def print_category_aggregation(agg, title, agg_per_ann, category):
             ]
         )
     print(make_markdown_table(values))
+    print(
+        tabulate(
+            aggr_values[1:],
+            headers=aggr_values[0],
+            tablefmt="latex_booktabs",
+            floatfmt=["s", "d"] + 3 * [".2%"],
+        )
+    )
 
 
 def collect_micro_and_macro_averages_per_ann(agg_per_ann, category, agg_mic_mac):
@@ -325,6 +350,7 @@ def print_average_details(agg_mic_mac):
     ]
     global_averages_collector = numpy.zeros(shape=(len(agg_mic_mac.keys()), 6))
     row = 0
+    freqs = []
     for ann, ann_averages in agg_mic_mac.items():
         micro = ann_averages[TYPES][MICRO]
         macro_type = ann_averages[TYPES][MACRO]
@@ -354,6 +380,7 @@ def print_average_details(agg_mic_mac):
         global_averages_collector[row][3] = macro_type_rec
         global_averages_collector[row][4] = macro_attr_prec
         global_averages_collector[row][5] = macro_attr_rec
+        freqs.append(micro[FREQ])
         row += 1
     global_averages = np.average(global_averages_collector, axis=0)
     values.append(
@@ -369,6 +396,22 @@ def print_average_details(agg_mic_mac):
             global_averages[3],
             global_averages[4],
             global_averages[5],
+        ]
+    )
+    global_w_averages = np.average(global_averages_collector, weights=freqs, axis=0)
+    values.append(
+        [
+            AVG + " weighted",
+            "",
+            "",
+            "",
+            "",
+            global_w_averages[0],
+            global_w_averages[1],
+            global_w_averages[2],
+            global_w_averages[3],
+            global_w_averages[4],
+            global_w_averages[5],
         ]
     )
     global_deviations = np.std(global_averages_collector, axis=0)

@@ -1,6 +1,8 @@
 import os
 
+import numpy
 from numpy import dtype
+from tabulate import tabulate
 
 from brise_plandok.constants import (
     AttributesNames,
@@ -12,6 +14,21 @@ from brise_plandok.constants import (
 )
 from brise_plandok.stat.constants import PLACEHOLDER, DATASET_FOLDERS
 from brise_plandok.utils import load_json
+
+
+def make_markdown_table_latex_agr(array):
+    # the hyphens mess up the application of floatfmt, not sure why
+    array[1] = array[1][:1] + [0, 0, 0] + array[1][4:]
+    # remove the per-attr rows for no. sentences
+    array[3:] = [row for row in array[3:] if row[0] != 'Number of sentences ']
+    table = tabulate(
+        array[1:],
+        headers=array[0],
+        tablefmt="latex_booktabs",
+        floatfmt=["s", "d"] + 17 * [".2f"],
+    )
+    table = table.replace("1.00", "1").replace(" 0.", " .")
+    return table
 
 
 def make_markdown_table(array):
@@ -45,7 +62,7 @@ def make_markdown_table(array):
             if type(e) == int or type(e) == tuple:
                 e = str(e)
             elif type(e) == float or type(e) == dtype("float64"):
-                e = f"{e:.3f}"
+                e = f"{e:.4f}"
             to_add = e + str(" | ")
             markdown += to_add
         markdown += "\n"
@@ -163,3 +180,32 @@ def append_header_for_attr_wise_kappa(annotator_pairs, values):
     for ann_pair in annotator_pairs:
         header.append(ann_pair)
     values.append(header)
+
+
+def add_overall_rows(
+    annotator_pairs,
+    correct_uniform_agreement,
+    macro_freqs,
+    weighted_freqs,
+    macro_avgs,
+    values,
+    weighted_avgs,
+):
+    final_values = values
+    if correct_uniform_agreement:
+        overall_rows = []
+        row = ["Overall", "-", numpy.average(macro_avgs), numpy.average(weighted_avgs)]
+        for _ in annotator_pairs:
+            row.append("-")
+        overall_rows.append(row)
+        row = [
+            "Overall weighted",
+            "-",
+            numpy.average(macro_avgs, weights=macro_freqs),
+            numpy.average(weighted_avgs, weights=weighted_freqs),
+        ]
+        for _ in annotator_pairs:
+            row.append("-")
+        overall_rows.append(row)
+        final_values = values[:1] + overall_rows + values[1:]
+    return final_values
